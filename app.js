@@ -138,8 +138,8 @@
   function renderToday() {
     const jobs = getJobs().slice(0, 3);
     const study = (state.data.study || []).slice(0, 2);
-    main.innerHTML = `${pageHead("오늘의 판단", "무엇을 먼저 확인할까요?", "공개 스냅샷의 우선 항목입니다. 마감과 지원 자격은 원문에서 다시 확인해야 합니다.")}
-      <div class="notice">${icon("info")}<span>${escapeHtml(state.data.snapshotBoundary)}</span></div>
+    main.innerHTML = `${pageHead("오늘의 판단", "오늘 무엇을 확인할까?", "우선 항목입니다. 마감과 자격은 원문에서 다시 확인하세요.")}
+      <div class="notice">${icon("info")}<span>정적 공개 스냅샷입니다. 외부 지원·로그인·CRM 변경을 하지 않습니다.</span></div>
       <div class="today-grid">
         <section><div class="section-heading"><div><span class="eyebrow">공고</span><h2>먼저 원문을 볼 항목</h2></div><a href="#/jobs">모든 공고 보기</a></div><div class="action-list">${jobs.map(jobRow).join("")}</div></section>
         <section><div class="section-heading"><div><span class="eyebrow">학업·재정</span><h2>함께 검토할 경로</h2></div><a href="#/study">전체 보기</a></div><div class="action-list">${study.map(studyRow).join("")}</div></section>
@@ -147,7 +147,7 @@
   }
 
   function renderJobs() {
-    main.innerHTML = `${pageHead("공고 찾기", "목록에서 판단하고, 원문에서 확인합니다.", "이 화면은 ${escapeHtml(state.data.stats.publishedJobs)}개 경량 스냅샷입니다. 점수는 우선순위일 뿐, 마감·자격·지원 가능 여부를 확정하지 않습니다.")}
+    main.innerHTML = `${pageHead("공고 찾기", "목록에서 판단하고, 원문에서 확인합니다.", `이 화면은 ${escapeHtml(state.data.stats.publishedJobs)}개 경량 스냅샷입니다. 점수는 우선순위일 뿐, 마감·자격·지원 가능 여부를 확정하지 않습니다.`)}
       <div class="jobs-toolbar"><label class="search-field"><span class="sr-only">공고 검색</span>${icon("search")}<input id="jobSearch" type="search" autocomplete="off" placeholder="직무, 기관, 지역, 분야 검색" value="${escapeHtml(state.query)}" /></label><button class="filter-trigger" type="button" data-action="open-filters">${icon("filter")} 조건 좁히기 <span class="filter-count" id="filterCount" hidden>0</span></button></div>
       <div class="list-summary"><span>스냅샷 <strong id="jobResultCount"></strong></span><button class="back-link" type="button" data-action="clear-filters">조건 초기화</button></div>
       <div class="opportunity-list" id="jobResults"></div>`;
