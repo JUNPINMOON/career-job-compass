@@ -1,5 +1,6 @@
 output/
 .playwright-cli/
+.omx/
 __pycache__/
 *.pyc
 .DS_Store

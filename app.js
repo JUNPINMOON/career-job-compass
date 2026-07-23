@@ -3,319 +3,177 @@
 
   const state = {
     data: null,
-    ...readSession("career-compass-filters", { query: "", sector: "", minimumScore: 0, status: "" }),
-    returnScroll: 0,
-    bookmarks: new Set(readStorage("career-compass-bookmarks", [])),
+    selectedTrigger: null,
+    bookmarks: new Set(readJSON("career-compass-bookmarks", [])),
+    ...readJSON("career-compass-filters", { query: "", sector: "", minimumScore: 0, status: "" }),
   };
 
   const main = document.getElementById("mainContent");
   const filterSheet = document.getElementById("filterSheet");
+  const dossier = document.getElementById("dossier");
   const snapshotLabel = document.getElementById("snapshotLabel");
-  const snapshotDot = document.querySelector(".snapshot-button .status-dot");
   const offlineBanner = document.getElementById("offlineBanner");
 
-  function readStorage(key, fallback) {
-    try {
-      const value = JSON.parse(localStorage.getItem(key));
-      return Array.isArray(value) ? value : fallback;
-    } catch (_) {
-      return fallback;
-    }
+  function readJSON(key, fallback) {
+    try { const value = JSON.parse(localStorage.getItem(key)); return value ?? fallback; } catch (_) { return fallback; }
   }
+  function store(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) { /* local convenience only */ } }
+  function escapeHtml(value) { return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char])); }
+  function icon(name) { return `<svg aria-hidden="true"><use href="#i-${name}" /></svg>`; }
+  function route() { const value = (location.hash || "#/today").replace(/^#\/?/, "").split("/")[0]; return value === "trust" ? "sources" : value || "today"; }
+  function go(path) { location.hash = path; }
+  function score(value) { return Number(value || 0).toLocaleString("ko-KR", { maximumFractionDigits: 1 }); }
+  function shortDate(value) { return value ? escapeHtml(value) : "원문에서 마감 확인"; }
+  function sourceDate(value) { const date = value ? new Date(value) : null; return date && !Number.isNaN(date.getTime()) ? new Intl.DateTimeFormat("ko-KR", { month: "long", day: "numeric" }).format(date) : "확인 시각 없음"; }
+  function displayDate(value) { const date = value ? new Date(value) : null; return date && !Number.isNaN(date.getTime()) ? new Intl.DateTimeFormat("ko-KR", { dateStyle: "long", timeStyle: "short" }).format(date) : "확인 시각 없음"; }
+  function jobs() { return state.data?.jobs || []; }
+  function study() { return state.data?.study || []; }
+  function jobById(id) { return jobs().find((job) => job.id === id); }
+  function saveFilters() { store("career-compass-filters", { query: state.query, sector: state.sector, minimumScore: state.minimumScore, status: state.status }); }
+  function saveBookmarks() { store("career-compass-bookmarks", [...state.bookmarks]); }
+  function activeFilters() { return Number(Boolean(state.sector)) + Number(Boolean(state.minimumScore)) + Number(Boolean(state.status)); }
 
-  function readSession(key, fallback) {
-    try {
-      const value = JSON.parse(sessionStorage.getItem(key));
-      return value && typeof value === "object" ? value : fallback;
-    } catch (_) {
-      return fallback;
-    }
+  function setActiveTab(current) {
+    document.querySelectorAll("[data-tab]").forEach((tab) => tab.toggleAttribute("aria-current", tab.dataset.tab === current));
   }
-
-  function persistFilters() {
-    try {
-      sessionStorage.setItem("career-compass-filters", JSON.stringify({
-        query: state.query,
-        sector: state.sector,
-        minimumScore: state.minimumScore,
-        status: state.status,
-      }));
-    } catch (_) { /* optional resilience for PWA return trips */ }
-  }
-
-  function saveBookmarks() {
-    try { localStorage.setItem("career-compass-bookmarks", JSON.stringify([...state.bookmarks])); } catch (_) { /* local-only optional feature */ }
-  }
-
-  function escapeHtml(value) {
-    return String(value || "").replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
-  }
-
-  function icon(name) {
-    return `<svg aria-hidden="true"><use href="#i-${name}" /></svg>`;
-  }
-
-  function displayDate(value) {
-    if (!value) return "날짜 원문 확인";
-    const parsed = new Date(value);
-    return Number.isNaN(parsed.getTime()) ? escapeHtml(value) : new Intl.DateTimeFormat("ko-KR", { dateStyle: "medium", timeStyle: "short" }).format(parsed);
-  }
-
-  function sourceDate(value) {
-    if (!value) return "확인 시각 없음";
-    const parsed = new Date(value);
-    return Number.isNaN(parsed.getTime()) ? value : new Intl.DateTimeFormat("ko-KR", { dateStyle: "medium" }).format(parsed);
-  }
-
-  function route() {
-    const hash = location.hash || "#/today";
-    const parts = hash.replace(/^#\/?/, "").split("/").filter(Boolean).map((part) => decodeURIComponent(part));
-    return { root: parts[0] || "today", id: parts[1] || "" };
-  }
-
-  function go(path) {
-    location.hash = path;
-  }
-
-  function setActiveTab(root) {
-    const tabRoot = root === "job" ? "jobs" : root;
-    document.querySelectorAll("[data-tab]").forEach((node) => {
-      const active = node.dataset.tab === tabRoot;
-      if (active) node.setAttribute("aria-current", "page"); else node.removeAttribute("aria-current");
-    });
-  }
-
-  function tagClass(status) {
-    return status === "조건 확인됨" ? "verified" : "verify";
-  }
-
-  function getJobs() {
-    return state.data ? state.data.jobs || [] : [];
-  }
-
   function filteredJobs() {
-    const query = state.query.trim().toLocaleLowerCase("ko");
-    return getJobs().filter((job) => {
-      const haystack = [job.title, job.company, job.location, job.sector, job.source].join(" ").toLocaleLowerCase("ko");
-      return (!query || haystack.includes(query)) &&
-        (!state.sector || job.sector === state.sector) &&
-        Number(job.score || 0) >= state.minimumScore &&
-        (!state.status || job.status === state.status);
+    const query = String(state.query || "").trim().toLocaleLowerCase("ko");
+    return jobs().filter((job) => {
+      const text = [job.title, job.company, job.location, job.sector, job.source, job.eligibilitySummary].join(" ").toLocaleLowerCase("ko");
+      return (!query || text.includes(query)) && (!state.sector || job.sector === state.sector) && Number(job.score || 0) >= Number(state.minimumScore || 0) && (!state.status || job.status === state.status);
     });
   }
-
-  function currentFilterCount() {
-    return Number(Boolean(state.query)) + Number(Boolean(state.sector)) + Number(Boolean(state.minimumScore)) + Number(Boolean(state.status));
+  function sectionTitle(kicker, title, action = "") { return `<div class="section-heading"><div><span>${kicker}</span><h2>${title}</h2></div>${action}</div>`; }
+  function verifyCopy(job) { return escapeHtml(job.eligibilitySummary || "마감·자격·취업 허가를 원문에서 확인"); }
+  function statusText(job) { return job.status === "조건 확인됨" ? "자료 조건 확인됨" : "원문에서 조건 확인 필요"; }
+  function chunks(items, size) { return Array.from({ length: Math.ceil(items.length / size) }, (_, index) => items.slice(index * size, index * size + size)); }
+  function pageFrame(content, index, total, label) {
+    const previous = index > 0 ? `<button class="page-turn-prev" type="button" data-action="page-prev" aria-label="이전 페이지">이전</button>` : `<span aria-hidden="true"></span>`;
+    const next = index < total - 1 ? `<button class="page-turn-next" type="button" data-action="page-next" aria-label="다음 페이지">다음 ${icon("arrow")}</button>` : `<span class="page-finish">끝</span>`;
+    const progress = Math.round(((index + 1) / total) * 100);
+    return `<section class="page-frame" data-page-index="${index}" style="--page-progress:${progress}%" aria-label="${escapeHtml(label)} ${index + 1} / ${total}">${content}<nav class="page-turn" aria-label="${escapeHtml(label)} 페이지 이동">${previous}<span class="page-counter"><i aria-hidden="true"></i>${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}</span>${next}</nav></section>`;
+  }
+  function movePage(trigger, direction) {
+    const frame = trigger.closest(".page-frame");
+    const frames = [...main.querySelectorAll(".page-frame")];
+    const currentIndex = frames.indexOf(frame);
+    const target = frames[currentIndex + (direction === "next" ? 1 : -1)];
+    if (!target) return;
+    const top = main.scrollTop + target.getBoundingClientRect().top - main.getBoundingClientRect().top;
+    navigator.vibrate?.(8);
+    main.scrollTo({ top, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   }
 
-  function jobRow(job) {
-    return `<button class="job-row" type="button" data-open-job="${escapeHtml(job.id)}">
-      <span class="row-kicker"><span>${escapeHtml(job.company)}</span><span class="metric">${escapeHtml(job.score)}점</span></span>
-      <span class="row-title">${escapeHtml(job.title)}</span>
-      <span class="row-meta"><span>${escapeHtml(job.location)}</span><span class="tag ${tagClass(job.status)}">${escapeHtml(job.status)}</span></span>
-      <span class="arrow">${icon("arrow")}</span>
-    </button>`;
+  function priorityRow(job, index, compact = false) {
+    const saved = state.bookmarks.has(job.id);
+    return `<article class="opportunity ${compact ? "is-compact" : ""}">
+      <button class="opportunity-main" type="button" data-open-job="${escapeHtml(job.id)}">
+        <span class="opportunity-order">${String(index + 1).padStart(2, "0")}</span>
+        <span class="score-mark"><b>${score(job.score)}</b><small>점</small></span>
+        <span class="opportunity-copy"><em>${escapeHtml(job.company)}</em><strong>${escapeHtml(job.title)}</strong><small>${escapeHtml(job.location)}</small></span>
+        <span class="opportunity-arrow">${icon("arrow")}</span>
+      </button>
+      <div class="opportunity-foot"><span><i class="source-dot ${job.status === "조건 확인됨" ? "is-solid" : ""}"></i>${statusText(job)}</span><span>${verifyCopy(job)}</span></div>
+      <button class="save-dot ${saved ? "is-saved" : ""}" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}" aria-label="${saved ? "보관 취소" : "공고 보관"}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}</button>
+    </article>`;
+  }
+
+  function renderToday() {
+    const ordered = [...jobs()].sort((a, b) => Number(b.score) - Number(a.score));
+    const lead = ordered[0];
+    const top = ordered.slice(0, 3);
+    const routes = study().slice(0, 2);
+    const priorityPages = chunks(top, 2).map((group, pageIndex) => `<section class="decision-list ${pageIndex ? "priority-continuation" : ""}" aria-labelledby="priorityHeading${pageIndex}">
+      ${pageIndex === 0 ? sectionTitle("01. 오늘의 우선순위", "먼저 원문을 열 세 가지", `<a href="#/jobs">전체 ${jobs().length}개 보기 ${icon("arrow")}</a>`) : `<div class="priority-continuation-head"><p class="eyebrow">01. 오늘의 우선순위 · 이어서</p><h2 id="priorityHeading${pageIndex}">세 번째 후보도<br />원문부터 확인</h2><p>세 항목 모두 점수만으로 지원 가능 여부를 확정하지 않아요.</p></div>`}
+      ${pageIndex === 0 ? `<p class="section-intro">비슷한 카드들을 늘어놓지 않았어요. 지금 판단할 순서와, 열기 전에 확인할 조건만 남겼습니다.</p>` : ""}
+      <div class="opportunity-list">${group.map((job, index) => priorityRow(job, pageIndex * 2 + index)).join("")}</div>
+    </section>`);
+    const pages = [`<section class="today-cover" aria-labelledby="todayTitle">
+      <div class="cover-meta"><span>CAREER COMPASS</span><span>DAILY BRIEF / 01</span></div>
+      <figure class="cover-art"><img src="./assets/daily-brief-cover-v3.png" alt="종이 위로 이어지는 파란 경로와 형광 화살표로 표현한 오늘의 방향" /></figure>
+      <div class="cover-copy"><p>오늘의 선택 · ${sourceDate(state.data.stats?.newestSourceCheck)} 기준</p><h1 id="todayTitle"><span>오늘의</span><strong>한 가지</strong></h1></div>
+      ${lead ? `<button class="cover-action" type="button" data-open-job="${escapeHtml(lead.id)}"><span>FIRST SOURCE CHECK</span><b>${escapeHtml(lead.company)}<em>${escapeHtml(lead.title)}</em></b>${icon("arrow")}</button>` : ""}
+    </section>`, ...priorityPages, `<section class="route-callout" aria-labelledby="routeHeading">
+      <div class="route-callout-image"><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></div>
+      <div class="route-callout-copy"><p class="eyebrow">02. 진학과 재정</p><h2 id="routeHeading">이 경로도<br />같이 살펴보기</h2><p>학교 이름만 보지 말고, 시작 시점·장학 조건·교수 연구실을 따로 읽어야 해요.</p><a class="ink-link" href="#/study">진학 루트 열기 ${icon("arrow")}</a></div>
+      <div class="route-mini-list">${routes.map((item) => `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer"><small>${escapeHtml(item.degree || "STUDY ROUTE")}</small><b>${escapeHtml(item.university)}</b><span>${escapeHtml(item.program)}</span>${icon("external")}</a>`).join("")}</div>
+    </section>`];
+    main.innerHTML = pages.map((page, index) => pageFrame(page, index, pages.length, "오늘의 선택")).join("");
   }
 
   function renderJobResults() {
     const results = filteredJobs();
-    const count = document.getElementById("jobResultCount");
-    const list = document.getElementById("jobResults");
-    const filterCount = document.getElementById("filterCount");
-    if (!count || !list) return;
-    count.textContent = `${results.length}개`;
-    if (filterCount) {
-      filterCount.textContent = String(currentFilterCount());
-      filterCount.hidden = currentFilterCount() === 0;
-    }
-    list.innerHTML = results.length ? results.map(jobRow).join("") : `<div class="empty-state"><h2>조건에 맞는 공고가 없습니다</h2><p>현재 적용한 검색어와 조건을 확인하거나, 필터를 초기화해 보세요.</p><button class="secondary-button" type="button" data-action="clear-filters">조건 초기화</button></div>`;
-  }
-
-  function pageHead(eyebrow, title, lede) {
-    return `<header class="page-head"><span class="eyebrow">${eyebrow}</span><h1 tabindex="-1">${title}</h1><p class="lede">${lede}</p></header>`;
-  }
-
-  function renderToday() {
-    const jobs = getJobs().slice(0, 3);
-    const study = (state.data.study || []).slice(0, 2);
-    main.innerHTML = `${pageHead("오늘의 판단", "오늘 무엇을 확인할까?", "우선 항목입니다. 마감과 자격은 원문에서 다시 확인하세요.")}
-      <div class="notice">${icon("info")}<span>정적 공개 스냅샷입니다. 외부 지원·로그인·CRM 변경을 하지 않습니다.</span></div>
-      <div class="today-grid">
-        <section><div class="section-heading"><div><span class="eyebrow">공고</span><h2>먼저 원문을 볼 항목</h2></div><a href="#/jobs">모든 공고 보기</a></div><div class="action-list">${jobs.map(jobRow).join("")}</div></section>
-        <section><div class="section-heading"><div><span class="eyebrow">학업·재정</span><h2>함께 검토할 경로</h2></div><a href="#/study">전체 보기</a></div><div class="action-list">${study.map(studyRow).join("")}</div></section>
-      </div>`;
+    const target = document.getElementById("jobResults");
+    if (!target) return;
+    const pages = chunks(results, 3);
+    target.innerHTML = results.length ? pages.map((group, pageIndex) => pageFrame(`<section class="results-section"><div class="results-meta"><span>결과 ${pageIndex * 3 + 1}–${Math.min((pageIndex + 1) * 3, results.length)}</span><b>${results.length}개</b></div><div class="opportunity-list is-results">${group.map((job, index) => priorityRow(job, pageIndex * 3 + index, true)).join("")}</div></section>`, pageIndex + 1, pages.length + 1, "공고 탐색")).join("") : pageFrame(`<section class="results-section"><div class="empty"><p>지금 조건과 맞는 공고가 없어요.</p><button class="plain-button" type="button" data-action="clear-filters">필터 초기화</button></div></section>`, 1, 2, "공고 탐색");
   }
 
   function renderJobs() {
-    main.innerHTML = `${pageHead("공고 찾기", "목록에서 판단하고, 원문에서 확인합니다.", `이 화면은 ${escapeHtml(state.data.stats.publishedJobs)}개 경량 스냅샷입니다. 점수는 우선순위일 뿐, 마감·자격·지원 가능 여부를 확정하지 않습니다.`)}
-      <div class="jobs-toolbar"><label class="search-field"><span class="sr-only">공고 검색</span>${icon("search")}<input id="jobSearch" type="search" autocomplete="off" placeholder="직무, 기관, 지역, 분야 검색" value="${escapeHtml(state.query)}" /></label><button class="filter-trigger" type="button" data-action="open-filters">${icon("filter")} 조건 좁히기 <span class="filter-count" id="filterCount" hidden>0</span></button></div>
-      <div class="list-summary"><span>스냅샷 <strong id="jobResultCount"></strong></span><button class="back-link" type="button" data-action="clear-filters">조건 초기화</button></div>
-      <div class="opportunity-list" id="jobResults"></div>`;
-    document.getElementById("jobSearch").addEventListener("input", (event) => { state.query = event.target.value; persistFilters(); renderJobResults(); });
+    const sectorChips = (state.data.sectors || []).slice(0, 6).map((sector) => `<button class="sector-chip ${state.sector === sector.name ? "is-active" : ""}" type="button" data-sector="${escapeHtml(sector.name)}">${escapeHtml(sector.name)} <b>${sector.publishedJobs}</b></button>`).join("");
+    const total = Math.max(1, chunks(filteredJobs(), 3).length) + 1;
+    main.innerHTML = pageFrame(`<section class="browse-head"><p class="eyebrow">공고 탐색</p><div class="browse-title-row"><h1>하나씩, 확실하게.</h1><button class="filter-trigger" type="button" data-action="open-filters">필터 ${activeFilters() ? `<b>${activeFilters()}</b>` : ""}${icon("filter")}</button></div><p>역할·기관·지역을 검색한 뒤, 관심 가는 공고만 원문으로 넘어가세요.</p>
+      <label class="search-box">${icon("search")}<span class="sr-only">공고 검색</span><input id="jobSearch" type="search" value="${escapeHtml(state.query)}" placeholder="직무, 기관, 지역으로 찾기" autocomplete="off" /></label>
+      <div class="sector-scroll"><button class="sector-chip ${!state.sector ? "is-active" : ""}" type="button" data-sector="">전체</button>${sectorChips}</div></section>`, 0, total, "공고 탐색") + `<div id="jobResults"></div>`;
+    document.getElementById("jobSearch").addEventListener("input", (event) => { state.query = event.target.value; saveFilters(); renderJobResults(); });
     renderJobResults();
-    const persistedScroll = Number(sessionStorage.getItem("career-compass-return-scroll") || 0);
-    if (state.returnScroll || persistedScroll) {
-      const scroll = state.returnScroll || persistedScroll;
-      state.returnScroll = 0;
-      sessionStorage.removeItem("career-compass-return-scroll");
-      requestAnimationFrame(() => window.scrollTo({ top: scroll, behavior: "auto" }));
-    }
-  }
-
-  function renderDetail(id) {
-    const job = getJobs().find((item) => item.id === id);
-    if (!job) { renderError("공고를 찾을 수 없습니다", "공개 스냅샷이 바뀌었거나, 이 항목은 더 이상 포함되지 않았습니다."); return; }
-    const saved = state.bookmarks.has(job.id);
-    const sourceDisabled = !job.url;
-    main.innerHTML = `<article class="detail"><div class="detail-top"><button class="back-link" type="button" data-action="back-jobs">${icon("back")} 목록</button><button class="bookmark-button ${saved ? "is-saved" : ""}" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}" aria-label="${saved ? "저장 해제" : "나중에 볼 공고로 저장"}">${icon(saved ? "bookmark-filled" : "bookmark")}</button></div>
-      <span class="tag ${tagClass(job.status)}">${escapeHtml(job.status)}</span><h1 class="detail-title" tabindex="-1">${escapeHtml(job.title)}</h1><p class="detail-company">${escapeHtml(job.company)} · ${escapeHtml(job.source)}</p><p class="detail-score">${escapeHtml(job.score)}<small>우선순위 점수</small></p>
-      <dl class="fact-grid"><div><dt>근무지</dt><dd>${escapeHtml(job.location)}</dd></div><div><dt>분야</dt><dd>${escapeHtml(job.sector)}</dd></div><div><dt>마감</dt><dd>${escapeHtml(job.deadline || "원문 확인 필요")}</dd></div><div><dt>근거 완성도</dt><dd>${escapeHtml(job.evidenceCompleteness)}%</dd></div></dl>
-      <section class="detail-section"><span class="eyebrow">지원 판단</span><h2>먼저 확인할 것</h2><div class="evidence-box">${escapeHtml(job.eligibilitySummary)}</div></section>
-      <section class="detail-section"><span class="eyebrow">출처</span><h2>공개 스냅샷의 경계</h2><p class="muted">이 앱은 원문 공고를 저장한 읽기용 스냅샷입니다. 외부 지원, 로그인, CRM 변경을 하지 않습니다.</p><a class="source-link" ${sourceDisabled ? "aria-disabled=\"true\"" : `href="${escapeHtml(job.url)}" target="_blank" rel="noopener noreferrer"`}>${icon("external")} 공식 원문 확인</a><p class="detail-boundary">원문을 열기 전에 이 목록의 필터와 스크롤 위치는 이 기기에 유지됩니다.</p></section></article>`;
-  }
-
-  function studyRow(item) {
-    return `<a class="study-row" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer"><span class="row-kicker"><span>${escapeHtml(item.university)}</span><span class="tag neutral">${escapeHtml(item.degree || "과정")}</span></span><span class="row-title">${escapeHtml(item.program)}</span><span class="row-meta"><span>${escapeHtml(item.country)}</span><span>${escapeHtml(item.deadline)}</span></span><span class="funding">${escapeHtml(item.funding)}</span><span class="arrow">${icon("external")}</span></a>`;
-  }
-
-  function renderSectors() {
-    const sectors = state.data.sectors || [];
-    main.innerHTML = `${pageHead("분야 탐색", "어느 분야에서 공고를 읽을까요?", "표시 건수는 이 공개 스냅샷 안의 수입니다. 전체 파이프라인의 결과 수와 동일하지 않을 수 있습니다.")}
-      <div class="sector-list">${sectors.map((item) => `<button class="sector-row" type="button" data-sector="${escapeHtml(item.name)}"><div><h3>${escapeHtml(item.name)}</h3><p class="muted small">공개 스냅샷에서 관련 공고 보기</p></div><span class="sector-count">${escapeHtml(item.publishedJobs)}</span></button>`).join("")}</div>`;
   }
 
   function renderStudy() {
-    const routes = state.data.study || [];
-    main.innerHTML = `${pageHead("대학원·장학금", "학업과 재정 경로를 따로 판단합니다.", "각 항목은 공식 원문을 가리킵니다. 마감, RA/장학 조건, 지원 자격은 열기 전에 다시 확인하세요.")}
-      <div class="notice">${icon("info")}<span>공고 추천과 학업 경로는 서로 다른 시간축의 의사결정입니다. 이 탭은 공고 상세에 강제로 섞지 않습니다.</span></div><div class="study-list">${routes.map(studyRow).join("")}</div>`;
+    const routePages = chunks(study(), 2);
+    const total = routePages.length + 1;
+    const intro = `<section class="study-hero"><div><p class="eyebrow">진학 · 장학 · 연구</p><h1>다음 단계도<br />현실적으로.</h1><p>과정의 이름과 지원금은 다릅니다. 한 항목씩 공식 출처를 열고, 마감과 지원 자격을 다시 확인하세요.</p></div><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></section>`;
+    const routes = routePages.map((group, pageIndex) => `<section class="study-list" aria-label="진학과 장학 루트">${group.map((item, index) => `<a class="study-row" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer"><span>${String(pageIndex * 2 + index + 1).padStart(2, "0")}</span><div><small>${escapeHtml(item.degree || "STUDY ROUTE")} · ${escapeHtml(item.country)}</small><h2>${escapeHtml(item.program)}</h2><p>${escapeHtml(item.university)}</p><em>${escapeHtml(item.funding || "재정 조건 원문 확인")}</em></div>${icon("external")}</a>`).join("")}</section>`);
+    main.innerHTML = [intro, ...routes].map((page, index) => pageFrame(page, index, total, "진학과 재정")).join("");
   }
 
-  function renderTrust() {
+  function renderSources() {
     const stats = state.data.stats || {};
-    const statusCounts = stats.sourceStatusCounts || {};
-    const entries = Object.entries(statusCounts).sort(([a], [b]) => a.localeCompare(b));
-    main.innerHTML = `${pageHead("자료 신뢰", "이 화면이 무엇을 알고, 무엇을 모르는지", "GitHub Pages에 올린 정적 스냅샷의 출처·갱신 경계입니다. 최신 수집이나 지원 가능 여부를 보장하지 않습니다.")}
-      <div class="trust-grid"><div class="trust-metric"><span>원시 공고</span><strong>${escapeHtml(stats.rawJobs)}</strong><small>로컬 파이프라인의 입력 규모</small></div><div class="trust-metric"><span>점수 공고</span><strong>${escapeHtml(stats.scoredJobs)}</strong><small>점수화된 전체 풀</small></div><div class="trust-metric"><span>공개 스냅샷</span><strong>${escapeHtml(stats.publishedJobs)}</strong><small>이 기기에서 빠르게 읽는 경량 목록</small></div><div class="trust-metric"><span>출처 기록</span><strong>${escapeHtml(stats.sourceRecords)}</strong><small>상태가 기록된 수집원</small></div></div>
-      <section class="detail-section"><span class="eyebrow">스냅샷</span><h2>${displayDate(state.data.generatedAt)}</h2><p class="muted">가장 최근 출처 확인: ${escapeHtml(sourceDate(stats.newestSourceCheck))}</p></section>
-      <section class="detail-section"><span class="eyebrow">출처 상태</span><h2>수집원이 모두 같은 상태는 아닙니다</h2><div class="status-breakdown">${entries.map(([status, count]) => `<div><span>${escapeHtml(status)}</span><strong>${escapeHtml(count)}개</strong></div>`).join("")}</div></section>
-      <section class="detail-section"><span class="eyebrow">안전 경계</span><h2>이 앱이 하지 않는 일</h2><div class="evidence-box">외부 지원·메일·로그인·CRM 변경·실시간 수집을 수행하지 않습니다. 원문을 연 뒤의 행동은 사용자가 직접 확인하고 결정합니다.</div></section>`;
+    const statusRows = Object.entries(stats.sourceStatusCounts || {}).sort(([a], [b]) => a.localeCompare(b)).map(([name, count]) => `<div><span>${escapeHtml(name.replaceAll("_", " "))}</span><b>${escapeHtml(count)}</b></div>`).join("");
+    const pages = [`<section class="sources-head"><p class="eyebrow">자료의 범위</p><h1>앱이 아는 것,<br />아직 모르는 것.</h1><p>${escapeHtml(state.data.snapshotBoundary || "원문 확인 전에는 판단을 확정하지 않습니다.")}</p></section>`, `<section class="source-stamp"><span>LAST SNAPSHOT</span><b>${displayDate(state.data.generatedAt)}</b><i>SOURCE<br />FIRST</i></section><section class="stat-strip"><div><small>원시 공고</small><b>${escapeHtml(stats.rawJobs)}</b></div><div><small>점수화 풀</small><b>${escapeHtml(stats.scoredJobs)}</b></div><div><small>공개 공고</small><b>${escapeHtml(stats.publishedJobs)}</b></div></section>`, `<section class="source-explainer"><p class="eyebrow">출처 상태</p><h2>원문이 최종 기준입니다.</h2><p>이 화면은 공개 스냅샷을 읽기 쉽게 정리한 것입니다. 외부 지원·로그인·CRM 변경은 수행하지 않습니다.</p><div class="status-rows">${statusRows}</div></section>`];
+    main.innerHTML = pages.map((page, index) => pageFrame(page, index, pages.length, "자료의 범위")).join("");
   }
 
-  function renderError(title, detail) {
-    main.innerHTML = `<section class="error-state"><span class="eyebrow">불러오기 실패</span><h1>${escapeHtml(title)}</h1><p>${escapeHtml(detail)}</p><button class="primary-button" type="button" data-action="retry">다시 시도</button></section>`;
+  function renderDetail(job) {
+    const saved = state.bookmarks.has(job.id);
+    const official = job.url ? `<a class="official-button" href="${escapeHtml(job.url)}" target="_blank" rel="noopener noreferrer">공식 원문 열기 ${icon("external")}</a>` : `<span class="official-button is-disabled">공식 원문 주소 없음</span>`;
+    dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${escapeHtml(job.source || "SOURCE")} · 공고 상세</small><button type="button" data-action="close-dossier" aria-label="상세 닫기">${icon("close")}</button></div></header><div class="detail-body"><p class="detail-score"><b>${score(job.score)}</b><span>우선순위 점수<br />100점 기준</span></p><h2 id="dossierTitle">${escapeHtml(job.title)}</h2><p class="detail-company">${escapeHtml(job.company)} · ${escapeHtml(job.location)}</p><div class="detail-primary">${official}</div><div class="detail-facts"><div><small>분야</small><b>${escapeHtml(job.sector)}</b></div><div><small>마감</small><b>${shortDate(job.deadline)}</b></div><div><small>출처 상태</small><b>${statusText(job)}</b></div><div><small>근거 완성도</small><b>${escapeHtml(job.evidenceCompleteness)}%</b></div></div><section class="check-note"><small>열기 전 체크</small><p>${verifyCopy(job)}</p></section><div class="detail-actions"><button class="detail-save ${saved ? "is-saved" : ""}" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}${saved ? "보관함에 있음" : "나중에 보기"}</button></div><p class="detail-boundary">원문에서 마감·자격·지원 가능 여부를 최종 확인하세요.</p></div></article>`;
   }
-
-  function render(focus = true) {
-    if (!state.data) return;
-    const current = route();
-    setActiveTab(current.root);
-    if (current.root === "today") renderToday();
-    else if (current.root === "jobs") renderJobs();
-    else if (current.root === "job") renderDetail(current.id);
-    else if (current.root === "sectors") renderSectors();
-    else if (current.root === "study") renderStudy();
-    else if (current.root === "trust") renderTrust();
-    else { go("#/today"); return; }
-    if (focus) requestAnimationFrame(() => main.querySelector("h1")?.focus({ preventScroll: true }));
+  function openDetail(id, trigger) { const job = jobById(id); if (!job) return; state.selectedTrigger = trigger || null; renderDetail(job); if (!dossier.open) dossier.showModal(); requestAnimationFrame(() => dossier.querySelector("[data-action='close-dossier']")?.focus()); }
+  function closeDetail(restore = true) { if (dossier.open) dossier.close(); if (restore && state.selectedTrigger?.isConnected) state.selectedTrigger.focus(); state.selectedTrigger = null; }
+  function openFilters() {
+    const sectors = [...new Set(jobs().map((job) => job.sector))].sort((a, b) => a.localeCompare(b, "ko"));
+    const select = document.getElementById("sectorFilter");
+    select.innerHTML = `<option value="">전체 분야</option>${sectors.map((sector) => `<option value="${escapeHtml(sector)}">${escapeHtml(sector)}</option>`).join("")}`;
+    select.value = state.sector; document.getElementById("scoreFilter").value = String(state.minimumScore); document.getElementById("statusFilter").value = state.status;
+    if (!filterSheet.open) filterSheet.showModal(); select.focus();
   }
-
-  function openFilters(opener) {
-    const sector = document.getElementById("sectorFilter");
-    const allSectors = [...new Set(getJobs().map((job) => job.sector))].sort((a, b) => a.localeCompare(b, "ko"));
-    sector.innerHTML = `<option value="">모든 분야</option>${allSectors.map((name) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join("")}`;
-    sector.value = state.sector;
-    document.getElementById("scoreFilter").value = String(state.minimumScore);
-    document.getElementById("statusFilter").value = state.status;
-    filterSheet.dataset.opener = opener ? "filter" : "";
-    if (typeof filterSheet.showModal === "function") filterSheet.showModal(); else filterSheet.setAttribute("open", "");
-    sector.focus();
-  }
-
-  function closeFilters() {
-    if (filterSheet.open && typeof filterSheet.close === "function") filterSheet.close(); else filterSheet.removeAttribute("open");
-    document.querySelector("[data-action='open-filters']")?.focus();
-  }
-
-  function resetFilters() {
-    state.query = "";
-    state.sector = "";
-    state.minimumScore = 0;
-    state.status = "";
-    persistFilters();
-    const search = document.getElementById("jobSearch");
-    if (search) search.value = "";
-    renderJobResults();
-  }
-
-  function updateNetworkStatus() {
-    offlineBanner.hidden = navigator.onLine;
-  }
-
-  function updateSnapshotStatus() {
-    const sourceCheck = state.data?.stats?.newestSourceCheck;
-    const ageHours = sourceCheck ? (Date.now() - new Date(sourceCheck).getTime()) / 3600000 : Infinity;
-    snapshotDot.classList.toggle("is-stale", ageHours > 48 || !navigator.onLine);
-    snapshotLabel.textContent = navigator.onLine ? `자료 ${sourceDate(sourceCheck)}` : "오프라인 스냅샷";
-  }
-
-  async function loadData() {
-    try {
-      const response = await fetch("./data/app-data.json", { cache: "reload" });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const payload = await response.json();
-      if (!Array.isArray(payload.jobs) || !Array.isArray(payload.study)) throw new Error("snapshot schema mismatch");
-      state.data = payload;
-      updateNetworkStatus();
-      updateSnapshotStatus();
-      render(false);
-    } catch (error) {
-      snapshotDot.classList.add("is-error");
-      snapshotLabel.textContent = "자료 불러오기 실패";
-      renderError("스냅샷을 열 수 없습니다", "인터넷 연결 또는 공개 파일을 확인한 뒤 다시 시도하세요.");
-      console.error(error);
-    }
-  }
+  function resetFilters() { state.query = ""; state.sector = ""; state.minimumScore = 0; state.status = ""; saveFilters(); const input = document.getElementById("jobSearch"); if (input) input.value = ""; renderJobResults(); }
+  function updateNetwork() { offlineBanner.hidden = navigator.onLine; const recent = state.data?.stats?.newestSourceCheck; snapshotLabel.textContent = navigator.onLine ? `자료 ${sourceDate(recent)}` : "오프라인 스냅샷"; }
+  function renderError() { main.innerHTML = `<section class="loading"><span>LOAD ERROR</span><b>자료를 열 수 없어요.</b><button class="plain-button" type="button" data-action="retry">다시 시도</button></section>`; }
+  function render(focus = true) { if (!state.data) return; closeDetail(false); window.scrollTo(0, 0); main.scrollTop = 0; const current = route(); setActiveTab(current); if (current === "today") renderToday(); else if (current === "jobs") renderJobs(); else if (current === "study") renderStudy(); else if (current === "sources") renderSources(); else { go("#/today"); return; } requestAnimationFrame(() => { window.scrollTo(0, 0); main.scrollTop = 0; if (focus) main.querySelector("h1")?.focus({ preventScroll: true }); }); }
+  async function load() { try { const response = await fetch("./data/app-data.json", { cache: "reload" }); if (!response.ok) throw new Error(response.status); const data = await response.json(); if (!Array.isArray(data.jobs) || !Array.isArray(data.study)) throw new Error("schema"); state.data = data; updateNetwork(); render(false); } catch (error) { console.error(error); snapshotLabel.textContent = "자료를 열 수 없음"; renderError(); } }
 
   document.addEventListener("click", (event) => {
-    const routeButton = event.target.closest("[data-route]");
-    if (routeButton) { go(`#/` + routeButton.dataset.route); return; }
-    const jobButton = event.target.closest("[data-open-job]");
-    if (jobButton) {
-      state.returnScroll = window.scrollY;
-      try { sessionStorage.setItem("career-compass-return-scroll", String(state.returnScroll)); } catch (_) { /* no-op */ }
-      go(`#/job/${encodeURIComponent(jobButton.dataset.openJob)}`);
-      return;
-    }
-    const sectorButton = event.target.closest("[data-sector]");
-    if (sectorButton) { state.sector = sectorButton.dataset.sector; persistFilters(); go("#/jobs"); return; }
-    const action = event.target.closest("[data-action]")?.dataset.action;
-    if (!action) return;
-    if (action === "open-filters") openFilters(event.target.closest("button"));
+    const routeButton = event.target.closest("[data-route]"); if (routeButton) { go(`#/${routeButton.dataset.route}`); return; }
+    const jobButton = event.target.closest("[data-open-job]"); if (jobButton) { openDetail(jobButton.dataset.openJob, jobButton); return; }
+    const sector = event.target.closest("[data-sector]"); if (sector) { state.sector = sector.dataset.sector; saveFilters(); if (route() !== "jobs") go("#/jobs"); else renderJobs(); return; }
+    const action = event.target.closest("[data-action]")?.dataset.action; if (!action) return;
+    if (action === "page-next") { movePage(event.target.closest("[data-action]"), "next"); return; }
+    if (action === "page-prev") { movePage(event.target.closest("[data-action]"), "prev"); return; }
+    if (action === "open-filters") openFilters();
     if (action === "clear-filters") resetFilters();
-    if (action === "back-jobs") go("#/jobs");
-    if (action === "bookmark") {
-      const id = event.target.closest("[data-job-id]").dataset.jobId;
-      if (state.bookmarks.has(id)) state.bookmarks.delete(id); else state.bookmarks.add(id);
-      saveBookmarks(); render(false);
-    }
-    if (action === "retry") loadData();
+    if (action === "close-dossier") closeDetail();
+    if (action === "bookmark") { const id = event.target.closest("[data-job-id]").dataset.jobId; if (state.bookmarks.has(id)) state.bookmarks.delete(id); else state.bookmarks.add(id); saveBookmarks(); const job = jobById(id); if (job && dossier.open) renderDetail(job); else if (route() === "jobs") renderJobResults(); }
+    if (action === "retry") load();
   });
-
-  document.getElementById("filterForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-    state.sector = document.getElementById("sectorFilter").value;
-    state.minimumScore = Number(document.getElementById("scoreFilter").value);
-    state.status = document.getElementById("statusFilter").value;
-    persistFilters();
-    closeFilters();
-    renderJobResults();
-  });
-  document.getElementById("resetFilters").addEventListener("click", () => { resetFilters(); closeFilters(); });
-  filterSheet.addEventListener("cancel", () => closeFilters());
-  window.addEventListener("hashchange", () => render());
-  window.addEventListener("online", () => { updateNetworkStatus(); updateSnapshotStatus(); });
-  window.addEventListener("offline", () => { updateNetworkStatus(); updateSnapshotStatus(); });
-  document.getElementById("snapshotButton").addEventListener("click", () => go("#/trust"));
+  document.getElementById("filterForm").addEventListener("submit", (event) => { event.preventDefault(); state.sector = document.getElementById("sectorFilter").value; state.minimumScore = Number(document.getElementById("scoreFilter").value); state.status = document.getElementById("statusFilter").value; saveFilters(); filterSheet.close(); if (route() !== "jobs") go("#/jobs"); else renderJobs(); });
+  document.getElementById("resetFilters").addEventListener("click", () => { resetFilters(); filterSheet.close(); });
+  filterSheet.addEventListener("cancel", (event) => { event.preventDefault(); filterSheet.close(); });
+  dossier.addEventListener("cancel", (event) => { event.preventDefault(); closeDetail(); });
+  dossier.addEventListener("click", (event) => { if (event.target === dossier) closeDetail(); });
+  document.getElementById("snapshotButton").addEventListener("click", () => go("#/sources"));
+  window.addEventListener("hashchange", () => render()); window.addEventListener("online", updateNetwork); window.addEventListener("offline", updateNetwork);
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(() => undefined);
-  loadData();
+  load();
 })();

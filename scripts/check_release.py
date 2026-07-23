@@ -18,14 +18,14 @@ def main() -> None:
     for relative in (
         "index.html", "styles.css", "app.js", "sw.js", "manifest.webmanifest",
         "icons/app-icon.svg", "icons/app-icon-maskable.svg", "icons/apple-touch-icon.png",
-        "data/app-data.json", "DESIGN.md",
+        "assets/route-map-editorial-v2.webp", "assets/study-steps-editorial-v2.webp", "data/app-data.json", "DESIGN.md",
     ):
         require(ROOT / relative, relative)
 
     html = (ROOT / "index.html").read_text(encoding="utf-8")
     for marker in (
         "manifest.webmanifest", "apple-touch-icon", "apple-mobile-web-app-capable",
-        "apple-mobile-web-app-status-bar-style", "mainContent", "filterSheet", "tabbar",
+        "apple-mobile-web-app-status-bar-style", "mainContent", "filterSheet", "dossier", "bottom-nav",
     ):
         if marker not in html:
             raise SystemExit(f"index.html missing marker: {marker}")

@@ -3,80 +3,74 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#f7f6f2" />
+    <meta name="theme-color" content="#f7f4ed" />
     <meta name="color-scheme" content="light" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Compass" />
-    <meta name="description" content="iPhone-first career decision snapshot" />
+    <meta name="description" content="공고와 학업 루트를 한 번에 판단하는 개인 커리어 컴퍼스." />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icons/app-icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
     <link rel="stylesheet" href="./styles.css" />
-    <title>Career Compass</title>
+    <title>Career Compass — 오늘의 방향</title>
   </head>
   <body>
-    <div class="app-shell" id="appShell">
+    <div class="app" id="appShell">
       <header class="topbar">
-        <a class="brand" href="#/today" aria-label="Career Compass 첫 화면">
-          <span class="brand-mark" aria-hidden="true">C</span>
+        <a class="wordmark" href="#/today" aria-label="Career Compass 홈">
+          <span class="wordmark-mark" aria-hidden="true">C</span>
           <span>Career Compass</span>
         </a>
-        <button class="snapshot-button" id="snapshotButton" type="button" data-route="trust">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span id="snapshotLabel">스냅샷 확인 중</span>
-        </button>
+        <div class="topbar-actions">
+          <button class="source-pill" id="snapshotButton" type="button" data-route="sources">
+            <i aria-hidden="true"></i><span id="snapshotLabel">자료 확인 중</span>
+          </button>
+          <button class="round-action" type="button" data-action="open-filters" aria-label="공고 필터 열기">
+            <svg aria-hidden="true"><use href="#i-filter" /></svg>
+          </button>
+        </div>
       </header>
 
-      <div class="offline-banner" id="offlineBanner" role="status" hidden>
-        오프라인입니다. 마지막으로 저장된 스냅샷을 보여 줍니다.
-      </div>
+      <div class="offline-notice" id="offlineBanner" role="status" hidden>오프라인입니다. 기기에 저장된 마지막 스냅샷을 보고 있어요.</div>
 
-      <main class="main" id="mainContent" tabindex="-1" aria-live="polite">
-        <section class="loading-view" aria-label="자료 불러오는 중">
-          <span class="eyebrow">CAREER COMPASS</span>
-          <h1>스냅샷을 불러오는 중</h1>
-          <div class="skeleton-list" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-        </section>
+      <main id="mainContent" class="main" tabindex="-1" aria-live="polite">
+        <section class="loading" aria-label="자료 불러오는 중"><span>CAREER COMPASS</span><b>오늘의 선택지를 불러오는 중</b></section>
       </main>
 
-      <nav class="tabbar" aria-label="주요 화면">
-        <a href="#/today" data-tab="today"><svg aria-hidden="true"><use href="#i-today" /></svg><span>오늘</span></a>
-        <a href="#/jobs" data-tab="jobs"><svg aria-hidden="true"><use href="#i-jobs" /></svg><span>공고</span></a>
-        <a href="#/sectors" data-tab="sectors"><svg aria-hidden="true"><use href="#i-sectors" /></svg><span>분야</span></a>
-        <a href="#/study" data-tab="study"><svg aria-hidden="true"><use href="#i-study" /></svg><span>진학</span></a>
-        <a href="#/trust" data-tab="trust"><svg aria-hidden="true"><use href="#i-trust" /></svg><span>신뢰</span></a>
+      <nav class="bottom-nav" aria-label="주요 화면">
+        <a href="#/today" data-tab="today"><svg aria-hidden="true"><use href="#i-home" /></svg><span>오늘</span></a>
+        <a href="#/jobs" data-tab="jobs"><svg aria-hidden="true"><use href="#i-search" /></svg><span>탐색</span></a>
+        <a href="#/study" data-tab="study"><svg aria-hidden="true"><use href="#i-route" /></svg><span>진학</span></a>
+        <a href="#/sources" data-tab="sources"><svg aria-hidden="true"><use href="#i-source" /></svg><span>자료</span></a>
       </nav>
     </div>
 
     <dialog class="filter-sheet" id="filterSheet" aria-labelledby="filterTitle">
-      <form method="dialog" class="sheet-header">
-        <div><span class="eyebrow">공고 찾기</span><h2 id="filterTitle">조건 좁히기</h2></div>
-        <button class="icon-button" value="cancel" aria-label="필터 닫기"><svg aria-hidden="true"><use href="#i-close" /></svg></button>
-      </form>
+      <form method="dialog" class="sheet-top"><span class="sheet-handle" aria-hidden="true"></span><div><small>공고 탐색</small><h2 id="filterTitle">어떤 기준으로 볼까요?</h2></div><button class="sheet-close" value="cancel" aria-label="필터 닫기">×</button></form>
       <form class="filter-form" id="filterForm">
-        <label>분야<select id="sectorFilter"><option value="">모든 분야</option></select></label>
-        <label>최소 점수<select id="scoreFilter"><option value="0">제한 없음</option><option value="60">60점 이상</option><option value="70">70점 이상</option><option value="80">80점 이상</option></select></label>
-        <label>확인 상태<select id="statusFilter"><option value="">모두</option><option value="확인 필요">확인 필요</option><option value="조건 확인됨">조건 확인됨</option></select></label>
-        <div class="sheet-actions"><button class="secondary-button" id="resetFilters" type="button">초기화</button><button class="primary-button" value="default" type="submit">결과 보기</button></div>
+        <label>관심 분야<select id="sectorFilter"><option value="">전체 분야</option></select></label>
+        <label>우선순위<select id="scoreFilter"><option value="0">상관없이 보기</option><option value="60">60점 이상</option><option value="70">70점 이상</option><option value="80">80점 이상</option></select></label>
+        <label>확인 상태<select id="statusFilter"><option value="">전체 상태</option><option value="확인 필요">원문 확인 필요</option><option value="조건 확인됨">조건 확인됨</option></select></label>
+        <div class="sheet-actions"><button class="plain-button" id="resetFilters" type="button">초기화</button><button class="solid-button" value="default" type="submit">이 조건으로 보기 <svg aria-hidden="true"><use href="#i-arrow" /></svg></button></div>
       </form>
     </dialog>
 
-    <svg class="icon-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-      <symbol id="i-today" viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 2v4M16 2v4M8 11h8M8 15h5" /></symbol>
-      <symbol id="i-jobs" viewBox="0 0 24 24"><path d="M4 7h16v13H4zM8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M4 12h16" /></symbol>
-      <symbol id="i-sectors" viewBox="0 0 24 24"><path d="m4 6 6-3 5 3 5-3v15l-5 3-5-3-6 3zM10 3v15M15 6v15" /></symbol>
-      <symbol id="i-study" viewBox="0 0 24 24"><path d="m3 8 9-5 9 5-9 5zM6 10v5c0 2 3 4 6 4s6-2 6-4v-5M21 9v6" /></symbol>
-      <symbol id="i-trust" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6zM9 12l2 2 4-4" /></symbol>
-      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" /><path d="m16 16 4 4" /></symbol>
-      <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4" /></symbol>
+    <dialog class="detail-sheet" id="dossier" aria-labelledby="dossierTitle"></dialog>
+
+    <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3zM9 20v-6h6v6" /></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.4" /><path d="m16 16 4.2 4.2" /></symbol>
+      <symbol id="i-route" viewBox="0 0 24 24"><path d="M5 19c8 0 2-14 14-14M14 3l5 2-2 5M5 5h4M5 12h4" /></symbol>
+      <symbol id="i-source" viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 9h8M8 13h8M8 17h5" /></symbol>
+      <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4" /><circle cx="8" cy="6" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="12" cy="18" r="1.6"/></symbol>
       <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
-      <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" /></symbol>
       <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M7 4h10v17l-5-3-5 3z" /></symbol>
-      <symbol id="i-bookmark-filled" viewBox="0 0 24 24"><path d="M7 4h10v17l-5-3-5 3z" fill="currentColor" /></symbol>
+      <symbol id="i-bookmark-fill" viewBox="0 0 24 24"><path d="M7 4h10v17l-5-3-5 3z" fill="currentColor" /></symbol>
       <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 5h5v5M19 5l-8 8M19 14v5H5V5h5" /></symbol>
       <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" /></symbol>
-      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20 8.5c0 5-8 10-8 10s-8-5-8-10a4 4 0 0 1 7-2.6A4 4 0 0 1 20 8.5Z" /></symbol>
     </svg>
     <script src="./app.js" defer></script>
   </body>

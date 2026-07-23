@@ -1,117 +1,93 @@
-# Design
+# Career Compass — product design contract
 
-## Source of truth
+## Status and evidence
 
-- Status: Active
-- Last refreshed: 2026-07-23
-- Primary product surfaces: iPhone Safari Home Screen PWA, mobile browser, desktop browser
-- Evidence reviewed:
-  - `C:\Users\mjb58\career-ui-learning-lab\job-search-interface-inventory.md`
-  - `C:\Users\mjb58\career-ui-learning-lab\evidence\crawl-observations.json`
-  - Antigravity Gemini review run via `agy` on 2026-07-23
-  - existing `job_search` data schemas: 13,884 raw jobs, 5,944 scored jobs, 107 source-health records
-  - user rejection: static report/card-wall dashboard is not acceptable
+- **Status:** visual architecture replaced on 2026-07-24; the earlier dark fieldbook/ledger system is retired.
+- **Surface:** Korean-first iPhone Safari Home Screen PWA first, then mobile Safari and desktop browser.
+- **Product question:** “오늘 무엇을 더 확인해야 하는가?”
+- **Source boundary:** static public snapshot only. A score orders reading; only an official source can confirm deadline, eligibility, or application availability.
+- **Reference method:** candidates were discovered by web search, then their official App Store / Apple pages were crawled with Crawl4AI and `check_robots_txt=True`. Google result pages were not crawled after robots.txt refusal. Evidence is under `output/commercial-reference-crawl-2026-07-24/` (ignored release output).
 
-## Brand
+## Reference roles, not visual copying
 
-- Personality: calm, decisive, evidence-led work tool; Korean-first, international-data capable
-- Trust signals: snapshot time, explicit verification state, official-source link, visible data limits
-- Avoid: marketing hero copy, gradient decoration, bento/card walls, oversized score circles, fake native iOS chrome, copied vendor branding
+| Reference | What is studied | What must not enter Career Compass |
+| --- | --- | --- |
+| Toss | decisive hierarchy for high-stakes information; a single obvious next action | finance promo modules, transaction-dashboard density, visual imitation |
+| Zigzag | fast horizontal category selection and short-listing behavior | discount banners, ecommerce grids, urgency tricks |
+| Karrot | warm, plain-language trust and next-action cues | chat-marketplace metaphors or social proof theater |
+| Bandana | browse → detail → save → apply reading sequence | salary-first claims when source data does not provide salary |
+| 29CM | Korean editorial rhythm: restrained promo copy, deliberate image/text composition, a high-confidence taste signal | product grids, discount urgency, or copying the brand’s fashion voice |
+| Partiful | event-poster confidence: one dominant visual, a concise metadata line, and a single obvious response | party/social features, glitter overload, GIF noise, or invitation metaphors |
+| Day One | a calm, context-rich record: date, source condition, and a readable sequence before decoration | diary metaphors, private-life imagery, or turning every data point into metadata |
+| Not Boring Habits | delight at the moment of action: tactile press feedback and visible progress, not a decorative dashboard | 3D spectacle, skins, games, sound, or reward loops that distract from source checking |
+| Apple Design Awards / Gen Z editorial | a clear visual voice and motion used in service of a task | meme maximalism, mascots, 3D gimmicks, decorative motion |
 
-## Product goals
-
-- Goals:
-  - Let the user answer “what should I verify or open next?” in seconds.
-  - Make job, graduate/funding, and data-confidence decisions readable on an iPhone.
-  - Preserve a stable offline-capable snapshot that can be published on GitHub Pages without credentials.
-- Non-goals:
-  - Apply, send messages, log in, alter CRM, claim a job is live, or replace the local job-search pipeline.
-  - Native iOS/IPA distribution or real-time collection from GitHub Pages.
-- Success signals:
-  - First-time reader can name the active task, data age, and next action within five seconds.
-  - On mobile, filtering and opening details preserve the list context.
-  - Every external opportunity link is labeled as an official-source check, not an application result.
-
-## Personas and jobs
-
-- Primary personas: the user, a Korean water/GIS professional transitioning toward AI/data/international opportunities.
-- User jobs:
-  - scan a curated snapshot; filter without losing context; understand why an item is present; open the official source; review study/funding routes; judge data freshness.
-- Key contexts of use: iPhone Safari/Home Screen during short sessions, desktop for deeper comparison, unreliable mobile network.
+The product is therefore neither a Toss clone nor an e-commerce feed. It is a bright editorial decision tool: focused enough for an institutional source check, energetic enough to feel like a consumer app.
 
 ## Information architecture
 
-- Primary navigation: fixed mobile bottom tabs — Today, Jobs, Sectors, Study/Funding, Data Trust.
-- Core routes/screens:
-  - `#/today`, `#/jobs`, `#/jobs/:id`, `#/sectors`, `#/study`, `#/trust`.
-- Content hierarchy:
-  - Today: small action queue and snapshot status.
-  - Jobs: list → optional filter sheet → stable detail route → official source.
-  - Sectors and Study/Funding: purpose-specific exploration, not appended to every job row.
-  - Data Trust: data age, limits, source health and static-snapshot boundary.
+| Tab | Question answered | Primary action |
+| --- | --- | --- |
+| 오늘 | What is worth opening first? | Open one of three ordered source checks. |
+| 탐색 | What survives my search or interest area? | Search, choose an area, filter, then open a detail sheet. |
+| 진학 | Which study/funding route deserves parallel review? | Read route context and open the official page. |
+| 자료 | What is this snapshot able to say? | Inspect date, volume, source-state distribution, and limits. |
 
-## Design principles
+There is no “sector terrain” tab. Sectors belong inside exploration, where they directly change what the user sees.
 
-- Principle 1: show a decision before an explanation. The row answers what it is, status, and why to open it.
-- Principle 2: separate ranking, eligibility, freshness, and source truth; no single score implies all four.
-- Principle 3: mobile is complete by itself. Desktop may place list and detail side by side but cannot be the only usable mode.
-- Tradeoffs: a small static snapshot is intentionally less comprehensive than the local pipeline, but keeps GitHub Pages fast and honest on iPhone.
+## Primary screen contract
 
-## Visual language
+### Today
 
-- Color: warm off-white background; graphite text; cobalt only for active navigation/links; teal for verified/current; amber for verification needed; red only for failures/expired states.
-- Typography: `-apple-system, BlinkMacSystemFont, "SF Pro Text", "Noto Sans KR", system-ui, sans-serif`; 17px body minimum on mobile; tabular numerals for scores and dates.
-- Spacing/layout rhythm: 4px base; 16px page gutters; 12–16px list-row vertical rhythm; no dense nested cards.
-- Shape/radius/elevation: 12px maximum for panels and controls; 0–2px restrained shadow; clear dividers do more work than elevation.
-- Motion: 160–220ms opacity/transform only; honor `prefers-reduced-motion`; never make loading look like success.
-- Imagery/iconography: inline geometric SVG icons with text labels for primary actions; no emoji as a sole status indicator.
+1. Identify the snapshot date and the first source to open within five seconds.
+2. Show only three priority opportunities in an ordered, numbered reading list.
+3. On every opportunity, show institution, title, location, score, and the precise condition that still requires source checking.
+4. Put study/funding on its own editorial route below the work decision rather than mixing it into the same feed.
 
-## Components
+### Exploration
 
-- Existing components to reuse: none; this is a clean static PWA.
-- New/changed components: app shell, status strip, list row, filter sheet, detail route, evidence disclosure, bottom tab bar, offline banner, skeleton rows.
-- Variants and states: verified/current, verification-needed, stale, source-failed, empty, loading, offline, disabled.
-- Token/component ownership: CSS custom properties in `styles.css`; behavior in `app.js`; snapshot facts only in `data/app-data.json`.
+1. Search comes before browsing.
+2. Interest areas are horizontally scrollable selections, not a wall of chips.
+3. An opportunity has one reading action and one secondary save action.
+4. Status is a short inline sentence with a coloured dot; it is never a cloud of badges.
 
-## Accessibility
+### Detail sheet
 
-- Target standard: WCAG 2.2 AA where practical for this static app.
-- Keyboard/focus behavior: visible focus ring; Escape closes filter sheet and returns focus to its trigger; hash navigation moves focus to the main heading.
-- Contrast/readability: text/status contrast meets AA intent; color never carries meaning alone; touch targets at least 44px.
-- Screen-reader semantics: semantic nav/main/article/button; labels for SVG icons; live region only for filter result changes and offline state.
-- Reduced motion and sensory considerations: disable route/sheet transitions for reduced motion; avoid automatic carousels or animated counters.
+The existing list stays underneath. The sheet contains score context, facts, the mandatory check, a real outbound official-source link, and a local-only save action. It never claims the user can apply through the PWA.
 
-## Responsive behavior
+## Visual system
 
-- Supported breakpoints/devices: 320px–430px iPhone widths first; 768px tablet; 1024px+ desktop.
-- Layout adaptations: mobile uses a single reading column and fixed bottom tabs; desktop keeps the same routes but can pin a selected job detail next to the list.
-- Touch/hover differences: touch uses explicit buttons and labels; hover styles are additive only.
+- **Canvas:** warm paper `#F7F4ED`, rather than clinical white or a dark terminal.
+- **Ink:** navy `#142238` for readable structure.
+- **Energy:** cobalt `#2458D9` is the Today cover; lime `#D4F12C` frames the app chrome and primary action; white is reserved for information pills and the active tab; coral `#FF6C42` is a small offset or unresolved-verification signal. Do not leave the top and bottom chrome in unrelated pale neutrals.
+- **Typography:** Pretendard Variable when online, then iOS/system Korean fallback. Korean titles are compact and heavy; English names remain inline and never become an all-caps visual system. Minimum text size is 11px; body starts at 14px.
+- **Geometry:** lines, sequence numbers, asymmetrical clipped planes, and a few deliberately shaped controls. Default content is not boxed in generic rounded cards. The mobile page deck adds a short cobalt progress rail and an active next-page control; they describe reading position rather than gamify it.
+- **First screen:** Today opens as the approved cobalt cover composition: a small metadata line, one original route collage, large two-line Korean decision title, and one lime source-check action. Do not replace this composition with a sparse score card or generic dashboard heading; later refinements preserve its hierarchy and energy.
+- **Original images:** `daily-brief-cover-v3.png` is the route collage for the Today cover; `study-steps-editorial-v2.webp` means “academic progression”. They do not repeat as texture or act as decoration.
+- **Icon rule:** one 1.8px inline stroke set; no icon tile wall. The Home Screen icon uses the same cobalt/cream/lime language.
 
-## Interaction states
+## Interaction and responsive behavior
 
-- Loading: fixed-height skeleton rows, no layout shift.
-- Empty: show active filters and one clear reset action.
-- Error: failed static-data load names the failure and retains a retry action.
-- Success: local bookmark state confirms only local storage, never an external application.
-- Disabled: source button disabled only when URL is absent, with explanation.
-- Offline/slow network: offline banner, cached app shell/snapshot when available, and last snapshot timestamp.
+- All navigation and controls have a 44px or larger practical touch area.
+- The mobile bottom bar has four durable labels and safe-area padding. Desktop retains the same IA and only changes its footprint.
+- Search filters update the current list immediately; the full filter dialog explicitly resets or applies.
+- Detail and filter surfaces use native `dialog` semantics, focus return, Escape close, backdrop close, and transform/opacity motion below 250ms.
+- `prefers-reduced-motion` disables nonessential motion.
+- If offline, a concise notice preserves the last snapshot rather than pretending the data is live.
 
-## Content voice
+## Acceptance test
 
-- Tone: short, factual, calm Korean; English original titles remain intact.
-- Terminology: “원문 확인” for external links; “확인 필요” for unverified eligibility; “스냅샷” for static published data.
-- Microcopy rules: state the fact and the next safe action; do not say “지원 완료” unless user explicitly records local status.
+The redesign fails if any of these are true:
 
-## Implementation constraints
+1. A first-time user cannot name the first item to inspect and why it is not yet confirmed.
+2. The mobile home becomes a hero-first landing page with no immediate next action.
+3. More than one decorative badge/chip is attached to an opportunity.
+4. A route to source checking is hidden behind an unrelated page change.
+5. The screen reads as a dark terminal, a generic white rounded-card dashboard, or an ecommerce clone.
+6. New imagery, fonts, or motion obscure source uncertainty or make the PWA materially slower to open.
 
-- Framework/styling system: dependency-free HTML/CSS/JavaScript so GitHub Pages works from a repository without an npm build.
-- Design-token constraints: system font and CSS variables only; no remote font dependency.
-- Performance constraints: compact curated JSON (at most 80 jobs and 16 study/funding routes); render incrementally in the DOM; no client-side processing of the full 5,944-row pool.
-- Compatibility constraints: manifest, service worker, iOS safe-area CSS, hash routing, no server API requirement.
-- Test/screenshot expectations: JSON validation, JavaScript syntax check, static server smoke, desktop + 390px mobile Playwright screenshots, PWA manifest/service-worker checks. Physical iPhone install remains a separate required gate.
+## Implementation boundaries
 
-## Open questions
-
-- [ ] Which local job-search run should produce the next public snapshot, and who verifies its freshness?
-- [ ] Does the user want the eventual GitHub Pages repository public or private with a different host? Current request implies public Pages, but visibility is an external-release decision.
-- [ ] Which study/funding entries are safe and useful to include in a public snapshot after their deadlines are rechecked?
+- Keep dependency-free HTML/CSS/JS, hash routes, local snapshot data, GitHub Pages compatibility, and service-worker shell caching.
+- A small online Pretendard stylesheet improves Korean typography; all essential UI remains fully readable with system-font fallback and cached local shell assets.
+- Do not use third-party visual assets, copied code, tracking, login, applications, CRM writes, or background mutation.

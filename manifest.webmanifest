@@ -1,13 +1,13 @@
 {
   "name": "Career Compass",
   "short_name": "Compass",
-  "description": "Evidence-labelled career decision snapshot",
+  "description": "공고와 진학 루트를 원문 기준으로 판단하는 개인 커리어 컴퍼스",
   "lang": "ko",
   "scope": "./",
   "start_url": "./#/today",
   "display": "standalone",
-  "background_color": "#f7f6f2",
-  "theme_color": "#f7f6f2",
+  "background_color": "#f7f4ed",
+  "theme_color": "#f7f4ed",
   "icons": [
     { "src": "./icons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
     { "src": "./icons/app-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
