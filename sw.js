@@ -1,16 +1,27 @@
-const CACHE = "career-compass-v1";
+const CACHE = "career-compass-v2";
 const APP_SHELL = ["./", "./index.html", "./styles.css", "./app.js", "./manifest.webmanifest", "./data/app-data.json", "./icons/app-icon.svg", "./icons/app-icon-maskable.svg", "./icons/apple-touch-icon.png"];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(APP_SHELL)));
-  self.skipWaiting();
+  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(APP_SHELL)).then(() => self.skipWaiting()));
 });
-self.addEventListener("activate", (event) => event.waitUntil(self.clients.claim()));
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(Promise.all([
+    caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)))),
+    self.clients.claim(),
+  ]));
+});
+
 self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
-  event.respondWith(fetch(event.request).then((response) => {
-    const copy = response.clone();
-    caches.open(CACHE).then((cache) => cache.put(event.request, copy));
-    return response;
-  }).catch(() => caches.match(event.request)));
+  if (event.request.method !== "GET" || new URL(event.request.url).origin !== self.location.origin) return;
+  event.respondWith((async () => {
+    try {
+      const response = await fetch(event.request);
+      if (response.ok) event.waitUntil(caches.open(CACHE).then((cache) => cache.put(event.request.url, response.clone())));
+      return response;
+    } catch (_) {
+      const cached = await caches.match(event.request);
+      return cached || Response.error();
+    }
+  })());
 });

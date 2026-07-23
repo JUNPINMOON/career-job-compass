@@ -260,7 +260,7 @@
 
   async function loadData() {
     try {
-      const response = await fetch("./data/app-data.json", { cache: "no-store" });
+      const response = await fetch("./data/app-data.json", { cache: "reload" });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const payload = await response.json();
       if (!Array.isArray(payload.jobs) || !Array.isArray(payload.study)) throw new Error("snapshot schema mismatch");
