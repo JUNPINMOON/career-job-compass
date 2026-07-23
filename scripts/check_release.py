@@ -23,13 +23,16 @@ def main() -> None:
         require(ROOT / relative, relative)
 
     html = (ROOT / "index.html").read_text(encoding="utf-8")
-    for marker in ("manifest.webmanifest", "apple-touch-icon", "mainContent", "filterSheet", "tabbar"):
+    for marker in (
+        "manifest.webmanifest", "apple-touch-icon", "apple-mobile-web-app-capable",
+        "apple-mobile-web-app-status-bar-style", "mainContent", "filterSheet", "tabbar",
+    ):
         if marker not in html:
             raise SystemExit(f"index.html missing marker: {marker}")
 
     manifest = json.loads((ROOT / "manifest.webmanifest").read_text(encoding="utf-8"))
-    if manifest.get("display") != "standalone" or not manifest.get("start_url"):
-        raise SystemExit("manifest must declare standalone display and start_url")
+    if manifest.get("display") != "standalone" or not manifest.get("start_url") or manifest.get("scope") != "./":
+        raise SystemExit("manifest must declare standalone display, start_url, and relative scope")
 
     snapshot = json.loads((ROOT / "data/app-data.json").read_text(encoding="utf-8"))
     jobs = snapshot.get("jobs")

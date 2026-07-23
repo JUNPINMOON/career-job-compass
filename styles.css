@@ -39,7 +39,7 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .status-dot { width: 8px; height: 8px; flex: none; border-radius: 100%; background: var(--teal); box-shadow: 0 0 0 3px var(--teal-soft); }
 .status-dot.is-stale { background: var(--amber); box-shadow: 0 0 0 3px var(--amber-soft); }
 .status-dot.is-error { background: var(--red); box-shadow: 0 0 0 3px var(--red-soft); }
-.offline-banner { position: sticky; z-index: 4; top: 60px; padding: 10px 16px; background: var(--amber-soft); color: #70430b; font-size: 13px; font-weight: 650; text-align: center; }
+.offline-banner { position: sticky; z-index: 4; top: calc(60px + env(safe-area-inset-top)); padding: 10px 16px; background: var(--amber-soft); color: #70430b; font-size: 13px; font-weight: 650; text-align: center; }
 
 .main { width: min(100%, 1180px); margin: 0 auto; padding: 24px 16px 16px; }
 .page-head { margin-bottom: 20px; }

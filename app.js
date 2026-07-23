@@ -158,7 +158,7 @@
       const scroll = state.returnScroll || persistedScroll;
       state.returnScroll = 0;
       sessionStorage.removeItem("career-compass-return-scroll");
-      requestAnimationFrame(() => window.scrollTo({ top: scroll, behavior: "instant" }));
+      requestAnimationFrame(() => window.scrollTo({ top: scroll, behavior: "auto" }));
     }
   }
 
@@ -268,7 +268,6 @@
       updateNetworkStatus();
       updateSnapshotStatus();
       render(false);
-      if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(() => undefined);
     } catch (error) {
       snapshotDot.classList.add("is-error");
       snapshotLabel.textContent = "자료 불러오기 실패";
@@ -317,5 +316,6 @@
   window.addEventListener("online", () => { updateNetworkStatus(); updateSnapshotStatus(); });
   window.addEventListener("offline", () => { updateNetworkStatus(); updateSnapshotStatus(); });
   document.getElementById("snapshotButton").addEventListener("click", () => go("#/trust"));
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(() => undefined);
   loadData();
 })();

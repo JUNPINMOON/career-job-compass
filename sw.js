@@ -1,4 +1,4 @@
-const CACHE = "career-compass-v2";
+const CACHE = "career-compass-v3";
 const APP_SHELL = ["./", "./index.html", "./styles.css", "./app.js", "./manifest.webmanifest", "./data/app-data.json", "./icons/app-icon.svg", "./icons/app-icon-maskable.svg", "./icons/apple-touch-icon.png"];
 
 self.addEventListener("install", (event) => {
@@ -17,7 +17,8 @@ self.addEventListener("fetch", (event) => {
   event.respondWith((async () => {
     try {
       const response = await fetch(event.request);
-      if (response.ok) event.waitUntil(caches.open(CACHE).then((cache) => cache.put(event.request.url, response.clone())));
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      event.waitUntil(caches.open(CACHE).then((cache) => cache.put(event.request.url, response.clone())));
       return response;
     } catch (_) {
       const cached = await caches.match(event.request);

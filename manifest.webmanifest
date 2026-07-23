@@ -3,6 +3,7 @@
   "short_name": "Compass",
   "description": "Evidence-labelled career decision snapshot",
   "lang": "ko",
+  "scope": "./",
   "start_url": "./#/today",
   "display": "standalone",
   "background_color": "#f7f6f2",
