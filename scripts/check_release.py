@@ -65,6 +65,22 @@ def main() -> None:
         raise SystemExit("snapshot must contain the full funding research catalog")
     if {job.get("queue") for job in jobs} - {"verify", "hold", "apply", "stretch"}:
         raise SystemExit("public jobs must only use active public V4 queues")
+    stats = snapshot.get("stats")
+    if not isinstance(stats, dict):
+        raise SystemExit("snapshot must include public stats")
+    market_counts = stats.get("marketCounts")
+    if not isinstance(market_counts, dict) or set(market_counts) != {"domestic", "overseas", "unknown"}:
+        raise SystemExit("snapshot stats must include domestic, overseas, and unknown job counts")
+    if any(not isinstance(market_counts[market], int) or market_counts[market] < 0 for market in market_counts):
+        raise SystemExit("snapshot market counts must be non-negative integers")
+    if sum(market_counts.values()) != len(jobs):
+        raise SystemExit("snapshot market counts must match the public job set")
+    if stats.get("recommendationSurface") not in {"ranked", "review_inventory"}:
+        raise SystemExit("snapshot must declare whether recommendations are ranked or an inventory")
+    if stats.get("recommendationSource") not in {"baseline", "personalized"}:
+        raise SystemExit("snapshot must declare its recommendation source")
+    if not isinstance(stats.get("jobDataAsOf"), str) or not stats["jobDataAsOf"]:
+        raise SystemExit("snapshot must expose the job data date separately from graduate research")
     if any(item.get("market") not in {"domestic", "overseas", "unknown"} for item in jobs + programs + funding):
         raise SystemExit("every public record must declare a verified domestic/overseas market or unknown")
     if any(not job.get("url") for job in jobs):
