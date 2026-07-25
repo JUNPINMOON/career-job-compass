@@ -24,8 +24,11 @@
           <span>Career Compass</span>
         </a>
         <div class="topbar-actions">
-          <button class="source-pill" id="snapshotButton" type="button" data-action="refresh-data" aria-label="게시된 최신 자료 다시 불러오기">
-            <i aria-hidden="true"></i><span id="snapshotLabel">자료 확인 중</span><svg aria-hidden="true"><use href="#i-refresh" /></svg>
+          <span class="source-pill" aria-label="공개 스냅샷 기준일">
+            <i aria-hidden="true"></i><span id="snapshotLabel">자료 확인 중</span>
+          </span>
+          <button class="round-action" id="engineRefresh" type="button" data-action="refresh-engine" aria-label="후보 추천 엔진 다시 실행" hidden>
+            <svg aria-hidden="true"><use href="#i-refresh" /></svg>
           </button>
           <button class="round-action" type="button" data-action="open-filters" aria-label="공고 필터 열기">
             <svg aria-hidden="true"><use href="#i-filter" /></svg>

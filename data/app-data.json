@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-25T14:05:57.256283+00:00",
-  "dataAsOf": "2026-07-23",
+  "generatedAt": "2026-07-25T15:56:13.630465+00:00",
+  "dataAsOf": "2026-07-26",
   "snapshotBoundary": "공개 읽기용 스냅샷입니다. 공고·과정·장학금의 마감과 자격은 반드시 공식 원문에서 다시 확인하세요.",
   "stats": {
     "actionCandidates": 20,
@@ -9,12 +9,13 @@
     "funding": 186,
     "queueCounts": {
       "verify": 0,
-      "stretch": 0,
       "hold": 20,
-      "apply": 0
+      "apply": 0,
+      "stretch": 0
     },
-    "v4RunId": "a0830577-6823-45a0-902b-fcbabd24ebea",
-    "v4ArtifactUpdatedAt": "2026-07-23T01:25:23.676658+00:00",
+    "v4RunId": "0d51c612-b0c7-4f26-ad8d-4b8b4a252e3e",
+    "jobDataAsOf": "2026-07-26",
+    "v4ArtifactUpdatedAt": "2026-07-25T15:42:17.222405+00:00",
     "graduateGeneratedAt": "2026-07-10T02:31:59.227192+00:00"
   },
   "sectors": [
@@ -23,11 +24,7 @@
       "publishedJobs": 3
     },
     {
-      "name": "AI 제품·솔루션·컨설팅·프리세일즈",
-      "publishedJobs": 3
-    },
-    {
-      "name": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "name": "국제개발·ODA·정책·PM",
       "publishedJobs": 3
     },
     {
@@ -35,11 +32,19 @@
       "publishedJobs": 2
     },
     {
+      "name": "AI 제품·솔루션·컨설팅·프리세일즈",
+      "publishedJobs": 2
+    },
+    {
+      "name": "GIS·공간정보·원격탐사·디지털트윈",
+      "publishedJobs": 2
+    },
+    {
       "name": "기후·환경·탄소·지속가능성",
       "publishedJobs": 2
     },
     {
-      "name": "생성형 AI·LLM·에이전트·업무자동화",
+      "name": "데이터분석·ML·데이터엔지니어링·MLOps",
       "publishedJobs": 2
     },
     {
@@ -47,54 +52,21 @@
       "publishedJobs": 2
     },
     {
-      "name": "GIS·공간정보·원격탐사·디지털트윈",
-      "publishedJobs": 1
-    },
-    {
       "name": "GeoAI·공간 AI·원격탐사·컴퓨터비전",
       "publishedJobs": 1
     },
     {
-      "name": "국제개발·ODA·정책·PM",
+      "name": "건설·인프라 AI·BIM·디지털트윈·예지보전",
       "publishedJobs": 1
     }
   ],
   "jobs": [
     {
-      "id": "ebbc81d1fdcbd1054b820aa8",
-      "title": "Research Specialist - Water Resources Management",
-      "company": "International Water Management Institute",
-      "location": "Tashkent, Uzbekistan",
-      "sector": "수자원·기후 AI·홍수·환경예측",
-      "source": "IWMI",
-      "url": "https://apply.workable.com/j/B3A17FC605",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "deadline": "2026-07-23",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [
-        "마감일: 2026-07-23. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다.",
-        "학력: 석사 또는 학사+경력 경로. 낮은 학위 경로에는 광범위한 관련 경력이 필요합니다. 다만 최소 경력 개월 수는 공고에 적혀 있지 않습니다.",
-        "필수 언어: 영어(유창)·러시아어(유창) 모두 필수. 현재 사용자 증빙은 미확정입니다.",
-        "근무 자격: 우즈베키스탄 시민권자만 지원 가능. 회사의 비자 지원으로 대체할 수 없습니다. 현재 사용자 자격은 미확정입니다.",
-        "고용 형태: 계약직(최초 12개월, 연장 가능). 사용자의 수용 여부는 미확정입니다."
-      ],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "공고의 최소 경력 개월 수를 숫자로 확정할 수 없습니다.",
-        "동등경력 허용 문구는 있지만 허용 학위와 필요한 경력 개월 수가 완전하지 않습니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "필수 업무 언어 능력을 현재 하드 증거로 확인할 수 없습니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 11,
-      "evidenceBurden": "high"
-    },
-    {
       "id": "0023d2ca91a6566e64cccc9e",
       "title": "2026년도 제2회 충청북도영동교육지원청 교육공무직원 공개채용 재공고",
       "company": "충청북도교육청 충청북도영동교육지원청",
       "location": "Korea",
+      "market": "overseas",
       "sector": "AI 인접 소프트웨어·데이터 전환직무",
       "source": "Nara Ilteo",
       "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=298829&flag=U&menuNo=401&mngrMenuYn=N&searchJobsecode=020&selMenuNo=400&upperMenuNo=&wd=1200",
@@ -117,19 +89,49 @@
       "evidenceBurden": "high"
     },
     {
-      "id": "7263b7689a9db48b5a3f1c72",
-      "title": "ICT Officer - Geospatial Data Engineer",
-      "company": "United Nations Office for Project Services (HQ)",
-      "location": "Spain",
-      "sector": "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+      "id": "39d9fc6562ed21e6b6c1ed5d",
+      "title": "GIS Analyst",
+      "company": "ARS Progetti SPA",
+      "location": "Sri Lanka",
+      "market": "overseas",
+      "sector": "GIS·공간정보·원격탐사·디지털트윈",
       "source": "DevelopmentAid",
-      "url": "https://www.developmentaid.org/jobs/view/1788333/ict-officer-geospatial-data-engineer",
+      "url": "https://www.developmentaid.org/jobs/view/1790562/gis-analyst",
       "queue": "hold",
       "queueLabel": "추가 검토",
-      "deadline": "2026-07-30",
+      "deadline": "2026-07-31",
       "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
       "requirements": [
-        "마감일: 2026-07-30. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
+        "마감일: 2026-07-31. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
+      ],
+      "checks": [
+        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
+        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
+        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
+        "업무 언어와 공인 점수 요구를 확인해야 합니다.",
+        "관할권별 취업허가 조건을 확인해야 합니다."
+      ],
+      "risks": [
+        "요구 경력과 현재 증거의 차이가 커서 현 단계 지원 대상으로 보기 어렵습니다."
+      ],
+      "evidenceGapCount": 11,
+      "evidenceBurden": "high"
+    },
+    {
+      "id": "0c69e4a0eb34c106ae8d1bd5",
+      "title": "Senior Climate Resilient Water Resources Management Advisor (Home based Retainer) - Addis Ababa, Ethiopia",
+      "company": "United Nations Office for Project Services (HQ)",
+      "location": "Ethiopia",
+      "market": "overseas",
+      "sector": "수자원·기후 AI·홍수·환경예측",
+      "source": "DevelopmentAid",
+      "url": "https://www.developmentaid.org/jobs/view/1790141/senior-climate-resilient-water-resources-management-advisor-home-based-retainer-addis-ababa-ethiopia",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "deadline": "2026-08-06",
+      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
+      "requirements": [
+        "마감일: 2026-08-06. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
       ],
       "checks": [
         "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
@@ -143,19 +145,20 @@
       "evidenceBurden": "high"
     },
     {
-      "id": "006166898bdb0762432d8c17",
-      "title": "Anticipated Opportunity: Seeking Subject Matter Experts with experience in Climate Change",
-      "company": "Chemonics",
-      "location": "근무지 원문 확인",
-      "sector": "생성형 AI·LLM·에이전트·업무자동화",
-      "source": "ReliefWeb",
-      "url": "https://reliefweb.int/job/4201628/anticipated-opportunity-seeking-subject-matter-experts-experience-climate-change",
+      "id": "a782a8d9165924bb3b9850fd",
+      "title": "Senior Climate Resilient Urban Development Advisor (Home based Retainer) - Addis Ababa, Ethiopia",
+      "company": "United Nations Office for Project Services (HQ)",
+      "location": "Ethiopia",
+      "market": "overseas",
+      "sector": "국제개발·ODA·정책·PM",
+      "source": "DevelopmentAid",
+      "url": "https://www.developmentaid.org/jobs/view/1790143/senior-climate-resilient-urban-development-advisor-home-based-retainer-addis-ababa-ethiopia",
       "queue": "hold",
       "queueLabel": "추가 검토",
-      "deadline": "2026-08-30",
+      "deadline": "2026-08-06",
       "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
       "requirements": [
-        "마감일: 2026-08-30. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
+        "마감일: 2026-08-06. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
       ],
       "checks": [
         "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
@@ -165,65 +168,72 @@
         "업무 언어와 공인 점수 요구를 확인해야 합니다."
       ],
       "risks": [],
-      "evidenceGapCount": 13,
+      "evidenceGapCount": 12,
       "evidenceBurden": "high"
     },
     {
-      "id": "4f90343c7d5ed3737c8b5d35",
-      "title": "Senior Product Management Lead (f/m/d)",
-      "company": "Apaleo",
-      "location": "Munich, Bavaria, Germany",
-      "sector": "AI 제품·솔루션·컨설팅·프리세일즈",
-      "source": "Arbeitnow API",
-      "url": "https://www.arbeitnow.com/jobs/companies/apaleo/senior-product-management-lead-munich-12266",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다.",
-        "관할권별 취업허가 조건을 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 11,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "3ce752583cb06665fe16424a",
-      "title": "ET Consultant",
-      "company": "World Bank Group",
-      "location": "Washington, DC, US",
-      "sector": "국제개발·ODA·정책·PM",
-      "source": "World Bank",
-      "url": "https://worldbankgroup.csod.com/ux/ats/careersite/1/home/requisition/37441?c=worldbankgroup",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다.",
-        "관할권별 취업허가 조건을 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 11,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "42fd1fb51570c49a0bec22f3",
-      "title": "Environmental Planner",
+      "id": "6c77b01756b962f8d61d75b4",
+      "title": "Monitoring Evaluation and Learning Coordinator - Technical Assistance Village Enterprise",
       "company": "채용기관 미확인",
-      "location": "remote sensing, LiDAR, or geospatial data science. Familiarity with grant-suppor",
+      "location": "Kenya",
+      "market": "overseas",
+      "sector": "국제개발·ODA·정책·PM",
+      "source": "DevNetJobs",
+      "url": "https://devnetjobs.org/jobdescription.aspx?job_id=311500",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "deadline": "2026-08-21",
+      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
+      "requirements": [
+        "마감일: 2026-08-21. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
+      ],
+      "checks": [
+        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
+        "요구 경력 연수와 분야를 확인해야 합니다.",
+        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
+        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
+        "업무 언어와 공인 점수 요구를 확인해야 합니다."
+      ],
+      "risks": [],
+      "evidenceGapCount": 12,
+      "evidenceBurden": "high"
+    },
+    {
+      "id": "3a863db51334e035ecb91050",
+      "title": "Tupande Health Safety and Environment Supervisor",
+      "company": "One Acre Fund Kenya (HQ)",
+      "location": "Kenya",
+      "market": "overseas",
       "sector": "기후·환경·탄소·지속가능성",
-      "source": "Josh's Water Jobs",
-      "url": "https://www.joshswaterjobs.com/jobs/381930",
+      "source": "DevelopmentAid",
+      "url": "https://www.developmentaid.org/jobs/view/1790321/tupande-health-safety-and-environment-supervisor-fixed-term",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "deadline": "2026-10-21",
+      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
+      "requirements": [
+        "마감일: 2026-10-21. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
+      ],
+      "checks": [
+        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
+        "요구 경력 연수와 분야를 확인해야 합니다.",
+        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
+        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
+        "업무 언어와 공인 점수 요구를 확인해야 합니다."
+      ],
+      "risks": [],
+      "evidenceGapCount": 12,
+      "evidenceBurden": "high"
+    },
+    {
+      "id": "b10bb5e851dbc259e3b46227",
+      "title": "Senior Green Entrepreneurship & Accelerator Program Officer",
+      "company": "GGGI",
+      "location": "Salalah Oman",
+      "market": "overseas",
+      "sector": "국제개발·ODA·정책·PM",
+      "source": "GGGI",
+      "url": "https://careers.gggi.org/vacancy/senior-green-entrepreneurship-accelerator-program-officer-615077.html",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "deadline": "",
@@ -245,6 +255,7 @@
       "title": "Resiliency Planning Specialist",
       "company": "AtkinsRealis",
       "location": "Toronto, Ontario, Canada",
+      "market": "overseas",
       "sector": "기후·환경·탄소·지속가능성",
       "source": "Atkins",
       "url": "https://slihrms.wd3.myworkdayjobs.com/Careers/job/CAONToronto191-The-West-Mall/Resiliency-Planning-Specialist_R-157632",
@@ -269,6 +280,7 @@
       "title": "소프트웨어/통합 플랫폼 백엔드 개발자 모집",
       "company": "한국아이오티기술원",
       "location": "서울 금천구",
+      "market": "overseas",
       "sector": "AI 인접 소프트웨어·데이터 전환직무",
       "source": "JobKorea",
       "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49585247",
@@ -295,6 +307,7 @@
       "title": "재난안전 통합플랫폼 백엔드 개발자 채용공고",
       "company": "채용기관 미확인",
       "location": "서울 금천구 경력3년↑ 학력무관 정규직 기술지원 , 웹개발 , 웹마스터 , 유지보수 , 정보보안 외 수정일 26/07/15",
+      "market": "overseas",
       "sector": "AI 인접 소프트웨어·데이터 전환직무",
       "source": "Saramin",
       "url": "https://www.saramin.co.kr/zf_user/jobs/relay/view?location=ts&rec_idx=54470993",
@@ -321,6 +334,7 @@
       "title": "GIS Developer / DBA GIS Developer / DBA",
       "company": "Office of Information and Communications Technology 89328932",
       "location": "CHI - Other cities 0849",
+      "market": "overseas",
       "sector": "GIS·공간정보·원격탐사·디지털트윈",
       "source": "UN Careers",
       "url": "https://careers.un.org/jobSearchDescription/278268?language=en",
@@ -343,13 +357,14 @@
       "evidenceBurden": "high"
     },
     {
-      "id": "1d97eb58ab0e83cd78dcbcca",
-      "title": "Senior AI Policy & Governance Lead (Education Sector) – Project-Based",
-      "company": "EER Poland",
-      "location": "Remote",
-      "sector": "AI 정책·거버넌스·리스크·컴플라이언스",
-      "source": "RemoteJobs.org API",
-      "url": "https://remotejobs.org/remote-jobs/senior-ai-policy-governance-lead-education-sector-project-based-eer-poland",
+      "id": "129b479898e7bc8c008a9ed0",
+      "title": "지역개발 컨설팅 경력자",
+      "company": "에코메아리",
+      "location": "05, KR",
+      "market": "overseas",
+      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "source": "Indeed Korea",
+      "url": "https://kr.indeed.com/viewjob?jk=72b0d8726503cfa3",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "deadline": "",
@@ -367,13 +382,139 @@
       "evidenceBurden": "high"
     },
     {
-      "id": "2242cdee55f93402ec3be4a5",
-      "title": "VP, Digital Product & Ecommerce",
-      "company": "Seed Health",
+      "id": "04c1147436d5435d11edec59",
+      "title": "Principal Engineer, Water Infrastructure, REC",
+      "company": "Ramboll",
+      "location": "Noida, India",
+      "market": "overseas",
+      "sector": "건설·인프라 AI·BIM·디지털트윈·예지보전",
+      "source": "Ramboll",
+      "url": "https://www.ramboll.com/careers/8cebe0c7-b7d1-4071-18dc-08dedb45aaf0",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "deadline": "",
+      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
+      "requirements": [],
+      "checks": [
+        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
+        "요구 경력 연수와 분야를 확인해야 합니다.",
+        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
+        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
+        "업무 언어와 공인 점수 요구를 확인해야 합니다."
+      ],
+      "risks": [],
+      "evidenceGapCount": 12,
+      "evidenceBurden": "high"
+    },
+    {
+      "id": "1f0df10c820bd61eec2358a5",
+      "title": "Dam Safety Analyst",
+      "company": "GRAND RIVER DAM AUTHORITY",
+      "location": "Locust Grove, OK, US",
+      "market": "overseas",
+      "sector": "AI 정책·거버넌스·리스크·컴플라이언스",
+      "source": "Indeed Global",
+      "url": "https://www.indeed.com/viewjob?jk=6602137060485574",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "deadline": "",
+      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
+      "requirements": [],
+      "checks": [
+        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
+        "요구 경력 연수와 분야를 확인해야 합니다.",
+        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
+        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
+        "업무 언어와 공인 점수 요구를 확인해야 합니다."
+      ],
+      "risks": [],
+      "evidenceGapCount": 12,
+      "evidenceBurden": "high"
+    },
+    {
+      "id": "0f115363b93d7fb5707067fb",
+      "title": "Deep Learning Software Engineer, Inference - New College Grad 2026",
+      "company": "NVIDIA",
       "location": "Remote",
+      "market": "overseas",
+      "sector": "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+      "source": "RemoteJobs.org API",
+      "url": "https://remotejobs.org/remote-jobs/deep-learning-software-engineer-inference-new-college-grad-2026-nvidia",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "deadline": "",
+      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
+      "requirements": [],
+      "checks": [
+        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
+        "요구 경력 연수와 분야를 확인해야 합니다.",
+        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
+        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
+        "업무 언어와 공인 점수 요구를 확인해야 합니다."
+      ],
+      "risks": [],
+      "evidenceGapCount": 12,
+      "evidenceBurden": "high"
+    },
+    {
+      "id": "1e936f91d5e6e5fd7e071203",
+      "title": "Sr. Infrastructure Engineer",
+      "company": "Hummingbird Healthcare",
+      "location": "Remote",
+      "market": "overseas",
+      "sector": "AI 정책·거버넌스·리스크·컴플라이언스",
+      "source": "RemoteJobs.org API",
+      "url": "https://remotejobs.org/remote-jobs/sr-infrastructure-engineer-hummingbird-healthcare",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "deadline": "",
+      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
+      "requirements": [],
+      "checks": [
+        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
+        "요구 경력 연수와 분야를 확인해야 합니다.",
+        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
+        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
+        "업무 언어와 공인 점수 요구를 확인해야 합니다."
+      ],
+      "risks": [],
+      "evidenceGapCount": 12,
+      "evidenceBurden": "high"
+    },
+    {
+      "id": "8ad4075c282df8d7ea70afb0",
+      "title": "Senior Data Science/ML Engineer - Financial Crime",
+      "company": "SumUp",
+      "location": "Berlin, Berlin, Germany",
+      "market": "overseas",
+      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "source": "Arbeitnow API",
+      "url": "https://www.arbeitnow.com/jobs/companies/sumup/senior-data-science-ml-engineer-financial-crime-berlin-119994",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "deadline": "",
+      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
+      "requirements": [],
+      "checks": [
+        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
+        "요구 경력 연수와 분야를 확인해야 합니다.",
+        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
+        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
+        "업무 언어와 공인 점수 요구를 확인해야 합니다."
+      ],
+      "risks": [],
+      "evidenceGapCount": 12,
+      "evidenceBurden": "high"
+    },
+    {
+      "id": "7ac1f44611bd9305b45a81fb",
+      "title": "Technical Product Specialist (m/w/d)",
+      "company": "ASUS Computer GmbH",
+      "location": "Ratingen",
+      "market": "overseas",
       "sector": "AI 제품·솔루션·컨설팅·프리세일즈",
-      "source": "RemoteJobs.org API",
-      "url": "https://remotejobs.org/remote-jobs/vp-digital-product-ecommerce-seed-health",
+      "source": "Arbeitnow API",
+      "url": "https://www.arbeitnow.com/jobs/companies/asus-computer-gmbh/technical-product-specialist-ratingen-136219",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "deadline": "",
@@ -391,13 +532,14 @@
       "evidenceBurden": "high"
     },
     {
-      "id": "0063e825cdeec8c1a26a3663",
-      "title": "PROGRAMME MANAGEMENT OFFICER, NOC PROGRAMME MANAGEMENT OFFICER PROGRAMME MANAGEMENT OFFICER",
-      "company": "Climate Change Adaptation Section U10001690",
-      "location": "ACCRA 1620",
-      "sector": "생성형 AI·LLM·에이전트·업무자동화",
-      "source": "UN Careers",
-      "url": "https://careers.un.org/jobSearchDescription/276075?language=en",
+      "id": "66942dcacff07158faa7d5df",
+      "title": "Product Manager (m/f/d)",
+      "company": "Brighter AI Technologies GmbH",
+      "location": "Berlin",
+      "market": "overseas",
+      "sector": "AI 제품·솔루션·컨설팅·프리세일즈",
+      "source": "Arbeitnow API",
+      "url": "https://www.arbeitnow.com/jobs/companies/brighter-ai-technologies-gmbh/product-manager-berlin-455143",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "deadline": "",
@@ -415,133 +557,14 @@
       "evidenceBurden": "high"
     },
     {
-      "id": "36e4cb40c9e5b99ff5daec42",
-      "title": "Technical Advisor for Resilient Recovery Technical Advisor for Resilient Recovery",
-      "company": "United Nations Office for Disaster Risk Reduction 39844006",
-      "location": "PANAMA CITY 3330",
-      "sector": "AI 정책·거버넌스·리스크·컴플라이언스",
-      "source": "UN Careers",
-      "url": "https://careers.un.org/jobSearchDescription/280874?language=en",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "요구 경력 연수와 분야를 확인해야 합니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 12,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "0e0ddd7e19f74d5d19fab27c",
-      "title": "International Project Manager - H/F",
-      "company": "SUEZ",
-      "location": "JO",
+      "id": "ebbc81d1fdcbd1054b820aa8",
+      "title": "Research Specialist - Water Resources Management",
+      "company": "International Water Management Institute",
+      "location": "Tashkent, Uzbekistan",
+      "market": "overseas",
       "sector": "수자원·기후 AI·홍수·환경예측",
-      "source": "SUEZ",
-      "url": "https://hris-suez.csod.com/ux/ats/careersite/10/home/requisition/52161?c=hris-suez",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "요구 경력 연수와 분야를 확인해야 합니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 12,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "bc0b18a224193bc9883cb3e3",
-      "title": "Data Engineer",
-      "company": "Atolls",
-      "location": "Munich, Bavaria, Germany",
-      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
-      "source": "Arbeitnow API",
-      "url": "https://www.arbeitnow.com/jobs/companies/atolls/data-engineer-munich-309780",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "요구 경력 연수와 분야를 확인해야 합니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 12,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "0f850ad67936820590f6c56f",
-      "title": "Analytics Manager, Courier and Logistics Analytics",
-      "company": "Wolt - English",
-      "location": "Munich, Bavaria, Germany",
-      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
-      "source": "Arbeitnow API",
-      "url": "https://www.arbeitnow.com/jobs/companies/wolt-english/analytics-manager-courier-and-logistics-analytics-munich-218608",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "요구 경력 연수와 분야를 확인해야 합니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 12,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "499c508b1db950f19f31715d",
-      "title": "Data Engineer",
-      "company": "Atolls",
-      "location": "Berlin, Germany",
-      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
-      "source": "Arbeitnow API",
-      "url": "https://www.arbeitnow.com/jobs/companies/atolls/data-engineer-berlin-363381",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "요구 경력 연수와 분야를 확인해야 합니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 12,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "57ae6548505f25edcd7e78a7",
-      "title": "CHIEF OF SECTION, CENTRALISED WAREHOUSING, P5 CHIEF OF SECTION, CENTRALISED WAREHOUSING CHIEF OF SECTION, CENTRALISED WAREHOUSING",
-      "company": "UN Support Office in Haiti 88888943",
-      "location": "PORT-AU-PRINCE 1830",
-      "sector": "AI 제품·솔루션·컨설팅·프리세일즈",
-      "source": "UN Careers",
-      "url": "https://careers.un.org/jobSearchDescription/281512?language=en",
+      "source": "IWMI",
+      "url": "https://apply.workable.com/j/B3A17FC605",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "deadline": "",
@@ -561,40 +584,11 @@
   ],
   "reviewQueue": [
     {
-      "id": "ebbc81d1fdcbd1054b820aa8",
-      "title": "Research Specialist - Water Resources Management",
-      "company": "International Water Management Institute",
-      "location": "Tashkent, Uzbekistan",
-      "sector": "수자원·기후 AI·홍수·환경예측",
-      "source": "IWMI",
-      "url": "https://apply.workable.com/j/B3A17FC605",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "deadline": "2026-07-23",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [
-        "마감일: 2026-07-23. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다.",
-        "학력: 석사 또는 학사+경력 경로. 낮은 학위 경로에는 광범위한 관련 경력이 필요합니다. 다만 최소 경력 개월 수는 공고에 적혀 있지 않습니다.",
-        "필수 언어: 영어(유창)·러시아어(유창) 모두 필수. 현재 사용자 증빙은 미확정입니다.",
-        "근무 자격: 우즈베키스탄 시민권자만 지원 가능. 회사의 비자 지원으로 대체할 수 없습니다. 현재 사용자 자격은 미확정입니다.",
-        "고용 형태: 계약직(최초 12개월, 연장 가능). 사용자의 수용 여부는 미확정입니다."
-      ],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "공고의 최소 경력 개월 수를 숫자로 확정할 수 없습니다.",
-        "동등경력 허용 문구는 있지만 허용 학위와 필요한 경력 개월 수가 완전하지 않습니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "필수 업무 언어 능력을 현재 하드 증거로 확인할 수 없습니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 11,
-      "evidenceBurden": "high"
-    },
-    {
       "id": "0023d2ca91a6566e64cccc9e",
       "title": "2026년도 제2회 충청북도영동교육지원청 교육공무직원 공개채용 재공고",
       "company": "충청북도교육청 충청북도영동교육지원청",
       "location": "Korea",
+      "market": "overseas",
       "sector": "AI 인접 소프트웨어·데이터 전환직무",
       "source": "Nara Ilteo",
       "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=298829&flag=U&menuNo=401&mngrMenuYn=N&searchJobsecode=020&selMenuNo=400&upperMenuNo=&wd=1200",
@@ -617,19 +611,49 @@
       "evidenceBurden": "high"
     },
     {
-      "id": "7263b7689a9db48b5a3f1c72",
-      "title": "ICT Officer - Geospatial Data Engineer",
-      "company": "United Nations Office for Project Services (HQ)",
-      "location": "Spain",
-      "sector": "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+      "id": "39d9fc6562ed21e6b6c1ed5d",
+      "title": "GIS Analyst",
+      "company": "ARS Progetti SPA",
+      "location": "Sri Lanka",
+      "market": "overseas",
+      "sector": "GIS·공간정보·원격탐사·디지털트윈",
       "source": "DevelopmentAid",
-      "url": "https://www.developmentaid.org/jobs/view/1788333/ict-officer-geospatial-data-engineer",
+      "url": "https://www.developmentaid.org/jobs/view/1790562/gis-analyst",
       "queue": "hold",
       "queueLabel": "추가 검토",
-      "deadline": "2026-07-30",
+      "deadline": "2026-07-31",
       "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
       "requirements": [
-        "마감일: 2026-07-30. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
+        "마감일: 2026-07-31. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
+      ],
+      "checks": [
+        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
+        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
+        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
+        "업무 언어와 공인 점수 요구를 확인해야 합니다.",
+        "관할권별 취업허가 조건을 확인해야 합니다."
+      ],
+      "risks": [
+        "요구 경력과 현재 증거의 차이가 커서 현 단계 지원 대상으로 보기 어렵습니다."
+      ],
+      "evidenceGapCount": 11,
+      "evidenceBurden": "high"
+    },
+    {
+      "id": "0c69e4a0eb34c106ae8d1bd5",
+      "title": "Senior Climate Resilient Water Resources Management Advisor (Home based Retainer) - Addis Ababa, Ethiopia",
+      "company": "United Nations Office for Project Services (HQ)",
+      "location": "Ethiopia",
+      "market": "overseas",
+      "sector": "수자원·기후 AI·홍수·환경예측",
+      "source": "DevelopmentAid",
+      "url": "https://www.developmentaid.org/jobs/view/1790141/senior-climate-resilient-water-resources-management-advisor-home-based-retainer-addis-ababa-ethiopia",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "deadline": "2026-08-06",
+      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
+      "requirements": [
+        "마감일: 2026-08-06. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
       ],
       "checks": [
         "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
@@ -650,6 +674,7 @@
       "university": "KAIST (Korea Advanced Institute of Science and Technology)",
       "program": "MS in Civil and Environmental Engineering (Environmental Engineering & Sustainability / Hydro & Water Resources division)",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석사",
       "decision": "Use now",
       "score": 10.0,
@@ -674,6 +699,7 @@
       "university": "Pohang University of Science and Technology (POSTECH)",
       "program": "MS in Environmental Science and Engineering (Division of Environmental Science & Engineering)",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석사",
       "decision": "Use now",
       "score": 10.0,
@@ -698,6 +724,7 @@
       "university": "GIST (Gwangju Institute of Science and Technology)",
       "program": "MS in Earth Sciences and Environmental Engineering (Water Science & Engineering; Earth & Climate Change tracks)",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석사",
       "decision": "Use now",
       "score": 9.86,
@@ -721,6 +748,7 @@
       "university": "University of Twente (Netherlands), Lund (SE), UCLouvain (BE), University of Tartu (EE)",
       "program": "GEM — Erasmus Mundus Joint MSc in Geo-information Science & Earth Observation for Environmental Modelling & Management",
       "country": "Netherlands / Sweden / Belgium / Estonia (mobility)",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Use now",
       "score": 9.73,
@@ -744,6 +772,7 @@
       "university": "Asian Institute of Technology (AIT)",
       "program": "Remote Sensing and Geographic Information Systems (RS-GIS) - M.Sc.",
       "country": "Thailand",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 9.46,
@@ -768,6 +797,7 @@
       "university": "UNIST (Ulsan National Institute of Science and Technology)",
       "program": "MS in Civil/Urban/Earth & Environmental Engineering (incl. Integrated Water Resources Management track)",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석박/박사",
       "decision": "Use now",
       "score": 9.37,
@@ -789,6 +819,7 @@
       "university": "Seoul National University",
       "program": "MS, Civil & Environmental Engineering — UrWaterS Lab (Urban Water Systems, Prof. Soohyun Yang)",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석사",
       "decision": "Use now",
       "score": 9.34,
@@ -813,6 +844,7 @@
       "university": "Asian Institute of Technology (AIT)",
       "program": "Water Engineering and Management (WEM) - M.Sc./M.Eng.",
       "country": "Thailand",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 9.32,
@@ -837,6 +869,7 @@
       "university": "FloodRISK Consortium - IHE Delft, TU Dresden, UPC Barcelona, University of Ljubljana",
       "program": "Erasmus Mundus Joint Master in Flood Risk Management",
       "country": "Netherlands / Germany / Spain / Slovenia",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Use now",
       "score": 9.19,
@@ -860,6 +893,7 @@
       "university": "University of Stuttgart",
       "program": "WAREM — Water Resources Engineering and Management (M.Sc.)",
       "country": "Germany",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Use now",
       "score": 9.18,
@@ -882,6 +916,7 @@
       "university": "IHE Delft Institute for Water Education",
       "program": "MSc in Water and Sustainable Development (Hydroinformatics — Modelling & Information Systems for Water Management specialization)",
       "country": "Netherlands",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Use now",
       "score": 9.13,
@@ -905,6 +940,7 @@
       "university": "University of Iowa - IIHR Hydroscience and Engineering",
       "program": "MS/PhD in Civil and Environmental Engineering - Hydraulics and Water Resources",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Use now",
       "score": 8.99,
@@ -928,6 +964,7 @@
       "university": "Seoul National University",
       "program": "MS, Civil & Environmental Engineering — Environmental Fluid Dynamics Laboratory (Prof. Van Thinh Nguyen)",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석사",
       "decision": "Use now",
       "score": 8.98,
@@ -951,6 +988,7 @@
       "university": "Hong Kong University of Science and Technology (HKUST)",
       "program": "PhD in Civil/Environmental/Environmental Science routes via Hong Kong PhD Fellowship Scheme",
       "country": "Hong Kong",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Use now",
       "score": 8.95,
@@ -974,6 +1012,7 @@
       "university": "King Abdullah University of Science and Technology (KAUST)",
       "program": "MSc Environmental Science and Engineering - Water Quality, Chemistry and Treatment / Environmental Systems",
       "country": "Saudi Arabia",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Use now",
       "score": 8.95,
@@ -997,6 +1036,7 @@
       "university": "University of Salzburg (PLUS) + partners (Univ. South Brittany, Palacky Univ. Olomouc)",
       "program": "Copernicus Master in Digital Earth (CDE) — Erasmus Mundus Joint MSc",
       "country": "Austria / France / Czech Republic (mobility)",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Use now",
       "score": 8.94,
@@ -1019,6 +1059,7 @@
       "university": "Seoul National University",
       "program": "MS, Environmental Planning — GIS / Remote Sensing / Climate-Adaptation track (Graduate School of Environmental Studies, GSES)",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석사",
       "decision": "Use now",
       "score": 8.93,
@@ -1043,6 +1084,7 @@
       "university": "University of Arizona",
       "program": "PhD in Hydrology and Water Resources",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Use now",
       "score": 8.89,
@@ -1066,6 +1108,7 @@
       "university": "University of Bristol",
       "program": "MSc Water and Environmental Management",
       "country": "United Kingdom",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 8.89,
@@ -1087,6 +1130,7 @@
       "university": "Sungkyunkwan University (SKKU)",
       "program": "MS in Water Resources / Civil-Environmental Engineering (Earth and Remote Sensing Lab, Prof. Minha Choi)",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석사",
       "decision": "Use now",
       "score": 8.86,
@@ -1111,6 +1155,7 @@
       "university": "Yonsei University",
       "program": "MS in Civil & Environmental Engineering — Hydro-Environmental Engineering Division (Prof. Yeonjoo Kim, Hydrology & EcoClimate Lab / HECL)",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석사",
       "decision": "Use now",
       "score": 8.8,
@@ -1135,6 +1180,7 @@
       "university": "Princeton University",
       "program": "PhD in Civil and Environmental Engineering - water, climate, environmental engineering and data-driven infrastructure routes",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Use now",
       "score": 8.79,
@@ -1159,6 +1205,7 @@
       "university": "University of Science and Technology (UST) - KICT School",
       "program": "MS/PhD in Civil and Environmental Engineering - Environmental and Water Resources Engineering",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석박/박사",
       "decision": "Use now",
       "score": 8.76,
@@ -1182,6 +1229,7 @@
       "university": "Stanford University",
       "program": "PhD in Civil and Environmental Engineering - atmosphere/energy/water, environmental systems and data-driven infrastructure routes",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Use now",
       "score": 8.7,
@@ -1205,6 +1253,7 @@
       "university": "King Fahd University of Petroleum and Minerals (KFUPM)",
       "program": "MS/PhD in Civil Engineering - Water Resources and Environmental Engineering",
       "country": "Saudi Arabia",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Use now",
       "score": 8.67,
@@ -1229,6 +1278,7 @@
       "university": "Korea University",
       "program": "MS in Civil, Environmental & Architectural Engineering — Water Resources / Physical Hydrology (Prof. Kyungrock Paik)",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석사",
       "decision": "Use now",
       "score": 8.62,
@@ -1253,6 +1303,7 @@
       "university": "GroundwatCH Consortium - IST Lisbon, IHE Delft, TU Dresden",
       "program": "Erasmus Mundus Joint Master in Groundwater and Global Change",
       "country": "Portugal / Netherlands / Germany",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Use now",
       "score": 8.6,
@@ -1276,6 +1327,7 @@
       "university": "Copernicus Master in Digital Earth Consortium",
       "program": "Erasmus Mundus Joint MSc in Copernicus Master in Digital Earth",
       "country": "Austria / France / Czech Republic",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Use now",
       "score": 8.57,
@@ -1299,6 +1351,7 @@
       "university": "University of Manchester",
       "program": "MSc Data Science (Earth and Environmental Analytics)",
       "country": "United Kingdom",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 8.56,
@@ -1320,6 +1373,7 @@
       "university": "Okinawa Institute of Science and Technology (OIST)",
       "program": "Fully funded PhD Program - environmental, marine, computational, climate and water-adjacent research units",
       "country": "Japan",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Use now",
       "score": 8.5,
@@ -1343,6 +1397,7 @@
       "university": "Khalifa University",
       "program": "MSc in Water and Environmental Engineering",
       "country": "United Arab Emirates",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 8.49,
@@ -1365,6 +1420,7 @@
       "university": "University of British Columbia (UBC)",
       "program": "PhD in Civil Engineering / water-environment-climate research route",
       "country": "Canada",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 8.49,
@@ -1388,6 +1444,7 @@
       "university": "University of Twente — Faculty ITC",
       "program": "MSc Geo-information Science and Earth Observation (GeoAI specialization)",
       "country": "Netherlands",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 8.48,
@@ -1410,6 +1467,7 @@
       "university": "Delft University of Technology (TU Delft)",
       "program": "MSc Environmental Engineering",
       "country": "Netherlands",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 8.45,
@@ -1432,6 +1490,7 @@
       "university": "National University of Singapore (NUS)",
       "program": "MSc (Environmental Engineering)",
       "country": "Singapore",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 8.4,
@@ -1455,6 +1514,7 @@
       "university": "Texas A&M University",
       "program": "MS/PhD in Water Management and Hydrological Science",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 8.31,
@@ -1478,6 +1538,7 @@
       "university": "University of Toronto",
       "program": "Direct-entry PhD in Civil Engineering / water-environment-climate research route",
       "country": "Canada",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 8.27,
@@ -1501,6 +1562,7 @@
       "university": "United Arab Emirates University",
       "program": "Master of Science in Water Resources",
       "country": "United Arab Emirates",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 8.23,
@@ -1524,6 +1586,7 @@
       "university": "Asian Institute of Technology (AIT)",
       "program": "Dual Degree Master's in Water Engineering and Management with University of Iowa (USA)",
       "country": "Thailand",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 8.21,
@@ -1547,6 +1610,7 @@
       "university": "Newcastle University",
       "program": "MSc Hydrology and Water Management",
       "country": "United Kingdom",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 8.19,
@@ -1568,6 +1632,7 @@
       "university": "Wageningen University & Research (WUR)",
       "program": "MSc Earth and Environment — Hydrology and Water Resources specialisation",
       "country": "Netherlands",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 8.08,
@@ -1590,6 +1655,7 @@
       "university": "Hamad Bin Khalifa University (HBKU)",
       "program": "PhD in Sustainable Environment",
       "country": "Qatar",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.92,
@@ -1613,6 +1679,7 @@
       "university": "The University of Queensland",
       "program": "Master of Engineering Science - Urban Water Engineering field",
       "country": "Australia",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.9,
@@ -1635,6 +1702,7 @@
       "university": "ETH Zurich",
       "program": "MSc Geomatics",
       "country": "Switzerland",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.88,
@@ -1657,6 +1725,7 @@
       "university": "University of Waterloo",
       "program": "MSc/MASc Civil and Environmental Engineering with Collaborative Water Program",
       "country": "Canada",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.83,
@@ -1679,6 +1748,7 @@
       "university": "Georgia Southern University",
       "program": "MS in Civil Engineering - utility/right-of-way infrastructure GIS assistantship lead",
       "country": "United States",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.81,
@@ -1703,6 +1773,7 @@
       "university": "University of British Columbia (UBC)",
       "program": "Master of Land and Water Systems",
       "country": "Canada",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.7,
@@ -1725,6 +1796,7 @@
       "university": "Nanyang Technological University (NTU)",
       "program": "MSc in Sustainability and Environmental Engineering",
       "country": "Singapore",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.67,
@@ -1746,6 +1818,7 @@
       "university": "KU Leuven / Vrije Universiteit Brussel (IUPWARE consortium)",
       "program": "Master of Water Resources Engineering",
       "country": "Belgium",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.52,
@@ -1768,6 +1841,7 @@
       "university": "The University of Adelaide",
       "program": "Master of Engineering - Environmental and Water Resources Engineering specialisation",
       "country": "Australia",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.5,
@@ -1790,6 +1864,7 @@
       "university": "Mohamed bin Zayed University of Artificial Intelligence",
       "program": "MSc/PhD in Computer Vision or Machine Learning - Geospatial and Climate AI route",
       "country": "United Arab Emirates",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.46,
@@ -1812,6 +1887,7 @@
       "university": "University of Melbourne",
       "program": "MPhil/PhD in Engineering - Environmental Hydrology and Water Resources",
       "country": "Australia",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.44,
@@ -1834,6 +1910,7 @@
       "university": "Lund University",
       "program": "GIS and Remote Sensing — Master's Programme (NAGIS)",
       "country": "Sweden",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.43,
@@ -1855,6 +1932,7 @@
       "university": "University of Canterbury",
       "program": "Master of Water Science and Management",
       "country": "New Zealand",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.4,
@@ -1876,6 +1954,7 @@
       "university": "Colorado State University",
       "program": "MS/PhD in Civil and Environmental Engineering - Hydrologic Science / Water Resources Planning",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.37,
@@ -1898,6 +1977,7 @@
       "university": "University of Washington",
       "program": "MS/PhD in Civil and Environmental Engineering - Hydrology and Hydrodynamics",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.37,
@@ -1920,6 +2000,7 @@
       "university": "KDI School of Public Policy and Management",
       "program": "Master of Development Policy (MDP) — Sustainable Development concentration (climate, environment, energy policy; ODA focus)",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.36,
@@ -1943,6 +2024,7 @@
       "university": "Weizmann Institute of Science",
       "program": "MSc/PhD in Earth and Planetary Sciences - Hydrology, Soil-Water and Climate",
       "country": "Israel",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.36,
@@ -1965,6 +2047,7 @@
       "university": "University of Maryland, College Park",
       "program": "PhD in Geographical Sciences",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.34,
@@ -1986,6 +2069,7 @@
       "university": "Universiti Teknologi Malaysia (UTM)",
       "program": "Master of Engineering in Hydraulics and Hydrology (MEAG)",
       "country": "Malaysia",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Evaluate",
       "score": 7.33,
@@ -2008,6 +2092,7 @@
       "university": "University of Exeter",
       "program": "PhD via Centre for Water Systems - Hydroinformatics and AI",
       "country": "United Kingdom",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.33,
@@ -2030,6 +2115,7 @@
       "university": "University of Seoul",
       "program": "MS/PhD in Geoinformatics",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.31,
@@ -2052,6 +2138,7 @@
       "university": "University of California, Davis",
       "program": "MS/PhD in Hydrologic Sciences",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.28,
@@ -2074,6 +2161,7 @@
       "university": "Institute of Science Tokyo",
       "program": "International Graduate Program in Civil and Environmental Engineering / Transdisciplinary Science",
       "country": "Japan",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.22,
@@ -2095,6 +2183,7 @@
       "university": "Chulalongkorn University",
       "program": "MS/PhD in Water Resources Engineering",
       "country": "Thailand",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.21,
@@ -2116,6 +2205,7 @@
       "university": "University of California, Irvine",
       "program": "PhD in Earth System Science",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.17,
@@ -2138,6 +2228,7 @@
       "university": "Colorado School of Mines",
       "program": "MS/PhD in Hydrologic Science and Engineering",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.13,
@@ -2160,6 +2251,7 @@
       "university": "Utah State University",
       "program": "MS/PhD in Civil and Environmental Engineering - Water Engineering",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.12,
@@ -2182,6 +2274,7 @@
       "university": "McGill University",
       "program": "PhD in Bioresource Engineering - Soil and Water Resources",
       "country": "Canada",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.1,
@@ -2204,6 +2297,7 @@
       "university": "University of Auckland",
       "program": "PhD in Civil and Environmental Engineering - Water and Environmental Systems",
       "country": "New Zealand",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.1,
@@ -2225,6 +2319,7 @@
       "university": "Monash University",
       "program": "PhD/Master by Research in Civil Engineering - Water and Infrastructure",
       "country": "Australia",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.08,
@@ -2247,6 +2342,7 @@
       "university": "Pusan National University",
       "program": "MS/PhD in Civil and Environmental Engineering - Water Engineering",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.06,
@@ -2269,6 +2365,7 @@
       "university": "Hokkaido University",
       "program": "e3 MS/PhD in Field Engineering for the Environment",
       "country": "Japan",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.04,
@@ -2290,6 +2387,7 @@
       "university": "Hanyang University ERICA",
       "program": "MS/PhD in Civil and Environmental Engineering - Water Resources and Water Disaster Reduction",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석박/박사",
       "decision": "Evaluate",
       "score": 7.0,
@@ -2313,6 +2411,7 @@
       "university": "Technion - Israel Institute of Technology",
       "program": "MSc/PhD in Civil and Environmental Engineering - Water Resources / Geoinformation",
       "country": "Israel",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Watch",
       "score": 6.99,
@@ -2334,6 +2433,7 @@
       "university": "Chungnam National University",
       "program": "MS/PhD in Environmental Water Resources and Informatics",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석박/박사",
       "decision": "Watch",
       "score": 6.95,
@@ -2355,6 +2455,7 @@
       "university": "Jeonbuk National University",
       "program": "MS/PhD in Civil Engineering - Hydraulics, Water Quality and HydroData",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석박/박사",
       "decision": "Watch",
       "score": 6.95,
@@ -2378,6 +2479,7 @@
       "university": "Oregon State University",
       "program": "MS/PhD in Water Resources Engineering",
       "country": "United States",
+      "market": "overseas",
       "degree": "석박/박사",
       "decision": "Watch",
       "score": 6.81,
@@ -2400,6 +2502,7 @@
       "university": "Inha University",
       "program": "MS/PhD in Geoinformatic Engineering",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석박/박사",
       "decision": "Watch",
       "score": 6.8,
@@ -2421,6 +2524,7 @@
       "university": "Chonnam National University",
       "program": "MS/PhD in Civil Engineering - Hydraulics and Water Resources",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석박/박사",
       "decision": "Watch",
       "score": 6.72,
@@ -2442,6 +2546,7 @@
       "university": "Nanyang Technological University (NTU)",
       "program": "MSc in Civil Engineering",
       "country": "Singapore",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Watch",
       "score": 6.7,
@@ -2463,6 +2568,7 @@
       "university": "University of Saskatchewan",
       "program": "Master of Water Security",
       "country": "Canada",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Watch",
       "score": 6.69,
@@ -2485,6 +2591,7 @@
       "university": "University of Edinburgh",
       "program": "MSc in Geographical Information Science and Earth Observation",
       "country": "United Kingdom",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Watch",
       "score": 6.68,
@@ -2507,6 +2614,7 @@
       "university": "Cartography M.Sc. Consortium",
       "program": "Cartography M.Sc.",
       "country": "Germany / Austria / Netherlands",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Watch",
       "score": 6.66,
@@ -2529,6 +2637,7 @@
       "university": "Aalto University",
       "program": "MSc in Water and Environmental Engineering",
       "country": "Finland",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Watch",
       "score": 6.59,
@@ -2550,6 +2659,7 @@
       "university": "Sejong University",
       "program": "MS/PhD in Civil and Environmental Engineering",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석박/박사",
       "decision": "Watch",
       "score": 6.58,
@@ -2572,6 +2682,7 @@
       "university": "KTH Royal Institute of Technology",
       "program": "MSc in Environmental Engineering and Sustainable Infrastructure",
       "country": "Sweden",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Watch",
       "score": 6.44,
@@ -2594,6 +2705,7 @@
       "university": "Uppsala University",
       "program": "MSc in Earth Science - Hydrology and Hydrogeology",
       "country": "Sweden",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Watch",
       "score": 6.41,
@@ -2615,6 +2727,7 @@
       "university": "Ajou University",
       "program": "MS/PhD in Civil and System Engineering - Water Resources Systems",
       "country": "South Korea",
+      "market": "domestic",
       "degree": "석박/박사",
       "decision": "Watch",
       "score": 6.38,
@@ -2636,6 +2749,7 @@
       "university": "TU Dresden",
       "program": "MSc in Hydro Science and Engineering",
       "country": "Germany",
+      "market": "overseas",
       "degree": "석사",
       "decision": "Watch",
       "score": 6.17,
@@ -2673,7 +2787,8 @@
       "officialUrl": "https://www.iljufoundation.org/html/scholarship/fs/detail/ussk.do?ssap20Seq=1521",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "kwanjeong-overseas-study-scholarship",
@@ -2697,7 +2812,8 @@
         "United States",
         "United Kingdom",
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "chevening-scholarship",
@@ -2719,7 +2835,8 @@
       "officialUrl": "https://www.chevening.org/scholarships/",
       "countries": [
         "United Kingdom"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "erasmus-mundus-joint-masters",
@@ -2743,7 +2860,8 @@
         "Sweden",
         "Belgium",
         "Estonia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "fulbright-foreign-student",
@@ -2764,7 +2882,8 @@
       "officialUrl": "https://www.fulbright.or.kr/en/grant/graduate/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "swedish-institute-scholarship",
@@ -2785,7 +2904,8 @@
       "officialUrl": "https://si.se/en/apply/scholarships/",
       "countries": [
         "Sweden"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "colorado-state-cee-graduate-assistantships",
@@ -2808,7 +2928,8 @@
       "officialUrl": "https://www.engr.colostate.edu/ce/graduate/assistantships/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "daad-doctoral-programmes-germany",
@@ -2829,7 +2950,8 @@
       "officialUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?detail=57135739",
       "countries": [
         "Germany"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "fulbright-korea-stem-graduate-program",
@@ -2853,7 +2975,8 @@
       "officialUrl": "https://www.fulbright.or.kr/grant/graduatestem/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "hong-kong-phd-fellowship-scheme-water-environment",
@@ -2876,7 +2999,8 @@
       "officialUrl": "https://cerg1.ugc.edu.hk/hkpfs/index.html",
       "countries": [
         "Hong Kong"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "imperial-presidents-phd-scholarship",
@@ -2897,7 +3021,8 @@
       "officialUrl": "https://www.imperial.ac.uk/study/fees-and-funding/postgraduate-doctoral/grants-scholarships/presidents-phd/",
       "countries": [
         "United Kingdom"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "mext-research-student-scholarship",
@@ -2920,7 +3045,8 @@
       "officialUrl": "https://www.studyinjapan.go.jp/en/smap-stopj-applications-research.html",
       "countries": [
         "Japan"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "kaust-fellowship-water-environment",
@@ -2942,7 +3068,8 @@
       "officialUrl": "https://admissions.kaust.edu.sa/fees-funding",
       "countries": [
         "Saudi Arabia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "kfupm-graduate-scholarship-engineering-water-ai",
@@ -2963,7 +3090,8 @@
       "officialUrl": "https://cgis.kfupm.edu.sa/admission/kfupm-scholarship",
       "countries": [
         "Saudi Arabia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "khalifa-postgraduate-scholarships-water",
@@ -2987,7 +3115,8 @@
         "United Arab Emirates",
         "UAE",
         "Abu Dhabi"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "princeton-engineering-phd-full-funding",
@@ -3009,7 +3138,8 @@
       "officialUrl": "https://gradschool.princeton.edu/financial-support/financial-support-model/phd-funding-natural-sciences-engineering",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "singapore-singa-phd-water-ai",
@@ -3031,7 +3161,8 @@
       "officialUrl": "https://graduatestudies.smu.edu.sg/phd/singa-smu-programme",
       "countries": [
         "Singapore"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "university-arizona-hydrology-phd-package",
@@ -3054,7 +3185,8 @@
       "officialUrl": "https://has.arizona.edu/davis-fitzwater-doctoral-fellowship-hydrology",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "unimelb-graduate-research-scholarship",
@@ -3075,7 +3207,8 @@
       "officialUrl": "https://scholarships.unimelb.edu.au/awards/graduate-research-scholarships",
       "countries": [
         "Australia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "warwick-chancellors-international-scholarship",
@@ -3096,7 +3229,8 @@
       "officialUrl": "https://warwick.ac.uk/services/dc/schols_fund/applicants/competitions/",
       "countries": [
         "United Kingdom"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "knight-hennessy-scholars-stanford",
@@ -3119,7 +3253,8 @@
       "officialUrl": "https://knight-hennessy.stanford.edu/admission",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "mccall-macbain-scholarship-mcgill",
@@ -3142,7 +3277,8 @@
       "officialUrl": "https://www.mccallmacbainscholars.org/apply/",
       "countries": [
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "oist-fully-funded-phd",
@@ -3165,7 +3301,8 @@
       "officialUrl": "https://www.oist.jp/education/student-support",
       "countries": [
         "Japan"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "sejong-engineering-graduate-ra-package",
@@ -3188,7 +3325,8 @@
       "officialUrl": "https://en.sejong.ac.kr/cms/etcResourceDown.do?key=%24cms%24HIQwLgrgTiA2AEBlAxgSwKYDtnoM7xEwBN4BRTAc1U3XSmooH0AmABmeYDpWA2bgdk4AHIgDMgA&site=%24cms%24KYOw5kA",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "aalto-master-scholarship",
@@ -3209,7 +3347,8 @@
       "officialUrl": "https://www.aalto.fi/en/international-students/scholarships-study-right-started-on-or-after-1-august-2025",
       "countries": [
         "Finland"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ait-general-scholarships-water-rsgis",
@@ -3230,7 +3369,8 @@
       "officialUrl": "https://ait.ac.th/financial/ait-scholarships/",
       "countries": [
         "Thailand"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "cambridge-trust-postgraduate-scholarships",
@@ -3251,7 +3391,8 @@
       "officialUrl": "https://www.cambridgetrust.org/postgraduate-applicants/",
       "countries": [
         "United Kingdom"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ihe-delft-scholarship",
@@ -3272,7 +3413,8 @@
       "officialUrl": "https://www.un-ihe.org/education/master-programmes/msc-programme-water-and-sustainable-development/tuition-and-scholarships",
       "countries": [
         "Netherlands"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "uaeu-water-resources-graduate-funding",
@@ -3297,7 +3439,8 @@
         "UAE",
         "Al Ain",
         "Abu Dhabi"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "marie-curie-doctoral-networks",
@@ -3322,7 +3465,8 @@
         "Netherlands",
         "Germany",
         "France"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "rotary-global-grant-scholarships-water-environment",
@@ -3345,7 +3489,8 @@
       "officialUrl": "https://www.rotary.org/get-involved/rotary-scholarships",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ok-bae-jung-living-scholarship",
@@ -3371,7 +3516,8 @@
       "countries": [
         "South Korea",
         "Global"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "apple-scholars-ai-ml-phd-fellowship",
@@ -3393,7 +3539,8 @@
       "officialUrl": "https://machinelearning.apple.com/work-with-us",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "canada-cgrs-doctoral",
@@ -3414,7 +3561,8 @@
       "officialUrl": "https://nserc-crsng.canada.ca/en/funding-opportunity/canada-graduate-research-scholarship-doctoral-program",
       "countries": [
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ontario-trillium-scholarship",
@@ -3436,7 +3584,8 @@
       "officialUrl": "https://www.statistics.utoronto.ca/awards/ontario-trillium-scholarship-ots",
       "countries": [
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "stanford-cee-phd-standard-funding",
@@ -3458,7 +3607,8 @@
       "officialUrl": "https://cee.stanford.edu/academics-admissions/graduate-funding",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ubc-international-doctoral-fellowship",
@@ -3480,7 +3630,8 @@
       "officialUrl": "https://www.grad.ubc.ca/awards/international-doctoral-fellowship",
       "countries": [
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "epfl-master-excellence-fellowship",
@@ -3501,7 +3652,8 @@
       "officialUrl": "https://www.epfl.ch/education/master/master-excellence-fellowships/",
       "countries": [
         "Switzerland"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "uc-irvine-earth-system-science-phd-funding",
@@ -3524,7 +3676,8 @@
       "officialUrl": "https://www.ess.uci.edu/faqs-earth-system-science-ess-graduate-program",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "anu-phd-scholarship",
@@ -3547,7 +3700,8 @@
       "officialUrl": "https://www.anu.edu.au/study/scholarships/find-a-scholarship/anu-phd-scholarships",
       "countries": [
         "Australia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ireland-postgraduate-scholarship-programme",
@@ -3566,7 +3720,8 @@
       "officialUrl": "https://www.researchireland.ie/funding/government-ireland-postgraduate/",
       "countries": [
         "Ireland"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "microsoft-research-fellowship-phd",
@@ -3588,7 +3743,8 @@
       "officialUrl": "https://www.microsoft.com/en-us/research/academic-program/microsoft-research-fellowship/",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "monash-international-graduate-research-package",
@@ -3609,7 +3765,8 @@
       "officialUrl": "https://www.monash.edu/graduate-research/study/scholarships/fees-scholarships/rates",
       "countries": [
         "Australia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "nvidia-graduate-fellowship-ai",
@@ -3630,7 +3787,8 @@
       "officialUrl": "https://research.nvidia.com/graduate-fellowships",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "swiss-government-excellence-research-scholarship",
@@ -3649,7 +3807,8 @@
       "officialUrl": "https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships",
       "countries": [
         "Switzerland"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "umd-geographical-sciences-phd-assistantship",
@@ -3670,7 +3829,8 @@
       "officialUrl": "https://geog.umd.edu/graduate/prospective-phd-students",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "amazon-ai-phd-fellowship-partner-universities",
@@ -3695,7 +3855,8 @@
       "officialUrl": "https://www.washington.edu/news/2025/10/21/amazon-launches-ai-phd-fellowship-program-with-uw/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "rotary-global-grant-scholarship-water-environment",
@@ -3716,7 +3877,8 @@
       "officialUrl": "https://www.rotary.org/en/our-programs/scholarships",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "awma-international-graduate-scholarships",
@@ -3737,7 +3899,8 @@
       "officialUrl": "https://www.awma.org/scholarships",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "agu-horton-research-grant-hydrology",
@@ -3760,7 +3923,8 @@
       "officialUrl": "https://www.agu.org/honors/horton-grant",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "agu-student-travel-grant-annual-meeting",
@@ -3784,7 +3948,8 @@
       "officialUrl": "https://www.agu.org/honors/fmstg",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "australia-rtp-research-scholarships",
@@ -3803,7 +3968,8 @@
       "officialUrl": "https://www.education.gov.au/research-block-grants/research-training-program",
       "countries": [
         "Australia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "gist-graduate-scholarship-ra-iref",
@@ -3822,7 +3988,8 @@
       "officialUrl": "https://www.gist.ac.kr/kr/html/sub05/05020605.html",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "groundwater-foundation-farvolden-scholarship",
@@ -3841,7 +4008,8 @@
       "officialUrl": "https://groundwater.org/scholarships/",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "kaist-graduate-scholarship-assistantship",
@@ -3860,7 +4028,8 @@
       "officialUrl": "https://www.kaist.ac.kr/kr/html/edu/03110503.html",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "ntu-research-scholarship-singapore",
@@ -3881,7 +4050,8 @@
       "officialUrl": "https://www.ntu.edu.sg/admissions/graduate/financialmatters/scholarships/rss",
       "countries": [
         "Singapore"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "nus-research-scholarship-engineering-water-ai",
@@ -3902,7 +4072,8 @@
       "officialUrl": "https://nusgs.nus.edu.sg/scholarships/nus-research-scholarship",
       "countries": [
         "Singapore"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "postech-graduate-internal-research-scholarships",
@@ -3921,7 +4092,8 @@
       "officialUrl": "https://www.postech.ac.kr/kor/college-life/scholarship_types.do",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "sigma-xi-grants-in-aid-research",
@@ -3944,7 +4116,8 @@
       "officialUrl": "https://www.sigmaxi.org/programs/grants-in-aid-of-research",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "swe-graduate-engineering-scholarships",
@@ -3967,7 +4140,8 @@
         "Global",
         "United States",
         "India"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ubc-four-year-doctoral-fellowship",
@@ -3989,7 +4163,8 @@
       "officialUrl": "https://www.grad.ubc.ca/awards/four-year-doctoral-fellowship-4yf",
       "countries": [
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "university-auckland-doctoral-scholarship",
@@ -4010,7 +4185,8 @@
       "officialUrl": "https://www.auckland.ac.nz/en/study/scholarships-and-awards/scholarship-types/postgraduate-scholarships/doctoral-scholarships.html",
       "countries": [
         "New Zealand"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "university-sydney-rtp-international-scholarship",
@@ -4031,7 +4207,8 @@
       "officialUrl": "https://www.sydney.edu.au/scholarships/australian-government-research-training-program.html",
       "countries": [
         "Australia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "unsw-hdr-international-scholarships",
@@ -4052,7 +4229,8 @@
       "officialUrl": "https://www.unsw.edu.au/research/hdr/scholarships",
       "countries": [
         "Australia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "wellington-doctoral-scholarship",
@@ -4073,7 +4251,8 @@
       "officialUrl": "https://www.wgtn.ac.nz/scholarships/current/wellington-doctoral-scholarships",
       "countries": [
         "New Zealand"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "cagis-student-research-scholarships",
@@ -4092,7 +4271,8 @@
       "officialUrl": "https://cartogis.org/awards/students/",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "gsa-student-travel-grants",
@@ -4113,7 +4293,8 @@
       "officialUrl": "https://www.geosociety.org/grants-scholarships/travel",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "jasso-monbukagakusho-honors-scholarship",
@@ -4138,7 +4319,8 @@
       "officialUrl": "https://www.studyinjapan.go.jp/en/planning/scholarships/jasso-scholarships/",
       "countries": [
         "Japan"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "weizmann-graduate-tuition-stipend",
@@ -4159,7 +4341,8 @@
       "officialUrl": "https://www.weizmann.ac.il/WeizmannCompass/print/252",
       "countries": [
         "Israel"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "georgia-southern-tafazzoli-fully-funded-ms-2026",
@@ -4182,7 +4365,8 @@
       "officialUrl": "https://www.georgiasouthern.edu/degrees/masters-in-civil-engineering",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "mbzuai-full-graduate-scholarship-ai",
@@ -4205,7 +4389,8 @@
         "United Arab Emirates",
         "UAE",
         "Abu Dhabi"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "aag-igif-gis-scholarship",
@@ -4226,7 +4411,8 @@
       "officialUrl": "https://www.aag.org/award-grant/aag-igif/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "awwa-water-equation-graduate-scholarships",
@@ -4246,7 +4432,8 @@
       "officialUrl": "https://www.awwa.org/water-equation/awwa-scholarship-program/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "canada-cwra-water-scholarships",
@@ -4265,7 +4452,8 @@
       "officialUrl": "https://cwra.org/awards/scholarships/",
       "countries": [
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "korean-honor-scholarship-us",
@@ -4289,7 +4477,8 @@
       "officialUrl": "https://www.mofa.go.kr/us-seattle-en/brd/m_4809/view.do?seq=761453",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ksea-kusco-graduate-scholarship",
@@ -4314,7 +4503,8 @@
       "officialUrl": "https://award.ksea.org/scholarships/scholarships-for-graduates",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "kwanjeong-domestic-graduate-scholarship",
@@ -4335,7 +4525,8 @@
       "officialUrl": "https://www.ikef.or.kr/page.php?id=%2Fkj%2Fscholar_schedule_detail&page=1&wr_id=102",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "nl-scholarship-non-eea-master",
@@ -4354,7 +4545,8 @@
       "officialUrl": "https://www.studyinnl.org/finances/nl-scholarship",
       "countries": [
         "Netherlands"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "nsf-ddrig-doctoral-dissertation-research",
@@ -4378,7 +4570,8 @@
       "officialUrl": "https://www.nsf.gov/funding/graduate-students",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "peo-international-peace-scholarship",
@@ -4400,7 +4593,8 @@
       "countries": [
         "United States",
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "snu-engineering-graduate-scholarship-ra-ta",
@@ -4419,7 +4613,8 @@
       "officialUrl": "https://eng.snu.ac.kr/admissions/scholarship/scholarships",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "waterloo-collaborative-water-program",
@@ -4438,7 +4633,8 @@
       "officialUrl": "https://uwaterloo.ca/collaborative-water-program/",
       "countries": [
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "wef-canham-graduate-studies-water-environment",
@@ -4462,7 +4658,8 @@
       "officialUrl": "https://www.wef.org/membership--community/awards-recognition/education-awards/wef-canham-graduate-studies-scholarship/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "thsoa-hydrospatial-student-scholarships",
@@ -4485,7 +4682,8 @@
       "officialUrl": "https://www.thsoa.org/education",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "bristol-think-big-postgraduate-scholarship",
@@ -4506,7 +4704,8 @@
       "officialUrl": "https://www.bristol.ac.uk/students/support/finances/scholarships/think-big-scholarships/",
       "countries": [
         "United Kingdom"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "university-iowa-iihr-research-assistantship",
@@ -4527,7 +4726,8 @@
       "officialUrl": "https://iihr.uiowa.edu/education-outreach/graduate-students",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "riken-international-program-associate",
@@ -4549,7 +4749,8 @@
       "countries": [
         "Japan",
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "asa-cssa-sssa-soil-hydrology-travel-awards",
@@ -4571,7 +4772,8 @@
       "officialUrl": "https://sciencesocieties.secure-platform.com/travelawards",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "women-in-gis-awards-scholarships",
@@ -4594,7 +4796,8 @@
       "officialUrl": "https://womeningis.wildapricot.org/2026AS",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "hyundai-cmk-science-technology-graduate-scholarship",
@@ -4613,7 +4816,8 @@
       "officialUrl": "https://www.cmkfoundation-scholarship.org/FutureGraduateApply",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "nasa-finesst-earth-science-graduate-research",
@@ -4634,7 +4838,8 @@
       "officialUrl": "https://science.nasa.gov/earth-science/early-career-opportunities/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ubc-vancouver-phd-minimum-funding",
@@ -4656,7 +4861,8 @@
       "officialUrl": "https://www.grad.ubc.ca/awards/minimum-funding-policy-phd-students",
       "countries": [
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "waterloo-international-doctoral-student-award",
@@ -4677,7 +4883,8 @@
       "officialUrl": "https://uwaterloo.ca/current-graduate-students/awards-and-funding/international-student-funding",
       "countries": [
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "texas-am-wmhs-adviser-research-assistantship",
@@ -4698,7 +4905,8 @@
       "officialUrl": "https://waterprogram.tamu.edu/academics/scholarships-funding/index.html",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "utoronto-civmin-direct-phd-guaranteed-funding",
@@ -4720,7 +4928,8 @@
       "officialUrl": "https://civmin.utoronto.ca/home/programs/graduate-programs/graduate-fees-scholarships-and-funding/guaranteed-funding/",
       "countries": [
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ust-kict-student-financial-support",
@@ -4741,7 +4950,8 @@
       "officialUrl": "https://www.ust.ac.kr/admission_eng/sub02_03.do",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "asce-civil-engineering-graduate-fellowships",
@@ -4764,7 +4974,8 @@
       "officialUrl": "https://www.asce.org/career-growth/awards-and-honors/fellowships",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ilgisa-postgraduate-gis-scholarship",
@@ -4787,7 +4998,8 @@
       "officialUrl": "https://www.ilgisa.org/scholarship-",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "leiden-university-excellence-scholarship",
@@ -4808,7 +5020,8 @@
       "officialUrl": "https://www.universiteitleiden.nl/en/scholarships/sea/leiden-university-excellence-scholarship-lexs",
       "countries": [
         "Netherlands"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "foresight-ai-science-safety-nodes",
@@ -4829,7 +5042,8 @@
       "officialUrl": "https://foresight.org/grants/grants-ai-for-science-safety/",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "phd-industry-fellowships",
@@ -4855,7 +5069,8 @@
         "United States",
         "Canada",
         "Europe"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "academia-sinica-tigp-phd-fellowship",
@@ -4877,7 +5092,8 @@
       "officialUrl": "https://tigp.sinica.edu.tw/",
       "countries": [
         "Taiwan"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "sws-student-research-grants",
@@ -4898,7 +5114,8 @@
       "officialUrl": "https://sws.org/page/student-research-grants",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "qualcomm-innovation-fellowship-korea",
@@ -4917,7 +5134,8 @@
       "officialUrl": "https://www.qualcomm.com/research/university-relations/innovation-fellowship/2026-south-korea",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "uos-spatial-information-convergence-scholarship",
@@ -4938,7 +5156,8 @@
       "officialUrl": "https://his.uos.ac.kr/engraduate/web/contents/GS_About_03_04_11_tab03",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "aauw-international-fellowship-us-graduate",
@@ -4961,7 +5180,8 @@
       "officialUrl": "https://www.aauw.org/resources/programs/fellowships-grants/aauw-international-fellowships/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ait-royal-thai-government-scholarships",
@@ -4983,7 +5203,8 @@
       "officialUrl": "https://ait.ac.th/financial/royal-thai-government-scholarships/",
       "countries": [
         "Thailand"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "anthropic-ai-safety-fellows-program",
@@ -5009,7 +5230,8 @@
         "United States",
         "Canada",
         "United Kingdom"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "arizona-hydrological-society-scholarship",
@@ -5031,7 +5253,8 @@
       "officialUrl": "https://ahsfoundation.org/scholarships",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "asprs-geospatial-remote-sensing-scholarships",
@@ -5056,7 +5279,8 @@
       "countries": [
         "United States",
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "awra-water-resources-scholarships",
@@ -5079,7 +5303,8 @@
       "officialUrl": "https://www.awra.org/AWRA/Members/Scholarship_and_Awards/Scholarships.aspx",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "brown-caldwell-environmental-scholarships",
@@ -5101,7 +5326,8 @@
       "officialUrl": "https://brownandcaldwell.com/careers/scholarships/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "chinese-government-scholarship-cgs-engineering",
@@ -5123,7 +5349,8 @@
       "officialUrl": "https://us.china-embassy.gov.cn/eng/lxfw/studyinchina/chinesegovernmentscholarship/",
       "countries": [
         "China"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "coefficient-giving-open-phil-ai-fellowship-watch",
@@ -5147,7 +5374,8 @@
       "officialUrl": "https://coefficientgiving.org/ai-fellowship/",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "cooperative-ai-phd-fellowship",
@@ -5171,7 +5399,8 @@
       "officialUrl": "https://www.cooperativeai.com/phd-fellowship/2026",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "copernicus-master-digital-earth-scholarship",
@@ -5197,7 +5426,8 @@
         "Austria",
         "France",
         "Czech Republic"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "eesic-erasmus-mundus-environmental-sustainability-engineering",
@@ -5222,7 +5452,8 @@
         "Portugal",
         "Spain",
         "Italy"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "eesf-environmental-engineering-science-scholarships",
@@ -5243,7 +5474,8 @@
       "officialUrl": "https://www.eesfoundation.org/scholarship/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "eref-graduate-scholarships-solid-waste-research",
@@ -5269,7 +5501,8 @@
       "officialUrl": "https://erefdn.org/scholarships/",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "eth-esop-master-scholarship",
@@ -5291,7 +5524,8 @@
       "officialUrl": "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html",
       "countries": [
         "Switzerland"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "flanders-master-mind-scholarship",
@@ -5316,7 +5550,8 @@
       "officialUrl": "https://www.studyinflanders.be/scholarships/master-mind-scholarships",
       "countries": [
         "Belgium"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "flood-risk-management-erasmus-mundus-scholarship",
@@ -5343,7 +5578,8 @@
         "Germany",
         "Spain",
         "Slovenia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "france-eiffel-excellence-scholarship",
@@ -5365,7 +5601,8 @@
       "officialUrl": "https://www.campusfrance.org/en/france-excellence-eiffel-scholarship-program",
       "countries": [
         "France"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "gates-cambridge-scholarship",
@@ -5387,7 +5624,8 @@
       "officialUrl": "https://www.gatescambridge.org/programme/the-scholarship/",
       "countries": [
         "United Kingdom"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "gsa-graduate-student-research-grants",
@@ -5411,7 +5649,8 @@
         "Canada",
         "Mexico",
         "Central America"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "google-phd-fellowship-ai",
@@ -5434,7 +5673,8 @@
       "officialUrl": "https://research.google/programs-and-events/phd-fellowship/",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ireland-goi-ies-scholarship",
@@ -5456,7 +5696,8 @@
       "officialUrl": "https://hea.ie/policy/internationalisation/goi-ies/",
       "countries": [
         "Ireland"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "groundwatch-erasmus-mundus-scholarship",
@@ -5482,7 +5723,8 @@
         "Portugal",
         "Netherlands",
         "Germany"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "hbku-graduate-scholarships-sustainability-ict",
@@ -5504,7 +5746,8 @@
       "officialUrl": "https://www.hbku.edu.qa/en/scholarship",
       "countries": [
         "Qatar"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "imete-environmental-technology-engineering-erasmus-watch",
@@ -5529,7 +5772,8 @@
         "Netherlands",
         "Czech Republic",
         "European Union"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "bold-james-schaaf-water-resources-scholarship",
@@ -5553,7 +5797,8 @@
       "officialUrl": "https://bold.org/scholarships/james-r-schaaf-civil-engineering-scholarship/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "jane-street-graduate-research-fellowship",
@@ -5581,7 +5826,8 @@
         "Canada",
         "United Kingdom",
         "Australia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "kfas-overseas-phd-scholarship",
@@ -5605,7 +5851,8 @@
       "officialUrl": "https://www.kfas.or.kr/theme/kfaschanel/intl_domestic_scholarship_2.php",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "kasf-korean-american-scholarship",
@@ -5629,7 +5876,8 @@
       "officialUrl": "https://www.kasf.org/scholarships/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "kosaf-graduate-presidential-science-scholarship",
@@ -5654,7 +5902,8 @@
       "officialUrl": "https://www.kosaf.go.kr/",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "kosaf-stem-master-doctoral-excellence-scholarships",
@@ -5681,7 +5930,8 @@
       "officialUrl": "https://www.kosaf.go.kr/",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "kth-master-scholarship",
@@ -5703,7 +5953,8 @@
       "officialUrl": "https://www.kth.se/en/studies/master/admissions/scholarships/kth-scholarship-1.72827",
       "countries": [
         "Sweden"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "magip-higher-education-gis-scholarship",
@@ -5726,7 +5977,8 @@
       "officialUrl": "https://www.magip.org/Scholarships",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "mespom-erasmus-mundus-environmental-sciences-policy-management",
@@ -5751,7 +6003,8 @@
         "Greece",
         "Hungary",
         "Sweden"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "meta-phd-fellowship-ai",
@@ -5773,7 +6026,8 @@
       "officialUrl": "https://research.facebook.com/fellows/",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "mgwa-gil-gabanski-groundwater-scholarship",
@@ -5796,7 +6050,8 @@
       "countries": [
         "United States",
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "niied-government-funded-overseas-study",
@@ -5820,7 +6075,8 @@
       "officialUrl": "https://www.niied.go.kr/web/main/nid/niied_board/5628",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "oxford-clarendon-scholarship",
@@ -5842,7 +6098,8 @@
       "officialUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon",
       "countries": [
         "United Kingdom"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "rotary-ihe-delft-water-sanitation-scholarship",
@@ -5866,7 +6123,8 @@
       "officialUrl": "https://www.un-ihe.org/news/rotary-scholarships-available-msc-water-and-sustainable-development",
       "countries": [
         "Netherlands"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "seoulfuture-ai-seoul-tech-graduate-research",
@@ -5891,7 +6149,8 @@
       "officialUrl": "https://www.seoulfuture.or.kr/",
       "countries": [
         "South Korea"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "taiwan-moe-scholarship-stem",
@@ -5912,7 +6171,8 @@
       "officialUrl": "https://english.moe.gov.tw/cp-24-16833-23C09-1.html",
       "countries": [
         "Taiwan"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "tu-delft-justus-louise-van-effen-scholarship",
@@ -5934,7 +6194,8 @@
       "officialUrl": "https://www.tudelft.nl/en/education/study-programme-orientation/practical-matters/scholarships/justus-louise-van-effen-excellence-scholarships",
       "countries": [
         "Netherlands"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ucl-global-masters-scholarship",
@@ -5957,7 +6218,8 @@
       "officialUrl": "https://www.ucl.ac.uk/scholarships/ucl-global-masters-scholarship",
       "countries": [
         "United Kingdom"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ucl-research-excellence-scholarship",
@@ -5982,7 +6244,8 @@
       "officialUrl": "https://www.ucl.ac.uk/prospective-students/scholarships/research-excellence-scholarship",
       "countries": [
         "United Kingdom"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "usgif-geoint-geospatial-ai-scholarships",
@@ -6006,7 +6269,8 @@
       "officialUrl": "https://usgif.org/usgif-scholarship-program/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "dfi-educational-trust-at-large-geotechnical-scholarships",
@@ -6027,7 +6291,8 @@
       "officialUrl": "https://trust.dfi.org/scholarships/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ibm-phd-fellowship",
@@ -6051,7 +6316,8 @@
       "officialUrl": "https://www.research.ibm.com/university/awards/fellowships.html",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "google-summer-of-code-stipend",
@@ -6075,7 +6341,8 @@
       "officialUrl": "https://summerofcode.withgoogle.com/",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "lfx-mentorship-stipend",
@@ -6096,7 +6363,8 @@
       "officialUrl": "https://www.linuxfoundation.org/blog/strengthening-lfx-mentoring-a-fairer-stipend-model-and-a-shared-standard-of-excellence",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "mbr-global-water-award",
@@ -6119,7 +6387,8 @@
         "UAE",
         "Dubai",
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "open-source-stipend-programs",
@@ -6140,7 +6409,8 @@
       "officialUrl": "",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "outreachy-open-source-internship",
@@ -6162,7 +6432,8 @@
       "officialUrl": "https://www.outreachy.org/",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "uae-water-security-2036-career-linkage",
@@ -6184,7 +6455,8 @@
         "UAE",
         "Dubai",
         "Abu Dhabi"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ams-richard-grotjahn-extremes-research-fellowship",
@@ -6208,7 +6480,8 @@
       "countries": [
         "United States",
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "swana-stearns-gershman-solid-waste-scholarships",
@@ -6234,7 +6507,8 @@
       "countries": [
         "United States",
         "Canada"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "ams-graduate-fellowship-history-science",
@@ -6257,7 +6531,8 @@
       "officialUrl": "https://www.ametsoc.org/ams/information-for/students/ams-scholarships-and-fellowships/ams-graduate-fellowship-in-the-history-of-science/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "zonta-amelia-earhart-fellowship",
@@ -6281,7 +6556,8 @@
       "officialUrl": "https://www.zonta.org/Web/Web/Programs/Education/Amelia_Earhart_Fellowship.aspx",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "asan-biomedical-health-policy-graduate-scholarship",
@@ -6303,7 +6579,8 @@
       "countries": [
         "South Korea",
         "Global"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "pony-chung-overseas-phd-humanities-scholarship",
@@ -6324,7 +6601,8 @@
       "officialUrl": "https://apply.ponychung.org/notification/scholarship/detail?idx=74",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "adb-japan-scholarship-water-environment",
@@ -6349,7 +6627,8 @@
         "Thailand",
         "Singapore",
         "Philippines"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "australia-awards-water-environment",
@@ -6371,7 +6650,8 @@
       "officialUrl": "https://www.dfat.gov.au/people-to-people/australia-awards/australia-awards-scholarships",
       "countries": [
         "Australia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "daad-development-related-postgraduate",
@@ -6394,7 +6674,8 @@
       "officialUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?detail=50076777",
       "countries": [
         "Germany"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "db-dream-master-graduate-scholarship",
@@ -6418,7 +6699,8 @@
       "countries": [
         "South Korea",
         "Global"
-      ]
+      ],
+      "market": "domestic"
     },
     {
       "id": "ndseg-doctoral-fellowship",
@@ -6443,7 +6725,8 @@
       "officialUrl": "https://ndseg.sysplus.com/NDSEG/About/Eligibility",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "doe-csgf-doctoral-fellowship",
@@ -6467,7 +6750,8 @@
       "officialUrl": "https://www.energy.gov/doe-stem/events/department-energy-computational-science-graduate-fellowship-csgf-application",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "gem-engineering-science-fellowship",
@@ -6492,7 +6776,8 @@
       "officialUrl": "https://www.gemfellowship.org/gem-fellowship-program/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "hertz-fellowship-applied-sciences",
@@ -6518,7 +6803,8 @@
       "officialUrl": "https://www.hertzfoundation.org/hertz-fellowship/who-can-apply/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "world-bank-jjwbgsp-water-development",
@@ -6541,7 +6827,8 @@
       "officialUrl": "https://www.worldbank.org/en/programs/scholarships/jj-wbgsp",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "nsf-grfp",
@@ -6564,7 +6851,8 @@
       "officialUrl": "https://www.nsf.gov/funding/opportunities/grfp-nsf-graduate-research-fellowship-program/nsf25-547/solicitation",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "paul-daisy-soros-fellowship-new-americans",
@@ -6589,7 +6877,8 @@
       "officialUrl": "https://pdsoros.org/eligibility/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "sallie-mae-bridging-dream-graduate-scholarship",
@@ -6616,7 +6905,8 @@
       "officialUrl": "https://tmcf.org/open-scholarships/2026-2027-tmcf-bridging-the-dream-scholarship-for-graduate-school-students/",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "schlumberger-faculty-for-the-future",
@@ -6642,7 +6932,8 @@
       "officialUrl": "https://schlumbergerfoundation.com/applications/",
       "countries": [
         "Global"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "singapore-pub-sustainability-scholarship",
@@ -6664,7 +6955,8 @@
       "officialUrl": "https://www.pub.gov.sg/Resources/News-Room/PressReleases/2024/07/17-young-talents-awarded-Singapore-Sustainability-Scholarship-2024",
       "countries": [
         "Singapore"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "smart-scholarship-for-service-stem",
@@ -6688,7 +6980,8 @@
       "officialUrl": "https://www.smartscholarship.org/smart/en?id=smart_eligibility",
       "countries": [
         "United States"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "vlir-uos-water-resources-engineering",
@@ -6710,7 +7003,8 @@
       "officialUrl": "https://www.vliruos.be/get-funded/master-water-resources-engineering-wre",
       "countries": [
         "Belgium"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "turkiye-scholarships-graduate-2027",
@@ -6735,7 +7029,8 @@
       "officialUrl": "https://turkiyeburslari.gov.tr/fulltimeprograms",
       "countries": [
         "Turkiye"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "stipendium-hungaricum-korea-2027",
@@ -6762,7 +7057,8 @@
       "officialUrl": "https://stipendiumhungaricum.hu/partners/",
       "countries": [
         "Hungary"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "romania-mfa-graduate-2027",
@@ -6788,7 +7084,8 @@
       "officialUrl": "https://studyinromania.gov.ro/mfa_2026-2027",
       "countries": [
         "Romania"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "utwente-itc-excellence-geoai-2027",
@@ -6814,7 +7111,8 @@
       "officialUrl": "https://www.utwente.nl/en/itc/education/study-costs/scholarships/",
       "countries": [
         "Netherlands"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "uq-graduate-research-school-2027",
@@ -6840,7 +7138,8 @@
       "officialUrl": "https://scholarships.uq.edu.au/phd-mphil-students",
       "countries": [
         "Australia"
-      ]
+      ],
+      "market": "overseas"
     },
     {
       "id": "hbku-graduate-scholarship-2027",
@@ -6866,7 +7165,8 @@
       "officialUrl": "https://www.hbku.edu.qa/en/scholarship",
       "countries": [
         "Qatar"
-      ]
+      ],
+      "market": "overseas"
     }
   ]
 }

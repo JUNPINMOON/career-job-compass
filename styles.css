@@ -23,6 +23,8 @@ svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8;
 .source-pill[aria-busy="true"] svg { animation:spin .7s linear infinite; }
 .round-action { display:grid; place-items:center; width:40px; height:40px; border:1px solid var(--ink); border-radius:50%; color:var(--ink); background:var(--white); }
 .round-action:hover { color:var(--white); background:var(--ink); }
+.round-action[aria-busy="true"] svg { animation:spin .7s linear infinite; }
+.round-action:disabled { cursor:wait; opacity:.58; }
 .offline-notice { position:fixed; z-index:30; right:18px; bottom:92px; max-width:280px; padding:12px 15px; border-radius:13px; color:var(--white); background:var(--ink); box-shadow:0 16px 38px rgba(20,34,56,.22); font-size:13px; }
 .main { width:min(1180px,100%); margin:0 auto; }
 .page-frame { position:relative; }
@@ -109,6 +111,10 @@ svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8;
 .search-box input::placeholder { color:#9ba1aa; }
 .sector-scroll { display:flex; gap:8px; overflow-x:auto; margin-right:-56px; padding:2px 56px 5px 0; scrollbar-width:none; }
 .sector-scroll::-webkit-scrollbar { display:none; }
+.market-switch { display:flex; width:max-content; max-width:100%; margin:0 0 13px; padding:3px; border:1px solid var(--line); border-radius:13px 13px 13px 3px; background:var(--white); }
+.market-switch button { min-height:33px; padding:0 11px; border:0; border-radius:9px; color:var(--muted); background:transparent; font-size:12px; font-weight:720; }
+.market-switch button[aria-selected="true"] { color:var(--ink); background:#e9f6d1; }
+.market-switch b { margin-left:3px; font-size:10px; }
 .sector-chip { flex:0 0 auto; min-height:35px; padding:0 12px; border:1px solid var(--line); border-radius:99px; color:var(--muted); background:transparent; font-size:12px; font-weight:630; white-space:nowrap; }
 .sector-chip b { display:inline-grid; place-items:center; min-width:17px; height:17px; margin-left:4px; border-radius:50%; color:var(--blue); background:#eaf0ff; font-size:9px; }
 .sector-chip.is-active { border-color:var(--ink); color:var(--white); background:var(--ink); }
@@ -263,5 +269,7 @@ svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8;
   .study-controls .search-box { margin-top:12px; }
   .mode-switch { width:100%; }
   .mode-switch button { flex:1; }
+  .market-switch { width:100%; }
+  .market-switch button { flex:1; }
   .study-list { margin-top:0; }
 }

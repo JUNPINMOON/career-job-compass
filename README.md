@@ -10,13 +10,15 @@ python -m http.server 4173
 
 Open `http://127.0.0.1:4173`.
 
-## Refresh the static snapshot
+## Refresh model
 
-The generator is read-only against `job_search` and excludes descriptions and personal profile evidence. GitHub Pages is static: the in-app refresh control fetches the newest **published** snapshot; it cannot run the local collection pipeline from a phone.
+The static snapshot is an offline fallback. The generator is read-only against `job_search` and excludes descriptions and personal profile evidence.
 
 ```powershell
 python scripts\build_snapshot.py --job-search-root C:\Users\mjb58\job_search
 ```
+
+`data/refresh-bridge.json` stays disabled by default. When it is enabled with an authenticated personal HTTPS endpoint, the app's refresh button starts the complete local candidate engine, waits for completion, then loads `/api/jobs/public-snapshot`. It must never point to a public anonymous endpoint.
 
 ## Release boundary
 

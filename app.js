@@ -3,9 +3,11 @@
 
   const state = {
     data: null,
+    bridge: null,
+    refreshTimer: null,
     selectedTrigger: null,
     bookmarks: new Set(readJSON("career-compass-bookmarks", [])),
-    ...readJSON("career-compass-filters", { query: "", sector: "", queue: "", studyMode: "programs", studyQuery: "" }),
+    ...readJSON("career-compass-filters", { query: "", sector: "", queue: "", jobMarket: "all", studyMode: "programs", studyMarket: "all", studyQuery: "" }),
   };
 
   const main = document.getElementById("mainContent");
@@ -13,10 +15,11 @@
   const dossier = document.getElementById("dossier");
   const snapshotLabel = document.getElementById("snapshotLabel");
   const offlineBanner = document.getElementById("offlineBanner");
+  const engineRefresh = document.getElementById("engineRefresh");
 
   function readJSON(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch (_) { return fallback; } }
   function store(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) { /* local convenience only */ } }
-  function saveFilters() { store("career-compass-filters", { query: state.query, sector: state.sector, queue: state.queue, studyMode: state.studyMode, studyQuery: state.studyQuery }); }
+  function saveFilters() { store("career-compass-filters", { query: state.query, sector: state.sector, queue: state.queue, jobMarket: state.jobMarket, studyMode: state.studyMode, studyMarket: state.studyMarket, studyQuery: state.studyQuery }); }
   function escapeHtml(value) { return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char])); }
   function icon(name) { return `<svg aria-hidden="true"><use href="#i-${name}" /></svg>`; }
   function route() { const value = (location.hash || "#/today").replace(/^#\/?/, "").split("/")[0]; return value === "trust" ? "sources" : value || "today"; }
@@ -32,6 +35,11 @@
   function activeFilters() { return Number(Boolean(state.sector)) + Number(Boolean(state.queue)); }
   function jobById(id) { return jobs().find((job) => job.id === id); }
   function recordById(kind, id) { return (kind === "program" ? programs() : funding()).find((item) => item.id === id); }
+  function marketCount(records, market) { return records.filter((record) => record.market === market).length; }
+  function marketSwitch(scope, active, records) {
+    const selected = (value) => active === value ? "true" : "false";
+    return `<div class="market-switch" role="tablist" aria-label="${scope === "job" ? "공고 근무지" : "진학 자료 지역"}"><button type="button" role="tab" aria-selected="${selected("all")}" data-${scope}-market="all">전체 <b>${records.length}</b></button><button type="button" role="tab" aria-selected="${selected("domestic")}" data-${scope}-market="domestic">국내 <b>${marketCount(records, "domestic")}</b></button><button type="button" role="tab" aria-selected="${selected("overseas")}" data-${scope}-market="overseas">해외 <b>${marketCount(records, "overseas")}</b></button></div>`;
+  }
 
   function pageFrame(content, index, total, label) {
     const previous = index > 0 ? `<button class="page-turn-prev" type="button" data-action="page-prev" aria-label="이전 페이지">이전</button>` : `<span aria-hidden="true"></span>`;
@@ -54,14 +62,14 @@
     const query = String(state.query || "").trim().toLocaleLowerCase("ko");
     return jobs().filter((job) => {
       const haystack = [job.title, job.company, job.location, job.sector, job.source, job.nextAction, ...(job.requirements || [])].join(" ").toLocaleLowerCase("ko");
-      return (!query || haystack.includes(query)) && (!state.sector || job.sector === state.sector) && (!state.queue || job.queue === state.queue);
+      return (!query || haystack.includes(query)) && (!state.sector || job.sector === state.sector) && (!state.queue || job.queue === state.queue) && (state.jobMarket === "all" || job.market === state.jobMarket);
     });
   }
 
   function filteredStudy() {
     const query = String(state.studyQuery || "").trim().toLocaleLowerCase("ko");
     const records = state.studyMode === "funding" ? funding() : programs();
-    return records.filter((item) => !query || Object.values(item).flat().join(" ").toLocaleLowerCase("ko").includes(query));
+    return records.filter((item) => (state.studyMarket === "all" || item.market === state.studyMarket) && (!query || Object.values(item).flat().join(" ").toLocaleLowerCase("ko").includes(query)));
   }
 
   function queueCopy(job) { return escapeHtml(job.queueLabel || "검토 후보"); }
@@ -103,7 +111,7 @@
   function renderJobs() {
     const sectors = (state.data.sectors || []).map((sector) => `<button class="sector-chip ${state.sector === sector.name ? "is-active" : ""}" type="button" data-sector="${escapeHtml(sector.name)}">${escapeHtml(sector.name)} <b>${sector.publishedJobs}</b></button>`).join("");
     const total = Math.max(1, chunks(filteredJobs(), 3).length) + 1;
-    main.innerHTML = pageFrame(`<section class="browse-head"><p class="eyebrow">V4 행동 후보</p><div class="browse-title-row"><h1>확인할 것부터.</h1><button class="filter-trigger" type="button" data-action="open-filters">필터 ${activeFilters() ? `<b>${activeFilters()}</b>` : ""}${icon("filter")}</button></div><p>순위표가 아닙니다. 각 후보의 공식 원문과 확인 항목을 먼저 읽으세요.</p><label class="search-box">${icon("search")}<span class="sr-only">공고 검색</span><input id="jobSearch" type="search" value="${escapeHtml(state.query)}" placeholder="직무, 기관, 지역으로 찾기" autocomplete="off" /></label><div class="sector-scroll"><button class="sector-chip ${!state.sector ? "is-active" : ""}" type="button" data-sector="">전체</button>${sectors}</div></section>`, 0, total, "공고 탐색") + `<div id="jobResults"></div>`;
+    main.innerHTML = pageFrame(`<section class="browse-head"><p class="eyebrow">V4 행동 후보</p><div class="browse-title-row"><h1>확인할 것부터.</h1><button class="filter-trigger" type="button" data-action="open-filters">필터 ${activeFilters() ? `<b>${activeFilters()}</b>` : ""}${icon("filter")}</button></div><p>순위표가 아닙니다. 각 후보의 공식 원문과 확인 항목을 먼저 읽으세요.</p><label class="search-box">${icon("search")}<span class="sr-only">공고 검색</span><input id="jobSearch" type="search" value="${escapeHtml(state.query)}" placeholder="직무, 기관, 지역으로 찾기" autocomplete="off" /></label>${marketSwitch("job", state.jobMarket || "all", jobs())}<div class="sector-scroll"><button class="sector-chip ${!state.sector ? "is-active" : ""}" type="button" data-sector="">전체</button>${sectors}</div></section>`, 0, total, "공고 탐색") + `<div id="jobResults"></div>`;
     document.getElementById("jobSearch").addEventListener("input", (event) => { state.query = event.target.value; saveFilters(); renderJobResults(); });
     renderJobResults();
   }
@@ -130,7 +138,8 @@
   function renderStudy() {
     const isFunding = state.studyMode === "funding";
     const total = Math.max(1, chunks(filteredStudy(), 3).length) + 1;
-    main.innerHTML = pageFrame(`<section class="study-hero"><div><p class="eyebrow">진학 · 장학 · 연구</p><h1>찾아둔 정보를<br />전부 보세요.</h1><p>대학원 ${programs().length}건과 장학금 ${funding().length}건을 공식 링크·마감·지원 조건과 함께 담았습니다.</p></div><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></section><section class="study-controls"><div class="mode-switch" role="tablist" aria-label="진학 자료 종류"><button type="button" role="tab" aria-selected="${!isFunding}" data-study-mode="programs">대학원 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${isFunding}" data-study-mode="funding">장학금 <b>${funding().length}</b></button></div><label class="search-box">${icon("search")}<span class="sr-only">진학 자료 검색</span><input id="studySearch" type="search" value="${escapeHtml(state.studyQuery)}" placeholder="학교, 과정, 장학금으로 찾기" autocomplete="off" /></label></section>`, 0, total, "진학과 재정") + `<div id="studyResults"></div>`;
+    const studyRecords = isFunding ? funding() : programs();
+    main.innerHTML = pageFrame(`<section class="study-hero"><div><p class="eyebrow">진학 · 장학 · 연구</p><h1>찾아둔 정보를<br />전부 보세요.</h1><p>대학원 ${programs().length}건과 장학금 ${funding().length}건을 공식 링크·마감·지원 조건과 함께 담았습니다.</p></div><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></section><section class="study-controls"><div class="mode-switch" role="tablist" aria-label="진학 자료 종류"><button type="button" role="tab" aria-selected="${!isFunding}" data-study-mode="programs">대학원 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${isFunding}" data-study-mode="funding">장학금 <b>${funding().length}</b></button></div>${marketSwitch("study", state.studyMarket || "all", studyRecords)}<label class="search-box">${icon("search")}<span class="sr-only">진학 자료 검색</span><input id="studySearch" type="search" value="${escapeHtml(state.studyQuery)}" placeholder="학교, 과정, 장학금으로 찾기" autocomplete="off" /></label></section>`, 0, total, "진학과 재정") + `<div id="studyResults"></div>`;
     document.getElementById("studySearch").addEventListener("input", (event) => { state.studyQuery = event.target.value; saveFilters(); renderStudyResults(); });
     renderStudyResults();
   }
@@ -172,19 +181,91 @@
     sectorSelect.value = state.sector; queueSelect.value = state.queue;
     if (!filterSheet.open) filterSheet.showModal(); sectorSelect.focus();
   }
-  function resetFilters() { state.query = ""; state.sector = ""; state.queue = ""; saveFilters(); if (route() === "jobs") renderJobs(); }
+  function resetFilters() { state.query = ""; state.sector = ""; state.queue = ""; state.jobMarket = "all"; saveFilters(); if (route() === "jobs") renderJobs(); }
   function updateNetwork() { offlineBanner.hidden = navigator.onLine; const asOf = state.data?.dataAsOf; snapshotLabel.textContent = navigator.onLine ? `자료 ${sourceDate(asOf)}` : "오프라인 스냅샷"; }
   function renderError() { main.innerHTML = `<section class="loading"><span>LOAD ERROR</span><b>자료를 열 수 없어요.</b><button class="plain-button" type="button" data-action="retry">다시 시도</button></section>`; }
   function render(focus = true) { if (!state.data) return; closeDetail(false); window.scrollTo(0, 0); main.scrollTop = 0; const current = route(); setActiveTab(current); if (current === "today") renderToday(); else if (current === "jobs") renderJobs(); else if (current === "study") renderStudy(); else if (current === "sources") renderSources(); else { go("#/today"); return; } requestAnimationFrame(() => { window.scrollTo(0, 0); main.scrollTop = 0; if (focus) main.querySelector("h1")?.focus({ preventScroll: true }); }); }
-  async function load({ force = false } = {}) { try { const url = force ? `./data/app-data.json?refresh=${Date.now()}` : "./data/app-data.json"; const response = await fetch(url, { cache: force ? "no-store" : "reload" }); if (!response.ok) throw new Error(response.status); const data = await response.json(); if (!Array.isArray(data.jobs) || !Array.isArray(data.programs) || !Array.isArray(data.funding)) throw new Error("schema"); state.data = data; updateNetwork(); render(false); } catch (error) { console.error(error); snapshotLabel.textContent = "자료를 열 수 없음"; renderError(); } }
-  async function refreshPublishedSnapshot(button) { if (button?.getAttribute("aria-busy") === "true") return; button?.setAttribute("aria-busy", "true"); snapshotLabel.textContent = "게시 자료 불러오는 중"; try { await load({ force: true }); } finally { button?.removeAttribute("aria-busy"); } }
+  function isSnapshot(data) { return Boolean(data && Array.isArray(data.jobs) && Array.isArray(data.programs) && Array.isArray(data.funding)); }
+  function setSnapshot(data, { focus = false } = {}) { if (!isSnapshot(data)) throw new Error("snapshot schema"); state.data = data; updateNetwork(); render(focus); }
+  function setEngineBusy(busy) { if (!engineRefresh) return; engineRefresh.disabled = busy; engineRefresh.toggleAttribute("aria-busy", busy); }
+  function bridgeUrl(path) { return new URL(path, `${state.bridge.baseUrl}/`).toString(); }
+  async function bridgeRequest(path, options = {}) {
+    if (!state.bridge) throw new Error("bridge unavailable");
+    const response = await fetch(bridgeUrl(path), { cache: "no-store", ...options });
+    if (!response.ok) throw new Error(`bridge HTTP ${response.status}`);
+    return response;
+  }
+  async function refreshStatus() { return (await bridgeRequest("api/jobs/refresh")).json(); }
+  function stopRefreshPolling() { if (state.refreshTimer) window.clearTimeout(state.refreshTimer); state.refreshTimer = null; }
+  async function loadLiveSnapshot() {
+    const response = await bridgeRequest("api/jobs/public-snapshot");
+    setSnapshot(await response.json());
+  }
+  async function watchRefresh() {
+    try {
+      const status = await refreshStatus();
+      if (status.state === "running") {
+        const completed = Array.isArray(status.stages) ? status.stages.filter((stage) => stage.state === "succeeded").length : 0;
+        const total = Array.isArray(status.stages) ? status.stages.length : 0;
+        snapshotLabel.textContent = total ? `후보 갱신 ${completed}/${total}` : "후보 갱신 중";
+        state.refreshTimer = window.setTimeout(watchRefresh, 4000);
+        return;
+      }
+      stopRefreshPolling();
+      setEngineBusy(false);
+      if (status.state !== "succeeded") throw new Error(`refresh state: ${status.state || "unknown"}`);
+      await loadLiveSnapshot();
+    } catch (error) {
+      console.error(error);
+      stopRefreshPolling();
+      setEngineBusy(false);
+      snapshotLabel.textContent = "엔진 연결 확인 필요";
+    }
+  }
+  async function refreshEngine() {
+    if (!state.bridge || engineRefresh?.disabled) return;
+    setEngineBusy(true);
+    snapshotLabel.textContent = "후보 갱신 시작";
+    try {
+      const status = await refreshStatus();
+      if (status.state !== "running") await bridgeRequest("api/jobs/refresh", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+      await watchRefresh();
+    } catch (error) {
+      console.error(error);
+      setEngineBusy(false);
+      snapshotLabel.textContent = "엔진 연결 확인 필요";
+    }
+  }
+  async function connectBridge() {
+    try {
+      const response = await fetch(`./data/refresh-bridge.json?at=${Date.now()}`, { cache: "no-store" });
+      if (!response.ok) return;
+      const config = await response.json();
+      if (config?.enabled !== true || typeof config.baseUrl !== "string") return;
+      const url = new URL(config.baseUrl);
+      if (url.protocol !== "https:" || url.pathname !== "/" || url.search || url.hash) throw new Error("invalid bridge url");
+      state.bridge = { baseUrl: url.origin };
+      engineRefresh.hidden = false;
+      const status = await refreshStatus();
+      if (status.state === "running") { setEngineBusy(true); await watchRefresh(); }
+      else await loadLiveSnapshot();
+    } catch (error) {
+      console.warn("live refresh bridge unavailable", error);
+      state.bridge = null;
+      engineRefresh.hidden = true;
+    }
+  }
+  async function load({ force = false } = {}) { try { const url = force ? `./data/app-data.json?refresh=${Date.now()}` : "./data/app-data.json"; const response = await fetch(url, { cache: force ? "no-store" : "reload" }); if (!response.ok) throw new Error(response.status); setSnapshot(await response.json()); } catch (error) { console.error(error); snapshotLabel.textContent = "자료를 열 수 없음"; renderError(); } }
 
   document.addEventListener("click", (event) => {
     const jobButton = event.target.closest("[data-open-job]"); if (jobButton) { openJobDetail(jobButton.dataset.openJob, jobButton); return; }
     const recordButton = event.target.closest("[data-open-record]"); if (recordButton) { const [kind, id] = recordButton.dataset.openRecord.split(":"); openRecordDetail(kind, id, recordButton); return; }
     const sector = event.target.closest("[data-sector]"); if (sector) { state.sector = sector.dataset.sector; saveFilters(); if (route() !== "jobs") go("#/jobs"); else renderJobs(); return; }
+    const jobMarket = event.target.closest("[data-job-market]"); if (jobMarket) { state.jobMarket = jobMarket.dataset.jobMarket; saveFilters(); renderJobs(); return; }
     const studyMode = event.target.closest("[data-study-mode]"); if (studyMode) { state.studyMode = studyMode.dataset.studyMode; saveFilters(); renderStudy(); return; }
+    const studyMarket = event.target.closest("[data-study-market]"); if (studyMarket) { state.studyMarket = studyMarket.dataset.studyMarket; saveFilters(); renderStudy(); return; }
     const action = event.target.closest("[data-action]")?.dataset.action; if (!action) return;
+    if (action === "refresh-engine") { refreshEngine(); return; }
     if (action === "page-next") { movePage(event.target.closest("[data-action]"), "next"); return; }
     if (action === "page-prev") { movePage(event.target.closest("[data-action]"), "prev"); return; }
     if (action === "open-filters") openFilters();
@@ -192,7 +273,6 @@
     if (action === "close-dossier") closeDetail();
     if (action === "bookmark") { const id = event.target.closest("[data-job-id]").dataset.jobId; if (state.bookmarks.has(id)) state.bookmarks.delete(id); else state.bookmarks.add(id); store("career-compass-bookmarks", [...state.bookmarks]); const job = jobById(id); if (job && dossier.open) renderJobDetail(job); else if (route() === "jobs") renderJobResults(); }
     if (action === "retry") load({ force: true });
-    if (action === "refresh-data") refreshPublishedSnapshot(event.target.closest("[data-action='refresh-data']"));
   });
   document.getElementById("filterForm").addEventListener("submit", (event) => { event.preventDefault(); state.sector = document.getElementById("sectorFilter").value; state.queue = document.getElementById("queueFilter").value; saveFilters(); filterSheet.close(); if (route() !== "jobs") go("#/jobs"); else renderJobs(); });
   document.getElementById("resetFilters").addEventListener("click", () => { resetFilters(); filterSheet.close(); });
@@ -201,5 +281,5 @@
   dossier.addEventListener("click", (event) => { if (event.target === dossier) closeDetail(); });
   window.addEventListener("hashchange", () => render()); window.addEventListener("online", updateNetwork); window.addEventListener("offline", updateNetwork);
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").then((registration) => registration.update()).catch(() => undefined);
-  load();
+  void (async () => { await load(); await connectBridge(); })();
 })();
