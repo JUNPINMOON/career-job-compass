@@ -1,8 +1,10 @@
-"""Build a compact public PWA snapshot from the local job_search artifacts.
+"""Build the public Career Compass snapshot from the current job_search outputs.
 
-The script intentionally excludes job descriptions, user-profile matching text,
-credentials, CRM fields, tokens, and external-write paths. A published snapshot
-is a reading aid, not a live job board or application system.
+The old public build read an obsolete compatibility feed and then imposed
+presentation-only caps.  This builder intentionally uses the V4 cross-sector
+action artifact and the same graduate/funding projection consumed by the local
+dashboard.  It still strips private profile, application, CRM and credential
+fields before writing a GitHub Pages-safe static file.
 """
 
 from __future__ import annotations
@@ -10,27 +12,13 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import re
-from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 
-MAX_JOBS = 72
-MAX_STUDY_ROUTES = 12
-MAX_JOBS_PER_COMPANY = 1
-UNKNOWN_COMPANIES = {"채용기관 확인 필요", "기관 미확인", "회사 미확인"}
-
-# The public PWA is a candidate-facing reading surface, not the full research
-# corpus. Water-quality roles are an explicit out-of-scope path for this user;
-# keep them out here until the upstream candidate profile models that distinction.
-PUBLIC_EXCLUDED_TITLE_PATTERNS = (re.compile(r"\bwater\s+quality\b", re.IGNORECASE),)
-REVIEW_TITLE_EVIDENCE = re.compile(
-    r"water\s+resources?|hydraulic|hydrolog|flood|drainage|geospatial|\bgis\b|"
-    r"remote\s+sensing|spatial|climate|sustainab|environmental|earth\s+science",
-    re.IGNORECASE,
-)
+QUEUE_ORDER = ("verify", "hold", "apply", "stretch", "submitted", "reject")
+PUBLIC_JOB_QUEUES = {"verify", "hold", "apply", "stretch"}
 
 
 def load_json(path: Path) -> Any:
@@ -38,93 +26,105 @@ def load_json(path: Path) -> Any:
         return json.load(handle)
 
 
-def number(value: Any) -> float:
-    try:
-        return float(value)
-    except (TypeError, ValueError):
-        return 0.0
-
-
 def text(value: Any) -> str:
     return value.strip() if isinstance(value, str) else ""
 
 
-def compact_job(row: dict[str, Any]) -> dict[str, Any]:
-    score = number(row.get("final_rank_score") or row.get("ranking_score"))
-    eligibility = text(row.get("eligibility_status")) or "verify_first"
-    status = "확인 필요" if eligibility != "eligible" else "조건 확인됨"
+def compact_list(value: Any, limit: int = 5) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    return [text(item) for item in value if text(item)][:limit]
+
+
+def stable_id(prefix: str, *values: Any) -> str:
+    source = "|".join(text(value) for value in values)
+    return f"{prefix}-{hashlib.sha256(source.encode('utf-8')).hexdigest()[:16]}"
+
+
+def queue_label(queue: str) -> str:
     return {
-        "id": text(row.get("v3_canonical_id") or row.get("v3_id") or row.get("id")),
-        "title": text(row.get("title")) or "제목 미확인 공고",
-        "company": text(row.get("company")) or "기관 미확인",
-        "location": text(row.get("location")) or "근무지 원문 확인",
-        "sector": text(row.get("sector_label")) or "분야 미분류",
-        "source": text(row.get("source")) or "출처 미확인",
+        "verify": "원문 확인",
+        "hold": "추가 검토",
+        "apply": "지원 검토",
+        "stretch": "도전 후보",
+    }.get(queue, "검토 후보")
+
+
+def compact_job(row: dict[str, Any], queue: str) -> dict[str, Any]:
+    sector = row.get("primarySector") if isinstance(row.get("primarySector"), dict) else {}
+    confidence = row.get("evidenceConfidence") if isinstance(row.get("evidenceConfidence"), dict) else {}
+    burden = row.get("evidenceResolutionBurden") if isinstance(row.get("evidenceResolutionBurden"), dict) else {}
+    return {
+        "id": text(row.get("jobId")) or stable_id("job", row.get("url"), row.get("title")),
+        "title": text(row.get("title")) or "제목 원문 확인",
+        "company": text(row.get("employer")) or "기관 원문 확인",
+        "location": ", ".join(compact_list(row.get("locations"), 3)) or "근무지 원문 확인",
+        "sector": text(sector.get("label")) or "분야 검토 중",
+        "source": text(row.get("source")) or "출처 원문 확인",
         "url": text(row.get("url")),
-        "deadline": text(row.get("deadline")),
-        "score": round(score, 1),
-        "status": status,
-        "action": "원문 확인",
-        "eligibilitySummary": text(row.get("eligibility_reason")) or "지원 조건을 원문에서 확인하세요.",
-        "evidenceCompleteness": round(number(row.get("evidence_completeness")), 1),
+        "queue": queue,
+        "queueLabel": queue_label(queue),
+        "deadline": text((row.get("prioritySignals") or {}).get("deadlineUrgency", {}).get("value")),
+        "nextAction": text(row.get("nextActionKo")) or "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+        "requirements": compact_list(row.get("requirementsKo")),
+        "checks": compact_list(row.get("checksKo")),
+        "risks": compact_list(row.get("risksKo")),
+        "evidenceGapCount": confidence.get("feasibilityUnknownCount") if isinstance(confidence.get("feasibilityUnknownCount"), int) else None,
+        "evidenceBurden": text(burden.get("level")),
     }
 
 
 def compact_program(row: dict[str, Any]) -> dict[str, Any]:
-    urls = row.get("source_urls") if isinstance(row.get("source_urls"), list) else []
-    official_url = text(row.get("url")) or next((text(url) for url in urls if text(url)), "")
-    stable_id = hashlib.sha256((official_url or text(row.get("program"))).encode("utf-8")).hexdigest()[:16]
+    urls = row.get("sourceUrls") if isinstance(row.get("sourceUrls"), list) else []
+    official_url = text(row.get("officialUrl")) or next((text(url) for url in urls if text(url)), "")
+    track = row.get("programTrack") if isinstance(row.get("programTrack"), dict) else {}
+    english = row.get("englishProfile") if isinstance(row.get("englishProfile"), dict) else {}
     return {
-        "id": "study-" + stable_id,
+        "id": stable_id("program", official_url, row.get("university"), row.get("program")),
+        "rank": row.get("rank") if isinstance(row.get("rank"), int) else None,
         "university": text(row.get("university")) or "대학 원문 확인",
         "program": text(row.get("program")) or "과정 원문 확인",
         "country": text(row.get("country")) or "국가 원문 확인",
-        "degree": text(row.get("degree")),
-        "deadline": text(row.get("application_deadline")) or "마감 원문 확인",
-        "funding": text(row.get("funding_model")) or "재정 조건 원문 확인",
-        "verification": text(row.get("official_verification_status")) or "원문 재확인 필요",
-        "url": official_url,
+        "degree": text(track.get("label")) or text(row.get("degree")),
+        "decision": text(row.get("decision")),
+        "score": row.get("score") if isinstance(row.get("score"), (int, float)) else None,
+        "deadline": text(row.get("applicationDeadline")) or text(row.get("application_deadline")),
+        "intake": text(row.get("intake")),
+        "tuition": text(row.get("tuitionAnnual")) or text(row.get("tuition_annual")),
+        "funding": text(row.get("fundingModel")) or text(row.get("funding_model")),
+        "verification": text(row.get("officialVerificationStatus")) or text(row.get("official_verification_status")),
+        "verifiedAt": text(row.get("lastVerified")) or text(row.get("last_verified")),
+        "english": text(english.get("summary")),
+        "officialUrl": official_url,
+        "sources": compact_list(urls, 4),
     }
 
 
-def is_public_job(row: dict[str, Any]) -> bool:
-    """Keep explicitly rejected role paths out of the public app."""
-    title = text(row.get("title"))
-    return bool(title) and not any(pattern.search(title) for pattern in PUBLIC_EXCLUDED_TITLE_PATTERNS)
+def compact_funding(row: dict[str, Any]) -> dict[str, Any]:
+    url = text(row.get("officialUrl")) or text(row.get("official_url"))
+    return {
+        "id": text(row.get("id")) or stable_id("funding", url, row.get("name")),
+        "name": text(row.get("name")) or "장학금 원문 확인",
+        "type": text(row.get("fundingType")) or text(row.get("funding_type")),
+        "coverage": text(row.get("coverageLevel")) or text(row.get("coverage_level")),
+        "decision": text(row.get("decision")),
+        "score": row.get("score") if isinstance(row.get("score"), (int, float)) else None,
+        "likelihood": text(row.get("selectionLikelihood")) or text(row.get("selection_likelihood")),
+        "deadline": text(row.get("deadlineHint")) or text(row.get("deadline_hint")),
+        "gates": compact_list(row.get("hardGates") or row.get("hard_gates")),
+        "risks": compact_list(row.get("riskFlags") or row.get("risk_flags")),
+        "verification": text(row.get("verificationStatus")) or text(row.get("verification_status")),
+        "officialUrl": url,
+        "countries": compact_list(row.get("countries"), 4),
+    }
 
 
-def is_review_candidate(row: dict[str, Any]) -> bool:
-    """Require visible domain evidence for a first-screen source-review item.
-
-    Generic labels such as ``Engineer I`` remain searchable, but cannot become
-    a lead simply because an incomplete source assigned a score.
-    """
-
-    company = text(row.get("company"))
-    return (
-        is_public_job(row)
-        and bool(company)
-        and company not in UNKNOWN_COMPANIES
-        and bool(REVIEW_TITLE_EVIDENCE.search(text(row.get("title"))))
-    )
-
-
-def select_unique_companies(rows: list[dict[str, Any]], limit: int) -> list[dict[str, Any]]:
-    """Prevent one high-volume source employer from becoming the whole dashboard."""
-    selected: list[dict[str, Any]] = []
-    company_counts: Counter[str] = Counter()
-    seen_urls: set[str] = set()
-    for row in rows:
-        url = text(row.get("url"))
-        company = text(row.get("company")) or "기관 미확인"
-        if not url or url in seen_urls or company_counts[company] >= MAX_JOBS_PER_COMPANY:
-            continue
-        seen_urls.add(url)
-        company_counts[company] += 1
-        selected.append(row)
-        if len(selected) == limit:
-            break
-    return selected
+def load_dashboard_projection(path: Path) -> dict[str, Any]:
+    raw = path.read_text(encoding="utf-8-sig").strip()
+    try:
+        return json.loads(raw[raw.index("{"):].rstrip(";").strip())
+    except (ValueError, json.JSONDecodeError) as error:
+        raise ValueError(f"cannot parse dashboard projection: {path}") from error
 
 
 def main() -> None:
@@ -134,69 +134,63 @@ def main() -> None:
     args = parser.parse_args()
 
     root = args.job_search_root.resolve(strict=True)
-    scored_path = root / "scored_jobs.json"
-    source_health_path = root / "source_health.json"
-    programs_path = root / "config" / "grad_school_programs.researched.json"
-    raw_path = root / "jobs.json"
+    actions_path = root / "work" / "recommendation-v4" / "g006-cross-sector-actions.json"
+    dashboard_path = root / "dashboard" / "data.js"
+    actions = load_json(actions_path)
+    dashboard = load_dashboard_projection(dashboard_path)
+    if not isinstance(actions, dict) or not isinstance(dashboard, dict):
+        raise ValueError("expected structured V4 action and dashboard artifacts")
 
-    scored = load_json(scored_path)
-    source_health = load_json(source_health_path)
-    programs = load_json(programs_path)
-    raw_jobs = load_json(raw_path)
-    if not all(isinstance(value, list) for value in (scored, source_health, programs, raw_jobs)):
-        raise ValueError("expected list-shaped job_search artifacts")
+    action_jobs: list[dict[str, Any]] = []
+    for queue in QUEUE_ORDER:
+        if queue not in PUBLIC_JOB_QUEUES:
+            continue
+        rows = (actions.get("queues") or {}).get(queue, [])
+        if not isinstance(rows, list):
+            continue
+        action_jobs.extend(compact_job(row, queue) for row in rows if isinstance(row, dict))
+    if not action_jobs:
+        raise ValueError("V4 action artifact did not yield public action candidates")
 
-    ordered = sorted(
-        (row for row in scored if isinstance(row, dict) and text(row.get("url")) and is_public_job(row)),
-        key=lambda row: number(row.get("final_rank_score") or row.get("ranking_score")),
-        reverse=True,
-    )
-    selected_rows = select_unique_companies(ordered, MAX_JOBS)
-    jobs = [compact_job(row) for row in selected_rows]
+    grad = dashboard.get("gradSchool") if isinstance(dashboard.get("gradSchool"), dict) else {}
+    programs = [compact_program(row) for row in grad.get("programs", []) if isinstance(row, dict)]
+    funding = [compact_funding(row) for row in grad.get("fundingOpportunities", []) if isinstance(row, dict)]
+    if len(programs) < 1 or len(funding) < 1:
+        raise ValueError("dashboard projection did not yield graduate and funding research")
 
-    # The researched graduate-school file is already a human-curated sequence.
-    # Re-sorting by two scores silently changed that intended priority in the PWA.
-    study = [compact_program(row) for row in programs if isinstance(row, dict) and (text(row.get("url")) or row.get("source_urls"))][:MAX_STUDY_ROUTES]
+    sector_counts: dict[str, int] = {}
+    for job in action_jobs:
+        sector_counts[job["sector"]] = sector_counts.get(job["sector"], 0) + 1
+    queue_counts = {queue: sum(job["queue"] == queue for job in action_jobs) for queue in PUBLIC_JOB_QUEUES}
 
-    # A verify-first row is a research lead, not an application recommendation.
-    # Keep the small daily reading queue explicit and separate from all discovery rows.
-    review_queue = [compact_job(row) for row in select_unique_companies(
-        [
-            row for row in selected_rows
-            if text(row.get("eligibility_status")) == "verify_first" and is_review_candidate(row)
-        ],
-        3,
-    )]
-    health_states = Counter(text(row.get("status")) or "unknown" for row in source_health if isinstance(row, dict))
-    visible_sectors = Counter(job["sector"] for job in jobs)
-    newest_source_check = max(
-        (text(row.get("last_checked")) for row in source_health if isinstance(row, dict) and text(row.get("last_checked"))),
-        default="",
-    )
-
+    action_updated_at = datetime.fromtimestamp(actions_path.stat().st_mtime, timezone.utc)
+    graduate_generated_at = text(grad.get("generatedAt"))
+    graduate_day = graduate_generated_at[:10]
+    action_day = action_updated_at.date().isoformat()
+    data_as_of = max(day for day in (graduate_day, action_day) if day)
     payload = {
-        "schemaVersion": 2,
+        "schemaVersion": 3,
         "generatedAt": datetime.now(timezone.utc).isoformat(),
-        "snapshotBoundary": "공개 스냅샷입니다. 오늘 목록은 원문 확인이 필요한 검토 후보이며 지원 가능 여부를 확정하지 않습니다.",
+        "dataAsOf": data_as_of,
+        "snapshotBoundary": "공개 읽기용 스냅샷입니다. 공고·과정·장학금의 마감과 자격은 반드시 공식 원문에서 다시 확인하세요.",
         "stats": {
-            "rawJobs": len(raw_jobs),
-            "scoredJobs": len(scored),
-            "publishedJobs": len(jobs),
-            "sourceRecords": len(source_health),
-            "sourceStatusCounts": dict(sorted(health_states.items())),
-            "newestSourceCheck": newest_source_check,
+            "actionCandidates": len(action_jobs),
+            "programs": len(programs),
+            "funding": len(funding),
+            "queueCounts": queue_counts,
+            "v4RunId": text(actions.get("runId")),
+            "v4ArtifactUpdatedAt": action_updated_at.isoformat(),
+            "graduateGeneratedAt": graduate_generated_at,
         },
-        "sectors": [
-            {"name": name, "publishedJobs": count}
-            for name, count in visible_sectors.most_common()
-        ],
-        "jobs": jobs,
-        "reviewQueue": review_queue,
-        "study": study,
+        "sectors": [{"name": name, "publishedJobs": count} for name, count in sorted(sector_counts.items(), key=lambda item: (-item[1], item[0]))],
+        "jobs": action_jobs,
+        "reviewQueue": action_jobs[:3],
+        "programs": programs,
+        "funding": funding,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"wrote {args.output} with {len(jobs)} jobs and {len(study)} study routes")
+    print(f"wrote {args.output}: {len(action_jobs)} V4 candidates, {len(programs)} programs, {len(funding)} funding opportunities")
 
 
 if __name__ == "__main__":

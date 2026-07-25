@@ -1,4 +1,4 @@
-"""Small dependency-free release checks for the static PWA."""
+"""Dependency-free release checks for the static Career Compass PWA."""
 
 from __future__ import annotations
 
@@ -14,6 +14,15 @@ def require(path: Path, label: str) -> None:
         raise SystemExit(f"missing {label}: {path}")
 
 
+def contains_forbidden_key(value: object) -> bool:
+    forbidden = {"abstentionreason", "candidateaction", "applicantprofile", "credentials", "crm", "token", "email", "profiledigest"}
+    if isinstance(value, dict):
+        return any(str(key).replace("_", "").lower() in forbidden or contains_forbidden_key(item) for key, item in value.items())
+    if isinstance(value, list):
+        return any(contains_forbidden_key(item) for item in value)
+    return False
+
+
 def main() -> None:
     for relative in (
         "index.html", "styles.css", "app.js", "sw.js", "manifest.webmanifest",
@@ -25,7 +34,7 @@ def main() -> None:
     html = (ROOT / "index.html").read_text(encoding="utf-8")
     for marker in (
         "manifest.webmanifest", "apple-touch-icon", "apple-mobile-web-app-capable",
-        "apple-mobile-web-app-status-bar-style", "mainContent", "filterSheet", "dossier", "bottom-nav",
+        "apple-mobile-web-app-status-bar-style", "mainContent", "filterSheet", "dossier", "bottom-nav", "queueFilter",
     ):
         if marker not in html:
             raise SystemExit(f"index.html missing marker: {marker}")
@@ -37,34 +46,27 @@ def main() -> None:
     snapshot = json.loads((ROOT / "data/app-data.json").read_text(encoding="utf-8"))
     jobs = snapshot.get("jobs")
     review_queue = snapshot.get("reviewQueue")
-    study = snapshot.get("study")
-    if not isinstance(jobs, list) or not 1 <= len(jobs) <= 80:
-        raise SystemExit("snapshot must contain 1-80 compact jobs")
-    if not isinstance(study, list) or not 1 <= len(study) <= 16:
-        raise SystemExit("snapshot must contain 1-16 study routes")
-    if not isinstance(review_queue, list) or len(review_queue) > 3:
-        raise SystemExit("snapshot must contain a 0-3 item review queue")
-    if snapshot.get("schemaVersion", 0) < 2:
-        raise SystemExit("snapshot must use schemaVersion 2 or later")
-    if any(
-        "water quality" in str(job.get("title", "")).lower()
-        for job in (*jobs, *review_queue)
-    ):
-        raise SystemExit("snapshot must not publish explicitly excluded water-quality roles")
-    companies = [str(job.get("company", "")).strip().lower() for job in jobs]
-    if len(companies) != len(set(companies)):
-        raise SystemExit("snapshot must publish at most one job per company")
-    job_ids = {job.get("id") for job in jobs}
-    if any(job.get("id") not in job_ids for job in review_queue):
-        raise SystemExit("review queue items must be present in the public jobs collection")
-    if any(job.get("status") != "확인 필요" for job in review_queue):
-        raise SystemExit("review queue must contain only source-verification candidates")
-    forbidden = {"description", "preferred_summary", "credentials", "crm", "token", "email"}
-    for collection in (jobs, review_queue, study):
-        for item in collection:
-            if forbidden.intersection(item):
-                raise SystemExit("snapshot contains a prohibited public field")
-    print(f"release check ok: {len(jobs)} jobs, {len(review_queue)} review queue items, {len(study)} study routes")
+    programs = snapshot.get("programs")
+    funding = snapshot.get("funding")
+    if snapshot.get("schemaVersion", 0) < 3:
+        raise SystemExit("snapshot must use schemaVersion 3 or later")
+    if not isinstance(jobs, list) or len(jobs) < 20:
+        raise SystemExit("snapshot must contain the full current V4 public action set")
+    if not isinstance(review_queue, list) or not 1 <= len(review_queue) <= 3:
+        raise SystemExit("snapshot must contain a compact 1-3 item review queue")
+    if not isinstance(programs, list) or len(programs) < 90:
+        raise SystemExit("snapshot must contain the full graduate research catalog")
+    if not isinstance(funding, list) or len(funding) < 186:
+        raise SystemExit("snapshot must contain the full funding research catalog")
+    if {job.get("queue") for job in jobs} - {"verify", "hold", "apply", "stretch"}:
+        raise SystemExit("public jobs must only use active public V4 queues")
+    if any(not job.get("url") for job in jobs):
+        raise SystemExit("every public action candidate must retain its official URL")
+    if any(not item.get("officialUrl") and item.get("verification") != "official_search_required" for item in programs + funding):
+        raise SystemExit("research records without an official URL must explicitly require official discovery")
+    if contains_forbidden_key(snapshot):
+        raise SystemExit("snapshot contains a private or application-state field")
+    print(f"release check ok: {len(jobs)} V4 candidates, {len(programs)} programs, {len(funding)} funding opportunities")
 
 
 if __name__ == "__main__":

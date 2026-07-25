@@ -226,3 +226,42 @@ svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8;
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important; } }
 @keyframes rise { from { transform:translateY(24px); opacity:0; } to { transform:translateY(0); opacity:1; } }
 @keyframes slidein { from { transform:translateX(28px); opacity:0; } to { transform:translateX(0); opacity:1; } }
+
+/* V4 data labels: action queues are states, never invented cross-sector scores. */
+.queue-mark { display:grid; align-content:center; gap:3px; min-width:73px; min-height:46px; padding:7px 8px; border:1px solid var(--line); color:var(--blue-deep); background:#eef3e7; text-align:center; }
+.queue-mark b { font-size:11px; letter-spacing:-.05em; line-height:1.1; }
+.queue-mark small { color:var(--muted); font-size:9px; font-weight:750; letter-spacing:.08em; }
+.opportunity-main { grid-template-columns:73px minmax(0,1fr) 26px; }
+.opportunity-foot { padding-left:89px; }
+.route-mini-list button { position:relative; display:grid; width:100%; gap:5px; padding:18px 24px 18px 0; border:0; border-bottom:1px solid rgba(20,34,56,.25); color:var(--ink); background:transparent; text-align:left; }
+.route-mini-list button:last-child { border-bottom:0; }
+.route-mini-list button small { color:var(--blue-deep); font-size:10px; font-weight:800; letter-spacing:.07em; }
+.route-mini-list button b { font-size:14px; letter-spacing:-.035em; }
+.route-mini-list button span { overflow:hidden; color:#425065; font-size:12px; text-overflow:ellipsis; white-space:nowrap; }
+.route-mini-list button svg { position:absolute; right:0; bottom:18px; width:16px; }
+.study-controls { margin:0 clamp(20px,4vw,56px) 20px; }
+.mode-switch { display:flex; width:max-content; max-width:100%; margin-bottom:12px; padding:4px; border:1px solid var(--line); border-radius:16px 16px 16px 4px; background:var(--white); }
+.mode-switch button { min-height:38px; padding:0 13px; border:0; border-radius:11px; color:var(--muted); background:transparent; font-size:13px; font-weight:720; }
+.mode-switch button[aria-selected="true"] { color:var(--ink); background:var(--lime); }
+.mode-switch b { margin-left:4px; font-size:11px; }
+.study-controls .search-box { margin:0; }
+.study-list .results-meta { margin-bottom:0; }
+.study-row { width:100%; border-right:0; border-left:0; color:var(--ink); background:transparent; text-align:left; }
+.detail-kicker { margin:0 0 15px; color:var(--blue); font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+.detail-list { margin:20px 0 0; padding-top:17px; border-top:1px solid var(--line); }
+.detail-list > small { color:var(--muted); font-weight:750; }
+.detail-list ul { display:grid; gap:8px; margin:10px 0 0; padding:0; list-style:none; }
+.detail-list li { position:relative; padding-left:13px; font-size:13px; letter-spacing:-.03em; line-height:1.5; }
+.detail-list li::before { position:absolute; top:.65em; left:0; width:5px; height:5px; border-radius:50%; content:""; background:var(--coral); }
+@media (max-width:760px) {
+  .opportunity-main { grid-template-columns:66px minmax(0,1fr) 26px; gap:10px; }
+  .queue-mark { min-width:0; min-height:43px; padding:6px; }
+  .queue-mark b { font-size:10px; }
+  .opportunity-foot { padding-left:76px; }
+  .route-mini-list button { padding:10px 24px 10px 0; }
+  .study-controls { flex:1; margin:0 20px; padding-top:17px; }
+  .study-controls .search-box { margin-top:12px; }
+  .mode-switch { width:100%; }
+  .mode-switch button { flex:1; }
+  .study-list { margin-top:0; }
+}
