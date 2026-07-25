@@ -20,11 +20,17 @@ from typing import Any
 MAX_JOBS = 72
 MAX_STUDY_ROUTES = 12
 MAX_JOBS_PER_COMPANY = 1
+UNKNOWN_COMPANIES = {"채용기관 확인 필요", "기관 미확인", "회사 미확인"}
 
 # The public PWA is a candidate-facing reading surface, not the full research
 # corpus. Water-quality roles are an explicit out-of-scope path for this user;
 # keep them out here until the upstream candidate profile models that distinction.
 PUBLIC_EXCLUDED_TITLE_PATTERNS = (re.compile(r"\bwater\s+quality\b", re.IGNORECASE),)
+REVIEW_TITLE_EVIDENCE = re.compile(
+    r"water\s+resources?|hydraulic|hydrolog|flood|drainage|geospatial|\bgis\b|"
+    r"remote\s+sensing|spatial|climate|sustainab|environmental|earth\s+science",
+    re.IGNORECASE,
+)
 
 
 def load_json(path: Path) -> Any:
@@ -87,6 +93,22 @@ def is_public_job(row: dict[str, Any]) -> bool:
     return bool(title) and not any(pattern.search(title) for pattern in PUBLIC_EXCLUDED_TITLE_PATTERNS)
 
 
+def is_review_candidate(row: dict[str, Any]) -> bool:
+    """Require visible domain evidence for a first-screen source-review item.
+
+    Generic labels such as ``Engineer I`` remain searchable, but cannot become
+    a lead simply because an incomplete source assigned a score.
+    """
+
+    company = text(row.get("company"))
+    return (
+        is_public_job(row)
+        and bool(company)
+        and company not in UNKNOWN_COMPANIES
+        and bool(REVIEW_TITLE_EVIDENCE.search(text(row.get("title"))))
+    )
+
+
 def select_unique_companies(rows: list[dict[str, Any]], limit: int) -> list[dict[str, Any]]:
     """Prevent one high-volume source employer from becoming the whole dashboard."""
     selected: list[dict[str, Any]] = []
@@ -139,7 +161,10 @@ def main() -> None:
     # A verify-first row is a research lead, not an application recommendation.
     # Keep the small daily reading queue explicit and separate from all discovery rows.
     review_queue = [compact_job(row) for row in select_unique_companies(
-        [row for row in ordered if text(row.get("eligibility_status")) == "verify_first"],
+        [
+            row for row in selected_rows
+            if text(row.get("eligibility_status")) == "verify_first" and is_review_candidate(row)
+        ],
         3,
     )]
     health_states = Counter(text(row.get("status")) or "unknown" for row in source_health if isinstance(row, dict))
