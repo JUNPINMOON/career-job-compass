@@ -12,7 +12,7 @@ Open `http://127.0.0.1:4173`.
 
 ## Refresh the static snapshot
 
-The generator is read-only against `job_search` and excludes descriptions and personal profile evidence.
+The generator is read-only against `job_search` and excludes descriptions and personal profile evidence. GitHub Pages is static: the in-app refresh control fetches the newest **published** snapshot; it cannot run the local collection pipeline from a phone.
 
 ```powershell
 python scripts\build_snapshot.py --job-search-root C:\Users\mjb58\job_search

@@ -27,6 +27,7 @@
   function sourceDate(value) { const date = value ? new Date(value) : null; return date && !Number.isNaN(date.getTime()) ? new Intl.DateTimeFormat("ko-KR", { month: "long", day: "numeric" }).format(date) : "확인 시각 없음"; }
   function displayDate(value) { const date = value ? new Date(value) : null; return date && !Number.isNaN(date.getTime()) ? new Intl.DateTimeFormat("ko-KR", { dateStyle: "long", timeStyle: "short" }).format(date) : "확인 시각 없음"; }
   function jobs() { return state.data?.jobs || []; }
+  function reviewQueue() { return state.data?.reviewQueue || []; }
   function study() { return state.data?.study || []; }
   function jobById(id) { return jobs().find((job) => job.id === id); }
   function saveFilters() { store("career-compass-filters", { query: state.query, sector: state.sector, minimumScore: state.minimumScore, status: state.status }); }
@@ -79,20 +80,18 @@
   }
 
   function renderToday() {
-    const ordered = [...jobs()].sort((a, b) => Number(b.score) - Number(a.score));
-    const lead = ordered[0];
-    const top = ordered.slice(0, 3);
+    const top = reviewQueue();
+    const lead = top[0];
     const routes = study().slice(0, 2);
     const priorityPages = chunks(top, 2).map((group, pageIndex) => `<section class="decision-list ${pageIndex ? "priority-continuation" : ""}" aria-labelledby="priorityHeading${pageIndex}">
-      ${pageIndex === 0 ? sectionTitle("01. 오늘의 우선순위", "먼저 원문을 열 세 가지", `<a href="#/jobs">전체 ${jobs().length}개 보기 ${icon("arrow")}</a>`) : `<div class="priority-continuation-head"><p class="eyebrow">01. 오늘의 우선순위 · 이어서</p><h2 id="priorityHeading${pageIndex}">세 번째 후보도<br />원문부터 확인</h2><p>세 항목 모두 점수만으로 지원 가능 여부를 확정하지 않아요.</p></div>`}
-      ${pageIndex === 0 ? `<p class="section-intro">비슷한 카드들을 늘어놓지 않았어요. 지금 판단할 순서와, 열기 전에 확인할 조건만 남겼습니다.</p>` : ""}
+      ${pageIndex === 0 ? sectionTitle("01. 원문 검토", "먼저 확인할 세 가지", `<a href="#/jobs">전체 ${jobs().length}개 보기 ${icon("arrow")}</a>`) : `<div class="priority-continuation-head"><p class="eyebrow">01. 원문 검토 · 이어서</p><h2 id="priorityHeading${pageIndex}">세 번째 후보</h2></div>`}
       <div class="opportunity-list">${group.map((job, index) => priorityRow(job, pageIndex * 2 + index)).join("")}</div>
     </section>`);
     const pages = [`<section class="today-cover" aria-labelledby="todayTitle">
       <div class="cover-meta"><span>CAREER COMPASS</span><span>DAILY BRIEF / 01</span></div>
       <figure class="cover-art"><img src="./assets/daily-brief-cover-v3.png" alt="종이 위로 이어지는 파란 경로와 형광 화살표로 표현한 오늘의 방향" /></figure>
-      <div class="cover-copy"><p>오늘의 선택 · ${sourceDate(state.data.stats?.newestSourceCheck)} 기준</p><h1 id="todayTitle"><span>오늘의</span><strong>한 가지</strong></h1></div>
-      ${lead ? `<button class="cover-action" type="button" data-open-job="${escapeHtml(lead.id)}"><span>FIRST SOURCE CHECK</span><b>${escapeHtml(lead.company)}<em>${escapeHtml(lead.title)}</em></b>${icon("arrow")}</button>` : ""}
+      <div class="cover-copy"><p>원문 검토 · ${sourceDate(state.data.stats?.newestSourceCheck)} 확인</p><h1 id="todayTitle"><span>먼저</span><strong>확인하기</strong></h1></div>
+      ${lead ? `<button class="cover-action" type="button" data-open-job="${escapeHtml(lead.id)}"><span>FIRST SOURCE CHECK</span><b>${escapeHtml(lead.company)}<em>${escapeHtml(lead.title)}</em></b>${icon("arrow")}</button>` : `<a class="cover-action" href="#/jobs"><span>NO VERIFIED QUEUE</span><b>검토 후보가 없습니다.</b>${icon("arrow")}</a>`}
     </section>`, ...priorityPages, `<section class="route-callout" aria-labelledby="routeHeading">
       <div class="route-callout-image"><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></div>
       <div class="route-callout-copy"><p class="eyebrow">02. 진학과 재정</p><h2 id="routeHeading">이 경로도<br />같이 살펴보기</h2><p>학교 이름만 보지 말고, 시작 시점·장학 조건·교수 연구실을 따로 읽어야 해요.</p><a class="ink-link" href="#/study">진학 루트 열기 ${icon("arrow")}</a></div>
@@ -149,10 +148,11 @@
     if (!filterSheet.open) filterSheet.showModal(); select.focus();
   }
   function resetFilters() { state.query = ""; state.sector = ""; state.minimumScore = 0; state.status = ""; saveFilters(); const input = document.getElementById("jobSearch"); if (input) input.value = ""; renderJobResults(); }
-  function updateNetwork() { offlineBanner.hidden = navigator.onLine; const recent = state.data?.stats?.newestSourceCheck; snapshotLabel.textContent = navigator.onLine ? `자료 ${sourceDate(recent)}` : "오프라인 스냅샷"; }
+  function updateNetwork() { offlineBanner.hidden = navigator.onLine; const recent = state.data?.stats?.newestSourceCheck; snapshotLabel.textContent = navigator.onLine ? `확인 ${sourceDate(recent)}` : "오프라인 스냅샷"; }
   function renderError() { main.innerHTML = `<section class="loading"><span>LOAD ERROR</span><b>자료를 열 수 없어요.</b><button class="plain-button" type="button" data-action="retry">다시 시도</button></section>`; }
   function render(focus = true) { if (!state.data) return; closeDetail(false); window.scrollTo(0, 0); main.scrollTop = 0; const current = route(); setActiveTab(current); if (current === "today") renderToday(); else if (current === "jobs") renderJobs(); else if (current === "study") renderStudy(); else if (current === "sources") renderSources(); else { go("#/today"); return; } requestAnimationFrame(() => { window.scrollTo(0, 0); main.scrollTop = 0; if (focus) main.querySelector("h1")?.focus({ preventScroll: true }); }); }
-  async function load() { try { const response = await fetch("./data/app-data.json", { cache: "reload" }); if (!response.ok) throw new Error(response.status); const data = await response.json(); if (!Array.isArray(data.jobs) || !Array.isArray(data.study)) throw new Error("schema"); state.data = data; updateNetwork(); render(false); } catch (error) { console.error(error); snapshotLabel.textContent = "자료를 열 수 없음"; renderError(); } }
+  async function load({ force = false } = {}) { try { const url = force ? `./data/app-data.json?refresh=${Date.now()}` : "./data/app-data.json"; const response = await fetch(url, { cache: force ? "no-store" : "reload" }); if (!response.ok) throw new Error(response.status); const data = await response.json(); if (!Array.isArray(data.jobs) || !Array.isArray(data.study) || !Array.isArray(data.reviewQueue)) throw new Error("schema"); state.data = data; updateNetwork(); render(false); } catch (error) { console.error(error); snapshotLabel.textContent = "자료를 열 수 없음"; renderError(); } }
+  async function refreshPublishedSnapshot(button) { if (button?.getAttribute("aria-busy") === "true") return; button?.setAttribute("aria-busy", "true"); snapshotLabel.textContent = "새 자료 확인 중"; try { await load({ force: true }); } finally { button?.removeAttribute("aria-busy"); } }
 
   document.addEventListener("click", (event) => {
     const routeButton = event.target.closest("[data-route]"); if (routeButton) { go(`#/${routeButton.dataset.route}`); return; }
@@ -165,15 +165,15 @@
     if (action === "clear-filters") resetFilters();
     if (action === "close-dossier") closeDetail();
     if (action === "bookmark") { const id = event.target.closest("[data-job-id]").dataset.jobId; if (state.bookmarks.has(id)) state.bookmarks.delete(id); else state.bookmarks.add(id); saveBookmarks(); const job = jobById(id); if (job && dossier.open) renderDetail(job); else if (route() === "jobs") renderJobResults(); }
-    if (action === "retry") load();
+    if (action === "retry") load({ force: true });
+    if (action === "refresh-data") refreshPublishedSnapshot(event.target.closest("[data-action='refresh-data']"));
   });
   document.getElementById("filterForm").addEventListener("submit", (event) => { event.preventDefault(); state.sector = document.getElementById("sectorFilter").value; state.minimumScore = Number(document.getElementById("scoreFilter").value); state.status = document.getElementById("statusFilter").value; saveFilters(); filterSheet.close(); if (route() !== "jobs") go("#/jobs"); else renderJobs(); });
   document.getElementById("resetFilters").addEventListener("click", () => { resetFilters(); filterSheet.close(); });
   filterSheet.addEventListener("cancel", (event) => { event.preventDefault(); filterSheet.close(); });
   dossier.addEventListener("cancel", (event) => { event.preventDefault(); closeDetail(); });
   dossier.addEventListener("click", (event) => { if (event.target === dossier) closeDetail(); });
-  document.getElementById("snapshotButton").addEventListener("click", () => go("#/sources"));
   window.addEventListener("hashchange", () => render()); window.addEventListener("online", updateNetwork); window.addEventListener("offline", updateNetwork);
-  if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(() => undefined);
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").then((registration) => registration.update()).catch(() => undefined);
   load();
 })();

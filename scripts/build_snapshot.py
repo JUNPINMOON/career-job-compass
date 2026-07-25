@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -18,6 +19,12 @@ from typing import Any
 
 MAX_JOBS = 72
 MAX_STUDY_ROUTES = 12
+MAX_JOBS_PER_COMPANY = 1
+
+# The public PWA is a candidate-facing reading surface, not the full research
+# corpus. Water-quality roles are an explicit out-of-scope path for this user;
+# keep them out here until the upstream candidate profile models that distinction.
+PUBLIC_EXCLUDED_TITLE_PATTERNS = (re.compile(r"\bwater\s+quality\b", re.IGNORECASE),)
 
 
 def load_json(path: Path) -> Any:
@@ -74,6 +81,30 @@ def compact_program(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def is_public_job(row: dict[str, Any]) -> bool:
+    """Keep explicitly rejected role paths out of the public app."""
+    title = text(row.get("title"))
+    return bool(title) and not any(pattern.search(title) for pattern in PUBLIC_EXCLUDED_TITLE_PATTERNS)
+
+
+def select_unique_companies(rows: list[dict[str, Any]], limit: int) -> list[dict[str, Any]]:
+    """Prevent one high-volume source employer from becoming the whole dashboard."""
+    selected: list[dict[str, Any]] = []
+    company_counts: Counter[str] = Counter()
+    seen_urls: set[str] = set()
+    for row in rows:
+        url = text(row.get("url"))
+        company = text(row.get("company")) or "기관 미확인"
+        if not url or url in seen_urls or company_counts[company] >= MAX_JOBS_PER_COMPANY:
+            continue
+        seen_urls.add(url)
+        company_counts[company] += 1
+        selected.append(row)
+        if len(selected) == limit:
+            break
+    return selected
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--job-search-root", required=True, type=Path)
@@ -94,26 +125,23 @@ def main() -> None:
         raise ValueError("expected list-shaped job_search artifacts")
 
     ordered = sorted(
-        (row for row in scored if isinstance(row, dict) and text(row.get("url"))),
+        (row for row in scored if isinstance(row, dict) and text(row.get("url")) and is_public_job(row)),
         key=lambda row: number(row.get("final_rank_score") or row.get("ranking_score")),
         reverse=True,
     )
-    seen_urls: set[str] = set()
-    jobs: list[dict[str, Any]] = []
-    for row in ordered:
-        url = text(row.get("url"))
-        if url in seen_urls:
-            continue
-        seen_urls.add(url)
-        jobs.append(compact_job(row))
-        if len(jobs) == MAX_JOBS:
-            break
+    selected_rows = select_unique_companies(ordered, MAX_JOBS)
+    jobs = [compact_job(row) for row in selected_rows]
 
-    study = [compact_program(row) for row in sorted(
-        (row for row in programs if isinstance(row, dict) and (text(row.get("url")) or row.get("source_urls"))),
-        key=lambda row: (number(row.get("practicality_score")), number(row.get("fit_score"))),
-        reverse=True,
-    )[:MAX_STUDY_ROUTES]]
+    # The researched graduate-school file is already a human-curated sequence.
+    # Re-sorting by two scores silently changed that intended priority in the PWA.
+    study = [compact_program(row) for row in programs if isinstance(row, dict) and (text(row.get("url")) or row.get("source_urls"))][:MAX_STUDY_ROUTES]
+
+    # A verify-first row is a research lead, not an application recommendation.
+    # Keep the small daily reading queue explicit and separate from all discovery rows.
+    review_queue = [compact_job(row) for row in select_unique_companies(
+        [row for row in ordered if text(row.get("eligibility_status")) == "verify_first"],
+        3,
+    )]
     health_states = Counter(text(row.get("status")) or "unknown" for row in source_health if isinstance(row, dict))
     visible_sectors = Counter(job["sector"] for job in jobs)
     newest_source_check = max(
@@ -122,9 +150,9 @@ def main() -> None:
     )
 
     payload = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "generatedAt": datetime.now(timezone.utc).isoformat(),
-        "snapshotBoundary": "정적 공개 스냅샷입니다. 원문 확인 전에는 마감·자격·지원 가능 여부를 확정하지 않습니다.",
+        "snapshotBoundary": "공개 스냅샷입니다. 오늘 목록은 원문 확인이 필요한 검토 후보이며 지원 가능 여부를 확정하지 않습니다.",
         "stats": {
             "rawJobs": len(raw_jobs),
             "scoredJobs": len(scored),
@@ -138,6 +166,7 @@ def main() -> None:
             for name, count in visible_sectors.most_common()
         ],
         "jobs": jobs,
+        "reviewQueue": review_queue,
         "study": study,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
