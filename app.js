@@ -2,7 +2,7 @@
   "use strict";
 
   const FILTER_STORAGE_KEY = "career-compass-filters-v2";
-  const DEFAULT_FILTERS = { query: "", sector: "", queue: "", jobMarket: "all", studyMode: "programs", studyMarket: "all", studyReadiness: "all", studyQuery: "" };
+  const DEFAULT_FILTERS = { query: "", sector: "", queue: "", jobMarket: "all", studyMode: "programs", studyMarket: "all", studyReadiness: "all", studyFormat: "all", studyQuery: "" };
 
   const state = {
     data: null,
@@ -23,7 +23,7 @@
 
   function readJSON(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch (_) { return fallback; } }
   function store(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) { /* local convenience only */ } }
-  function saveFilters() { store(FILTER_STORAGE_KEY, { query: state.query, sector: state.sector, queue: state.queue, jobMarket: state.jobMarket, studyMode: state.studyMode, studyMarket: state.studyMarket, studyReadiness: state.studyReadiness, studyQuery: state.studyQuery }); }
+  function saveFilters() { store(FILTER_STORAGE_KEY, { query: state.query, sector: state.sector, queue: state.queue, jobMarket: state.jobMarket, studyMode: state.studyMode, studyMarket: state.studyMarket, studyReadiness: state.studyReadiness, studyFormat: state.studyFormat, studyQuery: state.studyQuery }); }
   function escapeHtml(value) { return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char])); }
   function icon(name) { return `<svg aria-hidden="true"><use href="#i-${name}" /></svg>`; }
   function route() { const value = (location.hash || "#/today").replace(/^#\/?/, "").split("/")[0]; return value === "trust" ? "sources" : value || "today"; }
@@ -39,7 +39,10 @@
   function programReadiness(item) { return item.applicationStatus || (item.decision === "Use now" ? "prepare" : "research"); }
   function programReadinessLabel(item) { return item.applicationStatusLabel || (programReadiness(item) === "prepare" ? "지금 준비" : "추가 조사"); }
   function chunks(items, size) { return Array.from({ length: Math.ceil(items.length / size) }, (_, index) => items.slice(index * size, index * size + size)); }
-  function setActiveTab(current) { document.querySelectorAll("[data-tab]").forEach((tab) => tab.toggleAttribute("aria-current", tab.dataset.tab === current)); }
+  function setActiveTab(current) {
+    document.documentElement.dataset.route = current;
+    document.querySelectorAll("[data-tab]").forEach((tab) => tab.toggleAttribute("aria-current", tab.dataset.tab === current));
+  }
   function activeFilters() { return Number(Boolean(state.query)) + Number(Boolean(state.sector)) + Number(Boolean(state.queue)) + Number(state.jobMarket !== "all"); }
   function jobById(id) { return jobs().find((job) => job.id === id); }
   function recordById(kind, id) { return (kind === "program" ? programs() : funding()).find((item) => item.id === id); }
@@ -52,8 +55,8 @@
   function pageFrame(content, index, total, label) {
     const previous = index > 0 ? `<button class="page-turn-prev" type="button" data-action="page-prev" aria-label="이전 페이지">이전</button>` : `<span aria-hidden="true"></span>`;
     const next = index < total - 1 ? `<button class="page-turn-next" type="button" data-action="page-next" aria-label="다음 페이지">다음 ${icon("arrow")}</button>` : `<span class="page-finish">끝</span>`;
-    const progress = Math.round(((index + 1) / total) * 100);
-    return `<section class="page-frame" data-page-index="${index}" style="--page-progress:${progress}%" aria-label="${escapeHtml(label)} ${index + 1} / ${total}">${content}<nav class="page-turn" aria-label="${escapeHtml(label)} 페이지 이동">${previous}<span class="page-counter"><i aria-hidden="true"></i>${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}</span>${next}</nav></section>`;
+    const progress = (index + 1) / total;
+    return `<section class="page-frame" data-page-index="${index}" style="--page-progress:${progress}" aria-label="${escapeHtml(label)} ${index + 1} / ${total}">${content}<nav class="page-turn" aria-label="${escapeHtml(label)} 페이지 이동">${previous}<span class="page-counter"><i aria-hidden="true"></i>${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}</span>${next}</nav></section>`;
   }
 
   function movePage(trigger, direction) {
@@ -88,7 +91,7 @@
   function filteredStudy() {
     const query = String(state.studyQuery || "").trim().toLocaleLowerCase("ko");
     const records = state.studyMode === "funding" ? funding() : programs();
-    return records.filter((item) => (state.studyMarket === "all" || item.market === state.studyMarket) && (state.studyMode === "funding" || state.studyReadiness === "all" || programReadiness(item) === state.studyReadiness) && (!query || Object.values(item).flat().join(" ").toLocaleLowerCase("ko").includes(query)));
+    return records.filter((item) => (state.studyMarket === "all" || item.market === state.studyMarket) && (state.studyMode === "funding" || state.studyReadiness === "all" || programReadiness(item) === state.studyReadiness) && (state.studyMode === "funding" || state.studyFormat === "all" || item.deliveryMode === state.studyFormat) && (!query || Object.values(item).flat().join(" ").toLocaleLowerCase("ko").includes(query)));
   }
 
   function queueCopy(job) { return escapeHtml(job.discoveryLabel || job.queueLabel || "검토 후보"); }
@@ -113,9 +116,9 @@
     const school = programs()[0];
     const award = funding()[0];
     const candidatePage = prioritized.length ? `<section class="decision-list" aria-labelledby="priorityHeading"><div class="section-heading"><div><span>01. 개인화 추천</span><h2 id="priorityHeading">먼저 확인할 후보</h2></div><a href="#/jobs">전체 ${jobs().length}개 ${icon("arrow")}</a></div><div class="opportunity-list">${prioritized.map((job) => candidateRow(job)).join("")}</div></section>` : `<section class="decision-list" aria-labelledby="inventoryHeading"><div class="section-heading"><div><span>01. ${exploring ? "관심 탐색" : "공고 인벤토리"}</span><h2 id="inventoryHeading">국내 ${marketCount(jobs(), "domestic")} · 해외 ${marketCount(jobs(), "overseas")}</h2></div><a href="#/jobs">전체 ${jobs().length}개 ${icon("arrow")}</a></div></section>`;
-    const researchPage = `<section class="route-callout" aria-labelledby="researchHeading"><div class="route-callout-image"><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></div><div class="route-callout-copy"><p class="eyebrow">02. 진학 · 재정</p><h2 id="researchHeading">과정과 지원금을<br />함께 보기</h2><a class="ink-link" href="#/study">연구 목록 열기 ${icon("arrow")}</a></div><div class="route-mini-list">${school ? `<button type="button" data-open-record="program:${escapeHtml(school.id)}"><small>PROGRAM / ${escapeHtml(school.degree)}</small><b>${escapeHtml(school.university)}</b><span>${escapeHtml(school.program)}</span>${icon("arrow")}</button>` : ""}${award ? `<button type="button" data-open-record="funding:${escapeHtml(award.id)}"><small>FUNDING / ${escapeHtml(award.decision)}</small><b>${escapeHtml(award.name)}</b><span>${escapeHtml(award.coverage || "지원 범위 원문 확인")}</span>${icon("arrow")}</button>` : ""}</div></section>`;
+    const researchPage = `<section class="route-callout" aria-labelledby="researchHeading"><div class="route-callout-image"><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></div><div class="route-callout-copy"><p class="eyebrow">02 · 진학과 장학</p><h2 id="researchHeading">과정과 장학금</h2><a class="ink-link" href="#/study">전체 보기 ${icon("arrow")}</a></div><div class="route-mini-list">${school ? `<button type="button" data-open-record="program:${escapeHtml(school.id)}"><small>${escapeHtml(school.degree)} · ${escapeHtml(programReadinessLabel(school))}</small><b>${escapeHtml(school.university)}</b><span>${escapeHtml(school.program)}</span>${icon("arrow")}</button>` : ""}${award ? `<button type="button" data-open-record="funding:${escapeHtml(award.id)}"><small>${escapeHtml(award.decision)}</small><b>${escapeHtml(award.name)}</b><span>${escapeHtml(award.coverage || "지원 범위 원문 확인")}</span>${icon("arrow")}</button>` : ""}</div></section>`;
     const pages = [
-      `<section class="today-cover" aria-labelledby="todayTitle"><div class="cover-meta"><span>CAREER COMPASS</span><span>V4 / RESEARCH</span></div><figure class="cover-art"><img src="./assets/daily-brief-cover-v3.png" alt="종이 위로 이어지는 파란 경로와 형광 화살표" /></figure><div class="cover-copy"><p>공고 ${escapeHtml(state.data.stats?.jobDataAsOf || "원문 확인")}</p><h1 id="todayTitle"><span>정보를</span><strong>골라 보기</strong></h1></div>${lead ? `<button class="cover-action" type="button" data-open-job="${escapeHtml(lead.id)}"><span>PERSONALIZED</span><b>${escapeHtml(lead.company)}<em>${escapeHtml(lead.title)}</em></b>${icon("arrow")}</button>` : `<a class="cover-action" href="#/jobs"><span>${exploring ? "INTEREST EXPLORER" : "JOB INVENTORY"}</span><b>국내 ${marketCount(jobs(), "domestic")} · 해외 ${marketCount(jobs(), "overseas")}</b>${icon("arrow")}</a>`}</section>`,
+      `<section class="today-cover" aria-labelledby="todayTitle"><div class="cover-meta"><span>오늘의 목록</span><span>${escapeHtml(sourceDate(state.data.stats?.jobDataAsOf))}</span></div><figure class="cover-art"><img src="./assets/daily-brief-cover-v3.png" alt="공고와 진학 경로를 나타내는 종이 도표" /></figure><div class="cover-copy"><p>공개 스냅샷</p><h1 id="todayTitle">오늘 볼 것</h1></div>${lead ? `<button class="cover-action" type="button" data-open-job="${escapeHtml(lead.id)}"><span>우선 후보</span><b>${escapeHtml(lead.company)}<em>${escapeHtml(lead.title)}</em></b>${icon("arrow")}</button>` : `<a class="cover-action" href="#/jobs"><span>공고 목록</span><b>국내 ${marketCount(jobs(), "domestic")} · 해외 ${marketCount(jobs(), "overseas")}</b>${icon("arrow")}</a>`}</section>`,
       candidatePage,
       researchPage,
     ];
@@ -143,7 +146,7 @@
   function studyRow(item, kind) {
     const isProgram = kind === "program";
     const number = "•";
-    const line = isProgram ? `${programReadinessLabel(item)} · ${item.degree || "과정"} · ${item.country || "국가 원문 확인"}` : `${item.decision || "장학금"} · ${(item.countries || []).join(", ") || "지역 원문 확인"}`;
+    const line = isProgram ? `${programReadinessLabel(item)} · ${item.degree || "과정"}${item.deliveryMode === "online" ? " · 온라인" : ""} · ${item.country || "국가 원문 확인"}` : `${item.decision || "장학금"} · ${(item.countries || []).join(", ") || "지역 원문 확인"}`;
     const title = isProgram ? item.program : item.name;
     const subtitle = isProgram ? item.university : item.coverage || item.type;
     const note = isProgram ? item.funding || item.deadline || "마감 원문 확인" : item.deadline || item.verification || "조건 원문 확인";
@@ -165,8 +168,10 @@
     const studyRecords = isFunding ? funding() : programs();
     const openPrograms = programs().filter((item) => programReadiness(item) === "open").length;
     const preparePrograms = programs().filter((item) => programReadiness(item) === "prepare").length;
+    const onlinePrograms = programs().filter((item) => item.deliveryMode === "online").length;
     const readinessSwitch = isFunding ? "" : `<div class="market-switch study-readiness" role="tablist" aria-label="대학원 지원 상태"><button type="button" role="tab" aria-selected="${state.studyReadiness === "all"}" data-study-readiness="all">전체 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${state.studyReadiness === "open"}" data-study-readiness="open">지원 열림 <b>${openPrograms}</b></button><button type="button" role="tab" aria-selected="${state.studyReadiness === "prepare"}" data-study-readiness="prepare">지금 준비 <b>${preparePrograms}</b></button></div><p class="study-status-note">‘지원 열림’은 현재 공식 원문으로 접수 상태가 확인된 항목만 표시합니다.</p>`;
-    main.innerHTML = pageFrame(`<section class="study-hero"><div><p class="eyebrow">진학 · 장학 · 연구</p><h1>대학원 · 장학금</h1><p>대학원 ${programs().length}건 · 장학금 ${funding().length}건 · 자료 ${displayDate(state.data.stats?.graduateGeneratedAt)}</p></div><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></section><section class="study-controls"><div class="mode-switch" role="tablist" aria-label="진학 자료 종류"><button type="button" role="tab" aria-selected="${!isFunding}" data-study-mode="programs">대학원 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${isFunding}" data-study-mode="funding">장학금 <b>${funding().length}</b></button></div>${readinessSwitch}${marketSwitch("study", state.studyMarket || "all", studyRecords)}<label class="search-box">${icon("search")}<span class="sr-only">진학 자료 검색</span><input id="studySearch" type="search" value="${escapeHtml(state.studyQuery)}" placeholder="학교, 과정, 장학금으로 찾기" autocomplete="off" /></label></section>`, 0, total, "진학과 재정") + `<div id="studyResults"></div>`;
+    const formatSwitch = isFunding ? "" : `<div class="market-switch study-format" role="tablist" aria-label="대학원 수강 방식"><button type="button" role="tab" aria-selected="${state.studyFormat === "all"}" data-study-format="all">전체 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${state.studyFormat === "online"}" data-study-format="online">온라인 <b>${onlinePrograms}</b></button></div>`;
+    main.innerHTML = pageFrame(`<section class="study-hero"><div><p class="eyebrow">진학 · 장학 · 연구</p><h1>대학원 · 장학금</h1><p>대학원 ${programs().length}건 · 온라인 ${onlinePrograms}건 · 장학금 ${funding().length}건 · 자료 ${displayDate(state.data.stats?.graduateGeneratedAt)}</p></div><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></section><section class="study-controls"><div class="mode-switch" role="tablist" aria-label="진학 자료 종류"><button type="button" role="tab" aria-selected="${!isFunding}" data-study-mode="programs">대학원 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${isFunding}" data-study-mode="funding">장학금 <b>${funding().length}</b></button></div>${readinessSwitch}${formatSwitch}${marketSwitch("study", state.studyMarket || "all", studyRecords)}<label class="search-box">${icon("search")}<span class="sr-only">진학 자료 검색</span><input id="studySearch" type="search" value="${escapeHtml(state.studyQuery)}" placeholder="학교, 과정, 장학금으로 찾기" autocomplete="off" /></label></section>`, 0, total, "진학과 재정") + `<div id="studyResults"></div>`;
     document.getElementById("studySearch").addEventListener("input", (event) => { state.studyQuery = event.target.value; saveFilters(); renderStudyResults(); });
     renderStudyResults();
   }
@@ -223,6 +228,7 @@
     if (!["programs", "funding"].includes(state.studyMode)) state.studyMode = "programs";
     if (!["all", "domestic", "overseas"].includes(state.studyMarket)) state.studyMarket = "all";
     if (!["all", "open", "prepare", "research"].includes(state.studyReadiness)) state.studyReadiness = "all";
+    if (!["all", "online"].includes(state.studyFormat)) state.studyFormat = "all";
     if (typeof state.query !== "string") state.query = "";
     if (typeof state.studyQuery !== "string") state.studyQuery = "";
     saveFilters();
@@ -310,6 +316,7 @@
     const studyMode = event.target.closest("[data-study-mode]"); if (studyMode) { state.studyMode = studyMode.dataset.studyMode; saveFilters(); renderStudy(); return; }
     const studyReadiness = event.target.closest("[data-study-readiness]"); if (studyReadiness) { state.studyReadiness = studyReadiness.dataset.studyReadiness; saveFilters(); renderStudy(); return; }
     const studyMarket = event.target.closest("[data-study-market]"); if (studyMarket) { state.studyMarket = studyMarket.dataset.studyMarket; saveFilters(); renderStudy(); return; }
+    const studyFormat = event.target.closest("[data-study-format]"); if (studyFormat) { state.studyFormat = studyFormat.dataset.studyFormat; saveFilters(); renderStudy(); return; }
     const action = event.target.closest("[data-action]")?.dataset.action; if (!action) return;
     if (action === "refresh-engine") { refreshEngine(); return; }
     if (action === "page-next") { movePage(event.target.closest("[data-action]"), "next"); return; }
