@@ -1,0 +1,62 @@
+{
+  "DATA-201": {
+    "assert_sha": "d870d757780ec2ab",
+    "first_seen": "2026-07-26T16:23:06+00:00",
+    "title": "Explicit multi-year experience requirements are excluded from the candidate surface"
+  },
+  "GOV-201": {
+    "assert_sha": "d43385c2a9d0e574",
+    "first_seen": "2026-07-26T16:23:06+00:00",
+    "title": "The public output is a snapshot and cannot be its own build input"
+  },
+  "GOV-202": {
+    "assert_sha": "72e8ce7d8dd982a9",
+    "first_seen": "2026-07-26T16:23:06+00:00",
+    "title": "Release verification fails when requirement coverage is missing"
+  },
+  "GOV-203": {
+    "assert_sha": "766dfb496249442a",
+    "first_seen": "2026-07-26T16:29:54+00:00",
+    "title": "Initial page load does not automatically contact the private refresh bridge"
+  },
+  "REVIEW-001": {
+    "assert_sha": "b2d6ec75a2ab8cb2",
+    "first_seen": "2026-07-26T16:23:06+00:00",
+    "title": "Rejected baseline findings remain represented in the release gate"
+  },
+  "UX-201": {
+    "assert_sha": "0cb85859116bd85d",
+    "first_seen": "2026-07-26T16:23:06+00:00",
+    "title": "All sector filters remain reachable without a horizontal chip rail"
+  },
+  "UX-202": {
+    "assert_sha": "5e214831e31a33aa",
+    "first_seen": "2026-07-26T16:23:06+00:00",
+    "title": "Detail and filter surfaces use compact textual controls, not broken decorative placeholders"
+  },
+  "UX-203": {
+    "assert_sha": "7a6b3e6508635b79",
+    "first_seen": "2026-07-26T16:23:06+00:00",
+    "title": "Mobile routes size to their content rather than a viewport-height hero"
+  },
+  "UX-204": {
+    "assert_sha": "195b4501feae3cdd",
+    "first_seen": "2026-07-26T16:23:06+00:00",
+    "title": "Today uses a compact recommendation surface"
+  },
+  "UX-205": {
+    "assert_sha": "5a2a953d7794d57e",
+    "first_seen": "2026-07-26T16:23:06+00:00",
+    "title": "Filter sheet close control uses a readable text action"
+  },
+  "UX-206": {
+    "assert_sha": "70b5d56e516345ad",
+    "first_seen": "2026-07-26T16:29:54+00:00",
+    "title": "Mobile search icons have an explicit compact height"
+  },
+  "UX-207": {
+    "assert_sha": "867bfdbaa4b9f53b",
+    "first_seen": "2026-07-26T16:29:54+00:00",
+    "title": "Detail sheets use a readable textual close action"
+  }
+}

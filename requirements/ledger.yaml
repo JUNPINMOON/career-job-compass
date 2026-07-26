@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "project": "career-job-compass",
+  "requirements": [
+    {
+      "id": "UX-201",
+      "status": "active",
+      "title": "All sector filters remain reachable without a horizontal chip rail",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-201\""]},
+      "note": "The rejected baseline hid most sector chips beyond the viewport."
+    },
+    {
+      "id": "UX-202",
+      "status": "active",
+      "title": "Detail and filter surfaces use compact textual controls, not broken decorative placeholders",
+      "assert": {"type": "text_absent", "path": "app.js", "needles": ["route-callout-image", "aria-label=\"필터 닫기\">×"]},
+      "note": "Human review rejected the giant X placeholder and oversized sheets."
+    },
+    {
+      "id": "UX-203",
+      "status": "active",
+      "title": "Mobile routes size to their content rather than a viewport-height hero",
+      "assert": {"type": "text_absent", "path": "styles.css", "needles": ["100dvh"]},
+      "note": "Human review rejected the large empty areas and bottom-navigation overlap."
+    },
+    {
+      "id": "UX-204",
+      "status": "active",
+      "title": "Today uses a compact recommendation surface",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-204\""]},
+      "note": "Main screen must prioritize readable options over decorative empty space."
+    },
+    {
+      "id": "DATA-201",
+      "status": "active",
+      "title": "Explicit multi-year experience requirements are excluded from the candidate surface",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["minimumExperienceYears"]},
+      "note": "JobKorea source for Hwasein states 5+ years; it must not be recommended."
+    },
+    {
+      "id": "GOV-201",
+      "status": "active",
+      "title": "The public output is a snapshot and cannot be its own build input",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["--catalog-source"]},
+      "note": "A generated app-data.json must never become the next build source."
+    },
+    {
+      "id": "GOV-202",
+      "status": "active",
+      "title": "Release verification fails when requirement coverage is missing",
+      "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["check_requirements.py"]},
+      "note": "Existing requirements must remain covered by the automated release gate."
+    },
+    {
+      "id": "REVIEW-001",
+      "status": "active",
+      "title": "Rejected baseline findings remain represented in the release gate",
+      "review_state": "rejected_baseline",
+      "assert": {"type": "text_present", "path": "requirements/ledger.yaml", "needles": ["rejected_baseline"]},
+      "note": "Mobile screenshots rejected oversized cards, long rails, blank space, and broken detail visuals."
+    },
+    {
+      "id": "UX-205",
+      "status": "active",
+      "title": "Filter sheet close control uses a readable text action",
+      "assert": {"type": "text_absent", "path": "index.html", "needles": ["aria-label=\"필터 닫기\">×"]},
+      "note": "Human review rejected the unexplained X-only close control."
+    },
+    {
+      "id": "UX-206",
+      "status": "active",
+      "title": "Mobile search icons have an explicit compact height",
+      "assert": {"type": "text_present", "path": "styles.css", "needles": [".search-box svg { width:18px; height:18px;"]},
+      "note": "At 390x844 the search label measured 152px because the SVG used its 150px intrinsic height; target is 44px."
+    },
+    {
+      "id": "UX-207",
+      "status": "active",
+      "title": "Detail sheets use a readable textual close action",
+      "assert": {"type": "text_absent", "path": "app.js", "needles": ["${icon(\"close\")}"]},
+      "note": "At 390x844 the unbounded SVG rendered as a giant X instead of a compact close control."
+    },
+    {
+      "id": "GOV-203",
+      "status": "active",
+      "title": "Initial page load does not automatically contact the private refresh bridge",
+      "assert": {"type": "text_absent", "path": "app.js", "needles": ["if (status.state === \"running\") { setEngineBusy(true); await watchRefresh(); }"]},
+      "note": "A clean local load produced cross-origin bridge requests without an explicit user action."
+    }
+  ]
+}

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 
@@ -24,10 +26,19 @@ def contains_forbidden_key(value: object) -> bool:
 
 
 def main() -> None:
+    requirement_check = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "check_requirements.py"), "--root", str(ROOT)],
+        check=False,
+    )
+    if requirement_check.returncode:
+        raise SystemExit("check_requirements.py failed")
+
     for relative in (
         "index.html", "styles.css", "app.js", "sw.js", "manifest.webmanifest",
         "icons/app-icon.svg", "icons/app-icon-maskable.svg", "icons/apple-touch-icon.png",
-        "assets/route-map-editorial-v2.webp", "assets/study-steps-editorial-v2.webp", "data/app-data.json", "data/refresh-bridge.json", "DESIGN.md",
+        "assets/route-map-editorial-v2.webp", "assets/study-steps-editorial-v2.webp",
+        "data/app-data.json", "data/catalog-source.json", "data/refresh-bridge.json",
+        "requirements/ledger.yaml", "scripts/check_requirements.py", "DESIGN.md",
     ):
         require(ROOT / relative, relative)
 
@@ -94,6 +105,12 @@ def main() -> None:
         raise SystemExit("exploration candidates must disclose why they are shown")
     if any(not isinstance(job.get("sectors"), list) or not job["sectors"] for job in jobs):
         raise SystemExit("every public job must retain one or more sector labels")
+    if any(
+        float(job.get("minimumExperienceYears", 0) or 0) >= 2
+        or job.get("publicEligibility") == "excluded"
+        for job in jobs
+    ):
+        raise SystemExit("public jobs must exclude explicit multi-year experience requirements")
     if any(item.get("applicationStatus") not in {"open", "prepare", "research"} for item in programs):
         raise SystemExit("every programme must disclose whether it is open, preparation, or research")
     if stats["recommendationSurface"] == "exploration_only" and review_queue:

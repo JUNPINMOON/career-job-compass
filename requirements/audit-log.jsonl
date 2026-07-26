@@ -1,0 +1,26 @@
+{"at": "2026-07-26T16:23:06+00:00", "event": "requirement_added", "id": "UX-201", "title": "All sector filters remain reachable without a horizontal chip rail"}
+{"at": "2026-07-26T16:23:06+00:00", "event": "requirement_added", "id": "UX-202", "title": "Detail and filter surfaces use compact textual controls, not broken decorative placeholders"}
+{"at": "2026-07-26T16:23:06+00:00", "event": "requirement_added", "id": "UX-203", "title": "Mobile routes size to their content rather than a viewport-height hero"}
+{"at": "2026-07-26T16:23:06+00:00", "event": "requirement_added", "id": "UX-204", "title": "Today uses a compact recommendation surface"}
+{"at": "2026-07-26T16:23:06+00:00", "event": "requirement_added", "id": "DATA-201", "title": "Explicit multi-year experience requirements are excluded from the candidate surface"}
+{"at": "2026-07-26T16:23:06+00:00", "event": "requirement_added", "id": "GOV-201", "title": "The public output is a snapshot and cannot be its own build input"}
+{"at": "2026-07-26T16:23:06+00:00", "event": "requirement_added", "id": "GOV-202", "title": "Release verification fails when requirement coverage is missing"}
+{"at": "2026-07-26T16:23:06+00:00", "event": "requirement_added", "id": "REVIEW-001", "title": "Rejected baseline findings remain represented in the release gate"}
+{"at": "2026-07-26T16:23:06+00:00", "event": "requirement_added", "id": "UX-205", "title": "Filter sheet close control uses a readable text action"}
+{"at": "2026-07-26T16:23:06+00:00", "event": "check", "passed": 0, "failed": 9, "failing_ids": ["UX-201", "UX-202", "UX-203", "UX-204", "DATA-201", "GOV-201", "GOV-202", "REVIEW-001", "UX-205"]}
+{"at": "2026-07-26T16:24:35+00:00", "event": "assertion_modified", "id": "UX-201", "old": "5ab2cab3f6090c90", "new": "0cb85859116bd85d", "reason": "기존 요구사항 ID와 의미를 유지하면서 표준 text_present/text_absent assertion 스키마를 보강"}
+{"at": "2026-07-26T16:24:35+00:00", "event": "assertion_modified", "id": "UX-202", "old": "1276d5c17f28ec4f", "new": "5e214831e31a33aa", "reason": "기존 요구사항 ID와 의미를 유지하면서 표준 text_present/text_absent assertion 스키마를 보강"}
+{"at": "2026-07-26T16:24:35+00:00", "event": "assertion_modified", "id": "UX-203", "old": "95ff92b1f8af875a", "new": "7a6b3e6508635b79", "reason": "기존 요구사항 ID와 의미를 유지하면서 표준 text_present/text_absent assertion 스키마를 보강"}
+{"at": "2026-07-26T16:24:35+00:00", "event": "assertion_modified", "id": "UX-204", "old": "4e1704bf7d799865", "new": "195b4501feae3cdd", "reason": "기존 요구사항 ID와 의미를 유지하면서 표준 text_present/text_absent assertion 스키마를 보강"}
+{"at": "2026-07-26T16:24:35+00:00", "event": "assertion_modified", "id": "DATA-201", "old": "c3439bfaf3604783", "new": "d870d757780ec2ab", "reason": "기존 요구사항 ID와 의미를 유지하면서 표준 text_present/text_absent assertion 스키마를 보강"}
+{"at": "2026-07-26T16:24:35+00:00", "event": "assertion_modified", "id": "GOV-201", "old": "286fdf9726df8069", "new": "d43385c2a9d0e574", "reason": "기존 요구사항 ID와 의미를 유지하면서 표준 text_present/text_absent assertion 스키마를 보강"}
+{"at": "2026-07-26T16:24:35+00:00", "event": "assertion_modified", "id": "GOV-202", "old": "2c38db1a3e31bdaf", "new": "72e8ce7d8dd982a9", "reason": "기존 요구사항 ID와 의미를 유지하면서 표준 text_present/text_absent assertion 스키마를 보강"}
+{"at": "2026-07-26T16:24:35+00:00", "event": "assertion_modified", "id": "REVIEW-001", "old": "faac3dc656169380", "new": "b2d6ec75a2ab8cb2", "reason": "기존 요구사항 ID와 의미를 유지하면서 표준 text_present/text_absent assertion 스키마를 보강"}
+{"at": "2026-07-26T16:24:35+00:00", "event": "assertion_modified", "id": "UX-205", "old": "5c0d36808484ffff", "new": "5a2a953d7794d57e", "reason": "기존 요구사항 ID와 의미를 유지하면서 표준 text_present/text_absent assertion 스키마를 보강"}
+{"at": "2026-07-26T16:24:35+00:00", "event": "check", "passed": 9, "failed": 0, "failing_ids": []}
+{"at": "2026-07-26T16:29:54+00:00", "event": "requirement_added", "id": "UX-206", "title": "Mobile search icons have an explicit compact height"}
+{"at": "2026-07-26T16:29:54+00:00", "event": "requirement_added", "id": "UX-207", "title": "Detail sheets use a readable textual close action"}
+{"at": "2026-07-26T16:29:54+00:00", "event": "requirement_added", "id": "GOV-203", "title": "Initial page load does not automatically contact the private refresh bridge"}
+{"at": "2026-07-26T16:29:54+00:00", "event": "check", "passed": 9, "failed": 3, "failing_ids": ["UX-206", "UX-207", "GOV-203"]}
+{"at": "2026-07-26T16:30:50+00:00", "event": "check", "passed": 12, "failed": 0, "failing_ids": []}
+{"at": "2026-07-26T16:34:07+00:00", "event": "check", "passed": 12, "failed": 0, "failing_ids": []}

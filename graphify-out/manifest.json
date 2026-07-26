@@ -1,0 +1,122 @@
+{
+  "app.js": {
+    "mtime": 1785083441.563624,
+    "ast_hash": "94472a488cab208c51638dc505c36108",
+    "semantic_hash": ""
+  },
+  "data/app-data.json": {
+    "mtime": 1785082973.6782088,
+    "ast_hash": "ff4be9a8362c9b09583a514dcd45f10f",
+    "semantic_hash": ""
+  },
+  "data/catalog-source.json": {
+    "mtime": 1785082949.506572,
+    "ast_hash": "e8aad35c95afe1052e00a5f9043a0f5d",
+    "semantic_hash": ""
+  },
+  "data/refresh-bridge.json": {
+    "mtime": 1784999986.2901714,
+    "ast_hash": "975e5471894a6f8dd1e02fff446be81e",
+    "semantic_hash": "975e5471894a6f8dd1e02fff446be81e"
+  },
+  "scripts/build_snapshot.py": {
+    "mtime": 1785082946.141842,
+    "ast_hash": "70a95c31bd7dcbf0207801a5fe83df64",
+    "semantic_hash": ""
+  },
+  "scripts/check_release.py": {
+    "mtime": 1785082947.8204622,
+    "ast_hash": "63c5085543fdc08a5d5eeebbd57a9c6c",
+    "semantic_hash": ""
+  },
+  "scripts/check_requirements.py": {
+    "mtime": 1785083050.2345188,
+    "ast_hash": "58006798251a3511cd389670c9b5b745",
+    "semantic_hash": ""
+  },
+  "sw.js": {
+    "mtime": 1785066865.7307324,
+    "ast_hash": "367a13ba488963c40467568345609d3e",
+    "semantic_hash": "367a13ba488963c40467568345609d3e"
+  },
+  ".codex/hooks.json": {
+    "mtime": 1785082598.3458984,
+    "ast_hash": "b9b69b8a222418d010f49da62b7e88df",
+    "semantic_hash": ""
+  },
+  "requirements/.seen-ids.json": {
+    "mtime": 1785083450.8364353,
+    "ast_hash": "b30aae2c906c8b075e957ad1a36222c1",
+    "semantic_hash": ""
+  },
+  ".github/workflows/pages.yml": {
+    "mtime": 1784817943.646389,
+    "ast_hash": "c1f83d1e7f60cfb9c2f4562494ea875c",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1785082598.3412957,
+    "ast_hash": "6a47d64fcc136324ca395065a707ef76",
+    "semantic_hash": ""
+  },
+  "DESIGN.md": {
+    "mtime": 1785082951.164004,
+    "ast_hash": "783eddfda138040ff071db81d818e2cc",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1784994947.0884378,
+    "ast_hash": "36c8a79de267e6e3ef212124d7012c53",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1785078489.1327994,
+    "ast_hash": "ed34ced11e657168540b9450b93370b6",
+    "semantic_hash": ""
+  },
+  "plans/001-calm-field-guide-motion.md": {
+    "mtime": 1785054248.7691638,
+    "ast_hash": "d4eb60bb27b99bab4e2d5c82ba33d05f",
+    "semantic_hash": ""
+  },
+  "plans/README.md": {
+    "mtime": 1785054247.5287573,
+    "ast_hash": "7b44b2167a5b94aa996e3fef830e5863",
+    "semantic_hash": ""
+  },
+  "requirements/ledger.yaml": {
+    "mtime": 1785083382.8728845,
+    "ast_hash": "6e34ff91435dd37f6f3fd1ef694b85fc",
+    "semantic_hash": ""
+  },
+  "assets/daily-brief-cover-v3.png": {
+    "mtime": 1784832734.7070086,
+    "ast_hash": "e98e17328da546bc4a0acef2d49f2b9e",
+    "semantic_hash": ""
+  },
+  "assets/route-map-editorial-v2.webp": {
+    "mtime": 1784832734.7130578,
+    "ast_hash": "b787a1586f19f274cf99d8addc023208",
+    "semantic_hash": ""
+  },
+  "assets/study-steps-editorial-v2.webp": {
+    "mtime": 1784832734.716182,
+    "ast_hash": "c2ed60636412ae26d1bcde1663459196",
+    "semantic_hash": ""
+  },
+  "icons/app-icon-maskable.svg": {
+    "mtime": 1784832734.7197025,
+    "ast_hash": "6525d1917a744bc288229b5673eac9db",
+    "semantic_hash": ""
+  },
+  "icons/app-icon.svg": {
+    "mtime": 1784832734.7217073,
+    "ast_hash": "957ecf369cb7283e5c18148ec1d59546",
+    "semantic_hash": ""
+  },
+  "icons/apple-touch-icon.png": {
+    "mtime": 1784832734.7247434,
+    "ast_hash": "2d649c2f2bc787700c304b283466a150",
+    "semantic_hash": ""
+  }
+}

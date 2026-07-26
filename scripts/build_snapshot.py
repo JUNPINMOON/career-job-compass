@@ -10,6 +10,7 @@ from typing import Any
 
 
 IHE_DELFT = "IHE Delft Institute for Water Education"
+MINIMUM_EXPERIENCE_EXCLUSION_YEARS = 2
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -112,9 +113,73 @@ def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path) -> str
     return str(shortlist.get("generated_at", ""))
 
 
+def _apply_public_eligibility(
+    job_slice: dict[str, Any],
+    overrides: dict[str, Any],
+) -> dict[str, Any]:
+    """Annotate known requirements and remove jobs that are not entry-accessible."""
+    excluded = 0
+    jobs: list[dict[str, Any]] = []
+    for source in job_slice.get("jobs", []):
+        if not isinstance(source, dict):
+            continue
+        job = dict(source)
+        override = overrides.get(str(job.get("id", "")))
+        if isinstance(override, dict):
+            job.update(override)
+        minimum_years = job.get("minimumExperienceYears", 0)
+        try:
+            minimum_years = float(minimum_years)
+        except (TypeError, ValueError):
+            minimum_years = 0
+        if minimum_years >= MINIMUM_EXPERIENCE_EXCLUSION_YEARS or job.get("publicEligibility") == "excluded":
+            excluded += 1
+            continue
+        jobs.append(job)
+
+    eligible_ids = {str(job.get("id", "")) for job in jobs}
+    review_queue = [
+        item
+        for item in job_slice.get("reviewQueue", [])
+        if isinstance(item, dict) and str(item.get("id", "")) in eligible_ids
+    ]
+    sectors = [dict(item) for item in job_slice.get("sectors", []) if isinstance(item, dict)]
+    for sector in sectors:
+        sector["publishedJobs"] = sum(
+            1 for job in jobs if sector.get("name") in job.get("sectors", [])
+        )
+
+    stats = dict(job_slice.get("stats", {}))
+    stats["marketCounts"] = {
+        market: sum(1 for job in jobs if job.get("market") == market)
+        for market in ("domestic", "overseas", "unknown")
+    }
+    stats["queueCounts"] = {
+        queue: sum(1 for job in jobs if job.get("queue") == queue)
+        for queue in ("verify", "hold", "apply", "stretch")
+    }
+    stats["actionCandidates"] = sum(1 for job in jobs if job.get("discoveryTier") == "action")
+    stats["actionableCandidates"] = len(review_queue)
+    stats["explorationCandidates"] = sum(1 for job in jobs if job.get("discoveryTier") == "explore")
+    stats["excludedExperienceCandidates"] = excluded
+
+    return {
+        **job_slice,
+        "jobs": jobs,
+        "reviewQueue": review_queue,
+        "sectors": sectors,
+        "stats": stats,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--job-search-root", required=True, type=Path)
+    parser.add_argument(
+        "--catalog-source",
+        type=Path,
+        default=Path(__file__).resolve().parents[1] / "data" / "catalog-source.json",
+    )
     parser.add_argument(
         "--output",
         type=Path,
@@ -125,12 +190,19 @@ def main() -> None:
     sys.path.insert(0, str(root))
     from jobsearch_v4.public_snapshot import build_public_job_slice
 
-    if not args.output.exists():
-        raise FileNotFoundError(f"base public snapshot required: {args.output}")
-    payload = _read_json(args.output)
-    job_slice = build_public_job_slice(
+    if args.catalog_source.resolve() == args.output.resolve():
+        raise ValueError("catalog source and generated output must be different files")
+    if not args.catalog_source.exists():
+        raise FileNotFoundError(f"catalog source required: {args.catalog_source}")
+    payload = _read_json(args.catalog_source)
+    raw_job_slice = build_public_job_slice(
         actions_path=root / "work" / "recommendation-v4" / "g006-cross-sector-actions.json",
         posting_facts_path=root / "work" / "recommendation-v4" / "g003-posting-facts.json",
+    )
+    overrides = payload.get("jobEligibilityOverrides", {})
+    job_slice = _apply_public_eligibility(
+        raw_job_slice,
+        overrides if isinstance(overrides, dict) else {},
     )
     graduate_generated_at = _apply_latest_programs(
         payload,
