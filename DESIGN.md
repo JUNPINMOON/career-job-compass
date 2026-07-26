@@ -29,16 +29,14 @@ Adding a new filter or source never replaces an existing inventory or route.
 - **Type:** Pretendard Variable first, then the iOS/system Korean stack. Titles are compact and single-purpose; labels are short Korean nouns, not invented English dashboard jargon.
 - **Images:** editorial images can support route recognition, but never fill the whole screen, repeat as texture, or obscure information.
 
-## Mobile page deck
+## Mobile reading rhythm
 
-Each major view is a deliberate page rather than an endless feed. The persistent page rail and `이전/다음` control show position. Moving between pages uses spatial continuity; results still update immediately when a filter changes. The page change is the only large movement on the screen.
+The first viewport prioritizes the active title, the essential controls, and the first real candidate. Major views must never reserve a full viewport for a hero, illustration, or page-control rail. Result groups stay short and easy to scan, but flow naturally after the controls so that no empty “page” stands between a question and an option.
 
 ## Motion contract
 
 | Interaction | Motion | Duration | Rule |
 | --- | --- | ---: | --- |
-| Page position | `transform: scaleX` on the top rail | 220ms | Never animate width or layout. |
-| Page change | native smooth scroll | 260ms max | `auto` when reduced motion is preferred. |
 | Button press | scale to 0.98 | 120ms | Press feedback only; no bouncing or shadow jump. |
 | Bottom sheet | opacity + 14px translate | 180ms | Only when it opens or closes. |
 | Refresh indicator | rotate | while fetching | Stop when fetching ends and disable under reduced motion. |

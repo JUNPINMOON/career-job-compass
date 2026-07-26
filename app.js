@@ -42,6 +42,7 @@
   function setActiveTab(current) {
     document.documentElement.dataset.route = current;
     document.querySelectorAll("[data-tab]").forEach((tab) => tab.toggleAttribute("aria-current", tab.dataset.tab === current));
+    document.querySelector("[data-action='open-filters']")?.toggleAttribute("hidden", current !== "jobs");
   }
   function activeFilters() { return Number(Boolean(state.query)) + Number(Boolean(state.sector)) + Number(Boolean(state.queue)) + Number(state.jobMarket !== "all"); }
   function jobById(id) { return jobs().find((job) => job.id === id); }
@@ -53,20 +54,7 @@
   }
 
   function pageFrame(content, index, total, label) {
-    const previous = index > 0 ? `<button class="page-turn-prev" type="button" data-action="page-prev" aria-label="이전 페이지">이전</button>` : `<span aria-hidden="true"></span>`;
-    const next = index < total - 1 ? `<button class="page-turn-next" type="button" data-action="page-next" aria-label="다음 페이지">다음 ${icon("arrow")}</button>` : `<span class="page-finish">끝</span>`;
-    const progress = (index + 1) / total;
-    return `<section class="page-frame" data-page-index="${index}" style="--page-progress:${progress}" aria-label="${escapeHtml(label)} ${index + 1} / ${total}">${content}<nav class="page-turn" aria-label="${escapeHtml(label)} 페이지 이동">${previous}<span class="page-counter"><i aria-hidden="true"></i>${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}</span>${next}</nav></section>`;
-  }
-
-  function movePage(trigger, direction) {
-    const frame = trigger.closest(".page-frame");
-    const frames = [...main.querySelectorAll(".page-frame")];
-    const target = frames[frames.indexOf(frame) + (direction === "next" ? 1 : -1)];
-    if (!target) return;
-    const top = main.scrollTop + target.getBoundingClientRect().top - main.getBoundingClientRect().top;
-    navigator.vibrate?.(8);
-    main.scrollTo({ top, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    return `<section class="page-frame" data-page-index="${index}" aria-label="${escapeHtml(label)} ${index + 1} / ${total}">${content}</section>`;
   }
 
   function filteredJobs() {
@@ -110,15 +98,15 @@
 
   function renderToday() {
     const ranked = state.data?.stats?.recommendationSurface === "ranked";
-    const exploring = state.data?.stats?.recommendationSurface === "exploration_only";
     const prioritized = ranked ? reviewQueue() : [];
-    const lead = prioritized[0];
+    const dailyCandidates = prioritized.length ? prioritized : diversifiedJobs(jobs()).slice(0, 3);
+    const lead = dailyCandidates[0];
     const school = programs()[0];
     const award = funding()[0];
-    const candidatePage = prioritized.length ? `<section class="decision-list" aria-labelledby="priorityHeading"><div class="section-heading"><div><span>01. 개인화 추천</span><h2 id="priorityHeading">먼저 확인할 후보</h2></div><a href="#/jobs">전체 ${jobs().length}개 ${icon("arrow")}</a></div><div class="opportunity-list">${prioritized.map((job) => candidateRow(job)).join("")}</div></section>` : `<section class="decision-list" aria-labelledby="inventoryHeading"><div class="section-heading"><div><span>01. ${exploring ? "관심 탐색" : "공고 인벤토리"}</span><h2 id="inventoryHeading">국내 ${marketCount(jobs(), "domestic")} · 해외 ${marketCount(jobs(), "overseas")}</h2></div><a href="#/jobs">전체 ${jobs().length}개 ${icon("arrow")}</a></div></section>`;
+    const candidatePage = dailyCandidates.length ? `<section class="decision-list" aria-labelledby="priorityHeading"><div class="section-heading"><div><span>${ranked ? "개인화 추천" : "관심 탐색"}</span><h2 id="priorityHeading">오늘 열어볼 후보</h2></div><a href="#/jobs">전체 ${jobs().length}개 ${icon("arrow")}</a></div><div class="opportunity-list">${dailyCandidates.map((job) => candidateRow(job)).join("")}</div></section>` : `<section class="decision-list" aria-labelledby="inventoryHeading"><div class="section-heading"><div><span>공고 인벤토리</span><h2 id="inventoryHeading">국내 ${marketCount(jobs(), "domestic")} · 해외 ${marketCount(jobs(), "overseas")}</h2></div><a href="#/jobs">전체 ${jobs().length}개 ${icon("arrow")}</a></div></section>`;
     const researchPage = `<section class="route-callout" aria-labelledby="researchHeading"><div class="route-callout-image"><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></div><div class="route-callout-copy"><p class="eyebrow">02 · 진학과 장학</p><h2 id="researchHeading">과정과 장학금</h2><a class="ink-link" href="#/study">전체 보기 ${icon("arrow")}</a></div><div class="route-mini-list">${school ? `<button type="button" data-open-record="program:${escapeHtml(school.id)}"><small>${escapeHtml(school.degree)} · ${escapeHtml(programReadinessLabel(school))}</small><b>${escapeHtml(school.university)}</b><span>${escapeHtml(school.program)}</span>${icon("arrow")}</button>` : ""}${award ? `<button type="button" data-open-record="funding:${escapeHtml(award.id)}"><small>${escapeHtml(award.decision)}</small><b>${escapeHtml(award.name)}</b><span>${escapeHtml(award.coverage || "지원 범위 원문 확인")}</span>${icon("arrow")}</button>` : ""}</div></section>`;
     const pages = [
-      `<section class="today-cover" aria-labelledby="todayTitle"><div class="cover-meta"><span>오늘의 목록</span><span>${escapeHtml(sourceDate(state.data.stats?.jobDataAsOf))}</span></div><figure class="cover-art"><img src="./assets/daily-brief-cover-v3.png" alt="공고와 진학 경로를 나타내는 종이 도표" /></figure><div class="cover-copy"><p>공개 스냅샷</p><h1 id="todayTitle">오늘 볼 것</h1></div>${lead ? `<button class="cover-action" type="button" data-open-job="${escapeHtml(lead.id)}"><span>우선 후보</span><b>${escapeHtml(lead.company)}<em>${escapeHtml(lead.title)}</em></b>${icon("arrow")}</button>` : `<a class="cover-action" href="#/jobs"><span>공고 목록</span><b>국내 ${marketCount(jobs(), "domestic")} · 해외 ${marketCount(jobs(), "overseas")}</b>${icon("arrow")}</a>`}</section>`,
+      `<section class="today-cover" aria-labelledby="todayTitle"><div class="cover-meta"><span>오늘의 목록</span><span>${escapeHtml(sourceDate(state.data.stats?.jobDataAsOf))}</span></div><div class="cover-copy"><p>공개 스냅샷</p><h1 id="todayTitle">오늘 볼 것</h1></div>${lead ? `<button class="cover-action" type="button" data-open-job="${escapeHtml(lead.id)}"><span>${ranked ? "우선 후보" : "관심 후보"}</span><b>${escapeHtml(lead.company)}<em>${escapeHtml(lead.title)}</em></b>${icon("arrow")}</button>` : `<a class="cover-action" href="#/jobs"><span>공고 목록</span><b>국내 ${marketCount(jobs(), "domestic")} · 해외 ${marketCount(jobs(), "overseas")}</b>${icon("arrow")}</a>`}</section>`,
       candidatePage,
       researchPage,
     ];
@@ -171,7 +159,7 @@
     const onlinePrograms = programs().filter((item) => item.deliveryMode === "online").length;
     const readinessSwitch = isFunding ? "" : `<div class="market-switch study-readiness" role="tablist" aria-label="대학원 지원 상태"><button type="button" role="tab" aria-selected="${state.studyReadiness === "all"}" data-study-readiness="all">전체 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${state.studyReadiness === "open"}" data-study-readiness="open">지원 열림 <b>${openPrograms}</b></button><button type="button" role="tab" aria-selected="${state.studyReadiness === "prepare"}" data-study-readiness="prepare">지금 준비 <b>${preparePrograms}</b></button></div><p class="study-status-note">‘지원 열림’은 현재 공식 원문으로 접수 상태가 확인된 항목만 표시합니다.</p>`;
     const formatSwitch = isFunding ? "" : `<div class="market-switch study-format" role="tablist" aria-label="대학원 수강 방식"><button type="button" role="tab" aria-selected="${state.studyFormat === "all"}" data-study-format="all">전체 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${state.studyFormat === "online"}" data-study-format="online">온라인 <b>${onlinePrograms}</b></button></div>`;
-    main.innerHTML = pageFrame(`<section class="study-hero"><div><p class="eyebrow">진학 · 장학 · 연구</p><h1>대학원 · 장학금</h1><p>대학원 ${programs().length}건 · 온라인 ${onlinePrograms}건 · 장학금 ${funding().length}건 · 자료 ${displayDate(state.data.stats?.graduateGeneratedAt)}</p></div><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></section><section class="study-controls"><div class="mode-switch" role="tablist" aria-label="진학 자료 종류"><button type="button" role="tab" aria-selected="${!isFunding}" data-study-mode="programs">대학원 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${isFunding}" data-study-mode="funding">장학금 <b>${funding().length}</b></button></div>${readinessSwitch}${formatSwitch}${marketSwitch("study", state.studyMarket || "all", studyRecords)}<label class="search-box">${icon("search")}<span class="sr-only">진학 자료 검색</span><input id="studySearch" type="search" value="${escapeHtml(state.studyQuery)}" placeholder="학교, 과정, 장학금으로 찾기" autocomplete="off" /></label></section>`, 0, total, "진학과 재정") + `<div id="studyResults"></div>`;
+    main.innerHTML = pageFrame(`<section class="study-head"><div><p class="eyebrow">진학 · 장학 · 연구</p><h1>대학원 · 장학금</h1></div><p>대학원 ${programs().length} · 온라인 ${onlinePrograms} · 장학금 ${funding().length}</p></section><section class="study-controls"><div class="mode-switch" role="tablist" aria-label="진학 자료 종류"><button type="button" role="tab" aria-selected="${!isFunding}" data-study-mode="programs">대학원 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${isFunding}" data-study-mode="funding">장학금 <b>${funding().length}</b></button></div>${readinessSwitch}${formatSwitch}${marketSwitch("study", state.studyMarket || "all", studyRecords)}<label class="search-box">${icon("search")}<span class="sr-only">진학 자료 검색</span><input id="studySearch" type="search" value="${escapeHtml(state.studyQuery)}" placeholder="학교, 과정, 장학금으로 찾기" autocomplete="off" /></label></section>`, 0, total, "진학과 재정") + `<div id="studyResults"></div>`;
     document.getElementById("studySearch").addEventListener("input", (event) => { state.studyQuery = event.target.value; saveFilters(); renderStudyResults(); });
     renderStudyResults();
   }
@@ -319,8 +307,6 @@
     const studyFormat = event.target.closest("[data-study-format]"); if (studyFormat) { state.studyFormat = studyFormat.dataset.studyFormat; saveFilters(); renderStudy(); return; }
     const action = event.target.closest("[data-action]")?.dataset.action; if (!action) return;
     if (action === "refresh-engine") { refreshEngine(); return; }
-    if (action === "page-next") { movePage(event.target.closest("[data-action]"), "next"); return; }
-    if (action === "page-prev") { movePage(event.target.closest("[data-action]"), "prev"); return; }
     if (action === "open-filters") openFilters();
     if (action === "clear-filters") resetFilters();
     if (action === "close-dossier") closeDetail();
