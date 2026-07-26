@@ -57,6 +57,9 @@ def main() -> None:
         raise SystemExit("snapshot must use schemaVersion 3 or later")
     if not isinstance(jobs, list) or not jobs:
         raise SystemExit("snapshot must contain title-grounded job exploration or action candidates")
+    sectors = snapshot.get("sectors")
+    if not isinstance(sectors, list) or len(sectors) != 20:
+        raise SystemExit("snapshot must preserve the 20-sector job inventory")
     if not isinstance(review_queue, list) or len(review_queue) > 3:
         raise SystemExit("snapshot review queue must contain at most three confirmed actions")
     if not isinstance(programs, list) or len(programs) < 90:
@@ -89,6 +92,10 @@ def main() -> None:
         raise SystemExit("every public job must be an action candidate or title-grounded exploration item")
     if any(job.get("discoveryTier") == "explore" and not job.get("discoveryReason") for job in jobs):
         raise SystemExit("exploration candidates must disclose why they are shown")
+    if any(not isinstance(job.get("sectors"), list) or not job["sectors"] for job in jobs):
+        raise SystemExit("every public job must retain one or more sector labels")
+    if any(item.get("applicationStatus") not in {"open", "prepare", "research"} for item in programs):
+        raise SystemExit("every programme must disclose whether it is open, preparation, or research")
     if stats["recommendationSurface"] == "exploration_only" and review_queue:
         raise SystemExit("exploration-only snapshots must not imply an action-ready review queue")
     if any(not item.get("officialUrl") and item.get("verification") != "official_search_required" for item in programs + funding):

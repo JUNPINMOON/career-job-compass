@@ -2,7 +2,7 @@
   "use strict";
 
   const FILTER_STORAGE_KEY = "career-compass-filters-v2";
-  const DEFAULT_FILTERS = { query: "", sector: "", queue: "", jobMarket: "all", studyMode: "programs", studyMarket: "all", studyQuery: "" };
+  const DEFAULT_FILTERS = { query: "", sector: "", queue: "", jobMarket: "all", studyMode: "programs", studyMarket: "all", studyReadiness: "all", studyQuery: "" };
 
   const state = {
     data: null,
@@ -23,7 +23,7 @@
 
   function readJSON(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch (_) { return fallback; } }
   function store(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) { /* local convenience only */ } }
-  function saveFilters() { store(FILTER_STORAGE_KEY, { query: state.query, sector: state.sector, queue: state.queue, jobMarket: state.jobMarket, studyMode: state.studyMode, studyMarket: state.studyMarket, studyQuery: state.studyQuery }); }
+  function saveFilters() { store(FILTER_STORAGE_KEY, { query: state.query, sector: state.sector, queue: state.queue, jobMarket: state.jobMarket, studyMode: state.studyMode, studyMarket: state.studyMarket, studyReadiness: state.studyReadiness, studyQuery: state.studyQuery }); }
   function escapeHtml(value) { return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char])); }
   function icon(name) { return `<svg aria-hidden="true"><use href="#i-${name}" /></svg>`; }
   function route() { const value = (location.hash || "#/today").replace(/^#\/?/, "").split("/")[0]; return value === "trust" ? "sources" : value || "today"; }
@@ -34,6 +34,10 @@
   function reviewQueue() { return state.data?.reviewQueue || []; }
   function programs() { return state.data?.programs || []; }
   function funding() { return state.data?.funding || []; }
+  function jobSectors(job) { return [...new Set((Array.isArray(job.sectors) ? job.sectors : [job.sector]).filter(Boolean))]; }
+  function allJobSectors() { return (state.data?.sectors || []).map((sector) => sector.name).filter(Boolean); }
+  function programReadiness(item) { return item.applicationStatus || (item.decision === "Use now" ? "prepare" : "research"); }
+  function programReadinessLabel(item) { return item.applicationStatusLabel || (programReadiness(item) === "prepare" ? "지금 준비" : "추가 조사"); }
   function chunks(items, size) { return Array.from({ length: Math.ceil(items.length / size) }, (_, index) => items.slice(index * size, index * size + size)); }
   function setActiveTab(current) { document.querySelectorAll("[data-tab]").forEach((tab) => tab.toggleAttribute("aria-current", tab.dataset.tab === current)); }
   function activeFilters() { return Number(Boolean(state.query)) + Number(Boolean(state.sector)) + Number(Boolean(state.queue)) + Number(state.jobMarket !== "all"); }
@@ -65,8 +69,9 @@
   function filteredJobs() {
     const query = String(state.query || "").trim().toLocaleLowerCase("ko");
     return jobs().filter((job) => {
-      const haystack = [job.title, job.company, job.location, job.sector, job.source, job.nextAction, ...(job.requirements || [])].join(" ").toLocaleLowerCase("ko");
-      return (!query || haystack.includes(query)) && (!state.sector || job.sector === state.sector) && (!state.queue || job.queue === state.queue) && (state.jobMarket === "all" || job.market === state.jobMarket);
+      const sectors = jobSectors(job);
+      const haystack = [job.title, job.company, job.location, ...sectors, job.source, job.nextAction, ...(job.requirements || [])].join(" ").toLocaleLowerCase("ko");
+      return (!query || haystack.includes(query)) && (!state.sector || sectors.includes(state.sector)) && (!state.queue || job.queue === state.queue) && (state.jobMarket === "all" || job.market === state.jobMarket);
     });
   }
 
@@ -83,7 +88,7 @@
   function filteredStudy() {
     const query = String(state.studyQuery || "").trim().toLocaleLowerCase("ko");
     const records = state.studyMode === "funding" ? funding() : programs();
-    return records.filter((item) => (state.studyMarket === "all" || item.market === state.studyMarket) && (!query || Object.values(item).flat().join(" ").toLocaleLowerCase("ko").includes(query)));
+    return records.filter((item) => (state.studyMarket === "all" || item.market === state.studyMarket) && (state.studyMode === "funding" || state.studyReadiness === "all" || programReadiness(item) === state.studyReadiness) && (!query || Object.values(item).flat().join(" ").toLocaleLowerCase("ko").includes(query)));
   }
 
   function queueCopy(job) { return escapeHtml(job.discoveryLabel || job.queueLabel || "검토 후보"); }
@@ -95,7 +100,7 @@
         <span class="opportunity-copy"><em>${escapeHtml(job.company)}</em><strong>${escapeHtml(job.title)}</strong><small>${escapeHtml(job.location)}</small></span>
         <span class="opportunity-arrow">${icon("arrow")}</span>
       </button>
-      <div class="opportunity-foot"><span><i class="source-dot"></i>${escapeHtml(job.sector)}</span><span>${job.discoveryTier === "explore" ? "직무명 기준 · 원문 확인" : "공식 원문 · 조건 확인"}</span></div>
+      <div class="opportunity-foot"><span><i class="source-dot"></i>${escapeHtml(jobSectors(job).join(" · ") || "분야 원문 확인")}</span><span>${escapeHtml(job.sectorEvidence || (job.discoveryTier === "explore" ? "분야 원문 근거" : "공식 원문 · 조건 확인"))}</span></div>
       <button class="save-dot ${saved ? "is-saved" : ""}" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}" aria-label="${saved ? "보관 취소" : "공고 보관"}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}</button>
     </article>`;
   }
@@ -138,7 +143,7 @@
   function studyRow(item, kind) {
     const isProgram = kind === "program";
     const number = "•";
-    const line = isProgram ? `${item.degree || "과정"} · ${item.country || "국가 원문 확인"}` : `${item.decision || "장학금"} · ${(item.countries || []).join(", ") || "지역 원문 확인"}`;
+    const line = isProgram ? `${programReadinessLabel(item)} · ${item.degree || "과정"} · ${item.country || "국가 원문 확인"}` : `${item.decision || "장학금"} · ${(item.countries || []).join(", ") || "지역 원문 확인"}`;
     const title = isProgram ? item.program : item.name;
     const subtitle = isProgram ? item.university : item.coverage || item.type;
     const note = isProgram ? item.funding || item.deadline || "마감 원문 확인" : item.deadline || item.verification || "조건 원문 확인";
@@ -158,7 +163,10 @@
     const isFunding = state.studyMode === "funding";
     const total = Math.max(1, chunks(filteredStudy(), 3).length) + 1;
     const studyRecords = isFunding ? funding() : programs();
-    main.innerHTML = pageFrame(`<section class="study-hero"><div><p class="eyebrow">진학 · 장학 · 연구</p><h1>대학원 · 장학금</h1><p>대학원 ${programs().length}건 · 장학금 ${funding().length}건 · 자료 ${displayDate(state.data.stats?.graduateGeneratedAt)}</p></div><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></section><section class="study-controls"><div class="mode-switch" role="tablist" aria-label="진학 자료 종류"><button type="button" role="tab" aria-selected="${!isFunding}" data-study-mode="programs">대학원 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${isFunding}" data-study-mode="funding">장학금 <b>${funding().length}</b></button></div>${marketSwitch("study", state.studyMarket || "all", studyRecords)}<label class="search-box">${icon("search")}<span class="sr-only">진학 자료 검색</span><input id="studySearch" type="search" value="${escapeHtml(state.studyQuery)}" placeholder="학교, 과정, 장학금으로 찾기" autocomplete="off" /></label></section>`, 0, total, "진학과 재정") + `<div id="studyResults"></div>`;
+    const openPrograms = programs().filter((item) => programReadiness(item) === "open").length;
+    const preparePrograms = programs().filter((item) => programReadiness(item) === "prepare").length;
+    const readinessSwitch = isFunding ? "" : `<div class="market-switch study-readiness" role="tablist" aria-label="대학원 지원 상태"><button type="button" role="tab" aria-selected="${state.studyReadiness === "all"}" data-study-readiness="all">전체 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${state.studyReadiness === "open"}" data-study-readiness="open">지원 열림 <b>${openPrograms}</b></button><button type="button" role="tab" aria-selected="${state.studyReadiness === "prepare"}" data-study-readiness="prepare">지금 준비 <b>${preparePrograms}</b></button></div><p class="study-status-note">‘지원 열림’은 현재 공식 원문으로 접수 상태가 확인된 항목만 표시합니다.</p>`;
+    main.innerHTML = pageFrame(`<section class="study-hero"><div><p class="eyebrow">진학 · 장학 · 연구</p><h1>대학원 · 장학금</h1><p>대학원 ${programs().length}건 · 장학금 ${funding().length}건 · 자료 ${displayDate(state.data.stats?.graduateGeneratedAt)}</p></div><img src="./assets/study-steps-editorial-v2.webp" alt="책과 종이 계단으로 표현한 학업 경로" /></section><section class="study-controls"><div class="mode-switch" role="tablist" aria-label="진학 자료 종류"><button type="button" role="tab" aria-selected="${!isFunding}" data-study-mode="programs">대학원 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${isFunding}" data-study-mode="funding">장학금 <b>${funding().length}</b></button></div>${readinessSwitch}${marketSwitch("study", state.studyMarket || "all", studyRecords)}<label class="search-box">${icon("search")}<span class="sr-only">진학 자료 검색</span><input id="studySearch" type="search" value="${escapeHtml(state.studyQuery)}" placeholder="학교, 과정, 장학금으로 찾기" autocomplete="off" /></label></section>`, 0, total, "진학과 재정") + `<div id="studyResults"></div>`;
     document.getElementById("studySearch").addEventListener("input", (event) => { state.studyQuery = event.target.value; saveFilters(); renderStudyResults(); });
     renderStudyResults();
   }
@@ -178,15 +186,15 @@
   function renderJobDetail(job) {
     const saved = state.bookmarks.has(job.id);
     const discovery = job.discoveryTier === "explore";
-    dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${escapeHtml(job.source)} · ${queueCopy(job)}</small><button type="button" data-action="close-dossier" aria-label="상세 닫기">${icon("close")}</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(job.sector)}</p><h2 id="dossierTitle">${escapeHtml(job.title)}</h2><p class="detail-company">${escapeHtml(job.company)} · ${escapeHtml(job.location)}</p><div class="detail-primary">${officialLink(job.url)}</div><div class="detail-facts"><div><small>${discovery ? "분류" : "행동 상태"}</small><b>${queueCopy(job)}</b></div><div><small>마감</small><b>${escapeHtml(job.deadline || "원문 확인")}</b></div><div><small>증거 공백</small><b>${job.evidenceGapCount ?? "원문 확인"}</b></div><div><small>확인 부담</small><b>${escapeHtml(job.evidenceBurden || "원문 확인")}</b></div></div>${discovery ? `<section class="check-note"><small>보여드린 이유</small><p>${escapeHtml(job.discoveryReason)}</p></section>` : ""}<section class="check-note"><small>${discovery ? "원문에서 먼저 볼 것" : "다음 행동"}</small><p>${escapeHtml(job.nextAction)}</p></section>${detailList("공고에서 확인된 조건", job.requirements)}${detailList("추가 확인 항목", job.checks)}${detailList("주의 사항", job.risks)}<div class="detail-actions"><button class="detail-save ${saved ? "is-saved" : ""}" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}${saved ? "보관함에 있음" : "나중에 보기"}</button></div></div></article>`;
+    dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${escapeHtml(job.source)} · ${queueCopy(job)}</small><button type="button" data-action="close-dossier" aria-label="상세 닫기">${icon("close")}</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(jobSectors(job).join(" · ") || "분야 원문 확인")}</p><h2 id="dossierTitle">${escapeHtml(job.title)}</h2><p class="detail-company">${escapeHtml(job.company)} · ${escapeHtml(job.location)}</p><div class="detail-primary">${officialLink(job.url)}</div><div class="detail-facts"><div><small>${discovery ? "분류" : "행동 상태"}</small><b>${queueCopy(job)}</b></div><div><small>마감</small><b>${escapeHtml(job.deadline || "원문 확인")}</b></div><div><small>증거 공백</small><b>${job.evidenceGapCount ?? "원문 확인"}</b></div><div><small>확인 부담</small><b>${escapeHtml(job.evidenceBurden || "원문 확인")}</b></div></div>${discovery ? `<section class="check-note"><small>보여드린 이유</small><p>${escapeHtml(job.discoveryReason)}</p></section>` : ""}<section class="check-note"><small>${discovery ? "원문에서 먼저 볼 것" : "다음 행동"}</small><p>${escapeHtml(job.nextAction)}</p></section>${detailList("공고에서 확인된 조건", job.requirements)}${detailList("추가 확인 항목", job.checks)}${detailList("주의 사항", job.risks)}<div class="detail-actions"><button class="detail-save ${saved ? "is-saved" : ""}" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}${saved ? "보관함에 있음" : "나중에 보기"}</button></div></div></article>`;
   }
   function renderRecordDetail(kind, item) {
     const isProgram = kind === "program";
     const title = isProgram ? item.program : item.name;
     const organisation = isProgram ? item.university : item.coverage || item.type;
     const source = isProgram ? "대학원 연구" : "장학금 연구";
-    const facts = isProgram ? [["국가", item.country], ["과정", item.degree], ["마감", item.deadline], ["검증", item.verification]] : [["지원 범위", item.coverage], ["대상 국가", (item.countries || []).join(", ")], ["마감", item.deadline], ["검증", item.verification]];
-    const extra = isProgram ? [["재정", item.funding], ["영어", item.english], ["확인일", item.verifiedAt]] : [["선발 가능성", item.likelihood], ["유형", item.type]];
+    const facts = isProgram ? [["지원 상태", programReadinessLabel(item)], ["국가", item.country], ["과정", item.degree], ["마감", item.deadline], ["검증", item.verification]] : [["지원 범위", item.coverage], ["대상 국가", (item.countries || []).join(", ")], ["마감", item.deadline], ["검증", item.verification]];
+    const extra = isProgram ? [["분류 근거", item.applicationStatusReason], ["재정", item.funding], ["영어", item.english], ["확인일", item.verifiedAt]] : [["선발 가능성", item.likelihood], ["유형", item.type]];
     dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${source}</small><button type="button" data-action="close-dossier" aria-label="상세 닫기">${icon("close")}</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(item.decision || (isProgram ? "연구 목록" : "장학금"))}</p><h2 id="dossierTitle">${escapeHtml(title)}</h2><p class="detail-company">${escapeHtml(organisation)}</p><div class="detail-primary">${officialLink(item.officialUrl)}</div><div class="detail-facts">${facts.map(([label, value]) => `<div><small>${escapeHtml(label)}</small><b>${escapeHtml(value || "원문 확인")}</b></div>`).join("")}</div>${extra.filter(([, value]) => value).map(([label, value]) => `<section class="check-note"><small>${escapeHtml(label)}</small><p>${escapeHtml(value)}</p></section>`).join("")}${isProgram ? detailList(item.englishStatus || "영어 공식 기준", item.englishCriteria) : ""}${isProgram ? detailList("영어 준비", item.englishGapPlan) : ""}${detailList("지원 전 확인할 조건", item.gates)}${detailList("주의 사항", item.risks)}</div></article>`;
   }
   function openJobDetail(id, trigger) { const job = jobById(id); if (!job) return; state.selectedTrigger = trigger || null; renderJobDetail(job); if (!dossier.open) dossier.showModal(); requestAnimationFrame(() => dossier.querySelector("[data-action='close-dossier']")?.focus()); }
@@ -196,7 +204,7 @@
   function openFilters() {
     const sectorSelect = document.getElementById("sectorFilter");
     const queueSelect = document.getElementById("queueFilter");
-    const sectors = [...new Set(jobs().map((job) => job.sector))].sort((a, b) => a.localeCompare(b, "ko"));
+    const sectors = allJobSectors();
     sectorSelect.innerHTML = `<option value="">전체 분야</option>${sectors.map((sector) => `<option value="${escapeHtml(sector)}">${escapeHtml(sector)}</option>`).join("")}`;
     sectorSelect.value = state.sector; queueSelect.value = state.queue;
     if (!filterSheet.open) filterSheet.showModal(); sectorSelect.focus();
@@ -207,13 +215,14 @@
   function render(focus = true) { if (!state.data) return; closeDetail(false); window.scrollTo(0, 0); main.scrollTop = 0; const current = route(); setActiveTab(current); if (current === "today") renderToday(); else if (current === "jobs") renderJobs(); else if (current === "study") renderStudy(); else if (current === "sources") renderSources(); else { go("#/today"); return; } requestAnimationFrame(() => { window.scrollTo(0, 0); main.scrollTop = 0; if (focus) main.querySelector("h1")?.focus({ preventScroll: true }); }); }
   function isSnapshot(data) { return Boolean(data && Array.isArray(data.jobs) && Array.isArray(data.programs) && Array.isArray(data.funding)); }
   function normalizeFilters() {
-    const sectors = new Set(jobs().map((job) => job.sector));
+    const sectors = new Set(allJobSectors());
     const queues = new Set(jobs().map((job) => job.queue));
     if (!sectors.has(state.sector)) state.sector = "";
     if (!queues.has(state.queue)) state.queue = "";
     if (!["all", "domestic", "overseas"].includes(state.jobMarket)) state.jobMarket = "all";
     if (!["programs", "funding"].includes(state.studyMode)) state.studyMode = "programs";
     if (!["all", "domestic", "overseas"].includes(state.studyMarket)) state.studyMarket = "all";
+    if (!["all", "open", "prepare", "research"].includes(state.studyReadiness)) state.studyReadiness = "all";
     if (typeof state.query !== "string") state.query = "";
     if (typeof state.studyQuery !== "string") state.studyQuery = "";
     saveFilters();
@@ -299,6 +308,7 @@
     const sector = event.target.closest("[data-sector]"); if (sector) { state.sector = sector.dataset.sector; saveFilters(); if (route() !== "jobs") go("#/jobs"); else renderJobs(); return; }
     const jobMarket = event.target.closest("[data-job-market]"); if (jobMarket) { state.jobMarket = jobMarket.dataset.jobMarket; saveFilters(); renderJobs(); return; }
     const studyMode = event.target.closest("[data-study-mode]"); if (studyMode) { state.studyMode = studyMode.dataset.studyMode; saveFilters(); renderStudy(); return; }
+    const studyReadiness = event.target.closest("[data-study-readiness]"); if (studyReadiness) { state.studyReadiness = studyReadiness.dataset.studyReadiness; saveFilters(); renderStudy(); return; }
     const studyMarket = event.target.closest("[data-study-market]"); if (studyMarket) { state.studyMarket = studyMarket.dataset.studyMarket; saveFilters(); renderStudy(); return; }
     const action = event.target.closest("[data-action]")?.dataset.action; if (!action) return;
     if (action === "refresh-engine") { refreshEngine(); return; }

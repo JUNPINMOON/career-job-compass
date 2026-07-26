@@ -1,21 +1,21 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-25T19:37:53.279797+00:00",
+  "generatedAt": "2026-07-26T03:12:59.287073+00:00",
   "dataAsOf": "2026-07-26",
   "snapshotBoundary": "공개 읽기용 스냅샷입니다. 공고·과정·장학금의 마감과 자격은 반드시 공식 원문에서 다시 확인하세요.",
   "stats": {
-    "actionCandidates": 17,
+    "actionCandidates": 0,
     "programs": 90,
     "funding": 186,
     "queueCounts": {
       "verify": 0,
-      "hold": 17,
+      "hold": 103,
       "apply": 0,
       "stretch": 0
     },
     "marketCounts": {
-      "domestic": 3,
-      "overseas": 14,
+      "domestic": 33,
+      "overseas": 70,
       "unknown": 0
     },
     "recommendationSurface": "exploration_only",
@@ -25,77 +25,1592 @@
     "jobDataAsOf": "2026-07-26",
     "v4ArtifactUpdatedAt": "2026-07-25T15:42:17.222405+00:00",
     "graduateGeneratedAt": "2026-07-25T19:23:27.949044+00:00",
-    "explorationCandidates": 17,
-    "excludedUnverifiedCandidates": 3
+    "explorationCandidates": 103,
+    "excludedUnverifiedCandidates": 3,
+    "sectorInventoryCount": 20
   },
   "sectors": [
     {
-      "name": "직무명 기반 탐색",
-      "publishedJobs": 17
+      "id": "water_hydrology",
+      "name": "수자원·수문·수리·홍수·배수",
+      "family": "domain",
+      "publishedJobs": 11
+    },
+    {
+      "id": "gis_geospatial",
+      "name": "GIS·공간정보·원격탐사·디지털트윈",
+      "family": "domain",
+      "publishedJobs": 10
+    },
+    {
+      "id": "climate_environment",
+      "name": "기후·환경·탄소·지속가능성",
+      "family": "domain",
+      "publishedJobs": 10
+    },
+    {
+      "id": "international_development",
+      "name": "국제개발·ODA·정책·PM",
+      "family": "domain",
+      "publishedJobs": 18
+    },
+    {
+      "id": "civil_infrastructure",
+      "name": "토목·인프라·설계·건설·운영",
+      "family": "domain",
+      "publishedJobs": 10
+    },
+    {
+      "id": "geo_ai",
+      "name": "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+      "family": "ai",
+      "publishedJobs": 6
+    },
+    {
+      "id": "water_climate_ai",
+      "name": "수자원·기후 AI·홍수·환경예측",
+      "family": "ai",
+      "publishedJobs": 20
+    },
+    {
+      "id": "infrastructure_ai",
+      "name": "건설·인프라 AI·BIM·디지털트윈·예지보전",
+      "family": "ai",
+      "publishedJobs": 4
+    },
+    {
+      "id": "data_ml_engineering",
+      "name": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "family": "ai",
+      "publishedJobs": 9
+    },
+    {
+      "id": "generative_ai",
+      "name": "생성형 AI·LLM·에이전트·업무자동화",
+      "family": "ai",
+      "publishedJobs": 1
+    },
+    {
+      "id": "ai_product_solutions",
+      "name": "AI 제품·솔루션·컨설팅·프리세일즈",
+      "family": "ai",
+      "publishedJobs": 5
+    },
+    {
+      "id": "ai_governance",
+      "name": "AI 정책·거버넌스·리스크·컴플라이언스",
+      "family": "ai",
+      "publishedJobs": 7
+    },
+    {
+      "id": "ai_adjacent_transition",
+      "name": "AI 인접 소프트웨어·데이터 전환직무",
+      "family": "ai",
+      "publishedJobs": 7
+    },
+    {
+      "id": "kr_public_enterprise",
+      "name": "국내 공공기관·공기업",
+      "family": "market",
+      "publishedJobs": 9
+    },
+    {
+      "id": "kr_civil_service",
+      "name": "국내 공무원",
+      "family": "market",
+      "publishedJobs": 9
+    },
+    {
+      "id": "kr_popular_large_company",
+      "name": "국내 인기 대기업",
+      "family": "market",
+      "publishedJobs": 8
+    },
+    {
+      "id": "kr_other_large_company",
+      "name": "국내 기타 대기업",
+      "family": "market",
+      "publishedJobs": 8
+    },
+    {
+      "id": "kr_startup",
+      "name": "국내 스타트업",
+      "family": "market",
+      "publishedJobs": 4
+    },
+    {
+      "id": "kr_foreign_company",
+      "name": "국내 외국계",
+      "family": "market",
+      "publishedJobs": 4
+    },
+    {
+      "id": "online_gig",
+      "name": "단순 온라인 알바·태스크형 원격업무",
+      "family": "market",
+      "publishedJobs": 6
     }
   ],
   "jobs": [
     {
-      "id": "39d9fc6562ed21e6b6c1ed5d",
-      "title": "GIS Analyst",
-      "company": "ARS Progetti SPA",
-      "location": "Sri Lanka",
-      "market": "overseas",
-      "sector": "직무명 기반 탐색",
-      "source": "DevelopmentAid",
-      "url": "https://www.developmentaid.org/jobs/view/1790562/gis-analyst",
+      "id": "6d9d0cb00cec26b456a607e8",
+      "title": "(주)화신엔지니어링 수자원 계획·설계 - 경력직 채용",
+      "company": "(주)화신엔지니어링",
+      "location": "경기 안양시",
+      "market": "domestic",
+      "sector": "수자원·수문·수리·홍수·배수",
+      "sectors": [
+        "수자원·수문·수리·홍수·배수",
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "JobKorea",
+      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49386928",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
-      "deadline": "2026-07-31",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [
-        "마감일: 2026-07-31. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
-      ],
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
       "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다.",
-        "관할권별 취업허가 조건을 확인해야 합니다."
-      ],
-      "risks": [
-        "요구 경력과 현재 증거의 차이가 커서 현 단계 지원 대상으로 보기 어렵습니다."
-      ],
-      "evidenceGapCount": 11,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "0c69e4a0eb34c106ae8d1bd5",
-      "title": "Senior Climate Resilient Water Resources Management Advisor (Home based Retainer) - Addis Ababa, Ethiopia",
-      "company": "United Nations Office for Project Services (HQ)",
-      "location": "Ethiopia",
-      "market": "overseas",
-      "sector": "직무명 기반 탐색",
-      "source": "DevelopmentAid",
-      "url": "https://www.developmentaid.org/jobs/view/1790141/senior-climate-resilient-water-resources-management-advisor-home-based-retainer-addis-ababa-ethiopia",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
-      "deadline": "2026-08-06",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [
-        "마감일: 2026-08-06. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
-      ],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "요구 경력 연수와 분야를 확인해야 합니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다."
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
       ],
       "risks": [],
-      "evidenceGapCount": 12,
-      "evidenceBurden": "high"
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "61676afa1399b2f97304d9e6",
+      "title": "환경영향평가 재해영향평가 직원 채용",
+      "company": "기관 원문 확인",
+      "location": "경기사 , 수질환경기사 , 토양환경기사 , 토목설계 , 도시설계 외 수정일 26/07/16",
+      "market": "domestic",
+      "sector": "기후·환경·탄소·지속가능성",
+      "sectors": [
+        "기후·환경·탄소·지속가능성"
+      ],
+      "source": "Saramin",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/relay/view?location=ts&rec_idx=54390020",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "04c3f46255817023edb3c54d",
+      "title": "[개발협력 좋은 일자리] 마감 [전문가] '필리핀 현지 시민사회 활성화 및 자립 지원 방안 연구' 전문가 선발 공 '필리핀 현지 시민사회 활성화 및 자립 지원 방안 연구' 전문가 선발 공",
+      "company": "개발협력 좋은 일자리",
+      "location": "Korea",
+      "market": "domestic",
+      "sector": "국제개발·ODA·정책·PM",
+      "sectors": [
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "KOICA",
+      "url": "https://www.koica.go.kr/bbs/koica_kr/292/390814/artclView.do",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "fc9ff5de2b35476e9308e280",
+      "title": "Graduate Engineer",
+      "company": "AtkinsRealis",
+      "location": "Seoul, South Korea",
+      "market": "domestic",
+      "sector": "토목·인프라·설계·건설·운영",
+      "sectors": [
+        "토목·인프라·설계·건설·운영"
+      ],
+      "source": "Atkins",
+      "url": "https://slihrms.wd3.myworkdayjobs.com/Careers/job/KR5-Seolleung-ro-93-gil/Graduate-Engineer_R-157475",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "3c3cec9f2933cb274dfeb42f",
+      "title": "Customer Success Manager (D&I - South Korea)",
+      "company": "Planet",
+      "location": "South Korea, Remote",
+      "market": "domestic",
+      "sector": "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+      "sectors": [
+        "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+        "단순 온라인 알바·태스크형 원격업무",
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "Planet Labs",
+      "url": "https://job-boards.greenhouse.io/planetlabs/jobs/7772699",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "2faf38dae1bcaf25db7091d5",
+      "title": "(주)이수 수문 설계 및 CAD 캐드 정규직 채용",
+      "company": "(주)이수",
+      "location": "강원특별자치도 춘천시 퇴계공단1길 마감일 : 2026-08-08 등록일 : 2026-06-09",
+      "market": "domestic",
+      "sector": "수자원·기후 AI·홍수·환경예측",
+      "sectors": [
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "WorkNet API",
+      "url": "https://m.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet&wantedAuthNo=K152122606090013",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-08-08",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "0b9f5acb74d53b5cc87eb28d",
+      "title": "[AI CX사업부문] 데이터 분석가",
+      "company": "(주)플래티어",
+      "location": "서울 송파구",
+      "market": "domestic",
+      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "sectors": [
+        "데이터분석·ML·데이터엔지니어링·MLOps"
+      ],
+      "source": "JobKorea",
+      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49609301",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "b99be26a9e570198c9d42bf7",
+      "title": "제조/공공 부문 AX 솔루션 - 풀스택 / 백엔드 개발자",
+      "company": "엑센솔루션",
+      "location": "서울 금천구",
+      "market": "domestic",
+      "sector": "AI 인접 소프트웨어·데이터 전환직무",
+      "sectors": [
+        "AI 인접 소프트웨어·데이터 전환직무"
+      ],
+      "source": "JobKorea",
+      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49351411",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "3f0c83f9d31042a67b9a7e35",
+      "title": "2026년 유네스코한국위원회 정규직 신입직원 채용",
+      "company": "기관 원문 확인",
+      "location": "서울 중구 신입 대졸↑ 정규직 5,000 만원 공인회계사 , 학술연구 , 사업기획 , 전략기획 , 행사기획 외 수정일 26/07/14",
+      "market": "domestic",
+      "sector": "국내 공공기관·공기업",
+      "sectors": [
+        "국내 공공기관·공기업"
+      ],
+      "source": "Saramin",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/relay/view?location=ts&rec_idx=54448776",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "158ca53114186aa63a58b7f0",
+      "title": "2026년 제7회 경기도 임기제공무원 임용시험 공고",
+      "company": "경기도",
+      "location": "Korea",
+      "market": "domestic",
+      "sector": "국내 공무원",
+      "sectors": [
+        "국내 공무원",
+        "국내 공공기관·공기업"
+      ],
+      "source": "Nara Ilteo",
+      "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=299003&flag=U&menuNo=401&mngrMenuYn=N&searchJobsecode=020&selMenuNo=400&upperMenuNo=&wd=1200",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-08-05",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "887511a6119bde139205bccc",
+      "title": "(주)화신엔지니어링 - 수자원 계획·설계 경력직 채용",
+      "company": "(주)화신엔지니어링",
+      "location": "경기 안양시 동안구 등 마감일 : 2026-08-11 등록일 : 2026-06-12",
+      "market": "domestic",
+      "sector": "수자원·수문·수리·홍수·배수",
+      "sectors": [
+        "수자원·수문·수리·홍수·배수",
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "WorkNet API",
+      "url": "https://m.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?infoTypeCd=CSI&infoTypeGroup=tb_workinfogubun&wantedAuthNo=54158980",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-08-11",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "ef13d88ace23ba17b7c0dc46",
+      "title": "제주특별자치도 임기제공무원 임용시험 시행계획 공고(환경영향평가 분야)",
+      "company": "제주특별자치도",
+      "location": "Korea",
+      "market": "domestic",
+      "sector": "기후·환경·탄소·지속가능성",
+      "sectors": [
+        "기후·환경·탄소·지속가능성"
+      ],
+      "source": "Nara Ilteo",
+      "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=298273&flag=U&menuNo=401&mngrMenuYn=N&searchJobsecode=020&selMenuNo=400&upperMenuNo=&wd=1200",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-07-28",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "1d68636db8344cd2f023edcf",
+      "title": "[개발협력 좋은 일자리] [D-2] [전문가] 세네갈 지속가능한 미곡가치사슬 강화사업 사후지원 토목 관개 전문가 모집 재공고 세네갈 지속가능한 미곡가치사슬 강화사업 사후지원 토목 관개 전문가 모집 재공고 [New]",
+      "company": "개발협력 좋은 일자리",
+      "location": "Korea",
+      "market": "domestic",
+      "sector": "국제개발·ODA·정책·PM",
+      "sectors": [
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "KOICA",
+      "url": "https://www.koica.go.kr/bbs/koica_kr/292/390887/artclView.do",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "d7311bd26c11fe2fb7aea541",
+      "title": "[신입] 토목 설계(도로, 상하수도, 수자원, 구조 등) 기술자 채용공...",
+      "company": "주식회사 인트랜",
+      "location": "제주특별자치도 제주시 원노형6길 마감일 : 2026-08-23 등록일 : 2026-07-24",
+      "market": "domestic",
+      "sector": "토목·인프라·설계·건설·운영",
+      "sectors": [
+        "토목·인프라·설계·건설·운영",
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "WorkNet API",
+      "url": "https://m.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet&wantedAuthNo=K163012607240025",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-08-23",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "2b9d472a415f6a2fb190d1e9",
+      "title": "[위성영상 분석] 사업개발 및 공공·정부 사업 담당 (조달/나라장터)",
+      "company": "(주)스텔라비전",
+      "location": "서울 강서구",
+      "market": "domestic",
+      "sector": "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+      "sectors": [
+        "GeoAI·공간 AI·원격탐사·컴퓨터비전"
+      ],
+      "source": "JobKorea",
+      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49290547",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "4c4e531577d47de769e8d740",
+      "title": "[장애인만 채용] 한국 수자원 공사 단기계약근로자(우편택배물 관리) 4...",
+      "company": "한국 수자원 공사",
+      "location": "대전광역시 대덕구 신탄진로 마감일 : 2026-07-28 등록일 : 2026-07-14",
+      "market": "domestic",
+      "sector": "수자원·기후 AI·홍수·환경예측",
+      "sectors": [
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "WorkNet API",
+      "url": "https://m.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet&wantedAuthNo=Dd03902607140057",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-07-28",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "479fe3b9c0d8722ebc3cd2ea",
+      "title": "스마트쿱(주) 데이터 엔지니어 채용 공고",
+      "company": "스마트쿱(주)",
+      "location": "서울 금천구 경력무관 학력무관 정규직 데이터엔지니어 , AI(인공지능) , 소프트웨어개발 수정일 26/07/02",
+      "market": "domestic",
+      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "sectors": [
+        "데이터분석·ML·데이터엔지니어링·MLOps"
+      ],
+      "source": "Saramin",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/relay/view?location=ts&rec_idx=54352987",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "bc0a089136e9737a2005a654",
+      "title": "소프트웨어/통합 플랫폼 백엔드 개발자 모집",
+      "company": "한국아이오티기술원",
+      "location": "서울 금천구",
+      "market": "domestic",
+      "sector": "AI 인접 소프트웨어·데이터 전환직무",
+      "sectors": [
+        "AI 인접 소프트웨어·데이터 전환직무"
+      ],
+      "source": "JobKorea",
+      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49585247",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "64c7f74b70b99a4021762af2",
+      "title": "연구개발특구진흥재단 2026년 제2차 신규직원(정규직, 기간제) 채용 공고",
+      "company": "(재)연구개발특구진흥재단",
+      "location": "Korea",
+      "market": "domestic",
+      "sector": "국내 공무원",
+      "sectors": [
+        "국내 공무원",
+        "국내 공공기관·공기업"
+      ],
+      "source": "Nara Ilteo",
+      "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=297649&flag=U&menuNo=401&mngrMenuYn=N&searchJobsecode=020&selMenuNo=400&upperMenuNo=&wd=1200",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-07-29",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "300bc4a8a7e98bcf7ff8a525",
+      "title": "(주)화신엔지니어링 수자원 계획·설계 - 경력직 채용",
+      "company": "화신엔지니어링(주)",
+      "location": "경기 워라밸 3.1 잡코리아 지원",
+      "market": "domestic",
+      "sector": "수자원·수문·수리·홍수·배수",
+      "sectors": [
+        "수자원·수문·수리·홍수·배수",
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "JobPlanet",
+      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49386928",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "22ca70146be254f84ed8743f",
+      "title": "[개발협력 좋은 일자리] [D-5] [전문가] [사단법인 메디피스] 세네갈 국가공중보건실험실 체계강화사업 PMC PL 채용 공고 [사단법인 메디피스] 세네갈 국가공중보건실험실 체계강화사업 PMC PL 채용 공고 [New]",
+      "company": "사단법인 메디피스",
+      "location": "Korea",
+      "market": "domestic",
+      "sector": "국제개발·ODA·정책·PM",
+      "sectors": [
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "KOICA",
+      "url": "https://www.koica.go.kr/bbs/koica_kr/292/390880/artclView.do",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "0c976bbf6085bec7b9f8d1db",
+      "title": "(주)토펙엔지니어링 해외 ODA 사업 현장기술인 모집",
+      "company": "(주)토펙엔지니어링",
+      "location": "서울 강남구 경력5년↑ 학력무관 정규직·기간제 CM(건설사업관리) , 건설회사 , 감리회사 , 건축 수정일 26/07/23",
+      "market": "domestic",
+      "sector": "토목·인프라·설계·건설·운영",
+      "sectors": [
+        "토목·인프라·설계·건설·운영"
+      ],
+      "source": "Saramin",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/relay/view?location=ts&rec_idx=54505992",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "88503e80d417c93e5cb5b964",
+      "title": "[장애인만 채용] 한국 수자원 공사 단기계약근로자(사택 환경정비) 채용...",
+      "company": "한국 수자원 공사",
+      "location": "대전광역시 대덕구 신탄진로 마감일 : 2026-07-28 등록일 : 2026-07-14",
+      "market": "domestic",
+      "sector": "수자원·기후 AI·홍수·환경예측",
+      "sectors": [
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "WorkNet API",
+      "url": "https://m.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet&wantedAuthNo=Dd03902607140055",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-07-28",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "22405935405658cca03a24ce",
+      "title": "Data Engineer",
+      "company": "페어랩스",
+      "location": "대한민국 서울 (대면근무)",
+      "market": "domestic",
+      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "sectors": [
+        "데이터분석·ML·데이터엔지니어링·MLOps"
+      ],
+      "source": "LinkedIn Jobs",
+      "url": "https://www.linkedin.com/jobs/view/4410391289",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "c183ac60132c7faca749d10a",
+      "title": "재난안전 통합플랫폼 백엔드 개발자 채용공고",
+      "company": "기관 원문 확인",
+      "location": "서울 금천구 경력3년↑ 학력무관 정규직 기술지원 , 웹개발 , 웹마스터 , 유지보수 , 정보보안 외 수정일 26/07/15",
+      "market": "domestic",
+      "sector": "AI 인접 소프트웨어·데이터 전환직무",
+      "sectors": [
+        "AI 인접 소프트웨어·데이터 전환직무",
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "Saramin",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/relay/view?location=ts&rec_idx=54470993",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "9493d5e578442e545cdda94d",
+      "title": "2026년도 제3차 인공지능산업융합사업단 직원(프로젝트직) 채용 공고",
+      "company": "(재)광주정보문화산업진흥원",
+      "location": "Korea",
+      "market": "domestic",
+      "sector": "국내 공무원",
+      "sectors": [
+        "국내 공무원",
+        "국내 공공기관·공기업"
+      ],
+      "source": "Nara Ilteo",
+      "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=298938&flag=U&menuNo=401&mngrMenuYn=N&searchJobsecode=020&selMenuNo=400&upperMenuNo=&wd=1200",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-08-07",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "b4e672af967fd83f982b1c57",
+      "title": "[개발협력 좋은 일자리] 마감 [전문가] (~채용시 마감) KOICA CTS 파이프트리 데이터분석팀 채용공고 (~채용시 마감) KOICA CTS 파이프트리 데이터분석팀 채용공고",
+      "company": "KOICA",
+      "location": "Korea",
+      "market": "domestic",
+      "sector": "국제개발·ODA·정책·PM",
+      "sectors": [
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "KOICA",
+      "url": "https://www.koica.go.kr/bbs/koica_kr/292/390846/artclView.do",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "1b09fa90615520361bc3b7e1",
+      "title": "[수자원/방재 엔지니어링] 토목 엔지니어 채용",
+      "company": "하존이앤씨(주)",
+      "location": "경기 복지/급여 2.3 잡코리아 지원",
+      "market": "domestic",
+      "sector": "토목·인프라·설계·건설·운영",
+      "sectors": [
+        "토목·인프라·설계·건설·운영",
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "JobPlanet",
+      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49575021",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "92588211fde1c08076a18d02",
+      "title": "토목구조, 상하수도, 토질지질, 항만해안, 수자원 개발 고급이상 기술...",
+      "company": "(주)고산엔지니어링",
+      "location": "인천광역시 연수구 벚꽃로 마감일 : 2026-08-23 등록일 : 2026-06-24",
+      "market": "domestic",
+      "sector": "수자원·기후 AI·홍수·환경예측",
+      "sectors": [
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "WorkNet API",
+      "url": "https://m.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet&wantedAuthNo=K150012606240088",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-08-23",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "2f812ba04c24cbf67e7af91f",
+      "title": "Data Scientist - Remote",
+      "company": "YO IT Consulting",
+      "location": "대한민국 서울 서울 (재택근무)",
+      "market": "domestic",
+      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "sectors": [
+        "데이터분석·ML·데이터엔지니어링·MLOps"
+      ],
+      "source": "LinkedIn Jobs",
+      "url": "https://www.linkedin.com/jobs/view/4438971252",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "e882cd9d94217fe98033d2e5",
+      "title": "백엔드 개발자 1명 모집 (프론트엔드 경험 우대, 경력 5년 이상)",
+      "company": "(주)유엔이",
+      "location": "서울 용산구",
+      "market": "domestic",
+      "sector": "AI 인접 소프트웨어·데이터 전환직무",
+      "sectors": [
+        "AI 인접 소프트웨어·데이터 전환직무"
+      ],
+      "source": "JobKorea",
+      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49606740",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "cd38cb362b5d8c41e40597bd",
+      "title": "2026년도 국가공무원 경력경쟁채용시험 통합 안내",
+      "company": "인사혁신처",
+      "location": "Korea",
+      "market": "domestic",
+      "sector": "국내 공무원",
+      "sectors": [
+        "국내 공무원"
+      ],
+      "source": "Nara Ilteo",
+      "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=211954&flag=U&menuNo=401&mngrMenuYn=N&searchJobsecode=020&selMenuNo=400&upperMenuNo=&wd=1200",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-12-31",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "776b856acbc4f74bfddedec5",
+      "title": "WBG Pioneer -Water Intern",
+      "company": "World Bank Group",
+      "location": "Muscat, OM",
+      "market": "overseas",
+      "sector": "수자원·수문·수리·홍수·배수",
+      "sectors": [
+        "수자원·수문·수리·홍수·배수",
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "World Bank",
+      "url": "https://worldbankgroup.csod.com/ux/ats/careersite/1/home/requisition/37654?c=worldbankgroup",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "31ec7c32dd3474e2bf556afb",
+      "title": "GIS Analyst I - Information Technology",
+      "company": "Pima County",
+      "location": "Tucson, AZ, US",
+      "market": "overseas",
+      "sector": "GIS·공간정보·원격탐사·디지털트윈",
+      "sectors": [
+        "GIS·공간정보·원격탐사·디지털트윈"
+      ],
+      "source": "Indeed Global",
+      "url": "https://www.indeed.com/viewjob?jk=dfdb38ca29bcd9cc",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "51feaec7e5e2900e681244a1",
+      "title": "Environment Specialist (Fluent in French) - Freelance AI Trainer Project",
+      "company": "Meridial",
+      "location": "Switzerland",
+      "market": "overseas",
+      "sector": "기후·환경·탄소·지속가능성",
+      "sectors": [
+        "기후·환경·탄소·지속가능성"
+      ],
+      "source": "Meridial",
+      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4645618101",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "5b6fc130c7c68621cbcdb41d",
+      "title": "Junior Consultant - Programme Coordinator Junior Consultant - Programme Coordinator",
+      "company": "United Nations Environment Programme 22302230",
+      "location": "NAIROBI 2400",
+      "market": "overseas",
+      "sector": "국제개발·ODA·정책·PM",
+      "sectors": [
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "UN Careers",
+      "url": "https://careers.un.org/jobSearchDescription/281113?language=en",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "36c4b4fc8f7252f67f169c52",
+      "title": "Graduate Engineer",
+      "company": "AtkinsRealis",
+      "location": "Singapore",
+      "market": "overseas",
+      "sector": "토목·인프라·설계·건설·운영",
+      "sectors": [
+        "토목·인프라·설계·건설·운영"
+      ],
+      "source": "Atkins",
+      "url": "https://slihrms.wd3.myworkdayjobs.com/Careers/job/SG-Singapore---Market-Street/Graduate-Engineer_R-154166",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "09c343aa2d0b36a3538033f8",
+      "title": "GIS Intern",
+      "company": "WorldFish",
+      "location": "Mandla, Madhya Pradesh, India",
+      "market": "overseas",
+      "sector": "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+      "sectors": [
+        "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+        "GIS·공간정보·원격탐사·디지털트윈"
+      ],
+      "source": "WorldFish",
+      "url": "https://apply.workable.com/j/F7326F31D8",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "17a42f784362589c4876f56b",
+      "title": "Consultant - Resource Mobilization and IFI Engagement Specialist",
+      "company": "International Water Management Institute",
+      "location": "Sri Lanka",
+      "market": "overseas",
+      "sector": "수자원·기후 AI·홍수·환경예측",
+      "sectors": [
+        "수자원·기후 AI·홍수·환경예측",
+        "국제개발·ODA·정책·PM",
+        "수자원·수문·수리·홍수·배수",
+        "GIS·공간정보·원격탐사·디지털트윈"
+      ],
+      "source": "IWMI",
+      "url": "https://apply.workable.com/j/5B3FA8C46C",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "3ee2ff349b96a688fc4de33d",
+      "title": "BIM Engineer - Infrastructure Civil 3D / Water",
+      "company": "AtkinsRealis",
+      "location": "Bangalore, Noida, Gurgaon, Haryana",
+      "market": "overseas",
+      "sector": "건설·인프라 AI·BIM·디지털트윈·예지보전",
+      "sectors": [
+        "건설·인프라 AI·BIM·디지털트윈·예지보전"
+      ],
+      "source": "Atkins",
+      "url": "https://slihrms.wd3.myworkdayjobs.com/Careers/job/AtkinsRalis---Corporate-Office-Bangalore/BIM-Engineer-I_R-156023-2",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "12a271b6969cbb6db16e5234",
+      "title": "Onyx OCR Annotation (Catalan)",
+      "company": "OneForma",
+      "location": "Worldwide",
+      "market": "overseas",
+      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "sectors": [
+        "데이터분석·ML·데이터엔지니어링·MLOps",
+        "단순 온라인 알바·태스크형 원격업무"
+      ],
+      "source": "OneForma",
+      "url": "https://www.oneforma.com/jobs/onyx-ocr-annotation-catalan",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "05710733cda663241cefe8e1",
+      "title": "WBG Pioneer - AI Product and Agentic Systems Intern",
+      "company": "World Bank Group",
+      "location": "Chennai, IN, Washington, DC, US, Sofia, BG",
+      "market": "overseas",
+      "sector": "AI 제품·솔루션·컨설팅·프리세일즈",
+      "sectors": [
+        "AI 제품·솔루션·컨설팅·프리세일즈",
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "World Bank",
+      "url": "https://worldbankgroup.csod.com/ux/ats/careersite/1/home/requisition/37748?c=worldbankgroup",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "01278263bbb594572bc72885",
+      "title": "Senior Carbon Finance Officer",
+      "company": "GGGI",
+      "location": "Manila Philippines",
+      "market": "overseas",
+      "sector": "AI 정책·거버넌스·리스크·컴플라이언스",
+      "sectors": [
+        "AI 정책·거버넌스·리스크·컴플라이언스",
+        "기후·환경·탄소·지속가능성",
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "GGGI",
+      "url": "https://careers.gggi.org/vacancy/senior-carbon-finance-officer-614746.html",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "9d4e6dd38495cd75ecc2ecce",
+      "title": "AI & Automation Developer (n8n, Agentic AI, Chatbots)",
+      "company": "Cure Business Solutions",
+      "location": "Remote, US",
+      "market": "overseas",
+      "sector": "AI 인접 소프트웨어·데이터 전환직무",
+      "sectors": [
+        "AI 인접 소프트웨어·데이터 전환직무"
+      ],
+      "source": "Indeed Remote",
+      "url": "https://www.indeed.com/viewjob?jk=70a37788ea243e32",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "022244faeb1e4119edb73eb0",
+      "title": "Contract Specialist",
+      "company": "Esri",
+      "location": "Redlands, CA",
+      "market": "overseas",
+      "sector": "국내 공공기관·공기업",
+      "sectors": [
+        "국내 공공기관·공기업",
+        "국내 공무원",
+        "국내 외국계",
+        "국내 스타트업",
+        "국내 기타 대기업",
+        "국내 인기 대기업"
+      ],
+      "source": "Esri",
+      "url": "https://www.esri.com/careers/5176114007?gh_jid=5176114007",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "4628a239082560c3689c9358",
+      "title": "현장직원 9차 통합 (기술,경비,미화,기타)",
+      "company": "우체국시설관리단",
+      "location": "11, KR",
+      "market": "overseas",
+      "sector": "국내 공무원",
+      "sectors": [
+        "국내 공무원",
+        "국내 공공기관·공기업"
+      ],
+      "source": "Indeed Korea",
+      "url": "https://kr.indeed.com/viewjob?jk=527d14d0938bbdcd",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "2ce88b00322ac592e81cb4f4",
+      "title": "Interdisciplinary",
+      "company": "US Joint Activities",
+      "location": "Fort Gordon, GA, US",
+      "market": "overseas",
+      "sector": "국내 기타 대기업",
+      "sectors": [
+        "국내 기타 대기업",
+        "국내 인기 대기업"
+      ],
+      "source": "Indeed Global",
+      "url": "https://www.indeed.com/viewjob?jk=ed5d192708293201",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "a4498f0190f523a4a301c505",
+      "title": "Alpha Telescopii - Entertainment Media Content Rater - Spanish (Mexico)",
+      "company": "Welo Global",
+      "location": "Mexico",
+      "market": "overseas",
+      "sector": "단순 온라인 알바·태스크형 원격업무",
+      "sectors": [
+        "단순 온라인 알바·태스크형 원격업무"
+      ],
+      "source": "Welo Global",
+      "url": "https://jobs.lever.co/weloglobal/aec0e41d-042e-47ef-88e4-4ed653b550ce",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "ebbc81d1fdcbd1054b820aa8",
+      "title": "Research Specialist - Water Resources Management",
+      "company": "International Water Management Institute",
+      "location": "Tashkent, Uzbekistan",
+      "market": "overseas",
+      "sector": "수자원·수문·수리·홍수·배수",
+      "sectors": [
+        "수자원·수문·수리·홍수·배수",
+        "수자원·기후 AI·홍수·환경예측",
+        "기후·환경·탄소·지속가능성",
+        "AI 정책·거버넌스·리스크·컴플라이언스",
+        "GIS·공간정보·원격탐사·디지털트윈",
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "IWMI",
+      "url": "https://apply.workable.com/j/B3A17FC605",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "2a72d8391a008cb0045e02fc",
+      "title": "Geographical Information Systems Intern Geographical Information Systems Intern",
+      "company": "Department of Political and Peacebuilding Affairs-Department of Peace Operations-Shared Structure U10010750",
+      "location": "NEW YORK 4560",
+      "market": "overseas",
+      "sector": "GIS·공간정보·원격탐사·디지털트윈",
+      "sectors": [
+        "GIS·공간정보·원격탐사·디지털트윈"
+      ],
+      "source": "UN Careers",
+      "url": "https://careers.un.org/jobSearchDescription/270034?language=en",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "c890794a5c27f1c5ca232cf2",
+      "title": "Environment Specialist (Fluent in French) - Freelance AI Trainer Project",
+      "company": "Meridial",
+      "location": "Belgium",
+      "market": "overseas",
+      "sector": "기후·환경·탄소·지속가능성",
+      "sectors": [
+        "기후·환경·탄소·지속가능성"
+      ],
+      "source": "Meridial",
+      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4645617101",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
     },
     {
       "id": "a782a8d9165924bb3b9850fd",
@@ -103,18 +1618,1311 @@
       "company": "United Nations Office for Project Services (HQ)",
       "location": "Ethiopia",
       "market": "overseas",
-      "sector": "직무명 기반 탐색",
+      "sector": "국제개발·ODA·정책·PM",
+      "sectors": [
+        "국제개발·ODA·정책·PM",
+        "수자원·기후 AI·홍수·환경예측"
+      ],
       "source": "DevelopmentAid",
       "url": "https://www.developmentaid.org/jobs/view/1790143/senior-climate-resilient-urban-development-advisor-home-based-retainer-addis-ababa-ethiopia",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
       "deadline": "2026-08-06",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "48e00286ac0f883ab4591c35",
+      "title": "Senior Geotechnical Engineer- Kiewit Infrastructure Engineers",
+      "company": "Kiewit Corporation",
+      "location": "Remote, US",
+      "market": "overseas",
+      "sector": "토목·인프라·설계·건설·운영",
+      "sectors": [
+        "토목·인프라·설계·건설·운영"
+      ],
+      "source": "Indeed Remote",
+      "url": "https://www.indeed.com/viewjob?jk=ba25f0ad8fbd71df",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "0f115363b93d7fb5707067fb",
+      "title": "Deep Learning Software Engineer, Inference - New College Grad 2026",
+      "company": "NVIDIA",
+      "location": "Remote",
+      "market": "overseas",
+      "sector": "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+      "sectors": [
+        "GeoAI·공간 AI·원격탐사·컴퓨터비전"
+      ],
+      "source": "RemoteJobs.org API",
+      "url": "https://remotejobs.org/remote-jobs/deep-learning-software-engineer-inference-new-college-grad-2026-nvidia",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "03409890e36cffedf5fe82ca",
+      "title": "Business Group Leader - Water, US Central Region",
+      "company": "GHD",
+      "location": "HOUSTON, TX, United States",
+      "market": "overseas",
+      "sector": "수자원·기후 AI·홍수·환경예측",
+      "sectors": [
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "GHD",
+      "url": "https://ejov.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/27257",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "00888f2376be8f8f9ca9f1ec",
+      "title": "Contract Administrator",
+      "company": "GHD",
+      "location": "Whitby, ON, Canada",
+      "market": "overseas",
+      "sector": "건설·인프라 AI·BIM·디지털트윈·예지보전",
+      "sectors": [
+        "건설·인프라 AI·BIM·디지털트윈·예지보전"
+      ],
+      "source": "GHD",
+      "url": "https://ejov.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/27195",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "12d46a2da1e789bf27895fea",
+      "title": "Data Scientist, Mid",
+      "company": "Booz Allen Hamilton",
+      "location": "Springfield, VA, US",
+      "market": "overseas",
+      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "sectors": [
+        "데이터분석·ML·데이터엔지니어링·MLOps"
+      ],
+      "source": "Indeed Global",
+      "url": "https://www.indeed.com/viewjob?jk=8f3c017da69500ba",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "23c3b2f26eb1fc5e6649051e",
+      "title": "AI & Tech Internship Program (Software, Product, Ops, GTM)",
+      "company": "Wing Data",
+      "location": "Shanghai",
+      "market": "overseas",
+      "sector": "AI 제품·솔루션·컨설팅·프리세일즈",
+      "sectors": [
+        "AI 제품·솔루션·컨설팅·프리세일즈"
+      ],
+      "source": "Wing Data",
+      "url": "https://jobs.lever.co/getwingapp/98e9d5d7-cfe4-4646-8a1d-19589148b7b0",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "03751267711a807e13ae8db3",
+      "title": "Pre-Feasibility Study for Bankable Biodiesel Project in ENB, Papua New Guinea",
+      "company": "GGGI",
+      "location": "Port Moresby Papua New Guinea",
+      "market": "overseas",
+      "sector": "AI 정책·거버넌스·리스크·컴플라이언스",
+      "sectors": [
+        "AI 정책·거버넌스·리스크·컴플라이언스"
+      ],
+      "source": "GGGI",
+      "url": "https://careers.gggi.org/vacancy/prefeasibility-study-for-bankable-biodiesel-project-in-enb-papua-new-guinea-614864.html",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "c020056eefd2c978dae93cb0",
+      "title": "Senior Backend Developer (m/w/d) Java / Spring Boot",
+      "company": "dokSAFE GmbH",
+      "location": "Leipzig",
+      "market": "overseas",
+      "sector": "AI 인접 소프트웨어·데이터 전환직무",
+      "sectors": [
+        "AI 인접 소프트웨어·데이터 전환직무"
+      ],
+      "source": "Arbeitnow API",
+      "url": "https://www.arbeitnow.com/jobs/companies/doksafe-gmbh/senior-backend-developer-java-spring-boot-leipzig-264891",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "030e13580ef78f4253e858af",
+      "title": "Sr. C++ Software Development Engineer - ArcGIS Geocoding Algorithms",
+      "company": "Esri",
+      "location": "Redlands, CA",
+      "market": "overseas",
+      "sector": "국내 공공기관·공기업",
+      "sectors": [
+        "국내 공공기관·공기업",
+        "국내 공무원",
+        "국내 외국계",
+        "국내 스타트업",
+        "국내 기타 대기업",
+        "국내 인기 대기업"
+      ],
+      "source": "Esri",
+      "url": "https://www.esri.com/careers/5125710007?gh_jid=5125710007",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "96aafad3a44352de95b6cc0b",
+      "title": "Structural Engineering Intern",
+      "company": "Garver",
+      "location": "Greenville, SC, US",
+      "market": "overseas",
+      "sector": "국내 기타 대기업",
+      "sectors": [
+        "국내 기타 대기업",
+        "국내 인기 대기업"
+      ],
+      "source": "Indeed Global",
+      "url": "https://www.indeed.com/viewjob?jk=3f6e868cce4ed551",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "10017e12bc470ec5b73c8305",
+      "title": "Generative AI Analyst | Maltese (Malta)",
+      "company": "Welo Global",
+      "location": "Valetta, Malta",
+      "market": "overseas",
+      "sector": "단순 온라인 알바·태스크형 원격업무",
+      "sectors": [
+        "단순 온라인 알바·태스크형 원격업무"
+      ],
+      "source": "Welo Global",
+      "url": "https://jobs.lever.co/weloglobal/c030af7d-7637-4106-a5fe-eea0106d41c5",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "8b1909fb620faf2e8d903445",
+      "title": "Project Associate [Open to internal and external applicants]",
+      "company": "UNDP",
+      "location": "Chisinau, Republic of Moldova",
+      "market": "overseas",
+      "sector": "수자원·수문·수리·홍수·배수",
+      "sectors": [
+        "수자원·수문·수리·홍수·배수",
+        "AI 정책·거버넌스·리스크·컴플라이언스",
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "UNDP",
+      "url": "https://estm.fa.em2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/35519",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "e90ed9d0540c1389f10300bf",
+      "title": "GIS Developer / DBA GIS Developer / DBA",
+      "company": "Office of Information and Communications Technology 89328932",
+      "location": "CHI - Other cities 0849",
+      "market": "overseas",
+      "sector": "GIS·공간정보·원격탐사·디지털트윈",
+      "sectors": [
+        "GIS·공간정보·원격탐사·디지털트윈"
+      ],
+      "source": "UN Careers",
+      "url": "https://careers.un.org/jobSearchDescription/278268?language=en",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "3a863db51334e035ecb91050",
+      "title": "Tupande Health Safety and Environment Supervisor",
+      "company": "One Acre Fund Kenya (HQ)",
+      "location": "Kenya",
+      "market": "overseas",
+      "sector": "기후·환경·탄소·지속가능성",
+      "sectors": [
+        "기후·환경·탄소·지속가능성"
+      ],
+      "source": "DevelopmentAid",
+      "url": "https://www.developmentaid.org/jobs/view/1790321/tupande-health-safety-and-environment-supervisor-fixed-term",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-10-21",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "0c69e4a0eb34c106ae8d1bd5",
+      "title": "Senior Climate Resilient Water Resources Management Advisor (Home based Retainer) - Addis Ababa, Ethiopia",
+      "company": "United Nations Office for Project Services (HQ)",
+      "location": "Ethiopia",
+      "market": "overseas",
+      "sector": "국제개발·ODA·정책·PM",
+      "sectors": [
+        "국제개발·ODA·정책·PM",
+        "수자원·수문·수리·홍수·배수",
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "DevelopmentAid",
+      "url": "https://www.developmentaid.org/jobs/view/1790141/senior-climate-resilient-water-resources-management-advisor-home-based-retainer-addis-ababa-ethiopia",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-08-06",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "ee8fff13fb3913840a653868",
+      "title": "Senior Civil Engineer",
+      "company": "Revamp Engineering, Inc",
+      "location": "Remote, US",
+      "market": "overseas",
+      "sector": "토목·인프라·설계·건설·운영",
+      "sectors": [
+        "토목·인프라·설계·건설·운영"
+      ],
+      "source": "Indeed Remote",
+      "url": "https://www.indeed.com/viewjob?jk=4158ea376dd09011",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "219b0beb702c4879d5449ed5",
+      "title": "Visiting Scientist (San Francisco Office)",
+      "company": "Planet",
+      "location": "San Francisco, CA",
+      "market": "overseas",
+      "sector": "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+      "sectors": [
+        "GeoAI·공간 AI·원격탐사·컴퓨터비전"
+      ],
+      "source": "Planet Labs",
+      "url": "https://job-boards.greenhouse.io/planetlabs/jobs/7912657",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "0463c23f3e8116c5d2ea1183",
+      "title": "Account Lead - Mining",
+      "company": "Arcadis",
+      "location": "Sudbury, ON, Canada / Saskatoon, SK, Canada / Vancouver, BC, Canada",
+      "market": "overseas",
+      "sector": "수자원·기후 AI·홍수·환경예측",
+      "sectors": [
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "Arcadis",
+      "url": "https://jobs.arcadis.com/careers/job/563671532458726",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "04c1147436d5435d11edec59",
+      "title": "Principal Engineer, Water Infrastructure, REC",
+      "company": "Ramboll",
+      "location": "Noida, India",
+      "market": "overseas",
+      "sector": "건설·인프라 AI·BIM·디지털트윈·예지보전",
+      "sectors": [
+        "건설·인프라 AI·BIM·디지털트윈·예지보전"
+      ],
+      "source": "Ramboll",
+      "url": "https://www.ramboll.com/careers/8cebe0c7-b7d1-4071-18dc-08dedb45aaf0",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "54969b13dbea8d71935a73f8",
+      "title": "Senior Data Engineer - Consumer Subscriptions",
+      "company": "SpaceXAI",
+      "location": "New York, NY, Palo Alto, CA",
+      "market": "overseas",
+      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "sectors": [
+        "데이터분석·ML·데이터엔지니어링·MLOps"
+      ],
+      "source": "xAI",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5109703007",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "360da846e230672eca1f8eac",
+      "title": "Senior Contracts Manager",
+      "company": "Planet",
+      "location": "San Francisco, CA, Washington D.C.",
+      "market": "overseas",
+      "sector": "AI 제품·솔루션·컨설팅·프리세일즈",
+      "sectors": [
+        "AI 제품·솔루션·컨설팅·프리세일즈"
+      ],
+      "source": "Planet Labs",
+      "url": "https://job-boards.greenhouse.io/planetlabs/jobs/7979253",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "0c5a55947e37688eb30294cb",
+      "title": "Senior Analyst, Safety Operations (Child Safety)",
+      "company": "SpaceXAI",
+      "location": "Bastrop, TX",
+      "market": "overseas",
+      "sector": "AI 정책·거버넌스·리스크·컴플라이언스",
+      "sectors": [
+        "AI 정책·거버넌스·리스크·컴플라이언스"
+      ],
+      "source": "xAI",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5097907007",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "34dac6108fa7d17b784dcba9",
+      "title": "Life Cycle Initiative Intern Life Cycle Initiative Intern",
+      "company": "United Nations Environment Programme 22302230",
+      "location": "PARIS 1470",
+      "market": "overseas",
+      "sector": "국내 공공기관·공기업",
+      "sectors": [
+        "국내 공공기관·공기업",
+        "국내 외국계",
+        "국내 스타트업",
+        "국내 공무원",
+        "국내 기타 대기업",
+        "국내 인기 대기업"
+      ],
+      "source": "UN Careers",
+      "url": "https://careers.un.org/jobSearchDescription/280578?language=en",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "9bd1cd4249bc5015f480aed5",
+      "title": "Programme Analyst",
+      "company": "UNDP",
+      "location": "Myanmar",
+      "market": "overseas",
+      "sector": "국내 기타 대기업",
+      "sectors": [
+        "국내 기타 대기업",
+        "국내 인기 대기업"
+      ],
+      "source": "UNDP",
+      "url": "https://estm.fa.em2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/35359",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "296b92e7fb958f02b2baaa61",
+      "title": "Project Slice | Remote CT Annotation & Report Generation | Medical Students & Recent Graduates (US)",
+      "company": "OneForma",
+      "location": "US",
+      "market": "overseas",
+      "sector": "단순 온라인 알바·태스크형 원격업무",
+      "sectors": [
+        "단순 온라인 알바·태스크형 원격업무"
+      ],
+      "source": "OneForma",
+      "url": "https://www.oneforma.com/jobs/slice-students",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "06787259f55c3cac4b8bbee8",
+      "title": "Sales Manager, Southern Europe",
+      "company": "DHI",
+      "location": "France",
+      "market": "overseas",
+      "sector": "수자원·수문·수리·홍수·배수",
+      "sectors": [
+        "수자원·수문·수리·홍수·배수"
+      ],
+      "source": "DHI",
+      "url": "https://dhi.career.emply.com/ad/sales-manager-southern-europe/98p45z/en",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "039f33cfea994f786cf29af8",
+      "title": "Geospatial Analyst",
+      "company": "Leidos",
+      "location": "Alexandria, VA, US",
+      "market": "overseas",
+      "sector": "GIS·공간정보·원격탐사·디지털트윈",
+      "sectors": [
+        "GIS·공간정보·원격탐사·디지털트윈"
+      ],
+      "source": "Indeed Global",
+      "url": "https://www.indeed.com/viewjob?jk=0bca2f8b376e503c",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "4e87762990adca109c3a8329",
+      "title": "Urban Planner Urban Planner",
+      "company": "United Nations Human Settlements Programme 19801980",
+      "location": "NAIROBI 2400",
+      "market": "overseas",
+      "sector": "기후·환경·탄소·지속가능성",
+      "sectors": [
+        "기후·환경·탄소·지속가능성",
+        "GIS·공간정보·원격탐사·디지털트윈",
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "UN Careers",
+      "url": "https://careers.un.org/jobSearchDescription/281696?language=en",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "62ddeb474fa9f38ecaf9f525",
+      "title": "Country Representative, Côte d’Ivoire",
+      "company": "WorldFish",
+      "location": "Abidjan, Abidjan Autonomous District, Côte d'Ivoire",
+      "market": "overseas",
+      "sector": "국제개발·ODA·정책·PM",
+      "sectors": [
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "WorldFish",
+      "url": "https://apply.workable.com/j/249448A9A3",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "014dae02d14937075ce720e2",
+      "title": "Project Engineering Manager - Core Spreads Manufacturing",
+      "company": "Flora Food Group",
+      "location": "Pratau, Saxony-Anhalt, Germany",
+      "market": "overseas",
+      "sector": "토목·인프라·설계·건설·운영",
+      "sectors": [
+        "토목·인프라·설계·건설·운영"
+      ],
+      "source": "Arbeitnow API",
+      "url": "https://www.arbeitnow.com/jobs/companies/flora-food-group/project-engineering-manager-core-spreads-manufacturing-pratau-246770",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "0c10a6ff1e4ea80746881122",
+      "title": "Geospatial Reasoning Specialist (Senior) - Freelance AI Trainer Project",
+      "company": "Meridial",
+      "location": "India",
+      "market": "overseas",
+      "sector": "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+      "sectors": [
+        "GeoAI·공간 AI·원격탐사·컴퓨터비전",
+        "GIS·공간정보·원격탐사·디지털트윈"
+      ],
+      "source": "Meridial",
+      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4708971101",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "19510daa67b5c280b0d9d3fc",
+      "title": "Construction Manager Lead",
+      "company": "LJB, INC.",
+      "location": "Remote, US",
+      "market": "overseas",
+      "sector": "수자원·기후 AI·홍수·환경예측",
+      "sectors": [
+        "수자원·기후 AI·홍수·환경예측",
+        "토목·인프라·설계·건설·운영"
+      ],
+      "source": "Indeed Remote",
+      "url": "https://www.indeed.com/viewjob?jk=676d1cd097f563dd",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "2ef8e108de8c75a1f2d26c99",
+      "title": "General Virtual Assistant | Bilingual: Cantonese & English | (Remote)",
+      "company": "Wing Data",
+      "location": "Makati",
+      "market": "overseas",
+      "sector": "건설·인프라 AI·BIM·디지털트윈·예지보전",
+      "sectors": [
+        "건설·인프라 AI·BIM·디지털트윈·예지보전"
+      ],
+      "source": "Wing Data",
+      "url": "https://jobs.lever.co/getwingapp/ff21b498-820a-43f4-8149-0b20b9d467c6",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "129b479898e7bc8c008a9ed0",
+      "title": "지역개발 컨설팅 경력자",
+      "company": "에코메아리",
+      "location": "05, KR",
+      "market": "overseas",
+      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "sectors": [
+        "데이터분석·ML·데이터엔지니어링·MLOps"
+      ],
+      "source": "Indeed Korea",
+      "url": "https://kr.indeed.com/viewjob?jk=72b0d8726503cfa3",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "66942dcacff07158faa7d5df",
+      "title": "Product Manager (m/f/d)",
+      "company": "Brighter AI Technologies GmbH",
+      "location": "Berlin",
+      "market": "overseas",
+      "sector": "AI 제품·솔루션·컨설팅·프리세일즈",
+      "sectors": [
+        "AI 제품·솔루션·컨설팅·프리세일즈"
+      ],
+      "source": "Arbeitnow API",
+      "url": "https://www.arbeitnow.com/jobs/companies/brighter-ai-technologies-gmbh/product-manager-berlin-455143",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "1e936f91d5e6e5fd7e071203",
+      "title": "Sr. Infrastructure Engineer",
+      "company": "Hummingbird Healthcare",
+      "location": "Remote",
+      "market": "overseas",
+      "sector": "AI 정책·거버넌스·리스크·컴플라이언스",
+      "sectors": [
+        "AI 정책·거버넌스·리스크·컴플라이언스"
+      ],
+      "source": "RemoteJobs.org API",
+      "url": "https://remotejobs.org/remote-jobs/sr-infrastructure-engineer-hummingbird-healthcare",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "365c89df39d89120555e1ee2",
+      "title": "Hub Director-Western Africa Hub & Sahel and Agricultural Policy Expert",
+      "company": "International Institute of Tropical Agriculture",
+      "location": "Abuja, Federal Capital Territory, Nigeria",
+      "market": "overseas",
+      "sector": "국내 공공기관·공기업",
+      "sectors": [
+        "국내 공공기관·공기업",
+        "국내 외국계",
+        "국내 스타트업",
+        "국내 공무원",
+        "국제개발·ODA·정책·PM",
+        "국내 기타 대기업",
+        "국내 인기 대기업"
+      ],
+      "source": "IITA",
+      "url": "https://apply.workable.com/j/F3D832DEBA",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "130eea736844ec5f0a7ff73c",
+      "title": "Strategic Project Lead, Finance Expertise",
+      "company": "micro1",
+      "location": "Remote, US",
+      "market": "overseas",
+      "sector": "국내 기타 대기업",
+      "sectors": [
+        "국내 기타 대기업",
+        "국내 인기 대기업"
+      ],
+      "source": "Indeed Remote",
+      "url": "https://www.indeed.com/viewjob?jk=6105372ef47012fa",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "09713169ab4be9df14ca7c22",
+      "title": "Director of Business Development, East Coast",
+      "company": "Copper",
+      "location": "remote position with regular travel throughout the East Coast and to our headqua",
+      "market": "overseas",
+      "sector": "단순 온라인 알바·태스크형 원격업무",
+      "sectors": [
+        "단순 온라인 알바·태스크형 원격업무"
+      ],
+      "source": "Green Jobs Network",
+      "url": "https://greenjobs.greenjobsearch.org/jobs/director-of-business-development-east-coast",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "0e0ddd7e19f74d5d19fab27c",
+      "title": "International Project Manager - H/F",
+      "company": "SUEZ",
+      "location": "JO",
+      "market": "overseas",
+      "sector": "수자원·수문·수리·홍수·배수",
+      "sectors": [
+        "수자원·수문·수리·홍수·배수",
+        "수자원·기후 AI·홍수·환경예측"
+      ],
+      "source": "SUEZ",
+      "url": "https://hris-suez.csod.com/ux/ats/careersite/10/home/requisition/52161?c=hris-suez",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "39d9fc6562ed21e6b6c1ed5d",
+      "title": "GIS Analyst",
+      "company": "ARS Progetti SPA",
+      "location": "Sri Lanka",
+      "market": "overseas",
+      "sector": "GIS·공간정보·원격탐사·디지털트윈",
+      "sectors": [
+        "GIS·공간정보·원격탐사·디지털트윈"
+      ],
+      "source": "DevelopmentAid",
+      "url": "https://www.developmentaid.org/jobs/view/1790562/gis-analyst",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "2026-07-31",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "d36eb7f5d79ab9b2bf77a835",
+      "title": "Senior Underwater Acoustics Specialist / Technical Lead",
+      "company": "DHI",
+      "location": "Aleja Zwycięstwa, 96/98, 81-451, Gdynia, Poland",
+      "market": "overseas",
+      "sector": "기후·환경·탄소·지속가능성",
+      "sectors": [
+        "기후·환경·탄소·지속가능성"
+      ],
+      "source": "DHI",
+      "url": "https://dhi.career.emply.com/ad/senior-underwater-acoustics-specialist-technical-lead/qhpof6/en",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "667337aad7edc3b92aa6298e",
+      "title": "Liaison Officer for Jamaica (Re-advertised) (Remote (Remote), KR)",
+      "company": "GCF",
+      "location": "Remote (Remote), KR",
+      "market": "overseas",
+      "sector": "국제개발·ODA·정책·PM",
+      "sectors": [
+        "국제개발·ODA·정책·PM"
+      ],
+      "source": "GCF",
+      "url": "https://jobs.consultant.greenclimate.fund/job/Remote-%28Remote%29-Liaison-Officer-for-Jamaica-%28Re-advertised%29/1418521833?feedId=null",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "분야 탐색",
+      "discoveryReason": "해당 분야에서 원문 근거가 확인된 탐색 후보입니다. 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "분야 원문 근거"
+    },
+    {
+      "id": "c2129c20bf407573f95d5d78",
+      "title": "Civil/Structural Engineer",
+      "company": "SUEZ",
+      "location": "AE",
+      "market": "overseas",
+      "sector": "토목·인프라·설계·건설·운영",
+      "sectors": [
+        "토목·인프라·설계·건설·운영"
+      ],
+      "source": "SUEZ",
+      "url": "https://hris-suez.csod.com/ux/ats/careersite/10/home/requisition/49630?c=hris-suez",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "인접 탐색",
+      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
+      "deadline": "",
+      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
+      "requirements": [],
+      "checks": [
+        "현재 공개 상태와 지원 자격을 원문에서 확인"
+      ],
+      "risks": [],
+      "evidenceGapCount": null,
+      "evidenceBurden": "원문 확인",
+      "sectorEvidence": "인접 근거"
+    },
+    {
+      "id": "0023d2ca91a6566e64cccc9e",
+      "title": "2026년도 제2회 충청북도영동교육지원청 교육공무직원 공개채용 재공고",
+      "company": "충청북도교육청 충청북도영동교육지원청",
+      "location": "Korea",
+      "market": "domestic",
+      "sector": "AI 인접 소프트웨어·데이터 전환직무",
+      "sectors": [
+        "AI 인접 소프트웨어·데이터 전환직무",
+        "생성형 AI·LLM·에이전트·업무자동화"
+      ],
+      "source": "Nara Ilteo",
+      "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=298829&flag=U&menuNo=401&mngrMenuYn=N&searchJobsecode=020&selMenuNo=400&upperMenuNo=&wd=1200",
+      "queue": "hold",
+      "queueLabel": "추가 검토",
+      "discoveryTier": "explore",
+      "discoveryLabel": "기존 탐색",
+      "discoveryReason": "기존 V4 탐색 목록 항목입니다. 분야 분류와 지원 가능 여부는 공식 원문에서 다시 확인해야 합니다.",
+      "deadline": "2026-07-27",
       "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
       "requirements": [
-        "마감일: 2026-08-06. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
+        "마감일: 2026-07-27. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
       ],
       "checks": [
         "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
@@ -125,7 +2933,8 @@
       ],
       "risks": [],
       "evidenceGapCount": 12,
-      "evidenceBurden": "high"
+      "evidenceBurden": "high",
+      "sectorEvidence": "기존 V4 분야 탐색"
     },
     {
       "id": "6c77b01756b962f8d61d75b4",
@@ -133,14 +2942,17 @@
       "company": "채용기관 미확인",
       "location": "Kenya",
       "market": "overseas",
-      "sector": "직무명 기반 탐색",
+      "sector": "국제개발·ODA·정책·PM",
+      "sectors": [
+        "국제개발·ODA·정책·PM"
+      ],
       "source": "DevNetJobs",
       "url": "https://devnetjobs.org/jobdescription.aspx?job_id=311500",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
+      "discoveryLabel": "기존 탐색",
+      "discoveryReason": "기존 V4 탐색 목록 항목입니다. 분야 분류와 지원 가능 여부는 공식 원문에서 다시 확인해야 합니다.",
       "deadline": "2026-08-21",
       "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
       "requirements": [
@@ -155,37 +2967,8 @@
       ],
       "risks": [],
       "evidenceGapCount": 12,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "3a863db51334e035ecb91050",
-      "title": "Tupande Health Safety and Environment Supervisor",
-      "company": "One Acre Fund Kenya (HQ)",
-      "location": "Kenya",
-      "market": "overseas",
-      "sector": "직무명 기반 탐색",
-      "source": "DevelopmentAid",
-      "url": "https://www.developmentaid.org/jobs/view/1790321/tupande-health-safety-and-environment-supervisor-fixed-term",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
-      "deadline": "2026-10-21",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [
-        "마감일: 2026-10-21. 날짜가 남아 있어도 현재 접수 가능 여부는 공식 페이지에서 다시 확인해야 합니다."
-      ],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "요구 경력 연수와 분야를 확인해야 합니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 12,
-      "evidenceBurden": "high"
+      "evidenceBurden": "high",
+      "sectorEvidence": "기존 V4 분야 탐색"
     },
     {
       "id": "b10bb5e851dbc259e3b46227",
@@ -193,14 +2976,17 @@
       "company": "GGGI",
       "location": "Salalah Oman",
       "market": "overseas",
-      "sector": "직무명 기반 탐색",
+      "sector": "국제개발·ODA·정책·PM",
+      "sectors": [
+        "국제개발·ODA·정책·PM"
+      ],
       "source": "GGGI",
       "url": "https://careers.gggi.org/vacancy/senior-green-entrepreneurship-accelerator-program-officer-615077.html",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
+      "discoveryLabel": "기존 탐색",
+      "discoveryReason": "기존 V4 탐색 목록 항목입니다. 분야 분류와 지원 가능 여부는 공식 원문에서 다시 확인해야 합니다.",
       "deadline": "",
       "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
       "requirements": [],
@@ -213,7 +2999,8 @@
       ],
       "risks": [],
       "evidenceGapCount": 11,
-      "evidenceBurden": "high"
+      "evidenceBurden": "high",
+      "sectorEvidence": "기존 V4 분야 탐색"
     },
     {
       "id": "b9d46867019f3c7a0adaacf6",
@@ -221,14 +3008,17 @@
       "company": "AtkinsRealis",
       "location": "Toronto, Ontario, Canada",
       "market": "overseas",
-      "sector": "직무명 기반 탐색",
+      "sector": "기후·환경·탄소·지속가능성",
+      "sectors": [
+        "기후·환경·탄소·지속가능성"
+      ],
       "source": "Atkins",
       "url": "https://slihrms.wd3.myworkdayjobs.com/Careers/job/CAONToronto191-The-West-Mall/Resiliency-Planning-Specialist_R-157632",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
+      "discoveryLabel": "기존 탐색",
+      "discoveryReason": "기존 V4 탐색 목록 항목입니다. 분야 분류와 지원 가능 여부는 공식 원문에서 다시 확인해야 합니다.",
       "deadline": "",
       "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
       "requirements": [],
@@ -241,153 +3031,8 @@
       ],
       "risks": [],
       "evidenceGapCount": 11,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "bc0a089136e9737a2005a654",
-      "title": "소프트웨어/통합 플랫폼 백엔드 개발자 모집",
-      "company": "한국아이오티기술원",
-      "location": "서울 금천구",
-      "market": "domestic",
-      "sector": "직무명 기반 탐색",
-      "source": "JobKorea",
-      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49585247",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다.",
-        "관할권별 취업허가 조건을 확인해야 합니다."
-      ],
-      "risks": [
-        "요구 경력보다 조금 부족해 지원 시 경력 연결 근거를 보강해야 합니다."
-      ],
-      "evidenceGapCount": 11,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "c183ac60132c7faca749d10a",
-      "title": "재난안전 통합플랫폼 백엔드 개발자 채용공고",
-      "company": "채용기관 미확인",
-      "location": "서울 금천구 경력3년↑ 학력무관 정규직 기술지원 , 웹개발 , 웹마스터 , 유지보수 , 정보보안 외 수정일 26/07/15",
-      "market": "domestic",
-      "sector": "직무명 기반 탐색",
-      "source": "Saramin",
-      "url": "https://www.saramin.co.kr/zf_user/jobs/relay/view?location=ts&rec_idx=54470993",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다.",
-        "관할권별 취업허가 조건을 확인해야 합니다."
-      ],
-      "risks": [
-        "요구 경력보다 조금 부족해 지원 시 경력 연결 근거를 보강해야 합니다."
-      ],
-      "evidenceGapCount": 11,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "e90ed9d0540c1389f10300bf",
-      "title": "GIS Developer / DBA GIS Developer / DBA",
-      "company": "Office of Information and Communications Technology 89328932",
-      "location": "CHI - Other cities 0849",
-      "market": "overseas",
-      "sector": "직무명 기반 탐색",
-      "source": "UN Careers",
-      "url": "https://careers.un.org/jobSearchDescription/278268?language=en",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다.",
-        "관할권별 취업허가 조건을 확인해야 합니다."
-      ],
-      "risks": [
-        "요구 경력보다 조금 부족해 지원 시 경력 연결 근거를 보강해야 합니다."
-      ],
-      "evidenceGapCount": 11,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "129b479898e7bc8c008a9ed0",
-      "title": "지역개발 컨설팅 경력자",
-      "company": "에코메아리",
-      "location": "05, KR",
-      "market": "domestic",
-      "sector": "직무명 기반 탐색",
-      "source": "Indeed Korea",
-      "url": "https://kr.indeed.com/viewjob?jk=72b0d8726503cfa3",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "요구 경력 연수와 분야를 확인해야 합니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 12,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "04c1147436d5435d11edec59",
-      "title": "Principal Engineer, Water Infrastructure, REC",
-      "company": "Ramboll",
-      "location": "Noida, India",
-      "market": "overseas",
-      "sector": "직무명 기반 탐색",
-      "source": "Ramboll",
-      "url": "https://www.ramboll.com/careers/8cebe0c7-b7d1-4071-18dc-08dedb45aaf0",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "요구 경력 연수와 분야를 확인해야 합니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 12,
-      "evidenceBurden": "high"
+      "evidenceBurden": "high",
+      "sectorEvidence": "기존 V4 분야 탐색"
     },
     {
       "id": "1f0df10c820bd61eec2358a5",
@@ -395,14 +3040,18 @@
       "company": "GRAND RIVER DAM AUTHORITY",
       "location": "Locust Grove, OK, US",
       "market": "overseas",
-      "sector": "직무명 기반 탐색",
+      "sector": "AI 정책·거버넌스·리스크·컴플라이언스",
+      "sectors": [
+        "AI 정책·거버넌스·리스크·컴플라이언스",
+        "수자원·수문·수리·홍수·배수"
+      ],
       "source": "Indeed Global",
       "url": "https://www.indeed.com/viewjob?jk=6602137060485574",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
+      "discoveryLabel": "기존 탐색",
+      "discoveryReason": "기존 V4 탐색 목록 항목입니다. 분야 분류와 지원 가능 여부는 공식 원문에서 다시 확인해야 합니다.",
       "deadline": "",
       "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
       "requirements": [],
@@ -415,63 +3064,8 @@
       ],
       "risks": [],
       "evidenceGapCount": 12,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "0f115363b93d7fb5707067fb",
-      "title": "Deep Learning Software Engineer, Inference - New College Grad 2026",
-      "company": "NVIDIA",
-      "location": "Remote",
-      "market": "overseas",
-      "sector": "직무명 기반 탐색",
-      "source": "RemoteJobs.org API",
-      "url": "https://remotejobs.org/remote-jobs/deep-learning-software-engineer-inference-new-college-grad-2026-nvidia",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "요구 경력 연수와 분야를 확인해야 합니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 12,
-      "evidenceBurden": "high"
-    },
-    {
-      "id": "1e936f91d5e6e5fd7e071203",
-      "title": "Sr. Infrastructure Engineer",
-      "company": "Hummingbird Healthcare",
-      "location": "Remote",
-      "market": "overseas",
-      "sector": "직무명 기반 탐색",
-      "source": "RemoteJobs.org API",
-      "url": "https://remotejobs.org/remote-jobs/sr-infrastructure-engineer-hummingbird-healthcare",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
-      "deadline": "",
-      "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
-      "requirements": [],
-      "checks": [
-        "미래 마감일만으로는 공고가 지금도 열려 있다고 확정할 수 없습니다.",
-        "요구 경력 연수와 분야를 확인해야 합니다.",
-        "최소 학위와 허용되는 동등경력 조건을 확인해야 합니다.",
-        "필수 자격증 요구와 유효성 조건을 확인해야 합니다.",
-        "업무 언어와 공인 점수 요구를 확인해야 합니다."
-      ],
-      "risks": [],
-      "evidenceGapCount": 12,
-      "evidenceBurden": "high"
+      "evidenceBurden": "high",
+      "sectorEvidence": "기존 V4 분야 탐색"
     },
     {
       "id": "8ad4075c282df8d7ea70afb0",
@@ -479,14 +3073,17 @@
       "company": "SumUp",
       "location": "Berlin, Berlin, Germany",
       "market": "overseas",
-      "sector": "직무명 기반 탐색",
+      "sector": "데이터분석·ML·데이터엔지니어링·MLOps",
+      "sectors": [
+        "데이터분석·ML·데이터엔지니어링·MLOps"
+      ],
       "source": "Arbeitnow API",
       "url": "https://www.arbeitnow.com/jobs/companies/sumup/senior-data-science-ml-engineer-financial-crime-berlin-119994",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
+      "discoveryLabel": "기존 탐색",
+      "discoveryReason": "기존 V4 탐색 목록 항목입니다. 분야 분류와 지원 가능 여부는 공식 원문에서 다시 확인해야 합니다.",
       "deadline": "",
       "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
       "requirements": [],
@@ -499,22 +3096,26 @@
       ],
       "risks": [],
       "evidenceGapCount": 12,
-      "evidenceBurden": "high"
+      "evidenceBurden": "high",
+      "sectorEvidence": "기존 V4 분야 탐색"
     },
     {
-      "id": "ebbc81d1fdcbd1054b820aa8",
-      "title": "Research Specialist - Water Resources Management",
-      "company": "International Water Management Institute",
-      "location": "Tashkent, Uzbekistan",
+      "id": "7ac1f44611bd9305b45a81fb",
+      "title": "Technical Product Specialist (m/w/d)",
+      "company": "ASUS Computer GmbH",
+      "location": "Ratingen",
       "market": "overseas",
-      "sector": "직무명 기반 탐색",
-      "source": "IWMI",
-      "url": "https://apply.workable.com/j/B3A17FC605",
+      "sector": "AI 제품·솔루션·컨설팅·프리세일즈",
+      "sectors": [
+        "AI 제품·솔루션·컨설팅·프리세일즈"
+      ],
+      "source": "Arbeitnow API",
+      "url": "https://www.arbeitnow.com/jobs/companies/asus-computer-gmbh/technical-product-specialist-ratingen-136219",
       "queue": "hold",
       "queueLabel": "추가 검토",
       "discoveryTier": "explore",
-      "discoveryLabel": "관심 탐색",
-      "discoveryReason": "직무명에 관심 분야 앵커가 있어 넓은 탐색 목록에 포함했습니다. 적합성은 아직 확정하지 않았습니다.",
+      "discoveryLabel": "기존 탐색",
+      "discoveryReason": "기존 V4 탐색 목록 항목입니다. 분야 분류와 지원 가능 여부는 공식 원문에서 다시 확인해야 합니다.",
       "deadline": "",
       "nextAction": "섹터 관련성 사람 검토를 완료하기 전에는 행동 후보로 올리지 않습니다.",
       "requirements": [],
@@ -527,7 +3128,8 @@
       ],
       "risks": [],
       "evidenceGapCount": 12,
-      "evidenceBurden": "high"
+      "evidenceBurden": "high",
+      "sectorEvidence": "기존 V4 분야 탐색"
     }
   ],
   "reviewQueue": [],
@@ -555,7 +3157,10 @@
         "https://admission.kaist.ac.kr/intl-graduate",
         "https://www.kaist.ac.kr/en/html/edu/03100502.html",
         "https://www.kaist.ac.kr/en/html/admission/0201.html"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-25ee737c4005a927",
@@ -581,7 +3186,10 @@
         "https://postech.ac.kr/eng/news-center/university_announcement.do?mode=view&articleNo=44635",
         "https://adm-g.postech.ac.kr/ENG/graduate-info/support-policy/",
         "https://www.postech.ac.kr/eng/about/Environmental.do"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-360bd28e4557fc50",
@@ -605,7 +3213,10 @@
         "https://www.gist.ac.kr/iadm/html/sub02/0202.html",
         "https://env1eng.gist.ac.kr/",
         "https://env1.gist.ac.kr/env1eng/index.do"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-e5e4c2a59535a345",
@@ -629,7 +3240,10 @@
         "https://www.gem-msc.eu/apply-to-gem/",
         "https://www.gem-msc.eu/apply-to-gem/finances/",
         "https://www.gem-msc.eu/apply-to-gem/admission-and-eligibility/"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-e7a2879aaa944796",
@@ -665,7 +3279,10 @@
       "englishGapPlan": [
         "TOEFL iBT: target total 80+ and writing 17+ before the next-cycle application window.",
         "IELTS Academic alternative: target overall 6.0+ and writing 6.0+."
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-d29f6589104fcf78",
@@ -690,7 +3307,10 @@
         "https://ait.ac.th/admissions/",
         "https://ait.ac.th/eligibility/english-proficiency-requirement-for-admission/",
         "https://ait.ac.th/financial/ait-scholarships/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-a642cbd1bd5c791a",
@@ -712,7 +3332,10 @@
       "officialUrl": "https://admg-intl.unist.ac.kr/study-at-unist/scholarships/",
       "sources": [
         "https://admg-intl.unist.ac.kr/study-at-unist/scholarships/"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-389f18ec8c962784",
@@ -738,7 +3361,10 @@
         "https://cee.snu.ac.kr/english/sub4_2.php",
         "https://admission.snu.ac.kr/graduate/general/spring/guide",
         "https://en.snu.ac.kr/admission/graduate/application"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-b6e7adcd58e95bab",
@@ -763,7 +3389,10 @@
         "https://ait.ac.th/admissions/",
         "https://ait.ac.th/eligibility/english-proficiency-requirement-for-admission/",
         "https://ait.ac.th/financial/ait-scholarships/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-9331411b70b1d15f",
@@ -787,7 +3416,10 @@
         "https://www.floodriskmaster.org/apply",
         "https://www.floodriskmaster.org/",
         "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-56992be43d2e127b",
@@ -810,7 +3442,10 @@
       "sources": [
         "https://www.uni-stuttgart.de/en/study/study-programs/Water-Resources-Engineering-and-Management-WAREM-M.Sc./",
         "https://www.warem.uni-stuttgart.de/"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-9b2a1a7a95b4e3df",
@@ -834,7 +3469,10 @@
         "https://iihr.uiowa.edu/education-outreach/graduate-students",
         "https://iihr.uiowa.edu/education-outreach/graduate-students/scholarships-and-fellowships",
         "https://iihr.uiowa.edu/all-news/2025/02/modeling-cedar-river-watershed-data-informed-land-use-decisions"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-3d48fada709c5c7b",
@@ -858,7 +3496,10 @@
         "https://cfdlabsnu.com/people/",
         "https://cee.snu.ac.kr/english/sub4_2.php",
         "https://admission.snu.ac.kr/graduate/general/spring/guide"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-a3e4ff9995883b1a",
@@ -882,7 +3523,10 @@
         "https://fytgs.hkust.edu.hk/scholarships/hong-kong-phd-fellowship-scheme",
         "https://envr.ust.hk/programs/research-postgraduate-program/mphil-phd-in-espm/program-details.html",
         "https://cerg1.ugc.edu.hk/hkpfs/index.html"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-f621878315893d5c",
@@ -906,7 +3550,10 @@
         "https://admissions.kaust.edu.sa/fees-funding",
         "https://bese.kaust.edu.sa/study/academic-programs/ense",
         "https://www.kaust.edu.sa/study/applying-to-kaust"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-8031771382ff3601",
@@ -929,7 +3576,10 @@
       "sources": [
         "https://master-cde.eu/admission/procedures-deadlines/calls/",
         "https://master-cde.eu/call-open-emjm-copernicus-master-in-digital-earth-4/"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-776922eb3530ee3a",
@@ -954,7 +3604,10 @@
         "https://gses.snu.ac.kr/en/information/scholarship",
         "https://gses.snu.ac.kr/en",
         "https://en.snu.ac.kr/admission/graduate/application"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-9bfcbb1750487628",
@@ -978,7 +3631,10 @@
         "https://has.arizona.edu/doctor-philosophy-hydrology-and-water-resources",
         "https://has.arizona.edu/graduate-assistantships-and-associateships",
         "https://has.arizona.edu/davis-fitzwater-doctoral-fellowship-hydrology"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-89ddbb46367ce4f2",
@@ -1000,7 +3656,10 @@
       "officialUrl": "https://www.bristol.ac.uk/study/postgraduate/taught/msc-water-and-environmental-management/",
       "sources": [
         "https://www.bristol.ac.uk/study/postgraduate/taught/msc-water-and-environmental-management/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-c4372a1de3949d80",
@@ -1025,7 +3684,10 @@
         "https://enc.skku.edu/eng_enc/programs/departments/water_intro.do",
         "https://enc.skku.edu/eng_enc/water_course.do",
         "https://professor.skku.edu/researcher_eng/professorList.do?categoryId=P&jojikCode1=7306&jojikCode2=7306"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-bd32c4f3484926f4",
@@ -1052,7 +3714,10 @@
         "https://graduate.yonsei.ac.kr/graduate_en/admission/schedule.do",
         "https://www.yonsei.ac.kr/sites/en_sc/down/2026_fee2.pdf",
         "https://devcms.yonsei.ac.kr/engineering_en/research/research_2.do"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-a306279bf0abe8fd",
@@ -1077,7 +3742,10 @@
         "https://gradschool.princeton.edu/financial-support",
         "https://gradschool.princeton.edu/financial-support/financial-support-model/phd-funding-natural-sciences-engineering",
         "https://gradschool.princeton.edu/admission-onboarding/prepare/deadlines-and-fees"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-21a6041974eb6d43",
@@ -1101,7 +3769,10 @@
         "https://www.ust.ac.kr/admission_eng/sub02_03.do",
         "https://major.ust.ac.kr/prog/campus/campus_eng/sub34_04/34/majorView.do?kind=information&majorNo=55",
         "https://www.ust.ac.kr/thumbnail/entschGuideline/ENTPDF_20251002151926732Hf30.pdf"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-414bcdb012c142be",
@@ -1125,7 +3796,10 @@
         "https://cee.stanford.edu/academics-admissions/graduate-funding",
         "https://engineering.stanford.edu/prospective-graduate-programs/fee-waivers",
         "https://gradadmissions.stanford.edu/apply/application-fee"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-d16df87cb94e8c95",
@@ -1150,7 +3824,10 @@
         "https://cgis.kfupm.edu.sa/admission/kfupm-scholarship",
         "https://www3.kfupm.edu.sa/study/international-students/fees-and-scholarships",
         "https://ce.kfupm.edu.sa/people/faculty/areeq_research-profile"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-4aacd357b769eff5",
@@ -1175,7 +3852,10 @@
         "https://ace.korea.edu/ace_en/research/lab.do",
         "https://graduate2.korea.ac.kr/admission/schedule.html",
         "https://graduate2.korea.ac.kr/scholarship/skscholarships.html"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-7a8aed608cb64375",
@@ -1199,7 +3879,10 @@
         "https://www.groundwatermaster.eu/",
         "https://apply.un-ihe.org/application-process/master-of-science-erasmus",
         "https://www.un-ihe.org/education/master-programmes/joint-and-double-degree-masters-programmes"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-9efde66ade71def8",
@@ -1223,7 +3906,10 @@
         "https://master-cde.eu/",
         "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters",
         "https://www.copernicus.eu/en/news/news/observer-preparing-next-generation-copernicus-experts-gem-european-master-geo-information"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-3a5e6431427e15a3",
@@ -1245,7 +3931,10 @@
       "officialUrl": "https://www.manchester.ac.uk/study/masters/courses/list/18096/msc-data-science-earth-and-environmental-analytics/",
       "sources": [
         "https://www.manchester.ac.uk/study/masters/courses/list/18096/msc-data-science-earth-and-environmental-analytics/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-ea0ad4fac9bb6b2b",
@@ -1269,7 +3958,10 @@
         "https://www.oist.jp/admissions/phd-program/apply-phd",
         "https://www.oist.jp/education/student-support",
         "https://www.oist.jp/admissions/faq"
-      ]
+      ],
+      "applicationStatus": "prepare",
+      "applicationStatusLabel": "지금 준비",
+      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다."
     },
     {
       "id": "program-328fa58b53feebd2",
@@ -1292,7 +3984,10 @@
       "sources": [
         "https://www.ku.ac.ae/scholarships-postgraduate",
         "https://ku-ae.smartcatalogiq.com/en/2023-2024/graduate-catalog/college-of-engineering/msc-in-water-and-environmental-engineering"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-6cb0f16ac940cdbb",
@@ -1316,7 +4011,10 @@
         "https://www.grad.ubc.ca/awards/minimum-funding-policy-phd-students",
         "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/phd-civil-engineering",
         "https://civil.ubc.ca/graduate/funding/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-c8798c09c0c6036b",
@@ -1339,7 +4037,10 @@
       "sources": [
         "https://www.utwente.nl/en/itc/education/study-finder/geo-information-science-earth-observation/financial-matters/",
         "https://www.utwente.nl/en/itc/education/how-to-apply/master-admission-and-application-master/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-ceb6a9ba17005865",
@@ -1362,7 +4063,10 @@
       "sources": [
         "https://www.tudelft.nl/en/education/programmes/masters/env/msc-environmental-engineering",
         "https://www.tudelft.nl/en/education/study-programme-orientation/practical-matters/tuition-fee-finances"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-30238ad58d1e10b3",
@@ -1386,7 +4090,10 @@
         "https://cde.nus.edu.sg/cee/graduate/coursework-based-programmes/msc-eve/",
         "https://cde.nus.edu.sg/graduate/graduate-programmes-by-coursework/admission-requirement/",
         "https://cde.nus.edu.sg/graduate/graduate-programmes-by-coursework/application-period/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-9a5fab0b46d57ea2",
@@ -1410,7 +4117,10 @@
         "https://waterprogram.tamu.edu/academics/application-process/index.html",
         "https://waterprogram.tamu.edu/academics/scholarships-funding/index.html",
         "https://waterprogram.tamu.edu/about/degree-options/index.html"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-f6bb048ceb99a1ea",
@@ -1434,7 +4144,10 @@
         "https://civmin.utoronto.ca/home/programs/graduate-programs/doctor-of-philosophy/",
         "https://civmin.utoronto.ca/home/programs/graduate-programs/graduate-fees-scholarships-and-funding/",
         "https://civmin.utoronto.ca/home/programs/graduate-programs/graduate-fees-scholarships-and-funding/guaranteed-funding/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-7e1113d59cf4fa69",
@@ -1458,7 +4171,10 @@
         "https://www.uaeu.ac.ae/en/catalog/graduate/programs/master-of-science-in-water-resources.shtml",
         "https://www.uaeu.ac.ae/en/cgs/scholarship.shtml",
         "https://www.uaeu.ac.ae/en/cgs/research_assistantships.shtml"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-24ac837694f00a9a",
@@ -1482,7 +4198,10 @@
         "https://ait.ac.th/program/dual-degree-masters-program-in-water-engineering-and-management-with-the-university-of-iowa/",
         "https://ait.ac.th/program/water-engineering-and-management-wem/",
         "https://ait.ac.th/eligibility/english-proficiency-requirement-for-admission/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-ffaec67874c07d12",
@@ -1504,7 +4223,10 @@
       "officialUrl": "https://www.ncl.ac.uk/postgraduate/degrees/5408f/",
       "sources": [
         "https://www.ncl.ac.uk/postgraduate/degrees/5408f/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-a15056360df04425",
@@ -1527,7 +4249,10 @@
       "sources": [
         "https://www.wur.nl/en/education/master/application-admission-masters/english-language-proficiency-msc",
         "https://www.wur.nl/en/education/master/study-expenses-masters/tuition-fees-and-study-finances"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-b805353dada7d14b",
@@ -1551,7 +4276,10 @@
         "https://www.hbku.edu.qa/en/cse/phd-sustainable-environment",
         "https://www.hbku.edu.qa/en/scholarship",
         "https://catalog.hbku.edu.qa/academic-degrees/cse/sd/sustainable-environment-phd/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-f22a227c846b9c93",
@@ -1574,7 +4302,10 @@
       "sources": [
         "https://study.uq.edu.au/study-options/programs/master-engineering-science-urban-water-engineering-5698",
         "https://www.dfat.gov.au/people-to-people/australia-awards/australia-awards-scholarships"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-5da5a4c25910f5e6",
@@ -1597,7 +4328,10 @@
       "sources": [
         "https://ethz.ch/en/studies/master/application/master-geomatik.html",
         "https://ethz.ch/en/studies/master/application/dates.html"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-a8fc2fada2f5e8c2",
@@ -1620,7 +4354,10 @@
       "sources": [
         "https://uwaterloo.ca/collaborative-water-program/",
         "https://cwra.org/awards/scholarships/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-02a9985db1731162",
@@ -1645,7 +4382,10 @@
         "https://scholars.georgiasouthern.edu/en/persons/mohammadsoroush-tafazzoli/",
         "https://www.linkedin.com/posts/mohammadsoroushtafazzoli_two-fully-funded-ms-positions-available-activity-7471016382814515201-lOWC",
         "https://www.georgiasouthern.edu/colleges/engineering-computing/students/scholarships"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-4ad0e531f77ccd18",
@@ -1668,7 +4408,10 @@
       "sources": [
         "https://www.landfood.ubc.ca/graduate/master-of-land-and-water-systems/",
         "https://cwra.org/awards/scholarships/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-d8ee002302d60f3b",
@@ -1690,7 +4433,10 @@
       "officialUrl": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-sustainability-and-environmental-engineering",
       "sources": [
         "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-sustainability-and-environmental-engineering"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-6c94add5dabf5922",
@@ -1713,7 +4459,10 @@
       "sources": [
         "https://www.vliruos.be/get-funded/master-water-resources-engineering-wre",
         "https://www.vliruos.be/get-funded/study-scholarships"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-cbe7d4547d132e35",
@@ -1736,7 +4485,10 @@
       "sources": [
         "https://www.adelaide.edu.au/degree-finder/meng_meng.html",
         "https://www.dfat.gov.au/people-to-people/australia-awards/australia-awards-scholarships"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-85edcd00cb2515f6",
@@ -1759,7 +4511,10 @@
       "sources": [
         "https://mbzuai.ac.ae/study/graduate-admission-process/",
         "https://mbzuai.ac.ae/research-department/computer-vision-department/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-93b856dddbc85e70",
@@ -1782,7 +4537,10 @@
       "sources": [
         "https://infrastructure.eng.unimelb.edu.au/research/water",
         "https://scholarships.unimelb.edu.au/awards/melbourne-research-scholarship"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-e7bcfe9ef5883e8d",
@@ -1804,7 +4562,10 @@
       "officialUrl": "https://www.lunduniversity.lu.se/study/gis-and-remote-sensing-master-programme-NAGIS",
       "sources": [
         "https://www.lunduniversity.lu.se/study/gis-and-remote-sensing-master-programme-NAGIS"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-61b873b9a6e3d22e",
@@ -1826,7 +4587,10 @@
       "officialUrl": "https://www.canterbury.ac.nz/study/academic-study/qualifications/master-of-water-science-and-management",
       "sources": [
         "https://www.canterbury.ac.nz/study/academic-study/qualifications/master-of-water-science-and-management"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-8958018eaf9ec602",
@@ -1849,7 +4613,10 @@
       "sources": [
         "https://www.engr.colostate.edu/ce/graduate/water-resources-planning-and-management/",
         "https://www.engr.colostate.edu/ce/graduate/admission/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-04f97d7ac2773499",
@@ -1872,7 +4639,10 @@
       "sources": [
         "https://www.ce.washington.edu/phd",
         "https://www.ce.washington.edu/phd/funding"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-5818d19181f8ada3",
@@ -1896,7 +4666,10 @@
         "https://www.kdischool.ac.kr/menu.es?mid=a10208020200",
         "https://www.kdischool.ac.kr/menu.es?mid=a40800000000",
         "https://www.kdischool.ac.kr/menu.es?mid=a40203000000"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-96f7932a782a15bf",
@@ -1919,7 +4692,10 @@
       "sources": [
         "https://www.weizmann.ac.il/EPS/positions/msc",
         "https://www.weizmann.ac.il/pages/about-institute/graduate-studies"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-a93add3b96a1eb5c",
@@ -1941,7 +4717,10 @@
       "officialUrl": "https://geog.umd.edu/graduate/prospective-phd-students",
       "sources": [
         "https://geog.umd.edu/graduate/prospective-phd-students"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-9eae1d2dda0a953e",
@@ -1964,7 +4743,10 @@
       "sources": [
         "https://civil.utm.my/postgraduate/meag/",
         "https://admission.utm.my/scholarship-and-financial-aid/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-f252f39edec6946e",
@@ -1987,7 +4769,10 @@
       "sources": [
         "https://www.exeter.ac.uk/research/centres/cws/research/hydroinformatics-ai/",
         "https://www.exeter.ac.uk/study/pg-research/funding/phdfunding/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-af4946e6bdbbbe17",
@@ -2010,7 +4795,10 @@
       "sources": [
         "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
         "https://his.uos.ac.kr/engraduate/web/contents/GS_About_03_04_11_tab03"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-d647888b1b53e070",
@@ -2033,7 +4821,10 @@
       "sources": [
         "https://www.hsgg.ucdavis.edu/",
         "https://www.hsgg.ucdavis.edu/funding"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-8c80a85d36438177",
@@ -2055,7 +4846,10 @@
       "officialUrl": "https://www.titech.ac.jp/english/admissions/prospective-students/graduate-programs/igp",
       "sources": [
         "https://www.titech.ac.jp/english/admissions/prospective-students/graduate-programs/igp"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-af578695ba7c6c3d",
@@ -2077,7 +4871,10 @@
       "officialUrl": "https://www.eng.chula.ac.th/wp-content/uploads/2017/01/16-Water-Resources-Engineering.pdf",
       "sources": [
         "https://www.eng.chula.ac.th/wp-content/uploads/2017/01/16-Water-Resources-Engineering.pdf"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-5bd3487dc9de2d76",
@@ -2100,7 +4897,10 @@
       "sources": [
         "https://www.ess.uci.edu/phd-program",
         "https://www.ess.uci.edu/faqs-earth-system-science-ess-graduate-program"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-822d1d91ea1ebde8",
@@ -2123,7 +4923,10 @@
       "sources": [
         "https://hydrology.mines.edu/",
         "https://hydrology.mines.edu/graduate-program/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-ab210057ef186ae6",
@@ -2146,7 +4949,10 @@
       "sources": [
         "https://engineering.usu.edu/cee/students/requirements/index.php",
         "https://uwrl.usu.edu/water-resources/careers"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-da9a65700f28c30a",
@@ -2169,7 +4975,10 @@
       "sources": [
         "https://www.mcgill.ca/gradapplicants/program/bioresource-engineering-phd",
         "https://www.mcgill.ca/gradapplicants/funding"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-6e6de6040ac7a04d",
@@ -2191,7 +5000,10 @@
       "officialUrl": "https://www.auckland.ac.nz/en/engineering/about-the-faculty/civil-and-environmental-engineering.html",
       "sources": [
         "https://www.auckland.ac.nz/en/study/scholarships-and-awards/scholarship-types/scholarships-for-international-students/postgraduate-scholarships-for-international-students.html"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-2a7cfc2fb63e5849",
@@ -2214,7 +5026,10 @@
       "sources": [
         "https://www.monash.edu/engineering/departments/civil/research-degrees",
         "https://www.monash.edu/engineering/future-students/scholarships/higher-degree-by-research-scholarships"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-f1e4c890a316d840",
@@ -2237,7 +5052,10 @@
       "sources": [
         "https://graduate.pusan.ac.kr/grad/index.do",
         "https://international.pusan.ac.kr/bbs/international/2089/1446495/download.do"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-f10c55ac0caaad9c",
@@ -2259,7 +5077,10 @@
       "officialUrl": "https://eprogram.eng.hokudai.ac.jp/e3/e3study/divisions/25-field-engineering-environment",
       "sources": [
         "https://eprogram.eng.hokudai.ac.jp/e3/e3study/divisions/25-field-engineering-environment"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-766e821c21ddd46e",
@@ -2283,7 +5104,10 @@
         "https://ericacivil.hanyang.ac.kr/en/-24",
         "https://ericacivil.hanyang.ac.kr/en/-28",
         "https://civil.hanyang.ac.kr/EN/en5_3.php"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-b04a08e30bbc813a",
@@ -2305,7 +5129,10 @@
       "officialUrl": "https://graduate.technion.ac.il/en/civil-environmental-engineering/",
       "sources": [
         "https://graduate.technion.ac.il/en/civil-environmental-engineering/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-2935a59350884f14",
@@ -2327,7 +5154,10 @@
       "officialUrl": "https://plus.cnu.ac.kr/html/en/",
       "sources": [
         "https://plus.cnu.ac.kr/_prog/_board/common/download.php?atch_no=2&code=en_sub05_0502&ntt_no=2512448"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-266060ba185dc143",
@@ -2351,7 +5181,10 @@
         "https://top.jbnu.ac.kr/civileng/33687/subview.do",
         "https://top.jbnu.ac.kr/civileng/33692/subview.do",
         "https://ioffice.jbnu.ac.kr/sites/ioffice/file/3-1%20English.pdf"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-bbae5fbf0014e2ba",
@@ -2374,7 +5207,10 @@
       "sources": [
         "https://graduate.oregonstate.edu/water-resources-graduate-program/applicant-faqs",
         "https://graduate.oregonstate.edu/water-resources-graduate-program"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-13094c86bbe8c031",
@@ -2396,7 +5232,10 @@
       "officialUrl": "https://eng.inha.ac.kr/eng/3590/subview.do",
       "sources": [
         "https://eng.inha.ac.kr/eng/3590/subview.do"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-f78ce22fb48d19d3",
@@ -2418,7 +5257,10 @@
       "officialUrl": "https://civil.jnu.ac.kr/",
       "sources": [
         "https://www.jnu.ac.kr/Data/tmfiles/Down/introduction/DirectoryBulletinEn/2025_2026/10-3.pdf"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-7b16ce03434d5162",
@@ -2440,7 +5282,10 @@
       "officialUrl": "https://www.ntu.edu.sg/cee/admissions/graduate/detail/master-of-science-in-civil-engineering",
       "sources": [
         "https://www.ntu.edu.sg/cee/admissions/graduate/detail/master-of-science-in-civil-engineering"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-18b36401cce25495",
@@ -2463,7 +5308,10 @@
       "sources": [
         "https://grad.usask.ca/programs/water-security.php",
         "https://water.usask.ca/students/awards.php"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-6b11acdc0fab54bf",
@@ -2486,7 +5334,10 @@
       "sources": [
         "https://study.ed.ac.uk/programmes/postgraduate-taught/1146-geographical-information-science-and-earth-observation",
         "https://www.ed.ac.uk/student-funding/postgraduate"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-11fee6e7e8c2f32f",
@@ -2509,7 +5360,10 @@
       "sources": [
         "https://cartographymaster.eu/",
         "https://cartographymaster.eu/alumni/"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-162ca4ece614b220",
@@ -2531,7 +5385,10 @@
       "officialUrl": "https://www.aalto.fi/en/study-options/water-and-environmental-engineering-master-of-science-technology",
       "sources": [
         "https://www.aalto.fi/en/study-options/water-and-environmental-engineering-master-of-science-technology"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-860f4196ac9f9ed6",
@@ -2554,7 +5411,10 @@
       "sources": [
         "https://en.sejong.ac.kr/eng/academics/Graduate-school.do",
         "https://en.sejong.ac.kr/cms/etcResourceDown.do?key=%24cms%24HIQwLgrgTiA2AEBlAxgSwKYDtnoM7xEwBN4BRTAc1U3XSmooH0AmABmeYDpWA2bgdk4AHIgDMgA&site=%24cms%24KYOw5kA"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-61d065767899fd26",
@@ -2577,7 +5437,10 @@
       "sources": [
         "https://www.kth.se/student/kurser/program/TMHIM/20272/arskurs2?l=en",
         "https://www.kth.se/en/studies/master/environmental-engineering"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-57c26c8673b90a27",
@@ -2599,7 +5462,10 @@
       "officialUrl": "https://www.uu.se/en/study/programme/masters-programme-earth-science-hydrology-hydrogeology",
       "sources": [
         "https://www.uu.se/en/study/programme/masters-programme-earth-science-hydrology-hydrogeology"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-4f7813497236b658",
@@ -2621,7 +5487,10 @@
       "officialUrl": "https://grad.ajou.ac.kr/gs_eng/research/faculty_en10.do?cate=1",
       "sources": [
         "https://grad.ajou.ac.kr/gs_eng/research/faculty_en10.do?cate=1"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     },
     {
       "id": "program-a2020521e65afb89",
@@ -2644,7 +5513,10 @@
       "sources": [
         "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse/hse",
         "https://tu-dresden.de/studium/vor-dem-studium/internationales/stipendien/daad-epos?set_language=en"
-      ]
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     }
   ],
   "funding": [

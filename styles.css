@@ -251,6 +251,8 @@ svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8;
 .mode-switch button[aria-selected="true"] { color:var(--ink); background:var(--lime); }
 .mode-switch b { margin-left:4px; font-size:11px; }
 .study-controls .search-box { margin:0; }
+.study-readiness { margin-bottom:7px; }
+.study-status-note { margin:-2px 0 12px; color:var(--muted); font-size:11px; line-height:1.45; }
 .study-list .results-meta { margin-bottom:0; }
 .study-row { width:100%; border-right:0; border-left:0; color:var(--ink); background:transparent; text-align:left; }
 .detail-kicker { margin:0 0 15px; color:var(--blue); font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }

@@ -27,6 +27,27 @@ def _key(record: dict[str, Any]) -> tuple[str, str]:
     )
 
 
+def _application_readiness(source: dict[str, Any]) -> tuple[str, str, str]:
+    """Keep an actionable preparation lane distinct from a verified open call.
+
+    The shortlist is a research inventory.  A recurrent schedule, an estimate,
+    or an old verification must never be presented as an application that is
+    open today.  ``Use now`` means the school is worth preparing for, not that
+    the application portal is open.
+    """
+    if str(source.get("decision", "")).strip() == "Use now":
+        return (
+            "prepare",
+            "지금 준비",
+            "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+        )
+    return (
+        "research",
+        "추가 조사",
+        "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
+    )
+
+
 def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path) -> str:
     """Refresh compact programme records from the lightweight current shortlist."""
     shortlist = _read_json(shortlist_path)
@@ -41,6 +62,14 @@ def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path) -> str
             continue
         source = by_key.get(_key(item))
         if source is None:
+            readiness, label, reason = _application_readiness(item)
+            item.update(
+                {
+                    "applicationStatus": readiness,
+                    "applicationStatusLabel": label,
+                    "applicationStatusReason": reason,
+                }
+            )
             refreshed.append(item)
             continue
         item.update(
@@ -56,6 +85,14 @@ def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path) -> str
                 "verifiedAt": source.get("last_verified", item.get("verifiedAt", "")),
                 "officialUrl": source.get("url", item.get("officialUrl", "")),
                 "sources": source.get("source_urls", item.get("sources", [])),
+            }
+        )
+        readiness, label, reason = _application_readiness(source)
+        item.update(
+            {
+                "applicationStatus": readiness,
+                "applicationStatusLabel": label,
+                "applicationStatusReason": reason,
             }
         )
         if source.get("university") == IHE_DELFT:
