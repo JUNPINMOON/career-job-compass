@@ -61,6 +61,25 @@
 
     <dialog class="detail-sheet" id="dossier" aria-labelledby="dossierTitle"></dialog>
 
+    <dialog class="filter-sheet feedback-sheet" id="feedbackSheet" aria-labelledby="feedbackTitle">
+      <form method="dialog" class="sheet-top"><span class="sheet-handle" aria-hidden="true"></span><div><small>개인화 피드백</small><h2 id="feedbackTitle">왜 별로였나요?</h2></div><button class="sheet-close" value="cancel">닫기</button></form>
+      <form class="filter-form" id="feedbackForm">
+        <input id="feedbackJobId" type="hidden" />
+        <fieldset id="feedbackReasons">
+          <legend>해당하는 이유를 모두 골라주세요</legend>
+          <label><input type="checkbox" name="reason" value="role_mismatch" /> 직무·업무가 관심과 다름</label>
+          <label><input type="checkbox" name="reason" value="seniority" /> 경력·자격 요건이 맞지 않음</label>
+          <label><input type="checkbox" name="reason" value="location" /> 근무지·근무 방식이 맞지 않음</label>
+          <label><input type="checkbox" name="reason" value="compensation" /> 급여·처우 정보가 부족하거나 아쉬움</label>
+          <label><input type="checkbox" name="reason" value="language_visa" /> 언어·비자 조건이 부담됨</label>
+          <label><input type="checkbox" name="reason" value="source_quality" /> 공고 정보·출처가 불명확함</label>
+          <label><input type="checkbox" name="reason" value="other" /> 다른 이유</label>
+        </fieldset>
+        <label><span>메모 (선택)</span><textarea id="feedbackNote" maxlength="2000" rows="3" placeholder="다음 공고를 고를 때 참고할 점"></textarea></label>
+        <div class="sheet-actions"><button class="plain-button" id="feedbackClear" type="button">기록 삭제</button><button class="solid-button" type="submit"><span>피드백 저장</span><svg aria-hidden="true"><use href="#i-arrow" /></svg></button></div>
+      </form>
+    </dialog>
+
     <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
       <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3zM9 20v-6h6v6" /></symbol>
       <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.4" /><path d="m16 16 4.2 4.2" /></symbol>
@@ -75,6 +94,8 @@
       <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" /></symbol>
       <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20 8.5c0 5-8 10-8 10s-8-5-8-10a4 4 0 0 1 7-2.6A4 4 0 0 1 20 8.5Z" /></symbol>
     </svg>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.min.js" crossorigin="anonymous" defer></script>
+    <script src="./supabase-config.js" defer></script>
     <script src="./app.js" defer></script>
   </body>
 </html>

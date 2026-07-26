@@ -24,3 +24,11 @@
 {"at": "2026-07-26T16:29:54+00:00", "event": "check", "passed": 9, "failed": 3, "failing_ids": ["UX-206", "UX-207", "GOV-203"]}
 {"at": "2026-07-26T16:30:50+00:00", "event": "check", "passed": 12, "failed": 0, "failing_ids": []}
 {"at": "2026-07-26T16:34:07+00:00", "event": "check", "passed": 12, "failed": 0, "failing_ids": []}
+{"at": "2026-07-26T17:42:34+00:00", "event": "requirement_added", "id": "DATA-202", "title": "Existing device bookmarks migrate into the synchronized preference store"}
+{"at": "2026-07-26T17:42:34+00:00", "event": "requirement_added", "id": "UX-208", "title": "A job can be marked unsuitable with structured reasons and an optional note"}
+{"at": "2026-07-26T17:42:34+00:00", "event": "requirement_added", "id": "DATA-203", "title": "Liked and unsuitable job feedback syncs to Supabase per app user"}
+{"at": "2026-07-26T17:42:34+00:00", "event": "requirement_added", "id": "UX-209", "title": "Feedback export includes both liked and unsuitable jobs"}
+{"at": "2026-07-26T17:42:34+00:00", "event": "requirement_added", "id": "SEC-201", "title": "Preference records are protected by per-user row level security"}
+{"at": "2026-07-26T17:42:34+00:00", "event": "requirement_added", "id": "UX-210", "title": "The app visibly reports whether preferences are synchronized or local-only"}
+{"at": "2026-07-26T17:42:34+00:00", "event": "check", "passed": 12, "failed": 6, "failing_ids": ["DATA-202", "UX-208", "DATA-203", "UX-209", "SEC-201", "UX-210"]}
+{"at": "2026-07-26T18:02:52+00:00", "event": "check", "passed": 18, "failed": 0, "failing_ids": []}

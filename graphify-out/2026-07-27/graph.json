@@ -9,10 +9,10 @@
       "source_file": "app.js",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 3,
-      "norm_label": "app.js",
       "id": "app",
-      "community_name": "Record Handling"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "app.js"
     },
     {
       "label": "readJSON()",
@@ -20,10 +20,10 @@
       "source_file": "app.js",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 3,
-      "norm_label": "readjson()",
       "id": "app_readjson",
-      "community_name": "Record Handling"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "readjson()"
     },
     {
       "label": "store()",
@@ -31,10 +31,10 @@
       "source_file": "app.js",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 8,
-      "norm_label": "store()",
       "id": "app_store",
-      "community_name": "Filter Management"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "store()"
     },
     {
       "label": "saveFilters()",
@@ -42,10 +42,10 @@
       "source_file": "app.js",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 8,
-      "norm_label": "savefilters()",
       "id": "app_savefilters",
-      "community_name": "Filter Management"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "savefilters()"
     },
     {
       "label": "escapeHtml()",
@@ -53,10 +53,10 @@
       "source_file": "app.js",
       "source_location": "L27",
       "_origin": "ast",
-      "community": 2,
-      "norm_label": "escapehtml()",
       "id": "app_escapehtml",
-      "community_name": "Job Detail Rendering"
+      "community": 2,
+      "community_name": "Job Detail Rendering",
+      "norm_label": "escapehtml()"
     },
     {
       "label": "icon()",
@@ -64,10 +64,10 @@
       "source_file": "app.js",
       "source_location": "L28",
       "_origin": "ast",
-      "community": 2,
-      "norm_label": "icon()",
       "id": "app_icon",
-      "community_name": "Job Detail Rendering"
+      "community": 2,
+      "community_name": "Job Detail Rendering",
+      "norm_label": "icon()"
     },
     {
       "label": "route()",
@@ -75,10 +75,10 @@
       "source_file": "app.js",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 8,
-      "norm_label": "route()",
       "id": "app_route",
-      "community_name": "Filter Management"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "route()"
     },
     {
       "label": "go()",
@@ -86,10 +86,10 @@
       "source_file": "app.js",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 6,
-      "norm_label": "go()",
       "id": "app_go",
-      "community_name": "UI Navigation"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "go()"
     },
     {
       "label": "sourceDate()",
@@ -97,10 +97,10 @@
       "source_file": "app.js",
       "source_location": "L31",
       "_origin": "ast",
-      "community": 3,
-      "norm_label": "sourcedate()",
       "id": "app_sourcedate",
-      "community_name": "Record Handling"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "sourcedate()"
     },
     {
       "label": "displayDate()",
@@ -108,10 +108,10 @@
       "source_file": "app.js",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 6,
-      "norm_label": "displaydate()",
       "id": "app_displaydate",
-      "community_name": "UI Navigation"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "displaydate()"
     },
     {
       "label": "requiredExperienceYears()",
@@ -119,10 +119,10 @@
       "source_file": "app.js",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 4,
-      "norm_label": "requiredexperienceyears()",
       "id": "app_requiredexperienceyears",
-      "community_name": "Job Filtering"
+      "community": 4,
+      "community_name": "Job Filtering",
+      "norm_label": "requiredexperienceyears()"
     },
     {
       "label": "isEligiblePublicJob()",
@@ -130,10 +130,10 @@
       "source_file": "app.js",
       "source_location": "L37",
       "_origin": "ast",
-      "community": 4,
-      "norm_label": "iseligiblepublicjob()",
       "id": "app_iseligiblepublicjob",
-      "community_name": "Job Filtering"
+      "community": 4,
+      "community_name": "Job Filtering",
+      "norm_label": "iseligiblepublicjob()"
     },
     {
       "label": "jobs()",
@@ -141,10 +141,10 @@
       "source_file": "app.js",
       "source_location": "L38",
       "_origin": "ast",
-      "community": 4,
-      "norm_label": "jobs()",
       "id": "app_jobs",
-      "community_name": "Job Filtering"
+      "community": 4,
+      "community_name": "Job Filtering",
+      "norm_label": "jobs()"
     },
     {
       "label": "reviewQueue()",
@@ -152,10 +152,10 @@
       "source_file": "app.js",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 4,
-      "norm_label": "reviewqueue()",
       "id": "app_reviewqueue",
-      "community_name": "Job Filtering"
+      "community": 4,
+      "community_name": "Job Filtering",
+      "norm_label": "reviewqueue()"
     },
     {
       "label": "programs()",
@@ -163,10 +163,10 @@
       "source_file": "app.js",
       "source_location": "L40",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "programs()",
       "id": "app_programs",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "programs()"
     },
     {
       "label": "funding()",
@@ -174,10 +174,10 @@
       "source_file": "app.js",
       "source_location": "L41",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "funding()",
       "id": "app_funding",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "funding()"
     },
     {
       "label": "jobSectors()",
@@ -185,10 +185,10 @@
       "source_file": "app.js",
       "source_location": "L42",
       "_origin": "ast",
-      "community": 2,
-      "norm_label": "jobsectors()",
       "id": "app_jobsectors",
-      "community_name": "Job Detail Rendering"
+      "community": 2,
+      "community_name": "Job Detail Rendering",
+      "norm_label": "jobsectors()"
     },
     {
       "label": "allJobSectors()",
@@ -196,10 +196,10 @@
       "source_file": "app.js",
       "source_location": "L43",
       "_origin": "ast",
-      "community": 9,
-      "norm_label": "alljobsectors()",
       "id": "app_alljobsectors",
-      "community_name": "Sector Normalization"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "alljobsectors()"
     },
     {
       "label": "programReadiness()",
@@ -207,10 +207,10 @@
       "source_file": "app.js",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "programreadiness()",
       "id": "app_programreadiness",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "programreadiness()"
     },
     {
       "label": "programReadinessLabel()",
@@ -218,10 +218,10 @@
       "source_file": "app.js",
       "source_location": "L45",
       "_origin": "ast",
-      "community": 2,
-      "norm_label": "programreadinesslabel()",
       "id": "app_programreadinesslabel",
-      "community_name": "Job Detail Rendering"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "programreadinesslabel()"
     },
     {
       "label": "chunks()",
@@ -229,10 +229,10 @@
       "source_file": "app.js",
       "source_location": "L46",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "chunks()",
       "id": "app_chunks",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "chunks()"
     },
     {
       "label": "setActiveTab()",
@@ -240,10 +240,10 @@
       "source_file": "app.js",
       "source_location": "L47",
       "_origin": "ast",
-      "community": 6,
-      "norm_label": "setactivetab()",
       "id": "app_setactivetab",
-      "community_name": "UI Navigation"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "setactivetab()"
     },
     {
       "label": "activeFilters()",
@@ -251,10 +251,10 @@
       "source_file": "app.js",
       "source_location": "L52",
       "_origin": "ast",
-      "community": 4,
-      "norm_label": "activefilters()",
       "id": "app_activefilters",
-      "community_name": "Job Filtering"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "activefilters()"
     },
     {
       "label": "jobById()",
@@ -262,10 +262,10 @@
       "source_file": "app.js",
       "source_location": "L53",
       "_origin": "ast",
-      "community": 4,
-      "norm_label": "jobbyid()",
       "id": "app_jobbyid",
-      "community_name": "Job Filtering"
+      "community": 4,
+      "community_name": "Job Filtering",
+      "norm_label": "jobbyid()"
     },
     {
       "label": "recordById()",
@@ -273,10 +273,10 @@
       "source_file": "app.js",
       "source_location": "L54",
       "_origin": "ast",
-      "community": 3,
-      "norm_label": "recordbyid()",
       "id": "app_recordbyid",
-      "community_name": "Record Handling"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "recordbyid()"
     },
     {
       "label": "marketCount()",
@@ -284,10 +284,10 @@
       "source_file": "app.js",
       "source_location": "L55",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "marketcount()",
       "id": "app_marketcount",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "marketcount()"
     },
     {
       "label": "marketSwitch()",
@@ -295,10 +295,10 @@
       "source_file": "app.js",
       "source_location": "L56",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "marketswitch()",
       "id": "app_marketswitch",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "marketswitch()"
     },
     {
       "label": "pageFrame()",
@@ -306,10 +306,10 @@
       "source_file": "app.js",
       "source_location": "L61",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "pageframe()",
       "id": "app_pageframe",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "pageframe()"
     },
     {
       "label": "filteredJobs()",
@@ -317,10 +317,10 @@
       "source_file": "app.js",
       "source_location": "L65",
       "_origin": "ast",
-      "community": 4,
-      "norm_label": "filteredjobs()",
       "id": "app_filteredjobs",
-      "community_name": "Job Filtering"
+      "community": 2,
+      "community_name": "Job Detail Rendering",
+      "norm_label": "filteredjobs()"
     },
     {
       "label": "diversifiedJobs()",
@@ -328,10 +328,10 @@
       "source_file": "app.js",
       "source_location": "L74",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "diversifiedjobs()",
       "id": "app_diversifiedjobs",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "diversifiedjobs()"
     },
     {
       "label": "filteredStudy()",
@@ -339,10 +339,10 @@
       "source_file": "app.js",
       "source_location": "L84",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "filteredstudy()",
       "id": "app_filteredstudy",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "filteredstudy()"
     },
     {
       "label": "queueCopy()",
@@ -350,10 +350,10 @@
       "source_file": "app.js",
       "source_location": "L90",
       "_origin": "ast",
-      "community": 2,
-      "norm_label": "queuecopy()",
       "id": "app_queuecopy",
-      "community_name": "Job Detail Rendering"
+      "community": 2,
+      "community_name": "Job Detail Rendering",
+      "norm_label": "queuecopy()"
     },
     {
       "label": "candidateRow()",
@@ -361,10 +361,10 @@
       "source_file": "app.js",
       "source_location": "L91",
       "_origin": "ast",
-      "community": 2,
-      "norm_label": "candidaterow()",
       "id": "app_candidaterow",
-      "community_name": "Job Detail Rendering"
+      "community": 2,
+      "community_name": "Job Detail Rendering",
+      "norm_label": "candidaterow()"
     },
     {
       "label": "renderToday()",
@@ -372,10 +372,10 @@
       "source_file": "app.js",
       "source_location": "L104",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "rendertoday()",
       "id": "app_rendertoday",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "rendertoday()"
     },
     {
       "label": "renderJobResults()",
@@ -383,10 +383,10 @@
       "source_file": "app.js",
       "source_location": "L121",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "renderjobresults()",
       "id": "app_renderjobresults",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "renderjobresults()"
     },
     {
       "label": "renderJobs()",
@@ -394,10 +394,10 @@
       "source_file": "app.js",
       "source_location": "L129",
       "_origin": "ast",
-      "community": 4,
-      "norm_label": "renderjobs()",
       "id": "app_renderjobs",
-      "community_name": "Job Filtering"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "renderjobs()"
     },
     {
       "label": "studyRow()",
@@ -405,10 +405,10 @@
       "source_file": "app.js",
       "source_location": "L139",
       "_origin": "ast",
-      "community": 2,
-      "norm_label": "studyrow()",
       "id": "app_studyrow",
-      "community_name": "Job Detail Rendering"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "studyrow()"
     },
     {
       "label": "renderStudyResults()",
@@ -416,10 +416,10 @@
       "source_file": "app.js",
       "source_location": "L149",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "renderstudyresults()",
       "id": "app_renderstudyresults",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "renderstudyresults()"
     },
     {
       "label": "renderStudy()",
@@ -427,10 +427,10 @@
       "source_file": "app.js",
       "source_location": "L158",
       "_origin": "ast",
-      "community": 0,
-      "norm_label": "renderstudy()",
       "id": "app_renderstudy",
-      "community_name": "Program Management"
+      "community": 0,
+      "community_name": "Program Management",
+      "norm_label": "renderstudy()"
     },
     {
       "label": "renderSources()",
@@ -438,10 +438,10 @@
       "source_file": "app.js",
       "source_location": "L172",
       "_origin": "ast",
-      "community": 6,
-      "norm_label": "rendersources()",
       "id": "app_rendersources",
-      "community_name": "UI Navigation"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "rendersources()"
     },
     {
       "label": "detailList()",
@@ -449,10 +449,10 @@
       "source_file": "app.js",
       "source_location": "L182",
       "_origin": "ast",
-      "community": 2,
-      "norm_label": "detaillist()",
       "id": "app_detaillist",
-      "community_name": "Job Detail Rendering"
+      "community": 2,
+      "community_name": "Job Detail Rendering",
+      "norm_label": "detaillist()"
     },
     {
       "label": "officialLink()",
@@ -460,10 +460,10 @@
       "source_file": "app.js",
       "source_location": "L183",
       "_origin": "ast",
-      "community": 2,
-      "norm_label": "officiallink()",
       "id": "app_officiallink",
-      "community_name": "Job Detail Rendering"
+      "community": 2,
+      "community_name": "Job Detail Rendering",
+      "norm_label": "officiallink()"
     },
     {
       "label": "renderJobDetail()",
@@ -471,10 +471,10 @@
       "source_file": "app.js",
       "source_location": "L184",
       "_origin": "ast",
-      "community": 2,
-      "norm_label": "renderjobdetail()",
       "id": "app_renderjobdetail",
-      "community_name": "Job Detail Rendering"
+      "community": 2,
+      "community_name": "Job Detail Rendering",
+      "norm_label": "renderjobdetail()"
     },
     {
       "label": "renderRecordDetail()",
@@ -482,10 +482,10 @@
       "source_file": "app.js",
       "source_location": "L189",
       "_origin": "ast",
-      "community": 2,
-      "norm_label": "renderrecorddetail()",
       "id": "app_renderrecorddetail",
-      "community_name": "Job Detail Rendering"
+      "community": 2,
+      "community_name": "Job Detail Rendering",
+      "norm_label": "renderrecorddetail()"
     },
     {
       "label": "openJobDetail()",
@@ -493,10 +493,10 @@
       "source_file": "app.js",
       "source_location": "L198",
       "_origin": "ast",
-      "community": 4,
-      "norm_label": "openjobdetail()",
       "id": "app_openjobdetail",
-      "community_name": "Job Filtering"
+      "community": 4,
+      "community_name": "Job Filtering",
+      "norm_label": "openjobdetail()"
     },
     {
       "label": "openRecordDetail()",
@@ -504,10 +504,10 @@
       "source_file": "app.js",
       "source_location": "L199",
       "_origin": "ast",
-      "community": 3,
-      "norm_label": "openrecorddetail()",
       "id": "app_openrecorddetail",
-      "community_name": "Record Handling"
+      "community": 2,
+      "community_name": "Job Detail Rendering",
+      "norm_label": "openrecorddetail()"
     },
     {
       "label": "closeDetail()",
@@ -515,10 +515,10 @@
       "source_file": "app.js",
       "source_location": "L200",
       "_origin": "ast",
-      "community": 6,
-      "norm_label": "closedetail()",
       "id": "app_closedetail",
-      "community_name": "UI Navigation"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "closedetail()"
     },
     {
       "label": "openFilters()",
@@ -526,10 +526,10 @@
       "source_file": "app.js",
       "source_location": "L202",
       "_origin": "ast",
-      "community": 9,
-      "norm_label": "openfilters()",
       "id": "app_openfilters",
-      "community_name": "Sector Normalization"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "openfilters()"
     },
     {
       "label": "resetFilters()",
@@ -537,10 +537,10 @@
       "source_file": "app.js",
       "source_location": "L210",
       "_origin": "ast",
-      "community": 8,
-      "norm_label": "resetfilters()",
       "id": "app_resetfilters",
-      "community_name": "Filter Management"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "resetfilters()"
     },
     {
       "label": "updateNetwork()",
@@ -548,10 +548,10 @@
       "source_file": "app.js",
       "source_location": "L211",
       "_origin": "ast",
-      "community": 3,
-      "norm_label": "updatenetwork()",
       "id": "app_updatenetwork",
-      "community_name": "Record Handling"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "updatenetwork()"
     },
     {
       "label": "renderError()",
@@ -559,10 +559,10 @@
       "source_file": "app.js",
       "source_location": "L212",
       "_origin": "ast",
-      "community": 3,
-      "norm_label": "rendererror()",
       "id": "app_rendererror",
-      "community_name": "Record Handling"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "rendererror()"
     },
     {
       "label": "render()",
@@ -570,10 +570,10 @@
       "source_file": "app.js",
       "source_location": "L213",
       "_origin": "ast",
-      "community": 6,
-      "norm_label": "render()",
       "id": "app_render",
-      "community_name": "UI Navigation"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "render()"
     },
     {
       "label": "isSnapshot()",
@@ -581,10 +581,10 @@
       "source_file": "app.js",
       "source_location": "L214",
       "_origin": "ast",
-      "community": 3,
-      "norm_label": "issnapshot()",
       "id": "app_issnapshot",
-      "community_name": "Record Handling"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "issnapshot()"
     },
     {
       "label": "normalizeFilters()",
@@ -592,10 +592,10 @@
       "source_file": "app.js",
       "source_location": "L215",
       "_origin": "ast",
-      "community": 9,
-      "norm_label": "normalizefilters()",
       "id": "app_normalizefilters",
-      "community_name": "Sector Normalization"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "normalizefilters()"
     },
     {
       "label": "setSnapshot()",
@@ -603,10 +603,10 @@
       "source_file": "app.js",
       "source_location": "L229",
       "_origin": "ast",
-      "community": 3,
-      "norm_label": "setsnapshot()",
       "id": "app_setsnapshot",
-      "community_name": "Record Handling"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "setsnapshot()"
     },
     {
       "label": "setEngineBusy()",
@@ -614,10 +614,10 @@
       "source_file": "app.js",
       "source_location": "L230",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "setenginebusy()",
       "id": "app_setenginebusy",
-      "community_name": "Bridge Communication"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "setenginebusy()"
     },
     {
       "label": "bridgeUrl()",
@@ -625,10 +625,10 @@
       "source_file": "app.js",
       "source_location": "L231",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "bridgeurl()",
       "id": "app_bridgeurl",
-      "community_name": "Bridge Communication"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "bridgeurl()"
     },
     {
       "label": "bridgeRequest()",
@@ -636,10 +636,10 @@
       "source_file": "app.js",
       "source_location": "L232",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "bridgerequest()",
       "id": "app_bridgerequest",
-      "community_name": "Bridge Communication"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "bridgerequest()"
     },
     {
       "label": "refreshStatus()",
@@ -647,10 +647,10 @@
       "source_file": "app.js",
       "source_location": "L238",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "refreshstatus()",
       "id": "app_refreshstatus",
-      "community_name": "Bridge Communication"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "refreshstatus()"
     },
     {
       "label": "stopRefreshPolling()",
@@ -658,10 +658,10 @@
       "source_file": "app.js",
       "source_location": "L239",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "stoprefreshpolling()",
       "id": "app_stoprefreshpolling",
-      "community_name": "Bridge Communication"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "stoprefreshpolling()"
     },
     {
       "label": "loadLiveSnapshot()",
@@ -669,10 +669,10 @@
       "source_file": "app.js",
       "source_location": "L240",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "loadlivesnapshot()",
       "id": "app_loadlivesnapshot",
-      "community_name": "Bridge Communication"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "loadlivesnapshot()"
     },
     {
       "label": "watchRefresh()",
@@ -680,10 +680,10 @@
       "source_file": "app.js",
       "source_location": "L244",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "watchrefresh()",
       "id": "app_watchrefresh",
-      "community_name": "Bridge Communication"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "watchrefresh()"
     },
     {
       "label": "refreshEngine()",
@@ -691,10 +691,10 @@
       "source_file": "app.js",
       "source_location": "L265",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "refreshengine()",
       "id": "app_refreshengine",
-      "community_name": "Bridge Communication"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "refreshengine()"
     },
     {
       "label": "connectBridge()",
@@ -702,21 +702,21 @@
       "source_file": "app.js",
       "source_location": "L279",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "connectbridge()",
       "id": "app_connectbridge",
-      "community_name": "Bridge Communication"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "connectbridge()"
     },
     {
       "label": "load()",
       "file_type": "code",
       "source_file": "app.js",
-      "source_location": "L302",
+      "source_location": "L299",
       "_origin": "ast",
-      "community": 3,
-      "norm_label": "load()",
       "id": "app_load",
-      "community_name": "Record Handling"
+      "community": 5,
+      "community_name": "Bridge Communication",
+      "norm_label": "load()"
     },
     {
       "label": "build_snapshot.py",
@@ -724,21 +724,21 @@
       "source_file": "scripts/build_snapshot.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
-      "norm_label": "build_snapshot.py",
       "id": "scripts_build_snapshot",
-      "community_name": "Build and Snapshot"
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "build_snapshot.py"
     },
     {
       "label": "_read_json()",
       "file_type": "code",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast",
-      "community": 1,
-      "norm_label": "_read_json()",
       "id": "scripts_build_snapshot_read_json",
-      "community_name": "Build and Snapshot"
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "_read_json()"
     },
     {
       "label": "Path",
@@ -746,10 +746,10 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 1,
-      "norm_label": "path",
       "id": "scripts_build_snapshot_py_path",
-      "community_name": "Build and Snapshot"
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "path"
     },
     {
       "label": "Any",
@@ -757,54 +757,65 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 1,
-      "norm_label": "any",
       "id": "any",
-      "community_name": "Build and Snapshot"
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "any"
     },
     {
       "label": "_key()",
       "file_type": "code",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L23",
+      "source_location": "L24",
       "_origin": "ast",
-      "community": 1,
-      "norm_label": "_key()",
       "id": "scripts_build_snapshot_key",
-      "community_name": "Build and Snapshot"
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "_key()"
     },
     {
       "label": "_application_readiness()",
       "file_type": "code",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L30",
+      "source_location": "L31",
       "_origin": "ast",
-      "community": 1,
-      "norm_label": "_application_readiness()",
       "id": "scripts_build_snapshot_application_readiness",
-      "community_name": "Build and Snapshot"
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "_application_readiness()"
     },
     {
       "label": "_apply_latest_programs()",
       "file_type": "code",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L51",
+      "source_location": "L52",
       "_origin": "ast",
-      "community": 1,
-      "norm_label": "_apply_latest_programs()",
       "id": "scripts_build_snapshot_apply_latest_programs",
-      "community_name": "Build and Snapshot"
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "_apply_latest_programs()"
+    },
+    {
+      "label": "_apply_public_eligibility()",
+      "file_type": "code",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L116",
+      "_origin": "ast",
+      "id": "scripts_build_snapshot_apply_public_eligibility",
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "_apply_public_eligibility()"
     },
     {
       "label": "main()",
       "file_type": "code",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L115",
+      "source_location": "L175",
       "_origin": "ast",
-      "community": 1,
-      "norm_label": "main()",
       "id": "scripts_build_snapshot_main",
-      "community_name": "Build and Snapshot"
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "main()"
     },
     {
       "label": "Build the GitHub Pages fallback without regenerating the 218 MB dashboard bundle",
@@ -812,32 +823,43 @@
       "source_file": "scripts/build_snapshot.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
-      "norm_label": "build the github pages fallback without regenerating the 218 mb dashboard bundle",
       "id": "scripts_build_snapshot_rationale_1",
-      "community_name": "Build and Snapshot"
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "build the github pages fallback without regenerating the 218 mb dashboard bundle"
     },
     {
       "label": "Keep an actionable preparation lane distinct from a verified open call.      The",
       "file_type": "rationale",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L31",
+      "source_location": "L32",
       "_origin": "ast",
+      "id": "scripts_build_snapshot_rationale_32",
       "community": 1,
-      "norm_label": "keep an actionable preparation lane distinct from a verified open call.      the",
-      "id": "scripts_build_snapshot_rationale_31",
-      "community_name": "Build and Snapshot"
+      "community_name": "Build and Snapshot",
+      "norm_label": "keep an actionable preparation lane distinct from a verified open call.      the"
     },
     {
       "label": "Refresh compact programme records from the lightweight current shortlist.",
       "file_type": "rationale",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L52",
+      "source_location": "L53",
       "_origin": "ast",
+      "id": "scripts_build_snapshot_rationale_53",
       "community": 1,
-      "norm_label": "refresh compact programme records from the lightweight current shortlist.",
-      "id": "scripts_build_snapshot_rationale_52",
-      "community_name": "Build and Snapshot"
+      "community_name": "Build and Snapshot",
+      "norm_label": "refresh compact programme records from the lightweight current shortlist."
+    },
+    {
+      "label": "Annotate known requirements and remove jobs that are not entry-accessible.",
+      "file_type": "rationale",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L120",
+      "_origin": "ast",
+      "id": "scripts_build_snapshot_rationale_120",
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "annotate known requirements and remove jobs that are not entry-accessible."
     },
     {
       "label": "check_release.py",
@@ -845,21 +867,21 @@
       "source_file": "scripts/check_release.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "check_release.py",
       "id": "scripts_check_release",
-      "community_name": "Release Checks"
+      "community": 7,
+      "community_name": "Release Checks",
+      "norm_label": "check_release.py"
     },
     {
       "label": "require()",
       "file_type": "code",
       "source_file": "scripts/check_release.py",
-      "source_location": "L12",
+      "source_location": "L14",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "require()",
       "id": "scripts_check_release_require",
-      "community_name": "Release Checks"
+      "community": 7,
+      "community_name": "Release Checks",
+      "norm_label": "require()"
     },
     {
       "label": "Path",
@@ -867,32 +889,32 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "path",
       "id": "scripts_check_release_py_path",
-      "community_name": "Release Checks"
+      "community": 7,
+      "community_name": "Release Checks",
+      "norm_label": "path"
     },
     {
       "label": "contains_forbidden_key()",
       "file_type": "code",
       "source_file": "scripts/check_release.py",
-      "source_location": "L17",
+      "source_location": "L19",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "contains_forbidden_key()",
       "id": "scripts_check_release_contains_forbidden_key",
-      "community_name": "Release Checks"
+      "community": 7,
+      "community_name": "Release Checks",
+      "norm_label": "contains_forbidden_key()"
     },
     {
       "label": "main()",
       "file_type": "code",
       "source_file": "scripts/check_release.py",
-      "source_location": "L26",
+      "source_location": "L28",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "main()",
       "id": "scripts_check_release_main",
-      "community_name": "Release Checks"
+      "community": 7,
+      "community_name": "Release Checks",
+      "norm_label": "main()"
     },
     {
       "label": "Dependency-free release checks for the static Career Compass PWA.",
@@ -900,10 +922,10 @@
       "source_file": "scripts/check_release.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "dependency-free release checks for the static career compass pwa.",
       "id": "scripts_check_release_rationale_1",
-      "community_name": "Release Checks"
+      "community": 7,
+      "community_name": "Release Checks",
+      "norm_label": "dependency-free release checks for the static career compass pwa."
     },
     {
       "label": "check_requirements.py",
@@ -911,10 +933,10 @@
       "source_file": "scripts/check_requirements.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 10,
-      "norm_label": "check_requirements.py",
       "id": "scripts_check_requirements",
-      "community_name": "Requirement Checks"
+      "community": 10,
+      "community_name": "Requirement Checks",
+      "norm_label": "check_requirements.py"
     },
     {
       "label": "_items()",
@@ -922,10 +944,10 @@
       "source_file": "scripts/check_requirements.py",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 10,
-      "norm_label": "_items()",
       "id": "scripts_check_requirements_items",
-      "community_name": "Requirement Checks"
+      "community": 10,
+      "community_name": "Requirement Checks",
+      "norm_label": "_items()"
     },
     {
       "label": "main()",
@@ -933,10 +955,10 @@
       "source_file": "scripts/check_requirements.py",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 10,
-      "norm_label": "main()",
       "id": "scripts_check_requirements_main",
-      "community_name": "Requirement Checks"
+      "community": 10,
+      "community_name": "Requirement Checks",
+      "norm_label": "main()"
     },
     {
       "label": "sw.js",
@@ -944,10 +966,10 @@
       "source_file": "sw.js",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 11,
-      "norm_label": "sw.js",
       "id": "sw",
-      "community_name": "Service Worker"
+      "community": 11,
+      "community_name": "Service Worker",
+      "norm_label": "sw.js"
     },
     {
       "label": "APP_SHELL",
@@ -955,10 +977,384 @@
       "source_file": "sw.js",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 11,
-      "norm_label": "app_shell",
       "id": "sw_app_shell",
-      "community_name": "Service Worker"
+      "community": 11,
+      "community_name": "Service Worker",
+      "norm_label": "app_shell"
+    },
+    {
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "agents",
+      "community": 9,
+      "community_name": "Sector Normalization",
+      "norm_label": "agents.md"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "agents_graphify",
+      "community": 9,
+      "community_name": "Sector Normalization",
+      "norm_label": "graphify"
+    },
+    {
+      "label": "DESIGN.md",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "design",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "design.md"
+    },
+    {
+      "label": "Career Compass \u2014 calm field guide",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "design_career_compass_calm_field_guide",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "career compass \u2014 calm field guide"
+    },
+    {
+      "label": "Source of truth",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "design_source_of_truth",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "source of truth"
+    },
+    {
+      "label": "Brand",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "design_brand",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "brand"
+    },
+    {
+      "label": "Product goals",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "design_product_goals",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "product goals"
+    },
+    {
+      "label": "Personas and jobs to be done",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "design_personas_and_jobs_to_be_done",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "personas and jobs to be done"
+    },
+    {
+      "label": "Information architecture",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "design_information_architecture",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "information architecture"
+    },
+    {
+      "label": "Visual language",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "design_visual_language",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "visual language"
+    },
+    {
+      "label": "Mobile reading rhythm",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "design_mobile_reading_rhythm",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "mobile reading rhythm"
+    },
+    {
+      "label": "Design principles",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "design_design_principles",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "design principles"
+    },
+    {
+      "label": "Components and disclosure",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "design_components_and_disclosure",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "components and disclosure"
+    },
+    {
+      "label": "Accessibility",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L65",
+      "_origin": "ast",
+      "id": "design_accessibility",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "accessibility"
+    },
+    {
+      "label": "Responsive behavior",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "design_responsive_behavior",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "responsive behavior"
+    },
+    {
+      "label": "Interaction states and motion",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L78",
+      "_origin": "ast",
+      "id": "design_interaction_states_and_motion",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "interaction states and motion"
+    },
+    {
+      "label": "Non-negotiable exclusions",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L88",
+      "_origin": "ast",
+      "id": "design_non_negotiable_exclusions",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "non-negotiable exclusions"
+    },
+    {
+      "label": "Acceptance check",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L95",
+      "_origin": "ast",
+      "id": "design_acceptance_check",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "acceptance check"
+    },
+    {
+      "label": "Content voice",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L102",
+      "_origin": "ast",
+      "id": "design_content_voice",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "content voice"
+    },
+    {
+      "label": "Technical constraints",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L106",
+      "_origin": "ast",
+      "id": "design_technical_constraints",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "technical constraints"
+    },
+    {
+      "label": "Open questions",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L110",
+      "_origin": "ast",
+      "id": "design_open_questions",
+      "community": 3,
+      "community_name": "Record Handling",
+      "norm_label": "open questions"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme",
+      "community": 8,
+      "community_name": "Filter Management",
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "Career Compass",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme_career_compass",
+      "community": 8,
+      "community_name": "Filter Management",
+      "norm_label": "career compass"
+    },
+    {
+      "label": "Local preview",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "readme_local_preview",
+      "community": 8,
+      "community_name": "Filter Management",
+      "norm_label": "local preview"
+    },
+    {
+      "label": "Refresh model",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "readme_refresh_model",
+      "community": 8,
+      "community_name": "Filter Management",
+      "norm_label": "refresh model"
+    },
+    {
+      "label": "Release boundary",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "readme_release_boundary",
+      "community": 8,
+      "community_name": "Filter Management",
+      "norm_label": "release boundary"
+    },
+    {
+      "label": "001-calm-field-guide-motion.md",
+      "file_type": "document",
+      "source_file": "plans/001-calm-field-guide-motion.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "plans_001_calm_field_guide_motion",
+      "community": 6,
+      "community_name": "UI Navigation",
+      "norm_label": "001-calm-field-guide-motion.md"
+    },
+    {
+      "label": "Calm field guide motion plan",
+      "file_type": "document",
+      "source_file": "plans/001-calm-field-guide-motion.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "community": 6,
+      "community_name": "UI Navigation",
+      "norm_label": "calm field guide motion plan"
+    },
+    {
+      "label": "Audit findings",
+      "file_type": "document",
+      "source_file": "plans/001-calm-field-guide-motion.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "plans_001_calm_field_guide_motion_audit_findings",
+      "community": 6,
+      "community_name": "UI Navigation",
+      "norm_label": "audit findings"
+    },
+    {
+      "label": "Token contract",
+      "file_type": "document",
+      "source_file": "plans/001-calm-field-guide-motion.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "plans_001_calm_field_guide_motion_token_contract",
+      "community": 6,
+      "community_name": "UI Navigation",
+      "norm_label": "token contract"
+    },
+    {
+      "label": "Verification after implementation",
+      "file_type": "document",
+      "source_file": "plans/001-calm-field-guide-motion.md",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "plans_001_calm_field_guide_motion_verification_after_implementation",
+      "community": 6,
+      "community_name": "UI Navigation",
+      "norm_label": "verification after implementation"
+    },
+    {
+      "label": "Rollback boundary",
+      "file_type": "document",
+      "source_file": "plans/001-calm-field-guide-motion.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "plans_001_calm_field_guide_motion_rollback_boundary",
+      "community": 6,
+      "community_name": "UI Navigation",
+      "norm_label": "rollback boundary"
+    },
+    {
+      "label": "plans/README.md",
+      "file_type": "document",
+      "source_file": "plans/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "plans_readme",
+      "community": 12,
+      "community_name": "plans/README.md",
+      "norm_label": "plans/readme.md"
+    },
+    {
+      "label": "Motion implementation plans",
+      "file_type": "document",
+      "source_file": "plans/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "plans_readme_motion_implementation_plans",
+      "community": 12,
+      "community_name": "plans/README.md",
+      "norm_label": "motion implementation plans"
     }
   ],
   "links": [
@@ -969,9 +1365,9 @@
       "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_activefilters"
+      "target": "app_activefilters",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -980,9 +1376,9 @@
       "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_alljobsectors"
+      "target": "app_alljobsectors",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -991,9 +1387,9 @@
       "source_location": "L232",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_bridgerequest"
+      "target": "app_bridgerequest",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1002,9 +1398,9 @@
       "source_location": "L231",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_bridgeurl"
+      "target": "app_bridgeurl",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1013,9 +1409,9 @@
       "source_location": "L91",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_candidaterow"
+      "target": "app_candidaterow",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1024,9 +1420,9 @@
       "source_location": "L46",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_chunks"
+      "target": "app_chunks",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1035,9 +1431,9 @@
       "source_location": "L200",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_closedetail"
+      "target": "app_closedetail",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1046,9 +1442,9 @@
       "source_location": "L279",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_connectbridge"
+      "target": "app_connectbridge",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1057,9 +1453,9 @@
       "source_location": "L182",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_detaillist"
+      "target": "app_detaillist",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1068,9 +1464,9 @@
       "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_displaydate"
+      "target": "app_displaydate",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1079,9 +1475,9 @@
       "source_location": "L74",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_diversifiedjobs"
+      "target": "app_diversifiedjobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1090,9 +1486,9 @@
       "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1101,9 +1497,9 @@
       "source_location": "L65",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_filteredjobs"
+      "target": "app_filteredjobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1112,9 +1508,9 @@
       "source_location": "L84",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_filteredstudy"
+      "target": "app_filteredstudy",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1123,9 +1519,9 @@
       "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_funding"
+      "target": "app_funding",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1134,9 +1530,9 @@
       "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_go"
+      "target": "app_go",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1145,9 +1541,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_icon"
+      "target": "app_icon",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1156,9 +1552,9 @@
       "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_iseligiblepublicjob"
+      "target": "app_iseligiblepublicjob",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1167,9 +1563,9 @@
       "source_location": "L214",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_issnapshot"
+      "target": "app_issnapshot",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1178,9 +1574,9 @@
       "source_location": "L53",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_jobbyid"
+      "target": "app_jobbyid",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1189,9 +1585,9 @@
       "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_jobs"
+      "target": "app_jobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1200,20 +1596,20 @@
       "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_jobsectors"
+      "target": "app_jobsectors",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.js",
-      "source_location": "L302",
+      "source_location": "L299",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_load"
+      "target": "app_load",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1222,9 +1618,9 @@
       "source_location": "L240",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_loadlivesnapshot"
+      "target": "app_loadlivesnapshot",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1233,9 +1629,9 @@
       "source_location": "L55",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_marketcount"
+      "target": "app_marketcount",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1244,9 +1640,9 @@
       "source_location": "L56",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_marketswitch"
+      "target": "app_marketswitch",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1255,9 +1651,9 @@
       "source_location": "L215",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_normalizefilters"
+      "target": "app_normalizefilters",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1266,9 +1662,9 @@
       "source_location": "L183",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_officiallink"
+      "target": "app_officiallink",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1277,9 +1673,9 @@
       "source_location": "L202",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_openfilters"
+      "target": "app_openfilters",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1288,9 +1684,9 @@
       "source_location": "L198",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_openjobdetail"
+      "target": "app_openjobdetail",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1299,9 +1695,9 @@
       "source_location": "L199",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_openrecorddetail"
+      "target": "app_openrecorddetail",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1310,9 +1706,9 @@
       "source_location": "L61",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_pageframe"
+      "target": "app_pageframe",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1321,9 +1717,9 @@
       "source_location": "L44",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_programreadiness"
+      "target": "app_programreadiness",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1332,9 +1728,9 @@
       "source_location": "L45",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_programreadinesslabel"
+      "target": "app_programreadinesslabel",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1343,9 +1739,9 @@
       "source_location": "L40",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_programs"
+      "target": "app_programs",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1354,9 +1750,9 @@
       "source_location": "L90",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_queuecopy"
+      "target": "app_queuecopy",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1365,9 +1761,9 @@
       "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_readjson"
+      "target": "app_readjson",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1376,9 +1772,9 @@
       "source_location": "L54",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_recordbyid"
+      "target": "app_recordbyid",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1387,9 +1783,9 @@
       "source_location": "L265",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_refreshengine"
+      "target": "app_refreshengine",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1398,9 +1794,9 @@
       "source_location": "L238",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_refreshstatus"
+      "target": "app_refreshstatus",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1409,9 +1805,9 @@
       "source_location": "L213",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_render"
+      "target": "app_render",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1420,9 +1816,9 @@
       "source_location": "L212",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_rendererror"
+      "target": "app_rendererror",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1431,9 +1827,9 @@
       "source_location": "L184",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_renderjobdetail"
+      "target": "app_renderjobdetail",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1442,9 +1838,9 @@
       "source_location": "L121",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_renderjobresults"
+      "target": "app_renderjobresults",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1453,9 +1849,9 @@
       "source_location": "L129",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_renderjobs"
+      "target": "app_renderjobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1464,9 +1860,9 @@
       "source_location": "L189",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_renderrecorddetail"
+      "target": "app_renderrecorddetail",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1475,9 +1871,9 @@
       "source_location": "L172",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_rendersources"
+      "target": "app_rendersources",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1486,9 +1882,9 @@
       "source_location": "L158",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_renderstudy"
+      "target": "app_renderstudy",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1497,9 +1893,9 @@
       "source_location": "L149",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_renderstudyresults"
+      "target": "app_renderstudyresults",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1508,9 +1904,9 @@
       "source_location": "L104",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_rendertoday"
+      "target": "app_rendertoday",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1519,9 +1915,9 @@
       "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_requiredexperienceyears"
+      "target": "app_requiredexperienceyears",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1530,9 +1926,9 @@
       "source_location": "L210",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_resetfilters"
+      "target": "app_resetfilters",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1541,9 +1937,9 @@
       "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_reviewqueue"
+      "target": "app_reviewqueue",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1552,9 +1948,9 @@
       "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_route"
+      "target": "app_route",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1563,9 +1959,9 @@
       "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_savefilters"
+      "target": "app_savefilters",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1574,9 +1970,9 @@
       "source_location": "L47",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_setactivetab"
+      "target": "app_setactivetab",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1585,9 +1981,9 @@
       "source_location": "L230",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_setenginebusy"
+      "target": "app_setenginebusy",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1596,9 +1992,9 @@
       "source_location": "L229",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_setsnapshot"
+      "target": "app_setsnapshot",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1607,9 +2003,9 @@
       "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_sourcedate"
+      "target": "app_sourcedate",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1618,9 +2014,9 @@
       "source_location": "L239",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_stoprefreshpolling"
+      "target": "app_stoprefreshpolling",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1629,9 +2025,9 @@
       "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_store"
+      "target": "app_store",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1640,9 +2036,9 @@
       "source_location": "L139",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_studyrow"
+      "target": "app_studyrow",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1651,9 +2047,9 @@
       "source_location": "L211",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_updatenetwork"
+      "target": "app_updatenetwork",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1662,9 +2058,9 @@
       "source_location": "L244",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app",
-      "target": "app_watchrefresh"
+      "target": "app_watchrefresh",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1674,9 +2070,9 @@
       "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_savefilters",
-      "target": "app_store"
+      "target": "app_store",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1686,9 +2082,9 @@
       "source_location": "L227",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_normalizefilters",
-      "target": "app_savefilters"
+      "target": "app_savefilters",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1698,9 +2094,9 @@
       "source_location": "L135",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobs",
-      "target": "app_savefilters"
+      "target": "app_savefilters",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1710,9 +2106,9 @@
       "source_location": "L168",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudy",
-      "target": "app_savefilters"
+      "target": "app_savefilters",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1722,9 +2118,9 @@
       "source_location": "L210",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_resetfilters",
-      "target": "app_savefilters"
+      "target": "app_savefilters",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1734,9 +2130,9 @@
       "source_location": "L94",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_candidaterow",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1746,9 +2142,9 @@
       "source_location": "L182",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_detaillist",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1758,9 +2154,9 @@
       "source_location": "L183",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_officiallink",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1770,9 +2166,9 @@
       "source_location": "L206",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_openfilters",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1782,9 +2178,9 @@
       "source_location": "L62",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_pageframe",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1794,9 +2190,9 @@
       "source_location": "L90",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_queuecopy",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1806,9 +2202,9 @@
       "source_location": "L187",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobdetail",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1818,9 +2214,9 @@
       "source_location": "L130",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobs",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1830,9 +2226,9 @@
       "source_location": "L196",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderrecorddetail",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1842,9 +2238,9 @@
       "source_location": "L175",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendersources",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1854,9 +2250,9 @@
       "source_location": "L167",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudy",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1866,9 +2262,9 @@
       "source_location": "L112",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1878,9 +2274,9 @@
       "source_location": "L146",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_studyrow",
-      "target": "app_escapehtml"
+      "target": "app_escapehtml",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1890,9 +2286,9 @@
       "source_location": "L97",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_candidaterow",
-      "target": "app_icon"
+      "target": "app_icon",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1902,9 +2298,9 @@
       "source_location": "L183",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_officiallink",
-      "target": "app_icon"
+      "target": "app_icon",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1914,9 +2310,9 @@
       "source_location": "L187",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobdetail",
-      "target": "app_icon"
+      "target": "app_icon",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1926,21 +2322,9 @@
       "source_location": "L134",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobs",
-      "target": "app_icon"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app.js",
-      "source_location": "L196",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "app_renderrecorddetail",
-      "target": "app_icon"
+      "target": "app_icon",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1950,9 +2334,9 @@
       "source_location": "L167",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudy",
-      "target": "app_icon"
+      "target": "app_icon",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1962,9 +2346,9 @@
       "source_location": "L111",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_icon"
+      "target": "app_icon",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1974,9 +2358,9 @@
       "source_location": "L146",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_studyrow",
-      "target": "app_icon"
+      "target": "app_icon",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1986,9 +2370,9 @@
       "source_location": "L213",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_render",
-      "target": "app_route"
+      "target": "app_route",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -1998,9 +2382,9 @@
       "source_location": "L210",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_resetfilters",
-      "target": "app_route"
+      "target": "app_route",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2010,9 +2394,9 @@
       "source_location": "L213",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_render",
-      "target": "app_go"
+      "target": "app_go",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2022,9 +2406,9 @@
       "source_location": "L114",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_sourcedate"
+      "target": "app_sourcedate",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2034,9 +2418,9 @@
       "source_location": "L211",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_updatenetwork",
-      "target": "app_sourcedate"
+      "target": "app_sourcedate",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2046,9 +2430,9 @@
       "source_location": "L176",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendersources",
-      "target": "app_displaydate"
+      "target": "app_displaydate",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2058,9 +2442,9 @@
       "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_iseligiblepublicjob",
-      "target": "app_requiredexperienceyears"
+      "target": "app_requiredexperienceyears",
+      "confidence_score": 1.0
     },
     {
       "relation": "indirect_call",
@@ -2070,9 +2454,9 @@
       "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 0.5,
       "source": "app_jobs",
-      "target": "app_iseligiblepublicjob"
+      "target": "app_iseligiblepublicjob",
+      "confidence_score": 0.5
     },
     {
       "relation": "indirect_call",
@@ -2082,9 +2466,9 @@
       "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 0.5,
       "source": "app_reviewqueue",
-      "target": "app_iseligiblepublicjob"
+      "target": "app_iseligiblepublicjob",
+      "confidence_score": 0.5
     },
     {
       "relation": "calls",
@@ -2094,9 +2478,9 @@
       "source_location": "L67",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_filteredjobs",
-      "target": "app_jobs"
+      "target": "app_jobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2106,9 +2490,9 @@
       "source_location": "L53",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_jobbyid",
-      "target": "app_jobs"
+      "target": "app_jobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2118,9 +2502,9 @@
       "source_location": "L217",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_normalizefilters",
-      "target": "app_jobs"
+      "target": "app_jobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2130,9 +2514,9 @@
       "source_location": "L134",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobs",
-      "target": "app_jobs"
+      "target": "app_jobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2142,9 +2526,9 @@
       "source_location": "L107",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_jobs"
+      "target": "app_jobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2154,9 +2538,9 @@
       "source_location": "L106",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_reviewqueue"
+      "target": "app_reviewqueue",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2166,9 +2550,9 @@
       "source_location": "L86",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_filteredstudy",
-      "target": "app_programs"
+      "target": "app_programs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2178,9 +2562,9 @@
       "source_location": "L54",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_recordbyid",
-      "target": "app_programs"
+      "target": "app_programs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2190,9 +2574,9 @@
       "source_location": "L161",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudy",
-      "target": "app_programs"
+      "target": "app_programs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2202,9 +2586,9 @@
       "source_location": "L109",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_programs"
+      "target": "app_programs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2214,9 +2598,9 @@
       "source_location": "L86",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_filteredstudy",
-      "target": "app_funding"
+      "target": "app_funding",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2226,9 +2610,9 @@
       "source_location": "L54",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_recordbyid",
-      "target": "app_funding"
+      "target": "app_funding",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2238,9 +2622,9 @@
       "source_location": "L161",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudy",
-      "target": "app_funding"
+      "target": "app_funding",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2250,9 +2634,9 @@
       "source_location": "L110",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_funding"
+      "target": "app_funding",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2262,9 +2646,9 @@
       "source_location": "L99",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_candidaterow",
-      "target": "app_jobsectors"
+      "target": "app_jobsectors",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2274,9 +2658,9 @@
       "source_location": "L68",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_filteredjobs",
-      "target": "app_jobsectors"
+      "target": "app_jobsectors",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2286,9 +2670,9 @@
       "source_location": "L187",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobdetail",
-      "target": "app_jobsectors"
+      "target": "app_jobsectors",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2298,9 +2682,9 @@
       "source_location": "L216",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_normalizefilters",
-      "target": "app_alljobsectors"
+      "target": "app_alljobsectors",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2310,9 +2694,9 @@
       "source_location": "L205",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_openfilters",
-      "target": "app_alljobsectors"
+      "target": "app_alljobsectors",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2322,9 +2706,9 @@
       "source_location": "L87",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_filteredstudy",
-      "target": "app_programreadiness"
+      "target": "app_programreadiness",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2334,9 +2718,9 @@
       "source_location": "L45",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_programreadinesslabel",
-      "target": "app_programreadiness"
+      "target": "app_programreadiness",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2346,9 +2730,9 @@
       "source_location": "L162",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudy",
-      "target": "app_programreadiness"
+      "target": "app_programreadiness",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2358,9 +2742,9 @@
       "source_location": "L194",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderrecorddetail",
-      "target": "app_programreadinesslabel"
+      "target": "app_programreadinesslabel",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2370,9 +2754,9 @@
       "source_location": "L112",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_programreadinesslabel"
+      "target": "app_programreadinesslabel",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2382,9 +2766,9 @@
       "source_location": "L142",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_studyrow",
-      "target": "app_programreadinesslabel"
+      "target": "app_programreadinesslabel",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2394,9 +2778,9 @@
       "source_location": "L125",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobresults",
-      "target": "app_chunks"
+      "target": "app_chunks",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2406,9 +2790,9 @@
       "source_location": "L131",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobs",
-      "target": "app_chunks"
+      "target": "app_chunks",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2418,9 +2802,9 @@
       "source_location": "L160",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudy",
-      "target": "app_chunks"
+      "target": "app_chunks",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2430,9 +2814,9 @@
       "source_location": "L154",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudyresults",
-      "target": "app_chunks"
+      "target": "app_chunks",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2442,9 +2826,9 @@
       "source_location": "L213",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_render",
-      "target": "app_setactivetab"
+      "target": "app_setactivetab",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2454,9 +2838,9 @@
       "source_location": "L134",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobs",
-      "target": "app_activefilters"
+      "target": "app_activefilters",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2466,9 +2850,9 @@
       "source_location": "L198",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_openjobdetail",
-      "target": "app_jobbyid"
+      "target": "app_jobbyid",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2478,9 +2862,9 @@
       "source_location": "L199",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_openrecorddetail",
-      "target": "app_recordbyid"
+      "target": "app_recordbyid",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2490,9 +2874,9 @@
       "source_location": "L58",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_marketswitch",
-      "target": "app_marketcount"
+      "target": "app_marketcount",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2502,9 +2886,9 @@
       "source_location": "L111",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_marketcount"
+      "target": "app_marketcount",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2514,9 +2898,9 @@
       "source_location": "L134",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobs",
-      "target": "app_marketswitch"
+      "target": "app_marketswitch",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2526,9 +2910,9 @@
       "source_location": "L167",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudy",
-      "target": "app_marketswitch"
+      "target": "app_marketswitch",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2538,9 +2922,9 @@
       "source_location": "L126",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobresults",
-      "target": "app_pageframe"
+      "target": "app_pageframe",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2550,9 +2934,9 @@
       "source_location": "L134",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobs",
-      "target": "app_pageframe"
+      "target": "app_pageframe",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2562,9 +2946,9 @@
       "source_location": "L179",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendersources",
-      "target": "app_pageframe"
+      "target": "app_pageframe",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2574,9 +2958,9 @@
       "source_location": "L167",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudy",
-      "target": "app_pageframe"
+      "target": "app_pageframe",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2586,9 +2970,9 @@
       "source_location": "L155",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudyresults",
-      "target": "app_pageframe"
+      "target": "app_pageframe",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2598,9 +2982,9 @@
       "source_location": "L118",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_pageframe"
+      "target": "app_pageframe",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2610,9 +2994,9 @@
       "source_location": "L124",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobresults",
-      "target": "app_filteredjobs"
+      "target": "app_filteredjobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2622,9 +3006,9 @@
       "source_location": "L131",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobs",
-      "target": "app_filteredjobs"
+      "target": "app_filteredjobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2634,9 +3018,9 @@
       "source_location": "L124",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobresults",
-      "target": "app_diversifiedjobs"
+      "target": "app_diversifiedjobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2646,9 +3030,9 @@
       "source_location": "L107",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_diversifiedjobs"
+      "target": "app_diversifiedjobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2658,9 +3042,9 @@
       "source_location": "L160",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudy",
-      "target": "app_filteredstudy"
+      "target": "app_filteredstudy",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2670,9 +3054,9 @@
       "source_location": "L152",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudyresults",
-      "target": "app_filteredstudy"
+      "target": "app_filteredstudy",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2682,9 +3066,9 @@
       "source_location": "L95",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_candidaterow",
-      "target": "app_queuecopy"
+      "target": "app_queuecopy",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2694,9 +3078,9 @@
       "source_location": "L187",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobdetail",
-      "target": "app_queuecopy"
+      "target": "app_queuecopy",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2706,9 +3090,9 @@
       "source_location": "L126",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobresults",
-      "target": "app_candidaterow"
+      "target": "app_candidaterow",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2718,9 +3102,9 @@
       "source_location": "L111",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_rendertoday",
-      "target": "app_candidaterow"
+      "target": "app_candidaterow",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2730,9 +3114,9 @@
       "source_location": "L213",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_render",
-      "target": "app_rendertoday"
+      "target": "app_rendertoday",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2742,9 +3126,9 @@
       "source_location": "L135",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobs",
-      "target": "app_renderjobresults"
+      "target": "app_renderjobresults",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2754,9 +3138,9 @@
       "source_location": "L213",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_render",
-      "target": "app_renderjobs"
+      "target": "app_renderjobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2766,9 +3150,9 @@
       "source_location": "L210",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_resetfilters",
-      "target": "app_renderjobs"
+      "target": "app_renderjobs",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2778,9 +3162,9 @@
       "source_location": "L155",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudyresults",
-      "target": "app_studyrow"
+      "target": "app_studyrow",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2790,9 +3174,9 @@
       "source_location": "L168",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderstudy",
-      "target": "app_renderstudyresults"
+      "target": "app_renderstudyresults",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2802,9 +3186,9 @@
       "source_location": "L213",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_render",
-      "target": "app_renderstudy"
+      "target": "app_renderstudy",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2814,9 +3198,9 @@
       "source_location": "L213",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_render",
-      "target": "app_rendersources"
+      "target": "app_rendersources",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2826,9 +3210,9 @@
       "source_location": "L187",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobdetail",
-      "target": "app_detaillist"
+      "target": "app_detaillist",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2838,9 +3222,9 @@
       "source_location": "L196",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderrecorddetail",
-      "target": "app_detaillist"
+      "target": "app_detaillist",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2850,9 +3234,9 @@
       "source_location": "L187",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderjobdetail",
-      "target": "app_officiallink"
+      "target": "app_officiallink",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2862,9 +3246,9 @@
       "source_location": "L196",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_renderrecorddetail",
-      "target": "app_officiallink"
+      "target": "app_officiallink",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2874,9 +3258,9 @@
       "source_location": "L198",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_openjobdetail",
-      "target": "app_renderjobdetail"
+      "target": "app_renderjobdetail",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2886,9 +3270,9 @@
       "source_location": "L199",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_openrecorddetail",
-      "target": "app_renderrecorddetail"
+      "target": "app_renderrecorddetail",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2898,9 +3282,9 @@
       "source_location": "L213",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_render",
-      "target": "app_closedetail"
+      "target": "app_closedetail",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2910,21 +3294,21 @@
       "source_location": "L229",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_setsnapshot",
-      "target": "app_updatenetwork"
+      "target": "app_updatenetwork",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.js",
-      "source_location": "L302",
+      "source_location": "L299",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_load",
-      "target": "app_rendererror"
+      "target": "app_rendererror",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2934,9 +3318,9 @@
       "source_location": "L229",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_setsnapshot",
-      "target": "app_render"
+      "target": "app_render",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2946,9 +3330,9 @@
       "source_location": "L229",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_setsnapshot",
-      "target": "app_issnapshot"
+      "target": "app_issnapshot",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2958,21 +3342,21 @@
       "source_location": "L229",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_setsnapshot",
-      "target": "app_normalizefilters"
+      "target": "app_normalizefilters",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.js",
-      "source_location": "L302",
+      "source_location": "L299",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_load",
-      "target": "app_setsnapshot"
+      "target": "app_setsnapshot",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2982,21 +3366,9 @@
       "source_location": "L242",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_loadlivesnapshot",
-      "target": "app_setsnapshot"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app.js",
-      "source_location": "L292",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "app_connectbridge",
-      "target": "app_setenginebusy"
+      "target": "app_setsnapshot",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3006,9 +3378,9 @@
       "source_location": "L267",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_refreshengine",
-      "target": "app_setenginebusy"
+      "target": "app_setenginebusy",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3018,9 +3390,9 @@
       "source_location": "L255",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_watchrefresh",
-      "target": "app_setenginebusy"
+      "target": "app_setenginebusy",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3030,9 +3402,9 @@
       "source_location": "L234",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_bridgerequest",
-      "target": "app_bridgeurl"
+      "target": "app_bridgeurl",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3042,9 +3414,9 @@
       "source_location": "L241",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_loadlivesnapshot",
-      "target": "app_bridgerequest"
+      "target": "app_bridgerequest",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3054,9 +3426,9 @@
       "source_location": "L271",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_refreshengine",
-      "target": "app_bridgerequest"
+      "target": "app_bridgerequest",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3066,21 +3438,9 @@
       "source_location": "L238",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_refreshstatus",
-      "target": "app_bridgerequest"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app.js",
-      "source_location": "L291",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "app_connectbridge",
-      "target": "app_refreshstatus"
+      "target": "app_bridgerequest",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3090,9 +3450,9 @@
       "source_location": "L270",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_refreshengine",
-      "target": "app_refreshstatus"
+      "target": "app_refreshstatus",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3102,9 +3462,9 @@
       "source_location": "L246",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_watchrefresh",
-      "target": "app_refreshstatus"
+      "target": "app_refreshstatus",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3114,21 +3474,9 @@
       "source_location": "L254",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_watchrefresh",
-      "target": "app_stoprefreshpolling"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app.js",
-      "source_location": "L293",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "app_connectbridge",
-      "target": "app_loadlivesnapshot"
+      "target": "app_stoprefreshpolling",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3138,21 +3486,9 @@
       "source_location": "L257",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_watchrefresh",
-      "target": "app_loadlivesnapshot"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app.js",
-      "source_location": "L292",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "app_connectbridge",
-      "target": "app_watchrefresh"
+      "target": "app_loadlivesnapshot",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3162,274 +3498,320 @@
       "source_location": "L272",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "app_refreshengine",
-      "target": "app_watchrefresh"
+      "target": "app_watchrefresh",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L30",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot",
-      "target": "scripts_build_snapshot_application_readiness"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L51",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot",
-      "target": "scripts_build_snapshot_apply_latest_programs"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot",
-      "target": "scripts_build_snapshot_key"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L115",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot",
-      "target": "scripts_build_snapshot_main"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot",
-      "target": "scripts_build_snapshot_read_json"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_rationale_1",
-      "target": "scripts_build_snapshot"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L53",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_apply_latest_programs",
-      "target": "scripts_build_snapshot_read_json"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L130",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_main",
-      "target": "scripts_build_snapshot_read_json"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_read_json",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_read_json",
-      "target": "scripts_build_snapshot_py_path"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L51",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_apply_latest_programs",
-      "target": "scripts_build_snapshot_py_path"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L121",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_main",
-      "target": "scripts_build_snapshot_py_path"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L30",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_application_readiness",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L51",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_apply_latest_programs",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_key",
-      "target": "any"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L58",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_apply_latest_programs",
-      "target": "scripts_build_snapshot_key"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/build_snapshot.py",
-      "source_location": "L65",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_apply_latest_programs",
-      "target": "scripts_build_snapshot_application_readiness"
-    },
-    {
-      "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
       "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_rationale_31",
-      "target": "scripts_build_snapshot_application_readiness"
+      "source": "scripts_build_snapshot",
+      "target": "scripts_build_snapshot_application_readiness",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot",
+      "target": "scripts_build_snapshot_apply_latest_programs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot",
+      "target": "scripts_build_snapshot_apply_public_eligibility",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot",
+      "target": "scripts_build_snapshot_key",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L175",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot",
+      "target": "scripts_build_snapshot_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot",
+      "target": "scripts_build_snapshot_read_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_rationale_1",
+      "target": "scripts_build_snapshot",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L135",
+      "source_location": "L54",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_main",
-      "target": "scripts_build_snapshot_apply_latest_programs"
+      "source": "scripts_build_snapshot_apply_latest_programs",
+      "target": "scripts_build_snapshot_read_json",
+      "confidence_score": 1.0
     },
     {
-      "relation": "rationale_for",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L197",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_main",
+      "target": "scripts_build_snapshot_read_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_read_json",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_read_json",
+      "target": "scripts_build_snapshot_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
       "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "scripts_build_snapshot_rationale_52",
-      "target": "scripts_build_snapshot_apply_latest_programs"
+      "source": "scripts_build_snapshot_apply_latest_programs",
+      "target": "scripts_build_snapshot_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L181",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_main",
+      "target": "scripts_build_snapshot_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_application_readiness",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_apply_latest_programs",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_apply_public_eligibility",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_key",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_apply_latest_programs",
+      "target": "scripts_build_snapshot_key",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_apply_latest_programs",
+      "target": "scripts_build_snapshot_application_readiness",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_rationale_32",
+      "target": "scripts_build_snapshot_application_readiness",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L207",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_main",
+      "target": "scripts_build_snapshot_apply_latest_programs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_rationale_53",
+      "target": "scripts_build_snapshot_apply_latest_programs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L203",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_main",
+      "target": "scripts_build_snapshot_apply_public_eligibility",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_rationale_120",
+      "target": "scripts_build_snapshot_apply_public_eligibility",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L17",
+      "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_check_release",
-      "target": "scripts_check_release_contains_forbidden_key"
+      "target": "scripts_check_release_contains_forbidden_key",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L26",
+      "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_check_release",
-      "target": "scripts_check_release_main"
+      "target": "scripts_check_release_main",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L12",
+      "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_check_release",
-      "target": "scripts_check_release_require"
+      "target": "scripts_check_release_require",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
@@ -3438,45 +3820,45 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_check_release_rationale_1",
-      "target": "scripts_check_release"
+      "target": "scripts_check_release",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L32",
+      "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_check_release_main",
-      "target": "scripts_check_release_require"
+      "target": "scripts_check_release_require",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L12",
+      "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_check_release_require",
-      "target": "scripts_check_release_py_path"
+      "target": "scripts_check_release_py_path",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L103",
+      "source_location": "L120",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_check_release_main",
-      "target": "scripts_check_release_contains_forbidden_key"
+      "target": "scripts_check_release_contains_forbidden_key",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3485,9 +3867,9 @@
       "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_check_requirements",
-      "target": "scripts_check_requirements_items"
+      "target": "scripts_check_requirements_items",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3496,21 +3878,21 @@
       "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_check_requirements",
-      "target": "scripts_check_requirements_main"
+      "target": "scripts_check_requirements_main",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_requirements.py",
-      "source_location": "L37",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_check_requirements_main",
-      "target": "scripts_check_requirements_items"
+      "target": "scripts_check_requirements_items",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3519,9 +3901,328 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "sw",
-      "target": "sw_app_shell"
+      "target": "sw_app_shell",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "agents",
+      "target": "agents_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design",
+      "target": "design_career_compass_calm_field_guide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L95",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_acceptance_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L65",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_accessibility",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_brand",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_components_and_disclosure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_content_voice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_design_principles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_information_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_interaction_states_and_motion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_mobile_reading_rhythm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L88",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_non_negotiable_exclusions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L110",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_open_questions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_personas_and_jobs_to_be_done",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_product_goals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_responsive_behavior",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_source_of_truth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L106",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_technical_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "design_career_compass_calm_field_guide",
+      "target": "design_visual_language",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "readme",
+      "target": "readme_career_compass",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "readme_career_compass",
+      "target": "readme_local_preview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "readme_career_compass",
+      "target": "readme_refresh_model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "readme_career_compass",
+      "target": "readme_release_boundary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "plans/001-calm-field-guide-motion.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "plans_001_calm_field_guide_motion",
+      "target": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "plans/001-calm-field-guide-motion.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "target": "plans_001_calm_field_guide_motion_audit_findings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "plans/001-calm-field-guide-motion.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "target": "plans_001_calm_field_guide_motion_rollback_boundary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "plans/001-calm-field-guide-motion.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "target": "plans_001_calm_field_guide_motion_token_contract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "plans/001-calm-field-guide-motion.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "target": "plans_001_calm_field_guide_motion_verification_after_implementation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "plans/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "plans_readme",
+      "target": "plans_readme_motion_implementation_plans",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],

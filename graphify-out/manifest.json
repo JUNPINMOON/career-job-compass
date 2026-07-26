@@ -1,7 +1,7 @@
 {
   "app.js": {
-    "mtime": 1785083441.563624,
-    "ast_hash": "94472a488cab208c51638dc505c36108",
+    "mtime": 1785088240.9644463,
+    "ast_hash": "35827fc8141d8509bd79f3f1a2986549",
     "semantic_hash": ""
   },
   "data/app-data.json": {
@@ -35,9 +35,9 @@
     "semantic_hash": ""
   },
   "sw.js": {
-    "mtime": 1785066865.7307324,
-    "ast_hash": "367a13ba488963c40467568345609d3e",
-    "semantic_hash": "367a13ba488963c40467568345609d3e"
+    "mtime": 1785088034.9959025,
+    "ast_hash": "b2d7e23a29c08be3c0047b5a45891886",
+    "semantic_hash": ""
   },
   ".codex/hooks.json": {
     "mtime": 1785082598.3458984,
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "requirements/.seen-ids.json": {
-    "mtime": 1785083450.8364353,
-    "ast_hash": "b30aae2c906c8b075e957ad1a36222c1",
+    "mtime": 1785087754.0136917,
+    "ast_hash": "48df3b9e5e46747b2237d7b70e1fedc9",
     "semantic_hash": ""
   },
   ".github/workflows/pages.yml": {
@@ -60,8 +60,8 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1785082951.164004,
-    "ast_hash": "783eddfda138040ff071db81d818e2cc",
+    "mtime": 1785088031.859205,
+    "ast_hash": "b1a538f25d38ed5e53d18c81a35ca73e",
     "semantic_hash": ""
   },
   "README.md": {
@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1785078489.1327994,
-    "ast_hash": "ed34ced11e657168540b9450b93370b6",
+    "mtime": 1785088033.451338,
+    "ast_hash": "09553c14371a34f11fcd60413f5bce24",
     "semantic_hash": ""
   },
   "plans/001-calm-field-guide-motion.md": {
@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "requirements/ledger.yaml": {
-    "mtime": 1785083382.8728845,
-    "ast_hash": "6e34ff91435dd37f6f3fd1ef694b85fc",
+    "mtime": 1785087745.8402047,
+    "ast_hash": "b67ff222ea57caf3da9c839afc2f9034",
     "semantic_hash": ""
   },
   "assets/daily-brief-cover-v3.png": {
@@ -117,6 +117,16 @@
   "icons/apple-touch-icon.png": {
     "mtime": 1784832734.7247434,
     "ast_hash": "2d649c2f2bc787700c304b283466a150",
+    "semantic_hash": ""
+  },
+  "supabase-config.js": {
+    "mtime": 1785088030.4072478,
+    "ast_hash": "add6bddbd7906768abdc62e9da5d1f20",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/202607270001_create_job_preferences.sql": {
+    "mtime": 1785088028.8588667,
+    "ast_hash": "cee38b2e3b5433b75a16649f96144017",
     "semantic_hash": ""
   }
 }

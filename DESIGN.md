@@ -2,7 +2,7 @@
 
 ## Source of truth
 
-This file is the design decision contract for the static Career Compass PWA. When implementation and this document differ, update the implementation or record the unresolved decision under Open questions before release.
+This file is the design decision contract for the static-hosted Career Compass PWA. When implementation and this document differ, update the implementation or record the unresolved decision under Open questions before release.
 
 ## Brand
 
@@ -18,7 +18,7 @@ The app should feel quiet, precise, and personal on an iPhone Home Screen: a sma
 
 - A first-time job seeker needs entry-accessible domestic and overseas roles without experienced-only listings appearing as viable candidates.
 - A graduate-study researcher needs to compare programs and funding while seeing whether each record is open, preparation-only, or still research.
-- A returning user needs a short Today route, saved items, and source dates without re-learning the interface.
+- A returning user needs a short Today route, saved items, preference feedback, and source dates without re-learning the interface.
 
 ## Information architecture
 
@@ -27,7 +27,7 @@ The app should feel quiet, precise, and personal on an iPhone Home Screen: a sma
 | Today | What is worth opening now? | Snapshot date, priority/inventory context, direct route to jobs and study |
 | Explore | What options exist across my interests? | Search, domestic/overseas switch, sector inventory, filters, save and source detail |
 | Study | Which programs or funding routes deserve review? | Program/funding switch, domestic/overseas switch, open/prepare state, online filter, source detail |
-| Sources | What can this snapshot truthfully say? | Data date, coverage, verification and limitations |
+| Sources | What can this snapshot truthfully say? | Data date, coverage, preference sync/export, verification and limitations |
 
 Adding a new filter or source never replaces an existing inventory or route.
 
@@ -53,6 +53,7 @@ The first viewport prioritizes the active title, the essential controls, and the
 2. Candidate before decoration: the first real option follows the essential controls without a hero-sized gap.
 3. Comparison before isolation: browsing keeps all sectors reachable and uses compact repeated rows.
 4. Progressive disclosure before density loss: details belong in a compact sheet, not an oversized card.
+5. Explicit feedback before inferred preference: only a direct bookmark or “별로예요” action changes the personal signal.
 
 ## Components and disclosure
 
@@ -68,6 +69,7 @@ The first viewport prioritizes the active title, the essential controls, and the
 - Color never carries queue, readiness, or selected state by itself; text labels remain present.
 - Dialogs keep a readable title and textual close action, and reduced-motion preferences disable non-essential motion.
 - Source dates and conditional status text remain readable at 200% zoom without horizontal page scrolling.
+- Synchronization state is stated in text; a local-only update is never presented as server-confirmed.
 
 ## Responsive behavior
 
@@ -89,7 +91,8 @@ Hover affordances exist only for `hover:hover` and `pointer:fine`; touch screens
 
 - No cobalt cover, fluorescent lime, coral offset shadows, diagonal clipped cards, or competing accent colors.
 - No generic rounded-card grid, motivational paragraphs, fake score confidence, or English labels used as decoration.
-- No background scheduler, server control, widget, startup item, automatic refresh, credential, application, CRM write, or external side effect in this static app.
+- No background scheduler, server control, widget, startup item, automatic refresh, application, or CRM write. The only permitted external write is a user-initiated preference change to the dedicated Supabase table through a public browser key and per-user RLS.
+- No social login dependency. The app uses an app-specific anonymous Supabase session and never embeds an administrator or service-role credential.
 - No copied third-party design or source code. The installed public design skills are review criteria, not a template to imitate.
 
 ## Acceptance check
@@ -105,7 +108,7 @@ Use short Korean nouns and direct actions such as `원문 확인`, `추가 검�
 
 ## Technical constraints
 
-The app is a dependency-free static PWA. `data/catalog-source.json` is the maintained catalog input; `data/app-data.json` is generated output. Builds must exclude explicit requirements of two or more years of experience and releases must pass the requirement ledger.
+The app is a static-hosted PWA. `data/catalog-source.json` is the maintained catalog input; `data/app-data.json` is generated output. The pinned Supabase browser SDK is the sole runtime dependency and must degrade to local storage when unavailable. Builds must exclude explicit requirements of two or more years of experience and releases must pass the requirement ledger.
 
 ## Open questions
 

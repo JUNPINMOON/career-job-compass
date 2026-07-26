@@ -1,1 +1,15 @@
-{"0": "Program Management", "1": "Build and Snapshot", "2": "Job Detail Rendering", "3": "Record Handling", "4": "Job Filtering", "5": "Bridge Communication", "6": "UI Navigation", "7": "Release Checks", "8": "Filter Management", "9": "Sector Normalization", "10": "Requirement Checks", "11": "Service Worker"}
+{
+  "0": "Program Management",
+  "1": "Build and Snapshot",
+  "2": "Job Detail Rendering",
+  "3": "Record Handling",
+  "4": "Job Filtering",
+  "5": "Bridge Communication",
+  "6": "UI Navigation",
+  "7": "Release Checks",
+  "8": "Filter Management",
+  "9": "Sector Normalization",
+  "10": "Requirement Checks",
+  "11": "Service Worker",
+  "12": "plans/README.md"
+}

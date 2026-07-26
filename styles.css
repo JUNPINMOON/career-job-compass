@@ -28,10 +28,10 @@
 svg { fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 html { min-width:320px; background:var(--canvas); }
 body { min-width:320px; margin:0; color:var(--ink); background:var(--canvas); letter-spacing:-.028em; }
-button,input { font:inherit; }
+button,input,textarea { font:inherit; }
 button { cursor:pointer; }
 button:disabled { cursor:wait; }
-button:focus-visible,a:focus-visible,input:focus-visible { outline:3px solid rgba(79,125,93,.42); outline-offset:3px; }
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible { outline:3px solid rgba(79,125,93,.42); outline-offset:3px; }
 .sprite,.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
 .app { min-height:100%; padding-bottom:90px; }
 
@@ -186,6 +186,9 @@ button:focus-visible,a:focus-visible,input:focus-visible { outline:3px solid rgb
 .filter-form label { display:grid; gap:7px; color:var(--ink); font-size:13px; font-weight:700; }
 .filter-form select { width:100%; min-height:44px; padding:0 12px; border:1px solid var(--line); border-radius:10px; color:var(--ink); background:var(--surface); font:inherit; font-weight:600; }
 .filter-form input { accent-color:var(--forest); }
+.filter-form fieldset label { display:grid; grid-template-columns:20px minmax(0,1fr); align-items:start; gap:9px; min-height:30px; font-size:13px; font-weight:610; line-height:1.4; }
+.filter-form fieldset input { width:18px; height:18px; margin:0; }
+.filter-form textarea { width:100%; resize:vertical; min-height:82px; padding:10px 12px; border:1px solid var(--line); border-radius:10px; color:var(--ink); background:var(--surface); line-height:1.45; }
 .sheet-actions,.detail-actions { display:flex; gap:9px; padding:0 20px 20px; }
 .sheet-actions { display:grid; grid-template-columns:.72fr 1.28fr; }
 .solid-button,.official-button { flex:1; min-height:46px; border-color:var(--forest); color:var(--surface); background:var(--forest); text-decoration:none; }
@@ -214,6 +217,19 @@ button:focus-visible,a:focus-visible,input:focus-visible { outline:3px solid rgb
 .detail-actions { padding:0; }
 .detail-save { min-width:126px; }
 .detail-save.is-saved { border-color:var(--leaf-deep); color:var(--forest); background:var(--leaf); }
+.detail-dislike.is-active { border-color:#dabbb5; color:var(--danger); background:#f8ece9; }
+.preference-panel { margin:24px clamp(20px,4vw,56px) clamp(76px,10vw,130px); padding:22px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); }
+.preference-panel h2 { margin:7px 0 8px; font-size:25px; letter-spacing:-.065em; }
+.preference-panel > p { margin:0; color:var(--muted); font-size:13px; line-height:1.55; }
+.preference-counts { display:grid; grid-template-columns:1fr 1fr; margin:18px 0; border:solid var(--line); border-width:1px 0; }
+.preference-counts div { padding:13px 8px; }
+.preference-counts div + div { border-left:1px solid var(--line); }
+.preference-counts small { display:block; color:var(--muted); font-size:11px; }
+.preference-counts b { display:block; margin-top:5px; color:var(--forest); font-size:23px; }
+.sync-status { display:flex; align-items:center; gap:8px; margin:0 0 14px; color:var(--muted); font-size:12px; }
+.sync-status::before { width:8px; height:8px; border-radius:50%; content:""; background:var(--warm); }
+.sync-status[data-state="synced"]::before { background:var(--moss); }
+.export-button { width:100%; }
 .detail-boundary { margin:16px 0 0; color:var(--muted); font-size:11px; text-align:center; }
 
 .bottom-nav { position:fixed; z-index:20; right:0; bottom:0; left:0; display:grid; grid-template-columns:repeat(4,1fr); min-height:calc(69px + env(safe-area-inset-bottom)); padding:7px max(13px,env(safe-area-inset-left)) calc(7px + env(safe-area-inset-bottom)) max(13px,env(safe-area-inset-right)); border-top:1px solid var(--line); background:rgba(251,252,249,.96); backdrop-filter:blur(18px) saturate(120%); }
@@ -297,6 +313,7 @@ button:focus-visible,a:focus-visible,input:focus-visible { outline:3px solid rgb
   .source-explainer { flex:1; margin-top:24px; margin-bottom:0; }
   .filter-sheet,.detail-sheet { width:100vw; max-height:92dvh; margin:0 0 0; border-radius:20px 20px 0 0; }
   .filter-sheet { align-self:end; max-height:68dvh; }
+  .feedback-sheet { max-height:88dvh; }
   .detail-sheet { align-self:end; }
   .detail-actions { flex-direction:column; }
   .detail-save { width:100%; }

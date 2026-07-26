@@ -86,6 +86,48 @@
       "title": "Initial page load does not automatically contact the private refresh bridge",
       "assert": {"type": "text_absent", "path": "app.js", "needles": ["if (status.state === \"running\") { setEngineBusy(true); await watchRefresh(); }"]},
       "note": "A clean local load produced cross-origin bridge requests without an explicit user action."
+    },
+    {
+      "id": "DATA-202",
+      "status": "active",
+      "title": "Existing device bookmarks migrate into the synchronized preference store",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-202\"", "migrateLocalBookmarks"]},
+      "note": "The current iPhone bookmarks in career-compass-bookmarks must remain liked jobs after the first server sync."
+    },
+    {
+      "id": "UX-208",
+      "status": "active",
+      "title": "A job can be marked unsuitable with structured reasons and an optional note",
+      "assert": {"type": "text_present", "path": "index.html", "needles": ["id=\"feedbackSheet\"", "id=\"feedbackReasons\"", "id=\"feedbackNote\""]},
+      "note": "Negative feedback must capture why the posting was not useful instead of storing only a binary dismissal."
+    },
+    {
+      "id": "DATA-203",
+      "status": "active",
+      "title": "Liked and unsuitable job feedback syncs to Supabase per app user",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-203\"", "syncPreference"]},
+      "note": "Every explicit preference update must be persisted immediately while retaining a local offline fallback."
+    },
+    {
+      "id": "UX-209",
+      "status": "active",
+      "title": "Feedback export includes both liked and unsuitable jobs",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-209\"", "navigator.share", "likedJobs", "dislikedJobs"]},
+      "note": "The user needs one mobile-friendly export containing the positive and negative learning signal."
+    },
+    {
+      "id": "SEC-201",
+      "status": "active",
+      "title": "Preference records are protected by per-user row level security",
+      "assert": {"type": "text_present", "path": "supabase/migrations/202607270001_create_job_preferences.sql", "needles": ["enable row level security", "auth.uid()", "with check"]},
+      "note": "The browser uses only the public publishable key; no service-role credential is permitted in the app."
+    },
+    {
+      "id": "UX-210",
+      "status": "active",
+      "title": "The app visibly reports whether preferences are synchronized or local-only",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-210\"", "sync-status"]},
+      "note": "A user must be able to distinguish confirmed server persistence from offline local storage."
     }
   ]
 }
