@@ -55,10 +55,10 @@ def main() -> None:
     funding = snapshot.get("funding")
     if snapshot.get("schemaVersion", 0) < 3:
         raise SystemExit("snapshot must use schemaVersion 3 or later")
-    if not isinstance(jobs, list) or len(jobs) < 20:
-        raise SystemExit("snapshot must contain the full current V4 public action set")
-    if not isinstance(review_queue, list) or not 1 <= len(review_queue) <= 3:
-        raise SystemExit("snapshot must contain a compact 1-3 item review queue")
+    if not isinstance(jobs, list) or not jobs:
+        raise SystemExit("snapshot must contain title-grounded job exploration or action candidates")
+    if not isinstance(review_queue, list) or len(review_queue) > 3:
+        raise SystemExit("snapshot review queue must contain at most three confirmed actions")
     if not isinstance(programs, list) or len(programs) < 90:
         raise SystemExit("snapshot must contain the full graduate research catalog")
     if not isinstance(funding, list) or len(funding) < 186:
@@ -75,8 +75,8 @@ def main() -> None:
         raise SystemExit("snapshot market counts must be non-negative integers")
     if sum(market_counts.values()) != len(jobs):
         raise SystemExit("snapshot market counts must match the public job set")
-    if stats.get("recommendationSurface") not in {"ranked", "review_inventory"}:
-        raise SystemExit("snapshot must declare whether recommendations are ranked or an inventory")
+    if stats.get("recommendationSurface") not in {"ranked", "review_inventory", "exploration_only"}:
+        raise SystemExit("snapshot must declare whether candidates are ranked, actions, or interest exploration")
     if stats.get("recommendationSource") not in {"baseline", "personalized"}:
         raise SystemExit("snapshot must declare its recommendation source")
     if not isinstance(stats.get("jobDataAsOf"), str) or not stats["jobDataAsOf"]:
@@ -85,11 +85,17 @@ def main() -> None:
         raise SystemExit("every public record must declare a verified domestic/overseas market or unknown")
     if any(not job.get("url") for job in jobs):
         raise SystemExit("every public action candidate must retain its official URL")
+    if any(job.get("discoveryTier") not in {"action", "explore"} for job in jobs):
+        raise SystemExit("every public job must be an action candidate or title-grounded exploration item")
+    if any(job.get("discoveryTier") == "explore" and not job.get("discoveryReason") for job in jobs):
+        raise SystemExit("exploration candidates must disclose why they are shown")
+    if stats["recommendationSurface"] == "exploration_only" and review_queue:
+        raise SystemExit("exploration-only snapshots must not imply an action-ready review queue")
     if any(not item.get("officialUrl") and item.get("verification") != "official_search_required" for item in programs + funding):
         raise SystemExit("research records without an official URL must explicitly require official discovery")
     if contains_forbidden_key(snapshot):
         raise SystemExit("snapshot contains a private or application-state field")
-    print(f"release check ok: {len(jobs)} V4 candidates, {len(programs)} programs, {len(funding)} funding opportunities")
+    print(f"release check ok: {len(jobs)} public job candidates, {len(programs)} programs, {len(funding)} funding opportunities")
 
 
 if __name__ == "__main__":
