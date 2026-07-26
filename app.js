@@ -87,7 +87,7 @@
     const saved = state.bookmarks.has(job.id);
     return `<article class="opportunity ${compact ? "is-compact" : ""}">
       <button class="opportunity-main" type="button" data-open-job="${escapeHtml(job.id)}">
-        <span class="queue-mark"><b>${queueCopy(job)}</b><small>${job.discoveryTier === "explore" ? "EXPLORE" : "V4"}</small></span>
+        <span class="queue-mark"><b>${queueCopy(job)}</b><small>${job.market === "overseas" ? "해외" : "국내"}</small></span>
         <span class="opportunity-copy"><em>${escapeHtml(job.company)}</em><strong>${escapeHtml(job.title)}</strong><small>${escapeHtml(job.location)}</small></span>
         <span class="opportunity-arrow">${icon("arrow")}</span>
       </button>
@@ -126,7 +126,7 @@
     const total = Math.max(1, chunks(filteredJobs(), 3).length) + 1;
     const ranked = state.data?.stats?.recommendationSurface === "ranked";
     const exploring = state.data?.stats?.recommendationSurface === "exploration_only";
-    main.innerHTML = pageFrame(`<section class="browse-head"><p class="eyebrow">${ranked ? "개인화 추천" : (exploring ? "관심 탐색" : "공고 인벤토리")}</p><div class="browse-title-row"><h1>국내·해외 공고</h1><button class="filter-trigger" type="button" data-action="open-filters">필터 ${activeFilters() ? `<b>${activeFilters()}</b>` : ""}${icon("filter")}</button></div><label class="search-box">${icon("search")}<span class="sr-only">공고 검색</span><input id="jobSearch" type="search" value="${escapeHtml(state.query)}" placeholder="직무, 기관, 지역으로 찾기" autocomplete="off" /></label>${marketSwitch("job", state.jobMarket || "all", jobs())}<div class="sector-scroll"><button class="sector-chip ${!state.sector ? "is-active" : ""}" type="button" data-sector="">전체</button>${sectors}</div></section>`, 0, total, "공고 탐색") + `<div id="jobResults"></div>`;
+    main.innerHTML = pageFrame(`<section class="browse-head"><p class="eyebrow">${ranked ? "개인화 추천" : (exploring ? "관심 탐색" : "공고 인벤토리")}</p><div class="browse-title-row"><h1>국내·해외 공고</h1><button class="filter-trigger" type="button" data-action="open-filters" aria-label="공고 필터">${icon("filter")}${activeFilters() ? `<b>${activeFilters()}</b>` : ""}</button></div><label class="search-box">${icon("search")}<span class="sr-only">공고 검색</span><input id="jobSearch" type="search" value="${escapeHtml(state.query)}" placeholder="직무, 기관, 지역으로 찾기" autocomplete="off" /></label>${marketSwitch("job", state.jobMarket || "all", jobs())}<div class="sector-scroll"><button class="sector-chip ${!state.sector ? "is-active" : ""}" type="button" data-sector="">전체</button>${sectors}</div></section>`, 0, total, "공고 탐색") + `<div id="jobResults"></div>`;
     document.getElementById("jobSearch").addEventListener("input", (event) => { state.query = event.target.value; saveFilters(); renderJobResults(); });
     renderJobResults();
   }

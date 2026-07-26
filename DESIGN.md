@@ -33,6 +33,14 @@ Adding a new filter or source never replaces an existing inventory or route.
 
 The first viewport prioritizes the active title, the essential controls, and the first real candidate. Major views must never reserve a full viewport for a hero, illustration, or page-control rail. Result groups stay short and easy to scan, but flow naturally after the controls so that no empty “page” stands between a question and an option.
 
+## Component scale and disclosure
+
+- A **card** is a contained surface for an independent, comparable unit. It is not a default page-layout device. If removing its border and background does not reduce comprehension, it should be a reading row or a divider instead.
+- Job and program candidates use compact **list rows**: source/category, title, one decisive fact, then an affordance. Their container must never be taller than the information it contains.
+- Search and filters are **toolbar controls**, not hero panels. On mobile the filter trigger is a 42–44px icon control; search is a 44–48px input on the reading rail.
+- A **bottom sheet / drawer** is progressive disclosure. It opens only as high as the form needs, keeps the close control and title together, and uses ordinary-sized fields and a single 50px primary action. The primary button may carry an 18px icon, never an unconstrained SVG.
+- Radius expresses interaction, not decoration: 10–12px for inputs and sheets, pill geometry only for chips/status, and no radius on reading rows or section dividers.
+
 ## Motion contract
 
 | Interaction | Motion | Duration | Rule |
