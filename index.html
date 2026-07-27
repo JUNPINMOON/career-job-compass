@@ -78,20 +78,16 @@
     <dialog class="detail-sheet" id="dossier" aria-labelledby="dossierTitle"></dialog>
 
     <dialog class="filter-sheet feedback-sheet" id="feedbackSheet" aria-labelledby="feedbackTitle">
-      <form method="dialog" class="sheet-top"><span class="sheet-handle" aria-hidden="true"></span><div><small>개인화 피드백</small><h2 id="feedbackTitle">왜 별로였나요?</h2></div><button class="sheet-close" value="cancel">닫기</button></form>
+      <form method="dialog" class="sheet-top"><span class="sheet-handle" aria-hidden="true"></span><div><small>개인화 피드백</small><h2 id="feedbackTitle">공고 피드백</h2></div><button class="sheet-close" value="cancel">닫기</button></form>
       <form class="filter-form" id="feedbackForm">
         <input id="feedbackJobId" type="hidden" />
+        <input id="feedbackSentiment" type="hidden" />
         <fieldset id="feedbackReasons">
-          <legend>해당하는 이유를 모두 골라주세요</legend>
-          <label><input type="checkbox" name="reason" value="role_mismatch" /> 직무·업무가 관심과 다름</label>
-          <label><input type="checkbox" name="reason" value="seniority" /> 경력·자격 요건이 맞지 않음</label>
-          <label><input type="checkbox" name="reason" value="location" /> 근무지·근무 방식이 맞지 않음</label>
-          <label><input type="checkbox" name="reason" value="compensation" /> 급여·처우 정보가 부족하거나 아쉬움</label>
-          <label><input type="checkbox" name="reason" value="language_visa" /> 언어·비자 조건이 부담됨</label>
-          <label><input type="checkbox" name="reason" value="source_quality" /> 공고 정보·출처가 불명확함</label>
-          <label><input type="checkbox" name="reason" value="other" /> 다른 이유</label>
+          <legend id="feedbackLegend">이유를 골라주세요</legend>
+          <div id="feedbackReasonChoices"></div>
         </fieldset>
         <label><span>메모 (선택)</span><textarea id="feedbackNote" maxlength="2000" rows="3" placeholder="다음 공고를 고를 때 참고할 점"></textarea></label>
+        <p class="feedback-form-error" id="feedbackError" role="alert" aria-live="polite"></p>
         <div class="sheet-actions"><button class="plain-button" id="feedbackClear" type="button">기록 삭제</button><button class="solid-button" type="submit"><span>피드백 저장</span><svg aria-hidden="true"><use href="#i-arrow" /></svg></button></div>
       </form>
     </dialog>

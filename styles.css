@@ -273,6 +273,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible 
 .feedback-review-job strong { overflow:hidden; font-size:13px; letter-spacing:-.025em; line-height:1.35; text-overflow:ellipsis; white-space:nowrap; }
 .feedback-review-reason { grid-column:1; color:var(--danger); font-size:11px; line-height:1.45; }
 .feedback-review-reason p { margin:3px 0 0; color:var(--muted); }
+.feedback-review-reason.is-liked { color:var(--forest); }
+.feedback-form-error { min-height:1.4em; margin:0; color:var(--danger); font-size:12px; font-weight:700; line-height:1.4; }
 .feedback-edit { grid-column:2; grid-row:1 / span 2; align-self:center; min-height:var(--touch-target); padding:0 10px; border:1px solid var(--line); border-radius:9px; color:var(--danger); background:transparent; font-size:11px; font-weight:720; }
 .feedback-edit.is-liked { color:var(--forest); }
 .feedback-review-empty { margin:0; padding:14px 0; border-bottom:1px solid var(--line); color:var(--muted); font-size:12px; line-height:1.5; }

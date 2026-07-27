@@ -20,7 +20,16 @@
     actions: 45,
   };
   const DEFAULT_FILTERS = { query: "", sector: "", queue: "", jobMarket: "all", studyMode: "programs", studyMarket: "all", studyReadiness: "all", studyFormat: "all", studyQuery: "" };
-  const FEEDBACK_REASON_LABELS = {
+  const LIKE_REASON_LABELS = {
+    field_fit: "관심 분야·연구 주제와 잘 맞음",
+    role_fit: "직무·업무가 잘 맞음",
+    growth: "성장·학습 기회가 큼",
+    mission: "기관·프로젝트의 의미가 큼",
+    location_fit: "근무지·근무 방식이 좋음",
+    conditions_fit: "경력·언어·처우 조건이 현실적임",
+    other_positive: "다른 좋은 이유",
+  };
+  const DISLIKE_REASON_LABELS = {
     role_mismatch: "직무·업무가 관심과 다름",
     seniority: "경력·자격 요건이 맞지 않음",
     location: "근무지·근무 방식이 맞지 않음",
@@ -28,6 +37,11 @@
     language_visa: "언어·비자 조건이 부담됨",
     source_quality: "공고 정보·출처가 불명확함",
     other: "다른 이유",
+  };
+  const FEEDBACK_REASON_LABELS = { ...LIKE_REASON_LABELS, ...DISLIKE_REASON_LABELS };
+  const FEEDBACK_CONFIG = {
+    liked: { title: "왜 관심 있나요?", legend: "가치 있다고 느낀 이유를 모두 골라주세요", placeholder: "비슷한 공고를 찾을 때 반영할 구체적인 점", labels: LIKE_REASON_LABELS },
+    not_for_me: { title: "왜 별로였나요?", legend: "해당하는 이유를 모두 골라주세요", placeholder: "다음 공고를 피할 때 참고할 구체적인 점", labels: DISLIKE_REASON_LABELS },
   };
 
   const state = {
@@ -190,8 +204,8 @@
       </button>
       <div class="opportunity-foot"><span><i class="source-dot"></i>${escapeHtml(jobSectors(job).join(" · ") || "분야 원문 확인")}</span><span>${rejected ? "별로예요 · 개인화에 반영됨" : escapeHtml(job.sectorEvidence || (job.discoveryTier === "explore" ? "분야 원문 근거" : "공식 원문 · 조건 확인"))}</span></div>
       <div class="card-preference-actions" aria-label="이 공고에 대한 피드백">
-        <button class="card-preference is-like ${saved ? "is-active" : ""}" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}<span>${saved ? "관심 저장됨" : "관심"}</span></button>
-        <button class="card-preference is-dislike ${rejected ? "is-active" : ""}" type="button" data-action="open-feedback" data-job-id="${escapeHtml(job.id)}" aria-pressed="${rejected}"><span>${rejected ? "이유 수정" : "별로예요"}</span></button>
+        <button class="card-preference is-like ${saved ? "is-active" : ""}" type="button" data-action="open-feedback" data-feedback-sentiment="liked" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}<span>${saved ? "관심 이유 수정" : "관심"}</span></button>
+        <button class="card-preference is-dislike ${rejected ? "is-active" : ""}" type="button" data-action="open-feedback" data-feedback-sentiment="not_for_me" data-job-id="${escapeHtml(job.id)}" aria-pressed="${rejected}"><span>${rejected ? "이유 수정" : "별로예요"}</span></button>
       </div>
     </article>`;
   }
@@ -299,7 +313,7 @@
         <button class="feedback-review-job" type="button" data-open-job="${escapeHtml(job.id)}">
           <small>${escapeHtml(job.company)}</small><strong>${escapeHtml(job.title)}</strong>
         </button>
-        ${sentiment === "not_for_me" ? `<div class="feedback-review-reason"><span>${escapeHtml(reasonCopy)}</span>${preference?.note ? `<p>${escapeHtml(preference.note)}</p>` : ""}</div><button class="feedback-edit" type="button" data-action="open-feedback" data-job-id="${escapeHtml(job.id)}">이유 수정</button>` : `<button class="feedback-edit is-liked" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}">관심 해제</button>`}
+        <div class="feedback-review-reason ${sentiment === "liked" ? "is-liked" : ""}"><span>${escapeHtml(reasonCopy)}</span>${preference?.note ? `<p>${escapeHtml(preference.note)}</p>` : ""}</div><button class="feedback-edit ${sentiment === "liked" ? "is-liked" : ""}" type="button" data-action="open-feedback" data-feedback-sentiment="${sentiment}" data-job-id="${escapeHtml(job.id)}">${reasonCopy === "이유 미기록" ? "이유 추가" : "이유 수정"}</button>
       </article>`;
     }).join("")}</div>`;
   }
@@ -314,7 +328,7 @@
     const pages = [
       `<section class="sources-head"><p class="eyebrow">자료의 범위</p><h1>무엇을 담고,<br />어디까지 아는가.</h1><p>${escapeHtml(state.data.snapshotBoundary)}</p></section>`,
       `<section class="source-stamp"><span>PUBLIC SNAPSHOT</span><b>${displayDate(state.data.generatedAt)}</b><i>V4<br />FIRST</i></section><section class="stat-strip"><div><small>${stats.recommendationSurface === "exploration_only" ? "관심 후보" : "행동 후보"}</small><b>${escapeHtml(stats.actionCandidates)}</b></div><div><small>대학원</small><b>${escapeHtml(stats.programs)}</b></div><div><small>장학금</small><b>${escapeHtml(stats.funding)}</b></div></section>`,
-      `<section class="preference-panel" data-requirement-id="UX-212"><p class="eyebrow">나의 학습 신호</p><h2>공고 피드백</h2><p>공고 카드에서 바로 관심 또는 별로예요를 누르고 이유를 남길 수 있습니다. 저장한 내용은 다음 후보 구성에 반영됩니다.</p><div class="preference-counts"><div><small>관심 공고</small><b>${likedCount}</b></div><div><small>별로예요</small><b>${dislikedCount}</b></div></div><p class="sync-status" data-state="${state.syncState}" data-requirement-id="UX-210">${syncCopy}</p><section class="feedback-review-group"><div class="feedback-review-heading"><h3>관심 공고</h3><b>${likedCount}</b></div>${feedbackReviewList(likedJobs, "liked")}</section><section class="feedback-review-group"><div class="feedback-review-heading"><h3>별로예요와 이유</h3><b>${dislikedCount}</b></div>${feedbackReviewList(dislikedJobs, "not_for_me")}</section><button class="plain-button export-button" type="button" data-action="export-feedback">피드백 내보내기</button></section>`,
+      `<section class="preference-panel" data-requirement-id="UX-212"><p class="eyebrow">나의 학습 신호</p><h2>공고 피드백</h2><p>공고 카드에서 바로 관심 또는 별로예요를 누르고 이유를 남길 수 있습니다. 저장한 내용은 다음 후보 구성에 반영됩니다.</p><div class="preference-counts"><div><small>관심 공고</small><b>${likedCount}</b></div><div><small>별로예요</small><b>${dislikedCount}</b></div></div><p class="sync-status" data-state="${state.syncState}" data-requirement-id="UX-210">${syncCopy}</p><div data-requirement-id="UX-221"><section class="feedback-review-group"><div class="feedback-review-heading"><h3>관심 공고와 좋은 이유</h3><b>${likedCount}</b></div>${feedbackReviewList(likedJobs, "liked")}</section><section class="feedback-review-group"><div class="feedback-review-heading"><h3>별로예요와 이유</h3><b>${dislikedCount}</b></div>${feedbackReviewList(dislikedJobs, "not_for_me")}</section></div><button class="plain-button export-button" type="button" data-action="export-feedback">피드백 내보내기</button></section>`,
       `<section class="source-explainer"><p class="eyebrow">검증 경계</p><h2>점수로 결론을 대신하지 않습니다.</h2><p>공고는 최신 V4 행동 큐를, 진학·재정은 현재 대시보드의 연구 목록을 사용합니다. 공개 화면에는 개인 프로필, 지원 이력, CRM 정보가 포함되지 않습니다.</p><div class="status-rows"><div><span>V4 실행 ID</span><b>${escapeHtml(stats.v4RunId || "확인 중")}</b></div><div><span>공고 기준일</span><b>${escapeHtml(stats.jobDataAsOf || "확인 중")}</b></div><div><span>대학원 자료 생성</span><b>${escapeHtml(stats.graduateGeneratedAt || "확인 중")}</b></div></div></section>`,
     ];
     main.innerHTML = pages.map((page, index) => pageFrame(page, index, pages.length, "자료")).join("");
@@ -327,7 +341,7 @@
     const saved = preference?.sentiment === "liked";
     const rejected = preference?.sentiment === "not_for_me";
     const discovery = job.discoveryTier === "explore";
-    dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${escapeHtml(job.source)} · ${queueCopy(job)}</small><button class="detail-close" type="button" data-action="close-dossier">닫기</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(jobSectors(job).join(" · ") || "분야 원문 확인")}</p><h2 id="dossierTitle">${escapeHtml(job.title)}</h2><p class="detail-company">${escapeHtml(job.company)} · ${escapeHtml(job.location)}</p><div class="detail-primary">${officialLink(job.url)}</div><div class="detail-facts"><div><small>${discovery ? "분류" : "행동 상태"}</small><b>${queueCopy(job)}</b></div><div><small>마감</small><b>${escapeHtml(job.deadline || "원문 확인")}</b></div><div><small>증거 공백</small><b>${job.evidenceGapCount ?? "원문 확인"}</b></div><div><small>확인 부담</small><b>${escapeHtml(job.evidenceBurden || "원문 확인")}</b></div></div>${discovery ? `<section class="check-note"><small>보여드린 이유</small><p>${escapeHtml(job.discoveryReason)}</p></section>` : ""}<section class="check-note"><small>${discovery ? "원문에서 먼저 볼 것" : "다음 행동"}</small><p>${escapeHtml(job.nextAction)}</p></section>${detailList("공고에서 확인된 조건", job.requirements)}${detailList("추가 확인 항목", job.checks)}${detailList("주의 사항", job.risks)}<div class="detail-actions"><button class="detail-save ${saved ? "is-saved" : ""}" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}${saved ? "관심 공고" : "관심 있어요"}</button><button class="plain-button detail-dislike ${rejected ? "is-active" : ""}" type="button" data-action="open-feedback" data-job-id="${escapeHtml(job.id)}" aria-pressed="${rejected}">${rejected ? "별로예요 반영됨" : "별로예요"}</button></div></div></article>`;
+    dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${escapeHtml(job.source)} · ${queueCopy(job)}</small><button class="detail-close" type="button" data-action="close-dossier">닫기</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(jobSectors(job).join(" · ") || "분야 원문 확인")}</p><h2 id="dossierTitle">${escapeHtml(job.title)}</h2><p class="detail-company">${escapeHtml(job.company)} · ${escapeHtml(job.location)}</p><div class="detail-primary">${officialLink(job.url)}</div><div class="detail-facts"><div><small>${discovery ? "분류" : "행동 상태"}</small><b>${queueCopy(job)}</b></div><div><small>마감</small><b>${escapeHtml(job.deadline || "원문 확인")}</b></div><div><small>증거 공백</small><b>${job.evidenceGapCount ?? "원문 확인"}</b></div><div><small>확인 부담</small><b>${escapeHtml(job.evidenceBurden || "원문 확인")}</b></div></div>${discovery ? `<section class="check-note"><small>보여드린 이유</small><p>${escapeHtml(job.discoveryReason)}</p></section>` : ""}<section class="check-note"><small>${discovery ? "원문에서 먼저 볼 것" : "다음 행동"}</small><p>${escapeHtml(job.nextAction)}</p></section>${detailList("공고에서 확인된 조건", job.requirements)}${detailList("추가 확인 항목", job.checks)}${detailList("주의 사항", job.risks)}<div class="detail-actions"><button class="detail-save ${saved ? "is-saved" : ""}" type="button" data-action="open-feedback" data-feedback-sentiment="liked" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}${saved ? "관심 이유 수정" : "관심 있어요"}</button><button class="plain-button detail-dislike ${rejected ? "is-active" : ""}" type="button" data-action="open-feedback" data-feedback-sentiment="not_for_me" data-job-id="${escapeHtml(job.id)}" aria-pressed="${rejected}">${rejected ? "별로예요 반영됨" : "별로예요"}</button></div></div></article>`;
   }
 
   function evidenceItem(title, meta, note, url) {
@@ -477,12 +491,21 @@
       if (route() === "sources") renderSources();
     }
   }
-  function openFeedback(jobId) {
+  function openFeedback(jobId, sentiment = "not_for_me") {
     const preference = preferenceFor(jobId);
+    const config = FEEDBACK_CONFIG[sentiment] || FEEDBACK_CONFIG.not_for_me;
+    const isCurrent = preference?.sentiment === sentiment;
     document.getElementById("feedbackJobId").value = jobId;
-    document.querySelectorAll("#feedbackReasons input[name='reason']").forEach((input) => { input.checked = preference?.sentiment === "not_for_me" && preference.reasons?.includes(input.value); });
-    document.getElementById("feedbackNote").value = preference?.sentiment === "not_for_me" ? preference.note || "" : "";
-    document.getElementById("feedbackClear").hidden = preference?.sentiment !== "not_for_me";
+    document.getElementById("feedbackSentiment").value = sentiment;
+    document.getElementById("feedbackTitle").textContent = config.title;
+    document.getElementById("feedbackLegend").textContent = config.legend;
+    document.getElementById("feedbackReasonChoices").innerHTML = Object.entries(config.labels).map(([value, label]) => `<label><input type="checkbox" name="reason" value="${escapeHtml(value)}" /> ${escapeHtml(label)}</label>`).join("");
+    document.querySelectorAll("#feedbackReasons input[name='reason']").forEach((input) => { input.checked = isCurrent && preference.reasons?.includes(input.value); });
+    const note = document.getElementById("feedbackNote");
+    note.value = isCurrent ? preference.note || "" : "";
+    note.placeholder = config.placeholder;
+    document.getElementById("feedbackError").textContent = "";
+    document.getElementById("feedbackClear").hidden = !isCurrent;
     if (dossier.open) dossier.close();
     if (!feedbackSheet.open) feedbackSheet.showModal();
     requestAnimationFrame(() => document.querySelector("#feedbackReasons input")?.focus());
@@ -492,7 +515,11 @@
     /* data-requirement-id="UX-209" */
     const likedJobs = jobs().filter((job) => preferenceFor(job.id)?.sentiment === "liked");
     const dislikedJobs = jobs().filter((job) => preferenceFor(job.id)?.sentiment === "not_for_me");
-    const likedLines = likedJobs.length ? likedJobs.map((job) => `- ${job.company} — ${job.title}\n  ${job.url || "원문 주소 없음"}`).join("\n") : "- 없음";
+    const likedLines = likedJobs.length ? likedJobs.map((job) => {
+      const preference = preferenceFor(job.id);
+      const reasons = (preference.reasons || []).map((reason) => FEEDBACK_REASON_LABELS[reason] || reason).join(", ") || "이유 미기록";
+      return `- ${job.company} — ${job.title}\n  좋은 이유: ${reasons}${preference.note ? `\n  메모: ${preference.note}` : ""}\n  ${job.url || "원문 주소 없음"}`;
+    }).join("\n") : "- 없음";
     const dislikedLines = dislikedJobs.length ? dislikedJobs.map((job) => {
       const preference = preferenceFor(job.id);
       const reasons = (preference.reasons || []).map((reason) => FEEDBACK_REASON_LABELS[reason] || reason).join(", ") || "이유 미기록";
@@ -872,11 +899,10 @@
     if (action === "open-filters") openFilters();
     if (action === "clear-filters") resetFilters();
     if (action === "close-dossier") closeDetail();
-    if (action === "open-feedback") { openFeedback(event.target.closest("[data-job-id]").dataset.jobId); return; }
-    if (action === "bookmark") {
-      const id = event.target.closest("[data-job-id]").dataset.jobId;
-      const next = preferenceFor(id)?.sentiment === "liked" ? null : { sentiment: "liked", reasons: [], note: "" };
-      void syncPreference(id, next);
+    if (action === "open-feedback") {
+      const trigger = event.target.closest("[data-job-id]");
+      openFeedback(trigger.dataset.jobId, trigger.dataset.feedbackSentiment || "not_for_me");
+      return;
     }
     if (action === "retry") load({ force: true });
   });
@@ -885,10 +911,17 @@
   document.getElementById("feedbackForm").addEventListener("submit", (event) => {
     event.preventDefault();
     const jobId = document.getElementById("feedbackJobId").value;
+    const sentiment = document.getElementById("feedbackSentiment").value;
     const reasons = [...document.querySelectorAll("#feedbackReasons input[name='reason']:checked")].map((input) => input.value);
     const note = document.getElementById("feedbackNote").value.trim();
+    if (!reasons.length && !note) {
+      const error = document.getElementById("feedbackError");
+      error.textContent = "이유를 하나 이상 선택하거나 메모를 입력해 주세요.";
+      document.querySelector("#feedbackReasons input")?.focus();
+      return;
+    }
     closeFeedback();
-    void syncPreference(jobId, { sentiment: "not_for_me", reasons, note });
+    void syncPreference(jobId, { sentiment, reasons, note });
   });
   document.getElementById("feedbackClear").addEventListener("click", () => {
     const jobId = document.getElementById("feedbackJobId").value;

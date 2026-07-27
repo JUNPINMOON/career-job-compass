@@ -301,6 +301,20 @@
       "title": "Graduate research-contract counts exclude editorials and publication-inferred activities",
       "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-216", "verified_research_project", "not a funded grant"]},
       "note": "Fresh 390 by 844 browser verification on 2026-07-28 found IHE Delft labelled as having two research contracts although one record explicitly said editorial, not a funded grant and the other was inferred from publication dates without a disclosed grant ID. Fail closed to an explicit evidence gap instead of presenting those records as contracts."
+    },
+    {
+      "id": "UX-221",
+      "status": "active",
+      "title": "Liked jobs collect editable positive reasons or notes before syncing",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-221\"", "LIKE_REASON_LABELS", "이유를 하나 이상 선택하거나 메모를 입력해 주세요."]},
+      "note": "Fresh Supabase verification on 2026-07-28 found 12 liked rows but zero liked reasons and zero liked notes, while both unsuitable rows had reasons and notes. New and existing likes need the same explicit reason and note capture, edit, export and sync path without inventing motives for old bookmarks."
+    },
+    {
+      "id": "GOV-205",
+      "status": "active",
+      "title": "Mobile app shell cache advances with the liked-reason release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v25-ux221", "\"./app.js\"", "\"./index.html\"", "\"./styles.css\""]},
+      "note": "The iPhone home-screen app must not keep reading an older app shell after the liked-reason interaction ships. The service worker cache version is advanced in the same release while retaining the connected shell files."
     }
   ]
 }
