@@ -1,4 +1,4 @@
-const CACHE = "career-compass-v20";
+const CACHE = "career-compass-v22";
 const APP_SHELL = ["./", "./index.html", "./styles.css", "./app.js", "./supabase-config.js", "./manifest.webmanifest", "./data/app-data.json", "./data/refresh-bridge.json", "./assets/route-map-editorial-v2.webp", "./assets/study-steps-editorial-v2.webp", "./icons/app-icon.svg", "./icons/app-icon-maskable.svg", "./icons/apple-touch-icon.png"];
 
 self.addEventListener("install", (event) => {

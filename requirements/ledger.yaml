@@ -198,6 +198,27 @@
       "title": "A successful personalized refresh survives an app restart without contacting the private bridge",
       "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-207\"", "LIVE_SNAPSHOT_STORAGE_KEY", "selectFreshestSnapshot", "store(LIVE_SNAPSHOT_STORAGE_KEY"]},
       "note": "The refreshed snapshot must remain on the same iPhone after the app closes, while a clean load still obeys GOV-203 and does not call the private bridge."
+    },
+    {
+      "id": "DATA-208",
+      "status": "active",
+      "title": "Every current preference contributes to discovery before personalized ranking",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-208\"", "preferenceDiscovery", "discoveredCandidateCount"]},
+      "note": "Measured regression on 2026-07-27: the 14m20s run bound 10 likes but executed no preference-discovery stage. The corrected run must report a discovery artifact derived from the complete variable-length preference set, not a fixed top-N subset."
+    },
+    {
+      "id": "DATA-209",
+      "status": "active",
+      "title": "The latest personalized snapshot follows the authenticated user across clean mobile sessions",
+      "assert": {"type": "text_present", "path": "supabase/migrations/202607270002_create_personalized_snapshots.sql", "needles": ["personalized_snapshots", "auth.uid()", "enable row level security", "with check"]},
+      "note": "Measured regression on 2026-07-27: a successful local run could only survive on the same device and production reopened the stale bundled snapshot. The corrected result is stored per authenticated user under RLS; service-role credentials are forbidden in the browser."
+    },
+    {
+      "id": "DATA-210",
+      "status": "active",
+      "title": "Preference-expanded results remain deduplicated and exclude explicit experienced-only roles",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-210", "canonical_job_key", "explicit_experience_exclusion"]},
+      "note": "Measured regression on 2026-07-27: five copies of the same Hwashin 5+ year role survived into the local snapshot despite DATA-201. Expansion must apply canonical URL/title-employer deduplication and the experience exclusion after merging candidates."
     }
   ]
 }

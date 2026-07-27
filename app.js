@@ -13,6 +13,7 @@
     posting_facts: 45,
     feasibility: 45,
     sector_relevance: 90,
+    preference_discovery: 45,
     review_evidence: 90,
     sector_labels: 45,
     feedback: 15,
@@ -387,6 +388,7 @@
         if (writeError) throw writeError;
       }
       persistPreferences();
+      await loadCloudSnapshot();
       state.syncState = "synced";
       render(false);
     } catch (error) {
@@ -493,6 +495,35 @@
     }
     return { "Content-Type": "application/json", Authorization: `Bearer ${access_token}` };
   }
+  async function persistCloudSnapshot(snapshot) {
+    /* data-requirement-id="DATA-209" */
+    if (!state.preferenceClient || !state.preferenceUserId || !isSnapshot(snapshot)) return;
+    const { error } = await state.preferenceClient.from("personalized_snapshots").upsert({
+      user_id: state.preferenceUserId,
+      generated_at: snapshot.generatedAt,
+      preference_digest: snapshot.stats?.preferenceSummary?.digest || null,
+      job_data_as_of: snapshot.stats?.jobDataAsOf || snapshot.dataAsOf || null,
+      snapshot,
+      updated_at: new Date().toISOString(),
+    }, { onConflict: "user_id" });
+    if (error) throw error;
+  }
+  async function loadCloudSnapshot() {
+    /* A clean mobile session loads only the authenticated Supabase row, never the private bridge. */
+    if (!state.preferenceClient || !state.preferenceUserId) return;
+    const { data, error } = await state.preferenceClient
+      .from("personalized_snapshots")
+      .select("snapshot,generated_at")
+      .eq("user_id", state.preferenceUserId)
+      .maybeSingle();
+    if (error) throw error;
+    if (!isSnapshot(data?.snapshot)) return;
+    const freshest = selectFreshestSnapshot(state.data, data.snapshot);
+    if (freshest !== state.data) {
+      store(LIVE_SNAPSHOT_STORAGE_KEY, freshest);
+      setSnapshot(freshest);
+    }
+  }
   function refreshErrorLabel(error, status = null) {
     /* data-requirement-id="UX-213" */
     const httpStatus = error?.status || 0;
@@ -522,7 +553,7 @@
     const currentStage = status?.currentStage || {};
     const startedMs = Date.parse(status?.startedAt || "");
     const elapsedSeconds = Number.isFinite(startedMs) ? Math.max(0, (now - startedMs) / 1000) : 0;
-    const stageIds = ["preference_binding", "collection_and_v3", "posting_facts", "feasibility", "sector_relevance", "review_evidence", "sector_labels", "feedback", "actions"];
+    const stageIds = ["preference_binding", "collection_and_v3", "posting_facts", "feasibility", "sector_relevance", "preference_discovery", "review_evidence", "sector_labels", "feedback", "actions"];
     const totalSeconds = stageIds.reduce((sum, id) => sum + REFRESH_STAGE_SECONDS[id], 0);
     let usedSeconds = 0;
     stageIds.forEach((id) => {
@@ -547,12 +578,13 @@
     };
   }
   function renderRefreshMonitor(status, now = Date.now()) {
-    /* data-requirement-id="UX-215" */
+    /* data-requirement-id="UX-215" data-requirement-id="DATA-208" */
     if (!refreshMonitor || !status) return;
     state.refreshRunStatus = status;
     refreshMonitor.hidden = false;
     const currentStage = status.currentStage || {};
     const summary = status.preferenceSummary || {};
+    const preferenceDiscovery = status.preferenceDiscovery || {};
     const estimate = refreshEstimate(status, now);
     const isRunning = status.state === "running";
     const isSucceeded = status.state === "succeeded";
@@ -567,14 +599,15 @@
       ? "새 공고 검색·분류 결과를 앱에 반영했습니다."
       : status.state === "failed"
         ? `${failedStage?.labelKo || "갱신"} 단계에서 멈췄습니다. 기존 공고는 유지됩니다.`
-        : `${currentStage.labelKo || "갱신 준비"} · ${currentStage.position || 0}/${currentStage.total || 9}단계`;
+        : `${currentStage.labelKo || "갱신 준비"} · ${currentStage.position || 0}/${currentStage.total || 10}단계`;
     refreshElapsed.textContent = `경과 ${formatRuntime(estimate.elapsedSeconds)}`;
     refreshEta.textContent = isSucceeded
       ? "예상 남은 시간 0분"
       : status.state === "failed"
         ? "예상 남은 시간 없음"
         : `예상 남은 시간 ${formatRuntime(estimate.remainingLow)}~${formatRuntime(estimate.remainingHigh)}`;
-    refreshPreferenceCount.textContent = `관심 ${summary.likedCount || 0}건 · 별로예요 ${summary.dislikedCount || 0}건 전부 반영 · 예상치는 수집처 응답 속도에 따라 달라질 수 있습니다.`;
+    const discoveredCandidateCount = Number(preferenceDiscovery.discoveredCandidateCount || 0);
+    refreshPreferenceCount.textContent = `관심 ${summary.likedCount || 0}건 · 별로예요 ${summary.dislikedCount || 0}건 전부 반영${discoveredCandidateCount ? ` · 유사 후보 ${discoveredCandidateCount}건 발견` : ""} · 예상치는 수집처 응답 속도에 따라 달라질 수 있습니다.`;
     if (isRunning && !state.refreshClockTimer) {
       state.refreshClockTimer = window.setInterval(() => renderRefreshMonitor(state.refreshRunStatus), 1000);
     }
@@ -585,7 +618,7 @@
       ...previous,
       state: "failed",
       startedAt: previous.startedAt || new Date().toISOString(),
-      currentStage: { id: "status_connection", labelKo: "진행 상태 연결", position: previous.currentStage?.position || 0, total: previous.currentStage?.total || 9 },
+      currentStage: { id: "status_connection", labelKo: "진행 상태 연결", position: previous.currentStage?.position || 0, total: previous.currentStage?.total || 10 },
       stages: [
         ...(previous.stages || []).filter((stage) => stage.id !== "status_connection"),
         { id: "status_connection", labelKo: "진행 상태 연결", state: "failed" },
@@ -593,9 +626,11 @@
     });
   }
   async function loadLiveSnapshot() {
-    const response = await bridgeRequest("api/jobs/public-snapshot");
+    const headers = await authenticatedRefreshHeaders();
+    const response = await bridgeRequest("api/jobs/public-snapshot", { headers });
     const data = await response.json();
     store(LIVE_SNAPSHOT_STORAGE_KEY, data);
+    await persistCloudSnapshot(data);
     setSnapshot(data);
   }
   async function watchRefresh() {
@@ -639,7 +674,7 @@
     renderRefreshMonitor({
       state: "running",
       startedAt: new Date().toISOString(),
-      currentStage: { id: "startup", labelKo: "갱신 준비", position: 0, total: 9 },
+      currentStage: { id: "startup", labelKo: "갱신 준비", position: 0, total: 10 },
       stages: [],
       preferenceSummary: {
         likedCount: Object.values(state.feedback).filter((item) => item?.sentiment === "liked").length,

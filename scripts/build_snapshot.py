@@ -6,7 +6,7 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable, Mapping
 
 
 IHE_DELFT = "IHE Delft Institute for Water Education"
@@ -116,10 +116,15 @@ def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path) -> str
 def _apply_public_eligibility(
     job_slice: dict[str, Any],
     overrides: dict[str, Any],
+    canonical_job_key: Callable[[Mapping[str, Any]], tuple[str, str]],
+    explicit_experience_exclusion: Callable[[Mapping[str, Any]], bool],
 ) -> dict[str, Any]:
-    """Annotate known requirements and remove jobs that are not entry-accessible."""
+    """DATA-210: recheck eligibility and canonical duplicates after expansion."""
     excluded = 0
+    duplicate_count = 0
     jobs: list[dict[str, Any]] = []
+    seen_urls: set[str] = set()
+    seen_title_companies: set[str] = set()
     for source in job_slice.get("jobs", []):
         if not isinstance(source, dict):
             continue
@@ -132,9 +137,21 @@ def _apply_public_eligibility(
             minimum_years = float(minimum_years)
         except (TypeError, ValueError):
             minimum_years = 0
-        if minimum_years >= MINIMUM_EXPERIENCE_EXCLUSION_YEARS or job.get("publicEligibility") == "excluded":
+        if (
+            minimum_years >= MINIMUM_EXPERIENCE_EXCLUSION_YEARS
+            or job.get("publicEligibility") == "excluded"
+            or explicit_experience_exclusion(job)
+        ):
             excluded += 1
             continue
+        url_key, title_company_key = canonical_job_key(job)
+        if (url_key and url_key in seen_urls) or (title_company_key and title_company_key in seen_title_companies):
+            duplicate_count += 1
+            continue
+        if url_key:
+            seen_urls.add(url_key)
+        if title_company_key:
+            seen_title_companies.add(title_company_key)
         jobs.append(job)
 
     eligible_ids = {str(job.get("id", "")) for job in jobs}
@@ -162,6 +179,7 @@ def _apply_public_eligibility(
     stats["actionableCandidates"] = len(review_queue)
     stats["explorationCandidates"] = sum(1 for job in jobs if job.get("discoveryTier") == "explore")
     stats["excludedExperienceCandidates"] = excluded
+    stats["excludedDuplicateCandidates"] = duplicate_count
 
     return {
         **job_slice,
@@ -188,7 +206,11 @@ def main() -> None:
     args = parser.parse_args()
     root = args.job_search_root.resolve(strict=True)
     sys.path.insert(0, str(root))
-    from jobsearch_v4.public_snapshot import build_public_job_slice
+    from jobsearch_v4.public_snapshot import (
+        build_public_job_slice,
+        canonical_job_key,
+        explicit_experience_exclusion,
+    )
 
     if args.catalog_source.resolve() == args.output.resolve():
         raise ValueError("catalog source and generated output must be different files")
@@ -203,6 +225,8 @@ def main() -> None:
     job_slice = _apply_public_eligibility(
         raw_job_slice,
         overrides if isinstance(overrides, dict) else {},
+        canonical_job_key,
+        explicit_experience_exclusion,
     )
     graduate_generated_at = _apply_latest_programs(
         payload,

@@ -34,6 +34,21 @@
     "first_seen": "2026-07-27T09:42:22+00:00",
     "title": "A successful personalized refresh survives an app restart without contacting the private bridge"
   },
+  "DATA-208": {
+    "assert_sha": "f7157fc5fad42eb2",
+    "first_seen": "2026-07-27T10:04:17+00:00",
+    "title": "Every current preference contributes to discovery before personalized ranking"
+  },
+  "DATA-209": {
+    "assert_sha": "9e5eaf344fff61f1",
+    "first_seen": "2026-07-27T10:04:17+00:00",
+    "title": "The latest personalized snapshot follows the authenticated user across clean mobile sessions"
+  },
+  "DATA-210": {
+    "assert_sha": "366c3d149bddf8a6",
+    "first_seen": "2026-07-27T10:04:17+00:00",
+    "title": "Preference-expanded results remain deduplicated and exclude explicit experienced-only roles"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
