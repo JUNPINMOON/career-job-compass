@@ -633,6 +633,20 @@
     await persistCloudSnapshot(data);
     setSnapshot(data);
   }
+  async function loadMatchingCompletedSnapshot(status) {
+    /* data-requirement-id="DATA-211" */
+    if (status?.state !== "succeeded") return false;
+    try {
+      await loadLiveSnapshot();
+      renderRefreshMonitor(status);
+      const summary = status.preferenceSummary || {};
+      snapshotLabel.textContent = `새 추천 반영 완료 · 관심 ${summary.likedCount || 0} · 별로예요 ${summary.dislikedCount || 0}`;
+      return true;
+    } catch (error) {
+      if (error instanceof BridgeError && error.status === 409) return false;
+      throw error;
+    }
+  }
   async function watchRefresh() {
     /* data-requirement-id="DATA-205" */
     let status = null;
@@ -683,6 +697,12 @@
     });
     try {
       const status = await refreshStatus();
+      if (await loadMatchingCompletedSnapshot(status)) {
+        stopRefreshPolling();
+        store(REFRESH_WATCH_STORAGE_KEY, false);
+        setEngineBusy(false);
+        return;
+      }
       if (status.state !== "running") {
         const headers = await authenticatedRefreshHeaders();
         await bridgeRequest("api/jobs/refresh", { method: "POST", headers, body: "{}" });
