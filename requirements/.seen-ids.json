@@ -14,6 +14,21 @@
     "first_seen": "2026-07-26T17:42:34+00:00",
     "title": "Liked and unsuitable job feedback syncs to Supabase per app user"
   },
+  "DATA-204": {
+    "assert_sha": "05c1e64f3de3ae90",
+    "first_seen": "2026-07-27T01:59:17+00:00",
+    "title": "Refresh sends the authenticated Supabase session and uses the full current preference set"
+  },
+  "DATA-205": {
+    "assert_sha": "545e328c91dc9e1b",
+    "first_seen": "2026-07-27T01:59:17+00:00",
+    "title": "Refresh visibly traverses preference sync, collection, classification, and snapshot publication"
+  },
+  "DATA-206": {
+    "assert_sha": "5f1ffa69fd1fbeac",
+    "first_seen": "2026-07-27T02:33:37+00:00",
+    "title": "Domestic, overseas, and location-conflict jobs remain visibly distinct"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -28,6 +43,11 @@
     "assert_sha": "766dfb496249442a",
     "first_seen": "2026-07-26T16:29:54+00:00",
     "title": "Initial page load does not automatically contact the private refresh bridge"
+  },
+  "GOV-204": {
+    "assert_sha": "be3356e8601f9702",
+    "first_seen": "2026-07-27T01:59:17+00:00",
+    "title": "Only the dedicated Career Compass owner can start a personalized refresh"
   },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",
@@ -88,5 +108,25 @@
     "assert_sha": "4b940761862ba99e",
     "first_seen": "2026-07-26T17:42:34+00:00",
     "title": "The app visibly reports whether preferences are synchronized or local-only"
+  },
+  "UX-211": {
+    "assert_sha": "4e1c164e9fbc6fdc",
+    "first_seen": "2026-07-27T01:40:23+00:00",
+    "title": "Every job card exposes visible interested and unsuitable actions"
+  },
+  "UX-212": {
+    "assert_sha": "2b4a4046aa148d30",
+    "first_seen": "2026-07-27T01:40:23+00:00",
+    "title": "The feedback screen lists saved jobs and unsuitable reasons"
+  },
+  "UX-213": {
+    "assert_sha": "4e24a64e3a11d723",
+    "first_seen": "2026-07-27T01:59:17+00:00",
+    "title": "Mobile refresh errors name the failed boundary instead of appearing inert"
+  },
+  "UX-214": {
+    "assert_sha": "4148488fec41185b",
+    "first_seen": "2026-07-27T03:07:32+00:00",
+    "title": "All primary mobile controls provide a 44 pixel touch target"
   }
 }

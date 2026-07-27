@@ -96,9 +96,10 @@
   function jobById(id) { return jobs().find((job) => job.id === id); }
   function recordById(kind, id) { return (kind === "program" ? programs() : funding()).find((item) => item.id === id); }
   function marketCount(records, market) { return records.filter((record) => record.market === market).length; }
+  function marketLabel(market) { return market === "domestic" ? "국내" : market === "overseas" ? "해외" : "확인 필요"; }
   function marketSwitch(scope, active, records) {
     const selected = (value) => active === value ? "true" : "false";
-    return `<div class="market-switch" role="tablist" aria-label="${scope === "job" ? "공고 근무지" : "진학 자료 지역"}"><button type="button" role="tab" aria-selected="${selected("all")}" data-${scope}-market="all">전체 <b>${records.length}</b></button><button type="button" role="tab" aria-selected="${selected("domestic")}" data-${scope}-market="domestic">국내 <b>${marketCount(records, "domestic")}</b></button><button type="button" role="tab" aria-selected="${selected("overseas")}" data-${scope}-market="overseas">해외 <b>${marketCount(records, "overseas")}</b></button></div>`;
+    return `<div class="market-switch" role="tablist" aria-label="${scope === "job" ? "공고 근무지" : "진학 자료 지역"}"><button type="button" role="tab" aria-selected="${selected("all")}" data-${scope}-market="all">전체 <b>${records.length}</b></button><button type="button" role="tab" aria-selected="${selected("domestic")}" data-${scope}-market="domestic">국내 <b>${marketCount(records, "domestic")}</b></button><button type="button" role="tab" aria-selected="${selected("overseas")}" data-${scope}-market="overseas">해외 <b>${marketCount(records, "overseas")}</b></button><button type="button" role="tab" aria-selected="${selected("unknown")}" data-${scope}-market="unknown">확인 필요 <b>${marketCount(records, "unknown")}</b></button></div>`;
   }
 
   function pageFrame(content, index, total, label) {
@@ -135,14 +136,17 @@
     const preference = preferenceFor(job.id);
     const saved = preference?.sentiment === "liked";
     const rejected = preference?.sentiment === "not_for_me";
-    return `<article class="opportunity ${compact ? "is-compact" : ""}">
+    return `<article class="opportunity ${compact ? "is-compact" : ""}" data-requirement-id="UX-211" data-requirement-id-market="DATA-206">
       <button class="opportunity-main" type="button" data-open-job="${escapeHtml(job.id)}">
-        <span class="queue-mark"><b>${queueCopy(job)}</b><small>${job.market === "overseas" ? "해외" : "국내"}</small></span>
+        <span class="queue-mark"><b>${queueCopy(job)}</b><small>${marketLabel(job.market)}</small></span>
         <span class="opportunity-copy"><em>${escapeHtml(job.company)}</em><strong>${escapeHtml(job.title)}</strong><small>${escapeHtml(job.location)}</small></span>
         <span class="opportunity-arrow">${icon("arrow")}</span>
       </button>
       <div class="opportunity-foot"><span><i class="source-dot"></i>${escapeHtml(jobSectors(job).join(" · ") || "분야 원문 확인")}</span><span>${rejected ? "별로예요 · 개인화에 반영됨" : escapeHtml(job.sectorEvidence || (job.discoveryTier === "explore" ? "분야 원문 근거" : "공식 원문 · 조건 확인"))}</span></div>
-      <button class="save-dot ${saved ? "is-saved" : ""}" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}" aria-label="${saved ? "보관 취소" : "공고 보관"}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}</button>
+      <div class="card-preference-actions" aria-label="이 공고에 대한 피드백">
+        <button class="card-preference is-like ${saved ? "is-active" : ""}" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}<span>${saved ? "관심 저장됨" : "관심"}</span></button>
+        <button class="card-preference is-dislike ${rejected ? "is-active" : ""}" type="button" data-action="open-feedback" data-job-id="${escapeHtml(job.id)}" aria-pressed="${rejected}"><span>${rejected ? "이유 수정" : "별로예요"}</span></button>
+      </div>
     </article>`;
   }
 
@@ -219,15 +223,34 @@
     renderStudyResults();
   }
 
+  function feedbackReviewList(records, sentiment) {
+    if (!records.length) {
+      return `<p class="feedback-review-empty">${sentiment === "liked" ? "아직 관심 공고가 없습니다." : "아직 별로예요 기록이 없습니다. 공고 카드의 별로예요를 누르면 이유를 남길 수 있습니다."}</p>`;
+    }
+    return `<div class="feedback-review-list">${records.map((job) => {
+      const preference = preferenceFor(job.id);
+      const reasons = (preference?.reasons || []).map((reason) => FEEDBACK_REASON_LABELS[reason] || reason);
+      const reasonCopy = reasons.join(" · ") || "이유 미기록";
+      return `<article class="feedback-review-item">
+        <button class="feedback-review-job" type="button" data-open-job="${escapeHtml(job.id)}">
+          <small>${escapeHtml(job.company)}</small><strong>${escapeHtml(job.title)}</strong>
+        </button>
+        ${sentiment === "not_for_me" ? `<div class="feedback-review-reason"><span>${escapeHtml(reasonCopy)}</span>${preference?.note ? `<p>${escapeHtml(preference.note)}</p>` : ""}</div><button class="feedback-edit" type="button" data-action="open-feedback" data-job-id="${escapeHtml(job.id)}">이유 수정</button>` : `<button class="feedback-edit is-liked" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}">관심 해제</button>`}
+      </article>`;
+    }).join("")}</div>`;
+  }
+
   function renderSources() {
     const stats = state.data.stats || {};
+    const likedJobs = jobs().filter((job) => preferenceFor(job.id)?.sentiment === "liked");
+    const dislikedJobs = jobs().filter((job) => preferenceFor(job.id)?.sentiment === "not_for_me");
     const likedCount = Object.values(state.feedback).filter((item) => item?.sentiment === "liked").length;
     const dislikedCount = Object.values(state.feedback).filter((item) => item?.sentiment === "not_for_me").length;
     const syncCopy = state.syncState === "synced" ? "Supabase에 저장됨" : state.syncState === "syncing" ? "Supabase에 저장 중" : state.syncState === "error" ? "연결 실패 · 이 기기에 안전하게 보관 중" : "이 기기에 보관 중";
     const pages = [
       `<section class="sources-head"><p class="eyebrow">자료의 범위</p><h1>무엇을 담고,<br />어디까지 아는가.</h1><p>${escapeHtml(state.data.snapshotBoundary)}</p></section>`,
       `<section class="source-stamp"><span>PUBLIC SNAPSHOT</span><b>${displayDate(state.data.generatedAt)}</b><i>V4<br />FIRST</i></section><section class="stat-strip"><div><small>${stats.recommendationSurface === "exploration_only" ? "관심 후보" : "행동 후보"}</small><b>${escapeHtml(stats.actionCandidates)}</b></div><div><small>대학원</small><b>${escapeHtml(stats.programs)}</b></div><div><small>장학금</small><b>${escapeHtml(stats.funding)}</b></div></section>`,
-      `<section class="preference-panel"><p class="eyebrow">나의 학습 신호</p><h2>공고 피드백</h2><p>북마크와 별로예요 이유를 다음 후보 구성에 반영합니다.</p><div class="preference-counts"><div><small>관심 공고</small><b>${likedCount}</b></div><div><small>별로예요</small><b>${dislikedCount}</b></div></div><p class="sync-status" data-state="${state.syncState}" data-requirement-id="UX-210">${syncCopy}</p><button class="plain-button export-button" type="button" data-action="export-feedback">피드백 내보내기</button></section>`,
+      `<section class="preference-panel" data-requirement-id="UX-212"><p class="eyebrow">나의 학습 신호</p><h2>공고 피드백</h2><p>공고 카드에서 바로 관심 또는 별로예요를 누르고 이유를 남길 수 있습니다. 저장한 내용은 다음 후보 구성에 반영됩니다.</p><div class="preference-counts"><div><small>관심 공고</small><b>${likedCount}</b></div><div><small>별로예요</small><b>${dislikedCount}</b></div></div><p class="sync-status" data-state="${state.syncState}" data-requirement-id="UX-210">${syncCopy}</p><section class="feedback-review-group"><div class="feedback-review-heading"><h3>관심 공고</h3><b>${likedCount}</b></div>${feedbackReviewList(likedJobs, "liked")}</section><section class="feedback-review-group"><div class="feedback-review-heading"><h3>별로예요와 이유</h3><b>${dislikedCount}</b></div>${feedbackReviewList(dislikedJobs, "not_for_me")}</section><button class="plain-button export-button" type="button" data-action="export-feedback">피드백 내보내기</button></section>`,
       `<section class="source-explainer"><p class="eyebrow">검증 경계</p><h2>점수로 결론을 대신하지 않습니다.</h2><p>공고는 최신 V4 행동 큐를, 진학·재정은 현재 대시보드의 연구 목록을 사용합니다. 공개 화면에는 개인 프로필, 지원 이력, CRM 정보가 포함되지 않습니다.</p><div class="status-rows"><div><span>V4 실행 ID</span><b>${escapeHtml(stats.v4RunId || "확인 중")}</b></div><div><span>공고 기준일</span><b>${escapeHtml(stats.jobDataAsOf || "확인 중")}</b></div><div><span>대학원 자료 생성</span><b>${escapeHtml(stats.graduateGeneratedAt || "확인 중")}</b></div></div></section>`,
     ];
     main.innerHTML = pages.map((page, index) => pageFrame(page, index, pages.length, "자료")).join("");
@@ -404,9 +427,9 @@
     const queues = new Set(jobs().map((job) => job.queue));
     if (!sectors.has(state.sector)) state.sector = "";
     if (!queues.has(state.queue)) state.queue = "";
-    if (!["all", "domestic", "overseas"].includes(state.jobMarket)) state.jobMarket = "all";
+    if (!["all", "domestic", "overseas", "unknown"].includes(state.jobMarket)) state.jobMarket = "all";
     if (!["programs", "funding"].includes(state.studyMode)) state.studyMode = "programs";
-    if (!["all", "domestic", "overseas"].includes(state.studyMarket)) state.studyMarket = "all";
+    if (!["all", "domestic", "overseas", "unknown"].includes(state.studyMarket)) state.studyMarket = "all";
     if (!["all", "open", "prepare", "research"].includes(state.studyReadiness)) state.studyReadiness = "all";
     if (!["all", "online"].includes(state.studyFormat)) state.studyFormat = "all";
     if (typeof state.query !== "string") state.query = "";
@@ -416,11 +439,45 @@
   function setSnapshot(data, { focus = false } = {}) { if (!isSnapshot(data)) throw new Error("snapshot schema"); state.data = data; normalizeFilters(); updateNetwork(); render(focus); }
   function setEngineBusy(busy) { if (!engineRefresh) return; engineRefresh.disabled = busy; engineRefresh.toggleAttribute("aria-busy", busy); }
   function bridgeUrl(path) { return new URL(path, `${state.bridge.baseUrl}/`).toString(); }
+  class BridgeError extends Error {
+    constructor(message, status = 0, payload = null) {
+      super(message);
+      this.name = "BridgeError";
+      this.status = status;
+      this.payload = payload;
+    }
+  }
   async function bridgeRequest(path, options = {}) {
     if (!state.bridge) throw new Error("bridge unavailable");
     const response = await fetch(bridgeUrl(path), { cache: "no-store", ...options });
-    if (!response.ok) throw new Error(`bridge HTTP ${response.status}`);
+    if (!response.ok) {
+      let payload = null;
+      try { payload = await response.json(); } catch (_) { /* HTTP status remains authoritative */ }
+      throw new BridgeError(payload?.error || `bridge HTTP ${response.status}`, response.status, payload);
+    }
     return response;
+  }
+  async function authenticatedRefreshHeaders() {
+    /* data-requirement-id="DATA-204" data-requirement-id="GOV-204" */
+    if (!state.preferenceClient || !state.preferenceUserId) {
+      throw new Error("personalized refresh requires an authenticated preference session");
+    }
+    const { data, error } = await state.preferenceClient.auth.getSession();
+    const access_token = data?.session?.access_token;
+    if (error || !access_token) {
+      throw new Error("personalized refresh requires an authenticated preference session");
+    }
+    return { "Content-Type": "application/json", Authorization: `Bearer ${access_token}` };
+  }
+  function refreshErrorLabel(error, status = null) {
+    /* data-requirement-id="UX-213" */
+    const httpStatus = error?.status || 0;
+    if (httpStatus === 401 || String(error?.message).includes("authenticated preference session")) return "피드백 인증이 필요합니다";
+    if (httpStatus === 403) return "이 계정은 개인 추천 엔진을 실행할 수 없습니다";
+    const failedStage = [...(status?.stages || [])].reverse().find((stage) => stage.state === "failed");
+    if (failedStage?.labelKo) return `${failedStage.labelKo} 단계 실패 · 기존 공고는 유지됩니다`;
+    if (error instanceof TypeError || httpStatus === 0) return "리프레시 엔진이 꺼져 있습니다 · PC와 Tailscale을 확인하세요";
+    return "추천 갱신 실패 · 잠시 후 다시 시도하세요";
   }
   async function refreshStatus() { return (await bridgeRequest("api/jobs/refresh")).json(); }
   function stopRefreshPolling() { if (state.refreshTimer) window.clearTimeout(state.refreshTimer); state.refreshTimer = null; }
@@ -429,12 +486,16 @@
     setSnapshot(await response.json());
   }
   async function watchRefresh() {
+    /* data-requirement-id="DATA-205" */
+    let status = null;
     try {
-      const status = await refreshStatus();
+      status = await refreshStatus();
       if (status.state === "running") {
-        const completed = Array.isArray(status.stages) ? status.stages.filter((stage) => stage.state === "succeeded").length : 0;
-        const total = Array.isArray(status.stages) ? status.stages.length : 0;
-        snapshotLabel.textContent = total ? `후보 갱신 ${completed}/${total}` : "후보 갱신 중";
+        const preferenceSummary = status.preferenceSummary || {};
+        const currentStage = status.currentStage || {};
+        const counts = `관심 ${preferenceSummary.likedCount || 0} · 별로예요 ${preferenceSummary.dislikedCount || 0} 반영`;
+        const progress = currentStage.total ? `${currentStage.labelKo || "갱신 중"} ${currentStage.position}/${currentStage.total}` : "갱신 준비";
+        snapshotLabel.textContent = `${counts} · ${progress}`;
         state.refreshTimer = window.setTimeout(watchRefresh, 4000);
         return;
       }
@@ -442,11 +503,13 @@
       setEngineBusy(false);
       if (status.state !== "succeeded") throw new Error(`refresh state: ${status.state || "unknown"}`);
       await loadLiveSnapshot();
+      const summary = status.preferenceSummary || {};
+      snapshotLabel.textContent = `새 추천 반영 완료 · 관심 ${summary.likedCount || 0} · 별로예요 ${summary.dislikedCount || 0}`;
     } catch (error) {
       console.error(error);
       stopRefreshPolling();
       setEngineBusy(false);
-      snapshotLabel.textContent = "엔진 연결 확인 필요";
+      snapshotLabel.textContent = refreshErrorLabel(error, status);
     }
   }
   async function refreshEngine() {
@@ -455,12 +518,15 @@
     snapshotLabel.textContent = "후보 갱신 시작";
     try {
       const status = await refreshStatus();
-      if (status.state !== "running") await bridgeRequest("api/jobs/refresh", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+      if (status.state !== "running") {
+        const headers = await authenticatedRefreshHeaders();
+        await bridgeRequest("api/jobs/refresh", { method: "POST", headers, body: "{}" });
+      }
       await watchRefresh();
     } catch (error) {
       console.error(error);
       setEngineBusy(false);
-      snapshotLabel.textContent = "엔진 연결 확인 필요";
+      snapshotLabel.textContent = refreshErrorLabel(error);
     }
   }
   async function connectBridge() {

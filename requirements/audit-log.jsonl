@@ -32,3 +32,22 @@
 {"at": "2026-07-26T17:42:34+00:00", "event": "requirement_added", "id": "UX-210", "title": "The app visibly reports whether preferences are synchronized or local-only"}
 {"at": "2026-07-26T17:42:34+00:00", "event": "check", "passed": 12, "failed": 6, "failing_ids": ["DATA-202", "UX-208", "DATA-203", "UX-209", "SEC-201", "UX-210"]}
 {"at": "2026-07-26T18:02:52+00:00", "event": "check", "passed": 18, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T01:40:23+00:00", "event": "requirement_added", "id": "UX-211", "title": "Every job card exposes visible interested and unsuitable actions"}
+{"at": "2026-07-27T01:40:23+00:00", "event": "requirement_added", "id": "UX-212", "title": "The feedback screen lists saved jobs and unsuitable reasons"}
+{"at": "2026-07-27T01:40:23+00:00", "event": "check", "passed": 18, "failed": 2, "failing_ids": ["UX-211", "UX-212"]}
+{"at": "2026-07-27T01:42:15+00:00", "event": "check", "passed": 20, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T01:59:17+00:00", "event": "requirement_added", "id": "DATA-204", "title": "Refresh sends the authenticated Supabase session and uses the full current preference set"}
+{"at": "2026-07-27T01:59:17+00:00", "event": "requirement_added", "id": "GOV-204", "title": "Only the dedicated Career Compass owner can start a personalized refresh"}
+{"at": "2026-07-27T01:59:17+00:00", "event": "requirement_added", "id": "DATA-205", "title": "Refresh visibly traverses preference sync, collection, classification, and snapshot publication"}
+{"at": "2026-07-27T01:59:17+00:00", "event": "requirement_added", "id": "UX-213", "title": "Mobile refresh errors name the failed boundary instead of appearing inert"}
+{"at": "2026-07-27T01:59:17+00:00", "event": "check", "passed": 20, "failed": 4, "failing_ids": ["DATA-204", "GOV-204", "DATA-205", "UX-213"]}
+{"at": "2026-07-27T02:17:43+00:00", "event": "check", "passed": 24, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T02:33:37+00:00", "event": "requirement_added", "id": "DATA-206", "title": "Domestic, overseas, and location-conflict jobs remain visibly distinct"}
+{"at": "2026-07-27T02:33:37+00:00", "event": "check", "passed": 24, "failed": 1, "failing_ids": ["DATA-206"]}
+{"at": "2026-07-27T02:36:52+00:00", "event": "assertion_modified", "id": "DATA-206", "old": "bfc416354ccbcf1d", "new": "5f1ffa69fd1fbeac", "reason": "DATA-206 marker corrected after fail-first registration: HTML cannot repeat the data-requirement-id attribute"}
+{"at": "2026-07-27T02:36:52+00:00", "event": "check", "passed": 25, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T03:02:07+00:00", "event": "check", "passed": 25, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T03:07:32+00:00", "event": "requirement_added", "id": "UX-214", "title": "All primary mobile controls provide a 44 pixel touch target"}
+{"at": "2026-07-27T03:07:32+00:00", "event": "check", "passed": 25, "failed": 1, "failing_ids": ["UX-214"]}
+{"at": "2026-07-27T03:18:26+00:00", "event": "check", "passed": 26, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T03:20:54+00:00", "event": "check", "passed": 26, "failed": 0, "failing_ids": []}
