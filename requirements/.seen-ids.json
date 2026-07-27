@@ -69,6 +69,16 @@
     "first_seen": "2026-07-27T14:07:16+00:00",
     "title": "Job titles explicitly marked experienced-only cannot re-enter exploration results"
   },
+  "DATA-215": {
+    "assert_sha": "71ada9c1fdb83731",
+    "first_seen": "2026-07-27T15:35:21+00:00",
+    "title": "Generic support-only job titles cannot inherit technical water or AI sectors from their employer"
+  },
+  "DATA-216": {
+    "assert_sha": "b988c317a8226efd",
+    "first_seen": "2026-07-27T16:06:39+00:00",
+    "title": "Graduate research-contract counts exclude editorials and publication-inferred activities"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",

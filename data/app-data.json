@@ -1,45 +1,63 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-07-27T14:16:38.730052+00:00",
+  "generatedAt": "2026-07-27T16:09:52.771827+00:00",
   "dataAsOf": "2026-07-27",
   "snapshotBoundary": "공개 읽기용 스냅샷입니다. 공고·과정·장학금의 마감과 자격은 반드시 공식 원문에서 다시 확인하세요.",
+  "jobEligibilityOverrides": {
+    "6d9d0cb00cec26b456a607e8": {
+      "minimumExperienceYears": 5,
+      "publicEligibility": "excluded",
+      "eligibilityReason": "공식 채용 원문에 경력 5년 이상이 명시된 동일 공고입니다."
+    },
+    "887511a6119bde139205bccc": {
+      "minimumExperienceYears": 5,
+      "publicEligibility": "excluded",
+      "eligibilityReason": "경력 5년 이상인 동일 채용의 Work24 표기입니다."
+    },
+    "300bc4a8a7e98bcf7ff8a525": {
+      "minimumExperienceYears": 5,
+      "publicEligibility": "excluded",
+      "eligibilityReason": "경력 5년 이상인 동일 채용의 중복 표기입니다."
+    }
+  },
   "stats": {
     "actionCandidates": 0,
+    "programs": 96,
+    "funding": 186,
     "queueCounts": {
       "verify": 0,
-      "hold": 124,
+      "hold": 120,
       "apply": 0,
       "stretch": 0
     },
     "marketCounts": {
       "domestic": 16,
-      "overseas": 94,
+      "overseas": 90,
       "unknown": 14
     },
     "recommendationSurface": "exploration_only",
     "recommendationSource": "personalized",
     "actionableCandidates": 0,
-    "explorationCandidates": 124,
-    "sectorInventoryCount": 20,
     "v4RunId": "22376f10-859b-4719-aa9a-7321e99d8d8e",
     "jobDataAsOf": "2026-07-27",
     "v4ArtifactUpdatedAt": "2026-07-27T10:37:05.357039+00:00",
+    "graduateGeneratedAt": "2026-07-25T19:23:27.949044+00:00",
+    "explorationCandidates": 120,
+    "excludedUnverifiedCandidates": 3,
+    "sectorInventoryCount": 20,
     "preferenceSummary": {
       "rowCount": 10,
       "likedCount": 10,
       "dislikedCount": 0,
       "digest": "952c6a5e49929e0a3dcdec6633172b6124f441bae1287ae8187c0f5ff58ba565"
     },
-    "programs": 90,
-    "funding": 186,
-    "graduateGeneratedAt": "2026-07-25T19:23:27.949044+00:00",
     "preferenceDiscovery": {
       "current": true,
       "evaluatedCandidateCount": 2039,
       "positiveCandidateCount": 2003,
       "discoveredCandidateCount": 63
     },
-    "excludedExperienceCandidates": 0,
+    "excludedExperienceCandidates": 4,
     "excludedDuplicateCandidates": 0
   },
   "sectors": [
@@ -47,13 +65,13 @@
       "id": "water_hydrology",
       "name": "수자원·수문·수리·홍수·배수",
       "family": "domain",
-      "publishedJobs": 16
+      "publishedJobs": 15
     },
     {
       "id": "gis_geospatial",
       "name": "GIS·공간정보·원격탐사·디지털트윈",
       "family": "domain",
-      "publishedJobs": 24
+      "publishedJobs": 23
     },
     {
       "id": "climate_environment",
@@ -65,7 +83,7 @@
       "id": "international_development",
       "name": "국제개발·ODA·정책·PM",
       "family": "domain",
-      "publishedJobs": 72
+      "publishedJobs": 69
     },
     {
       "id": "civil_infrastructure",
@@ -83,7 +101,7 @@
       "id": "water_climate_ai",
       "name": "수자원·기후 AI·홍수·환경예측",
       "family": "ai",
-      "publishedJobs": 37
+      "publishedJobs": 36
     },
     {
       "id": "infrastructure_ai",
@@ -107,7 +125,7 @@
       "id": "ai_product_solutions",
       "name": "AI 제품·솔루션·컨설팅·프리세일즈",
       "family": "ai",
-      "publishedJobs": 5
+      "publishedJobs": 4
     },
     {
       "id": "ai_governance",
@@ -137,13 +155,13 @@
       "id": "kr_popular_large_company",
       "name": "국내 인기 대기업",
       "family": "market",
-      "publishedJobs": 5
+      "publishedJobs": 4
     },
     {
       "id": "kr_other_large_company",
       "name": "국내 기타 대기업",
       "family": "market",
-      "publishedJobs": 5
+      "publishedJobs": 4
     },
     {
       "id": "kr_startup",
@@ -706,54 +724,6 @@
       },
       "preferenceDiscovery": {
         "score": 13.745,
-        "preferenceDigest": "952c6a5e49929e0a3dcdec6633172b6124f441bae1287ae8187c0f5ff58ba565"
-      }
-    },
-    {
-      "id": "8845df36667ee50f70d70a38",
-      "title": "Finance Intern",
-      "company": "International Water Management Institute",
-      "location": "Battaramulla, Western Province, Sri Lanka",
-      "market": "overseas",
-      "sector": "수자원·기후 AI·홍수·환경예측",
-      "sectors": [
-        "수자원·기후 AI·홍수·환경예측",
-        "수자원·수문·수리·홍수·배수",
-        "GIS·공간정보·원격탐사·디지털트윈",
-        "국제개발·ODA·정책·PM"
-      ],
-      "source": "IWMI",
-      "url": "https://apply.workable.com/j/74A89E4C53",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "북마크 유사",
-      "discoveryReason": "현재 관심·별로예요 전건을 새 수집 공고와 비교해 찾은 유사 후보입니다.",
-      "deadline": "",
-      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
-      "requirements": [],
-      "checks": [
-        "현재 공개 상태와 지원 자격을 원문에서 확인"
-      ],
-      "risks": [],
-      "evidenceGapCount": null,
-      "evidenceBurden": "원문 확인",
-      "sectorEvidence": "인접 근거",
-      "_sectorId": "water_climate_ai",
-      "_classRank": 2,
-      "_withinSectorRank": 3,
-      "personalization": {
-        "score": 13.74,
-        "likedEvidenceCount": 10,
-        "dislikedEvidenceCount": 0,
-        "reasonEvidenceCount": 0,
-        "reasonPenalty": 0.0,
-        "appliedReasons": [],
-        "preferenceDigest": "952c6a5e49929e0a3dcdec6633172b6124f441bae1287ae8187c0f5ff58ba565",
-        "reasonKo": "현재 관심 10건과 별로예요 0건 전부를 비교하고, 명시된 사유 0건의 근거를 적용해 개인화 순위를 계산했습니다."
-      },
-      "preferenceDiscovery": {
-        "score": 13.74,
         "preferenceDigest": "952c6a5e49929e0a3dcdec6633172b6124f441bae1287ae8187c0f5ff58ba565"
       }
     },
@@ -3296,51 +3266,6 @@
       }
     },
     {
-      "id": "642ec864a39670e0349bf654",
-      "title": "FINANCE AND BUDGET OFFICER (Temporary), P3 FINANCE AND BUDGET OFFICER (Temporary) FINANCE AND BUDGET OFFICER",
-      "company": "United Nations Office at Nairobi 37663766",
-      "location": "NAIROBI 2400",
-      "market": "overseas",
-      "sector": "국제개발·ODA·정책·PM",
-      "sectors": [
-        "국제개발·ODA·정책·PM"
-      ],
-      "source": "UN Careers",
-      "url": "https://careers.un.org/jobSearchDescription/280346?language=en",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "북마크 유사",
-      "discoveryReason": "현재 관심·별로예요 전건을 새 수집 공고와 비교해 찾은 유사 후보입니다.",
-      "deadline": "",
-      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
-      "requirements": [],
-      "checks": [
-        "현재 공개 상태와 지원 자격을 원문에서 확인"
-      ],
-      "risks": [],
-      "evidenceGapCount": null,
-      "evidenceBurden": "원문 확인",
-      "sectorEvidence": "인접 근거",
-      "_sectorId": "international_development",
-      "_classRank": 2,
-      "_withinSectorRank": 216,
-      "personalization": {
-        "score": 9.483,
-        "likedEvidenceCount": 10,
-        "dislikedEvidenceCount": 0,
-        "reasonEvidenceCount": 0,
-        "reasonPenalty": 0.0,
-        "appliedReasons": [],
-        "preferenceDigest": "952c6a5e49929e0a3dcdec6633172b6124f441bae1287ae8187c0f5ff58ba565",
-        "reasonKo": "현재 관심 10건과 별로예요 0건 전부를 비교하고, 명시된 사유 0건의 근거를 적용해 개인화 순위를 계산했습니다."
-      },
-      "preferenceDiscovery": {
-        "score": 9.483,
-        "preferenceDigest": "952c6a5e49929e0a3dcdec6633172b6124f441bae1287ae8187c0f5ff58ba565"
-      }
-    },
-    {
       "id": "330fca5e8b39785339bda0a7",
       "title": "REQUEST FOR EXPRESSIONS OF INTEREST - Consultancy Services",
       "company": "International Institute of Tropical Agriculture",
@@ -4083,45 +4008,6 @@
       "sectorEvidence": "분야 원문 근거",
       "personalization": {
         "score": 6.671,
-        "likedEvidenceCount": 10,
-        "dislikedEvidenceCount": 0,
-        "reasonEvidenceCount": 0,
-        "reasonPenalty": 0.0,
-        "appliedReasons": [],
-        "preferenceDigest": "952c6a5e49929e0a3dcdec6633172b6124f441bae1287ae8187c0f5ff58ba565",
-        "reasonKo": "현재 관심 10건과 별로예요 0건 전부를 비교하고, 명시된 사유 0건의 근거를 적용해 개인화 순위를 계산했습니다."
-      }
-    },
-    {
-      "id": "db572a9e8dfe3b9edc997203",
-      "title": "Account Executive - Hybrid",
-      "company": "Wing Data",
-      "location": "Philippines",
-      "market": "overseas",
-      "sector": "AI 제품·솔루션·컨설팅·프리세일즈",
-      "sectors": [
-        "AI 제품·솔루션·컨설팅·프리세일즈",
-        "국제개발·ODA·정책·PM"
-      ],
-      "source": "Wing Data",
-      "url": "https://jobs.lever.co/getwingapp/2b1a353b-568b-466c-892f-fc0c7df6bd0c",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "인접 탐색",
-      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
-      "deadline": "",
-      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
-      "requirements": [],
-      "checks": [
-        "현재 공개 상태와 지원 자격을 원문에서 확인"
-      ],
-      "risks": [],
-      "evidenceGapCount": null,
-      "evidenceBurden": "원문 확인",
-      "sectorEvidence": "인접 근거",
-      "personalization": {
-        "score": 6.592,
         "likedEvidenceCount": 10,
         "dislikedEvidenceCount": 0,
         "reasonEvidenceCount": 0,
@@ -5304,45 +5190,6 @@
       }
     },
     {
-      "id": "6e6317a88157079a8e74b070",
-      "title": "Recruitment Associate",
-      "company": "Wing Data",
-      "location": "Taguig",
-      "market": "overseas",
-      "sector": "국내 기타 대기업",
-      "sectors": [
-        "국내 기타 대기업",
-        "국내 인기 대기업"
-      ],
-      "source": "Wing Data",
-      "url": "https://jobs.lever.co/getwingapp/4dd925f7-4222-4e65-9887-564a9c36bf17",
-      "queue": "hold",
-      "queueLabel": "추가 검토",
-      "discoveryTier": "explore",
-      "discoveryLabel": "인접 탐색",
-      "discoveryReason": "이 분야의 인접 근거가 있어 넓게 살펴볼 후보입니다. 직무 적합성과 지원 가능 여부는 아직 검증하지 않았습니다.",
-      "deadline": "",
-      "nextAction": "공식 원문에서 마감·자격·근무 조건을 확인하세요.",
-      "requirements": [],
-      "checks": [
-        "현재 공개 상태와 지원 자격을 원문에서 확인"
-      ],
-      "risks": [],
-      "evidenceGapCount": null,
-      "evidenceBurden": "원문 확인",
-      "sectorEvidence": "인접 근거",
-      "personalization": {
-        "score": 0.424,
-        "likedEvidenceCount": 10,
-        "dislikedEvidenceCount": 0,
-        "reasonEvidenceCount": 0,
-        "reasonPenalty": 0.0,
-        "appliedReasons": [],
-        "preferenceDigest": "952c6a5e49929e0a3dcdec6633172b6124f441bae1287ae8187c0f5ff58ba565",
-        "reasonKo": "현재 관심 10건과 별로예요 0건 전부를 비교하고, 명시된 사유 0건의 근거를 적용해 개인화 순위를 계산했습니다."
-      }
-    },
-    {
       "id": "939a16b1bd0d71b3791202bc",
       "title": "Project MAPPA | Multilingual Search Relevance Annotation",
       "company": "OneForma",
@@ -5437,12 +5284,7 @@
       "funding": "Professor RA + KAIST Scholarship: full tuition waiver (4 semesters MS) + monthly stipend + National Health Insurance. Auto-considered by selecting 'KAIST Scholarship' on the financial-resources form.",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "TOEFL iBT minimum 83 (Home Edition accepted; MyBest not accepted)",
-      "englishCriteria": [
-        "TOEFL iBT 83"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://cee.kaist.ac.kr/boards/view/notice_en/900",
       "sources": [
         "https://cee.kaist.ac.kr/boards/view/notice_en/900",
@@ -5538,14 +5380,7 @@
       "funding": "Professor/lab-based Research Assistantship (RA): nearly all admitted research-track MS students are funded by their advisor's grants. Official support-policy page lists MS RA total ~1,850,000 KRW/month = 884,000 tuition + 966,000 living allowance (2026). Amount varies by lab; advisor may add more. POSTECH is research-funding-rich, so funding is the norm rather than a competitive scholarship.",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "POSTECH graduate instruction is mainly English; international/English-track applicants must prove English proficiency.",
-      "englishCriteria": [
-        "POSTECH graduate instruction is mainly English; international/English-track applicants must prove English proficiency.",
-        "A Certificate of English as Medium of Instruction (Proof of Instruction Language) can substitute for IELTS/TOEFL per international admissions guide.",
-        "Exact TOEFL/IELTS minimum numbers for domestic applicants: NOT_FOUND_AFTER_VERIFIED_SEARCH (official EN PDF did not parse cleanly; verify on adm-g.postech.ac.kr application guide)."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://dese.postech.ac.kr/",
       "sources": [
         "https://dese.postech.ac.kr/",
@@ -5723,13 +5558,7 @@
       "funding": "Professor RA + GIST Scholarship: tuition waived + monthly stipend (MS ~140,000 KRW) + research funding + subsidized housing + partial health insurance. Auto-considered on admission, no separate application.",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "TOEFL iBT 80 (PBT 550)",
-      "englishCriteria": [
-        "IELTS 6.5",
-        "TOEFL iBT 80"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.gist.ac.kr/iadm/html/sub02/0202.html",
       "sources": [
         "https://www.gist.ac.kr/iadm/html/sub02/0202.html",
@@ -5900,14 +5729,7 @@
       "funding": "Erasmus Mundus: 17–18 scholarships for 2026–28 = full tuition waiver + full insurance + EUR 1,400/month for up to 24 months. Self-funded option also available.",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "IELTS 6.5 overall (each sub-score min 6.0)",
-      "englishCriteria": [
-        "IELTS 6.5",
-        "TOEFL iBT 90",
-        "Cambridge/C1/C2"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.gem-msc.eu/apply-to-gem/",
       "sources": [
         "https://www.gem-msc.eu/apply-to-gem/",
@@ -6150,8 +5972,15 @@
       "funding": "Fee-paying with strong external scholarship ecosystem (OKP/Orange Knowledge — winding down, IHE Delft Scholarship, country-specific). IHE Delft Scholarship = 100% fee waiver + ~EUR 1,220/month stipend + travel.",
       "verification": "verified",
       "verifiedAt": "2026-07-26",
-      "englishStatus": "공식 기준 확인",
       "english": "정규·공동 MSc: IELTS Academic 전체 6.0 및 Writing 6.0, 또는 TOEFL iBT 총점 80 및 Writing 17.",
+      "officialUrl": "https://www.un-ihe.org/education/master-programmes/msc-programme-water-and-sustainable-development/admission-requirements",
+      "sources": [
+        "https://www.un-ihe.org/education/master-programmes/msc-programme-water-and-sustainable-development/admission-requirements",
+        "https://apply.un-ihe.org/application-process/master-of-science-delft-based",
+        "https://www.un-ihe.org/education/english-language-requirements",
+        "https://www.un-ihe.org/msc-programmes/specialization/hydroinformatics-modelling-and-information-systems-water-management-3"
+      ],
+      "englishStatus": "공식 기준 확인",
       "englishCriteria": [
         "Regular/joint MSc: IELTS Academic overall 6.0 AND writing 6.0, or TOEFL iBT total 80 AND writing 17.",
         "The test must be no more than 24 months old on the application date.",
@@ -6161,13 +5990,6 @@
       "englishGapPlan": [
         "TOEFL iBT: target total 80+ and writing 17+ before the next-cycle application window.",
         "IELTS Academic alternative: target overall 6.0+ and writing 6.0+."
-      ],
-      "officialUrl": "https://www.un-ihe.org/education/master-programmes/msc-programme-water-and-sustainable-development/admission-requirements",
-      "sources": [
-        "https://www.un-ihe.org/education/master-programmes/msc-programme-water-and-sustainable-development/admission-requirements",
-        "https://apply.un-ihe.org/application-process/master-of-science-delft-based",
-        "https://www.un-ihe.org/education/english-language-requirements",
-        "https://www.un-ihe.org/msc-programmes/specialization/hydroinformatics-modelling-and-information-systems-water-management-3"
       ],
       "applicationStatus": "prepare",
       "applicationStatusLabel": "지금 준비",
@@ -6277,15 +6099,7 @@
                 "url": "https://scholar.google.com/citations?user=jTOt5sEAAAAJ&hl=en"
               }
             ],
-            "recentProjects": [
-              {
-                "title": "Flash-flood early warning / citizen-observatory work in the Manizales creek basin (community + institutional early-warning integration; tied to IHE Delft Hydroinformatics group's Rainstorm Tracker flash-flood tooling)",
-                "funder": "IHE Delft / partner programme (specific grant ID not disclosed in verified sources)",
-                "period": "approx. 2022-2025 (publication dates)",
-                "amount": "",
-                "url": "https://www.tandfonline.com/doi/full/10.1080/17477891.2025.2585923"
-              }
-            ]
+            "recentProjects": []
           },
           {
             "name": "Ioana Popescu",
@@ -6334,33 +6148,10 @@
                 "url": "https://scholar.google.com/citations?user=7z_kCTAAAAAJ&hl=en"
               }
             ],
-            "recentProjects": [
-              {
-                "title": "Guest editor / lead, Special Issue 'Advances in Hydroinformatics for Flood Modelling for Management'",
-                "funder": "MDPI Water (editorial, not a funded grant)",
-                "period": "2021-2022",
-                "amount": "",
-                "url": "https://www.mdpi.com/journal/water/special_issues/Hydroinformatics_Flood"
-              }
-            ]
+            "recentProjects": []
           }
         ],
-        "recentProjects": [
-          {
-            "title": "Flash-flood early warning / citizen-observatory work in the Manizales creek basin (community + institutional early-warning integration; tied to IHE Delft Hydroinformatics group's Rainstorm Tracker flash-flood tooling)",
-            "funder": "IHE Delft / partner programme (specific grant ID not disclosed in verified sources)",
-            "period": "approx. 2022-2025 (publication dates)",
-            "amount": "",
-            "url": "https://www.tandfonline.com/doi/full/10.1080/17477891.2025.2585923"
-          },
-          {
-            "title": "Guest editor / lead, Special Issue 'Advances in Hydroinformatics for Flood Modelling for Management'",
-            "funder": "MDPI Water (editorial, not a funded grant)",
-            "period": "2021-2022",
-            "amount": "",
-            "url": "https://www.mdpi.com/journal/water/special_issues/Hydroinformatics_Flood"
-          }
-        ],
+        "recentProjects": [],
         "graduateDestinations": [
           {
             "period": "2021",
@@ -6419,12 +6210,7 @@
       "funding": "Self-funded by default; tuition-only AIT Scholarships (full or partial) open to all nationalities; HM King's/Queen's competitive. NOT eligible for ADB-JSP (Korea graduated) or RTG (Thai-only).",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "IELTS-Academic overall 6.0 (Writing band 6.0)",
-      "englishCriteria": [
-        "TOEFL iBT 80"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://ait.ac.th/program/remote-sensing-and-geographic-information-systems-rs-gis/",
       "sources": [
         "https://ait.ac.th/program/remote-sensing-and-geographic-information-systems-rs-gis/",
@@ -6713,13 +6499,7 @@
       "funding": "Professor RA + UNIST Scholarship awarded to admitted graduate students with no separate application; IWRM graduate school additionally supported by Korea Ministry of Environment (tuition, lab practice, overseas training).",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "TOEIC 800",
-      "englishCriteria": [
-        "IELTS 5.5",
-        "TOEFL iBT 80"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://admg-intl.unist.ac.kr/study-at-unist/scholarships/",
       "sources": [
         "https://admg-intl.unist.ac.kr/study-at-unist/scholarships/"
@@ -6931,12 +6711,7 @@
       "funding": "Professor/lab RA stipend funded through research grants (NRF/BK21/agency projects), plus tuition support. UrWaterS is a funded research lab; MS students typically join as RA with stipend + partial/full tuition coverage. Exact stipend not stated on official lab page.",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "Confirmed lab research output is English-language; PI (Purdue PhD, Helmholtz postdoc in Germany) publishes/supervises in English. GSES/CEE English-proficiency for thesis submission ~TOEFL iBT 79-88 / TEPS 298 (CEE specifics NOT_FOUND_AFTER_VERIFIED_SEARCH on fetched page). Candidate's expired certs must be retaken before application.",
-      "englishCriteria": [
-        "TOEFL iBT 79"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://urwaters.snu.ac.kr/members/professor",
       "sources": [
         "https://urwaters.snu.ac.kr/members/professor",
@@ -7079,13 +6854,7 @@
       "funding": "Self-funded by default; tuition-only AIT Scholarships (full or partial) open to all nationalities; HM King's/Queen's scholarships competitive. NOT eligible for ADB-JSP (Korea has graduated from ADB developing-member status) and NOT eligible for RTG Fellowships (Thai-nationals only).",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "IELTS-Academic overall 6.0 (Writing band 6.0) - satisfactory/no conditions",
-      "englishCriteria": [
-        "IELTS 5.0",
-        "TOEFL iBT 80"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://ait.ac.th/program/water-engineering-and-management-wem/",
       "sources": [
         "https://ait.ac.th/program/water-engineering-and-management-wem/",
@@ -7323,15 +7092,7 @@
       "funding": "Erasmus Mundus full scholarship; reduced-fee and self-funded fallback exist",
       "verification": "verified",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 기준 확인",
-      "english": "정규·공동 MSc 기준: IELTS Academic overall 6.0과 writing 6.0, 또는 TOEFL iBT total 80과 writing 17. 성적은 지원일 기준 24개월 이내여야 합니다.",
-      "englishCriteria": [
-        "IELTS Academic overall 6.0 and writing 6.0",
-        "TOEFL iBT total 80 and writing 17",
-        "test date must be within 24 months before application",
-        "한국의 영어수업 학위는 시험 대체 면제 국가에 해당하지 않음"
-      ],
-      "englishGapPlan": [],
+      "english": "IHE Delft MSc/PhD 페이지는 비영어권 지원자의 영어 요건 충족을 요구하나, 수치 컷은 링크된 English requirements 페이지에서 지원 전 재확인 필요.",
       "officialUrl": "https://www.floodriskmaster.org/",
       "sources": [
         "https://www.floodriskmaster.org/apply",
@@ -7373,14 +7134,7 @@
       "funding": "Low public tuition (EUR 1,500/sem non-EU). No program-wide scholarship; DAAD and external scholarships separate (e.g. DAAD EPOS for some development-related programs).",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "공식 기준 확인",
       "english": "University of Stuttgart WAREM 공식 기준은 TOEFL iBT 79 또는 IELTS Academic 6.0 이상.",
-      "englishCriteria": [
-        "TOEFL iBT 79",
-        "IELTS Academic 6.0",
-        "CAE/CPE C also accepted"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.uni-stuttgart.de/en/study/study-programs/Water-Resources-Engineering-and-Management-WAREM-M.Sc./",
       "sources": [
         "https://www.uni-stuttgart.de/en/study/study-programs/Water-Resources-Engineering-and-Management-WAREM-M.Sc./",
@@ -7654,12 +7408,7 @@
       "funding": "Competitive IIHR 12-month research assistantship plus tuition scholarship",
       "verification": "verified",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "Verify the current University of Iowa international graduate English threshold for the target department.",
-      "englishCriteria": [
-        "Verify the current University of Iowa international graduate English threshold for the target department."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://iihr.uiowa.edu/education-outreach/graduate-students",
       "sources": [
         "https://iihr.uiowa.edu/education-outreach/graduate-students",
@@ -7701,12 +7450,7 @@
       "funding": "Lab RA stipend via PI research grants + tuition support; standard SNU CEE RA model. Specific stipend not posted officially.",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "CONFIRMED English-operating lab: official lab page states all communications and research are in English; members from Vietnam, Myanmar, Korea, Spain, Russia, Thailand. CEE/SNU thesis English threshold ~TOEFL iBT 79-88 (CEE-specific value NOT_FOUND_AFTER_VERIFIED_SEARCH). Candidate must retake expired certs.",
-      "englishCriteria": [
-        "TOEFL iBT 79"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://cfdlabsnu.com/people/",
       "sources": [
         "https://cfdlabsnu.com/people/",
@@ -7911,16 +7655,7 @@
       "funding": "HKPFS stipend + tuition waiver + conference travel allowance; university PhD funding fallback must be verified",
       "verification": "verified",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 기준 확인",
       "english": "HKUST Fok Ying Tung Graduate School 공식 기준은 TOEFL iBT 80 또는 IELTS Academic 6.5(각 5.5 이상).",
-      "englishCriteria": [
-        "TOEFL iBT 80",
-        "IELTS Academic overall 6.5",
-        "IELTS all sub-scores 5.5"
-      ],
-      "englishGapPlan": [
-        "Prioritize TOEFL/IELTS readiness unless degree-medium waiver is accepted."
-      ],
       "officialUrl": "https://fytgs.hkust.edu.hk/scholarships/hong-kong-phd-fellowship-scheme",
       "sources": [
         "https://fytgs.hkust.edu.hk/scholarships/hong-kong-phd-fellowship-scheme",
@@ -7964,14 +7699,7 @@
       "funding": "KAUST Fellowship full-support model after admission",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 기준 확인",
       "english": "KAUST 공식 입학 기준은 IELTS 6.5(각 5.5 이상) 또는 TOEFL iBT 81(각 17 이상).",
-      "englishCriteria": [
-        "TOEFL iBT 81 overall, each section 17",
-        "IELTS 6.5 overall, each section 5.5",
-        "PTE/Cambridge alternatives accepted"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://bese.kaust.edu.sa/study/academic-programs/ense",
       "sources": [
         "https://admissions.kaust.edu.sa/fees-funding",
@@ -8020,12 +7748,7 @@
       "funding": "Erasmus Mundus: fee waiver for participation costs to all selected students; Erasmus+ scholarships (monthly allowance) for top-ranked applicants",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "NOT_FOUND_AFTER_VERIFIED_SEARCH (official English-requirement page not fetchable this pass; typically B2/IELTS ~6.5 for EMJM but unconfirmed)",
-      "englishCriteria": [
-        "IELTS 6.5"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://master-cde.eu/admission/procedures-deadlines/calls/",
       "sources": [
         "https://master-cde.eu/admission/procedures-deadlines/calls/",
@@ -8363,12 +8086,7 @@
       "funding": "RA Scholarship = full tuition waiver + scholarship for one student per professor per semester (official). Additional tuition-waiver scholarships for GPA ≥3.3; National Scholarship for Science & Engineering (NRF). Stipend is professor/lab-grant dependent; monthly amount NOT officially posted.",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "English proficiency for thesis submission: TEPS ≥298 or TOEFL iBT ≥79-88 (per GSES pages). Program is primarily Korean-medium with English thesis option; full English-only supervision NOT guaranteed across all advisors — confirm with target professor. Candidate must retake expired certs.",
-      "englishCriteria": [
-        "TOEFL iBT 79"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://gses.snu.ac.kr/en/information/academics/environmental-planning",
       "sources": [
         "https://gses.snu.ac.kr/en/information/academics/environmental-planning",
@@ -8574,12 +8292,7 @@
       "funding": "Faculty RA/department TA plus tuition scholarship and health insurance; annual renewal",
       "verification": "verified",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "로컬 기록 기반",
       "english": "Official page lists IELTS 7.0 with no area below 6; verify current TOEFL requirement and score conversion before the 2027 cycle.",
-      "englishCriteria": [
-        "IELTS 7.0"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://has.arizona.edu/doctor-philosophy-hydrology-and-water-resources",
       "sources": [
         "https://has.arizona.edu/doctor-philosophy-hydrology-and-water-resources",
@@ -8621,12 +8334,7 @@
       "funding": "Self-funded base; tuition-only discounts and external scholarships (e.g. Chevening) applicable",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "English language Profile Level E required (official page); equivalent to roughly IELTS 6.5 overall — confirm exact band on Bristol English profiles page",
-      "englishCriteria": [
-        "IELTS 6.5"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.bristol.ac.uk/study/postgraduate/taught/msc-water-and-environmental-management/",
       "sources": [
         "https://www.bristol.ac.uk/study/postgraduate/taught/msc-water-and-environmental-management/"
@@ -8886,14 +8594,7 @@
       "funding": "Two channels: (1) Advisor RA in Prof. Choi's Earth and Remote Sensing Lab (grant-funded stipend, typical Korean RA range) — strongest path for this candidate; (2) Graduate School of Water Resources (GSWR), government-financed (500M KRW/year via MOLIT MOU since 2012/2013), quota 20 MS / 10 PhD, with tuition scholarships and STEM renewable scholarships. As a Korean domestic applicant he accesses domestic RA + Korean fellowships, not only international scholarships.",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "Water Resources professional graduate courses are offered in English (e.g., ECA4708 Applied Statistical Hydrology, ECA5605 Advanced Hydro-Engineering list English instruction).",
-      "englishCriteria": [
-        "Water Resources professional graduate courses are offered in English (e.g., ECA4708 Applied Statistical Hydrology, ECA5605 Advanced Hydro-Engineering list English instruction).",
-        "English-track applicants can apply with valid IELTS/TOEFL/TEPS without a Korean certificate.",
-        "Exact IELTS/TOEFL minimum: varies by track; specific number NOT_FOUND_AFTER_VERIFIED_SEARCH — confirm on admission-global.skku.edu."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://enc.skku.edu/eng_enc/faculty_construction.do",
       "sources": [
         "https://enc.skku.edu/eng_enc/faculty_construction.do",
@@ -9065,12 +8766,7 @@
       "funding": "Professor RA stipend funded from research grants (paid monthly, amount set by advisor) + BK21+ FOUR fellowship for participating College of Engineering departments + on-campus tuition scholarships. As a Korean domestic student he is eligible for full domestic RA funding and BK21, not limited to international scholarships.",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "NOT_FOUND_AFTER_VERIFIED_SEARCH — general graduate page references TOEFL/IELTS/TEPS for some tracks but no division-specific minimum confirmed on the official page; his English certs are expired and must be retaken before applying. Verify the exact accepted test/score with the graduate office.",
-      "englishCriteria": [
-        "NOT_FOUND_AFTER_VERIFIED_SEARCH — general graduate page references TOEFL/IELTS/TEPS for some tracks but no division-specific minimum confirmed on the official page; his English certs are expired and must be retaken before applying. Verify the exact accepted test/score with the graduate office."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://civil.yonsei.ac.kr/civil_en/faculty/faculty.do",
       "sources": [
         "https://civil.yonsei.ac.kr/civil_en/faculty/faculty.do",
@@ -9248,16 +8944,7 @@
       "funding": "Princeton PhD full-funding model: tuition, health plan coverage, stipend through fellowships/assistantships/external sources",
       "verification": "verified",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 기준 확인",
       "english": "Princeton Graduate School은 전체 최소점수는 두지 않지만, 비영어권 지원자는 TOEFL/IELTS/DET 제출 또는 면제 근거가 필요.",
-      "englishCriteria": [
-        "Graduate School minimum score: no fixed minimum",
-        "TOEFL/IELTS/DET accepted",
-        "TOEFL speaking <27, IELTS speaking <8.0, DET conversation <125 -> arrival assessment"
-      ],
-      "englishGapPlan": [
-        "Book English test early unless waiver is clearly accepted; prepare a faculty-specific statement."
-      ],
       "officialUrl": "https://engineering.princeton.edu/graduate-studies/degrees-and-research",
       "sources": [
         "https://engineering.princeton.edu/graduate-studies/degrees-and-research",
@@ -9301,12 +8988,7 @@
       "funding": "UST student financial support plus school/lab research contract; verify tuition deduction and net stipend in the offer",
       "verification": "verified",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "Domestic admission route and program-specific language requirements must be checked in the 2027 intake guide.",
-      "englishCriteria": [
-        "Domestic admission route and program-specific language requirements must be checked in the 2027 intake guide."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://major.ust.ac.kr/prog/campus/campus_eng/sub34_04/34/majorView.do?kind=information&majorNo=55",
       "sources": [
         "https://www.ust.ac.kr/admission_eng/sub02_03.do",
@@ -9348,16 +9030,7 @@
       "funding": "Stanford CEE PhD standard: RA-equivalent salary plus tuition coverage for good-standing PhD students",
       "verification": "verified",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 기준 확인",
       "english": "Stanford central graduate admissions 기준은 TOEFL 90 또는 IELTS 7.0 이상이며, 일부 프로그램은 더 높을 수 있음.",
-      "englishCriteria": [
-        "TOEFL 90 (tests before 2026-01-21)",
-        "IELTS 7.0",
-        "program may set higher minimum"
-      ],
-      "englishGapPlan": [
-        "Treat English test and fee waiver as pre-application blockers."
-      ],
       "officialUrl": "https://cee.stanford.edu/academics-admissions/graduate-funding",
       "sources": [
         "https://cee.stanford.edu/academics-admissions/graduate-funding",
@@ -9400,12 +9073,7 @@
       "funding": "KFUPM graduate scholarship with stipend, housing, travel and health support",
       "verification": "verified",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "Verify current KFUPM graduate English threshold for international applicants.",
-      "englishCriteria": [
-        "Verify current KFUPM graduate English threshold for international applicants."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://bulletin.kfupm.edu.sa/department?department_code=CE",
       "sources": [
         "https://bulletin.kfupm.edu.sa/department?department_code=CE",
@@ -9448,12 +9116,7 @@
       "funding": "Research/Teaching assistantships available to Korean domestic students (faculty research grants) + BK21+ fellowships + Korea University graduate scholarships (e.g., Global Leader / merit tuition scholarships). Domestic RA funding via the advisor's grants is the primary mechanism for a funded MS.",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "NOT_FOUND_AFTER_VERIFIED_SEARCH — KU notes 70%+ of programs taught in English and Paik publishes exclusively in international journals, but a division-specific English-test minimum for the domestic track was not confirmed on an official page; verify with the graduate office.",
-      "englishCriteria": [
-        "NOT_FOUND_AFTER_VERIFIED_SEARCH — KU notes 70%+ of programs taught in English and Paik publishes exclusively in international journals, but a division-specific English-test minimum for the domestic track was not confirmed on an official page; verify with the graduate office."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://ace.korea.edu/ace_en/organization/professor01.do",
       "sources": [
         "https://pure.korea.ac.kr/en/persons/kyungrock-paik",
@@ -9621,15 +9284,7 @@
       "funding": "Erasmus Mundus full scholarship",
       "verification": "verified",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 기준 확인",
-      "english": "정규·공동 MSc 기준: IELTS Academic overall 6.0과 writing 6.0, 또는 TOEFL iBT total 80과 writing 17. 성적은 지원일 기준 24개월 이내여야 합니다.",
-      "englishCriteria": [
-        "IELTS Academic overall 6.0 and writing 6.0",
-        "TOEFL iBT total 80 and writing 17",
-        "test date must be within 24 months before application",
-        "한국의 영어수업 학위는 시험 대체 면제 국가에 해당하지 않음"
-      ],
-      "englishGapPlan": [],
+      "english": "IHE Delft MSc/PhD 페이지는 비영어권 지원자의 영어 요건 충족을 요구하나, 수치 컷은 링크된 English requirements 페이지에서 지원 전 재확인 필요.",
       "officialUrl": "https://www.groundwatermaster.eu/",
       "sources": [
         "https://www.groundwatermaster.eu/",
@@ -9671,12 +9326,7 @@
       "funding": "Erasmus Mundus scholarship and consortium awards",
       "verification": "verified_program_only",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "Current call English threshold and accepted tests must be checked before submission.",
-      "englishCriteria": [
-        "Current call English threshold and accepted tests must be checked before submission."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://master-cde.eu/",
       "sources": [
         "https://master-cde.eu/",
@@ -9718,13 +9368,7 @@
       "funding": "Self-funded base; external scholarships (Chevening, Commonwealth CSFP) applicable",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "IELTS Academic 7.0 overall, no component below 6.5",
-      "englishCriteria": [
-        "IELTS 7.0",
-        "TOEFL iBT 100"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.manchester.ac.uk/study/masters/courses/list/18096/msc-data-science-earth-and-environmental-analytics/",
       "sources": [
         "https://www.manchester.ac.uk/study/masters/courses/list/18096/msc-data-science-earth-and-environmental-analytics/"
@@ -9969,16 +9613,7 @@
       "funding": "OIST institutional PhD support: tuition plus stipend-style financial support for admitted students",
       "verification": "verified",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 기준 확인",
       "english": "OIST PhD 공식 기준은 비영어권 학위 기반 지원자에게 최근 2년 TOEFL iBT 또는 IELTS 제출을 요구하지만, minimum score는 없음.",
-      "englishCriteria": [
-        "TOEFL iBT or IELTS within 2 years",
-        "no minimum score required",
-        "score used for preparatory-course decision"
-      ],
-      "englishGapPlan": [
-        "Prepare a concise research statement around Civil/GIS/water modelling -> climate/environment AI; verify whether English-test submission is required for the target round."
-      ],
       "officialUrl": "https://www.oist.jp/admissions/phd-program/apply-phd",
       "sources": [
         "https://www.oist.jp/admissions/phd-program/apply-phd",
@@ -10021,12 +9656,7 @@
       "funding": "KU postgraduate scholarship route; official tier rules required",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
-      "englishCriteria": [
-        "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://ku-ae.smartcatalogiq.com/en/2023-2024/graduate-catalog/college-of-engineering/msc-in-water-and-environmental-engineering",
       "sources": [
         "https://www.ku.ac.ae/scholarships-postgraduate",
@@ -10074,14 +9704,7 @@
       "funding": "UBC-V PhD minimum funding package, often via awards + GRA/TA/GAA combination",
       "verification": "verified",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "Verify UBC graduate English-language requirements and waivers.",
-      "englishCriteria": [
-        "Verify UBC graduate English-language requirements and waivers."
-      ],
-      "englishGapPlan": [
-        "Prepare English-test/waiver evidence; contact potential supervisors around funded water/climate projects."
-      ],
       "officialUrl": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/phd-civil-engineering",
       "sources": [
         "https://www.grad.ubc.ca/awards/minimum-funding-policy-phd-students",
@@ -10124,12 +9747,7 @@
       "funding": "Fee-paying (institutional fee, no Dutch govt subsidy). Scholarships: ITC Excellence Scholarship (partial), OKP/Orange Knowledge (winding down), Holland Scholarship, country/donor fellowships.",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "IELTS Academic overall >=6.0 (speaking & writing >=6.0)",
-      "englishCriteria": [
-        "TOEFL iBT 80"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.utwente.nl/en/itc/education/study-finder/geo-information-science-earth-observation/financial-matters/",
       "sources": [
         "https://www.utwente.nl/en/itc/education/study-finder/geo-information-science-earth-observation/financial-matters/",
@@ -10377,13 +9995,7 @@
       "funding": "Self-funded base; competitive full Justus & Louise van Effen Excellence Scholarship covers tuition + living expenses",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "TU Delft MSc standard (from official admission framework, not pinned on EE page this pass): IELTS Academic 6.5+ overall (program standard; some sources cite 7.0) / TOEFL iBT 90+ — CONFIRM exact EE thresholds on official admission page before relying",
-      "englishCriteria": [
-        "IELTS 6.5",
-        "TOEFL iBT 90"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.tudelft.nl/en/education/programmes/masters/env/msc-environmental-engineering",
       "sources": [
         "https://www.tudelft.nl/en/education/programmes/masters/env/msc-environmental-engineering",
@@ -10659,13 +10271,7 @@
       "funding": "Self-funded. Fee rebates apply ONLY to Singapore Citizens (nett ~SGD 24,730.58) and PRs/NUS alumni (nett ~SGD 28,000.58). No scholarship/rebate for international coursework students confirmed on official page.",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "IELTS (Academic) 6.0",
-      "englishCriteria": [
-        "IELTS 6.0",
-        "TOEFL iBT 85"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://cde.nus.edu.sg/cee/graduate/coursework-based-programmes/msc-eve/",
       "sources": [
         "https://cde.nus.edu.sg/cee/graduate/coursework-based-programmes/msc-eve/",
@@ -10849,12 +10455,7 @@
       "funding": "Limited adviser-funded RA plus program/university scholarships",
       "verification": "verified",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "International applicants must submit TOEFL or IELTS under current university rules.",
-      "englishCriteria": [
-        "International applicants must submit TOEFL or IELTS under current university rules."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://waterprogram.tamu.edu/",
       "sources": [
         "https://waterprogram.tamu.edu/academics/application-process/index.html",
@@ -10896,14 +10497,7 @@
       "funding": "CivMin guaranteed funding package: 4 years PhD, 5 years direct-entry PhD",
       "verification": "verified",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "Verify U of T graduate English-language rules and department-specific requirements.",
-      "englishCriteria": [
-        "Verify U of T graduate English-language rules and department-specific requirements."
-      ],
-      "englishGapPlan": [
-        "Prepare English-test/waiver evidence before submitting."
-      ],
       "officialUrl": "https://civmin.utoronto.ca/home/programs/graduate-programs/doctor-of-philosophy/",
       "sources": [
         "https://civmin.utoronto.ca/home/programs/graduate-programs/doctor-of-philosophy/",
@@ -10946,12 +10540,7 @@
       "funding": "UAEU Chancellor Fellowship / graduate assistantship / research assistantship routes; grant-dependent",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
-      "englishCriteria": [
-        "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.uaeu.ac.ae/en/catalog/graduate/programs/master-of-science-in-water-resources.shtml",
       "sources": [
         "https://www.uaeu.ac.ae/en/catalog/graduate/programs/master-of-science-in-water-resources.shtml",
@@ -10999,13 +10588,7 @@
       "funding": "NOT_FOUND_AFTER_VERIFIED_SEARCH for a dedicated dual-degree scholarship; AIT-side AIT Scholarships (tuition-only) may apply to Year 1. University of Iowa year is typically self-funded unless UI assistantship obtained.",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "IELTS-Academic 6.0 minimum for AIT",
-      "englishCriteria": [
-        "IELTS 6.0",
-        "TOEFL iBT 81"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://ait.ac.th/program/dual-degree-masters-program-in-water-engineering-and-management-with-the-university-of-iowa/",
       "sources": [
         "https://ait.ac.th/program/dual-degree-masters-program-in-water-engineering-and-management-with-the-university-of-iowa/",
@@ -11181,12 +10764,7 @@
       "funding": "Self-funded base with substantial international scholarship pool",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "NOT_FOUND_AFTER_VERIFIED_SEARCH on fetched page text (section header present but score not rendered; Newcastle PG norm is typically IELTS 6.5 overall with 5.5+ subskills — confirm on official English requirements page before relying on it)",
-      "englishCriteria": [
-        "IELTS 6.5"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.ncl.ac.uk/postgraduate/degrees/5408f/",
       "sources": [
         "https://www.ncl.ac.uk/postgraduate/degrees/5408f/"
@@ -11484,13 +11062,7 @@
       "funding": "Self-funded base; WUR Holland Scholarship, Excellence Programme and Anne van den Ban Fund available",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "IELTS Academic 6.5 overall, minimum 6.0 speaking (official WUR MSc page)",
-      "englishCriteria": [
-        "IELTS 6.5",
-        "TOEFL iBT 90"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.wur.nl/en/education-programmes/master/msc-programmes/msc-earth-and-environment.htm",
       "sources": [
         "https://www.wur.nl/en/education/master/application-admission-masters/english-language-proficiency-msc",
@@ -11760,13 +11332,7 @@
       "funding": "Merit/need scholarship with possible full tuition waiver and RA/TA stipend",
       "verification": "verified",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "로컬 기록 기반",
       "english": "Current page lists IELTS 6.5 or TOEFL 79, subject to exemption rules.",
-      "englishCriteria": [
-        "IELTS 6.5",
-        "TOEFL iBT 79"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.hbku.edu.qa/en/cse/phd-sustainable-environment",
       "sources": [
         "https://www.hbku.edu.qa/en/cse/phd-sustainable-environment",
@@ -11808,12 +11374,7 @@
       "funding": "UQ scholarships/Australia Awards possible but hard-gated; official verification required",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
-      "englishCriteria": [
-        "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://study.uq.edu.au/study-options/programs/master-engineering-science-urban-water-engineering-5698",
       "sources": [
         "https://study.uq.edu.au/study-options/programs/master-engineering-science-urban-water-engineering-5698",
@@ -11860,12 +11421,7 @@
       "funding": "Low tuition (public Swiss fee); no automatic scholarship. ESOP / external scholarships only.",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "English Level C1 required by application deadline",
-      "englishCriteria": [
-        "Cambridge/C1/C2"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://ethz.ch/en/studies/master/application/master-geomatik.html",
       "sources": [
         "https://ethz.ch/en/studies/master/application/master-geomatik.html",
@@ -12052,12 +11608,7 @@
       "funding": "Advisor/department funding plus water awards; official verification required",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
-      "englishCriteria": [
-        "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://uwaterloo.ca/collaborative-water-program/",
       "sources": [
         "https://uwaterloo.ca/collaborative-water-program/",
@@ -12105,14 +11656,7 @@
       "funding": "Advisor-funded MS assistantship/position lead, contingent on satisfactory academic progress and formal admission",
       "verification": "verified_program_only",
       "verifiedAt": "2026-07-08",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "Verify Georgia Southern Graduate School English-language requirements and any TOEFL/IELTS waiver path before applying.",
-      "englishCriteria": [
-        "Verify Georgia Southern Graduate School English-language requirements and any TOEFL/IELTS waiver path before applying."
-      ],
-      "englishGapPlan": [
-        "Prepare TOEFL/IELTS or waiver evidence before the PI conversation so English proof does not block a fast August 2026 start."
-      ],
       "officialUrl": "https://www.georgiasouthern.edu/degrees/masters-in-civil-engineering",
       "sources": [
         "https://www.georgiasouthern.edu/degrees/masters-in-civil-engineering",
@@ -12183,12 +11727,7 @@
       "funding": "UBC awards/advisor/project funding to verify; no full-funding assumption",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
-      "englishCriteria": [
-        "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.landfood.ubc.ca/graduate/master-of-land-and-water-systems/",
       "sources": [
         "https://www.landfood.ubc.ca/graduate/master-of-land-and-water-systems/",
@@ -12235,12 +11774,7 @@
       "funding": "Self-funded. SG citizens/PRs get SGD 5,000 subsidy (up to SGD 10,000 if financial need); NTU alumni get additional 10% rebate. No international-student scholarship confirmed on official page.",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "IELTS (Academic) 6.0",
-      "englishCriteria": [
-        "IELTS 6.0"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-sustainability-and-environmental-engineering",
       "sources": [
         "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-sustainability-and-environmental-engineering"
@@ -12457,12 +11991,7 @@
       "funding": "VLIR-UOS ICP Connect full scholarship for eligible countries only; otherwise tuition/living cost needs separate plan",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
-      "englishCriteria": [
-        "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.vliruos.be/get-funded/master-water-resources-engineering-wre",
       "sources": [
         "https://www.vliruos.be/get-funded/master-water-resources-engineering-wre",
@@ -12509,12 +12038,7 @@
       "funding": "University scholarships and country-gated Australia Awards; official verification required",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
-      "englishCriteria": [
-        "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.adelaide.edu.au/degree-finder/meng_meng.html",
       "sources": [
         "https://www.adelaide.edu.au/degree-finder/meng_meng.html",
@@ -12561,10 +12085,7 @@
       "funding": "Admitted full-time students receive full tuition, stipend, visa and health insurance under current policy",
       "verification": "verified_program_and_full_funding_policy",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://mbzuai.ac.ae/study/graduate-admission-process/",
       "sources": [
         "https://mbzuai.ac.ae/study/graduate-admission-process/",
@@ -12604,10 +12125,7 @@
       "funding": "Automatic consideration for Melbourne Research Scholarship/RTP with fee offset and stipend",
       "verification": "verified_research_route_and_scholarship",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://infrastructure.eng.unimelb.edu.au/research/water",
       "sources": [
         "https://infrastructure.eng.unimelb.edu.au/research/water",
@@ -12646,12 +12164,7 @@
       "funding": "Free tuition for EU/EEA; non-EU pay fees. Lund Global Scholarship (merit, partial-to-full tuition) + Swedish Institute scholarships (full, country-dependent).",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "English 6 / English B (Swedish upper-secondary equivalent) — equivalent to ~IELTS 6.5 overall (min 5.5 per part); page did not state numeric IELTS/TOEFL",
-      "englishCriteria": [
-        "IELTS 6.5"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.lunduniversity.lu.se/study/gis-and-remote-sensing-master-programme-NAGIS",
       "sources": [
         "https://www.lunduniversity.lu.se/study/gis-and-remote-sensing-master-programme-NAGIS"
@@ -12877,12 +12390,7 @@
       "funding": "UC scholarships/project funding to verify",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-13",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
-      "englishCriteria": [
-        "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page."
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.canterbury.ac.nz/study/academic-study/qualifications/master-of-water-science-and-management",
       "sources": [
         "https://www.canterbury.ac.nz/study/academic-study/qualifications/master-of-water-science-and-management"
@@ -12928,10 +12436,7 @@
       "funding": "GRA/GTA often includes stipend and tuition; MEng is excluded",
       "verification": "verified_program_and_assistantships",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.engr.colostate.edu/ce/graduate/hydrologic-science-and-engineering/",
       "sources": [
         "https://www.engr.colostate.edu/ce/graduate/water-resources-planning-and-management/",
@@ -12972,10 +12477,7 @@
       "funding": "PhD RA, TA or fellowship package with stipend, tuition waiver and health benefits",
       "verification": "verified_program_and_phd_funding",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.ce.washington.edu/phd",
       "sources": [
         "https://www.ce.washington.edu/phd",
@@ -13014,13 +12516,7 @@
       "funding": "Scholarship-funded (not RA model): majority of international students receive 100% scholarship (full tuition waiver + monthly stipend, some with settlement allowance + round-trip airfare). Decided by admissions committee; no separate scholarship application.",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "Program taught in English (English-medium policy school)",
-      "englishCriteria": [
-        "Program taught in English (English-medium policy school)",
-        "Specific TOEFL/IELTS threshold NOT_FOUND_AFTER_VERIFIED_SEARCH on fetched curriculum/scholarship pages (confirm on application guideline)"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.kdischool.ac.kr/menu.es?mid=a10208020200",
       "sources": [
         "https://www.kdischool.ac.kr/menu.es?mid=a10208020200",
@@ -13176,10 +12672,7 @@
       "funding": "Institutional tuition-free graduate model plus living stipend",
       "verification": "verified_program_and_institutional_funding",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.weizmann.ac.il/EPS/positions/msc",
       "sources": [
         "https://www.weizmann.ac.il/EPS/positions/msc",
@@ -13218,10 +12711,7 @@
       "funding": "TA/RA with tuition remission and health benefits; faculty sponsor required",
       "verification": "verified_program_funding_and_2027_deadline",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://geog.umd.edu/graduate/prospective-phd-students",
       "sources": [
         "https://geog.umd.edu/graduate/prospective-phd-students"
@@ -13260,13 +12750,7 @@
       "funding": "Self-funded by default; MTCP Scholarship (Malaysian Govt) covers tuition + allowances + return airfare but is restricted to MTCP recipient developing countries - KOREA IS NOT AN MTCP RECIPIENT (Korea is a donor), so candidate is most likely INELIGIBLE for MTCP.",
       "verification": "verified",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "IELTS band 6.0",
-      "englishCriteria": [
-        "IELTS 6.0",
-        "TOEFL iBT 550"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://civil.utm.my/postgraduate/meag/",
       "sources": [
         "https://civil.utm.my/postgraduate/meag/",
@@ -13447,10 +12931,7 @@
       "funding": "Advertised UKRI and project studentships covering tuition and stipend; project-specific eligibility",
       "verification": "verified_research_route_funding_cycle_pending",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.exeter.ac.uk/research/centres/cws/research/hydroinformatics-ai/",
       "sources": [
         "https://www.exeter.ac.uk/research/centres/cws/research/hydroinformatics-ai/",
@@ -13490,10 +12971,7 @@
       "funding": "Spatial Information Convergence Core Talent Development Project scholarships plus RA/industry scholarships",
       "verification": "verified_program_and_project_scholarship_signal",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
       "sources": [
         "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
@@ -13534,10 +13012,7 @@
       "funding": "GSR, TA and fellowships; faculty-funded admission is strongest route",
       "verification": "verified_program_and_funding",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.hsgg.ucdavis.edu/",
       "sources": [
         "https://www.hsgg.ucdavis.edu/",
@@ -13577,10 +13052,7 @@
       "funding": "IGP-A MEXT university recommendation; supervisor consent required",
       "verification": "verified_program_and_mext_route",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.titech.ac.jp/english/admissions/prospective-students/graduate-programs/igp",
       "sources": [
         "https://www.titech.ac.jp/english/admissions/prospective-students/graduate-programs/igp"
@@ -13620,10 +13092,7 @@
       "funding": "Graduate scholarship for ASEAN/non-ASEAN applicants can include tuition, stipend and accommodation",
       "verification": "verified_program_and_international_scholarship_route",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.eng.chula.ac.th/wp-content/uploads/2017/01/16-Water-Resources-Engineering.pdf",
       "sources": [
         "https://www.eng.chula.ac.th/wp-content/uploads/2017/01/16-Water-Resources-Engineering.pdf"
@@ -13661,10 +13130,7 @@
       "funding": "Departmental full funding with stipend, tuition, fees and health insurance",
       "verification": "verified_program_and_full_funding_statement",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.ess.uci.edu/phd-program",
       "sources": [
         "https://www.ess.uci.edu/phd-program",
@@ -13703,10 +13169,7 @@
       "funding": "RA, TA and fellowships; December 15 funding-consideration pattern",
       "verification": "verified_program_and_funding_routes",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://hydrology.mines.edu/",
       "sources": [
         "https://hydrology.mines.edu/",
@@ -13746,10 +13209,7 @@
       "funding": "Faculty graduate assistantships via CEE and Utah Water Research Laboratory",
       "verification": "verified_program_and_assistantship_signal",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://engineering.usu.edu/cee/students/requirements/index.php",
       "sources": [
         "https://engineering.usu.edu/cee/students/requirements/index.php",
@@ -13790,10 +13250,7 @@
       "funding": "Supervisor package and competitive PhD fellowships",
       "verification": "verified_program_and_funding_letter_requirement",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.mcgill.ca/gradapplicants/program/bioresource-engineering-phd",
       "sources": [
         "https://www.mcgill.ca/gradapplicants/program/bioresource-engineering-phd",
@@ -13834,10 +13291,7 @@
       "funding": "University of Auckland Doctoral Scholarship can cover stipend, fees and international health insurance",
       "verification": "verified_program_and_doctoral_scholarship",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.auckland.ac.nz/en/engineering/about-the-faculty/civil-and-environmental-engineering.html",
       "sources": [
         "https://www.auckland.ac.nz/en/study/scholarships-and-awards/scholarship-types/scholarships-for-international-students/postgraduate-scholarships-for-international-students.html"
@@ -13875,10 +13329,7 @@
       "funding": "Competitive HDR tuition and stipend scholarships",
       "verification": "verified_research_degree_and_hdr_funding",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.monash.edu/engineering/departments/civil/research-degrees",
       "sources": [
         "https://www.monash.edu/engineering/departments/civil/research-degrees",
@@ -13917,10 +13368,7 @@
       "funding": "Professor RA, BK21 and Korean graduate STEM scholarships; not automatic",
       "verification": "verified_major_via_official_admission_material",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://graduate.pusan.ac.kr/grad/index.do",
       "sources": [
         "https://graduate.pusan.ac.kr/grad/index.do",
@@ -13960,10 +13408,7 @@
       "funding": "MEXT university-recommendation or embassy route plus lab support; not automatic",
       "verification": "verified_program_funding_route_conditional",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://eprogram.eng.hokudai.ac.jp/e3/e3study/divisions/25-field-engineering-environment",
       "sources": [
         "https://eprogram.eng.hokudai.ac.jp/e3/e3study/divisions/25-field-engineering-environment"
@@ -14001,10 +13446,7 @@
       "funding": "Professor RA, BK21 or university scholarship; GKS excluded for Korean applicant",
       "verification": "verified_program_funding_requires_pi_confirmation",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://ericacivil.hanyang.ac.kr/en/-24",
       "sources": [
         "https://ericacivil.hanyang.ac.kr/en/-24",
@@ -14046,10 +13488,7 @@
       "funding": "Faculty scholarships and tuition exemption; PI-dependent",
       "verification": "verified_program_funding_conditional",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://graduate.technion.ac.il/en/civil-environmental-engineering/",
       "sources": [
         "https://graduate.technion.ac.il/en/civil-environmental-engineering/"
@@ -14087,10 +13526,7 @@
       "funding": "Professor RA, BK21 or university scholarship; package must be confirmed",
       "verification": "verified_in_official_2026_admission_guide",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://plus.cnu.ac.kr/html/en/",
       "sources": [
         "https://plus.cnu.ac.kr/_prog/_board/common/download.php?atch_no=2&code=en_sub05_0502&ntt_no=2512448"
@@ -14129,10 +13565,7 @@
       "funding": "University tuition scholarship plus lab/BK support; doctoral BK amount is participation-dependent",
       "verification": "verified_program_and_conditional_funding",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://top.jbnu.ac.kr/civileng/33692/subview.do",
       "sources": [
         "https://top.jbnu.ac.kr/civileng/33687/subview.do",
@@ -14172,10 +13605,7 @@
       "funding": "Advisor-funded assistantship; program itself does not fund students",
       "verification": "verified_program_and_adviser_funding_limit",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://graduate.oregonstate.edu/water-resources-graduate-program",
       "sources": [
         "https://graduate.oregonstate.edu/water-resources-graduate-program/applicant-faqs",
@@ -14214,10 +13644,7 @@
       "funding": "Lab RA and university graduate scholarship; exact Korean-applicant package not posted",
       "verification": "verified_program_partial_funding_evidence",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://eng.inha.ac.kr/eng/3590/subview.do",
       "sources": [
         "https://eng.inha.ac.kr/eng/3590/subview.do"
@@ -14255,10 +13682,7 @@
       "funding": "Advisor RA and university/BK21 support; no automatic full package verified",
       "verification": "verified_program_partial_funding_evidence",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://civil.jnu.ac.kr/",
       "sources": [
         "https://www.jnu.ac.kr/Data/tmfiles/Down/introduction/DirectoryBulletinEn/2025_2026/10-3.pdf"
@@ -14296,13 +13720,7 @@
       "funding": "Self-funded. SG/PR subsidy SGD 5,000-10,000; NTU alumni 10% rebate. No international-student scholarship confirmed on official page.",
       "verification": "verified_program_only",
       "verifiedAt": "2026-06-11",
-      "englishStatus": "로컬 기록 기반",
       "english": "IELTS (Academic) 6.0",
-      "englishCriteria": [
-        "IELTS 6.0",
-        "TOEFL iBT 85"
-      ],
-      "englishGapPlan": [],
       "officialUrl": "https://www.ntu.edu.sg/cee/admissions/graduate/detail/master-of-science-in-civil-engineering",
       "sources": [
         "https://www.ntu.edu.sg/cee/admissions/graduate/detail/master-of-science-in-civil-engineering"
@@ -14481,10 +13899,7 @@
       "funding": "Primarily self-funded professional degree with limited scholarships/CREATE supplements",
       "verification": "verified_program_2027_deadline_funding_limited",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://grad.usask.ca/programs/water-security.php",
       "sources": [
         "https://grad.usask.ca/programs/water-security.php",
@@ -14524,10 +13939,7 @@
       "funding": "Competitive university/external scholarships; no automatic full package",
       "verification": "verified_program_funding_not_guaranteed",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://study.ed.ac.uk/programmes/postgraduate-taught/1146-geographical-information-science-and-earth-observation",
       "sources": [
         "https://study.ed.ac.uk/programmes/postgraduate-taught/1146-geographical-information-science-and-earth-observation",
@@ -14566,15 +13978,7 @@
       "funding": "Erasmus Mundus programme; scholarship availability must be verified on the official application/scholarship page for the target intake",
       "verification": "verified_program_only",
       "verifiedAt": "",
-      "englishStatus": "로컬 기록 기반",
       "english": "Cartography MSc의 최신 English requirement는 target intake student handbook/application portal에서 최종 확인 필요.",
-      "englishCriteria": [
-        "Cambridge/C1/C2"
-      ],
-      "englishGapPlan": [
-        "현재 영어 점수가 부족하면 Cartography는 우선순위가 낮음. CDE/GEM과 같은 시험 준비로 IELTS 6.5를 목표로 잡으면 대부분의 Erasmus 계열 리스크를 줄일 수 있음.",
-        "정확한 cutoff가 확인되기 전까지는 영어 기준 미확정 리스크를 유지."
-      ],
       "officialUrl": "https://cartographymaster.eu/",
       "sources": [
         "https://cartographymaster.eu/",
@@ -14780,10 +14184,7 @@
       "funding": "Small number of competitive tuition-fee waivers; living stipend not included",
       "verification": "verified_program_and_tuition_waiver_limit",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.aalto.fi/en/study-options/water-and-environmental-engineering-master-of-science-technology",
       "sources": [
         "https://www.aalto.fi/en/study-options/water-and-environmental-engineering-master-of-science-technology"
@@ -14821,10 +14222,7 @@
       "funding": "Engineering graduate RA package subject to professor selection",
       "verification": "verified_program_and_ra_brochure",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://en.sejong.ac.kr/eng/academics/Graduate-school.do",
       "sources": [
         "https://en.sejong.ac.kr/eng/academics/Graduate-school.do",
@@ -14863,10 +14261,7 @@
       "funding": "KTH Scholarship can waive tuition; living costs normally uncovered",
       "verification": "verified_2027_program_syllabus_funding_competitive",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.kth.se/en/studies/master/environmental-engineering",
       "sources": [
         "https://www.kth.se/student/kurser/program/TMHIM/20272/arskurs2?l=en",
@@ -14905,10 +14300,7 @@
       "funding": "University tuition scholarships are competitive; no automatic living stipend",
       "verification": "verified_program_funding_not_guaranteed",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://www.uu.se/en/study/programme/masters-programme-earth-science-hydrology-hydrogeology",
       "sources": [
         "https://www.uu.se/en/study/programme/masters-programme-earth-science-hydrology-hydrogeology"
@@ -14947,10 +14339,7 @@
       "funding": "Professor RA and graduate scholarship; amount not verified",
       "verification": "verified_program_funding_unconfirmed",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://grad.ajou.ac.kr/gs_eng/research/faculty_en10.do?cate=1",
       "sources": [
         "https://grad.ajou.ac.kr/gs_eng/research/faculty_en10.do?cate=1"
@@ -14988,10 +14377,7 @@
       "funding": "Self-funded or non-EPOS external scholarship for a Korean applicant; DAAD EPOS is restricted to applicants from eligible developing and emerging countries",
       "verification": "verified_program_epos_ineligible_for_korean_applicant",
       "verifiedAt": "2026-07-10",
-      "englishStatus": "공식 세부 확인 필요",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
-      "englishCriteria": [],
-      "englishGapPlan": [],
       "officialUrl": "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse/hse",
       "sources": [
         "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse/hse",
@@ -15014,6 +14400,178 @@
         "lastVerified": "2026-07-10",
         "evidenceStatus": "공개 연구자료 추가 확인 필요"
       }
+    },
+    {
+      "id": "program-ku-online-environmental-water-resources",
+      "rank": 91,
+      "university": "University of Kansas",
+      "program": "MS in Environmental & Water Resources Engineering",
+      "country": "United States",
+      "market": "overseas",
+      "degree": "석사",
+      "deliveryMode": "online",
+      "decision": "온라인 탐색",
+      "score": 8.7,
+      "deadline": "봄 우선 10월 2일 / 최종 1월 6일, 여름·가을 일정은 공식 페이지에서 지원 연도 재확인",
+      "intake": "Spring · Summer · Fall",
+      "tuition": "USD 795/credit (공식 안내 기준)",
+      "funding": "원격 과정은 자비 기준으로 검토; 생활비·조교 장학은 별도 확인",
+      "verification": "official",
+      "verifiedAt": "2026-07-26",
+      "english": "국제 지원자의 영어 요건은 대학원 입학처에서 지원 전 확인",
+      "gates": "환경·수자원 공학 기반 과목, 원격 수강 가능 여부와 선수과목을 지원 전 확인",
+      "risks": "전일제 1–2년 또는 파트타임 2–4년; 국제 원격 수강·비자 조건은 별도 확인",
+      "officialUrl": "https://online.ku.edu/graduate-programs/online-masters-environmental-water-resources-engineering-and-masters-environmental-water-resources",
+      "sources": [
+        "https://online.ku.edu/graduate-programs/online-masters-environmental-water-resources-engineering-and-masters-environmental-water-resources",
+        "https://degrees.ku.edu/graduate/masters/environmental-and-water-resources-engineering/"
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+    },
+    {
+      "id": "program-ucf-online-water-resources",
+      "rank": 92,
+      "university": "University of Central Florida",
+      "program": "MS Civil Engineering — Water Resources",
+      "country": "United States",
+      "market": "overseas",
+      "degree": "석사",
+      "deliveryMode": "online",
+      "decision": "온라인 탐색",
+      "score": 8.4,
+      "deadline": "Fall 7월 1일 · Spring 11월 1일 (지원 연도 재확인)",
+      "intake": "Fall · Spring",
+      "tuition": "공식 프로그램·입학처에서 학기별 원격 수업료 확인",
+      "funding": "원격 과정은 자비 기준으로 검토; 조교·장학금은 별도 확인",
+      "verification": "official",
+      "verifiedAt": "2026-07-26",
+      "english": "해당 국제 지원자는 UCF 대학원 영어 요건을 지원 전 확인",
+      "gates": "Calculus I–III와 미분방정식 배경 필요; GRE는 요구하지 않음",
+      "risks": "전공·선수과목과 일부 선택과목의 원격 제공 여부를 사전 확인",
+      "officialUrl": "https://www.ucf.edu/online/degree/civil-engineering-ms-water-resources/",
+      "sources": [
+        "https://www.ucf.edu/online/degree/civil-engineering-ms-water-resources/",
+        "https://grad.cecs.ucf.edu/academic-programs/online-and-virtual-education/"
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+    },
+    {
+      "id": "program-penn-state-online-gis",
+      "rank": 93,
+      "university": "Penn State World Campus",
+      "program": "Master of GIS (MGIS)",
+      "country": "United States",
+      "market": "overseas",
+      "degree": "석사",
+      "deliveryMode": "online",
+      "decision": "온라인 탐색",
+      "score": 8.2,
+      "deadline": "1월 입학 기준 11월 1일 안내됨; 지원 연도별 마감 재확인",
+      "intake": "Spring 중심 일정 안내",
+      "tuition": "USD 1,048/credit (공식 안내 기준)",
+      "funding": "원격 과정은 자비 기준으로 검토; 외부 장학금 별도 탐색",
+      "verification": "official",
+      "verifiedAt": "2026-07-26",
+      "english": "국제 지원자의 영어·학력 인증 요건은 World Campus 입학처에서 확인",
+      "gates": "33 credits; 직장 병행 가능한 온라인 GIS 석사",
+      "risks": "물 도메인 전문 석사는 아니므로 수문·환경 프로젝트 포트폴리오를 병행",
+      "officialUrl": "https://www.worldcampus.psu.edu/degrees-and-certificates/penn-state-online-gis-geographic-information-systems-masters-degree",
+      "sources": [
+        "https://www.worldcampus.psu.edu/degrees-and-certificates/penn-state-online-gis-geographic-information-systems-masters-degree",
+        "https://www.worldcampus.psu.edu/admissions/international-students"
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+    },
+    {
+      "id": "program-arizona-online-gis-technology",
+      "rank": 94,
+      "university": "University of Arizona",
+      "program": "MS in Geographic Information Systems Technology",
+      "country": "United States",
+      "market": "overseas",
+      "degree": "석사",
+      "deliveryMode": "online",
+      "decision": "온라인 탐색",
+      "score": 8.0,
+      "deadline": "입학 회차별 공식 지원 마감은 지원 전 재확인",
+      "intake": "공식 입학처 일정 확인",
+      "tuition": "USD 850/credit (공식 안내 기준)",
+      "funding": "원격 과정은 자비 기준으로 검토",
+      "verification": "official",
+      "verifiedAt": "2026-07-26",
+      "english": "국제 지원 요건은 대학원 입학처에서 지원 전 확인",
+      "gates": "30 credits, 약 18개월 안내; GIS·원격탐사·공간분석 중심",
+      "risks": "환경·수자원 도메인 과목은 별도 프로젝트·선택과목으로 보강 필요",
+      "officialUrl": "https://online.arizona.edu/programs/graduate/online-master-science-geographic-information-systems-technology-ms",
+      "sources": [
+        "https://online.arizona.edu/programs/graduate/online-master-science-geographic-information-systems-technology-ms"
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+    },
+    {
+      "id": "program-jhu-online-environmental-engineering",
+      "rank": 95,
+      "university": "Johns Hopkins Engineering for Professionals",
+      "program": "MS in Environmental Engineering",
+      "country": "United States",
+      "market": "overseas",
+      "degree": "석사",
+      "deliveryMode": "online",
+      "decision": "온라인 탐색",
+      "score": 7.9,
+      "deadline": "공식 입학 회차별 마감 확인 필요",
+      "intake": "공식 입학처 일정 확인",
+      "tuition": "공식 과정·등록금 페이지에서 과목별 확인",
+      "funding": "원격 파트타임 과정은 자비 기준으로 검토",
+      "verification": "official",
+      "verifiedAt": "2026-07-26",
+      "english": "국제 지원자의 영어·학력 인증 요건은 지원 전 확인",
+      "gates": "파트타임 10과목, 최대 5년; 물·폐수·환경 시스템 과목 선택 가능",
+      "risks": "직장인 중심 구조와 높은 총비용 가능성을 예산 기준으로 검토",
+      "officialUrl": "https://ep.jhu.edu/programs/environmental-engineering/",
+      "sources": [
+        "https://ep.jhu.edu/programs/environmental-engineering/",
+        "https://ep.jhu.edu/programs/environmental-engineering/courses/"
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+    },
+    {
+      "id": "program-uiuc-online-computer-science-data-science",
+      "rank": 96,
+      "university": "University of Illinois Urbana-Champaign",
+      "program": "Master of Computer Science in Data Science",
+      "country": "United States",
+      "market": "overseas",
+      "degree": "석사",
+      "deliveryMode": "online",
+      "decision": "온라인 탐색",
+      "score": 7.7,
+      "deadline": "Fall 5월 30일 · Spring 10월 15일 안내됨; 지원 연도 재확인",
+      "intake": "Fall · Spring",
+      "tuition": "공식 프로그램 등록금 페이지에서 학기별 확인",
+      "funding": "원격 과정은 자비 기준으로 검토",
+      "verification": "official",
+      "verifiedAt": "2026-07-26",
+      "english": "국제 지원자의 영어 요건·원격 수강 가능 여부를 지원 전 확인",
+      "gates": "32 credits; 컴퓨터과학·프로그래밍·수학 기반 요구 가능",
+      "risks": "물 도메인과 직접 연결되지 않으므로 수자원·공간 데이터 프로젝트가 필수",
+      "officialUrl": "https://online.illinois.edu/online-programs/programs/computer-science---data-science",
+      "sources": [
+        "https://online.illinois.edu/online-programs/programs/computer-science---data-science"
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
     }
   ],
   "funding": [
@@ -15037,7 +14595,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "kwanjeong-overseas-study-scholarship",
@@ -15739,7 +15297,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "ok-bae-jung-living-scholarship",
@@ -15789,7 +15347,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "canada-cgrs-doctoral",
@@ -15993,7 +15551,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "monash-international-graduate-research-package",
@@ -16037,7 +15595,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "swiss-government-excellence-research-scholarship",
@@ -16127,7 +15685,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "awma-international-graduate-scholarships",
@@ -16149,7 +15707,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "agu-horton-research-grant-hydrology",
@@ -16173,7 +15731,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "agu-student-travel-grant-annual-meeting",
@@ -16198,7 +15756,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "australia-rtp-research-scholarships",
@@ -16258,7 +15816,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "kaist-graduate-scholarship-assistantship",
@@ -16366,7 +15924,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "swe-graduate-engineering-scholarships",
@@ -16521,7 +16079,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "gsa-student-travel-grants",
@@ -16543,7 +16101,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "jasso-monbukagakusho-honors-scholarship",
@@ -17022,7 +16580,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "women-in-gis-awards-scholarships",
@@ -17046,7 +16604,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "hyundai-cmk-science-technology-graduate-scholarship",
@@ -17292,7 +16850,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "phd-industry-fellowships",
@@ -17364,7 +16922,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "qualcomm-innovation-fellowship-korea",
@@ -17624,7 +17182,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "cooperative-ai-phd-fellowship",
@@ -17649,7 +17207,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "copernicus-master-digital-earth-scholarship",
@@ -17751,7 +17309,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "eth-esop-master-scholarship",
@@ -17923,7 +17481,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "ireland-goi-ies-scholarship",
@@ -18101,7 +17659,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "kasf-korean-american-scholarship",
@@ -18276,7 +17834,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "mgwa-gil-gabanski-groundwater-scholarship",
@@ -18325,7 +17883,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "oxford-clarendon-scholarship",
@@ -18566,7 +18124,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "google-summer-of-code-stipend",
@@ -18591,7 +18149,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "lfx-mentorship-stipend",
@@ -18613,7 +18171,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "mbr-global-water-award",
@@ -18659,7 +18217,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "outreachy-open-source-internship",
@@ -18682,7 +18240,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "uae-water-security-2036-career-linkage",
@@ -18806,7 +18364,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "asan-biomedical-health-policy-graduate-scholarship",
@@ -18851,7 +18409,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "adb-japan-scholarship-water-environment",
@@ -19077,7 +18635,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "nsf-grfp",
@@ -19182,7 +18740,7 @@
       "countries": [
         "Global"
       ],
-      "market": "unknown"
+      "market": "overseas"
     },
     {
       "id": "singapore-pub-sustainability-scholarship",

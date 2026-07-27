@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -23,6 +24,38 @@ def contains_forbidden_key(value: object) -> bool:
     if isinstance(value, list):
         return any(contains_forbidden_key(item) for item in value)
     return False
+
+
+def support_only_title(title: object) -> bool:
+    """Mirror DATA-215 at the release boundary."""
+    text = str(title or "").strip()
+    support_role = re.search(
+        r"\b(finance intern|finance and budget officer|recruit(?:ment|er)|"
+        r"human resources?|payroll|reception(?:ist)?|account executive)\b",
+        text,
+        flags=re.IGNORECASE,
+    )
+    title_grounded_target = re.search(
+        r"\b(water|hydro|flood|climate|adaptation|resilien(?:ce|t)|coastal|"
+        r"environment|gis|geospatial|remote sensing|data|machine learning|ai|"
+        r"artificial intelligence|project)\b",
+        text,
+        flags=re.IGNORECASE,
+    )
+    return bool(support_role and not title_grounded_target)
+
+
+def contains_non_contract_research(value: object) -> bool:
+    """Mirror DATA-216 at the release boundary."""
+    markers = (
+        "not a funded grant", "editorial", "guest editor", "special issue",
+        "publication dates", "specific grant id not disclosed",
+    )
+    if isinstance(value, dict):
+        return any(contains_non_contract_research(item) for item in value.values())
+    if isinstance(value, list):
+        return any(contains_non_contract_research(item) for item in value)
+    return isinstance(value, str) and any(marker in value.lower() for marker in markers)
 
 
 def main() -> None:
@@ -111,8 +144,16 @@ def main() -> None:
         for job in jobs
     ):
         raise SystemExit("public jobs must exclude explicit multi-year experience requirements")
+    if any(support_only_title(job.get("title")) for job in jobs):
+        raise SystemExit("public jobs must exclude generic support-only titles")
     if any(item.get("applicationStatus") not in {"open", "prepare", "research"} for item in programs):
         raise SystemExit("every programme must disclose whether it is open, preparation, or research")
+    public_projects = [
+        project for item in programs
+        for project in (item.get("publicResearch") or {}).get("recentProjects", [])
+    ]
+    if contains_non_contract_research(public_projects):
+        raise SystemExit("graduate research contracts contain editorial or publication-inferred records")
     if stats["recommendationSurface"] == "exploration_only" and review_queue:
         raise SystemExit("exploration-only snapshots must not imply an action-ready review queue")
     if any(not item.get("officialUrl") and item.get("verification") != "official_search_required" for item in programs + funding):

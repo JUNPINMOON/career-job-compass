@@ -84,6 +84,44 @@ def experienced_only_title(job: Mapping[str, Any]) -> bool:
     return "경력직" in title and "신입" not in title and "경력무관" not in title
 
 
+def support_only_title(job: Mapping[str, Any]) -> bool:
+    """DATA-215: keep employer context from turning Finance Intern into a technical role."""
+    title = str(job.get("title", "")).strip()
+    support_role = re.search(
+        r"\b(finance intern|finance and budget officer|recruit(?:ment|er)|"
+        r"human resources?|payroll|reception(?:ist)?|account executive)\b",
+        title,
+        flags=re.IGNORECASE,
+    )
+    if not support_role:
+        return False
+    title_grounded_target = re.search(
+        r"\b(water|hydro|flood|climate|adaptation|resilien(?:ce|t)|coastal|"
+        r"environment|gis|geospatial|remote sensing|data|machine learning|ai|"
+        r"artificial intelligence|project)\b",
+        title,
+        flags=re.IGNORECASE,
+    )
+    return title_grounded_target is None
+
+
+def verified_research_project(project: Mapping[str, Any]) -> bool:
+    """DATA-216: count only records evidenced as research contracts or funded projects."""
+    evidence_text = " ".join(
+        str(project.get(field, "")).strip().lower()
+        for field in ("title", "funder", "period")
+    )
+    non_contract_markers = (
+        "not a funded grant",
+        "editorial",
+        "guest editor",
+        "special issue",
+        "publication dates",
+        "specific grant id not disclosed",
+    )
+    return not any(marker in evidence_text for marker in non_contract_markers)
+
+
 def _public_research(source: dict[str, Any]) -> dict[str, Any]:
     """DATA-213: publish source-backed research facts, never personal fit notes."""
     faculty: list[dict[str, Any]] = []
@@ -109,7 +147,12 @@ def _public_research(source: dict[str, Any]) -> dict[str, Any]:
                 "url": _public_url(project.get("url")),
             }
             for project in person.get("recent_projects", [])
-            if isinstance(project, dict) and project.get("title") and _recent_five_years(project.get("period"))
+            if (
+                isinstance(project, dict)
+                and project.get("title")
+                and _recent_five_years(project.get("period"))
+                and verified_research_project(project)
+            )
         ]
         faculty.append(
             {
@@ -247,6 +290,7 @@ def _apply_public_eligibility(
             minimum_years >= MINIMUM_EXPERIENCE_EXCLUSION_YEARS
             or job.get("publicEligibility") == "excluded"
             or experienced_only_title(job)
+            or support_only_title(job)
             or explicit_experience_exclusion(job)
         ):
             excluded += 1

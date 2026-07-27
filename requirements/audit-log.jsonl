@@ -87,3 +87,10 @@
 {"at": "2026-07-27T14:16:39+00:00", "event": "check", "passed": 39, "failed": 0, "failing_ids": []}
 {"at": "2026-07-27T14:23:40+00:00", "event": "check", "passed": 39, "failed": 0, "failing_ids": []}
 {"at": "2026-07-27T14:26:55+00:00", "event": "check", "passed": 39, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T15:18:38+00:00", "event": "check", "passed": 39, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T15:35:21+00:00", "event": "requirement_added", "id": "DATA-215", "title": "Generic support-only job titles cannot inherit technical water or AI sectors from their employer"}
+{"at": "2026-07-27T15:35:21+00:00", "event": "check", "passed": 39, "failed": 1, "failing_ids": ["DATA-215"]}
+{"at": "2026-07-27T15:36:35+00:00", "event": "check", "passed": 40, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T16:06:39+00:00", "event": "requirement_added", "id": "DATA-216", "title": "Graduate research-contract counts exclude editorials and publication-inferred activities"}
+{"at": "2026-07-27T16:06:39+00:00", "event": "check", "passed": 40, "failed": 1, "failing_ids": ["DATA-216"]}
+{"at": "2026-07-27T16:11:17+00:00", "event": "check", "passed": 41, "failed": 0, "failing_ids": []}

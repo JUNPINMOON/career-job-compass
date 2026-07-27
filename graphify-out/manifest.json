@@ -5,8 +5,8 @@
     "semantic_hash": ""
   },
   "data/app-data.json": {
-    "mtime": 1785161798.736509,
-    "ast_hash": "b28d882ed3b3c8d22dd0b0b6fcf9057a",
+    "mtime": 1785168592.7779772,
+    "ast_hash": "0e7f62ac66662d3b9080fb49865b4b0b",
     "semantic_hash": ""
   },
   "data/catalog-source.json": {
@@ -20,13 +20,13 @@
     "semantic_hash": ""
   },
   "scripts/build_snapshot.py": {
-    "mtime": 1785161778.5069034,
-    "ast_hash": "c5045719ee14409745d667ef1b6ddcaa",
+    "mtime": 1785168549.9398375,
+    "ast_hash": "a4bb98d5355053f60ff802690feaa9b2",
     "semantic_hash": ""
   },
   "scripts/check_release.py": {
-    "mtime": 1785155993.088503,
-    "ast_hash": "db96dd5084ad844b0c56a79dff948291",
+    "mtime": 1785168571.4021082,
+    "ast_hash": "cbf6e0ddc9c12aaee733680f72f60419",
     "semantic_hash": ""
   },
   "scripts/check_requirements.py": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "requirements/.seen-ids.json": {
-    "mtime": 1785161799.2520297,
-    "ast_hash": "066ec8a343617bcb1c025feb2ae6d8f9",
+    "mtime": 1785168399.302218,
+    "ast_hash": "78a00d5abbde97f12e97c1f98be3ba1c",
     "semantic_hash": ""
   },
   ".github/workflows/pages.yml": {
@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "requirements/ledger.yaml": {
-    "mtime": 1785161230.0187738,
-    "ast_hash": "b8aa43a66e01e70b75110448297b72cc",
+    "mtime": 1785168381.2973907,
+    "ast_hash": "f0a19a25483d3cd0cd9194bb3af9a363",
     "semantic_hash": ""
   },
   "assets/daily-brief-cover-v3.png": {

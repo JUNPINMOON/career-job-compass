@@ -287,6 +287,20 @@
       "title": "Job titles explicitly marked experienced-only cannot re-enter exploration results",
       "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-214", "experienced_only_title", "경력직"]},
       "note": "Fresh 390 by 844 browser verification on 2026-07-27 found three Hwashin duplicates on Explore page 2 because their structured minimum-experience field was empty even though the title explicitly said 경력직."
+    },
+    {
+      "id": "DATA-215",
+      "status": "active",
+      "title": "Generic support-only job titles cannot inherit technical water or AI sectors from their employer",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-215", "support_only_title", "Finance Intern"]},
+      "note": "Fresh 390 by 844 browser verification on 2026-07-27 found Finance Intern inside the water-resource filter because employer-level IWMI text leaked technical sector labels into a non-technical role. Exclude only explicit support-only titles while retaining climate finance, coastal resilience, project and other title-grounded roles."
+    },
+    {
+      "id": "DATA-216",
+      "status": "active",
+      "title": "Graduate research-contract counts exclude editorials and publication-inferred activities",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-216", "verified_research_project", "not a funded grant"]},
+      "note": "Fresh 390 by 844 browser verification on 2026-07-28 found IHE Delft labelled as having two research contracts although one record explicitly said editorial, not a funded grant and the other was inferred from publication dates without a disclosed grant ID. Fail closed to an explicit evidence gap instead of presenting those records as contracts."
     }
   ]
 }

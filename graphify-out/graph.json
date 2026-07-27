@@ -98,8 +98,8 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "app_escapehtml",
-      "community": 0,
-      "community_name": "Program Management",
+      "community": 2,
+      "community_name": "Job Detail Rendering",
       "norm_label": "escapehtml()"
     },
     {
@@ -164,8 +164,8 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "app_requiredexperienceyears",
-      "community": 5,
-      "community_name": "Bridge Communication",
+      "community": 3,
+      "community_name": "Record Handling",
       "norm_label": "requiredexperienceyears()"
     },
     {
@@ -175,8 +175,8 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "app_iseligiblepublicjob",
-      "community": 5,
-      "community_name": "Bridge Communication",
+      "community": 3,
+      "community_name": "Record Handling",
       "norm_label": "iseligiblepublicjob()"
     },
     {
@@ -186,8 +186,8 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "app_jobs",
-      "community": 4,
-      "community_name": "Job Filtering",
+      "community": 3,
+      "community_name": "Record Handling",
       "norm_label": "jobs()"
     },
     {
@@ -197,8 +197,8 @@
       "source_location": "L108",
       "_origin": "ast",
       "id": "app_reviewqueue",
-      "community": 5,
-      "community_name": "Bridge Communication",
+      "community": 3,
+      "community_name": "Record Handling",
       "norm_label": "reviewqueue()"
     },
     {
@@ -318,8 +318,8 @@
       "source_location": "L126",
       "_origin": "ast",
       "id": "app_jobbyid",
-      "community": 4,
-      "community_name": "Job Filtering",
+      "community": 3,
+      "community_name": "Record Handling",
       "norm_label": "jobbyid()"
     },
     {
@@ -428,8 +428,8 @@
       "source_location": "L180",
       "_origin": "ast",
       "id": "app_queuecopy",
-      "community": 0,
-      "community_name": "Program Management",
+      "community": 2,
+      "community_name": "Job Detail Rendering",
       "norm_label": "queuecopy()"
     },
     {
@@ -549,8 +549,8 @@
       "source_location": "L323",
       "_origin": "ast",
       "id": "app_detaillist",
-      "community": 0,
-      "community_name": "Program Management",
+      "community": 2,
+      "community_name": "Job Detail Rendering",
       "norm_label": "detaillist()"
     },
     {
@@ -560,8 +560,8 @@
       "source_location": "L324",
       "_origin": "ast",
       "id": "app_officiallink",
-      "community": 0,
-      "community_name": "Program Management",
+      "community": 2,
+      "community_name": "Job Detail Rendering",
       "norm_label": "officiallink()"
     },
     {
@@ -571,8 +571,8 @@
       "source_location": "L325",
       "_origin": "ast",
       "id": "app_renderjobdetail",
-      "community": 0,
-      "community_name": "Program Management",
+      "community": 2,
+      "community_name": "Job Detail Rendering",
       "norm_label": "renderjobdetail()"
     },
     {
@@ -582,8 +582,8 @@
       "source_location": "L333",
       "_origin": "ast",
       "id": "app_evidenceitem",
-      "community": 0,
-      "community_name": "Program Management",
+      "community": 2,
+      "community_name": "Job Detail Rendering",
       "norm_label": "evidenceitem()"
     },
     {
@@ -593,8 +593,8 @@
       "source_location": "L339",
       "_origin": "ast",
       "id": "app_graduateresearchpanels",
-      "community": 0,
-      "community_name": "Program Management",
+      "community": 2,
+      "community_name": "Job Detail Rendering",
       "norm_label": "graduateresearchpanels()"
     },
     {
@@ -604,8 +604,8 @@
       "source_location": "L363",
       "_origin": "ast",
       "id": "app_renderrecorddetail",
-      "community": 0,
-      "community_name": "Program Management",
+      "community": 2,
+      "community_name": "Job Detail Rendering",
       "norm_label": "renderrecorddetail()"
     },
     {
@@ -615,8 +615,8 @@
       "source_location": "L379",
       "_origin": "ast",
       "id": "app_openjobdetail",
-      "community": 4,
-      "community_name": "Job Filtering",
+      "community": 3,
+      "community_name": "Record Handling",
       "norm_label": "openjobdetail()"
     },
     {
@@ -626,8 +626,8 @@
       "source_location": "L380",
       "_origin": "ast",
       "id": "app_openrecorddetail",
-      "community": 0,
-      "community_name": "Program Management",
+      "community": 2,
+      "community_name": "Job Detail Rendering",
       "norm_label": "openrecorddetail()"
     },
     {
@@ -648,8 +648,8 @@
       "source_location": "L383",
       "_origin": "ast",
       "id": "app_jobsnapshot",
-      "community": 4,
-      "community_name": "Job Filtering",
+      "community": 3,
+      "community_name": "Record Handling",
       "norm_label": "jobsnapshot()"
     },
     {
@@ -670,8 +670,8 @@
       "source_location": "L399",
       "_origin": "ast",
       "id": "app_refreshpreferenceui",
-      "community": 4,
-      "community_name": "Job Filtering",
+      "community": 2,
+      "community_name": "Job Detail Rendering",
       "norm_label": "refreshpreferenceui()"
     },
     {
@@ -725,8 +725,8 @@
       "source_location": "L491",
       "_origin": "ast",
       "id": "app_buildfeedbackexport",
-      "community": 4,
-      "community_name": "Job Filtering",
+      "community": 3,
+      "community_name": "Record Handling",
       "norm_label": "buildfeedbackexport()"
     },
     {
@@ -736,8 +736,8 @@
       "source_location": "L503",
       "_origin": "ast",
       "id": "app_exportfeedback",
-      "community": 4,
-      "community_name": "Job Filtering",
+      "community": 3,
+      "community_name": "Record Handling",
       "norm_label": "exportfeedback()"
     },
     {
@@ -1192,10 +1192,32 @@
       "norm_label": "experienced_only_title()"
     },
     {
-      "label": "_public_research()",
+      "label": "support_only_title()",
       "file_type": "code",
       "source_file": "scripts/build_snapshot.py",
       "source_location": "L87",
+      "_origin": "ast",
+      "id": "scripts_build_snapshot_support_only_title",
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "support_only_title()"
+    },
+    {
+      "label": "verified_research_project()",
+      "file_type": "code",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L108",
+      "_origin": "ast",
+      "id": "scripts_build_snapshot_verified_research_project",
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "verified_research_project()"
+    },
+    {
+      "label": "_public_research()",
+      "file_type": "code",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L125",
       "_origin": "ast",
       "id": "scripts_build_snapshot_public_research",
       "community": 1,
@@ -1206,7 +1228,7 @@
       "label": "_apply_latest_programs()",
       "file_type": "code",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L148",
+      "source_location": "L191",
       "_origin": "ast",
       "id": "scripts_build_snapshot_apply_latest_programs",
       "community": 1,
@@ -1217,7 +1239,7 @@
       "label": "_apply_public_eligibility()",
       "file_type": "code",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L222",
+      "source_location": "L265",
       "_origin": "ast",
       "id": "scripts_build_snapshot_apply_public_eligibility",
       "community": 1,
@@ -1228,7 +1250,7 @@
       "label": "main()",
       "file_type": "code",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L300",
+      "source_location": "L344",
       "_origin": "ast",
       "id": "scripts_build_snapshot_main",
       "community": 1,
@@ -1280,12 +1302,34 @@
       "norm_label": "data-214: fail closed when the title itself explicitly says \u1100\u1167\u11bc\u1105\u1167\u11a8\u110c\u1175\u11a8."
     },
     {
-      "label": "DATA-213: publish source-backed research facts, never personal fit notes.",
+      "label": "DATA-215: keep employer context from turning Finance Intern into a technical rol",
       "file_type": "rationale",
       "source_file": "scripts/build_snapshot.py",
       "source_location": "L88",
       "_origin": "ast",
       "id": "scripts_build_snapshot_rationale_88",
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "data-215: keep employer context from turning finance intern into a technical rol"
+    },
+    {
+      "label": "DATA-216: count only records evidenced as research contracts or funded projects.",
+      "file_type": "rationale",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L109",
+      "_origin": "ast",
+      "id": "scripts_build_snapshot_rationale_109",
+      "community": 1,
+      "community_name": "Build and Snapshot",
+      "norm_label": "data-216: count only records evidenced as research contracts or funded projects."
+    },
+    {
+      "label": "DATA-213: publish source-backed research facts, never personal fit notes.",
+      "file_type": "rationale",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L126",
+      "_origin": "ast",
+      "id": "scripts_build_snapshot_rationale_126",
       "community": 1,
       "community_name": "Build and Snapshot",
       "norm_label": "data-213: publish source-backed research facts, never personal fit notes."
@@ -1294,9 +1338,9 @@
       "label": "Refresh compact programme records from the lightweight current shortlist.",
       "file_type": "rationale",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L149",
+      "source_location": "L192",
       "_origin": "ast",
-      "id": "scripts_build_snapshot_rationale_149",
+      "id": "scripts_build_snapshot_rationale_192",
       "community": 1,
       "community_name": "Build and Snapshot",
       "norm_label": "refresh compact programme records from the lightweight current shortlist."
@@ -1305,9 +1349,9 @@
       "label": "DATA-210: recheck eligibility and canonical duplicates after expansion.",
       "file_type": "rationale",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L228",
+      "source_location": "L271",
       "_origin": "ast",
-      "id": "scripts_build_snapshot_rationale_228",
+      "id": "scripts_build_snapshot_rationale_271",
       "community": 1,
       "community_name": "Build and Snapshot",
       "norm_label": "data-210: recheck eligibility and canonical duplicates after expansion."
@@ -1327,7 +1371,7 @@
       "label": "require()",
       "file_type": "code",
       "source_file": "scripts/check_release.py",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "scripts_check_release_require",
       "community": 7,
@@ -1349,7 +1393,7 @@
       "label": "contains_forbidden_key()",
       "file_type": "code",
       "source_file": "scripts/check_release.py",
-      "source_location": "L19",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "scripts_check_release_contains_forbidden_key",
       "community": 7,
@@ -1357,10 +1401,32 @@
       "norm_label": "contains_forbidden_key()"
     },
     {
+      "label": "support_only_title()",
+      "file_type": "code",
+      "source_file": "scripts/check_release.py",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "scripts_check_release_support_only_title",
+      "community": 7,
+      "community_name": "Release Checks",
+      "norm_label": "support_only_title()"
+    },
+    {
+      "label": "contains_non_contract_research()",
+      "file_type": "code",
+      "source_file": "scripts/check_release.py",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "scripts_check_release_contains_non_contract_research",
+      "community": 7,
+      "community_name": "Release Checks",
+      "norm_label": "contains_non_contract_research()"
+    },
+    {
       "label": "main()",
       "file_type": "code",
       "source_file": "scripts/check_release.py",
-      "source_location": "L28",
+      "source_location": "L61",
       "_origin": "ast",
       "id": "scripts_check_release_main",
       "community": 7,
@@ -1379,14 +1445,36 @@
       "norm_label": "dependency-free release checks for the static career compass pwa."
     },
     {
+      "label": "Mirror DATA-215 at the release boundary.",
+      "file_type": "rationale",
+      "source_file": "scripts/check_release.py",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "scripts_check_release_rationale_30",
+      "community": 7,
+      "community_name": "Release Checks",
+      "norm_label": "mirror data-215 at the release boundary."
+    },
+    {
+      "label": "Mirror DATA-216 at the release boundary.",
+      "file_type": "rationale",
+      "source_file": "scripts/check_release.py",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "scripts_check_release_rationale_49",
+      "community": 7,
+      "community_name": "Release Checks",
+      "norm_label": "mirror data-216 at the release boundary."
+    },
+    {
       "label": "check_requirements.py",
       "file_type": "code",
       "source_file": "scripts/check_requirements.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "scripts_check_requirements",
-      "community": 10,
-      "community_name": "Requirement Checks",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_scripts_check_requirements_py",
+      "community": 9,
+      "community_name": "Sector Normalization",
       "norm_label": "check_requirements.py"
     },
     {
@@ -1395,9 +1483,9 @@
       "source_file": "scripts/check_requirements.py",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "scripts_check_requirements_items",
-      "community": 10,
-      "community_name": "Requirement Checks",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_scripts_check_requirements_items",
+      "community": 9,
+      "community_name": "Sector Normalization",
       "norm_label": "_items()"
     },
     {
@@ -1406,9 +1494,9 @@
       "source_file": "scripts/check_requirements.py",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "scripts_check_requirements_main",
-      "community": 10,
-      "community_name": "Requirement Checks",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_scripts_check_requirements_main",
+      "community": 9,
+      "community_name": "Sector Normalization",
       "norm_label": "main()"
     },
     {
@@ -1450,9 +1538,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "agents",
-      "community": 9,
-      "community_name": "Sector Normalization",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_agents_md",
+      "community": 10,
+      "community_name": "Requirement Checks",
       "norm_label": "agents.md"
     },
     {
@@ -1461,9 +1549,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "agents_graphify",
-      "community": 9,
-      "community_name": "Sector Normalization",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_agents_graphify",
+      "community": 10,
+      "community_name": "Requirement Checks",
       "norm_label": "graphify"
     },
     {
@@ -1472,9 +1560,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "design",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_md",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "design.md"
     },
     {
@@ -1483,9 +1571,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "design_career_compass_calm_field_guide",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "career compass \u2014 calm field guide"
     },
     {
@@ -1494,9 +1582,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "design_source_of_truth",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_source_of_truth",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "source of truth"
     },
     {
@@ -1505,9 +1593,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "design_brand",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_brand",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "brand"
     },
     {
@@ -1516,9 +1604,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "design_product_goals",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_product_goals",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "product goals"
     },
     {
@@ -1527,9 +1615,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L17",
       "_origin": "ast",
-      "id": "design_personas_and_jobs_to_be_done",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_personas_and_jobs_to_be_done",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "personas and jobs to be done"
     },
     {
@@ -1538,9 +1626,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L23",
       "_origin": "ast",
-      "id": "design_information_architecture",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_information_architecture",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "information architecture"
     },
     {
@@ -1549,9 +1637,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "design_visual_language",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_visual_language",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "visual language"
     },
     {
@@ -1560,9 +1648,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L46",
       "_origin": "ast",
-      "id": "design_mobile_reading_rhythm",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_mobile_reading_rhythm",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "mobile reading rhythm"
     },
     {
@@ -1571,9 +1659,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L50",
       "_origin": "ast",
-      "id": "design_design_principles",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_design_principles",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "design principles"
     },
     {
@@ -1582,9 +1670,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L58",
       "_origin": "ast",
-      "id": "design_components_and_disclosure",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_components_and_disclosure",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "components and disclosure"
     },
     {
@@ -1593,9 +1681,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L66",
       "_origin": "ast",
-      "id": "design_accessibility",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_accessibility",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "accessibility"
     },
     {
@@ -1604,9 +1692,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L74",
       "_origin": "ast",
-      "id": "design_responsive_behavior",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_responsive_behavior",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "responsive behavior"
     },
     {
@@ -1615,9 +1703,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L80",
       "_origin": "ast",
-      "id": "design_interaction_states_and_motion",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_interaction_states_and_motion",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "interaction states and motion"
     },
     {
@@ -1626,9 +1714,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L90",
       "_origin": "ast",
-      "id": "design_non_negotiable_exclusions",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_non_negotiable_exclusions",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "non-negotiable exclusions"
     },
     {
@@ -1637,9 +1725,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L98",
       "_origin": "ast",
-      "id": "design_acceptance_check",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_acceptance_check",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "acceptance check"
     },
     {
@@ -1648,9 +1736,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L105",
       "_origin": "ast",
-      "id": "design_content_voice",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_content_voice",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "content voice"
     },
     {
@@ -1659,9 +1747,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L109",
       "_origin": "ast",
-      "id": "design_technical_constraints",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_technical_constraints",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "technical constraints"
     },
     {
@@ -1670,9 +1758,9 @@
       "source_file": "DESIGN.md",
       "source_location": "L113",
       "_origin": "ast",
-      "id": "design_open_questions",
-      "community": 3,
-      "community_name": "Record Handling",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_open_questions",
+      "community": 0,
+      "community_name": "Program Management",
       "norm_label": "open questions"
     },
     {
@@ -1681,7 +1769,7 @@
       "source_file": "README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "readme",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_md",
       "community": 8,
       "community_name": "Filter Management",
       "norm_label": "readme.md"
@@ -1692,7 +1780,7 @@
       "source_file": "README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "readme_career_compass",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_career_compass",
       "community": 8,
       "community_name": "Filter Management",
       "norm_label": "career compass"
@@ -1703,7 +1791,7 @@
       "source_file": "README.md",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "readme_local_preview",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_local_preview",
       "community": 8,
       "community_name": "Filter Management",
       "norm_label": "local preview"
@@ -1714,7 +1802,7 @@
       "source_file": "README.md",
       "source_location": "L13",
       "_origin": "ast",
-      "id": "readme_refresh_model",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_refresh_model",
       "community": 8,
       "community_name": "Filter Management",
       "norm_label": "refresh model"
@@ -1725,7 +1813,7 @@
       "source_file": "README.md",
       "source_location": "L23",
       "_origin": "ast",
-      "id": "readme_release_boundary",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_release_boundary",
       "community": 8,
       "community_name": "Filter Management",
       "norm_label": "release boundary"
@@ -1736,7 +1824,7 @@
       "source_file": "plans/001-calm-field-guide-motion.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "plans_001_calm_field_guide_motion",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_md",
       "community": 6,
       "community_name": "UI Navigation",
       "norm_label": "001-calm-field-guide-motion.md"
@@ -1747,7 +1835,7 @@
       "source_file": "plans/001-calm-field-guide-motion.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
       "community": 6,
       "community_name": "UI Navigation",
       "norm_label": "calm field guide motion plan"
@@ -1758,7 +1846,7 @@
       "source_file": "plans/001-calm-field-guide-motion.md",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "plans_001_calm_field_guide_motion_audit_findings",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_audit_findings",
       "community": 6,
       "community_name": "UI Navigation",
       "norm_label": "audit findings"
@@ -1769,7 +1857,7 @@
       "source_file": "plans/001-calm-field-guide-motion.md",
       "source_location": "L17",
       "_origin": "ast",
-      "id": "plans_001_calm_field_guide_motion_token_contract",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_token_contract",
       "community": 6,
       "community_name": "UI Navigation",
       "norm_label": "token contract"
@@ -1780,7 +1868,7 @@
       "source_file": "plans/001-calm-field-guide-motion.md",
       "source_location": "L27",
       "_origin": "ast",
-      "id": "plans_001_calm_field_guide_motion_verification_after_implementation",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_verification_after_implementation",
       "community": 6,
       "community_name": "UI Navigation",
       "norm_label": "verification after implementation"
@@ -1791,7 +1879,7 @@
       "source_file": "plans/001-calm-field-guide-motion.md",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "plans_001_calm_field_guide_motion_rollback_boundary",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_rollback_boundary",
       "community": 6,
       "community_name": "UI Navigation",
       "norm_label": "rollback boundary"
@@ -1802,7 +1890,7 @@
       "source_file": "plans/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "plans_readme",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_readme_md",
       "community": 12,
       "community_name": "plans/README.md",
       "norm_label": "plans/readme.md"
@@ -1813,7 +1901,7 @@
       "source_file": "plans/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "plans_readme_motion_implementation_plans",
+      "id": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_readme_motion_implementation_plans",
       "community": 12,
       "community_name": "plans/README.md",
       "norm_label": "motion implementation plans"
@@ -5315,7 +5403,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L148",
+      "source_location": "L191",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot",
@@ -5326,7 +5414,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L222",
+      "source_location": "L265",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot",
@@ -5359,7 +5447,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L300",
+      "source_location": "L344",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot",
@@ -5370,7 +5458,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L87",
+      "source_location": "L125",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot",
@@ -5425,11 +5513,33 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot",
+      "target": "scripts_build_snapshot_support_only_title",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
       "source_location": "L72",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot",
       "target": "scripts_build_snapshot_verified_date",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L108",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot",
+      "target": "scripts_build_snapshot_verified_research_project",
       "confidence_score": 1.0
     },
     {
@@ -5448,7 +5558,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L150",
+      "source_location": "L193",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_apply_latest_programs",
@@ -5460,7 +5570,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L331",
+      "source_location": "L375",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_main",
@@ -5496,7 +5606,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L148",
+      "source_location": "L191",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_apply_latest_programs",
@@ -5508,7 +5618,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L306",
+      "source_location": "L350",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_main",
@@ -5544,7 +5654,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L148",
+      "source_location": "L191",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_apply_latest_programs",
@@ -5556,7 +5666,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L222",
+      "source_location": "L265",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_apply_public_eligibility",
@@ -5592,7 +5702,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L87",
+      "source_location": "L125",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_public_research",
@@ -5640,6 +5750,18 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_support_only_title",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
       "source_location": "L72",
       "weight": 1.0,
       "_origin": "ast",
@@ -5648,11 +5770,23 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L108",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_verified_research_project",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L156",
+      "source_location": "L199",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_apply_latest_programs",
@@ -5664,7 +5798,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L155",
+      "source_location": "L198",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_apply_latest_programs",
@@ -5676,7 +5810,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L164",
+      "source_location": "L207",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_apply_latest_programs",
@@ -5699,7 +5833,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L98",
+      "source_location": "L136",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_public_research",
@@ -5711,7 +5845,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L101",
+      "source_location": "L139",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_public_research",
@@ -5723,7 +5857,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L143",
+      "source_location": "L186",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_public_research",
@@ -5746,7 +5880,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L249",
+      "source_location": "L292",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_apply_public_eligibility",
@@ -5769,11 +5903,11 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L206",
+      "source_location": "L293",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "scripts_build_snapshot_apply_latest_programs",
-      "target": "scripts_build_snapshot_public_research",
+      "source": "scripts_build_snapshot_apply_public_eligibility",
+      "target": "scripts_build_snapshot_support_only_title",
       "confidence_score": 1.0
     },
     {
@@ -5784,6 +5918,52 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_rationale_88",
+      "target": "scripts_build_snapshot_support_only_title",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L154",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_public_research",
+      "target": "scripts_build_snapshot_verified_research_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_rationale_109",
+      "target": "scripts_build_snapshot_verified_research_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L249",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_apply_latest_programs",
+      "target": "scripts_build_snapshot_public_research",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build_snapshot.py",
+      "source_location": "L126",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_build_snapshot_rationale_126",
       "target": "scripts_build_snapshot_public_research",
       "confidence_score": 1.0
     },
@@ -5792,7 +5972,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L333",
+      "source_location": "L377",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_main",
@@ -5803,10 +5983,10 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L149",
+      "source_location": "L192",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "scripts_build_snapshot_rationale_149",
+      "source": "scripts_build_snapshot_rationale_192",
       "target": "scripts_build_snapshot_apply_latest_programs",
       "confidence_score": 1.0
     },
@@ -5815,7 +5995,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L350",
+      "source_location": "L394",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_build_snapshot_main",
@@ -5826,10 +6006,10 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "scripts/build_snapshot.py",
-      "source_location": "L228",
+      "source_location": "L271",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "scripts_build_snapshot_rationale_228",
+      "source": "scripts_build_snapshot_rationale_271",
       "target": "scripts_build_snapshot_apply_public_eligibility",
       "confidence_score": 1.0
     },
@@ -5837,7 +6017,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_check_release",
@@ -5848,7 +6028,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L28",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_check_release",
+      "target": "scripts_check_release_contains_non_contract_research",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/check_release.py",
+      "source_location": "L61",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_check_release",
@@ -5859,11 +6050,22 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_check_release",
       "target": "scripts_check_release_require",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/check_release.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_check_release",
+      "target": "scripts_check_release_support_only_title",
       "confidence_score": 1.0
     },
     {
@@ -5882,7 +6084,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L43",
+      "source_location": "L76",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_check_release_main",
@@ -5894,7 +6096,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_check_release_require",
@@ -5906,11 +6108,57 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/check_release.py",
-      "source_location": "L120",
+      "source_location": "L161",
       "weight": 1.0,
       "_origin": "ast",
       "source": "scripts_check_release_main",
       "target": "scripts_check_release_contains_forbidden_key",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/check_release.py",
+      "source_location": "L147",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_check_release_main",
+      "target": "scripts_check_release_support_only_title",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/check_release.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_check_release_rationale_30",
+      "target": "scripts_check_release_support_only_title",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/check_release.py",
+      "source_location": "L155",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_check_release_main",
+      "target": "scripts_check_release_contains_non_contract_research",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/check_release.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "scripts_check_release_rationale_49",
+      "target": "scripts_check_release_contains_non_contract_research",
       "confidence_score": 1.0
     },
     {
@@ -5920,8 +6168,8 @@
       "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "scripts_check_requirements",
-      "target": "scripts_check_requirements_items",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_scripts_check_requirements_py",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_scripts_check_requirements_items",
       "confidence_score": 1.0
     },
     {
@@ -5931,8 +6179,8 @@
       "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "scripts_check_requirements",
-      "target": "scripts_check_requirements_main",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_scripts_check_requirements_py",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_scripts_check_requirements_main",
       "confidence_score": 1.0
     },
     {
@@ -5943,8 +6191,8 @@
       "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "scripts_check_requirements_main",
-      "target": "scripts_check_requirements_items",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_scripts_check_requirements_main",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_scripts_check_requirements_items",
       "confidence_score": 1.0
     },
     {
@@ -5965,8 +6213,8 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "agents",
-      "target": "agents_graphify",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_agents_md",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_agents_graphify",
       "confidence_score": 1.0
     },
     {
@@ -5976,8 +6224,8 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design",
-      "target": "design_career_compass_calm_field_guide",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_md",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
       "confidence_score": 1.0
     },
     {
@@ -5987,8 +6235,8 @@
       "source_location": "L98",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_acceptance_check",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_acceptance_check",
       "confidence_score": 1.0
     },
     {
@@ -5998,8 +6246,8 @@
       "source_location": "L66",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_accessibility",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_accessibility",
       "confidence_score": 1.0
     },
     {
@@ -6009,8 +6257,8 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_brand",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_brand",
       "confidence_score": 1.0
     },
     {
@@ -6020,8 +6268,8 @@
       "source_location": "L58",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_components_and_disclosure",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_components_and_disclosure",
       "confidence_score": 1.0
     },
     {
@@ -6031,8 +6279,8 @@
       "source_location": "L105",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_content_voice",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_content_voice",
       "confidence_score": 1.0
     },
     {
@@ -6042,8 +6290,8 @@
       "source_location": "L50",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_design_principles",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_design_principles",
       "confidence_score": 1.0
     },
     {
@@ -6053,8 +6301,8 @@
       "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_information_architecture",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_information_architecture",
       "confidence_score": 1.0
     },
     {
@@ -6064,8 +6312,8 @@
       "source_location": "L80",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_interaction_states_and_motion",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_interaction_states_and_motion",
       "confidence_score": 1.0
     },
     {
@@ -6075,8 +6323,8 @@
       "source_location": "L46",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_mobile_reading_rhythm",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_mobile_reading_rhythm",
       "confidence_score": 1.0
     },
     {
@@ -6086,8 +6334,8 @@
       "source_location": "L90",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_non_negotiable_exclusions",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_non_negotiable_exclusions",
       "confidence_score": 1.0
     },
     {
@@ -6097,8 +6345,8 @@
       "source_location": "L113",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_open_questions",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_open_questions",
       "confidence_score": 1.0
     },
     {
@@ -6108,8 +6356,8 @@
       "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_personas_and_jobs_to_be_done",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_personas_and_jobs_to_be_done",
       "confidence_score": 1.0
     },
     {
@@ -6119,8 +6367,8 @@
       "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_product_goals",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_product_goals",
       "confidence_score": 1.0
     },
     {
@@ -6130,8 +6378,8 @@
       "source_location": "L74",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_responsive_behavior",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_responsive_behavior",
       "confidence_score": 1.0
     },
     {
@@ -6141,8 +6389,8 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_source_of_truth",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_source_of_truth",
       "confidence_score": 1.0
     },
     {
@@ -6152,8 +6400,8 @@
       "source_location": "L109",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_technical_constraints",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_technical_constraints",
       "confidence_score": 1.0
     },
     {
@@ -6163,8 +6411,8 @@
       "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "design_career_compass_calm_field_guide",
-      "target": "design_visual_language",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_career_compass_calm_field_guide",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_design_visual_language",
       "confidence_score": 1.0
     },
     {
@@ -6174,8 +6422,8 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "readme",
-      "target": "readme_career_compass",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_md",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_career_compass",
       "confidence_score": 1.0
     },
     {
@@ -6185,8 +6433,8 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "readme_career_compass",
-      "target": "readme_local_preview",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_career_compass",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_local_preview",
       "confidence_score": 1.0
     },
     {
@@ -6196,8 +6444,8 @@
       "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "readme_career_compass",
-      "target": "readme_refresh_model",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_career_compass",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_refresh_model",
       "confidence_score": 1.0
     },
     {
@@ -6207,8 +6455,8 @@
       "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "readme_career_compass",
-      "target": "readme_release_boundary",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_career_compass",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_readme_release_boundary",
       "confidence_score": 1.0
     },
     {
@@ -6218,8 +6466,8 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "plans_001_calm_field_guide_motion",
-      "target": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_md",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
       "confidence_score": 1.0
     },
     {
@@ -6229,8 +6477,8 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
-      "target": "plans_001_calm_field_guide_motion_audit_findings",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_audit_findings",
       "confidence_score": 1.0
     },
     {
@@ -6240,8 +6488,8 @@
       "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
-      "target": "plans_001_calm_field_guide_motion_rollback_boundary",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_rollback_boundary",
       "confidence_score": 1.0
     },
     {
@@ -6251,8 +6499,8 @@
       "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
-      "target": "plans_001_calm_field_guide_motion_token_contract",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_token_contract",
       "confidence_score": 1.0
     },
     {
@@ -6262,8 +6510,8 @@
       "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
-      "target": "plans_001_calm_field_guide_motion_verification_after_implementation",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_calm_field_guide_motion_plan",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_001_calm_field_guide_motion_verification_after_implementation",
       "confidence_score": 1.0
     },
     {
@@ -6273,11 +6521,11 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "plans_readme",
-      "target": "plans_readme_motion_implementation_plans",
+      "source": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_readme_md",
+      "target": "mnt_c_tmp_career_job_compass_pager_019f57a2_plans_readme_motion_implementation_plans",
       "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "4a895591b658ec8a17a75a21dfc4a3f7202bfee8"
+  "built_at_commit": "fd3d5667f596b4442b2daaf159bae7ad950e2473"
 }
