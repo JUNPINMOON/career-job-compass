@@ -191,6 +191,13 @@
       "title": "Mobile refresh shows progress, elapsed time, and an honest remaining-time estimate",
       "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-215\"", "예상 남은 시간", "refreshProgressBar", "refreshElapsed"]},
       "note": "Pin needs enough visible runtime context to decide how long to wait; stage count alone is not a reliable percentage because collection takes longer than publication."
+    },
+    {
+      "id": "DATA-207",
+      "status": "active",
+      "title": "A successful personalized refresh survives an app restart without contacting the private bridge",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-207\"", "LIVE_SNAPSHOT_STORAGE_KEY", "selectFreshestSnapshot", "store(LIVE_SNAPSHOT_STORAGE_KEY"]},
+      "note": "The refreshed snapshot must remain on the same iPhone after the app closes, while a clean load still obeys GOV-203 and does not call the private bridge."
     }
   ]
 }

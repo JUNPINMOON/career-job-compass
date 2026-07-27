@@ -29,6 +29,11 @@
     "first_seen": "2026-07-27T02:33:37+00:00",
     "title": "Domestic, overseas, and location-conflict jobs remain visibly distinct"
   },
+  "DATA-207": {
+    "assert_sha": "6fc0ce9c6726b0af",
+    "first_seen": "2026-07-27T09:42:22+00:00",
+    "title": "A successful personalized refresh survives an app restart without contacting the private bridge"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",

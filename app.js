@@ -5,6 +5,7 @@
   const BOOKMARK_STORAGE_KEY = "career-compass-bookmarks";
   const FEEDBACK_STORAGE_KEY = "career-compass-job-feedback-v1";
   const REFRESH_WATCH_STORAGE_KEY = "career-compass-refresh-watch-v1";
+  const LIVE_SNAPSHOT_STORAGE_KEY = "career-compass-live-snapshot-v1";
   const REFRESH_STAGE_SECONDS = {
     startup: 5,
     preference_binding: 5,
@@ -593,7 +594,9 @@
   }
   async function loadLiveSnapshot() {
     const response = await bridgeRequest("api/jobs/public-snapshot");
-    setSnapshot(await response.json());
+    const data = await response.json();
+    store(LIVE_SNAPSHOT_STORAGE_KEY, data);
+    setSnapshot(data);
   }
   async function watchRefresh() {
     /* data-requirement-id="DATA-205" */
@@ -683,7 +686,27 @@
       engineRefresh.title = "개인 엔진 연결이 필요합니다";
     }
   }
-  async function load({ force = false } = {}) { try { const url = force ? `./data/app-data.json?refresh=${Date.now()}` : "./data/app-data.json"; const response = await fetch(url, { cache: force ? "no-store" : "reload" }); if (!response.ok) throw new Error(response.status); setSnapshot(await response.json()); } catch (error) { console.error(error); snapshotLabel.textContent = "자료를 열 수 없음"; renderError(); } }
+  function selectFreshestSnapshot(bundled, cached) {
+    /* data-requirement-id="DATA-207" */
+    if (!isSnapshot(cached)) return bundled;
+    const bundledAt = Date.parse(bundled?.generatedAt || "");
+    const cachedAt = Date.parse(cached.generatedAt || "");
+    return Number.isFinite(cachedAt) && (!Number.isFinite(bundledAt) || cachedAt > bundledAt) ? cached : bundled;
+  }
+
+  async function load({ force = false } = {}) {
+    try {
+      const url = force ? `./data/app-data.json?refresh=${Date.now()}` : "./data/app-data.json";
+      const response = await fetch(url, { cache: force ? "no-store" : "reload" });
+      if (!response.ok) throw new Error(response.status);
+      const bundled = await response.json();
+      setSnapshot(selectFreshestSnapshot(bundled, readJSON(LIVE_SNAPSHOT_STORAGE_KEY, null)));
+    } catch (error) {
+      console.error(error);
+      snapshotLabel.textContent = "자료를 열 수 없음";
+      renderError();
+    }
+  }
 
   document.addEventListener("click", (event) => {
     const jobButton = event.target.closest("[data-open-job]"); if (jobButton) { openJobDetail(jobButton.dataset.openJob, jobButton); return; }

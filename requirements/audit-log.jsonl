@@ -56,3 +56,6 @@
 {"at": "2026-07-27T09:28:57+00:00", "event": "check", "passed": 27, "failed": 0, "failing_ids": []}
 {"at": "2026-07-27T09:34:57+00:00", "event": "check", "passed": 27, "failed": 0, "failing_ids": []}
 {"at": "2026-07-27T09:35:32+00:00", "event": "check", "passed": 27, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T09:42:22+00:00", "event": "requirement_added", "id": "DATA-207", "title": "A successful personalized refresh survives an app restart without contacting the private bridge"}
+{"at": "2026-07-27T09:42:22+00:00", "event": "check", "passed": 27, "failed": 1, "failing_ids": ["DATA-207"]}
+{"at": "2026-07-27T09:43:23+00:00", "event": "check", "passed": 28, "failed": 0, "failing_ids": []}
