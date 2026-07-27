@@ -4,6 +4,19 @@
   const FILTER_STORAGE_KEY = "career-compass-filters-v2";
   const BOOKMARK_STORAGE_KEY = "career-compass-bookmarks";
   const FEEDBACK_STORAGE_KEY = "career-compass-job-feedback-v1";
+  const REFRESH_WATCH_STORAGE_KEY = "career-compass-refresh-watch-v1";
+  const REFRESH_STAGE_SECONDS = {
+    startup: 5,
+    preference_binding: 5,
+    collection_and_v3: 600,
+    posting_facts: 45,
+    feasibility: 45,
+    sector_relevance: 90,
+    review_evidence: 90,
+    sector_labels: 45,
+    feedback: 15,
+    actions: 45,
+  };
   const DEFAULT_FILTERS = { query: "", sector: "", queue: "", jobMarket: "all", studyMode: "programs", studyMarket: "all", studyReadiness: "all", studyFormat: "all", studyQuery: "" };
   const FEEDBACK_REASON_LABELS = {
     role_mismatch: "직무·업무가 관심과 다름",
@@ -19,6 +32,8 @@
     data: null,
     bridge: null,
     refreshTimer: null,
+    refreshClockTimer: null,
+    refreshRunStatus: null,
     selectedTrigger: null,
     activeJobId: null,
     bookmarks: new Set(readJSON(BOOKMARK_STORAGE_KEY, [])),
@@ -37,6 +52,14 @@
   const snapshotLabel = document.getElementById("snapshotLabel");
   const offlineBanner = document.getElementById("offlineBanner");
   const engineRefresh = document.getElementById("engineRefresh");
+  const refreshMonitor = document.getElementById("refreshMonitor");
+  const refreshProgressTitle = document.getElementById("refreshProgressTitle");
+  const refreshProgressPercent = document.getElementById("refreshProgressPercent");
+  const refreshProgressBar = document.getElementById("refreshProgressBar");
+  const refreshStageLabel = document.getElementById("refreshStageLabel");
+  const refreshElapsed = document.getElementById("refreshElapsed");
+  const refreshEta = document.getElementById("refreshEta");
+  const refreshPreferenceCount = document.getElementById("refreshPreferenceCount");
 
   function readJSON(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch (_) { return fallback; } }
   function store(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) { /* local convenience only */ } }
@@ -480,7 +503,94 @@
     return "추천 갱신 실패 · 잠시 후 다시 시도하세요";
   }
   async function refreshStatus() { return (await bridgeRequest("api/jobs/refresh")).json(); }
-  function stopRefreshPolling() { if (state.refreshTimer) window.clearTimeout(state.refreshTimer); state.refreshTimer = null; }
+  function stopRefreshPolling() {
+    if (state.refreshTimer) window.clearTimeout(state.refreshTimer);
+    if (state.refreshClockTimer) window.clearInterval(state.refreshClockTimer);
+    state.refreshTimer = null;
+    state.refreshClockTimer = null;
+  }
+  function formatRuntime(seconds) {
+    const safeSeconds = Math.max(0, Math.round(seconds || 0));
+    if (safeSeconds < 60) return `${safeSeconds}초`;
+    const minutes = Math.floor(safeSeconds / 60);
+    const remainder = safeSeconds % 60;
+    return remainder ? `${minutes}분 ${remainder}초` : `${minutes}분`;
+  }
+  function refreshEstimate(status, now = Date.now()) {
+    const stages = Array.isArray(status?.stages) ? status.stages : [];
+    const currentStage = status?.currentStage || {};
+    const startedMs = Date.parse(status?.startedAt || "");
+    const elapsedSeconds = Number.isFinite(startedMs) ? Math.max(0, (now - startedMs) / 1000) : 0;
+    const stageIds = ["preference_binding", "collection_and_v3", "posting_facts", "feasibility", "sector_relevance", "review_evidence", "sector_labels", "feedback", "actions"];
+    const totalSeconds = stageIds.reduce((sum, id) => sum + REFRESH_STAGE_SECONDS[id], 0);
+    let usedSeconds = 0;
+    stageIds.forEach((id) => {
+      const recorded = stages.find((stage) => stage.id === id);
+      if (recorded?.state === "succeeded") {
+        usedSeconds += REFRESH_STAGE_SECONDS[id];
+        return;
+      }
+      if (id !== currentStage.id || status?.state !== "running") return;
+      const stageStartedMs = Date.parse(recorded?.startedAt || status.startedAt || "");
+      const stageElapsed = Number.isFinite(stageStartedMs) ? Math.max(0, (now - stageStartedMs) / 1000) : 0;
+      usedSeconds += Math.min(REFRESH_STAGE_SECONDS[id] * 0.9, stageElapsed);
+    });
+    if (status?.state === "succeeded") usedSeconds = totalSeconds;
+    const percent = Math.max(0, Math.min(100, Math.round((usedSeconds / totalSeconds) * 100)));
+    const remainingSeconds = Math.max(0, totalSeconds - usedSeconds);
+    return {
+      elapsedSeconds,
+      percent,
+      remainingLow: Math.round(remainingSeconds * 0.7),
+      remainingHigh: Math.round(remainingSeconds * 1.7),
+    };
+  }
+  function renderRefreshMonitor(status, now = Date.now()) {
+    /* data-requirement-id="UX-215" */
+    if (!refreshMonitor || !status) return;
+    state.refreshRunStatus = status;
+    refreshMonitor.hidden = false;
+    const currentStage = status.currentStage || {};
+    const summary = status.preferenceSummary || {};
+    const estimate = refreshEstimate(status, now);
+    const isRunning = status.state === "running";
+    const isSucceeded = status.state === "succeeded";
+    const failedStage = [...(status.stages || [])].reverse().find((stage) => stage.state === "failed");
+    const percent = isSucceeded ? 100 : estimate.percent;
+    refreshMonitor.dataset.state = status.state || "unknown";
+    refreshProgressTitle.textContent = isSucceeded ? "새 추천 반영 완료" : status.state === "failed" ? "추천 갱신 중단" : `추천 갱신 예상 ${percent}%`;
+    refreshProgressPercent.textContent = `${percent}%`;
+    refreshProgressBar.style.width = `${percent}%`;
+    refreshProgressBar.parentElement.setAttribute("aria-valuenow", String(percent));
+    refreshStageLabel.textContent = isSucceeded
+      ? "새 공고 검색·분류 결과를 앱에 반영했습니다."
+      : status.state === "failed"
+        ? `${failedStage?.labelKo || "갱신"} 단계에서 멈췄습니다. 기존 공고는 유지됩니다.`
+        : `${currentStage.labelKo || "갱신 준비"} · ${currentStage.position || 0}/${currentStage.total || 9}단계`;
+    refreshElapsed.textContent = `경과 ${formatRuntime(estimate.elapsedSeconds)}`;
+    refreshEta.textContent = isSucceeded
+      ? "예상 남은 시간 0분"
+      : status.state === "failed"
+        ? "예상 남은 시간 없음"
+        : `예상 남은 시간 ${formatRuntime(estimate.remainingLow)}~${formatRuntime(estimate.remainingHigh)}`;
+    refreshPreferenceCount.textContent = `관심 ${summary.likedCount || 0}건 · 별로예요 ${summary.dislikedCount || 0}건 전부 반영 · 예상치는 수집처 응답 속도에 따라 달라질 수 있습니다.`;
+    if (isRunning && !state.refreshClockTimer) {
+      state.refreshClockTimer = window.setInterval(() => renderRefreshMonitor(state.refreshRunStatus), 1000);
+    }
+  }
+  function renderRefreshConnectionFailure() {
+    const previous = state.refreshRunStatus || {};
+    renderRefreshMonitor({
+      ...previous,
+      state: "failed",
+      startedAt: previous.startedAt || new Date().toISOString(),
+      currentStage: { id: "status_connection", labelKo: "진행 상태 연결", position: previous.currentStage?.position || 0, total: previous.currentStage?.total || 9 },
+      stages: [
+        ...(previous.stages || []).filter((stage) => stage.id !== "status_connection"),
+        { id: "status_connection", labelKo: "진행 상태 연결", state: "failed" },
+      ],
+    });
+  }
   async function loadLiveSnapshot() {
     const response = await bridgeRequest("api/jobs/public-snapshot");
     setSnapshot(await response.json());
@@ -490,7 +600,9 @@
     let status = null;
     try {
       status = await refreshStatus();
+      renderRefreshMonitor(status);
       if (status.state === "running") {
+        store(REFRESH_WATCH_STORAGE_KEY, true);
         const preferenceSummary = status.preferenceSummary || {};
         const currentStage = status.currentStage || {};
         const counts = `관심 ${preferenceSummary.likedCount || 0} · 별로예요 ${preferenceSummary.dislikedCount || 0} 반영`;
@@ -500,6 +612,7 @@
         return;
       }
       stopRefreshPolling();
+      store(REFRESH_WATCH_STORAGE_KEY, false);
       setEngineBusy(false);
       if (status.state !== "succeeded") throw new Error(`refresh state: ${status.state || "unknown"}`);
       await loadLiveSnapshot();
@@ -508,14 +621,28 @@
     } catch (error) {
       console.error(error);
       stopRefreshPolling();
+      store(REFRESH_WATCH_STORAGE_KEY, false);
       setEngineBusy(false);
       snapshotLabel.textContent = refreshErrorLabel(error, status);
+      if (status) renderRefreshMonitor(status);
+      else renderRefreshConnectionFailure();
     }
   }
   async function refreshEngine() {
     if (!state.bridge || engineRefresh?.disabled) return;
     setEngineBusy(true);
     snapshotLabel.textContent = "후보 갱신 시작";
+    store(REFRESH_WATCH_STORAGE_KEY, true);
+    renderRefreshMonitor({
+      state: "running",
+      startedAt: new Date().toISOString(),
+      currentStage: { id: "startup", labelKo: "갱신 준비", position: 0, total: 9 },
+      stages: [],
+      preferenceSummary: {
+        likedCount: Object.values(state.feedback).filter((item) => item?.sentiment === "liked").length,
+        dislikedCount: Object.values(state.feedback).filter((item) => item?.sentiment === "not_for_me").length,
+      },
+    });
     try {
       const status = await refreshStatus();
       if (status.state !== "running") {
@@ -525,8 +652,11 @@
       await watchRefresh();
     } catch (error) {
       console.error(error);
+      stopRefreshPolling();
+      store(REFRESH_WATCH_STORAGE_KEY, false);
       setEngineBusy(false);
       snapshotLabel.textContent = refreshErrorLabel(error);
+      renderRefreshConnectionFailure();
     }
   }
   async function connectBridge() {
@@ -541,6 +671,10 @@
       engineRefresh.hidden = false;
       engineRefresh.disabled = false;
       engineRefresh.title = "후보 추천 엔진 새로 실행";
+      if (readJSON(REFRESH_WATCH_STORAGE_KEY, false) === true) {
+        setEngineBusy(true);
+        await watchRefresh();
+      }
     } catch (error) {
       console.warn("live refresh bridge unavailable", error);
       state.bridge = null;

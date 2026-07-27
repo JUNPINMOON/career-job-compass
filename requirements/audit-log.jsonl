@@ -51,3 +51,8 @@
 {"at": "2026-07-27T03:07:32+00:00", "event": "check", "passed": 25, "failed": 1, "failing_ids": ["UX-214"]}
 {"at": "2026-07-27T03:18:26+00:00", "event": "check", "passed": 26, "failed": 0, "failing_ids": []}
 {"at": "2026-07-27T03:20:54+00:00", "event": "check", "passed": 26, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T09:26:42+00:00", "event": "requirement_added", "id": "UX-215", "title": "Mobile refresh shows progress, elapsed time, and an honest remaining-time estimate"}
+{"at": "2026-07-27T09:26:42+00:00", "event": "check", "passed": 26, "failed": 1, "failing_ids": ["UX-215"]}
+{"at": "2026-07-27T09:28:57+00:00", "event": "check", "passed": 27, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T09:34:57+00:00", "event": "check", "passed": 27, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T09:35:32+00:00", "event": "check", "passed": 27, "failed": 0, "failing_ids": []}

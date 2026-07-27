@@ -37,6 +37,21 @@
       </header>
 
       <div class="offline-notice" id="offlineBanner" role="status" hidden>오프라인입니다. 기기에 저장된 마지막 스냅샷을 보고 있어요.</div>
+      <section class="refresh-monitor" id="refreshMonitor" role="status" aria-live="polite" hidden>
+        <div class="refresh-monitor-head">
+          <div><small>개인 추천 엔진</small><strong id="refreshProgressTitle">갱신 준비 중</strong></div>
+          <b id="refreshProgressPercent">0%</b>
+        </div>
+        <div class="refresh-progress" role="progressbar" aria-label="추천 갱신 진행률" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <i id="refreshProgressBar"></i>
+        </div>
+        <p id="refreshStageLabel">현재 단계를 확인하고 있습니다.</p>
+        <div class="refresh-monitor-meta">
+          <span id="refreshElapsed">경과 0분</span>
+          <span id="refreshEta">예상 남은 시간 계산 중</span>
+        </div>
+        <small id="refreshPreferenceCount">피드백 반영 건수 확인 중</small>
+      </section>
 
       <main id="mainContent" class="main" tabindex="-1" aria-live="polite">
         <section class="loading" aria-label="자료 불러오는 중"><span>CAREER COMPASS</span><b>오늘의 선택지를 불러오는 중</b></section>

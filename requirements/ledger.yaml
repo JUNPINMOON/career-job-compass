@@ -184,6 +184,13 @@
       "title": "All primary mobile controls provide a 44 pixel touch target",
       "assert": {"type": "text_present", "path": "styles.css", "needles": ["--touch-target:44px", "min-height:var(--touch-target)", "min-width:var(--touch-target)"]},
       "note": "Measured on the 390 by 664 iPhone viewport before implementation: round actions were 37x37, preference actions were 127x38, and the detail close action was 52x36."
+    },
+    {
+      "id": "UX-215",
+      "status": "active",
+      "title": "Mobile refresh shows progress, elapsed time, and an honest remaining-time estimate",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-215\"", "예상 남은 시간", "refreshProgressBar", "refreshElapsed"]},
+      "note": "Pin needs enough visible runtime context to decide how long to wait; stage count alone is not a reliable percentage because collection takes longer than publication."
     }
   ]
 }

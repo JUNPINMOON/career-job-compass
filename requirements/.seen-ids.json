@@ -128,5 +128,10 @@
     "assert_sha": "4148488fec41185b",
     "first_seen": "2026-07-27T03:07:32+00:00",
     "title": "All primary mobile controls provide a 44 pixel touch target"
+  },
+  "UX-215": {
+    "assert_sha": "ac6e63393a0d941a",
+    "first_seen": "2026-07-27T09:26:42+00:00",
+    "title": "Mobile refresh shows progress, elapsed time, and an honest remaining-time estimate"
   }
 }
