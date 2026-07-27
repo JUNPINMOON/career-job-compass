@@ -36,6 +36,7 @@
     refreshTimer: null,
     refreshClockTimer: null,
     refreshRunStatus: null,
+    refreshRequestedAt: null,
     selectedTrigger: null,
     activeJobId: null,
     bookmarks: new Set(readJSON(BOOKMARK_STORAGE_KEY, [])),
@@ -105,6 +106,10 @@
   function isEligiblePublicJob(job) { return requiredExperienceYears(job) < 2 && job?.publicEligibility !== "excluded"; }
   function jobs() { return (state.data?.jobs || []).filter(isEligiblePublicJob); }
   function reviewQueue() { return (state.data?.reviewQueue || []).filter(isEligiblePublicJob); }
+  function recommendationJobs() {
+    /* data-requirement-id="DATA-212" */
+    return jobs().filter((job) => !["liked", "not_for_me"].includes(preferenceFor(job.id)?.sentiment));
+  }
   function programs() { return state.data?.programs || []; }
   function funding() { return state.data?.funding || []; }
   function jobSectors(job) { return [...new Set((Array.isArray(job.sectors) ? job.sectors : [job.sector]).filter(Boolean))]; }
@@ -128,12 +133,28 @@
   }
 
   function pageFrame(content, index, total, label) {
-    return `<section class="page-frame" data-page-index="${index}" aria-label="${escapeHtml(label)} ${index + 1} / ${total}">${content}</section>`;
+    /* data-requirement-id="UX-216" */
+    const previous = index > 0 ? `<button class="page-turn-prev" type="button" data-action="page-prev" aria-label="이전 화면">이전</button>` : `<span aria-hidden="true"></span>`;
+    const next = index < total - 1 ? `<button class="page-turn-next" type="button" data-action="page-next" aria-label="다음 화면">다음 ${icon("arrow")}</button>` : `<span class="page-finish">끝</span>`;
+    return `<section class="page-frame ${index === 0 ? "is-active" : ""}" data-page-index="${index}" aria-label="${escapeHtml(label)} ${index + 1} / ${total}"><div class="page-frame-content">${content}</div><nav class="page-turn" aria-label="${escapeHtml(label)} 화면 이동">${previous}<span class="page-counter">${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}</span>${next}</nav></section>`;
+  }
+
+  function movePage(trigger, direction) {
+    const frame = trigger.closest(".page-frame");
+    const frames = [...main.querySelectorAll(".page-frame")];
+    const currentIndex = frames.indexOf(frame);
+    const target = frames[currentIndex + (direction === "next" ? 1 : -1)];
+    if (!target) return;
+    frame.classList.remove("is-active");
+    target.classList.add("is-active");
+    target.querySelector(".page-frame-content")?.scrollTo({ top: 0, behavior: "auto" });
+    target.querySelector("h1, h2, [data-open-job], button, a")?.focus({ preventScroll: true });
+    navigator.vibrate?.(8);
   }
 
   function filteredJobs() {
     const query = String(state.query || "").trim().toLocaleLowerCase("ko");
-    return jobs().filter((job) => {
+    return recommendationJobs().filter((job) => {
       const sectors = jobSectors(job);
       const haystack = [job.title, job.company, job.location, ...sectors, job.source, job.nextAction, ...(job.requirements || [])].join(" ").toLocaleLowerCase("ko");
       return (!query || haystack.includes(query)) && (!state.sector || sectors.includes(state.sector)) && (!state.queue || job.queue === state.queue) && (state.jobMarket === "all" || job.market === state.jobMarket);
@@ -177,20 +198,21 @@
 
   function renderToday() {
     const ranked = state.data?.stats?.recommendationSurface === "ranked";
-    const prioritized = ranked ? reviewQueue() : [];
-    const baseCandidates = prioritized.length ? prioritized : diversifiedJobs(jobs());
-    const likedCandidates = jobs().filter((job) => preferenceFor(job.id)?.sentiment === "liked");
-    const dailyCandidates = [...likedCandidates, ...baseCandidates]
-      .filter((job, index, records) => preferenceFor(job.id)?.sentiment !== "not_for_me" && records.findIndex((item) => item.id === job.id) === index)
+    const eligibleRecommendations = recommendationJobs();
+    const eligibleIds = new Set(eligibleRecommendations.map((job) => job.id));
+    const prioritized = ranked ? reviewQueue().filter((job) => eligibleIds.has(job.id)) : [];
+    const baseCandidates = prioritized.length ? prioritized : diversifiedJobs(eligibleRecommendations);
+    const dailyCandidates = baseCandidates
+      .filter((job, index, records) => records.findIndex((item) => item.id === job.id) === index)
       .slice(0, 4);
     const hasPersonalFeedback = Object.keys(state.feedback).length > 0;
     const lead = dailyCandidates[0];
     const school = programs()[0];
     const award = funding()[0];
-    const candidatePage = dailyCandidates.length ? `<section class="decision-list" aria-labelledby="priorityHeading"><div class="section-heading"><div><span>${hasPersonalFeedback ? "내 피드백 + 새 후보" : (ranked ? "개인화 추천" : "관심 탐색")}</span><h2 id="priorityHeading">오늘 열어볼 후보</h2></div><a href="#/jobs">전체 ${jobs().length}개 ${icon("arrow")}</a></div><div class="opportunity-list">${dailyCandidates.map((job) => candidateRow(job)).join("")}</div></section>` : `<section class="decision-list" aria-labelledby="inventoryHeading"><div class="section-heading"><div><span>공고 인벤토리</span><h2 id="inventoryHeading">국내 ${marketCount(jobs(), "domestic")} · 해외 ${marketCount(jobs(), "overseas")}</h2></div><a href="#/jobs">전체 ${jobs().length}개 ${icon("arrow")}</a></div></section>`;
+    const candidatePage = dailyCandidates.length ? `<section class="decision-list" aria-labelledby="priorityHeading"><div class="section-heading"><div><span>${hasPersonalFeedback ? "내 피드백으로 찾은 새 후보" : (ranked ? "개인화 추천" : "관심 탐색")}</span><h2 id="priorityHeading">오늘 열어볼 후보</h2></div><a href="#/jobs">새 후보 ${eligibleRecommendations.length}개 ${icon("arrow")}</a></div><div class="opportunity-list">${dailyCandidates.map((job) => candidateRow(job)).join("")}</div></section>` : `<section class="decision-list" aria-labelledby="inventoryHeading"><div class="section-heading"><div><span>새 공고 인벤토리</span><h2 id="inventoryHeading">저장·제외하지 않은 공고가 없습니다</h2></div><a href="#/saved">저장한 공고 ${icon("arrow")}</a></div></section>`;
     const researchPage = `<section class="route-callout" aria-labelledby="researchHeading"><div class="route-callout-copy"><p class="eyebrow">02 · 진학과 장학</p><h2 id="researchHeading">과정과 장학금</h2><a class="ink-link" href="#/study">전체 보기 ${icon("arrow")}</a></div><div class="route-mini-list">${school ? `<button type="button" data-open-record="program:${escapeHtml(school.id)}"><small>${escapeHtml(school.degree)} · ${escapeHtml(programReadinessLabel(school))}</small><b>${escapeHtml(school.university)}</b><span>${escapeHtml(school.program)}</span>${icon("arrow")}</button>` : ""}${award ? `<button type="button" data-open-record="funding:${escapeHtml(award.id)}"><small>${escapeHtml(award.decision)}</small><b>${escapeHtml(award.name)}</b><span>${escapeHtml(award.coverage || "지원 범위 원문 확인")}</span>${icon("arrow")}</button>` : ""}</div></section>`;
     const pages = [
-      `<section class="today-cover" data-requirement-id="UX-204" aria-labelledby="todayTitle"><div class="cover-meta"><span>오늘의 목록</span><span>${escapeHtml(sourceDate(state.data.stats?.jobDataAsOf))}</span></div><div class="cover-copy"><p>공개 스냅샷</p><h1 id="todayTitle">오늘 볼 것</h1></div>${lead ? `<button class="cover-action" type="button" data-open-job="${escapeHtml(lead.id)}"><span>${ranked ? "우선 후보" : "관심 후보"}</span><b>${escapeHtml(lead.company)}<em>${escapeHtml(lead.title)}</em></b>${icon("arrow")}</button>` : `<a class="cover-action" href="#/jobs"><span>공고 목록</span><b>국내 ${marketCount(jobs(), "domestic")} · 해외 ${marketCount(jobs(), "overseas")}</b>${icon("arrow")}</a>`}</section>`,
+      `<section class="today-cover" data-requirement-id="UX-204" aria-labelledby="todayTitle"><div class="cover-meta"><span>오늘의 목록</span><span>${escapeHtml(sourceDate(state.data.stats?.jobDataAsOf))}</span></div><div class="cover-copy"><p>공개 스냅샷</p><h1 id="todayTitle">오늘 볼 것</h1></div>${lead ? `<button class="cover-action" type="button" data-open-job="${escapeHtml(lead.id)}"><span>${ranked ? "새 우선 후보" : "새 관심 후보"}</span><b>${escapeHtml(lead.company)}<em>${escapeHtml(lead.title)}</em></b>${icon("arrow")}</button>` : `<a class="cover-action" href="#/saved"><span>새 후보 확인 완료</span><b>저장한 공고 보기</b>${icon("arrow")}</a>`}</section>`,
       candidatePage,
       researchPage,
     ];
@@ -206,13 +228,25 @@
   }
 
   function renderJobs() {
-    const sectors = (state.data.sectors || []).map((sector) => `<button class="sector-chip ${state.sector === sector.name ? "is-active" : ""}" type="button" data-sector="${escapeHtml(sector.name)}">${escapeHtml(sector.name)} <b>${sector.publishedJobs}</b></button>`).join("");
+    const availableJobs = recommendationJobs();
+    const sectors = (state.data.sectors || []).map((sector) => `<button class="sector-chip ${state.sector === sector.name ? "is-active" : ""}" type="button" data-sector="${escapeHtml(sector.name)}">${escapeHtml(sector.name)} <b>${availableJobs.filter((job) => jobSectors(job).includes(sector.name)).length}</b></button>`).join("");
     const total = Math.max(1, chunks(filteredJobs(), 3).length) + 1;
     const ranked = state.data?.stats?.recommendationSurface === "ranked";
     const exploring = state.data?.stats?.recommendationSurface === "exploration_only";
-    main.innerHTML = pageFrame(`<section class="browse-head"><p class="eyebrow">${ranked ? "개인화 추천" : (exploring ? "관심 탐색" : "공고 인벤토리")}</p><div class="browse-title-row"><h1>국내·해외 공고</h1><button class="filter-trigger" type="button" data-action="open-filters" aria-label="공고 필터">${icon("filter")}${activeFilters() ? `<b>${activeFilters()}</b>` : ""}</button></div><label class="search-box">${icon("search")}<span class="sr-only">공고 검색</span><input id="jobSearch" type="search" value="${escapeHtml(state.query)}" placeholder="직무, 기관, 지역으로 찾기" autocomplete="off" /></label>${marketSwitch("job", state.jobMarket || "all", jobs())}<div class="sector-grid" data-requirement-id="UX-201"><button class="sector-chip ${!state.sector ? "is-active" : ""}" type="button" data-sector="">전체</button>${sectors}</div></section>`, 0, total, "공고 탐색") + `<div id="jobResults"></div>`;
+    main.innerHTML = pageFrame(`<section class="browse-head"><p class="eyebrow">${ranked ? "개인화 새 추천" : (exploring ? "관심 탐색" : "새 공고 인벤토리")}</p><div class="browse-title-row"><h1>새 국내·해외 공고</h1><button class="filter-trigger" type="button" data-action="open-filters" aria-label="공고 필터">${icon("filter")}${activeFilters() ? `<b>${activeFilters()}</b>` : ""}</button></div><label class="search-box">${icon("search")}<span class="sr-only">공고 검색</span><input id="jobSearch" type="search" value="${escapeHtml(state.query)}" placeholder="직무, 기관, 지역으로 찾기" autocomplete="off" /></label>${marketSwitch("job", state.jobMarket || "all", availableJobs)}<div class="sector-grid" data-requirement-id="UX-201"><button class="sector-chip ${!state.sector ? "is-active" : ""}" type="button" data-sector="">전체</button>${sectors}</div></section>`, 0, total, "공고 탐색") + `<div id="jobResults"></div>`;
     document.getElementById("jobSearch").addEventListener("input", (event) => { state.query = event.target.value; saveFilters(); renderJobResults(); });
     renderJobResults();
+  }
+
+  function renderSaved() {
+    /* data-requirement-id="UX-217" */
+    const savedJobs = jobs().filter((job) => preferenceFor(job.id)?.sentiment === "liked");
+    const pages = chunks(savedJobs, 3);
+    if (!savedJobs.length) {
+      main.innerHTML = pageFrame(`<section class="results-section"><div class="section-heading"><div><span>관심 보관함</span><h1>저장한 공고</h1></div></div><div class="empty"><p>아직 저장한 공고가 없습니다.</p><a class="plain-button" href="#/jobs">새 공고 탐색하기</a></div></section>`, 0, 1, "저장한 공고");
+      return;
+    }
+    main.innerHTML = pages.map((group, pageIndex) => pageFrame(`<section class="results-section"><div class="section-heading"><div><span>관심 보관함</span><h1>${pageIndex === 0 ? "저장한 공고" : `저장한 공고 ${pageIndex + 1}`}</h1></div><b>${savedJobs.length}개</b></div><div class="opportunity-list is-results">${group.map((job) => candidateRow(job, true)).join("")}</div></section>`, pageIndex, pages.length, "저장한 공고")).join("");
   }
 
   function studyRow(item, kind) {
@@ -323,7 +357,8 @@
     const job = jobById(jobId);
     if (dossier.open && state.activeJobId === jobId && job) renderJobDetail(job);
     else if (route() === "today") renderToday();
-    else if (route() === "jobs") renderJobResults();
+    else if (route() === "jobs") renderJobs();
+    else if (route() === "saved") renderSaved();
     else if (route() === "sources") renderSources();
   }
   async function syncPreference(jobId, preference) {
@@ -446,7 +481,7 @@
   function resetFilters() { state.query = ""; state.sector = ""; state.queue = ""; state.jobMarket = "all"; saveFilters(); if (route() === "jobs") renderJobs(); }
   function updateNetwork() { offlineBanner.hidden = navigator.onLine; const asOf = state.data?.stats?.jobDataAsOf; snapshotLabel.textContent = navigator.onLine ? `공고 ${sourceDate(asOf)}` : "오프라인 스냅샷"; }
   function renderError() { main.innerHTML = `<section class="loading"><span>LOAD ERROR</span><b>자료를 열 수 없어요.</b><button class="plain-button" type="button" data-action="retry">다시 시도</button></section>`; }
-  function render(focus = true) { if (!state.data) return; closeDetail(false); window.scrollTo(0, 0); main.scrollTop = 0; const current = route(); setActiveTab(current); if (current === "today") renderToday(); else if (current === "jobs") renderJobs(); else if (current === "study") renderStudy(); else if (current === "sources") renderSources(); else { go("#/today"); return; } requestAnimationFrame(() => { window.scrollTo(0, 0); main.scrollTop = 0; if (focus) main.querySelector("h1")?.focus({ preventScroll: true }); }); }
+  function render(focus = true) { if (!state.data) return; closeDetail(false); window.scrollTo(0, 0); main.scrollTop = 0; const current = route(); setActiveTab(current); if (current === "today") renderToday(); else if (current === "jobs") renderJobs(); else if (current === "saved") renderSaved(); else if (current === "study") renderStudy(); else if (current === "sources") renderSources(); else { go("#/today"); return; } requestAnimationFrame(() => { window.scrollTo(0, 0); main.scrollTop = 0; if (focus) main.querySelector("h1")?.focus({ preventScroll: true }); }); }
   function isSnapshot(data) { return Boolean(data && Array.isArray(data.jobs) && Array.isArray(data.programs) && Array.isArray(data.funding)); }
   function normalizeFilters() {
     const sectors = new Set(allJobSectors());
@@ -549,10 +584,16 @@
     return remainder ? `${minutes}분 ${remainder}초` : `${minutes}분`;
   }
   function refreshEstimate(status, now = Date.now()) {
+    /* data-requirement-id="UX-218" */
     const stages = Array.isArray(status?.stages) ? status.stages : [];
     const currentStage = status?.currentStage || {};
     const startedMs = Date.parse(status?.startedAt || "");
-    const elapsedSeconds = Number.isFinite(startedMs) ? Math.max(0, (now - startedMs) / 1000) : 0;
+    const finishedMs = Date.parse(status?.finishedAt || "");
+    const requestStartedMs = Number(state.refreshRequestedAt);
+    const completedDuringThisRequest = status?.state === "succeeded" && Number.isFinite(requestStartedMs);
+    const elapsedEndMs = completedDuringThisRequest ? now : (status?.state === "succeeded" && Number.isFinite(finishedMs) ? finishedMs : now);
+    const elapsedStartMs = completedDuringThisRequest ? requestStartedMs : startedMs;
+    const elapsedSeconds = Number.isFinite(elapsedStartMs) ? Math.max(0, (elapsedEndMs - elapsedStartMs) / 1000) : 0;
     const stageIds = ["preference_binding", "collection_and_v3", "posting_facts", "feasibility", "sector_relevance", "preference_discovery", "review_evidence", "sector_labels", "feedback", "actions"];
     const totalSeconds = stageIds.reduce((sum, id) => sum + REFRESH_STAGE_SECONDS[id], 0);
     let usedSeconds = 0;
@@ -682,6 +723,7 @@
   }
   async function refreshEngine() {
     if (!state.bridge || engineRefresh?.disabled) return;
+    state.refreshRequestedAt = Date.now();
     setEngineBusy(true);
     snapshotLabel.textContent = "후보 갱신 시작";
     store(REFRESH_WATCH_STORAGE_KEY, true);
@@ -775,6 +817,8 @@
     const action = event.target.closest("[data-action]")?.dataset.action; if (!action) return;
     if (action === "refresh-engine") { refreshEngine(); return; }
     if (action === "export-feedback") { void exportFeedback(); return; }
+    if (action === "page-next") { movePage(event.target.closest("[data-action]"), "next"); return; }
+    if (action === "page-prev") { movePage(event.target.closest("[data-action]"), "prev"); return; }
     if (action === "open-filters") openFilters();
     if (action === "clear-filters") resetFilters();
     if (action === "close-dossier") closeDetail();

@@ -18,10 +18,15 @@
     },
     {
       "id": "UX-203",
-      "status": "active",
+      "status": "retired",
       "title": "Mobile routes size to their content rather than a viewport-height hero",
       "assert": {"type": "text_absent", "path": "styles.css", "needles": ["100dvh"]},
-      "note": "Human review rejected the large empty areas and bottom-navigation overlap."
+      "note": "Human review rejected the large empty areas and bottom-navigation overlap.",
+      "retired": {
+        "approved_by": "Pin",
+        "reason": "Superseded by the explicit 2026-07-27 request to restore the original screen-by-screen tab interaction.",
+        "date": "2026-07-27"
+      }
     },
     {
       "id": "UX-204",
@@ -226,6 +231,34 @@
       "title": "A completed run is reused only when its full preference digest still matches",
       "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-211\"", "loadMatchingCompletedSnapshot", "BridgeError"]},
       "note": "Measured regression on 2026-07-27: the engine completed once, but an old bridge process prevented publication and the mobile button would unnecessarily start another 11-minute run. The app may reuse the completed result only after the authenticated server proves the current variable-length preference digest matches the run."
+    },
+    {
+      "id": "UX-216",
+      "status": "active",
+      "title": "Mobile routes use screen-by-screen navigation with explicit previous and next controls",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-216\"", "data-action=\"page-next\"", "movePage"]},
+      "note": "Measured regression on 2026-07-27: the iPhone view rendered every page as one continuous document because the max-width 760px rules disabled page snapping and hid page-turn controls. Restore the accepted screen-by-screen interaction without removing feedback or refresh controls."
+    },
+    {
+      "id": "UX-217",
+      "status": "active",
+      "title": "Liked jobs live in a dedicated saved route",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-217\"", "renderSaved", "저장한 공고"]},
+      "note": "Pin confirmed on the physical iPhone that previously liked jobs must not return to the dashboard foreground. They remain available in a separate Saved tab regardless of how many likes exist."
+    },
+    {
+      "id": "DATA-212",
+      "status": "active",
+      "title": "Recommendation surfaces contain only jobs without an existing like or dislike decision",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-212\"", "recommendationJobs", "sentiment"]},
+      "note": "The refreshed snapshot may retain liked jobs so their details remain available, but Today and Explore must exclude both liked and unsuitable jobs and recommend only unevaluated candidates."
+    },
+    {
+      "id": "UX-218",
+      "status": "active",
+      "title": "A reused completed run never displays the age of the old run as current waiting time",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-218\"", "refreshRequestedAt", "finishedAt"]},
+      "note": "Measured regression on the physical iPhone at 21:40 KST: a matching completed run showed 127 minutes 25 seconds elapsed even though this request reused it in about two minutes."
     }
   ]
 }

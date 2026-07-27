@@ -49,6 +49,16 @@
     "first_seen": "2026-07-27T10:04:17+00:00",
     "title": "Preference-expanded results remain deduplicated and exclude explicit experienced-only roles"
   },
+  "DATA-211": {
+    "assert_sha": "6361e1ee8072fa02",
+    "first_seen": "2026-07-27T12:40:49+00:00",
+    "title": "A completed run is reused only when its full preference digest still matches"
+  },
+  "DATA-212": {
+    "assert_sha": "f600e13b8684ec67",
+    "first_seen": "2026-07-27T12:44:05+00:00",
+    "title": "Recommendation surfaces contain only jobs without an existing like or dislike decision"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -153,5 +163,20 @@
     "assert_sha": "ac6e63393a0d941a",
     "first_seen": "2026-07-27T09:26:42+00:00",
     "title": "Mobile refresh shows progress, elapsed time, and an honest remaining-time estimate"
+  },
+  "UX-216": {
+    "assert_sha": "0ff83024eeae286a",
+    "first_seen": "2026-07-27T12:40:49+00:00",
+    "title": "Mobile routes use screen-by-screen navigation with explicit previous and next controls"
+  },
+  "UX-217": {
+    "assert_sha": "687311b958d1efa0",
+    "first_seen": "2026-07-27T12:44:05+00:00",
+    "title": "Liked jobs live in a dedicated saved route"
+  },
+  "UX-218": {
+    "assert_sha": "52212a9e54dfd9ec",
+    "first_seen": "2026-07-27T12:44:05+00:00",
+    "title": "A reused completed run never displays the age of the old run as current waiting time"
   }
 }

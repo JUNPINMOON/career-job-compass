@@ -66,3 +66,12 @@
 {"at": "2026-07-27T10:04:17+00:00", "event": "check", "passed": 28, "failed": 3, "failing_ids": ["DATA-208", "DATA-209", "DATA-210"]}
 {"at": "2026-07-27T10:16:09+00:00", "event": "check", "passed": 31, "failed": 0, "failing_ids": []}
 {"at": "2026-07-27T10:40:18+00:00", "event": "check", "passed": 31, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T12:40:49+00:00", "event": "requirement_added", "id": "DATA-211", "title": "A completed run is reused only when its full preference digest still matches"}
+{"at": "2026-07-27T12:40:49+00:00", "event": "requirement_added", "id": "UX-216", "title": "Mobile routes use screen-by-screen navigation with explicit previous and next controls"}
+{"at": "2026-07-27T12:40:49+00:00", "event": "check", "passed": 32, "failed": 1, "failing_ids": ["UX-216"]}
+{"at": "2026-07-27T12:44:05+00:00", "event": "requirement_added", "id": "UX-217", "title": "Liked jobs live in a dedicated saved route"}
+{"at": "2026-07-27T12:44:05+00:00", "event": "requirement_added", "id": "DATA-212", "title": "Recommendation surfaces contain only jobs without an existing like or dislike decision"}
+{"at": "2026-07-27T12:44:05+00:00", "event": "requirement_added", "id": "UX-218", "title": "A reused completed run never displays the age of the old run as current waiting time"}
+{"at": "2026-07-27T12:44:05+00:00", "event": "check", "passed": 32, "failed": 4, "failing_ids": ["UX-203", "UX-217", "DATA-212", "UX-218"]}
+{"at": "2026-07-27T12:48:57+00:00", "event": "check", "passed": 35, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T12:59:27+00:00", "event": "check", "passed": 35, "failed": 0, "failing_ids": []}
