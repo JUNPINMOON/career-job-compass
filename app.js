@@ -251,11 +251,16 @@
 
   function studyRow(item, kind) {
     const isProgram = kind === "program";
+    const research = item.publicResearch || {};
+    const paperCount = (research.faculty || []).reduce((total, person) => total + (person.recentPapers || []).length, 0);
+    const evidenceCount = (research.faculty || []).length + paperCount + (research.recentProjects || []).length + (research.graduateDestinations || []).length;
     const number = "•";
     const line = isProgram ? `${programReadinessLabel(item)} · ${item.degree || "과정"}${item.deliveryMode === "online" ? " · 온라인" : ""} · ${item.country || "국가 원문 확인"}` : `${item.decision || "장학금"} · ${(item.countries || []).join(", ") || "지역 원문 확인"}`;
     const title = isProgram ? item.program : item.name;
     const subtitle = isProgram ? item.university : item.coverage || item.type;
-    const note = isProgram ? item.funding || item.deadline || "마감 원문 확인" : item.deadline || item.verification || "조건 원문 확인";
+    const note = isProgram && evidenceCount
+      ? `교수 ${(research.faculty || []).length} · 논문 ${paperCount} · 용역 ${(research.recentProjects || []).length} · 진로 ${(research.graduateDestinations || []).length}`
+      : (isProgram ? item.funding || item.deadline || "마감 원문 확인" : item.deadline || item.verification || "조건 원문 확인");
     return `<button class="study-row" type="button" data-open-record="${kind}:${escapeHtml(item.id)}"><span>${escapeHtml(number)}</span><div><small>${escapeHtml(line)}</small><h2>${escapeHtml(title)}</h2><p>${escapeHtml(subtitle)}</p><em>${escapeHtml(note)}</em></div>${icon("arrow")}</button>`;
   }
 
@@ -324,6 +329,37 @@
     const discovery = job.discoveryTier === "explore";
     dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${escapeHtml(job.source)} · ${queueCopy(job)}</small><button class="detail-close" type="button" data-action="close-dossier">닫기</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(jobSectors(job).join(" · ") || "분야 원문 확인")}</p><h2 id="dossierTitle">${escapeHtml(job.title)}</h2><p class="detail-company">${escapeHtml(job.company)} · ${escapeHtml(job.location)}</p><div class="detail-primary">${officialLink(job.url)}</div><div class="detail-facts"><div><small>${discovery ? "분류" : "행동 상태"}</small><b>${queueCopy(job)}</b></div><div><small>마감</small><b>${escapeHtml(job.deadline || "원문 확인")}</b></div><div><small>증거 공백</small><b>${job.evidenceGapCount ?? "원문 확인"}</b></div><div><small>확인 부담</small><b>${escapeHtml(job.evidenceBurden || "원문 확인")}</b></div></div>${discovery ? `<section class="check-note"><small>보여드린 이유</small><p>${escapeHtml(job.discoveryReason)}</p></section>` : ""}<section class="check-note"><small>${discovery ? "원문에서 먼저 볼 것" : "다음 행동"}</small><p>${escapeHtml(job.nextAction)}</p></section>${detailList("공고에서 확인된 조건", job.requirements)}${detailList("추가 확인 항목", job.checks)}${detailList("주의 사항", job.risks)}<div class="detail-actions"><button class="detail-save ${saved ? "is-saved" : ""}" type="button" data-action="bookmark" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}${saved ? "관심 공고" : "관심 있어요"}</button><button class="plain-button detail-dislike ${rejected ? "is-active" : ""}" type="button" data-action="open-feedback" data-job-id="${escapeHtml(job.id)}" aria-pressed="${rejected}">${rejected ? "별로예요 반영됨" : "별로예요"}</button></div></div></article>`;
   }
+
+  function evidenceItem(title, meta, note, url) {
+    const tag = url ? "a" : "div";
+    const attributes = url ? ` href="${escapeHtml(url)}" target="_blank" rel="noreferrer"` : "";
+    return `<${tag} class="evidence-item"${attributes}><small>${escapeHtml(meta || "공개 원문")}</small><strong>${escapeHtml(title)}</strong>${note ? `<span>${escapeHtml(note)}</span>` : ""}</${tag}>`;
+  }
+
+  function graduateResearchPanels(item) {
+    const research = item.publicResearch || {};
+    const faculty = research.faculty || [];
+    const projects = research.recentProjects || [];
+    const destinations = research.graduateDestinations || [];
+    const papers = faculty.flatMap((person) => person.recentPapers || []);
+    const summary = `<div class="research-summary"><span>교수 ${faculty.length}</span><span>최근 5년 논문 ${papers.length}</span><span>연구용역 ${projects.length}</span><span>진로 근거 ${destinations.length}</span></div>`;
+    const facultyHtml = faculty.length ? faculty.map((person) => {
+      const profile = (person.profileUrls || [])[0];
+      const personHeading = profile ? `<a href="${escapeHtml(profile)}" target="_blank" rel="noreferrer">${escapeHtml(person.name || "교수 프로필")}</a>` : escapeHtml(person.name || "교수 프로필");
+      const personPapers = (person.recentPapers || []).map((paper) => evidenceItem(paper.title, [paper.year, paper.venue].filter(Boolean).join(" · "), "", paper.url)).join("");
+      return `<section class="evidence-card"><h3>${personHeading}</h3><p>${escapeHtml([person.title, person.labOrGroup].filter(Boolean).join(" · ") || "소속 원문 확인")}</p>${personPapers ? `<div class="evidence-items">${personPapers}</div>` : `<p class="evidence-empty">최근 5년 논문 원문을 추가 확인해야 합니다.</p>`}</section>`;
+    }).join("") : `<p class="evidence-empty">이 과정은 공개 교수·논문 근거가 아직 연결되지 않았습니다.</p>`;
+    const projectHtml = projects.length ? `<div class="evidence-items">${projects.map((project) => evidenceItem(project.title, [project.period, project.funder].filter(Boolean).join(" · "), `공개 금액: ${project.amount || "미확인"}`, project.url)).join("")}</div>` : `<p class="evidence-empty">최근 5년 연구용역의 공개 원문과 금액을 확인하지 못했습니다. 금액은 추정하지 않습니다.</p>`;
+    const destinationHtml = destinations.length ? `<div class="evidence-items">${destinations.map((record) => evidenceItem(record.destination, record.period, record.role, record.url)).join("")}</div>` : `<p class="evidence-empty">졸업생 취업처를 뒷받침하는 공개 원문을 확인하지 못했습니다.</p>`;
+    return {
+      summary,
+      facultyHtml,
+      projectHtml,
+      destinationHtml,
+      boundary: `<p class="detail-boundary">${escapeHtml(research.evidenceStatus || "공개 연구자료 추가 확인 필요")}${research.lastVerified ? ` · ${escapeHtml(research.lastVerified)}` : ""}</p>`,
+    };
+  }
+
   function renderRecordDetail(kind, item) {
     const isProgram = kind === "program";
     const title = isProgram ? item.program : item.name;
@@ -331,7 +367,14 @@
     const source = isProgram ? "대학원 연구" : "장학금 연구";
     const facts = isProgram ? [["지원 상태", programReadinessLabel(item)], ["국가", item.country], ["과정", item.degree], ["마감", item.deadline], ["검증", item.verification]] : [["지원 범위", item.coverage], ["대상 국가", (item.countries || []).join(", ")], ["마감", item.deadline], ["검증", item.verification]];
     const extra = isProgram ? [["분류 근거", item.applicationStatusReason], ["재정", item.funding], ["영어", item.english], ["확인일", item.verifiedAt]] : [["선발 가능성", item.likelihood], ["유형", item.type]];
-    dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${source}</small><button class="detail-close" type="button" data-action="close-dossier">닫기</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(item.decision || (isProgram ? "연구 목록" : "장학금"))}</p><h2 id="dossierTitle">${escapeHtml(title)}</h2><p class="detail-company">${escapeHtml(organisation)}</p><div class="detail-primary">${officialLink(item.officialUrl)}</div><div class="detail-facts">${facts.map(([label, value]) => `<div><small>${escapeHtml(label)}</small><b>${escapeHtml(value || "원문 확인")}</b></div>`).join("")}</div>${extra.filter(([, value]) => value).map(([label, value]) => `<section class="check-note"><small>${escapeHtml(label)}</small><p>${escapeHtml(value)}</p></section>`).join("")}${isProgram ? detailList(item.englishStatus || "영어 공식 기준", item.englishCriteria) : ""}${isProgram ? detailList("영어 준비", item.englishGapPlan) : ""}${detailList("지원 전 확인할 조건", item.gates)}${detailList("주의 사항", item.risks)}</div></article>`;
+    const overview = `<div class="detail-facts">${facts.map(([label, value]) => `<div><small>${escapeHtml(label)}</small><b>${escapeHtml(value || "원문 확인")}</b></div>`).join("")}</div>${extra.filter(([, value]) => value).map(([label, value]) => `<section class="check-note"><small>${escapeHtml(label)}</small><p>${escapeHtml(value)}</p></section>`).join("")}${isProgram ? detailList(item.englishStatus || "영어 공식 기준", item.englishCriteria) : ""}${isProgram ? detailList("영어 준비", item.englishGapPlan) : ""}${detailList("지원 전 확인할 조건", item.gates)}${detailList("주의 사항", item.risks)}`;
+    if (!isProgram) {
+      dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${source}</small><button class="detail-close" type="button" data-action="close-dossier">닫기</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(item.decision || "장학금")}</p><h2 id="dossierTitle">${escapeHtml(title)}</h2><p class="detail-company">${escapeHtml(organisation)}</p><div class="detail-primary">${officialLink(item.officialUrl)}</div>${overview}</div></article>`;
+      return;
+    }
+    /* data-requirement-id="UX-220" */
+    const researchPanels = graduateResearchPanels(item);
+    dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${source}</small><button class="detail-close" type="button" data-action="close-dossier">닫기</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(item.decision || "연구 목록")}</p><h2 id="dossierTitle">${escapeHtml(title)}</h2><p class="detail-company">${escapeHtml(organisation)}</p><div class="detail-primary">${officialLink(item.officialUrl)}</div><div class="study-detail-tabs" role="tablist" aria-label="대학원 상세 자료"><button type="button" role="tab" aria-selected="true" data-study-detail-tab="overview">개요</button><button type="button" role="tab" aria-selected="false" data-study-detail-tab="faculty">교수·논문</button><button type="button" role="tab" aria-selected="false" data-study-detail-tab="projects">연구용역</button><button type="button" role="tab" aria-selected="false" data-study-detail-tab="outcomes">졸업 후</button></div><section class="study-detail-panel" data-study-detail-panel="overview">${researchPanels.summary}${overview}${researchPanels.boundary}</section><section class="study-detail-panel" data-study-detail-panel="faculty" hidden>${researchPanels.facultyHtml}${researchPanels.boundary}</section><section class="study-detail-panel" data-study-detail-panel="projects" hidden>${researchPanels.projectHtml}${researchPanels.boundary}</section><section class="study-detail-panel" data-study-detail-panel="outcomes" hidden>${researchPanels.destinationHtml}${researchPanels.boundary}</section></div></article>`;
   }
   function openJobDetail(id, trigger) { const job = jobById(id); if (!job) return; state.selectedTrigger = trigger || null; state.activeJobId = id; renderJobDetail(job); if (!dossier.open) dossier.showModal(); requestAnimationFrame(() => dossier.querySelector("[data-action='close-dossier']")?.focus()); }
   function openRecordDetail(kind, id, trigger) { const item = recordById(kind, id); if (!item) return; state.selectedTrigger = trigger || null; renderRecordDetail(kind, item); if (!dossier.open) dossier.showModal(); requestAnimationFrame(() => dossier.querySelector("[data-action='close-dossier']")?.focus()); }
@@ -814,6 +857,13 @@
     const studyReadiness = event.target.closest("[data-study-readiness]"); if (studyReadiness) { state.studyReadiness = studyReadiness.dataset.studyReadiness; saveFilters(); renderStudy(); return; }
     const studyMarket = event.target.closest("[data-study-market]"); if (studyMarket) { state.studyMarket = studyMarket.dataset.studyMarket; saveFilters(); renderStudy(); return; }
     const studyFormat = event.target.closest("[data-study-format]"); if (studyFormat) { state.studyFormat = studyFormat.dataset.studyFormat; saveFilters(); renderStudy(); return; }
+    const studyDetailTab = event.target.closest("[data-study-detail-tab]");
+    if (studyDetailTab) {
+      const selected = studyDetailTab.dataset.studyDetailTab;
+      dossier.querySelectorAll("[data-study-detail-tab]").forEach((tab) => tab.setAttribute("aria-selected", String(tab === studyDetailTab)));
+      dossier.querySelectorAll("[data-study-detail-panel]").forEach((panel) => { panel.hidden = panel.dataset.studyDetailPanel !== selected; });
+      return;
+    }
     const action = event.target.closest("[data-action]")?.dataset.action; if (!action) return;
     if (action === "refresh-engine") { refreshEngine(); return; }
     if (action === "export-feedback") { void exportFeedback(); return; }

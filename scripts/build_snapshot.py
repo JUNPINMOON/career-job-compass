@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -19,6 +20,14 @@ def _read_json(path: Path) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise ValueError(f"expected JSON object: {path}")
     return value
+
+
+def _read_json_list(path: Path) -> list[dict[str, Any]]:
+    with path.open(encoding="utf-8-sig") as handle:
+        value = json.load(handle)
+    if not isinstance(value, list):
+        raise ValueError(f"expected JSON array: {path}")
+    return [item for item in value if isinstance(item, dict)]
 
 
 def _key(record: dict[str, Any]) -> tuple[str, str]:
@@ -49,7 +58,94 @@ def _application_readiness(source: dict[str, Any]) -> tuple[str, str, str]:
     )
 
 
-def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path) -> str:
+def _public_url(value: Any) -> str:
+    url = str(value or "").strip()
+    return url if url.startswith(("https://", "http://")) else ""
+
+
+def _recent_five_years(value: Any) -> bool:
+    years = [int(year) for year in re.findall(r"\b20\d{2}\b", str(value or ""))]
+    cutoff = datetime.now().year - 4
+    return not years or max(years) >= cutoff
+
+
+def _verified_date(source: Mapping[str, Any]) -> str:
+    """Publish only explicit ISO dates, never internal review markers."""
+    for key in ("faculty_last_verified", "last_verified"):
+        value = str(source.get(key) or "").strip()
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+            return value
+    return ""
+
+
+def experienced_only_title(job: Mapping[str, Any]) -> bool:
+    """DATA-214: fail closed when the title itself explicitly says 경력직."""
+    title = str(job.get("title", "")).replace(" ", "")
+    return "경력직" in title and "신입" not in title and "경력무관" not in title
+
+
+def _public_research(source: dict[str, Any]) -> dict[str, Any]:
+    """DATA-213: publish source-backed research facts, never personal fit notes."""
+    faculty: list[dict[str, Any]] = []
+    for person in source.get("faculty", []):
+        if not isinstance(person, dict):
+            continue
+        papers = [
+            {
+                "year": str(paper.get("year", "")).strip(),
+                "title": str(paper.get("title", "")).strip(),
+                "venue": str(paper.get("venue", "")).strip(),
+                "url": _public_url(paper.get("url")),
+            }
+            for paper in person.get("recent_papers", [])
+            if isinstance(paper, dict) and paper.get("title") and _recent_five_years(paper.get("year"))
+        ]
+        projects = [
+            {
+                "title": str(project.get("title", "")).strip(),
+                "funder": str(project.get("funder", "")).strip(),
+                "period": str(project.get("period", "")).strip(),
+                "amount": str(project.get("amount", "")).strip(),
+                "url": _public_url(project.get("url")),
+            }
+            for project in person.get("recent_projects", [])
+            if isinstance(project, dict) and project.get("title") and _recent_five_years(project.get("period"))
+        ]
+        faculty.append(
+            {
+                "name": str(person.get("name", "")).strip(),
+                "title": str(person.get("title", "")).strip(),
+                "labOrGroup": str(person.get("lab_or_group", "")).strip(),
+                "profileUrls": [
+                    url
+                    for url in (_public_url(item) for item in person.get("profile_urls", []))
+                    if url
+                ],
+                "recentPapers": papers,
+                "recentProjects": projects,
+            }
+        )
+    destinations = [
+        {
+            "period": str(item.get("year_range", "")).strip(),
+            "destination": str(item.get("destination", "")).strip(),
+            "role": str(item.get("role", "")).strip(),
+            "url": _public_url(item.get("url")),
+        }
+        for item in source.get("graduate_destinations", [])
+        if isinstance(item, dict) and item.get("destination")
+    ]
+    return {
+        "keywords": [str(item).strip() for item in source.get("keywords", []) if str(item).strip()],
+        "faculty": faculty,
+        "recentProjects": [project for person in faculty for project in person["recentProjects"]],
+        "graduateDestinations": destinations,
+        "lastVerified": _verified_date(source),
+        "evidenceStatus": "공식·연구실 원문 확인" if faculty else "공개 연구자료 추가 확인 필요",
+    }
+
+
+def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path, research_path: Path) -> str:
     """Refresh compact programme records from the lightweight current shortlist."""
     shortlist = _read_json(shortlist_path)
     latest = shortlist.get("programs")
@@ -57,11 +153,13 @@ def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path) -> str
     if not isinstance(latest, list) or not isinstance(current, list):
         raise ValueError("graduate shortlist or public snapshot has no programme list")
     by_key = {_key(record): record for record in latest if isinstance(record, dict)}
+    research_by_key = {_key(record): record for record in _read_json_list(research_path)}
     refreshed: list[dict[str, Any]] = []
     for item in current:
         if not isinstance(item, dict):
             continue
         source = by_key.get(_key(item))
+        research = research_by_key.get(_key(item))
         if source is None:
             readiness, label, reason = _application_readiness(item)
             item.update(
@@ -105,6 +203,14 @@ def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path) -> str
                     "englishGapPlan": source.get("english_gap_plan", []),
                 }
             )
+        item["publicResearch"] = _public_research(research) if research else {
+            "keywords": [],
+            "faculty": [],
+            "recentProjects": [],
+            "graduateDestinations": [],
+            "lastVerified": "",
+            "evidenceStatus": "공개 연구자료 추가 확인 필요",
+        }
         refreshed.append(item)
     payload["programs"] = sorted(
         refreshed,
@@ -140,6 +246,7 @@ def _apply_public_eligibility(
         if (
             minimum_years >= MINIMUM_EXPERIENCE_EXCLUSION_YEARS
             or job.get("publicEligibility") == "excluded"
+            or experienced_only_title(job)
             or explicit_experience_exclusion(job)
         ):
             excluded += 1
@@ -203,6 +310,11 @@ def main() -> None:
         type=Path,
         default=Path(__file__).resolve().parents[1] / "data" / "app-data.json",
     )
+    parser.add_argument(
+        "--programs-only",
+        action="store_true",
+        help="Enrich the existing public snapshot without rebuilding the job slice.",
+    )
     args = parser.parse_args()
     root = args.job_search_root.resolve(strict=True)
     sys.path.insert(0, str(root))
@@ -217,6 +329,19 @@ def main() -> None:
     if not args.catalog_source.exists():
         raise FileNotFoundError(f"catalog source required: {args.catalog_source}")
     payload = _read_json(args.catalog_source)
+    if args.programs_only:
+        graduate_generated_at = _apply_latest_programs(
+            payload,
+            root / "artifacts" / "grad_school" / "grad_school_shortlist_latest.json",
+            root / "config" / "grad_school_programs.researched.json",
+        )
+        stats = payload.get("stats") if isinstance(payload.get("stats"), dict) else {}
+        stats.update({"programs": len(payload["programs"]), "graduateGeneratedAt": graduate_generated_at})
+        payload["stats"] = stats
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"wrote {args.output}: enriched {len(payload['programs'])} programs")
+        return
     raw_job_slice = build_public_job_slice(
         actions_path=root / "work" / "recommendation-v4" / "g006-cross-sector-actions.json",
         posting_facts_path=root / "work" / "recommendation-v4" / "g003-posting-facts.json",
@@ -231,6 +356,7 @@ def main() -> None:
     graduate_generated_at = _apply_latest_programs(
         payload,
         root / "artifacts" / "grad_school" / "grad_school_shortlist_latest.json",
+        root / "config" / "grad_school_programs.researched.json",
     )
     stats = payload.get("stats") if isinstance(payload.get("stats"), dict) else {}
     stats.update(job_slice["stats"])

@@ -232,6 +232,21 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible 
 .detail-list ul { display:grid; gap:7px; margin:10px 0 0; padding:0; list-style:none; }
 .detail-list li { position:relative; padding-left:12px; font-size:13px; line-height:1.5; }
 .detail-list li::before { position:absolute; top:.68em; left:0; width:4px; height:4px; border-radius:50%; content:""; background:var(--moss); }
+.study-detail-tabs { position:sticky; z-index:2; top:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; margin:18px 0; padding:4px; border:1px solid var(--line); border-radius:12px; background:var(--surface); }
+.study-detail-tabs button { min-height:44px; padding:0 5px; border:0; border-radius:9px; color:var(--muted); background:transparent; font-size:11px; font-weight:720; }
+.study-detail-tabs button[aria-selected="true"] { color:var(--forest); background:var(--leaf); }
+.study-detail-panel[hidden] { display:none; }
+.research-summary { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 16px; }
+.research-summary span { padding:6px 9px; border-radius:999px; color:var(--forest); background:var(--leaf); font-size:11px; font-weight:690; }
+.evidence-card { padding:15px 0; border-top:1px solid var(--line); }
+.evidence-card h3 { margin:0; font-size:17px; letter-spacing:-.045em; }
+.evidence-card > p { margin:5px 0 0; color:var(--muted); font-size:12px; line-height:1.5; }
+.evidence-items { display:grid; gap:9px; margin-top:12px; }
+.evidence-item { display:block; padding:11px 12px; border:1px solid var(--line); border-radius:11px; color:var(--ink); background:#fff; text-decoration:none; }
+.evidence-item small { display:block; margin-bottom:4px; color:var(--moss); }
+.evidence-item strong { display:block; font-size:13px; line-height:1.45; }
+.evidence-item span { display:block; margin-top:5px; color:var(--muted); font-size:11px; line-height:1.4; }
+.evidence-empty { margin:12px 0 0; padding:13px; border:1px dashed var(--line-strong); border-radius:11px; color:var(--muted); font-size:12px; line-height:1.5; }
 .detail-actions { padding:0; }
 .detail-save { min-width:126px; }
 .detail-save.is-saved { border-color:var(--leaf-deep); color:var(--forest); background:var(--leaf); }
@@ -294,8 +309,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible 
   .main { width:100%; min-height:0; height:100%; margin:0; overflow:hidden; }
   .page-frame { display:none; min-height:0; height:100%; overflow:hidden; }
   .page-frame.is-active { display:flex; flex-direction:column; }
-  .page-frame-content { display:block; flex:1 1 auto; min-height:0; overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
-  .page-turn { display:grid; flex:0 0 auto; grid-template-columns:minmax(72px,1fr) auto minmax(72px,1fr); align-items:center; min-height:52px; padding:4px 18px; border-top:1px solid var(--line); background:rgba(251,252,249,.98); }
+  .page-frame-content { display:block; flex:1 1 auto; min-height:0; padding-bottom:58px; overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
+  /* data-requirement-id="UX-219": keep paging controls above the fixed tab bar. */
+  .page-turn { position:fixed; z-index:25; right:0; bottom:calc(64px + env(safe-area-inset-bottom)); left:0; display:grid; grid-template-columns:minmax(72px,1fr) auto minmax(72px,1fr); align-items:center; min-height:52px; padding:4px 18px; border-top:1px solid var(--line); background:rgba(251,252,249,.98); }
   .page-turn button { min-width:var(--touch-target); min-height:var(--touch-target); padding:0 10px; border:0; border-radius:10px; color:var(--forest); background:transparent; font-size:12px; font-weight:760; }
   .page-turn-prev { justify-self:start; }
   .page-turn-next { display:inline-flex; justify-self:end; align-items:center; gap:4px; }
@@ -356,7 +372,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible 
   .stat-strip div { min-height:103px; padding:14px 10px; }
   .stat-strip b { margin-top:21px; font-size:29px; }
   .source-explainer { flex:1; margin-top:24px; margin-bottom:0; }
-  .filter-sheet,.detail-sheet { width:100vw; max-height:92dvh; margin:0 0 0; border-radius:20px 20px 0 0; }
+  .filter-sheet,.detail-sheet { width:100vw; max-width:100vw; max-height:92dvh; margin:0 0 0; border-radius:20px 20px 0 0; }
   .filter-sheet { align-self:end; max-height:68dvh; }
   .feedback-sheet { max-height:88dvh; }
   .detail-sheet { align-self:end; }

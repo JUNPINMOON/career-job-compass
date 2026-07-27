@@ -259,6 +259,34 @@
       "title": "A reused completed run never displays the age of the old run as current waiting time",
       "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-218\"", "refreshRequestedAt", "finishedAt"]},
       "note": "Measured regression on the physical iPhone at 21:40 KST: a matching completed run showed 127 minutes 25 seconds elapsed even though this request reused it in about two minutes."
+    },
+    {
+      "id": "UX-219",
+      "status": "active",
+      "title": "Explore result page controls remain tappable above the fixed mobile tab bar",
+      "assert": {"type": "text_present", "path": "styles.css", "needles": ["data-requirement-id=\"UX-219\"", "bottom:calc(64px + env(safe-area-inset-bottom))"]},
+      "note": "Measured at 390 by 844 before implementation: after selecting a 25-job sector, the first Next control timed out because a bottom-navigation SVG intercepted pointer events."
+    },
+    {
+      "id": "UX-220",
+      "status": "active",
+      "title": "Graduate programme details provide separate interactive research evidence views",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-220\"", "data-study-detail-tab", "교수·논문", "연구용역", "졸업 후"]},
+      "note": "Measured regression on 2026-07-27: programme evidence was compressed into one generic bottom sheet, so faculty, papers, contracts and graduate destinations could not be inspected as separate mobile views."
+    },
+    {
+      "id": "DATA-213",
+      "status": "active",
+      "title": "Graduate research evidence reaches the public snapshot without inventing missing amounts or outcomes",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-213", "publicResearch", "recentProjects", "graduateDestinations"]},
+      "note": "The researched 90-program source contains faculty evidence for 32 matching programmes. Publish only non-personal source-backed fields; absent contract amounts and outcomes remain explicit evidence gaps."
+    },
+    {
+      "id": "DATA-214",
+      "status": "active",
+      "title": "Job titles explicitly marked experienced-only cannot re-enter exploration results",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-214", "experienced_only_title", "경력직"]},
+      "note": "Fresh 390 by 844 browser verification on 2026-07-27 found three Hwashin duplicates on Explore page 2 because their structured minimum-experience field was empty even though the title explicitly said 경력직."
     }
   ]
 }

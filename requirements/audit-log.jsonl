@@ -75,3 +75,15 @@
 {"at": "2026-07-27T12:44:05+00:00", "event": "check", "passed": 32, "failed": 4, "failing_ids": ["UX-203", "UX-217", "DATA-212", "UX-218"]}
 {"at": "2026-07-27T12:48:57+00:00", "event": "check", "passed": 35, "failed": 0, "failing_ids": []}
 {"at": "2026-07-27T12:59:27+00:00", "event": "check", "passed": 35, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T13:13:30+00:00", "event": "check", "passed": 35, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T13:52:03+00:00", "event": "requirement_added", "id": "UX-219", "title": "Explore result page controls remain tappable above the fixed mobile tab bar"}
+{"at": "2026-07-27T13:52:03+00:00", "event": "check", "passed": 35, "failed": 1, "failing_ids": ["UX-219"]}
+{"at": "2026-07-27T14:00:14+00:00", "event": "requirement_added", "id": "UX-220", "title": "Graduate programme details provide separate interactive research evidence views"}
+{"at": "2026-07-27T14:00:14+00:00", "event": "requirement_added", "id": "DATA-213", "title": "Graduate research evidence reaches the public snapshot without inventing missing amounts or outcomes"}
+{"at": "2026-07-27T14:00:14+00:00", "event": "check", "passed": 35, "failed": 3, "failing_ids": ["UX-219", "UX-220", "DATA-213"]}
+{"at": "2026-07-27T14:05:27+00:00", "event": "check", "passed": 38, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T14:07:16+00:00", "event": "requirement_added", "id": "DATA-214", "title": "Job titles explicitly marked experienced-only cannot re-enter exploration results"}
+{"at": "2026-07-27T14:07:16+00:00", "event": "check", "passed": 38, "failed": 1, "failing_ids": ["DATA-214"]}
+{"at": "2026-07-27T14:16:39+00:00", "event": "check", "passed": 39, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T14:23:40+00:00", "event": "check", "passed": 39, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T14:26:55+00:00", "event": "check", "passed": 39, "failed": 0, "failing_ids": []}

@@ -1,16 +1,16 @@
-# Graph Report - career-job-compass  (2026-07-27)
+# Graph Report - career-job-compass-pager-019f57a2  (2026-07-27)
 
 ## Corpus Check
-- 17 files · ~181,154 words
+- 18 files · ~217,997 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 137 nodes · 293 edges · 14 communities (10 shown, 4 thin omitted)
+- 165 nodes · 384 edges · 14 communities (10 shown, 4 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5fdd7137`
+- Built from commit: `4a895591`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,26 +31,26 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `Career Compass — calm field guide` - 18 edges
-2. `renderToday()` - 16 edges
-3. `escapeHtml()` - 14 edges
-4. `renderJobs()` - 13 edges
+2. `escapeHtml()` - 17 edges
+3. `renderJobs()` - 15 edges
+4. `renderToday()` - 14 edges
 5. `renderStudy()` - 13 edges
-6. `render()` - 11 edges
-7. `renderJobDetail()` - 10 edges
-8. `preferenceFor()` - 8 edges
-9. `icon()` - 8 edges
-10. `jobs()` - 8 edges
+6. `render()` - 12 edges
+7. `refreshEngine()` - 12 edges
+8. `preferenceFor()` - 11 edges
+9. `renderSources()` - 11 edges
+10. `watchRefresh()` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `jobs()` --indirect_call--> `isEligiblePublicJob()`  [INFERRED]
-  app.js → app.js  _Bridges community 5 → community 0_
-- `buildFeedbackExport()` --calls--> `preferenceFor()`  [EXTRACTED]
-  app.js → app.js  _Bridges community 4 → community 5_
+  app.js → app.js  _Bridges community 5 → community 4_
 - `candidateRow()` --calls--> `preferenceFor()`  [EXTRACTED]
-  app.js → app.js  _Bridges community 4 → community 0_
-- `renderJobDetail()` --calls--> `preferenceFor()`  [EXTRACTED]
   app.js → app.js  _Bridges community 4 → community 2_
-- `renderJobDetail()` --calls--> `escapeHtml()`  [EXTRACTED]
+- `renderJobDetail()` --calls--> `preferenceFor()`  [EXTRACTED]
+  app.js → app.js  _Bridges community 4 → community 0_
+- `renderJobs()` --calls--> `saveFilters()`  [EXTRACTED]
+  app.js → app.js  _Bridges community 5 → community 2_
+- `candidateRow()` --calls--> `escapeHtml()`  [EXTRACTED]
   app.js → app.js  _Bridges community 0 → community 2_
 
 ## Import Cycles
@@ -59,28 +59,28 @@
 ## Communities (14 total, 4 thin omitted)
 
 ### Community 0 - "Program Management"
-Cohesion: 0.18
-Nodes (27): candidateRow(), chunks(), detailList(), diversifiedJobs(), escapeHtml(), filteredJobs(), filteredStudy(), funding() (+19 more)
+Cohesion: 0.42
+Nodes (9): detailList(), escapeHtml(), evidenceItem(), graduateResearchPanels(), officialLink(), openRecordDetail(), queueCopy(), renderJobDetail() (+1 more)
 
 ### Community 1 - "Build and Snapshot"
-Cohesion: 0.31
-Nodes (12): Any, _application_readiness(), _apply_latest_programs(), _apply_public_eligibility(), _key(), main(), Path, Build the GitHub Pages fallback without regenerating the 218 MB dashboard bundle (+4 more)
+Cohesion: 0.20
+Nodes (21): Any, _application_readiness(), _apply_latest_programs(), _apply_public_eligibility(), experienced_only_title(), _key(), main(), _public_research() (+13 more)
 
 ### Community 2 - "Job Detail Rendering"
-Cohesion: 0.47
-Nodes (6): jobById(), jobSectors(), jobSnapshot(), openJobDetail(), refreshPreferenceUI(), renderJobDetail()
+Cohesion: 0.18
+Nodes (25): activeFilters(), candidateRow(), chunks(), diversifiedJobs(), filteredJobs(), filteredStudy(), funding(), icon() (+17 more)
 
 ### Community 3 - "Record Handling"
 Cohesion: 0.11
 Nodes (18): Acceptance check, Accessibility, Brand, Career Compass — calm field guide, Components and disclosure, Content voice, Design principles, Information architecture (+10 more)
 
 ### Community 4 - "Job Filtering"
-Cohesion: 0.16
-Nodes (18): closeDetail(), connectPreferences(), displayDate(), go(), migrateLocalBookmarks(), openFeedback(), persistPreferences(), preferenceFor() (+10 more)
+Cohesion: 0.13
+Nodes (24): buildFeedbackExport(), closeDetail(), connectPreferences(), displayDate(), exportFeedback(), feedbackReviewList(), go(), jobById() (+16 more)
 
 ### Community 5 - "Bridge Communication"
-Cohesion: 0.14
-Nodes (23): activeFilters(), allJobSectors(), bridgeRequest(), bridgeUrl(), buildFeedbackExport(), exportFeedback(), isEligiblePublicJob(), isSnapshot() (+15 more)
+Cohesion: 0.12
+Nodes (35): allJobSectors(), authenticatedRefreshHeaders(), BridgeError, bridgeRequest(), bridgeUrl(), connectBridge(), formatRuntime(), isEligiblePublicJob() (+27 more)
 
 ### Community 6 - "UI Navigation"
 Cohesion: 0.33
@@ -102,13 +102,13 @@ Nodes (4): Career Compass, Local preview, Refresh model, Release boundary
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `renderToday()` connect `Program Management` to `Job Detail Rendering`, `Job Filtering`, `Bridge Communication`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **Why does `escapeHtml()` connect `Program Management` to `Job Detail Rendering`, `Job Filtering`, `Bridge Communication`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **What connects `APP_SHELL`, `graphify`, `Source of truth` to the rest of the system?**
   _27 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Record Handling` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
+- **Should `Job Filtering` be split into smaller, more focused modules?**
+  _Cohesion score 0.13405797101449277 - nodes in this community are weakly interconnected._
 - **Should `Bridge Communication` be split into smaller, more focused modules?**
-  _Cohesion score 0.1396011396011396 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1241565452091768 - nodes in this community are weakly interconnected._

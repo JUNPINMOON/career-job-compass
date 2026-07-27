@@ -59,6 +59,16 @@
     "first_seen": "2026-07-27T12:44:05+00:00",
     "title": "Recommendation surfaces contain only jobs without an existing like or dislike decision"
   },
+  "DATA-213": {
+    "assert_sha": "e44f12a0b87c783d",
+    "first_seen": "2026-07-27T14:00:14+00:00",
+    "title": "Graduate research evidence reaches the public snapshot without inventing missing amounts or outcomes"
+  },
+  "DATA-214": {
+    "assert_sha": "803a94c1512de7e7",
+    "first_seen": "2026-07-27T14:07:16+00:00",
+    "title": "Job titles explicitly marked experienced-only cannot re-enter exploration results"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -178,5 +188,15 @@
     "assert_sha": "52212a9e54dfd9ec",
     "first_seen": "2026-07-27T12:44:05+00:00",
     "title": "A reused completed run never displays the age of the old run as current waiting time"
+  },
+  "UX-219": {
+    "assert_sha": "4ef8c27f25fde1f6",
+    "first_seen": "2026-07-27T13:52:03+00:00",
+    "title": "Explore result page controls remain tappable above the fixed mobile tab bar"
+  },
+  "UX-220": {
+    "assert_sha": "0cf092ade94e27f2",
+    "first_seen": "2026-07-27T14:00:14+00:00",
+    "title": "Graduate programme details provide separate interactive research evidence views"
   }
 }
