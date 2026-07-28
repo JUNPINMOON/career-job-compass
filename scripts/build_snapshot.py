@@ -329,6 +329,37 @@ def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path, resear
     return str(shortlist.get("generated_at", ""))
 
 
+def _graduate_evidence_coverage(programs: Any) -> dict[str, int]:
+    """Expose programme-level evidence coverage against the complete public list."""
+    records = [item for item in programs if isinstance(item, dict)] if isinstance(programs, list) else []
+    research = [
+        item.get("publicResearch") if isinstance(item.get("publicResearch"), dict) else {}
+        for item in records
+    ]
+    has_faculty = [bool(item.get("faculty")) for item in research]
+    has_papers = [
+        any(person.get("recentPapers") for person in item.get("faculty", []) if isinstance(person, dict))
+        for item in research
+    ]
+    has_projects = [bool(item.get("recentProjects")) for item in research]
+    has_outcomes = [bool(item.get("graduateDestinations")) for item in research]
+    has_testimonials = [bool(item.get("graduateTestimonials")) for item in research]
+    has_any = [
+        any(values)
+        for values in zip(has_faculty, has_papers, has_projects, has_outcomes, has_testimonials)
+    ]
+    return {
+        "totalPrograms": len(records),
+        "programsWithAnyEvidence": sum(has_any),
+        "programsWithFaculty": sum(has_faculty),
+        "programsWithRecentPapers": sum(has_papers),
+        "programsWithFundedProjects": sum(has_projects),
+        "programsWithGraduateDestinations": sum(has_outcomes),
+        "programsWithTestimonials": sum(has_testimonials),
+        "unresearchedPrograms": len(records) - sum(has_any),
+    }
+
+
 def _apply_public_eligibility(
     job_slice: dict[str, Any],
     overrides: dict[str, Any],
@@ -449,6 +480,7 @@ def main() -> None:
         stats = payload.get("stats") if isinstance(payload.get("stats"), dict) else {}
         stats.update({"programs": len(payload["programs"]), "graduateGeneratedAt": graduate_generated_at})
         payload["stats"] = stats
+        payload["graduateEvidenceCoverage"] = _graduate_evidence_coverage(payload["programs"])
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(f"wrote {args.output}: enriched {len(payload['programs'])} programs")
@@ -487,6 +519,7 @@ def main() -> None:
             "sectors": job_slice["sectors"],
             "jobs": job_slice["jobs"],
             "reviewQueue": job_slice["reviewQueue"],
+            "graduateEvidenceCoverage": _graduate_evidence_coverage(payload["programs"]),
         }
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)

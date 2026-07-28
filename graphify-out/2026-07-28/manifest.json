@@ -1,12 +1,12 @@
 {
   "app.js": {
-    "mtime": 1785170341.6370623,
-    "ast_hash": "f1b3c95907360f5391968b9d7d544170",
+    "mtime": 1785204031.2078161,
+    "ast_hash": "d2c4869f2e7f12317d3c82639a080d86",
     "semantic_hash": ""
   },
   "data/app-data.json": {
-    "mtime": 1785168592.7779772,
-    "ast_hash": "0e7f62ac66662d3b9080fb49865b4b0b",
+    "mtime": 1785204081.1783836,
+    "ast_hash": "7b51e205b2f29c0b9b7b39cade379927",
     "semantic_hash": ""
   },
   "data/catalog-source.json": {
@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   "scripts/build_snapshot.py": {
-    "mtime": 1785168549.9398375,
-    "ast_hash": "a4bb98d5355053f60ff802690feaa9b2",
+    "mtime": 1785204059.31693,
+    "ast_hash": "6f2f34cc8ee5861e6968c362d288d6f1",
     "semantic_hash": ""
   },
   "scripts/check_release.py": {
@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "sw.js": {
-    "mtime": 1785170829.8249338,
-    "ast_hash": "3f45d0116608a283584e92fbea179abe",
+    "mtime": 1785204456.0151637,
+    "ast_hash": "cdc7d1b47ac6401217236c8b29dcf470",
     "semantic_hash": ""
   },
   ".codex/hooks.json": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "requirements/.seen-ids.json": {
-    "mtime": 1785170420.5344815,
-    "ast_hash": "a8f2f404bc69e50c2d20d973cf7557ba",
+    "mtime": 1785204467.212253,
+    "ast_hash": "ed0c484aee95c37ab5db50b02b4560f1",
     "semantic_hash": ""
   },
   ".github/workflows/pages.yml": {
@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "requirements/ledger.yaml": {
-    "mtime": 1785170829.8239343,
-    "ast_hash": "0fe1d73e1045d6f04b4f4105686ba673",
+    "mtime": 1785204116.559883,
+    "ast_hash": "6154d533973893027df3fff7f428d797",
     "semantic_hash": ""
   },
   "assets/daily-brief-cover-v3.png": {
@@ -132,6 +132,16 @@
   "supabase/migrations/202607270002_create_personalized_snapshots.sql": {
     "mtime": 1785156013.0861907,
     "ast_hash": "0848cfde021daf387c347a35ed3c73d1",
+    "semantic_hash": ""
+  },
+  "scripts/expand_graduate_evidence.py": {
+    "mtime": 1785203924.8573875,
+    "ast_hash": "437594b32dc63a3085f738511090f01e",
+    "semantic_hash": ""
+  },
+  "work/grad_school_programs.researched.updated.json": {
+    "mtime": 1785203963.3777,
+    "ast_hash": "e72a734193dcd65fddca2e70157de535",
     "semantic_hash": ""
   }
 }

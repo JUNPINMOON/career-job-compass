@@ -350,6 +350,34 @@
       "title": "Mobile app shell cache advances with expanded graduate evidence",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v26-grad-evidence", "\"./app.js\"", "\"./data/app-data.json\"", "\"./styles.css\""]},
       "note": "The iPhone home-screen app must fetch the new professor, project, alumni outcome and testimonial schema rather than keep the prior cached snapshot."
+    },
+    {
+      "id": "GOV-207",
+      "status": "active",
+      "title": "Mobile app shell cache advances with full graduate evidence coverage",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v27-grad-coverage", "\"./app.js\"", "\"./data/app-data.json\"", "\"./styles.css\""]},
+      "note": "The iPhone home-screen app must fetch the all-programme coverage counts and the newly connected official faculty evidence rather than retain the nine-program release."
+    },
+    {
+      "id": "DATA-219",
+      "status": "active",
+      "title": "Graduate evidence refresh audits every canonical programme instead of a fixed expansion list",
+      "assert": {"type": "text_present", "path": "scripts/expand_graduate_evidence.py", "needles": ["DATA-219", "build_coverage_report", "totalPrograms", "unresearchedPrograms"]},
+      "note": "Measured on 2026-07-28 after the nine-program patch: the canonical source has 90 programmes, but only 41 have faculty evidence, 34 have recent-paper evidence, 30 have funded-project evidence, 26 have graduate-destination evidence and 3 have testimonials. The refresh must report all 90 records and must not present nine patched universities as full coverage."
+    },
+    {
+      "id": "UX-224",
+      "status": "active",
+      "title": "Graduate exploration shows evidence coverage so partial research cannot look complete",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-224\"", "대학원 근거 현황", "교수 근거", "동문 후기"]},
+      "note": "The user saw a nine-program update without an honest denominator. The mobile graduate page must expose evidence-bearing programme counts against the full public programme count."
+    },
+    {
+      "id": "DATA-220",
+      "status": "active",
+      "title": "Release verification rejects stale or inconsistent graduate evidence coverage",
+      "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["DATA-220", "graduateEvidenceCoverage", "programsWithFaculty", "unresearchedPrograms"]},
+      "note": "Coverage shown on mobile is a generated claim. The release check must recompute programme-level evidence counts from the public snapshot and reject a mismatched denominator or stale aggregate."
     }
   ]
 }

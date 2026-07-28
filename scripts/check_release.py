@@ -154,6 +154,38 @@ def main() -> None:
     ]
     if contains_non_contract_research(public_projects):
         raise SystemExit("graduate research contracts contain editorial or publication-inferred records")
+    # DATA-220: the mobile coverage panel must be derived from the records it describes.
+    coverage = snapshot.get("graduateEvidenceCoverage")
+    if not isinstance(coverage, dict) or coverage.get("totalPrograms") != len(programs):
+        raise SystemExit("graduate evidence coverage denominator must match the public programme set")
+    programme_research = [
+        item.get("publicResearch") if isinstance(item.get("publicResearch"), dict) else {}
+        for item in programs
+    ]
+    faculty_flags = [bool(item.get("faculty")) for item in programme_research]
+    paper_flags = [
+        any(person.get("recentPapers") for person in item.get("faculty", []) if isinstance(person, dict))
+        for item in programme_research
+    ]
+    project_flags = [bool(item.get("recentProjects")) for item in programme_research]
+    outcome_flags = [bool(item.get("graduateDestinations")) for item in programme_research]
+    testimonial_flags = [bool(item.get("graduateTestimonials")) for item in programme_research]
+    any_flags = [
+        any(values)
+        for values in zip(faculty_flags, paper_flags, project_flags, outcome_flags, testimonial_flags)
+    ]
+    expected_coverage = {
+        "totalPrograms": len(programs),
+        "programsWithAnyEvidence": sum(any_flags),
+        "programsWithFaculty": sum(faculty_flags),
+        "programsWithRecentPapers": sum(paper_flags),
+        "programsWithFundedProjects": sum(project_flags),
+        "programsWithGraduateDestinations": sum(outcome_flags),
+        "programsWithTestimonials": sum(testimonial_flags),
+        "unresearchedPrograms": len(programs) - sum(any_flags),
+    }
+    if coverage != expected_coverage:
+        raise SystemExit("graduateEvidenceCoverage is stale or inconsistent with public programme evidence")
     if stats["recommendationSurface"] == "exploration_only" and review_queue:
         raise SystemExit("exploration-only snapshots must not imply an action-ready review queue")
     if any(not item.get("officialUrl") and item.get("verification") != "official_search_required" for item in programs + funding):

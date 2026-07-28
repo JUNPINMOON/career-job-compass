@@ -1,0 +1,219 @@
+[
+  {
+    "university": "Hanyang University ERICA",
+    "program": "MS/PhD in Civil and Environmental Engineering - Water Resources and Water Disaster Reduction",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Tae-Woong Kim",
+        "title": "Professor, Civil and Environmental Engineering",
+        "lab_or_group": "Water Resources Engineering",
+        "profile_urls": [
+          "https://ericacivil.hanyang.ac.kr/en/-41"
+        ],
+        "profile_sources": [
+          {
+            "url": "https://ericacivil.hanyang.ac.kr/en/-41",
+            "source_type": "official_faculty_profile",
+            "label": "Hanyang ERICA official faculty profile"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      }
+    ]
+  },
+  {
+    "university": "University of Seoul",
+    "program": "MS/PhD in Geoinformatics",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Chulmin Jun",
+        "title": "Professor, Geoinformatics",
+        "lab_or_group": "Spatial database, GIS and spatial analysis",
+        "profile_urls": [
+          "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
+          "https://pure.uos.ac.kr/en/organisations/department-of-geoinformatics/"
+        ],
+        "profile_sources": [
+          {
+            "url": "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
+            "source_type": "official_faculty_directory",
+            "label": "University of Seoul official faculty directory"
+          },
+          {
+            "url": "https://pure.uos.ac.kr/en/organisations/department-of-geoinformatics/",
+            "source_type": "official_research_profile",
+            "label": "University of Seoul official research portal"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      },
+      {
+        "name": "Impyeong Lee",
+        "title": "Professor, Geoinformatics",
+        "lab_or_group": "Photogrammetry, computer vision and unmanned vehicles",
+        "profile_urls": [
+          "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08"
+        ],
+        "profile_sources": [
+          {
+            "url": "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
+            "source_type": "official_faculty_directory",
+            "label": "University of Seoul official faculty directory"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      },
+      {
+        "name": "Jiyeong Lee",
+        "title": "Professor, Geoinformatics",
+        "lab_or_group": "3D GIS and spatial data models",
+        "profile_urls": [
+          "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08"
+        ],
+        "profile_sources": [
+          {
+            "url": "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
+            "source_type": "official_faculty_directory",
+            "label": "University of Seoul official faculty directory"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      },
+      {
+        "name": "Hyung-Sup Jung",
+        "title": "Professor, Geoinformatics",
+        "lab_or_group": "Remote sensing",
+        "profile_urls": [
+          "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
+          "https://pure.uos.ac.kr/en/organisations/department-of-geoinformatics/"
+        ],
+        "profile_sources": [
+          {
+            "url": "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
+            "source_type": "official_faculty_directory",
+            "label": "University of Seoul official faculty directory"
+          },
+          {
+            "url": "https://pure.uos.ac.kr/en/organisations/department-of-geoinformatics/",
+            "source_type": "official_research_profile",
+            "label": "University of Seoul official research portal"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      }
+    ]
+  },
+  {
+    "university": "Pusan National University",
+    "program": "MS/PhD in Civil and Environmental Engineering - Water Engineering",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Hyunsuk Shin",
+        "title": "Professor, Civil Engineering",
+        "lab_or_group": "Water resources, river engineering, disasters and LID/GI",
+        "profile_urls": [
+          "https://his.pusan.ac.kr/pnuProfl/civileng/1660/16732/artclView.do"
+        ],
+        "profile_sources": [
+          {
+            "url": "https://his.pusan.ac.kr/pnuProfl/civileng/1660/16732/artclView.do",
+            "source_type": "official_faculty_profile",
+            "label": "Pusan National University official faculty profile"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      },
+      {
+        "name": "Minseok Kim",
+        "title": "Assistant Professor, Civil Engineering",
+        "lab_or_group": "Hydrology, numerical modelling and machine learning for catchment data",
+        "profile_urls": [
+          "https://his.pusan.ac.kr/pnuProfl/civileng/1694/24572/artclView.do"
+        ],
+        "profile_sources": [
+          {
+            "url": "https://his.pusan.ac.kr/pnuProfl/civileng/1694/24572/artclView.do",
+            "source_type": "official_faculty_profile",
+            "label": "Pusan National University official faculty profile"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      }
+    ]
+  },
+  {
+    "university": "Chonnam National University",
+    "program": "MS/PhD in Civil Engineering - Hydraulics and Water Resources",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Yong-Wook Ryu",
+        "title": "Associate Professor, Civil Engineering",
+        "lab_or_group": "Hydraulic Engineering",
+        "profile_urls": [
+          "https://cloudweb.jnu.ac.kr/eng_eng/15198/subview.do"
+        ],
+        "profile_sources": [
+          {
+            "url": "https://cloudweb.jnu.ac.kr/eng_eng/15198/subview.do",
+            "source_type": "official_faculty_directory",
+            "label": "Chonnam National University official faculty directory"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      }
+    ]
+  },
+  {
+    "university": "Sejong University",
+    "program": "MS/PhD in Civil and Environmental Engineering",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Hyun-Han Kwon",
+        "title": "Professor, Civil and Environmental Engineering",
+        "lab_or_group": "Hydrology, climatology, data mining and risk",
+        "profile_urls": [
+          "https://home.sejong.ac.kr/~hkwon/1.html"
+        ],
+        "profile_sources": [
+          {
+            "url": "https://home.sejong.ac.kr/~hkwon/1.html",
+            "source_type": "official_faculty_profile",
+            "label": "Sejong University official faculty profile"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      },
+      {
+        "name": "Deg-Hyo Bae",
+        "title": "Professor, Civil and Environmental Engineering",
+        "lab_or_group": "Flood forecasting, radar and satellite hydrology, GIS water resources",
+        "profile_urls": [
+          "https://home.sejong.ac.kr/~dhbae/1.html"
+        ],
+        "profile_sources": [
+          {
+            "url": "https://home.sejong.ac.kr/~dhbae/1.html",
+            "source_type": "official_faculty_profile",
+            "label": "Sejong University official faculty profile"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      }
+    ]
+  }
+]

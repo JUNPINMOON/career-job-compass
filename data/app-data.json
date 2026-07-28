@@ -13846,13 +13846,94 @@
           "spatial data",
           "urban flood"
         ],
-        "faculty": [],
+        "faculty": [
+          {
+            "name": "Chulmin Jun",
+            "title": "Professor, Geoinformatics",
+            "labOrGroup": "Spatial database, GIS and spatial analysis",
+            "profileUrls": [
+              "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
+              "https://pure.uos.ac.kr/en/organisations/department-of-geoinformatics/"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "University of Seoul official faculty directory",
+                "url": "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08"
+              },
+              {
+                "sourceType": "official_research_profile",
+                "label": "University of Seoul official research portal",
+                "url": "https://pure.uos.ac.kr/en/organisations/department-of-geoinformatics/"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          },
+          {
+            "name": "Impyeong Lee",
+            "title": "Professor, Geoinformatics",
+            "labOrGroup": "Photogrammetry, computer vision and unmanned vehicles",
+            "profileUrls": [
+              "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "University of Seoul official faculty directory",
+                "url": "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          },
+          {
+            "name": "Jiyeong Lee",
+            "title": "Professor, Geoinformatics",
+            "labOrGroup": "3D GIS and spatial data models",
+            "profileUrls": [
+              "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "University of Seoul official faculty directory",
+                "url": "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          },
+          {
+            "name": "Hyung-Sup Jung",
+            "title": "Professor, Geoinformatics",
+            "labOrGroup": "Remote sensing",
+            "profileUrls": [
+              "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
+              "https://pure.uos.ac.kr/en/organisations/department-of-geoinformatics/"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "University of Seoul official faculty directory",
+                "url": "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08"
+              },
+              {
+                "sourceType": "official_research_profile",
+                "label": "University of Seoul official research portal",
+                "url": "https://pure.uos.ac.kr/en/organisations/department-of-geoinformatics/"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          }
+        ],
         "recentProjects": [],
         "graduateDestinations": [],
         "graduateOutcomeSources": [],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-10",
-        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
     {
@@ -14262,13 +14343,48 @@
           "Busan",
           "flood"
         ],
-        "faculty": [],
+        "faculty": [
+          {
+            "name": "Hyunsuk Shin",
+            "title": "Professor, Civil Engineering",
+            "labOrGroup": "Water resources, river engineering, disasters and LID/GI",
+            "profileUrls": [
+              "https://his.pusan.ac.kr/pnuProfl/civileng/1660/16732/artclView.do"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_profile",
+                "label": "Pusan National University official faculty profile",
+                "url": "https://his.pusan.ac.kr/pnuProfl/civileng/1660/16732/artclView.do"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          },
+          {
+            "name": "Minseok Kim",
+            "title": "Assistant Professor, Civil Engineering",
+            "labOrGroup": "Hydrology, numerical modelling and machine learning for catchment data",
+            "profileUrls": [
+              "https://his.pusan.ac.kr/pnuProfl/civileng/1694/24572/artclView.do"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_profile",
+                "label": "Pusan National University official faculty profile",
+                "url": "https://his.pusan.ac.kr/pnuProfl/civileng/1694/24572/artclView.do"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          }
+        ],
         "recentProjects": [],
         "graduateDestinations": [],
         "graduateOutcomeSources": [],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-10",
-        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
     {
@@ -14346,13 +14462,31 @@
           "optimization",
           "water disaster"
         ],
-        "faculty": [],
+        "faculty": [
+          {
+            "name": "Tae-Woong Kim",
+            "title": "Professor, Civil and Environmental Engineering",
+            "labOrGroup": "Water Resources Engineering",
+            "profileUrls": [
+              "https://ericacivil.hanyang.ac.kr/en/-41"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_profile",
+                "label": "Hanyang ERICA official faculty profile",
+                "url": "https://ericacivil.hanyang.ac.kr/en/-41"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          }
+        ],
         "recentProjects": [],
         "graduateDestinations": [],
         "graduateOutcomeSources": [],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-10",
-        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
     {
@@ -14590,13 +14724,31 @@
           "civil engineering",
           "flood"
         ],
-        "faculty": [],
+        "faculty": [
+          {
+            "name": "Yong-Wook Ryu",
+            "title": "Associate Professor, Civil Engineering",
+            "labOrGroup": "Hydraulic Engineering",
+            "profileUrls": [
+              "https://cloudweb.jnu.ac.kr/eng_eng/15198/subview.do"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "Chonnam National University official faculty directory",
+                "url": "https://cloudweb.jnu.ac.kr/eng_eng/15198/subview.do"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          }
+        ],
         "recentProjects": [],
         "graduateDestinations": [],
         "graduateOutcomeSources": [],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-10",
-        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
     {
@@ -15238,13 +15390,48 @@
           "water",
           "AI"
         ],
-        "faculty": [],
+        "faculty": [
+          {
+            "name": "Hyun-Han Kwon",
+            "title": "Professor, Civil and Environmental Engineering",
+            "labOrGroup": "Hydrology, climatology, data mining and risk",
+            "profileUrls": [
+              "https://home.sejong.ac.kr/~hkwon/1.html"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_profile",
+                "label": "Sejong University official faculty profile",
+                "url": "https://home.sejong.ac.kr/~hkwon/1.html"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          },
+          {
+            "name": "Deg-Hyo Bae",
+            "title": "Professor, Civil and Environmental Engineering",
+            "labOrGroup": "Flood forecasting, radar and satellite hydrology, GIS water resources",
+            "profileUrls": [
+              "https://home.sejong.ac.kr/~dhbae/1.html"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_profile",
+                "label": "Sejong University official faculty profile",
+                "url": "https://home.sejong.ac.kr/~dhbae/1.html"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          }
+        ],
         "recentProjects": [],
         "graduateDestinations": [],
         "graduateOutcomeSources": [],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-10",
-        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
     {
@@ -19985,5 +20172,15 @@
       ],
       "market": "overseas"
     }
-  ]
+  ],
+  "graduateEvidenceCoverage": {
+    "totalPrograms": 96,
+    "programsWithAnyEvidence": 46,
+    "programsWithFaculty": 46,
+    "programsWithRecentPapers": 34,
+    "programsWithFundedProjects": 29,
+    "programsWithGraduateDestinations": 26,
+    "programsWithTestimonials": 3,
+    "unresearchedPrograms": 50
+  }
 }

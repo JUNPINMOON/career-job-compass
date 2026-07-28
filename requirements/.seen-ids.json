@@ -89,6 +89,16 @@
     "first_seen": "2026-07-28T01:51:44+00:00",
     "title": "Graduate alumni testimonials remain separate from verified employment outcomes"
   },
+  "DATA-219": {
+    "assert_sha": "42f3f9ced694f37f",
+    "first_seen": "2026-07-28T02:27:46+00:00",
+    "title": "Graduate evidence refresh audits every canonical programme instead of a fixed expansion list"
+  },
+  "DATA-220": {
+    "assert_sha": "b1354d6eb33d159a",
+    "first_seen": "2026-07-28T02:36:57+00:00",
+    "title": "Release verification rejects stale or inconsistent graduate evidence coverage"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -118,6 +128,11 @@
     "assert_sha": "6e26a9302820063f",
     "first_seen": "2026-07-28T02:02:08+00:00",
     "title": "Mobile app shell cache advances with expanded graduate evidence"
+  },
+  "GOV-207": {
+    "assert_sha": "084e29f437a9594d",
+    "first_seen": "2026-07-28T02:34:48+00:00",
+    "title": "Mobile app shell cache advances with full graduate evidence coverage"
   },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",
@@ -243,5 +258,10 @@
     "assert_sha": "2e9d4cfc6205434a",
     "first_seen": "2026-07-28T01:51:44+00:00",
     "title": "Graduate outcome panels visibly distinguish alumni reviews from employment evidence"
+  },
+  "UX-224": {
+    "assert_sha": "20a3d1b165b4ec86",
+    "first_seen": "2026-07-28T02:27:46+00:00",
+    "title": "Graduate exploration shows evidence coverage so partial research cannot look complete"
   }
 }

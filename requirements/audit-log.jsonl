@@ -110,3 +110,13 @@
 {"at": "2026-07-28T02:02:08+00:00", "event": "check", "passed": 47, "failed": 1, "failing_ids": ["GOV-206"]}
 {"at": "2026-07-28T02:07:14+00:00", "event": "check", "passed": 47, "failed": 1, "failing_ids": ["GOV-205"]}
 {"at": "2026-07-28T02:07:47+00:00", "event": "check", "passed": 48, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T02:27:46+00:00", "event": "requirement_added", "id": "DATA-219", "title": "Graduate evidence refresh audits every canonical programme instead of a fixed expansion list"}
+{"at": "2026-07-28T02:27:46+00:00", "event": "requirement_added", "id": "UX-224", "title": "Graduate exploration shows evidence coverage so partial research cannot look complete"}
+{"at": "2026-07-28T02:27:46+00:00", "event": "check", "passed": 48, "failed": 2, "failing_ids": ["DATA-219", "UX-224"]}
+{"at": "2026-07-28T02:34:48+00:00", "event": "requirement_added", "id": "GOV-207", "title": "Mobile app shell cache advances with full graduate evidence coverage"}
+{"at": "2026-07-28T02:34:48+00:00", "event": "check", "passed": 50, "failed": 1, "failing_ids": ["GOV-207"]}
+{"at": "2026-07-28T02:36:07+00:00", "event": "check", "passed": 51, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T02:36:57+00:00", "event": "requirement_added", "id": "DATA-220", "title": "Release verification rejects stale or inconsistent graduate evidence coverage"}
+{"at": "2026-07-28T02:36:57+00:00", "event": "check", "passed": 51, "failed": 1, "failing_ids": ["DATA-220"]}
+{"at": "2026-07-28T02:38:01+00:00", "event": "check", "passed": 52, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T02:45:56+00:00", "event": "check", "passed": 52, "failed": 0, "failing_ids": []}
