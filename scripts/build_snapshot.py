@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -253,6 +254,42 @@ def _public_research(source: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _public_program_from_research(source: dict[str, Any]) -> dict[str, Any]:
+    """DATA-222: turn a canonical research discovery into an app programme."""
+    university = str(source.get("university", "")).strip()
+    program = str(source.get("program", "")).strip()
+    digest = hashlib.sha256(f"{university}\0{program}".encode("utf-8")).hexdigest()[:12]
+    readiness, label, reason = _application_readiness(source)
+    country = str(source.get("country", "")).strip()
+    return {
+        "id": f"program-{digest}",
+        "rank": source.get("rank"),
+        "university": university,
+        "program": program,
+        "country": country,
+        "market": "domestic" if country == "South Korea" else "overseas",
+        "degree": str(source.get("degree", "")).strip(),
+        "decision": str(source.get("decision", "Research")).strip(),
+        "score": source.get("score"),
+        "deadline": str(source.get("application_deadline", "")).strip(),
+        "intake": str(source.get("intake", "")).strip(),
+        "tuition": str(source.get("tuition_annual", "")).strip(),
+        "funding": str(source.get("funding_model", "")).strip(),
+        "verification": str(source.get("official_verification_status", "")).strip(),
+        "verifiedAt": _verified_date(source),
+        "officialUrl": _public_url(source.get("url")),
+        "sources": [
+            url
+            for url in (_public_url(item) for item in source.get("source_urls", []))
+            if url
+        ],
+        "applicationStatus": readiness,
+        "applicationStatusLabel": label,
+        "applicationStatusReason": reason,
+        "publicResearch": _public_research(source),
+    }
+
+
 def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path, research_path: Path) -> str:
     """Refresh compact programme records from the lightweight current shortlist."""
     shortlist = _read_json(shortlist_path)
@@ -322,6 +359,10 @@ def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path, resear
             "evidenceStatus": "공개 연구자료 추가 확인 필요",
         }
         refreshed.append(item)
+    existing_keys = {_key(item) for item in refreshed}
+    new_research_keys = sorted(set(research_by_key) - existing_keys)
+    for key in new_research_keys:
+        refreshed.append(_public_program_from_research(research_by_key[key]))
     payload["programs"] = sorted(
         refreshed,
         key=lambda item: (item.get("rank") is None, item.get("rank") or 10_000, str(item.get("university", ""))),

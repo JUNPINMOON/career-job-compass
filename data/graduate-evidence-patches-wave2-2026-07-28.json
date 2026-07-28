@@ -1,0 +1,227 @@
+[
+  {
+    "university": "University of Arizona",
+    "program": "PhD in Hydrology and Water Resources",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Laura Condon",
+        "title": "Professor, Hydrology and Atmospheric Sciences",
+        "lab_or_group": "Hydrology and Atmospheric Sciences",
+        "profile_urls": ["https://has.arizona.edu/people/faculty"],
+        "profile_sources": [
+          {
+            "source_type": "official_faculty_directory",
+            "label": "University of Arizona HAS faculty directory",
+            "url": "https://has.arizona.edu/people/faculty"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      },
+      {
+        "name": "Bo Guo",
+        "title": "Associate Professor, Hydrology and Atmospheric Sciences",
+        "lab_or_group": "Subsurface hydrology and porous-media transport",
+        "profile_urls": [
+          "https://has.arizona.edu/people/faculty",
+          "https://profiles.arizona.edu/person/boguo"
+        ],
+        "profile_sources": [
+          {
+            "source_type": "official_faculty_profile",
+            "label": "University of Arizona faculty profile",
+            "url": "https://profiles.arizona.edu/person/boguo"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      }
+    ],
+    "source_urls": [
+      "https://has.arizona.edu/doctor-philosophy-hydrology-and-water-resources",
+      "https://has.arizona.edu/people/faculty",
+      "https://profiles.arizona.edu/person/boguo"
+    ]
+  },
+  {
+    "university": "University of California, Davis",
+    "program": "MS/PhD in Hydrologic Sciences",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Thomas Harter",
+        "title": "Distinguished Professor and Cooperative Extension Specialist",
+        "lab_or_group": "Groundwater hydrology and agricultural water quality",
+        "profile_urls": ["https://www.hsgg.ucdavis.edu/faculty"],
+        "profile_sources": [
+          {
+            "source_type": "official_faculty_directory",
+            "label": "UC Davis Hydrologic Sciences faculty directory",
+            "url": "https://www.hsgg.ucdavis.edu/faculty"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      },
+      {
+        "name": "Samuel Sandoval Solis",
+        "title": "Professor and Cooperative Extension Specialist in Water Resources",
+        "lab_or_group": "Integrated water resources management",
+        "profile_urls": ["https://www.hsgg.ucdavis.edu/faculty"],
+        "profile_sources": [
+          {
+            "source_type": "official_faculty_directory",
+            "label": "UC Davis Hydrologic Sciences faculty directory",
+            "url": "https://www.hsgg.ucdavis.edu/faculty"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      }
+    ],
+    "graduate_destinations": [
+      {
+        "year_range": "Alumni page; exact cohort years not stated",
+        "destination": "Research institutions, private industry, nonprofit organizations and government",
+        "role": "Hydrologic-sciences and related careers",
+        "url": "https://www.hsgg.ucdavis.edu/alumni",
+        "sources": [
+          {
+            "source_type": "official_alumni_outcomes",
+            "label": "UC Davis Hydrologic Sciences alumni page",
+            "url": "https://www.hsgg.ucdavis.edu/alumni"
+          }
+        ]
+      }
+    ],
+    "source_urls": [
+      "https://www.hsgg.ucdavis.edu/",
+      "https://www.hsgg.ucdavis.edu/faculty",
+      "https://www.hsgg.ucdavis.edu/alumni"
+    ]
+  },
+  {
+    "university": "University of Washington",
+    "program": "MS/PhD in Civil and Environmental Engineering - Hydrology and Hydrodynamics",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Jessica D. Lundquist",
+        "title": "Professor, Civil and Environmental Engineering",
+        "lab_or_group": "Mountain Hydrology Research Group",
+        "profile_urls": [
+          "https://www.ce.washington.edu/facultyfinder/jessica-d-lundquist",
+          "https://www.ce.washington.edu/research/labs"
+        ],
+        "profile_sources": [
+          {
+            "source_type": "official_faculty_profile",
+            "label": "University of Washington faculty profile",
+            "url": "https://www.ce.washington.edu/facultyfinder/jessica-d-lundquist"
+          },
+          {
+            "source_type": "official_research_lab",
+            "label": "University of Washington research labs",
+            "url": "https://www.ce.washington.edu/research/labs"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      }
+    ],
+    "source_urls": [
+      "https://www.ce.washington.edu/phd",
+      "https://www.ce.washington.edu/facultyfinder/jessica-d-lundquist",
+      "https://www.ce.washington.edu/research/labs"
+    ]
+  },
+  {
+    "university": "Oregon State University",
+    "program": "MS/PhD in Water Resources Engineering",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Meghna Babbar-Sebens",
+        "title": "Professor; Evans Family Professor for Clean Water",
+        "lab_or_group": "Water resources systems analysis and decision support",
+        "profile_urls": [
+          "https://engineering.oregonstate.edu/CCE/research/water-resources-research",
+          "https://graduate.oregonstate.edu/water-resources-graduate-program/water-resources-faculty"
+        ],
+        "profile_sources": [
+          {
+            "source_type": "official_faculty_directory",
+            "label": "Oregon State water resources research faculty",
+            "url": "https://engineering.oregonstate.edu/CCE/research/water-resources-research"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      },
+      {
+        "name": "Xue Jin",
+        "title": "Assistant Professor",
+        "lab_or_group": "Water resources research",
+        "profile_urls": ["https://engineering.oregonstate.edu/CCE/research/water-resources-research"],
+        "profile_sources": [
+          {
+            "source_type": "official_faculty_directory",
+            "label": "Oregon State water resources research faculty",
+            "url": "https://engineering.oregonstate.edu/CCE/research/water-resources-research"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      }
+    ],
+    "source_urls": [
+      "https://graduate.oregonstate.edu/water-resources-graduate-program",
+      "https://engineering.oregonstate.edu/CCE/research/water-resources-research",
+      "https://graduate.oregonstate.edu/water-resources-graduate-program/water-resources-faculty"
+    ]
+  },
+  {
+    "university": "Colorado State University",
+    "program": "MS/PhD in Civil and Environmental Engineering - Hydrologic Science / Water Resources Planning",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Jeffrey D. Niemann",
+        "title": "Faoro Professor of Water Resources; coordinator for Hydrologic Science and Engineering and Water and International Development",
+        "lab_or_group": "Landscape Hydrology Research Group",
+        "profile_urls": ["https://www.engr.colostate.edu/ce/people/jeffrey-niemann/"],
+        "profile_sources": [
+          {
+            "source_type": "official_faculty_profile",
+            "label": "Colorado State faculty profile",
+            "url": "https://www.engr.colostate.edu/ce/people/jeffrey-niemann/"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      },
+      {
+        "name": "Ryan Morrison",
+        "title": "Associate Professor, Civil and Environmental Engineering",
+        "lab_or_group": "River-floodplain systems and hydrogeomorphology",
+        "profile_urls": ["https://www.engr.colostate.edu/ce/people/ryan-morrison/"],
+        "profile_sources": [
+          {
+            "source_type": "official_faculty_profile",
+            "label": "Colorado State faculty profile",
+            "url": "https://www.engr.colostate.edu/ce/people/ryan-morrison/"
+          }
+        ],
+        "recent_papers": [],
+        "recent_projects": []
+      }
+    ],
+    "source_urls": [
+      "https://www.engr.colostate.edu/ce/graduate/hydrologic-science-and-engineering/",
+      "https://www.engr.colostate.edu/ce/research/water/",
+      "https://www.engr.colostate.edu/ce/people/jeffrey-niemann/",
+      "https://www.engr.colostate.edu/ce/people/ryan-morrison/"
+    ]
+  }
+]

@@ -99,6 +99,16 @@
     "first_seen": "2026-07-28T02:36:57+00:00",
     "title": "Release verification rejects stale or inconsistent graduate evidence coverage"
   },
+  "DATA-221": {
+    "assert_sha": "520ffaa2270f2b0b",
+    "first_seen": "2026-07-28T03:01:56+00:00",
+    "title": "Graduate research refresh can add source-backed new programmes without fixed counts"
+  },
+  "DATA-222": {
+    "assert_sha": "f246e91a812d36e2",
+    "first_seen": "2026-07-28T03:05:39+00:00",
+    "title": "New canonical graduate programmes flow into the public explorer automatically"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -133,6 +143,11 @@
     "assert_sha": "084e29f437a9594d",
     "first_seen": "2026-07-28T02:34:48+00:00",
     "title": "Mobile app shell cache advances with full graduate evidence coverage"
+  },
+  "GOV-208": {
+    "assert_sha": "06b0d1a24a94e45a",
+    "first_seen": "2026-07-28T03:05:39+00:00",
+    "title": "Mobile clients invalidate the graduate discovery release cache"
   },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",

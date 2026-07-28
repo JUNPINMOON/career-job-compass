@@ -378,6 +378,27 @@
       "title": "Release verification rejects stale or inconsistent graduate evidence coverage",
       "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["DATA-220", "graduateEvidenceCoverage", "programsWithFaculty", "unresearchedPrograms"]},
       "note": "Coverage shown on mobile is a generated claim. The release check must recompute programme-level evidence counts from the public snapshot and reject a mismatched denominator or stale aggregate."
+    },
+    {
+      "id": "DATA-221",
+      "status": "active",
+      "title": "Graduate research refresh can add source-backed new programmes without fixed counts",
+      "assert": {"type": "text_present", "path": "scripts/expand_graduate_evidence.py", "needles": ["DATA-221", "--new-programs", "validate_new_program", "added_programs"]},
+      "note": "Measured before implementation on 2026-07-28: the refresh can merge evidence only into existing keys and raises Evidence target not found for every newly discovered university or programme. New records must carry an official programme URL plus at least one official faculty source, reject duplicates, and report the actual variable count added."
+    },
+    {
+      "id": "DATA-222",
+      "status": "active",
+      "title": "New canonical graduate programmes flow into the public explorer automatically",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-222", "_public_program_from_research", "new_research_keys", "publicResearch"]},
+      "note": "Measured before implementation on 2026-07-28: _apply_latest_programs loops only over the existing public programme array. A valid research-only record is silently omitted from the generated app, recreating the produced-file versus consumed-file break the user warned about."
+    },
+    {
+      "id": "GOV-208",
+      "status": "active",
+      "title": "Mobile clients invalidate the graduate discovery release cache",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v28-grad-discovery", "career-compass-v27-grad-coverage"]},
+      "note": "The graduate catalogue and faculty evidence are app-shell data. The service worker cache name must change so an iPhone does not keep the previous 96-program snapshot after deployment."
     }
   ]
 }

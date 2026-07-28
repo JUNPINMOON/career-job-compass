@@ -120,3 +120,9 @@
 {"at": "2026-07-28T02:36:57+00:00", "event": "check", "passed": 51, "failed": 1, "failing_ids": ["DATA-220"]}
 {"at": "2026-07-28T02:38:01+00:00", "event": "check", "passed": 52, "failed": 0, "failing_ids": []}
 {"at": "2026-07-28T02:45:56+00:00", "event": "check", "passed": 52, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T03:01:56+00:00", "event": "requirement_added", "id": "DATA-221", "title": "Graduate research refresh can add source-backed new programmes without fixed counts"}
+{"at": "2026-07-28T03:01:56+00:00", "event": "check", "passed": 52, "failed": 1, "failing_ids": ["DATA-221"]}
+{"at": "2026-07-28T03:05:39+00:00", "event": "requirement_added", "id": "DATA-222", "title": "New canonical graduate programmes flow into the public explorer automatically"}
+{"at": "2026-07-28T03:05:39+00:00", "event": "requirement_added", "id": "GOV-208", "title": "Mobile clients invalidate the graduate discovery release cache"}
+{"at": "2026-07-28T03:05:39+00:00", "event": "check", "passed": 52, "failed": 3, "failing_ids": ["DATA-221", "DATA-222", "GOV-208"]}
+{"at": "2026-07-28T03:10:27+00:00", "event": "check", "passed": 55, "failed": 0, "failing_ids": []}

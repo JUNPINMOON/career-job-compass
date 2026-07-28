@@ -22,7 +22,7 @@
   },
   "stats": {
     "actionCandidates": 0,
-    "programs": 96,
+    "programs": 99,
     "funding": 186,
     "queueCounts": {
       "verify": 0,
@@ -7303,13 +7303,49 @@
           "remote sensing",
           "machine learning"
         ],
-        "faculty": [],
+        "faculty": [
+          {
+            "name": "Laura Condon",
+            "title": "Professor, Hydrology and Atmospheric Sciences",
+            "labOrGroup": "Hydrology and Atmospheric Sciences",
+            "profileUrls": [
+              "https://has.arizona.edu/people/faculty"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "University of Arizona HAS faculty directory",
+                "url": "https://has.arizona.edu/people/faculty"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          },
+          {
+            "name": "Bo Guo",
+            "title": "Associate Professor, Hydrology and Atmospheric Sciences",
+            "labOrGroup": "Subsurface hydrology and porous-media transport",
+            "profileUrls": [
+              "https://has.arizona.edu/people/faculty",
+              "https://profiles.arizona.edu/person/boguo"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_profile",
+                "label": "University of Arizona faculty profile",
+                "url": "https://profiles.arizona.edu/person/boguo"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          }
+        ],
         "recentProjects": [],
         "graduateDestinations": [],
         "graduateOutcomeSources": [],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-10",
-        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
     {
@@ -13192,13 +13228,48 @@
           "water systems",
           "flood control"
         ],
-        "faculty": [],
+        "faculty": [
+          {
+            "name": "Jeffrey D. Niemann",
+            "title": "Faoro Professor of Water Resources; coordinator for Hydrologic Science and Engineering and Water and International Development",
+            "labOrGroup": "Landscape Hydrology Research Group",
+            "profileUrls": [
+              "https://www.engr.colostate.edu/ce/people/jeffrey-niemann/"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_profile",
+                "label": "Colorado State faculty profile",
+                "url": "https://www.engr.colostate.edu/ce/people/jeffrey-niemann/"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          },
+          {
+            "name": "Ryan Morrison",
+            "title": "Associate Professor, Civil and Environmental Engineering",
+            "labOrGroup": "River-floodplain systems and hydrogeomorphology",
+            "profileUrls": [
+              "https://www.engr.colostate.edu/ce/people/ryan-morrison/"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_profile",
+                "label": "Colorado State faculty profile",
+                "url": "https://www.engr.colostate.edu/ce/people/ryan-morrison/"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          }
+        ],
         "recentProjects": [],
         "graduateDestinations": [],
         "graduateOutcomeSources": [],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-10",
-        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
     {
@@ -13233,13 +13304,37 @@
           "satellite hydrology",
           "hydrodynamics"
         ],
-        "faculty": [],
+        "faculty": [
+          {
+            "name": "Jessica D. Lundquist",
+            "title": "Professor, Civil and Environmental Engineering",
+            "labOrGroup": "Mountain Hydrology Research Group",
+            "profileUrls": [
+              "https://www.ce.washington.edu/facultyfinder/jessica-d-lundquist",
+              "https://www.ce.washington.edu/research/labs"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_profile",
+                "label": "University of Washington faculty profile",
+                "url": "https://www.ce.washington.edu/facultyfinder/jessica-d-lundquist"
+              },
+              {
+                "sourceType": "official_research_lab",
+                "label": "University of Washington research labs",
+                "url": "https://www.ce.washington.edu/research/labs"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          }
+        ],
         "recentProjects": [],
         "graduateDestinations": [],
         "graduateOutcomeSources": [],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-10",
-        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
     {
@@ -13969,13 +14064,68 @@
           "watersheds",
           "remote sensing"
         ],
-        "faculty": [],
+        "faculty": [
+          {
+            "name": "Thomas Harter",
+            "title": "Distinguished Professor and Cooperative Extension Specialist",
+            "labOrGroup": "Groundwater hydrology and agricultural water quality",
+            "profileUrls": [
+              "https://www.hsgg.ucdavis.edu/faculty"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "UC Davis Hydrologic Sciences faculty directory",
+                "url": "https://www.hsgg.ucdavis.edu/faculty"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          },
+          {
+            "name": "Samuel Sandoval Solis",
+            "title": "Professor and Cooperative Extension Specialist in Water Resources",
+            "labOrGroup": "Integrated water resources management",
+            "profileUrls": [
+              "https://www.hsgg.ucdavis.edu/faculty"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "UC Davis Hydrologic Sciences faculty directory",
+                "url": "https://www.hsgg.ucdavis.edu/faculty"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          }
+        ],
         "recentProjects": [],
-        "graduateDestinations": [],
-        "graduateOutcomeSources": [],
+        "graduateDestinations": [
+          {
+            "period": "Alumni page; exact cohort years not stated",
+            "destination": "Research institutions, private industry, nonprofit organizations and government",
+            "role": "Hydrologic-sciences and related careers",
+            "url": "https://www.hsgg.ucdavis.edu/alumni",
+            "sources": [
+              {
+                "sourceType": "official_alumni_outcomes",
+                "label": "UC Davis Hydrologic Sciences alumni page",
+                "url": "https://www.hsgg.ucdavis.edu/alumni"
+              }
+            ]
+          }
+        ],
+        "graduateOutcomeSources": [
+          {
+            "sourceType": "official_alumni_outcomes",
+            "label": "UC Davis Hydrologic Sciences alumni page",
+            "url": "https://www.hsgg.ucdavis.edu/alumni"
+          }
+        ],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-10",
-        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
     {
@@ -14644,13 +14794,49 @@
           "watersheds",
           "climate"
         ],
-        "faculty": [],
+        "faculty": [
+          {
+            "name": "Meghna Babbar-Sebens",
+            "title": "Professor; Evans Family Professor for Clean Water",
+            "labOrGroup": "Water resources systems analysis and decision support",
+            "profileUrls": [
+              "https://engineering.oregonstate.edu/CCE/research/water-resources-research",
+              "https://graduate.oregonstate.edu/water-resources-graduate-program/water-resources-faculty"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "Oregon State water resources research faculty",
+                "url": "https://engineering.oregonstate.edu/CCE/research/water-resources-research"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          },
+          {
+            "name": "Xue Jin",
+            "title": "Assistant Professor",
+            "labOrGroup": "Water resources research",
+            "profileUrls": [
+              "https://engineering.oregonstate.edu/CCE/research/water-resources-research"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "Oregon State water resources research faculty",
+                "url": "https://engineering.oregonstate.edu/CCE/research/water-resources-research"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          }
+        ],
         "recentProjects": [],
         "graduateDestinations": [],
         "graduateOutcomeSources": [],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-10",
-        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
     {
@@ -15769,6 +15955,321 @@
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
       "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+    },
+    {
+      "id": "program-73dbccd3e166",
+      "rank": null,
+      "university": "Imperial College London",
+      "program": "MSc Hydrology and Water Resources Management",
+      "country": "United Kingdom",
+      "market": "overseas",
+      "degree": "MSc",
+      "decision": "Research",
+      "score": null,
+      "deadline": "2026 entry Round 6 closes 20 August 2026; visa applicants were advised to apply by 18 June 2026.",
+      "intake": "September 2026",
+      "tuition": "2026 entry: Home £19,400; Overseas £45,000.",
+      "funding": "Department MSc partial tuition scholarship listed; full Home-fee Aziz Foundation scholarship has separate eligibility.",
+      "verification": "verified",
+      "verifiedAt": "2026-07-28",
+      "officialUrl": "https://www.imperial.ac.uk/study/courses/postgraduate-taught/hydrology/",
+      "sources": [
+        "https://www.imperial.ac.uk/study/courses/postgraduate-taught/hydrology/",
+        "https://www.imperial.ac.uk/environmental-and-water-resource-engineering/people/",
+        "https://profiles.imperial.ac.uk/w.buytaert"
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
+      "publicResearch": {
+        "keywords": [
+          "hydrology",
+          "water resources management",
+          "flood and drought risk",
+          "hydrologic modelling",
+          "groundwater",
+          "climate adaptation"
+        ],
+        "faculty": [
+          {
+            "name": "Wouter Buytaert",
+            "title": "Professor in Hydrology and Water Resources; course director",
+            "labOrGroup": "Hydrology Research Group",
+            "profileUrls": [
+              "https://profiles.imperial.ac.uk/w.buytaert",
+              "https://www.imperial.ac.uk/environmental-and-water-resource-engineering/research/hydrology/"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_profile",
+                "label": "Imperial faculty profile",
+                "url": "https://profiles.imperial.ac.uk/w.buytaert"
+              },
+              {
+                "sourceType": "official_research_group",
+                "label": "Imperial Hydrology Research Group",
+                "url": "https://www.imperial.ac.uk/environmental-and-water-resource-engineering/research/hydrology/"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": [
+              {
+                "title": "RAHU, Deplete, LandslideEVO, SMARTWATER and CLARITY project portfolio",
+                "funder": "UKRI research councils and European Commission among portfolio funders",
+                "period": "Current examples listed on profile, verified 2026",
+                "amount": "",
+                "url": "https://profiles.imperial.ac.uk/w.buytaert"
+              }
+            ]
+          },
+          {
+            "name": "Adrian Butler",
+            "title": "Professor of Subsurface Hydrology; Director of MSc in Hydrology",
+            "labOrGroup": "Hydrology Research Group",
+            "profileUrls": [
+              "https://www.imperial.ac.uk/environmental-and-water-resource-engineering/people/",
+              "https://www.imperial.ac.uk/environmental-and-water-resource-engineering/research/hydrology/"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "Imperial Environmental and Water Resource Engineering people",
+                "url": "https://www.imperial.ac.uk/environmental-and-water-resource-engineering/people/"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": []
+          }
+        ],
+        "recentProjects": [
+          {
+            "title": "RAHU, Deplete, LandslideEVO, SMARTWATER and CLARITY project portfolio",
+            "funder": "UKRI research councils and European Commission among portfolio funders",
+            "period": "Current examples listed on profile, verified 2026",
+            "amount": "",
+            "url": "https://profiles.imperial.ac.uk/w.buytaert"
+          }
+        ],
+        "graduateDestinations": [
+          {
+            "period": "Current course page; exact cohort years not stated",
+            "destination": "Academia, industry, consultancy and government",
+            "role": "Hydrology, hydrogeology, physics, statistics, systems engineering and related roles",
+            "url": "https://www.imperial.ac.uk/study/courses/postgraduate-taught/hydrology/",
+            "sources": [
+              {
+                "sourceType": "official_programme_outcomes",
+                "label": "Imperial course careers section",
+                "url": "https://www.imperial.ac.uk/study/courses/postgraduate-taught/hydrology/"
+              }
+            ]
+          }
+        ],
+        "graduateOutcomeSources": [
+          {
+            "sourceType": "official_programme_outcomes",
+            "label": "Imperial course careers section",
+            "url": "https://www.imperial.ac.uk/study/courses/postgraduate-taught/hydrology/"
+          }
+        ],
+        "graduateTestimonials": [],
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
+      }
+    },
+    {
+      "id": "program-e937f441b668",
+      "rank": null,
+      "university": "University of Leeds",
+      "program": "MSc (Eng) Water, Sanitation and Health Engineering",
+      "country": "United Kingdom",
+      "market": "overseas",
+      "degree": "MSc (Eng)",
+      "decision": "Research",
+      "score": null,
+      "deadline": "Confirm the next international application deadline on the official course page before applying.",
+      "intake": "September; next available cycle must be confirmed",
+      "tuition": "Recheck the current international fee on the official course page.",
+      "funding": "Scholarships and project funding require separate current verification.",
+      "verification": "verified",
+      "verifiedAt": "2026-07-28",
+      "officialUrl": "https://courses.leeds.ac.uk/g062/water-sanitation-and-health-engineering-msc-eng-",
+      "sources": [
+        "https://courses.leeds.ac.uk/g062/water-sanitation-and-health-engineering-msc-eng-",
+        "https://eps.leeds.ac.uk/civil-engineering/staff/8639/dr-paul-hutchings",
+        "https://eps.leeds.ac.uk/dir-record/research-projects/4729/wash-systems-for-health-2023-2028"
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
+      "publicResearch": {
+        "keywords": [
+          "WASH",
+          "water supply",
+          "sanitation",
+          "public health",
+          "climate resilience",
+          "global development"
+        ],
+        "faculty": [
+          {
+            "name": "Paul Hutchings",
+            "title": "Associate Professor in Water, Sanitation & Health",
+            "labOrGroup": "Water, Public Health and Environmental Engineering; water@leeds",
+            "profileUrls": [
+              "https://eps.leeds.ac.uk/civil-engineering/staff/8639/dr-paul-hutchings"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_profile",
+                "label": "University of Leeds faculty profile",
+                "url": "https://eps.leeds.ac.uk/civil-engineering/staff/8639/dr-paul-hutchings"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": [
+              {
+                "title": "WASH Systems for Health",
+                "funder": "UK Foreign, Commonwealth & Development Office (FCDO)",
+                "period": "2023-2028",
+                "amount": "£18.5 million programme value",
+                "url": "https://eps.leeds.ac.uk/dir-record/research-projects/4729/wash-systems-for-health-2023-2028"
+              },
+              {
+                "title": "RESHAPE: RESilience in HeAlth Post-Extreme weather events",
+                "funder": "Amount and funder not stated on the cited faculty profile",
+                "period": "Current project listed on profile, verified 2026",
+                "amount": "",
+                "url": "https://eps.leeds.ac.uk/civil-engineering/staff/8639/dr-paul-hutchings"
+              }
+            ]
+          }
+        ],
+        "recentProjects": [
+          {
+            "title": "WASH Systems for Health",
+            "funder": "UK Foreign, Commonwealth & Development Office (FCDO)",
+            "period": "2023-2028",
+            "amount": "£18.5 million programme value",
+            "url": "https://eps.leeds.ac.uk/dir-record/research-projects/4729/wash-systems-for-health-2023-2028"
+          },
+          {
+            "title": "RESHAPE: RESilience in HeAlth Post-Extreme weather events",
+            "funder": "Amount and funder not stated on the cited faculty profile",
+            "period": "Current project listed on profile, verified 2026",
+            "amount": "",
+            "url": "https://eps.leeds.ac.uk/civil-engineering/staff/8639/dr-paul-hutchings"
+          }
+        ],
+        "graduateDestinations": [],
+        "graduateOutcomeSources": [],
+        "graduateTestimonials": [],
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
+      }
+    },
+    {
+      "id": "program-193f95d0e3a4",
+      "rank": null,
+      "university": "University of Oxford",
+      "program": "MSc in Water Science, Policy and Management",
+      "country": "United Kingdom",
+      "market": "overseas",
+      "degree": "MSc",
+      "decision": "Research",
+      "score": null,
+      "deadline": "Closed for 2026-27 entry; register on the official page for 2027-28 opening notification.",
+      "intake": "2027-28 next available cycle; confirm when applications open",
+      "tuition": "2026-27 reference: Home £26,820; Overseas £36,170. Recheck for 2027-28.",
+      "funding": "Oxford scholarship consideration applies to eligible applicants who meet the course's January deadline; awards are not guaranteed.",
+      "verification": "verified",
+      "verifiedAt": "2026-07-28",
+      "officialUrl": "https://www.ox.ac.uk/admissions/graduate/courses/msc-water-science-policy-and-management",
+      "sources": [
+        "https://www.ox.ac.uk/admissions/graduate/courses/msc-water-science-policy-and-management",
+        "https://www.geog.ox.ac.uk/people/index.html?page=2",
+        "https://www.geog.ox.ac.uk/news/water-diaries-new-book-highlights-drivers-and-inequalities-global-water-crisis"
+      ],
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
+      "publicResearch": {
+        "keywords": [
+          "water policy",
+          "hydrology",
+          "water governance",
+          "climate",
+          "water security",
+          "sustainable development"
+        ],
+        "faculty": [
+          {
+            "name": "Rob Hope",
+            "title": "Professor of Water Policy; Director, Water Security Initiative",
+            "labOrGroup": "Water Security Initiative",
+            "profileUrls": [
+              "https://www.geog.ox.ac.uk/people/index.html?page=2",
+              "https://www.geog.ox.ac.uk/news/water-diaries-new-book-highlights-drivers-and-inequalities-global-water-crisis"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_directory",
+                "label": "Oxford School of Geography people directory",
+                "url": "https://www.geog.ox.ac.uk/people/index.html?page=2"
+              },
+              {
+                "sourceType": "official_university_research_news",
+                "label": "Oxford Water Diaries research profile",
+                "url": "https://www.geog.ox.ac.uk/news/water-diaries-new-book-highlights-drivers-and-inequalities-global-water-crisis"
+              }
+            ],
+            "recentPapers": [],
+            "recentProjects": [
+              {
+                "title": "The Water Diaries: longitudinal water-security research in Bangladesh and Kenya",
+                "funder": "Amount and funder not stated on the cited Oxford page",
+                "period": "2024",
+                "amount": "",
+                "url": "https://www.geog.ox.ac.uk/news/water-diaries-new-book-highlights-drivers-and-inequalities-global-water-crisis"
+              }
+            ]
+          }
+        ],
+        "recentProjects": [
+          {
+            "title": "The Water Diaries: longitudinal water-security research in Bangladesh and Kenya",
+            "funder": "Amount and funder not stated on the cited Oxford page",
+            "period": "2024",
+            "amount": "",
+            "url": "https://www.geog.ox.ac.uk/news/water-diaries-new-book-highlights-drivers-and-inequalities-global-water-crisis"
+          }
+        ],
+        "graduateDestinations": [
+          {
+            "period": "Past graduates; exact years not stated",
+            "destination": "Government, consulting, NGOs and international development agencies including DEFRA, Arup, Mott MacDonald, WWF, World Bank and UNICEF",
+            "role": "Water policy, management and related roles; some graduates proceed to DPhil study",
+            "url": "https://www.ox.ac.uk/admissions/graduate/courses/msc-water-science-policy-and-management",
+            "sources": [
+              {
+                "sourceType": "official_programme_outcomes",
+                "label": "Oxford course graduate destinations",
+                "url": "https://www.ox.ac.uk/admissions/graduate/courses/msc-water-science-policy-and-management"
+              }
+            ]
+          }
+        ],
+        "graduateOutcomeSources": [
+          {
+            "sourceType": "official_programme_outcomes",
+            "label": "Oxford course graduate destinations",
+            "url": "https://www.ox.ac.uk/admissions/graduate/courses/msc-water-science-policy-and-management"
+          }
+        ],
+        "graduateTestimonials": [],
+        "lastVerified": "2026-07-28",
+        "evidenceStatus": "공식·연구실 원문 확인"
+      }
     }
   ],
   "funding": [
@@ -20174,13 +20675,13 @@
     }
   ],
   "graduateEvidenceCoverage": {
-    "totalPrograms": 96,
-    "programsWithAnyEvidence": 46,
-    "programsWithFaculty": 46,
+    "totalPrograms": 99,
+    "programsWithAnyEvidence": 54,
+    "programsWithFaculty": 54,
     "programsWithRecentPapers": 34,
-    "programsWithFundedProjects": 29,
-    "programsWithGraduateDestinations": 26,
+    "programsWithFundedProjects": 32,
+    "programsWithGraduateDestinations": 29,
     "programsWithTestimonials": 3,
-    "unresearchedPrograms": 50
+    "unresearchedPrograms": 45
   }
 }
