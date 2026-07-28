@@ -122,12 +122,46 @@ def verified_research_project(project: Mapping[str, Any]) -> bool:
     return not any(marker in evidence_text for marker in non_contract_markers)
 
 
+def _typed_sources(
+    items: Any,
+    *,
+    fallback_url: Any = "",
+    default_type: str,
+    default_label: str,
+) -> list[dict[str, str]]:
+    """DATA-217: retain source provenance instead of flattening links."""
+    sources: list[dict[str, str]] = []
+    raw_items = items if isinstance(items, list) else []
+    if not raw_items and fallback_url:
+        fallback_items = fallback_url if isinstance(fallback_url, list) else [fallback_url]
+        raw_items = [{"url": url} for url in fallback_items]
+    for item in raw_items:
+        source = item if isinstance(item, dict) else {"url": item}
+        url = _public_url(source.get("url"))
+        if not url:
+            continue
+        entry = {
+            "sourceType": str(source.get("source_type") or default_type).strip(),
+            "label": str(source.get("label") or default_label).strip(),
+            "url": url,
+        }
+        if entry not in sources:
+            sources.append(entry)
+    return sources
+
+
 def _public_research(source: dict[str, Any]) -> dict[str, Any]:
     """DATA-213: publish source-backed research facts, never personal fit notes."""
     faculty: list[dict[str, Any]] = []
     for person in source.get("faculty", []):
-        if not isinstance(person, dict):
+        if not isinstance(person, dict) or not str(person.get("name", "")).strip():
             continue
+        profile_sources = _typed_sources(
+            person.get("profile_sources"),
+            fallback_url=person.get("profile_urls"),
+            default_type="untyped_faculty_source",
+            default_label="기존 교수 근거 (유형 재검증 필요)",
+        )
         papers = [
             {
                 "year": str(paper.get("year", "")).strip(),
@@ -164,25 +198,56 @@ def _public_research(source: dict[str, Any]) -> dict[str, Any]:
                     for url in (_public_url(item) for item in person.get("profile_urls", []))
                     if url
                 ],
+                "profileSources": profile_sources,
                 "recentPapers": papers,
                 "recentProjects": projects,
             }
         )
-    destinations = [
-        {
+    destinations: list[dict[str, Any]] = []
+    for item in source.get("graduate_destinations", []):
+        if not isinstance(item, dict) or not item.get("destination"):
+            continue
+        outcome_sources = _typed_sources(
+            item.get("sources"),
+            fallback_url=item.get("url"),
+            default_type=str(item.get("source_type") or "untyped_public_source"),
+            default_label=str(item.get("source_label") or "기존 진로 근거 (유형 재검증 필요)"),
+        )
+        destinations.append({
             "period": str(item.get("year_range", "")).strip(),
             "destination": str(item.get("destination", "")).strip(),
             "role": str(item.get("role", "")).strip(),
             "url": _public_url(item.get("url")),
-        }
-        for item in source.get("graduate_destinations", [])
-        if isinstance(item, dict) and item.get("destination")
-    ]
+            "sources": outcome_sources,
+        })
+    # DATA-218: reviews remain supporting evidence, never employment proof.
+    testimonials: list[dict[str, Any]] = []
+    for item in source.get("graduate_testimonials", []):
+        if not isinstance(item, dict) or not item.get("summary"):
+            continue
+        testimonial_sources = _typed_sources(
+            item.get("sources"),
+            fallback_url=item.get("url"),
+            default_type=str(item.get("source_type") or "public_alumni_review"),
+            default_label=str(item.get("source_label") or "동문 후기"),
+        )
+        testimonials.append({
+            "person": str(item.get("person", "")).strip(),
+            "summary": str(item.get("summary", "")).strip(),
+            "context": str(item.get("context", "")).strip(),
+            "sources": testimonial_sources,
+        })
     return {
         "keywords": [str(item).strip() for item in source.get("keywords", []) if str(item).strip()],
         "faculty": faculty,
         "recentProjects": [project for person in faculty for project in person["recentProjects"]],
         "graduateDestinations": destinations,
+        "graduateOutcomeSources": [
+            evidence
+            for destination in destinations
+            for evidence in destination["sources"]
+        ],
+        "graduateTestimonials": testimonials,
         "lastVerified": _verified_date(source),
         "evidenceStatus": "공식·연구실 원문 확인" if faculty else "공개 연구자료 추가 확인 필요",
     }
@@ -251,6 +316,8 @@ def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path, resear
             "faculty": [],
             "recentProjects": [],
             "graduateDestinations": [],
+            "graduateOutcomeSources": [],
+            "graduateTestimonials": [],
             "lastVerified": "",
             "evidenceStatus": "공개 연구자료 추가 확인 필요",
         }

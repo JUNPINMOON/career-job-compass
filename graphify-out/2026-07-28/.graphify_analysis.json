@@ -1,0 +1,260 @@
+{
+  "communities": {
+    "0": [
+      "app_chunks",
+      "app_diversifiedjobs",
+      "app_filteredstudy",
+      "app_funding",
+      "app_marketcount",
+      "app_marketswitch",
+      "app_pageframe",
+      "app_programreadiness",
+      "app_programs",
+      "app_renderjobresults",
+      "app_renderstudy",
+      "app_renderstudyresults",
+      "app_rendertoday"
+    ],
+    "1": [
+      "any",
+      "scripts_build_snapshot",
+      "scripts_build_snapshot_application_readiness",
+      "scripts_build_snapshot_apply_latest_programs",
+      "scripts_build_snapshot_key",
+      "scripts_build_snapshot_main",
+      "scripts_build_snapshot_py_path",
+      "scripts_build_snapshot_rationale_1",
+      "scripts_build_snapshot_rationale_31",
+      "scripts_build_snapshot_rationale_52",
+      "scripts_build_snapshot_read_json"
+    ],
+    "2": [
+      "app_candidaterow",
+      "app_detaillist",
+      "app_escapehtml",
+      "app_icon",
+      "app_jobsectors",
+      "app_officiallink",
+      "app_programreadinesslabel",
+      "app_queuecopy",
+      "app_renderjobdetail",
+      "app_renderrecorddetail",
+      "app_studyrow"
+    ],
+    "3": [
+      "app",
+      "app_issnapshot",
+      "app_load",
+      "app_openrecorddetail",
+      "app_readjson",
+      "app_recordbyid",
+      "app_rendererror",
+      "app_setsnapshot",
+      "app_sourcedate",
+      "app_updatenetwork"
+    ],
+    "4": [
+      "app_activefilters",
+      "app_filteredjobs",
+      "app_iseligiblepublicjob",
+      "app_jobbyid",
+      "app_jobs",
+      "app_openjobdetail",
+      "app_renderjobs",
+      "app_requiredexperienceyears",
+      "app_reviewqueue"
+    ],
+    "5": [
+      "app_bridgerequest",
+      "app_bridgeurl",
+      "app_connectbridge",
+      "app_loadlivesnapshot",
+      "app_refreshengine",
+      "app_refreshstatus",
+      "app_setenginebusy",
+      "app_stoprefreshpolling",
+      "app_watchrefresh"
+    ],
+    "6": [
+      "app_closedetail",
+      "app_displaydate",
+      "app_go",
+      "app_render",
+      "app_rendersources",
+      "app_setactivetab"
+    ],
+    "7": [
+      "scripts_check_release",
+      "scripts_check_release_contains_forbidden_key",
+      "scripts_check_release_main",
+      "scripts_check_release_py_path",
+      "scripts_check_release_rationale_1",
+      "scripts_check_release_require"
+    ],
+    "8": [
+      "app_resetfilters",
+      "app_route",
+      "app_savefilters",
+      "app_store"
+    ],
+    "9": [
+      "app_alljobsectors",
+      "app_normalizefilters",
+      "app_openfilters"
+    ],
+    "10": [
+      "scripts_check_requirements",
+      "scripts_check_requirements_items",
+      "scripts_check_requirements_main"
+    ],
+    "11": [
+      "sw",
+      "sw_app_shell"
+    ]
+  },
+  "cohesion": {
+    "0": 0.2948717948717949,
+    "1": 0.36363636363636365,
+    "2": 0.4,
+    "3": 0.3333333333333333,
+    "4": 0.25,
+    "5": 0.4166666666666667,
+    "6": 0.3333333333333333,
+    "7": 0.4666666666666667,
+    "8": 0.5,
+    "9": 0.6666666666666666,
+    "10": 1.0,
+    "11": 1.0
+  },
+  "gods": [
+    {
+      "id": "app_escapehtml",
+      "label": "escapeHtml()",
+      "degree": 14
+    },
+    {
+      "id": "app_rendertoday",
+      "label": "renderToday()",
+      "degree": 14
+    },
+    {
+      "id": "app_renderjobs",
+      "label": "renderJobs()",
+      "degree": 13
+    },
+    {
+      "id": "app_renderstudy",
+      "label": "renderStudy()",
+      "degree": 13
+    },
+    {
+      "id": "app_render",
+      "label": "render()",
+      "degree": 10
+    },
+    {
+      "id": "app_icon",
+      "label": "icon()",
+      "degree": 9
+    },
+    {
+      "id": "app_pageframe",
+      "label": "pageFrame()",
+      "degree": 8
+    },
+    {
+      "id": "app_renderjobdetail",
+      "label": "renderJobDetail()",
+      "degree": 8
+    },
+    {
+      "id": "scripts_build_snapshot_apply_latest_programs",
+      "label": "_apply_latest_programs()",
+      "degree": 8
+    },
+    {
+      "id": "app_jobs",
+      "label": "jobs()",
+      "degree": 7
+    }
+  ],
+  "surprises": [
+    {
+      "source": "normalizeFilters()",
+      "target": "saveFilters()",
+      "source_files": [
+        "app.js",
+        "app.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "note": "Bridges community 8 → community 9"
+    },
+    {
+      "source": "renderJobs()",
+      "target": "saveFilters()",
+      "source_files": [
+        "app.js",
+        "app.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "note": "Bridges community 8 → community 4"
+    },
+    {
+      "source": "renderStudy()",
+      "target": "saveFilters()",
+      "source_files": [
+        "app.js",
+        "app.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "note": "Bridges community 8 → community 0"
+    },
+    {
+      "source": "openFilters()",
+      "target": "escapeHtml()",
+      "source_files": [
+        "app.js",
+        "app.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "note": "Bridges community 2 → community 9"
+    },
+    {
+      "source": "pageFrame()",
+      "target": "escapeHtml()",
+      "source_files": [
+        "app.js",
+        "app.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "note": "Bridges community 2 → community 0"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `renderToday()` connect `Program Management` to `Job Detail Rendering`, `Record Handling`, `Job Filtering`, `UI Navigation`?",
+      "why": "High betweenness centrality (0.009) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `escapeHtml()` connect `Job Detail Rendering` to `Program Management`, `Record Handling`, `Job Filtering`, `UI Navigation`, `Sector Normalization`?",
+      "why": "High betweenness centrality (0.007) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `renderJobs()` connect `Job Filtering` to `Program Management`, `Job Detail Rendering`, `Record Handling`, `UI Navigation`, `Filter Management`?",
+      "why": "High betweenness centrality (0.007) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `APP_SHELL` to the rest of the system?",
+      "why": "1 weakly-connected nodes found - possible documentation gaps or missing edges."
+    }
+  ]
+}

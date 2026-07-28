@@ -310,11 +310,46 @@
       "note": "Fresh Supabase verification on 2026-07-28 found 12 liked rows but zero liked reasons and zero liked notes, while both unsuitable rows had reasons and notes. New and existing likes need the same explicit reason and note capture, edit, export and sync path without inventing motives for old bookmarks."
     },
     {
+      "id": "DATA-217",
+      "status": "active",
+      "title": "Expanded graduate evidence preserves typed professor-homepage and alumni-outcome sources",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-217", "profileSources", "graduateOutcomeSources", "sourceType"]},
+      "note": "Measured before implementation on 2026-07-28: 9 of 90 researched programmes had no faculty records, 13 had no graduate destinations, and 49 of 129 faculty records had no profile URL. New research must distinguish official faculty/lab pages, institutional alumni evidence, public LinkedIn evidence and alumni reviews instead of flattening every URL into an unlabelled link."
+    },
+    {
+      "id": "UX-222",
+      "status": "active",
+      "title": "Graduate detail panels expose every verified professor and alumni reference with its evidence type",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-222\"", "profileSources", "graduateOutcomeSources", "근거 유형"]},
+      "note": "The existing mobile detail view links only the first profile URL and does not tell an official university outcome page from a public LinkedIn profile or alumni review. The expanded references must remain individually inspectable on the professor and graduate-outcome tabs."
+    },
+    {
+      "id": "DATA-218",
+      "status": "active",
+      "title": "Graduate alumni testimonials remain separate from verified employment outcomes",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-218", "graduateTestimonials", "graduate_testimonials", "sourceType"]},
+      "note": "Public alumni reviews and LinkedIn posts are useful supporting evidence but do not prove a current employer. Preserve them as typed testimonials and never silently promote them into verified employment outcomes."
+    },
+    {
+      "id": "UX-223",
+      "status": "active",
+      "title": "Graduate outcome panels visibly distinguish alumni reviews from employment evidence",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-223\"", "graduateTestimonials", "동문 후기", "취업 근거"]},
+      "note": "The mobile graduate detail must show official alumni outcomes and public alumni reviews in separate labelled sections, with each source type and link inspectable."
+    },
+    {
       "id": "GOV-205",
       "status": "active",
       "title": "Mobile app shell cache advances with the liked-reason release",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v25-ux221", "\"./app.js\"", "\"./index.html\"", "\"./styles.css\""]},
       "note": "The iPhone home-screen app must not keep reading an older app shell after the liked-reason interaction ships. The service worker cache version is advanced in the same release while retaining the connected shell files."
+    },
+    {
+      "id": "GOV-206",
+      "status": "active",
+      "title": "Mobile app shell cache advances with expanded graduate evidence",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v26-grad-evidence", "\"./app.js\"", "\"./data/app-data.json\"", "\"./styles.css\""]},
+      "note": "The iPhone home-screen app must fetch the new professor, project, alumni outcome and testimonial schema rather than keep the prior cached snapshot."
     }
   ]
 }

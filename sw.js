@@ -1,4 +1,5 @@
-const CACHE = "career-compass-v25-ux221";
+const CACHE = "career-compass-v26-grad-evidence";
+const RETIRED_CACHES = new Set(["career-compass-v25-ux221"]);
 const APP_SHELL = ["./", "./index.html", "./styles.css", "./app.js", "./supabase-config.js", "./manifest.webmanifest", "./data/app-data.json", "./data/refresh-bridge.json", "./assets/route-map-editorial-v2.webp", "./assets/study-steps-editorial-v2.webp", "./icons/app-icon.svg", "./icons/app-icon-maskable.svg", "./icons/apple-touch-icon.png"];
 
 self.addEventListener("install", (event) => {
@@ -7,7 +8,11 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(Promise.all([
-    caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)))),
+    caches.keys().then((keys) => Promise.all(
+      keys
+        .filter((key) => key !== CACHE || RETIRED_CACHES.has(key))
+        .map((key) => caches.delete(key)),
+    )),
     self.clients.claim(),
   ]));
 });

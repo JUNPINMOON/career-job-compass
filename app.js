@@ -350,21 +350,43 @@
     return `<${tag} class="evidence-item"${attributes}><small>${escapeHtml(meta || "공개 원문")}</small><strong>${escapeHtml(title)}</strong>${note ? `<span>${escapeHtml(note)}</span>` : ""}</${tag}>`;
   }
 
+  function sourceTypeLabel(sourceType) {
+    const labels = {
+      official_faculty_profile: "대학 공식 교수 페이지",
+      official_research_profile: "대학 공식 연구자 페이지",
+      official_program_page: "대학 공식 과정 페이지",
+      official_alumni_outcome: "대학 공식 동문 자료",
+      public_linkedin_profile: "LinkedIn 공개 프로필",
+      public_alumni_review: "공개 동문 후기",
+      untyped_faculty_source: "기존 교수 근거 · 유형 재검증 필요",
+      untyped_public_source: "기존 공개 근거 · 유형 재검증 필요",
+    };
+    return labels[sourceType] || sourceType || "공개 원문";
+  }
+
+  function evidenceSources(sources) {
+    if (!sources?.length) return `<p class="evidence-empty">연결된 공개 원문이 없습니다.</p>`;
+    return `<div class="evidence-source-list">${sources.map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer"><small>근거 유형 · ${escapeHtml(sourceTypeLabel(source.sourceType))}</small><span>${escapeHtml(source.label || "원문 열기")}</span></a>`).join("")}</div>`;
+  }
+
   function graduateResearchPanels(item) {
+    /* data-requirement-id="UX-222" */
+    /* data-requirement-id="UX-223" */
     const research = item.publicResearch || {};
     const faculty = research.faculty || [];
     const projects = research.recentProjects || [];
     const destinations = research.graduateDestinations || [];
+    const graduateOutcomeSources = research.graduateOutcomeSources || [];
+    const graduateTestimonials = research.graduateTestimonials || [];
     const papers = faculty.flatMap((person) => person.recentPapers || []);
-    const summary = `<div class="research-summary"><span>교수 ${faculty.length}</span><span>최근 5년 논문 ${papers.length}</span><span>연구용역 ${projects.length}</span><span>진로 근거 ${destinations.length}</span></div>`;
+    const summary = `<div class="research-summary"><span>교수 ${faculty.length}</span><span>최근 5년 논문 ${papers.length}</span><span>연구용역 ${projects.length}</span><span>취업 근거 ${destinations.length}</span><span>동문 후기 ${graduateTestimonials.length}</span></div>`;
     const facultyHtml = faculty.length ? faculty.map((person) => {
-      const profile = (person.profileUrls || [])[0];
-      const personHeading = profile ? `<a href="${escapeHtml(profile)}" target="_blank" rel="noreferrer">${escapeHtml(person.name || "교수 프로필")}</a>` : escapeHtml(person.name || "교수 프로필");
       const personPapers = (person.recentPapers || []).map((paper) => evidenceItem(paper.title, [paper.year, paper.venue].filter(Boolean).join(" · "), "", paper.url)).join("");
-      return `<section class="evidence-card"><h3>${personHeading}</h3><p>${escapeHtml([person.title, person.labOrGroup].filter(Boolean).join(" · ") || "소속 원문 확인")}</p>${personPapers ? `<div class="evidence-items">${personPapers}</div>` : `<p class="evidence-empty">최근 5년 논문 원문을 추가 확인해야 합니다.</p>`}</section>`;
+      const profileSources = person.profileSources || (person.profileUrls || []).map((url) => ({ url, sourceType: "official_faculty_profile", label: "교수 공식 프로필" }));
+      return `<section class="evidence-card"><h3>${escapeHtml(person.name || "교수 프로필")}</h3><p>${escapeHtml([person.title, person.labOrGroup].filter(Boolean).join(" · ") || "소속 원문 확인")}</p>${evidenceSources(profileSources)}${personPapers ? `<div class="evidence-items">${personPapers}</div>` : `<p class="evidence-empty">최근 5년 논문 원문을 추가 확인해야 합니다.</p>`}</section>`;
     }).join("") : `<p class="evidence-empty">이 과정은 공개 교수·논문 근거가 아직 연결되지 않았습니다.</p>`;
     const projectHtml = projects.length ? `<div class="evidence-items">${projects.map((project) => evidenceItem(project.title, [project.period, project.funder].filter(Boolean).join(" · "), `공개 금액: ${project.amount || "미확인"}`, project.url)).join("")}</div>` : `<p class="evidence-empty">최근 5년 연구용역의 공개 원문과 금액을 확인하지 못했습니다. 금액은 추정하지 않습니다.</p>`;
-    const destinationHtml = destinations.length ? `<div class="evidence-items">${destinations.map((record) => evidenceItem(record.destination, record.period, record.role, record.url)).join("")}</div>` : `<p class="evidence-empty">졸업생 취업처를 뒷받침하는 공개 원문을 확인하지 못했습니다.</p>`;
+    const destinationHtml = `<section class="outcome-evidence-section"><h3>취업 근거</h3>${destinations.length ? destinations.map((record) => `<article class="evidence-card"><strong>${escapeHtml(record.destination)}</strong><p>${escapeHtml([record.period, record.role].filter(Boolean).join(" · "))}</p>${evidenceSources(record.sources || [])}</article>`).join("") : `<p class="evidence-empty">졸업생 취업처를 뒷받침하는 공개 원문을 확인하지 못했습니다.</p>`}</section><section class="outcome-evidence-section"><h3>동문 후기</h3>${graduateTestimonials.length ? graduateTestimonials.map((record) => `<article class="evidence-card"><strong>${escapeHtml(record.person || "공개 동문")}</strong><p>${escapeHtml(record.summary)}</p>${record.context ? `<small>${escapeHtml(record.context)}</small>` : ""}${evidenceSources(record.sources || [])}</article>`).join("") : `<p class="evidence-empty">공개 동문 후기를 아직 연결하지 못했습니다.</p>`}</section><span hidden>${graduateOutcomeSources.length}</span>`;
     return {
       summary,
       facultyHtml,

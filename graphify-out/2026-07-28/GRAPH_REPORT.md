@@ -1,16 +1,16 @@
 # Graph Report - career-job-compass  (2026-07-28)
 
 ## Corpus Check
-- 20 files · ~290,644 words
+- 18 files · ~217,196 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 184 nodes · 416 edges · 15 communities (11 shown, 4 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.5)
+- 173 nodes · 399 edges · 15 communities (11 shown, 4 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `536adc77`
+- Built from commit: `374808a8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,7 +31,7 @@
 - renderStudy
 
 ## God Nodes (most connected - your core abstractions)
-1. `escapeHtml()` - 19 edges
+1. `escapeHtml()` - 18 edges
 2. `Career Compass — calm field guide` - 18 edges
 3. `renderJobs()` - 15 edges
 4. `renderToday()` - 14 edges
@@ -45,14 +45,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `persistPreferences()` --calls--> `store()`  [EXTRACTED]
   app.js → app.js  _Bridges community 5 → community 4_
-- `recommendationJobs()` --calls--> `preferenceFor()`  [EXTRACTED]
-  app.js → app.js  _Bridges community 4 → community 2_
-- `renderJobDetail()` --calls--> `preferenceFor()`  [EXTRACTED]
+- `buildFeedbackExport()` --calls--> `preferenceFor()`  [EXTRACTED]
+  app.js → app.js  _Bridges community 2 → community 3_
+- `connectPreferences()` --calls--> `preferenceFor()`  [EXTRACTED]
+  app.js → app.js  _Bridges community 2 → community 4_
+- `renderStudy()` --calls--> `saveFilters()`  [EXTRACTED]
   app.js → app.js  _Bridges community 4 → community 14_
-- `pageFrame()` --calls--> `escapeHtml()`  [EXTRACTED]
-  app.js → app.js  _Bridges community 14 → community 2_
-- `renderToday()` --calls--> `sourceDate()`  [EXTRACTED]
-  app.js → app.js  _Bridges community 5 → community 2_
+- `openFilters()` --calls--> `escapeHtml()`  [EXTRACTED]
+  app.js → app.js  _Bridges community 2 → community 5_
 
 ## Import Cycles
 - None detected.
@@ -64,24 +64,24 @@ Cohesion: 0.11
 Nodes (18): Acceptance check, Accessibility, Brand, Career Compass — calm field guide, Components and disclosure, Content voice, Design principles, Information architecture (+10 more)
 
 ### Community 1 - "Build and Snapshot"
-Cohesion: 0.16
-Nodes (27): _application_readiness(), _apply_latest_programs(), _apply_public_eligibility(), experienced_only_title(), _key(), main(), _public_research(), _public_url() (+19 more)
+Cohesion: 0.17
+Nodes (25): Any, _application_readiness(), _apply_latest_programs(), _apply_public_eligibility(), experienced_only_title(), _key(), main(), _public_research() (+17 more)
 
 ### Community 2 - "Job Detail Rendering"
-Cohesion: 0.19
-Nodes (22): activeFilters(), chunks(), diversifiedJobs(), filteredJobs(), filteredStudy(), funding(), icon(), jobSectors() (+14 more)
+Cohesion: 0.17
+Nodes (30): activeFilters(), candidateRow(), chunks(), detailList(), displayDate(), diversifiedJobs(), escapeHtml(), evidenceItem() (+22 more)
 
 ### Community 3 - "Record Handling"
-Cohesion: 0.40
-Nodes (4): main(), merge_named(), Any, Merge source-backed graduate faculty, project, and alumni evidence.  The canonic
+Cohesion: 0.22
+Nodes (9): buildFeedbackExport(), exportFeedback(), isEligiblePublicJob(), jobById(), jobs(), jobSnapshot(), openJobDetail(), requiredExperienceYears() (+1 more)
 
 ### Community 4 - "Job Filtering"
-Cohesion: 0.12
-Nodes (35): allJobSectors(), BridgeError, buildFeedbackExport(), candidateRow(), closeDetail(), connectPreferences(), displayDate(), exportFeedback() (+27 more)
+Cohesion: 0.21
+Nodes (13): closeDetail(), connectPreferences(), go(), migrateLocalBookmarks(), persistPreferences(), preferencePayload(), render(), resetFilters() (+5 more)
 
 ### Community 5 - "Bridge Communication"
-Cohesion: 0.13
-Nodes (27): authenticatedRefreshHeaders(), bridgeRequest(), bridgeUrl(), connectBridge(), formatRuntime(), isSnapshot(), load(), loadCloudSnapshot() (+19 more)
+Cohesion: 0.14
+Nodes (31): allJobSectors(), authenticatedRefreshHeaders(), BridgeError, bridgeRequest(), bridgeUrl(), connectBridge(), formatRuntime(), isSnapshot() (+23 more)
 
 ### Community 6 - "UI Navigation"
 Cohesion: 0.33
@@ -96,24 +96,22 @@ Cohesion: 0.40
 Nodes (4): Career Compass, Local preview, Refresh model, Release boundary
 
 ### Community 14 - "renderStudy"
-Cohesion: 0.33
-Nodes (11): detailList(), escapeHtml(), evidenceItem(), evidenceSources(), graduateResearchPanels(), officialLink(), openRecordDetail(), queueCopy() (+3 more)
+Cohesion: 0.31
+Nodes (10): filteredStudy(), funding(), marketCount(), marketSwitch(), openRecordDetail(), programReadiness(), programs(), recordById() (+2 more)
 
 ## Knowledge Gaps
-- **28 isolated node(s):** `RETIRED_CACHES`, `APP_SHELL`, `graphify`, `Source of truth`, `Brand` (+23 more)
+- **27 isolated node(s):** `APP_SHELL`, `graphify`, `Source of truth`, `Brand`, `Product goals` (+22 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `escapeHtml()` connect `renderStudy` to `Job Detail Rendering`, `Job Filtering`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **What connects `RETIRED_CACHES`, `APP_SHELL`, `graphify` to the rest of the system?**
-  _28 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `escapeHtml()` connect `Job Detail Rendering` to `Bridge Communication`, `renderStudy`?**
+  _High betweenness centrality (0.003) - this node is a cross-community bridge._
+- **What connects `APP_SHELL`, `graphify`, `Source of truth` to the rest of the system?**
+  _27 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Program Management` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
-- **Should `Job Filtering` be split into smaller, more focused modules?**
-  _Cohesion score 0.1214574898785425 - nodes in this community are weakly interconnected._
 - **Should `Bridge Communication` be split into smaller, more focused modules?**
-  _Cohesion score 0.1339031339031339 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1411764705882353 - nodes in this community are weakly interconnected._

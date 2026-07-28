@@ -94,3 +94,19 @@
 {"at": "2026-07-27T16:06:39+00:00", "event": "requirement_added", "id": "DATA-216", "title": "Graduate research-contract counts exclude editorials and publication-inferred activities"}
 {"at": "2026-07-27T16:06:39+00:00", "event": "check", "passed": 40, "failed": 1, "failing_ids": ["DATA-216"]}
 {"at": "2026-07-27T16:11:17+00:00", "event": "check", "passed": 41, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T16:29:46+00:00", "event": "check", "passed": 41, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T16:40:20+00:00", "event": "requirement_added", "id": "UX-221", "title": "Liked jobs collect editable positive reasons or notes before syncing"}
+{"at": "2026-07-27T16:40:20+00:00", "event": "check", "passed": 42, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T16:47:28+00:00", "event": "requirement_added", "id": "GOV-205", "title": "Mobile app shell cache advances with the liked-reason release"}
+{"at": "2026-07-27T16:47:28+00:00", "event": "check", "passed": 43, "failed": 0, "failing_ids": []}
+{"at": "2026-07-27T17:04:09+00:00", "event": "check", "passed": 43, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T01:44:03+00:00", "event": "requirement_added", "id": "DATA-217", "title": "Expanded graduate evidence preserves typed professor-homepage and alumni-outcome sources"}
+{"at": "2026-07-28T01:44:03+00:00", "event": "requirement_added", "id": "UX-222", "title": "Graduate detail panels expose every verified professor and alumni reference with its evidence type"}
+{"at": "2026-07-28T01:44:03+00:00", "event": "check", "passed": 43, "failed": 2, "failing_ids": ["DATA-217", "UX-222"]}
+{"at": "2026-07-28T01:51:44+00:00", "event": "requirement_added", "id": "DATA-218", "title": "Graduate alumni testimonials remain separate from verified employment outcomes"}
+{"at": "2026-07-28T01:51:44+00:00", "event": "requirement_added", "id": "UX-223", "title": "Graduate outcome panels visibly distinguish alumni reviews from employment evidence"}
+{"at": "2026-07-28T01:51:44+00:00", "event": "check", "passed": 43, "failed": 4, "failing_ids": ["DATA-217", "UX-222", "DATA-218", "UX-223"]}
+{"at": "2026-07-28T02:02:08+00:00", "event": "requirement_added", "id": "GOV-206", "title": "Mobile app shell cache advances with expanded graduate evidence"}
+{"at": "2026-07-28T02:02:08+00:00", "event": "check", "passed": 47, "failed": 1, "failing_ids": ["GOV-206"]}
+{"at": "2026-07-28T02:07:14+00:00", "event": "check", "passed": 47, "failed": 1, "failing_ids": ["GOV-205"]}
+{"at": "2026-07-28T02:07:47+00:00", "event": "check", "passed": 48, "failed": 0, "failing_ids": []}

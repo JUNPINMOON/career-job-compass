@@ -79,6 +79,16 @@
     "first_seen": "2026-07-27T16:06:39+00:00",
     "title": "Graduate research-contract counts exclude editorials and publication-inferred activities"
   },
+  "DATA-217": {
+    "assert_sha": "91d0bf55cec70de5",
+    "first_seen": "2026-07-28T01:44:03+00:00",
+    "title": "Expanded graduate evidence preserves typed professor-homepage and alumni-outcome sources"
+  },
+  "DATA-218": {
+    "assert_sha": "5409357790e6228a",
+    "first_seen": "2026-07-28T01:51:44+00:00",
+    "title": "Graduate alumni testimonials remain separate from verified employment outcomes"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -98,6 +108,16 @@
     "assert_sha": "be3356e8601f9702",
     "first_seen": "2026-07-27T01:59:17+00:00",
     "title": "Only the dedicated Career Compass owner can start a personalized refresh"
+  },
+  "GOV-205": {
+    "assert_sha": "5313111904f156f2",
+    "first_seen": "2026-07-27T16:47:28+00:00",
+    "title": "Mobile app shell cache advances with the liked-reason release"
+  },
+  "GOV-206": {
+    "assert_sha": "6e26a9302820063f",
+    "first_seen": "2026-07-28T02:02:08+00:00",
+    "title": "Mobile app shell cache advances with expanded graduate evidence"
   },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",
@@ -208,5 +228,20 @@
     "assert_sha": "0cf092ade94e27f2",
     "first_seen": "2026-07-27T14:00:14+00:00",
     "title": "Graduate programme details provide separate interactive research evidence views"
+  },
+  "UX-221": {
+    "assert_sha": "9f9ae0ab546f48f1",
+    "first_seen": "2026-07-27T16:40:20+00:00",
+    "title": "Liked jobs collect editable positive reasons or notes before syncing"
+  },
+  "UX-222": {
+    "assert_sha": "3940426c3d066302",
+    "first_seen": "2026-07-28T01:44:03+00:00",
+    "title": "Graduate detail panels expose every verified professor and alumni reference with its evidence type"
+  },
+  "UX-223": {
+    "assert_sha": "2e9d4cfc6205434a",
+    "first_seen": "2026-07-28T01:51:44+00:00",
+    "title": "Graduate outcome panels visibly distinguish alumni reviews from employment evidence"
   }
 }
