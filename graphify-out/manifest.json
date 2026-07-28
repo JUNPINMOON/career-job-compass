@@ -5,8 +5,8 @@
     "semantic_hash": ""
   },
   "data/app-data.json": {
-    "mtime": 1785208214.0332706,
-    "ast_hash": "df01fe03f8b2966d768cc44d395dfab5",
+    "mtime": 1785240158.0948539,
+    "ast_hash": "8d47bfa954558b458ff905ec9faa46e7",
     "semantic_hash": ""
   },
   "data/catalog-source.json": {
@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "sw.js": {
-    "mtime": 1785224928.0087023,
-    "ast_hash": "01664fb9d344777bad9822255e44f4d8",
+    "mtime": 1785240257.368416,
+    "ast_hash": "f39f8c76f284ac1e3ea9992d3e220ce9",
     "semantic_hash": ""
   },
   ".codex/hooks.json": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "requirements/.seen-ids.json": {
-    "mtime": 1785225048.4971385,
-    "ast_hash": "61446a57aa0e07ea60f53849d169ebed",
+    "mtime": 1785240680.7884412,
+    "ast_hash": "0ae1c13920761b652ed7efa5ac084171",
     "semantic_hash": ""
   },
   ".github/workflows/pages.yml": {
@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "requirements/ledger.yaml": {
-    "mtime": 1785224690.491441,
-    "ast_hash": "a83aabed8349c0233224e3c650960440",
+    "mtime": 1785240240.884667,
+    "ast_hash": "7d10576847533db02c8527eca72ea772",
     "semantic_hash": ""
   },
   "assets/daily-brief-cover-v3.png": {
@@ -157,6 +157,11 @@
   "supabase/migrations/202607280003_create_refresh_queue.sql": {
     "mtime": 1785224761.4450154,
     "ast_hash": "7db02eaec60e2ff5c8bcbc9e920a0231",
+    "semantic_hash": ""
+  },
+  "data/graduate-evidence-legacy-recovery-2026-07-28.json": {
+    "mtime": 1785240093.2726905,
+    "ast_hash": "d6bda79d03176a644d219fd14574f5ea",
     "semantic_hash": ""
   }
 }

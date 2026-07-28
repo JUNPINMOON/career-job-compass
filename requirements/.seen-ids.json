@@ -114,6 +114,11 @@
     "first_seen": "2026-07-28T07:42:17+00:00",
     "title": "Physical mobile refresh requests travel through the authenticated Supabase queue instead of a private desktop URL"
   },
+  "DATA-224": {
+    "assert_sha": "005e04c11a63e36d",
+    "first_seen": "2026-07-28T11:49:42+00:00",
+    "title": "Legacy graduate research recovery publishes substantive professor, paper, project and alumni evidence instead of empty programme panels"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -158,6 +163,11 @@
     "assert_sha": "a6018366de69d4cb",
     "first_seen": "2026-07-28T07:44:59+00:00",
     "title": "Mobile clients invalidate the private-bridge refresh release cache"
+  },
+  "GOV-210": {
+    "assert_sha": "3541056096f6dfce",
+    "first_seen": "2026-07-28T12:04:07+00:00",
+    "title": "Mobile clients invalidate the legacy graduate research recovery cache"
   },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",

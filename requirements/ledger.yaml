@@ -420,6 +420,20 @@
       "title": "Mobile clients invalidate the private-bridge refresh release cache",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v29-supabase-refresh-queue", "career-compass-v28-grad-discovery"]},
       "note": "The refresh runtime moves from the private desktop bridge to the Supabase queue. The service-worker cache must advance so the physical iPhone does not keep calling the retired Tailscale URL."
+    },
+    {
+      "id": "DATA-224",
+      "status": "active",
+      "title": "Legacy graduate research recovery publishes substantive professor, paper, project and alumni evidence instead of empty programme panels",
+      "assert": {"type": "text_present", "path": "data/graduate-evidence-legacy-recovery-2026-07-28.json", "needles": ["\"requirementId\": \"DATA-224\"", "\"researchMethod\"", "\"recent_papers\"", "\"recent_projects\"", "\"graduate_destinations\""]},
+      "note": "Measured before implementation on 2026-07-28: 45 of 99 public programmes had no professor, recent-paper, funded-project, graduate-destination or testimonial evidence. The prior verified workflow used official faculty and lab pages, publisher or DOI records, jurisdiction-specific funder databases, and official alumni or explicit public-profile evidence. This recovery must add real evidence through the consumed patch pipeline and retain a machine-readable method record; a status label alone is not sufficient."
+    },
+    {
+      "id": "GOV-210",
+      "status": "active",
+      "title": "Mobile clients invalidate the legacy graduate research recovery cache",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v30-grad-legacy-recovery", "career-compass-v29-supabase-refresh-queue"]},
+      "note": "The app-data snapshot changed after official professor, paper, project and alumni evidence was recovered. The iPhone service worker must advance so the newly consumed research is not hidden behind the prior refresh-queue release cache."
     }
   ]
 }

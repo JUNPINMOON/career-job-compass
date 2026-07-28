@@ -1,5 +1,5 @@
-const CACHE = "career-compass-v29-supabase-refresh-queue";
-const RETIRED_CACHES = new Set(["career-compass-v25-ux221", "career-compass-v26-grad-evidence", "career-compass-v27-grad-coverage", "career-compass-v28-grad-discovery"]);
+const CACHE = "career-compass-v30-grad-legacy-recovery";
+const RETIRED_CACHES = new Set(["career-compass-v25-ux221", "career-compass-v26-grad-evidence", "career-compass-v27-grad-coverage", "career-compass-v28-grad-discovery", "career-compass-v29-supabase-refresh-queue"]);
 const APP_SHELL = ["./", "./index.html", "./styles.css", "./app.js", "./supabase-config.js", "./manifest.webmanifest", "./data/app-data.json", "./assets/route-map-editorial-v2.webp", "./assets/study-steps-editorial-v2.webp", "./icons/app-icon.svg", "./icons/app-icon-maskable.svg", "./icons/apple-touch-icon.png"];
 
 self.addEventListener("install", (event) => {

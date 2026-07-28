@@ -1,0 +1,355 @@
+[
+  {
+    "requirementId": "DATA-224",
+    "researchMethod": {
+      "faculty": "Current affiliation and programme relevance verified on official university faculty, chair, centre or programme pages.",
+      "papers": "Recent output taken from an official institutional publication list or the primary journal/DOI page; author and year must match.",
+      "projects": "Only named projects with an official university or funder page are included. Amount is left blank when the official source does not publish it.",
+      "outcomes": "Only official alumni, completion or destination pages are included. Programme-adjacent cohort evidence is labelled as a benchmark rather than represented as an exact programme outcome."
+    },
+    "university": "TU Dresden",
+    "program": "MSc in Hydro Science and Engineering",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Andreas Hartmann",
+        "title": "Professor of Groundwater Systems; scientific coordinator, MSc Hydro Science and Engineering",
+        "lab_or_group": "Chair of Groundwater Systems",
+        "profile_urls": [
+          "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse",
+          "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en"
+        ],
+        "profile_sources": [
+          {
+            "source_type": "official_programme_page",
+            "label": "TU Dresden Hydro Science and Engineering programme",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse"
+          },
+          {
+            "source_type": "official_institutional_publication_list",
+            "label": "TU Dresden Groundwater Systems publications",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en"
+          }
+        ],
+        "alignment_notes": "Karst and regional groundwater modelling, drought response and cross-catchment groundwater flow are direct matches for water-resources modelling and climate-risk pathways.",
+        "recent_papers": [
+          {
+            "year": "2025",
+            "title": "Application of a parsimonious large-scale distributed groundwater flow model to quantify inter-catchment groundwater flow",
+            "venue": "Journal of Hydrology, 662 Part B, 133900",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?b_start_d5c00%3Aint=10&set_language=en"
+          },
+          {
+            "year": "2025",
+            "title": "Groundwater head responses to droughts across Germany",
+            "venue": "Hydrology and Earth System Sciences, 29(13), 2925-2950",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?b_start_d5c00%3Aint=10&set_language=en"
+          },
+          {
+            "year": "2025",
+            "title": "LuKARS 3.0: a high-performance computing software to model flow and transport processes in karst aquifers",
+            "venue": "Environmental Modelling & Software, 193, 106642",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?b_start_d5c00%3Aint=10&set_language=en"
+          }
+        ],
+        "recent_projects": [
+          {
+            "title": "SaxUP-Water",
+            "funder": "Official TU Dresden project listing; funding amount not stated",
+            "period": "Current project listed 2026",
+            "amount": "",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/wald-wasser-dynamik/aktuelle-forschungsprojekte"
+          },
+          {
+            "title": "HydroSIGNS",
+            "funder": "Official TU Dresden project listing; funding amount not stated",
+            "period": "Current project listed 2026",
+            "amount": "",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/wald-wasser-dynamik/aktuelle-forschungsprojekte"
+          },
+          {
+            "title": "CrossWATER",
+            "funder": "Official TU Dresden project listing; funding amount not stated",
+            "period": "Current project listed 2026",
+            "amount": "",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/wald-wasser-dynamik/aktuelle-forschungsprojekte"
+          }
+        ]
+      },
+      {
+        "name": "Bernhard Vowinckel",
+        "title": "Professor of Transport Processes in Hydrosystems; scientific coordinator, MSc Hydro Science and Engineering",
+        "lab_or_group": "Chair of Transport Processes in Hydrosystems",
+        "profile_urls": [
+          "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse",
+          "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"
+        ],
+        "profile_sources": [
+          {
+            "source_type": "official_faculty_profile",
+            "label": "TU Dresden chair holder profile and publications",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"
+          }
+        ],
+        "alignment_notes": "Hydrodynamic forces, settling and cohesive-sediment transport provide a strong hydraulics and computational-flow route.",
+        "recent_papers": [
+          {
+            "year": "2025",
+            "title": "A data-driven approach for predicting hydrodynamic forces on spherical particles using volume fraction representations",
+            "venue": "Physics of Fluids, 37(8), 083342",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"
+          },
+          {
+            "year": "2025",
+            "title": "On the parameters of common settling velocity models for porous sediment aggregates",
+            "venue": "International Journal of Sediment Research, 40(3), 412-425",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"
+          },
+          {
+            "year": "2025",
+            "title": "A Modeling framework for flocculated cohesive sediment transport in the current bottom boundary layer",
+            "venue": "Advances in Water Resources, 195, 104857",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"
+          }
+        ],
+        "recent_projects": []
+      }
+    ],
+    "graduate_destinations": [
+      {
+        "year_range": "Official programme alumni page, current as verified 2026-07-28",
+        "destination": "EMBRAPA and Brazil Ministry of Agriculture",
+        "role": "Sandra Almeida; sustainable water and environmental analysis",
+        "url": "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse",
+        "sources": [
+          {
+            "source_type": "official_programme_alumni_outcome",
+            "label": "TU Dresden HSE alumni profile",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse"
+          }
+        ]
+      },
+      {
+        "year_range": "Official programme alumni page, current as verified 2026-07-28",
+        "destination": "Helmholtz Centre for Environmental Research - UFZ",
+        "role": "Zhenyu Wang; postdoctoral researcher",
+        "url": "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse",
+        "sources": [
+          {
+            "source_type": "official_programme_alumni_outcome",
+            "label": "TU Dresden HSE alumni profile",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse"
+          }
+        ]
+      },
+      {
+        "year_range": "Official department alumni page, current as verified 2026-07-28",
+        "destination": "Wismut GmbH",
+        "role": "Niclas Einert; HSE alumnus",
+        "url": "https://tu-dresden.de/bu/umwelt/hydro/studium/Absolventen?set_language=en",
+        "sources": [
+          {
+            "source_type": "official_department_alumni_outcome",
+            "label": "TU Dresden Department of Hydrosciences alumni",
+            "url": "https://tu-dresden.de/bu/umwelt/hydro/studium/Absolventen?set_language=en"
+          }
+        ]
+      }
+    ],
+    "source_urls": [
+      "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse",
+      "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en",
+      "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de",
+      "https://tu-dresden.de/bu/umwelt/hydro/wald-wasser-dynamik/aktuelle-forschungsprojekte",
+      "https://tu-dresden.de/bu/umwelt/hydro/studium/Absolventen?set_language=en"
+    ]
+  },
+  {
+    "requirementId": "DATA-224",
+    "researchMethod": {
+      "faculty": "Official Centre for Water Systems academic staff directory.",
+      "papers": "No paper is assigned unless exact authorship is resolved to a current faculty member and primary source.",
+      "projects": "Official Centre for Water Systems theme pages with named lead, funder and period.",
+      "outcomes": "Official WISE CDT completion and destination pages are retained as a closely related water-systems doctoral benchmark, explicitly not an exact guarantee for every CWS PhD route."
+    },
+    "university": "University of Exeter",
+    "program": "PhD via Centre for Water Systems - Hydroinformatics and AI",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "Albert Chen",
+        "title": "Professor; Centre for Water Systems academic",
+        "lab_or_group": "Centre for Water Systems - Hydroinformatics and AI",
+        "profile_urls": [
+          "https://www.exeter.ac.uk/research/centres/cws/people/academic/",
+          "https://www.exeter.ac.uk/research/centres/cws/research/hydroinformatics-ai/"
+        ],
+        "profile_sources": [
+          {
+            "source_type": "official_research_centre_directory",
+            "label": "University of Exeter CWS academic staff",
+            "url": "https://www.exeter.ac.uk/research/centres/cws/people/academic/"
+          }
+        ],
+        "alignment_notes": "Spatial intelligence, reproducible AI and urban flood-risk work directly match hydroinformatics and climate-risk modelling.",
+        "recent_papers": [],
+        "recent_projects": [
+          {
+            "title": "ENFORCE - Empowering decision support for people-centred climate-resilient infrastructure",
+            "funder": "EU Horizon Europe and UKRI",
+            "period": "2024-2028",
+            "amount": "",
+            "url": "https://www.exeter.ac.uk/research/centres/cws/research/hydroinformatics-ai/"
+          }
+        ]
+      },
+      {
+        "name": "Peter Melville-Shreeve",
+        "title": "Professor; Co-Director, Centre for Water Systems",
+        "lab_or_group": "Centre for Water Systems",
+        "profile_urls": [
+          "https://www.exeter.ac.uk/research/centres/cws/people/academic/",
+          "https://www.exeter.ac.uk/research/centres/cws/research/hydroinformatics-ai/"
+        ],
+        "profile_sources": [
+          {
+            "source_type": "official_research_centre_directory",
+            "label": "University of Exeter CWS academic staff",
+            "url": "https://www.exeter.ac.uk/research/centres/cws/people/academic/"
+          }
+        ],
+        "alignment_notes": "Water resilience and people-centred decision support connect technical water systems with deployable public-sector impact.",
+        "recent_papers": [],
+        "recent_projects": [
+          {
+            "title": "ResilienTogether",
+            "funder": "UK Department for Environment, Food and Rural Affairs (Defra)",
+            "period": "2021-2027",
+            "amount": "",
+            "url": "https://www.exeter.ac.uk/research/centres/cws/research/hydroinformatics-ai/"
+          }
+        ]
+      },
+      {
+        "name": "Guangtao Fu",
+        "title": "Professor; Co-Director, Centre for Water Systems",
+        "lab_or_group": "Centre for Water Systems",
+        "profile_urls": [
+          "https://www.exeter.ac.uk/research/centres/cws/people/academic/"
+        ],
+        "profile_sources": [
+          {
+            "source_type": "official_research_centre_directory",
+            "label": "University of Exeter CWS academic staff",
+            "url": "https://www.exeter.ac.uk/research/centres/cws/people/academic/"
+          }
+        ],
+        "alignment_notes": "Centre leadership and smart urban-water systems provide a systems-level path across modelling, optimisation and infrastructure resilience.",
+        "recent_papers": [],
+        "recent_projects": []
+      }
+    ],
+    "graduate_destinations": [
+      {
+        "year_range": "WISE CDT graduate outcomes as of December 2024",
+        "destination": "Universities, engineering consultancies, research institutes and government agencies",
+        "role": "Around 90% of WISE CDT graduates worked in water, environment or energy; this is a CWS-linked doctoral benchmark, not an exact programme guarantee",
+        "url": "https://www.exeter.ac.uk/research/centres/cws/education/wisecdt/impactandlegacy/graduatedestinations/",
+        "sources": [
+          {
+            "source_type": "official_centre_graduate_outcomes",
+            "label": "University of Exeter WISE CDT graduate destinations",
+            "url": "https://www.exeter.ac.uk/research/centres/cws/education/wisecdt/impactandlegacy/graduatedestinations/"
+          },
+          {
+            "source_type": "official_centre_completion_statistics",
+            "label": "University of Exeter WISE CDT completion rates",
+            "url": "https://www.exeter.ac.uk/research/centres/cws/education/wisecdt/impactandlegacy/completionrates/"
+          }
+        ]
+      }
+    ],
+    "source_urls": [
+      "https://www.exeter.ac.uk/research/centres/cws/people/academic/",
+      "https://www.exeter.ac.uk/research/centres/cws/research/hydroinformatics-ai/",
+      "https://www.exeter.ac.uk/research/centres/cws/research/urban-water/",
+      "https://www.exeter.ac.uk/research/centres/cws/education/wisecdt/impactandlegacy/graduatedestinations/",
+      "https://www.exeter.ac.uk/research/centres/cws/education/wisecdt/impactandlegacy/completionrates/"
+    ]
+  },
+  {
+    "requirementId": "DATA-224",
+    "researchMethod": {
+      "faculty": "Official Global Institute for Water Security profile and member pages.",
+      "papers": "Official institutional publication index with journal DOI.",
+      "projects": "Official institute project and news pages; exact public award amount retained only where stated.",
+      "outcomes": "Exact Master of Water Security graduate destinations were not located on an official page, so this field remains empty rather than importing broad institute claims."
+    },
+    "university": "University of Saskatchewan",
+    "program": "Master of Water Security",
+    "verified_on": "2026-07-28",
+    "faculty": [
+      {
+        "name": "John Pomeroy",
+        "title": "Distinguished Professor; Canada Research Chair in Water Resources and Climate Change",
+        "lab_or_group": "Global Institute for Water Security; Centre for Hydrology; Coldwater Laboratory",
+        "profile_urls": [
+          "https://water.usask.ca/about/profiles/people/john-pomeroy.php",
+          "https://water.usask.ca/publications/index.php"
+        ],
+        "profile_sources": [
+          {
+            "source_type": "official_faculty_profile",
+            "label": "University of Saskatchewan GIWS profile",
+            "url": "https://water.usask.ca/about/profiles/people/john-pomeroy.php"
+          },
+          {
+            "source_type": "official_institutional_publication_list",
+            "label": "University of Saskatchewan GIWS publications",
+            "url": "https://water.usask.ca/publications/index.php"
+          }
+        ],
+        "alignment_notes": "Cold-regions hydrology, climate-change impacts, watershed observation and large research networks are strong fits for water-security and climate-risk work.",
+        "recent_papers": [
+          {
+            "year": "2026",
+            "title": "An Evaluation of New Snow Interception and Ablation Parameterisations in Continental, Subarctic and Maritime Needleleaf Forests",
+            "venue": "Hydrological Processes, 40(6), e70573",
+            "url": "https://doi.org/10.1002/hyp.70573"
+          },
+          {
+            "year": "2026",
+            "title": "Modelling Storage-Discharge Relationships in an Alpine Basin in the Canadian Rockies",
+            "venue": "Hydrological Processes, 40(6), e70574",
+            "url": "https://doi.org/10.1002/hyp.70574"
+          }
+        ],
+        "recent_projects": [
+          {
+            "title": "Global Water Futures",
+            "funder": "Canada First Research Excellence Fund",
+            "period": "2016-2023",
+            "amount": "CAD 77.84 million",
+            "url": "https://water.usask.ca/news-items/2023/news-usask-led-global-water-futures-marks-the-end-of-an-era-and-looks-to-the-future.php"
+          },
+          {
+            "title": "Global Water Futures Observatories",
+            "funder": "University of Saskatchewan-led national freshwater monitoring network; public amount not stated on launch page",
+            "period": "Launched 2024",
+            "amount": "",
+            "url": "https://water.usask.ca/news-items/2024/news-usask-celebrates-launch-of-canadas-freshwater-monitoring-network.php"
+          }
+        ]
+      }
+    ],
+    "graduate_destinations": [],
+    "source_urls": [
+      "https://water.usask.ca/about/profiles/people/john-pomeroy.php",
+      "https://water.usask.ca/about/profiles/members.php",
+      "https://water.usask.ca/publications/index.php",
+      "https://water.usask.ca/research/index.php",
+      "https://water.usask.ca/news-items/2023/news-usask-led-global-water-futures-marks-the-end-of-an-era-and-looks-to-the-future.php",
+      "https://water.usask.ca/news-items/2024/news-usask-celebrates-launch-of-canadas-freshwater-monitoring-network.php"
+    ]
+  }
+]

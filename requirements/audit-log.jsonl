@@ -132,3 +132,10 @@
 {"at": "2026-07-28T07:44:59+00:00", "event": "requirement_added", "id": "GOV-209", "title": "Mobile clients invalidate the private-bridge refresh release cache"}
 {"at": "2026-07-28T07:44:59+00:00", "event": "check", "passed": 55, "failed": 3, "failing_ids": ["DATA-223", "SEC-202", "GOV-209"]}
 {"at": "2026-07-28T07:50:48+00:00", "event": "check", "passed": 55, "failed": 3, "failing_ids": ["DATA-204", "UX-213", "DATA-211"]}
+{"at": "2026-07-28T11:49:42+00:00", "event": "requirement_added", "id": "DATA-224", "title": "Legacy graduate research recovery publishes substantive professor, paper, project and alumni evidence instead of empty programme panels"}
+{"at": "2026-07-28T11:49:42+00:00", "event": "check", "passed": 58, "failed": 1, "failing_ids": ["DATA-224"]}
+{"at": "2026-07-28T12:01:54+00:00", "event": "check", "passed": 59, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T12:04:07+00:00", "event": "requirement_added", "id": "GOV-210", "title": "Mobile clients invalidate the legacy graduate research recovery cache"}
+{"at": "2026-07-28T12:04:07+00:00", "event": "check", "passed": 59, "failed": 1, "failing_ids": ["GOV-210"]}
+{"at": "2026-07-28T12:04:41+00:00", "event": "check", "passed": 60, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T12:11:20+00:00", "event": "check", "passed": 60, "failed": 0, "failing_ids": []}
