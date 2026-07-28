@@ -126,3 +126,9 @@
 {"at": "2026-07-28T03:05:39+00:00", "event": "requirement_added", "id": "GOV-208", "title": "Mobile clients invalidate the graduate discovery release cache"}
 {"at": "2026-07-28T03:05:39+00:00", "event": "check", "passed": 52, "failed": 3, "failing_ids": ["DATA-221", "DATA-222", "GOV-208"]}
 {"at": "2026-07-28T03:10:27+00:00", "event": "check", "passed": 55, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T07:42:17+00:00", "event": "requirement_added", "id": "DATA-223", "title": "Physical mobile refresh requests travel through the authenticated Supabase queue instead of a private desktop URL"}
+{"at": "2026-07-28T07:42:17+00:00", "event": "check", "passed": 55, "failed": 1, "failing_ids": ["DATA-223"]}
+{"at": "2026-07-28T07:44:59+00:00", "event": "requirement_added", "id": "SEC-202", "title": "The public app cannot forge refresh progress or personalized snapshots"}
+{"at": "2026-07-28T07:44:59+00:00", "event": "requirement_added", "id": "GOV-209", "title": "Mobile clients invalidate the private-bridge refresh release cache"}
+{"at": "2026-07-28T07:44:59+00:00", "event": "check", "passed": 55, "failed": 3, "failing_ids": ["DATA-223", "SEC-202", "GOV-209"]}
+{"at": "2026-07-28T07:50:48+00:00", "event": "check", "passed": 55, "failed": 3, "failing_ids": ["DATA-204", "UX-213", "DATA-211"]}

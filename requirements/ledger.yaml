@@ -399,6 +399,27 @@
       "title": "Mobile clients invalidate the graduate discovery release cache",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v28-grad-discovery", "career-compass-v27-grad-coverage"]},
       "note": "The graduate catalogue and faculty evidence are app-shell data. The service worker cache name must change so an iPhone does not keep the previous 96-program snapshot after deployment."
+    },
+    {
+      "id": "DATA-223",
+      "status": "active",
+      "title": "Physical mobile refresh requests travel through the authenticated Supabase queue instead of a private desktop URL",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-223\"", "refresh_runs", "enqueueRefreshRun"]},
+      "note": "Measured regression on the physical iPhone over LTE on 2026-07-28: all 12 unsuitable decisions retained their reason tags and notes in Supabase, but refresh stopped at 0 percent during status connection because the GitHub Pages app called a private Tailscale desktop URL. The browser must enqueue and poll only its own authenticated Supabase run while the local worker consumes that queue."
+    },
+    {
+      "id": "SEC-202",
+      "status": "active",
+      "title": "The public app cannot forge refresh progress or personalized snapshots",
+      "assert": {"type": "text_present", "path": "supabase/migrations/202607280003_create_refresh_queue.sql", "needles": ["revoke insert, update, delete on table public.personalized_snapshots from authenticated", "refresh_worker_secret_matches", "security definer", "enable row level security"]},
+      "note": "The mobile browser may create and read only its own request. A local worker authenticated by a high-entropy secret is the only writer of run progress and personalized snapshots; the secret must never appear in the public bundle or committed configuration."
+    },
+    {
+      "id": "GOV-209",
+      "status": "active",
+      "title": "Mobile clients invalidate the private-bridge refresh release cache",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v29-supabase-refresh-queue", "career-compass-v28-grad-discovery"]},
+      "note": "The refresh runtime moves from the private desktop bridge to the Supabase queue. The service-worker cache must advance so the physical iPhone does not keep calling the retired Tailscale URL."
     }
   ]
 }

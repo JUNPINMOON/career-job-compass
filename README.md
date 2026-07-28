@@ -18,7 +18,7 @@ The static snapshot is an offline fallback. The generator is read-only against `
 python scripts\build_snapshot.py --job-search-root C:\Users\mjb58\job_search
 ```
 
-`data/refresh-bridge.json` stays disabled by default. When it is enabled with an authenticated personal HTTPS endpoint, the app's refresh button starts the complete local candidate engine, waits for completion, then loads `/api/jobs/public-snapshot`. It must never point to a public anonymous endpoint.
+The refresh button inserts an authenticated per-user row into Supabase `refresh_runs` and polls that row for stage, progress, and completion. A dedicated local worker claims queued runs, reads the complete variable-length preference set through a secret-checked database function, runs the fixed local candidate engine, and atomically publishes both status and the personalized snapshot. The public bundle contains no desktop URL or worker credential.
 
 ## Release boundary
 

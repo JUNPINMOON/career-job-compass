@@ -109,6 +109,11 @@
     "first_seen": "2026-07-28T03:05:39+00:00",
     "title": "New canonical graduate programmes flow into the public explorer automatically"
   },
+  "DATA-223": {
+    "assert_sha": "ce808bdbda67bf12",
+    "first_seen": "2026-07-28T07:42:17+00:00",
+    "title": "Physical mobile refresh requests travel through the authenticated Supabase queue instead of a private desktop URL"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -149,6 +154,11 @@
     "first_seen": "2026-07-28T03:05:39+00:00",
     "title": "Mobile clients invalidate the graduate discovery release cache"
   },
+  "GOV-209": {
+    "assert_sha": "a6018366de69d4cb",
+    "first_seen": "2026-07-28T07:44:59+00:00",
+    "title": "Mobile clients invalidate the private-bridge refresh release cache"
+  },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -158,6 +168,11 @@
     "assert_sha": "15b32b96edd38fb0",
     "first_seen": "2026-07-26T17:42:34+00:00",
     "title": "Preference records are protected by per-user row level security"
+  },
+  "SEC-202": {
+    "assert_sha": "66deb96e2cc2a5bf",
+    "first_seen": "2026-07-28T07:44:59+00:00",
+    "title": "The public app cannot forge refresh progress or personalized snapshots"
   },
   "UX-201": {
     "assert_sha": "0cb85859116bd85d",

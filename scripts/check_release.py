@@ -70,7 +70,8 @@ def main() -> None:
         "index.html", "styles.css", "app.js", "sw.js", "manifest.webmanifest",
         "icons/app-icon.svg", "icons/app-icon-maskable.svg", "icons/apple-touch-icon.png",
         "assets/route-map-editorial-v2.webp", "assets/study-steps-editorial-v2.webp",
-        "data/app-data.json", "data/catalog-source.json", "data/refresh-bridge.json",
+        "data/app-data.json", "data/catalog-source.json",
+        "supabase/migrations/202607280003_create_refresh_queue.sql",
         "requirements/ledger.yaml", "scripts/check_requirements.py", "DESIGN.md",
     ):
         require(ROOT / relative, relative)
@@ -88,11 +89,9 @@ def main() -> None:
         raise SystemExit("manifest must declare standalone display, start_url, and relative scope")
 
     snapshot = json.loads((ROOT / "data/app-data.json").read_text(encoding="utf-8"))
-    bridge = json.loads((ROOT / "data/refresh-bridge.json").read_text(encoding="utf-8"))
-    if bridge.get("schemaVersion") != 1 or not isinstance(bridge.get("enabled"), bool) or not isinstance(bridge.get("baseUrl"), str):
-        raise SystemExit("refresh bridge must declare schemaVersion, enabled, and baseUrl")
-    if bridge["enabled"] and not bridge["baseUrl"].startswith("https://"):
-        raise SystemExit("an enabled refresh bridge must use HTTPS")
+    app_source = (ROOT / "app.js").read_text(encoding="utf-8")
+    if "refresh_runs" not in app_source or "refresh-bridge.json" in app_source or "tailscale" in app_source.casefold():
+        raise SystemExit("mobile refresh must use the Supabase queue without a private bridge URL")
     jobs = snapshot.get("jobs")
     review_queue = snapshot.get("reviewQueue")
     programs = snapshot.get("programs")

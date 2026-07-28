@@ -46,7 +46,7 @@
 
   const state = {
     data: null,
-    bridge: null,
+    refreshRunId: null,
     refreshTimer: null,
     refreshClockTimer: null,
     refreshRunStatus: null,
@@ -595,7 +595,6 @@
   }
   function setSnapshot(data, { focus = false } = {}) { if (!isSnapshot(data)) throw new Error("snapshot schema"); state.data = data; normalizeFilters(); updateNetwork(); render(focus); }
   function setEngineBusy(busy) { if (!engineRefresh) return; engineRefresh.disabled = busy; engineRefresh.toggleAttribute("aria-busy", busy); }
-  function bridgeUrl(path) { return new URL(path, `${state.bridge.baseUrl}/`).toString(); }
   class BridgeError extends Error {
     constructor(message, status = 0, payload = null) {
       super(message);
@@ -604,43 +603,41 @@
       this.payload = payload;
     }
   }
-  async function bridgeRequest(path, options = {}) {
-    if (!state.bridge) throw new Error("bridge unavailable");
-    const response = await fetch(bridgeUrl(path), { cache: "no-store", ...options });
-    if (!response.ok) {
-      let payload = null;
-      try { payload = await response.json(); } catch (_) { /* HTTP status remains authoritative */ }
-      throw new BridgeError(payload?.error || `bridge HTTP ${response.status}`, response.status, payload);
-    }
-    return response;
-  }
   async function authenticatedRefreshHeaders() {
     /* data-requirement-id="DATA-204" data-requirement-id="GOV-204" */
     if (!state.preferenceClient || !state.preferenceUserId) {
-      throw new Error("personalized refresh requires an authenticated preference session");
+      throw new BridgeError("personalized refresh requires an authenticated preference session", 401);
     }
     const { data, error } = await state.preferenceClient.auth.getSession();
     const access_token = data?.session?.access_token;
-    if (error || !access_token) {
-      throw new Error("personalized refresh requires an authenticated preference session");
+    const config = window.CAREER_COMPASS_SUPABASE;
+    if (error || !access_token || !config?.publishableKey) {
+      throw new BridgeError("personalized refresh requires an authenticated preference session", 401);
     }
-    return { "Content-Type": "application/json", Authorization: `Bearer ${access_token}` };
+    return {
+      apikey: config.publishableKey,
+      Authorization: `Bearer ${access_token}`,
+      "Content-Type": "application/json",
+      Prefer: "return=representation",
+    };
   }
-  async function persistCloudSnapshot(snapshot) {
-    /* data-requirement-id="DATA-209" */
-    if (!state.preferenceClient || !state.preferenceUserId || !isSnapshot(snapshot)) return;
-    const { error } = await state.preferenceClient.from("personalized_snapshots").upsert({
-      user_id: state.preferenceUserId,
-      generated_at: snapshot.generatedAt,
-      preference_digest: snapshot.stats?.preferenceSummary?.digest || null,
-      job_data_as_of: snapshot.stats?.jobDataAsOf || snapshot.dataAsOf || null,
-      snapshot,
-      updated_at: new Date().toISOString(),
-    }, { onConflict: "user_id" });
-    if (error) throw error;
+  async function authenticatedRefreshRequest(path, options = {}) {
+    const config = window.CAREER_COMPASS_SUPABASE;
+    if (!config?.url) throw new BridgeError("Supabase refresh endpoint unavailable");
+    const response = await fetch(`${config.url}/rest/v1/${path}`, {
+      cache: "no-store",
+      ...options,
+      headers: { ...(await authenticatedRefreshHeaders()), ...(options.headers || {}) },
+    });
+    if (!response.ok) {
+      let payload = null;
+      try { payload = await response.json(); } catch (_) { /* HTTP status remains authoritative */ }
+      throw new BridgeError(payload?.message || payload?.error || `refresh queue HTTP ${response.status}`, response.status, payload);
+    }
+    return response.status === 204 ? null : response.json();
   }
   async function loadCloudSnapshot() {
-    /* A clean mobile session loads only the authenticated Supabase row, never the private bridge. */
+    /* data-requirement-id="DATA-209" A clean mobile session reads only its authenticated Supabase row. */
     if (!state.preferenceClient || !state.preferenceUserId) return;
     const { data, error } = await state.preferenceClient
       .from("personalized_snapshots")
@@ -655,17 +652,95 @@
       setSnapshot(freshest);
     }
   }
+  async function loadMatchingCompletedSnapshot(status) {
+    /* data-requirement-id="DATA-211" */
+    if (status?.state !== "succeeded" || !state.preferenceClient || !state.preferenceUserId) return false;
+    const expectedDigest = status.preferenceSummary?.digest;
+    const { data, error } = await state.preferenceClient
+      .from("personalized_snapshots")
+      .select("snapshot,preference_digest")
+      .eq("user_id", state.preferenceUserId)
+      .maybeSingle();
+    if (error) throw error;
+    if (!expectedDigest || data?.preference_digest !== expectedDigest || !isSnapshot(data?.snapshot)) {
+      throw new BridgeError("completed snapshot does not match this refresh preference digest", 409, {
+        expectedDigest,
+        actualDigest: data?.preference_digest || null,
+      });
+    }
+    store(LIVE_SNAPSHOT_STORAGE_KEY, data.snapshot);
+    setSnapshot(data.snapshot);
+    return true;
+  }
   function refreshErrorLabel(error, status = null) {
     /* data-requirement-id="UX-213" */
     const httpStatus = error?.status || 0;
     if (httpStatus === 401 || String(error?.message).includes("authenticated preference session")) return "피드백 인증이 필요합니다";
     if (httpStatus === 403) return "이 계정은 개인 추천 엔진을 실행할 수 없습니다";
+    if (httpStatus === 409) return "이번 피드백 묶음과 결과가 일치하지 않아 반영을 중단했습니다";
     const failedStage = [...(status?.stages || [])].reverse().find((stage) => stage.state === "failed");
     if (failedStage?.labelKo) return `${failedStage.labelKo} 단계 실패 · 기존 공고는 유지됩니다`;
-    if (error instanceof TypeError || httpStatus === 0) return "리프레시 엔진이 꺼져 있습니다 · PC와 Tailscale을 확인하세요";
+    if (error instanceof TypeError || httpStatus === 0 || !navigator.onLine) return "Supabase 작업 큐 연결 실패 · 인터넷 연결을 확인하세요";
     return "추천 갱신 실패 · 잠시 후 다시 시도하세요";
   }
-  async function refreshStatus() { return (await bridgeRequest("api/jobs/refresh")).json(); }
+  function refreshRunStatus(row) {
+    if (!row) return null;
+    return {
+      ...(row.status || {}),
+      state: row.state,
+      startedAt: row.status?.startedAt || row.started_at || row.requested_at,
+      finishedAt: row.status?.finishedAt || row.finished_at,
+      updatedAt: row.status?.updatedAt || row.updated_at,
+    };
+  }
+  async function activeRefreshRun() {
+    if (!state.preferenceClient || !state.preferenceUserId) return null;
+    const { data, error } = await state.preferenceClient
+      .from("refresh_runs")
+      .select("id,state,status,requested_at,started_at,finished_at,updated_at")
+      .eq("user_id", state.preferenceUserId)
+      .in("state", ["pending", "running"])
+      .order("requested_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    if (error) throw error;
+    return data || null;
+  }
+  async function enqueueRefreshRun() {
+    /* data-requirement-id="DATA-223" */
+    if (!state.preferenceClient || !state.preferenceUserId) {
+      throw new Error("personalized refresh requires an authenticated preference session");
+    }
+    const active = await activeRefreshRun();
+    if (active) return active;
+    try {
+      const rows = await authenticatedRefreshRequest(
+        "refresh_runs?select=id%2Cstate%2Cstatus%2Crequested_at%2Cstarted_at%2Cfinished_at%2Cupdated_at",
+        { method: "POST", body: JSON.stringify({ user_id: state.preferenceUserId }) },
+      );
+      if (!Array.isArray(rows) || !rows[0]) throw new BridgeError("refresh queue returned no run");
+      return rows[0];
+    } catch (error) {
+      if (error?.status !== 409 && error?.payload?.code !== "23505") throw error;
+      const raced = await activeRefreshRun();
+      if (raced) return raced;
+      throw error;
+    }
+  }
+  async function refreshStatus() {
+    if (!state.preferenceClient || !state.preferenceUserId || !state.refreshRunId) {
+      throw new Error("personalized refresh requires an authenticated preference session");
+    }
+    const { data, error } = await state.preferenceClient
+      .from("refresh_runs")
+      .select("id,state,status,requested_at,started_at,finished_at,updated_at")
+      .eq("user_id", state.preferenceUserId)
+      .eq("id", state.refreshRunId)
+      .maybeSingle();
+    if (error) throw error;
+    if (!data) throw new Error("refresh run not found");
+    return refreshRunStatus(data);
+  }
   function stopRefreshPolling() {
     if (state.refreshTimer) window.clearTimeout(state.refreshTimer);
     if (state.refreshClockTimer) window.clearInterval(state.refreshClockTimer);
@@ -723,7 +798,7 @@
     const summary = status.preferenceSummary || {};
     const preferenceDiscovery = status.preferenceDiscovery || {};
     const estimate = refreshEstimate(status, now);
-    const isRunning = status.state === "running";
+    const isActive = status.state === "pending" || status.state === "running";
     const isSucceeded = status.state === "succeeded";
     const failedStage = [...(status.stages || [])].reverse().find((stage) => stage.state === "failed");
     const percent = isSucceeded ? 100 : estimate.percent;
@@ -732,10 +807,13 @@
     refreshProgressPercent.textContent = `${percent}%`;
     refreshProgressBar.style.width = `${percent}%`;
     refreshProgressBar.parentElement.setAttribute("aria-valuenow", String(percent));
+    const pendingSeconds = status.state === "pending" ? estimate.elapsedSeconds : 0;
     refreshStageLabel.textContent = isSucceeded
       ? "새 공고 검색·분류 결과를 앱에 반영했습니다."
       : status.state === "failed"
         ? `${failedStage?.labelKo || "갱신"} 단계에서 멈췄습니다. 기존 공고는 유지됩니다.`
+        : status.state === "pending" && pendingSeconds >= 60
+          ? "리프레시 엔진이 꺼져 있습니다 · 요청은 저장됐으며 로컬 엔진 연결을 기다립니다."
         : `${currentStage.labelKo || "갱신 준비"} · ${currentStage.position || 0}/${currentStage.total || 10}단계`;
     refreshElapsed.textContent = `경과 ${formatRuntime(estimate.elapsedSeconds)}`;
     refreshEta.textContent = isSucceeded
@@ -745,7 +823,7 @@
         : `예상 남은 시간 ${formatRuntime(estimate.remainingLow)}~${formatRuntime(estimate.remainingHigh)}`;
     const discoveredCandidateCount = Number(preferenceDiscovery.discoveredCandidateCount || 0);
     refreshPreferenceCount.textContent = `관심 ${summary.likedCount || 0}건 · 별로예요 ${summary.dislikedCount || 0}건 전부 반영${discoveredCandidateCount ? ` · 유사 후보 ${discoveredCandidateCount}건 발견` : ""} · 예상치는 수집처 응답 속도에 따라 달라질 수 있습니다.`;
-    if (isRunning && !state.refreshClockTimer) {
+    if (isActive && !state.refreshClockTimer) {
       state.refreshClockTimer = window.setInterval(() => renderRefreshMonitor(state.refreshRunStatus), 1000);
     }
   }
@@ -762,40 +840,20 @@
       ],
     });
   }
-  async function loadLiveSnapshot() {
-    const headers = await authenticatedRefreshHeaders();
-    const response = await bridgeRequest("api/jobs/public-snapshot", { headers });
-    const data = await response.json();
-    store(LIVE_SNAPSHOT_STORAGE_KEY, data);
-    await persistCloudSnapshot(data);
-    setSnapshot(data);
-  }
-  async function loadMatchingCompletedSnapshot(status) {
-    /* data-requirement-id="DATA-211" */
-    if (status?.state !== "succeeded") return false;
-    try {
-      await loadLiveSnapshot();
-      renderRefreshMonitor(status);
-      const summary = status.preferenceSummary || {};
-      snapshotLabel.textContent = `새 추천 반영 완료 · 관심 ${summary.likedCount || 0} · 별로예요 ${summary.dislikedCount || 0}`;
-      return true;
-    } catch (error) {
-      if (error instanceof BridgeError && error.status === 409) return false;
-      throw error;
-    }
-  }
   async function watchRefresh() {
     /* data-requirement-id="DATA-205" */
     let status = null;
     try {
       status = await refreshStatus();
       renderRefreshMonitor(status);
-      if (status.state === "running") {
+      if (status.state === "pending" || status.state === "running") {
         store(REFRESH_WATCH_STORAGE_KEY, true);
         const preferenceSummary = status.preferenceSummary || {};
         const currentStage = status.currentStage || {};
         const counts = `관심 ${preferenceSummary.likedCount || 0} · 별로예요 ${preferenceSummary.dislikedCount || 0} 반영`;
-        const progress = currentStage.total ? `${currentStage.labelKo || "갱신 중"} ${currentStage.position}/${currentStage.total}` : "갱신 준비";
+        const progress = status.state === "pending"
+          ? "작업 큐에서 로컬 엔진 연결 대기"
+          : currentStage.total ? `${currentStage.labelKo || "갱신 중"} ${currentStage.position}/${currentStage.total}` : "갱신 준비";
         snapshotLabel.textContent = `${counts} · ${progress}`;
         state.refreshTimer = window.setTimeout(watchRefresh, 4000);
         return;
@@ -804,7 +862,7 @@
       store(REFRESH_WATCH_STORAGE_KEY, false);
       setEngineBusy(false);
       if (status.state !== "succeeded") throw new Error(`refresh state: ${status.state || "unknown"}`);
-      await loadLiveSnapshot();
+      await loadMatchingCompletedSnapshot(status);
       const summary = status.preferenceSummary || {};
       snapshotLabel.textContent = `새 추천 반영 완료 · 관심 ${summary.likedCount || 0} · 별로예요 ${summary.dislikedCount || 0}`;
     } catch (error) {
@@ -818,7 +876,7 @@
     }
   }
   async function refreshEngine() {
-    if (!state.bridge || engineRefresh?.disabled) return;
+    if (!state.preferenceClient || !state.preferenceUserId || engineRefresh?.disabled) return;
     state.refreshRequestedAt = Date.now();
     setEngineBusy(true);
     snapshotLabel.textContent = "후보 갱신 시작";
@@ -834,17 +892,9 @@
       },
     });
     try {
-      const status = await refreshStatus();
-      if (await loadMatchingCompletedSnapshot(status)) {
-        stopRefreshPolling();
-        store(REFRESH_WATCH_STORAGE_KEY, false);
-        setEngineBusy(false);
-        return;
-      }
-      if (status.state !== "running") {
-        const headers = await authenticatedRefreshHeaders();
-        await bridgeRequest("api/jobs/refresh", { method: "POST", headers, body: "{}" });
-      }
+      const run = await enqueueRefreshRun();
+      state.refreshRunId = run.id;
+      renderRefreshMonitor(refreshRunStatus(run));
       await watchRefresh();
     } catch (error) {
       console.error(error);
@@ -855,25 +905,24 @@
       renderRefreshConnectionFailure();
     }
   }
-  async function connectBridge() {
+  async function connectRefreshQueue() {
     try {
-      const response = await fetch(`./data/refresh-bridge.json?at=${Date.now()}`, { cache: "no-store" });
-      if (!response.ok) return;
-      const config = await response.json();
-      if (config?.enabled !== true || typeof config.baseUrl !== "string") return;
-      const url = new URL(config.baseUrl);
-      if (url.protocol !== "https:" || url.pathname !== "/" || url.search || url.hash) throw new Error("invalid bridge url");
-      state.bridge = { baseUrl: url.origin };
+      if (!state.preferenceClient || !state.preferenceUserId) throw new Error("preference session unavailable");
       engineRefresh.hidden = false;
       engineRefresh.disabled = false;
       engineRefresh.title = "후보 추천 엔진 새로 실행";
       if (readJSON(REFRESH_WATCH_STORAGE_KEY, false) === true) {
-        setEngineBusy(true);
-        await watchRefresh();
+        const active = await activeRefreshRun();
+        if (active) {
+          state.refreshRunId = active.id;
+          setEngineBusy(true);
+          await watchRefresh();
+        } else {
+          store(REFRESH_WATCH_STORAGE_KEY, false);
+        }
       }
     } catch (error) {
-      console.warn("live refresh bridge unavailable", error);
-      state.bridge = null;
+      console.warn("Supabase refresh queue unavailable", error);
       engineRefresh.hidden = false;
       engineRefresh.disabled = true;
       engineRefresh.title = "개인 엔진 연결이 필요합니다";
@@ -961,5 +1010,5 @@
   dossier.addEventListener("click", (event) => { if (event.target === dossier) closeDetail(); });
   window.addEventListener("hashchange", () => render()); window.addEventListener("online", updateNetwork); window.addEventListener("offline", updateNetwork);
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").then((registration) => registration.update()).catch(() => undefined);
-  void (async () => { await load(); await connectPreferences(); await connectBridge(); })();
+  void (async () => { await load(); await connectPreferences(); await connectRefreshQueue(); })();
 })();
