@@ -1,12 +1,12 @@
 {
   "app.js": {
-    "mtime": 1785206049.2523675,
-    "ast_hash": "91ceb9e815718e3f3530a1b07b881a13",
+    "mtime": 1785225529.706302,
+    "ast_hash": "1019df379c765530bcf01d14bc40acd2",
     "semantic_hash": ""
   },
   "data/app-data.json": {
-    "mtime": 1785206136.9069238,
-    "ast_hash": "69cf354d720a57d2dea2f5a65239e018",
+    "mtime": 1785240158.0948539,
+    "ast_hash": "8d47bfa954558b458ff905ec9faa46e7",
     "semantic_hash": ""
   },
   "data/catalog-source.json": {
@@ -20,13 +20,13 @@
     "semantic_hash": ""
   },
   "scripts/build_snapshot.py": {
-    "mtime": 1785205984.525198,
-    "ast_hash": "caf4f0311f1ad9be5ee53c14c6736a9f",
+    "mtime": 1785207981.9555666,
+    "ast_hash": "7ead6e87cb3af99f73ea1f05b9684217",
     "semantic_hash": ""
   },
   "scripts/check_release.py": {
-    "mtime": 1785206272.6443436,
-    "ast_hash": "1e460d0f07f42c948685b8acd2ab7720",
+    "mtime": 1785224928.0107043,
+    "ast_hash": "35b95f8a4de74699544d4be739187fc0",
     "semantic_hash": ""
   },
   "scripts/check_requirements.py": {
@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "sw.js": {
-    "mtime": 1785206097.3195207,
-    "ast_hash": "9898536e326b9ff445b81798d4972008",
+    "mtime": 1785240257.368416,
+    "ast_hash": "f39f8c76f284ac1e3ea9992d3e220ce9",
     "semantic_hash": ""
   },
   ".codex/hooks.json": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "requirements/.seen-ids.json": {
-    "mtime": 1785206281.7926412,
-    "ast_hash": "34ae9c134057aa4af3eb0a9dbec37157",
+    "mtime": 1785240680.7884412,
+    "ast_hash": "0ae1c13920761b652ed7efa5ac084171",
     "semantic_hash": ""
   },
   ".github/workflows/pages.yml": {
@@ -65,8 +65,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1785155992.940839,
-    "ast_hash": "d19826098978923ca7cbd88e4f798ac8",
+    "mtime": 1785224928.009703,
+    "ast_hash": "a33dfcefd5f3a503017f365475566118",
     "semantic_hash": ""
   },
   "index.html": {
@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "requirements/ledger.yaml": {
-    "mtime": 1785206209.0258768,
-    "ast_hash": "192deb1bffc09007c8f0b4549eef7ccc",
+    "mtime": 1785240240.884667,
+    "ast_hash": "7d10576847533db02c8527eca72ea772",
     "semantic_hash": ""
   },
   "assets/daily-brief-cover-v3.png": {
@@ -135,13 +135,33 @@
     "semantic_hash": ""
   },
   "scripts/expand_graduate_evidence.py": {
-    "mtime": 1785206155.3660033,
-    "ast_hash": "7b41a2db6026be44f1349a8300c1a719",
+    "mtime": 1785207981.9535675,
+    "ast_hash": "21563388deee1a2ae3bd21cf27eca09a",
     "semantic_hash": ""
   },
   "data/graduate-evidence-patches-2026-07-28.json": {
     "mtime": 1785205965.9446774,
     "ast_hash": "fc7c07336f45cbc278b2b6f9cee63dea",
+    "semantic_hash": ""
+  },
+  "data/graduate-evidence-patches-wave2-2026-07-28.json": {
+    "mtime": 1785208128.1760607,
+    "ast_hash": "dd49c3127ecfd449d6a5942e70a18615",
+    "semantic_hash": ""
+  },
+  "data/graduate-new-programs-2026-07-28.json": {
+    "mtime": 1785208128.1750548,
+    "ast_hash": "bfb9b538171f5d4ee2cb953bd7452a58",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/202607280003_create_refresh_queue.sql": {
+    "mtime": 1785224761.4450154,
+    "ast_hash": "7db02eaec60e2ff5c8bcbc9e920a0231",
+    "semantic_hash": ""
+  },
+  "data/graduate-evidence-legacy-recovery-2026-07-28.json": {
+    "mtime": 1785240093.2726905,
+    "ast_hash": "d6bda79d03176a644d219fd14574f5ea",
     "semantic_hash": ""
   }
 }

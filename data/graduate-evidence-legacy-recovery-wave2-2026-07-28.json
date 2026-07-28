@@ -1,0 +1,218 @@
+[
+    {
+      "requirementId": "DATA-225",
+      "researchMethod": "Legacy recovery: official university, laboratory, institutional research-portal, publication, project, and programme-outcome pages only; unsupported amounts, employers, and outcomes remain blank.",
+      "verified_on": "2026-07-28",
+      "university": "University of Iowa - IIHR Hydroscience and Engineering",
+      "program": "MS/PhD in Civil and Environmental Engineering - Hydraulics and Water Resources",
+      "legacyDonor": "Asian Institute of Technology (AIT) / University of Iowa dual-degree record",
+      "official_current_sources": [
+        "https://gvillarini.iihr.uiowa.edu/",
+        "https://gvillarini.iihr.uiowa.edu/publications"
+      ],
+      "faculty": [{
+        "name": "Gabriele Villarini",
+        "title": "Professor of Civil and Environmental Engineering; Director Emeritus, IIHR",
+        "lab_or_group": "Villarini Research Group, IIHR and Iowa Flood Center",
+        "profile_urls": ["https://gvillarini.iihr.uiowa.edu/"],
+        "profile_sources": [
+          {"source_type": "official_faculty_homepage", "label": "University of Iowa IIHR 교수 홈페이지", "url": "https://gvillarini.iihr.uiowa.edu/"}
+        ],
+        "alignment_notes": "Flood hydrology, hydroclimatology, extreme events, climate prediction, and AI-assisted forecasting align directly with hydraulics and water-resources study.",
+        "recent_papers": [
+          {"year": 2023, "title": "Projected changes in annual maximum discharge for Iowa communities", "venue": "Journal of Hydrology 625", "url": "https://gvillarini.iihr.uiowa.edu/publications"},
+          {"year": 2023, "title": "Hybrid forecasting: Blending climate predictions with AI models", "venue": "Hydrology and Earth System Sciences 27", "url": "https://gvillarini.iihr.uiowa.edu/publications"},
+          {"year": 2023, "title": "Evaluation of CMIP6 HighResMIP for hydrologic modeling of annual maximum discharge in Iowa", "venue": "Water Resources Research 59", "url": "https://gvillarini.iihr.uiowa.edu/publications"}
+        ],
+        "recent_projects": []
+      }],
+      "graduate_destinations": [],
+      "source_urls": ["https://gvillarini.iihr.uiowa.edu/", "https://gvillarini.iihr.uiowa.edu/publications"]
+    },
+    {
+      "university": "Aalto University",
+      "program": "MSc in Water and Environmental Engineering",
+      "legacyDonor": "No direct donor; recovered through the legacy institutional research-portal method",
+      "official_current_sources": [
+        "https://research.aalto.fi/en/persons/matti-kummu/",
+        "https://www.aalto.fi/en/study-options/water-and-environmental-engineering-master-of-science-technology"
+      ],
+      "faculty": [{
+        "name": "Matti Kummu",
+        "title": "Professor, Water and Environmental Engineering",
+        "lab_or_group": "Built Environment and Water and Environmental Engineering",
+        "profile_urls": ["https://research.aalto.fi/en/persons/matti-kummu/"],
+        "profile_sources": [
+          {"source_type": "official_institutional_research_profile", "label": "Aalto University 연구자 프로필", "url": "https://research.aalto.fi/en/persons/matti-kummu/"}
+        ],
+        "alignment_notes": "Global water and food systems, climate risk, cropping systems, and coastal water risk connect water engineering with environmental modelling and policy.",
+        "recent_papers": [
+          {"year": 2026, "title": "Assessing global potential for transition from single to multiple cropping", "venue": "Agricultural Systems 233, 104618", "url": "https://research.aalto.fi/en/persons/matti-kummu/"},
+          {"year": 2026, "title": "Climate Risk STAC: A spatially explicit global dataset for assessing climate risk through hazard, exposure, vulnerability, and coping capacity", "venue": "Environmental Modelling & Software 198, 106906", "url": "https://research.aalto.fi/en/persons/matti-kummu/"},
+          {"year": 2026, "title": "Mapping world's coastal population facing water-related risks", "venue": "Geography and Sustainability 7(1), 100411", "url": "https://research.aalto.fi/en/persons/matti-kummu/"}
+        ],
+        "recent_projects": [
+          {"title": "STN Water&Food Kummu", "funder": "", "period": "2024-12-01 to 2027-11-30", "amount": "", "url": "https://research.aalto.fi/en/persons/matti-kummu/"},
+          {"title": "AdaptCrop", "funder": "", "period": "2024-09-01 to 2027-08-31", "amount": "", "url": "https://research.aalto.fi/en/persons/matti-kummu/"},
+          {"title": "DigiVesi", "funder": "", "period": "2022-09-01 to 2027-08-31", "amount": "", "url": "https://research.aalto.fi/en/persons/matti-kummu/"}
+        ]
+      }],
+      "graduate_destinations": [{
+        "name": "Programme-level career outcomes",
+        "role": "Water-resources or water-engineering planner, technical expert, manager, consultant, utility or public-sector specialist, or doctoral researcher",
+        "destination": "Consulting firms, regional environmental centres, cities and municipalities, Finnish Environment Institute Syke, equipment suppliers, and water utilities",
+        "source_type": "official_programme_career_outcomes",
+        "source_label": "Aalto University 공식 진로 안내",
+        "url": "https://www.aalto.fi/en/study-options/water-and-environmental-engineering-master-of-science-technology"
+      }],
+      "source_urls": ["https://research.aalto.fi/en/persons/matti-kummu/", "https://www.aalto.fi/en/study-options/water-and-environmental-engineering-master-of-science-technology"]
+    },
+    {
+      "university": "Uppsala University",
+      "program": "MSc in Earth Science - Hydrology and Hydrogeology",
+      "legacyDonor": "No direct donor; recovered through the legacy official staff and programme-outcome method",
+      "official_current_sources": [
+        "https://www.uu.se/kontakt-och-organisation/personal?query=N14-377",
+        "https://www.uu.se/en/study/programme/masters-programme-earth-science-hydrology-hydrogeology"
+      ],
+      "faculty": [{
+        "name": "Giuliano Di Baldassarre",
+        "title": "Professor of Hydrology",
+        "lab_or_group": "Department of Earth Sciences, Natural Resources and Sustainable Development",
+        "profile_urls": ["https://www.uu.se/kontakt-och-organisation/personal?query=N14-377"],
+        "profile_sources": [
+          {"source_type": "official_faculty_homepage", "label": "Uppsala University 교수 프로필", "url": "https://www.uu.se/kontakt-och-organisation/personal?query=N14-377"}
+        ],
+        "alignment_notes": "Socio-hydrology, disaster risk, groundwater use, inequalities, and warning systems connect physical hydrology with human-water interactions.",
+        "recent_papers": [
+          {"year": 2026, "title": "Natural hazard susceptibilities and inequities reduced by short-term groundwater use", "venue": "Nature Geoscience", "url": "https://www.uu.se/kontakt-och-organisation/personal?query=N14-377"},
+          {"year": 2026, "title": "How personalized disaster warnings can save lives", "venue": "Nature Human Behaviour", "url": "https://www.uu.se/kontakt-och-organisation/personal?query=N14-377"}
+        ],
+        "recent_projects": []
+      }],
+      "graduate_destinations": [{
+        "name": "Programme-level career outcomes",
+        "role": "Hydrogeologist, hydrologist, environmental consultant, or postgraduate researcher",
+        "destination": "Examples named by the programme include Berg AB, Sweco AB, and Tyréns AB",
+        "source_type": "official_programme_career_outcomes",
+        "source_label": "Uppsala University 공식 진로 안내",
+        "url": "https://www.uu.se/en/study/programme/masters-programme-earth-science-hydrology-hydrogeology"
+      }],
+      "source_urls": ["https://www.uu.se/kontakt-och-organisation/personal?query=N14-377", "https://www.uu.se/en/study/programme/masters-programme-earth-science-hydrology-hydrogeology"]
+    },
+    {
+      "university": "Colorado School of Mines",
+      "program": "MS/PhD in Hydrologic Science and Engineering",
+      "legacyDonor": "No direct donor; recovered through the legacy official programme-faculty and laboratory method",
+      "official_current_sources": ["https://hydrology.mines.edu/faculty/", "https://people.mines.edu/thogue/", "https://people.mines.edu/thogue/wildfire/"],
+      "faculty": [{
+        "name": "Terri Hogue",
+        "title": "Professor of Civil and Environmental Engineering; Dean, Earth and Society Programs",
+        "lab_or_group": "Center for Sustainable WE2ST and Hydrologic Science and Engineering",
+        "profile_urls": ["https://hydrology.mines.edu/faculty/", "https://people.mines.edu/thogue/"],
+        "profile_sources": [
+          {"source_type": "official_programme_faculty_page", "label": "Colorado School of Mines HSE 교수진", "url": "https://hydrology.mines.edu/faculty/"},
+          {"source_type": "official_faculty_homepage", "label": "Terri Hogue 교수 홈페이지", "url": "https://people.mines.edu/thogue/"}
+        ],
+        "alignment_notes": "Water security, wildfire, urbanization, watershed and snow-process modelling, and remote sensing align with interdisciplinary hydrologic science.",
+        "recent_papers": [],
+        "recent_projects": [{
+          "title": "Post-fire Water Quality: an Investigation of Determinants and Recovery Processes in Burned Watersheds across the Western U.S.",
+          "funder": "Joint Fire Science Program",
+          "period": "",
+          "amount": "",
+          "url": "https://people.mines.edu/thogue/wildfire/"
+        }]
+      }],
+      "graduate_destinations": [],
+      "source_urls": ["https://hydrology.mines.edu/faculty/", "https://people.mines.edu/thogue/", "https://people.mines.edu/thogue/wildfire/"]
+    },
+    {
+      "university": "Utah State University",
+      "program": "MS/PhD in Civil and Environmental Engineering - Water Engineering",
+      "legacyDonor": "No direct donor; recovered through the legacy official faculty-profile method",
+      "official_current_sources": ["https://engineering.usu.edu/cee/people/faculty/rosenberg-david"],
+      "faculty": [{
+        "name": "David Rosenberg",
+        "title": "Professor of Civil and Environmental Engineering",
+        "lab_or_group": "Water Systems research, Department of Civil and Environmental Engineering",
+        "profile_urls": ["https://engineering.usu.edu/cee/people/faculty/rosenberg-david"],
+        "profile_sources": [
+          {"source_type": "official_faculty_homepage", "label": "Utah State University 교수 프로필", "url": "https://engineering.usu.edu/cee/people/faculty/rosenberg-david"}
+        ],
+        "alignment_notes": "Water management from household to transboundary basin scales integrates hydrologic, engineering, economic, ecological, behavioural, and institutional factors.",
+        "recent_papers": [
+          {"year": 2026, "title": "Evaluating the Impact of Residential Landscape Audits Using 5-Second Water Use Data", "venue": "Journal of the American Water Resources Association", "url": "https://engineering.usu.edu/cee/people/faculty/rosenberg-david"},
+          {"year": 2024, "title": "Update to JWRPM Reproducible Results Policy", "venue": "Journal of Water Resources Planning and Management", "url": "https://engineering.usu.edu/cee/people/faculty/rosenberg-david"},
+          {"year": 2024, "title": "JWRPM Reproducibility Review Program: Accomplishments, Lessons, Next Steps", "venue": "Journal of Water Resources Planning and Management 150(8)", "url": "https://engineering.usu.edu/cee/people/faculty/rosenberg-david"}
+        ],
+        "recent_projects": []
+      }],
+      "graduate_destinations": [],
+      "source_urls": ["https://engineering.usu.edu/cee/people/faculty/rosenberg-david"]
+    },
+    {
+      "university": "FloodRISK Consortium - IHE Delft, TU Dresden, UPC Barcelona, University of Ljubljana",
+      "program": "Erasmus Mundus Joint Master in Flood Risk Management",
+      "legacyDonor": "TU Dresden MSc Hydro Science and Engineering faculty record",
+      "official_current_sources": [
+        "https://www.floodriskmaster.org/",
+        "https://www.floodriskmaster.org/faculty-staff",
+        "https://www.floodriskmaster.org/careers",
+        "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"
+      ],
+      "faculty": [{
+        "name": "Bernhard Vowinckel",
+        "title": "Professor of Transport Processes in Hydrosystems",
+        "lab_or_group": "TU Dresden and FloodRISK teaching faculty",
+        "profile_urls": ["https://www.floodriskmaster.org/faculty-staff", "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"],
+        "profile_sources": [
+          {"source_type": "official_programme_faculty_page", "label": "FloodRISK 공식 교수진", "url": "https://www.floodriskmaster.org/faculty-staff"},
+          {"source_type": "official_faculty_homepage", "label": "TU Dresden 교수 홈페이지", "url": "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"}
+        ],
+        "alignment_notes": "Sediment transport, hydrodynamic forces, and particle-resolved modelling support the flood hydraulics and risk-management curriculum.",
+        "recent_papers": [
+          {"year": 2025, "title": "Hydrodynamic forces on a fixed particle in field-scale open-channel flow", "venue": "Official TU Dresden profile publication", "url": "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"},
+          {"year": 2025, "title": "Settling velocity models for natural sediment particles: a critical review", "venue": "Official TU Dresden profile publication", "url": "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"},
+          {"year": 2025, "title": "Cohesive sediment transport under turbulent open-channel flow", "venue": "Official TU Dresden profile publication", "url": "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"}
+        ],
+        "recent_projects": []
+      }],
+      "graduate_destinations": [
+        {"name": "Juan Velandia", "role": "Product Owner, Climate and Environmental Risk Strategy", "destination": "Rabobank", "source_type": "official_programme_alumni_profile", "source_label": "FloodRISK 공식 졸업생 진로", "url": "https://www.floodriskmaster.org/careers"},
+        {"name": "Nikeh Booister", "role": "Disaster Risk Management Advisor", "destination": "Deltares", "source_type": "official_programme_alumni_profile", "source_label": "FloodRISK 공식 졸업생 진로", "url": "https://www.floodriskmaster.org/careers"},
+        {"name": "Catalina Ford", "role": "Research collaboration", "destination": "IHE Delft and Water Mirrors", "source_type": "official_programme_alumni_profile", "source_label": "FloodRISK 공식 졸업생 진로", "url": "https://www.floodriskmaster.org/careers"},
+        {"name": "Namrata Karki", "role": "Project Manager, Hydroinformatics", "destination": "BGEO", "source_type": "official_programme_alumni_profile", "source_label": "FloodRISK 공식 졸업생 진로", "url": "https://www.floodriskmaster.org/careers"}
+      ],
+      "source_urls": ["https://www.floodriskmaster.org/", "https://www.floodriskmaster.org/faculty-staff", "https://www.floodriskmaster.org/careers", "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"]
+    },
+    {
+      "university": "GroundwatCH Consortium - IST Lisbon, IHE Delft, TU Dresden",
+      "program": "Erasmus Mundus Joint Master in Groundwater and Global Change",
+      "legacyDonor": "TU Dresden MSc Hydro Science and Engineering faculty and publication record",
+      "official_current_sources": [
+        "https://www.groundwatermaster.eu/",
+        "https://www.groundwatermaster.eu/teaching-staff",
+        "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en"
+      ],
+      "faculty": [{
+        "name": "Andreas Hartmann",
+        "title": "Professor at TU Dresden; GroundwatCH teaching staff",
+        "lab_or_group": "GroundwatCH consortium and TU Dresden Institute of Groundwater Management",
+        "profile_urls": ["https://www.groundwatermaster.eu/teaching-staff", "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en"],
+        "profile_sources": [
+          {"source_type": "official_programme_faculty_page", "label": "GroundwatCH 공식 교수진", "url": "https://www.groundwatermaster.eu/teaching-staff"},
+          {"source_type": "official_institutional_publication_profile", "label": "TU Dresden 공식 논문 목록", "url": "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en"}
+        ],
+        "alignment_notes": "Groundwater modelling, drought response, and karst hydrology directly support the programme's groundwater and global-change focus.",
+        "recent_papers": [
+          {"year": 2025, "title": "A large-scale distributed groundwater flow model to simulate groundwater levels and fluxes", "venue": "Official TU Dresden publication list", "url": "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en"},
+          {"year": 2025, "title": "Groundwater head responses to droughts across Germany", "venue": "Official TU Dresden publication list", "url": "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en"},
+          {"year": 2025, "title": "LuKARS 3.0: a parsimonious karst recharge and discharge model", "venue": "Official TU Dresden publication list", "url": "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en"}
+        ],
+        "recent_projects": []
+      }],
+      "graduate_destinations": [],
+      "source_urls": ["https://www.groundwatermaster.eu/", "https://www.groundwatermaster.eu/teaching-staff", "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en"]
+    }
+]

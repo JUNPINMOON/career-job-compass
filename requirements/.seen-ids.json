@@ -119,6 +119,11 @@
     "first_seen": "2026-07-28T11:49:42+00:00",
     "title": "Legacy graduate research recovery publishes substantive professor, paper, project and alumni evidence instead of empty programme panels"
   },
+  "DATA-225": {
+    "assert_sha": "eabfc95179e10c41",
+    "first_seen": "2026-07-28T12:30:21+00:00",
+    "title": "Second legacy recovery reconnects stranded and newly verified graduate evidence to the exact programme keys consumed by the app"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -168,6 +173,11 @@
     "assert_sha": "3541056096f6dfce",
     "first_seen": "2026-07-28T12:04:07+00:00",
     "title": "Mobile clients invalidate the legacy graduate research recovery cache"
+  },
+  "GOV-211": {
+    "assert_sha": "99d65d31a5dd1ab5",
+    "first_seen": "2026-07-28T12:30:21+00:00",
+    "title": "Mobile clients invalidate the second graduate legacy recovery cache"
   },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",

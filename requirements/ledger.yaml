@@ -434,6 +434,20 @@
       "title": "Mobile clients invalidate the legacy graduate research recovery cache",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v30-grad-legacy-recovery", "career-compass-v29-supabase-refresh-queue"]},
       "note": "The app-data snapshot changed after official professor, paper, project and alumni evidence was recovered. The iPhone service worker must advance so the newly consumed research is not hidden behind the prior refresh-queue release cache."
+    },
+    {
+      "id": "DATA-225",
+      "status": "active",
+      "title": "Second legacy recovery reconnects stranded and newly verified graduate evidence to the exact programme keys consumed by the app",
+      "assert": {"type": "text_present", "path": "data/graduate-evidence-legacy-recovery-wave2-2026-07-28.json", "needles": ["\"requirementId\": \"DATA-225\"", "\"legacyDonor\"", "\"official_current_sources\"", "\"recent_papers\"", "\"recent_projects\"", "\"graduate_destinations\""]},
+      "note": "Measured before implementation on 2026-07-28: 42 of 99 public programmes remained empty after the first recovery. University of Iowa faculty and publication evidence already existed under the AIT-Iowa dual-degree record but the standalone IIHR programme consumed a different empty key. The second recovery must reconnect that stranded legacy record and add only current source-backed evidence for further exact programme keys."
+    },
+    {
+      "id": "GOV-211",
+      "status": "active",
+      "title": "Mobile clients invalidate the second graduate legacy recovery cache",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v31-grad-legacy-recovery-wave2", "career-compass-v30-grad-legacy-recovery"]},
+      "note": "The second recovery changes the generated programme snapshot again. The service-worker cache must advance so an iPhone receives the newly connected Iowa and independently verified university evidence."
     }
   ]
 }

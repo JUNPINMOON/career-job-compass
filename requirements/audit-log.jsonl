@@ -139,3 +139,10 @@
 {"at": "2026-07-28T12:04:07+00:00", "event": "check", "passed": 59, "failed": 1, "failing_ids": ["GOV-210"]}
 {"at": "2026-07-28T12:04:41+00:00", "event": "check", "passed": 60, "failed": 0, "failing_ids": []}
 {"at": "2026-07-28T12:11:20+00:00", "event": "check", "passed": 60, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T12:30:21+00:00", "event": "requirement_added", "id": "DATA-225", "title": "Second legacy recovery reconnects stranded and newly verified graduate evidence to the exact programme keys consumed by the app"}
+{"at": "2026-07-28T12:30:21+00:00", "event": "requirement_added", "id": "GOV-211", "title": "Mobile clients invalidate the second graduate legacy recovery cache"}
+{"at": "2026-07-28T12:30:21+00:00", "event": "check", "passed": 60, "failed": 2, "failing_ids": ["DATA-225", "GOV-211"]}
+{"at": "2026-07-28T12:39:51+00:00", "event": "check", "passed": 60, "failed": 2, "failing_ids": ["GOV-210", "GOV-211"]}
+{"at": "2026-07-28T12:40:11+00:00", "event": "check", "passed": 62, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T12:44:51+00:00", "event": "check", "passed": 62, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T12:53:17+00:00", "event": "check", "passed": 62, "failed": 0, "failing_ids": []}
