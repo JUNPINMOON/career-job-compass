@@ -124,6 +124,21 @@
     "first_seen": "2026-07-28T12:30:21+00:00",
     "title": "Second legacy recovery reconnects stranded and newly verified graduate evidence to the exact programme keys consumed by the app"
   },
+  "DATA-226": {
+    "assert_sha": "a0a82f87addadffb",
+    "first_seen": "2026-07-29T07:40:36+00:00",
+    "title": "A newer personalized job snapshot cannot erase richer bundled graduate research on mobile"
+  },
+  "DATA-227": {
+    "assert_sha": "cceef8bf4b71074a",
+    "first_seen": "2026-07-29T08:28:54+00:00",
+    "title": "Graduate data has one declared producer artifact and a verifiable lineage at every consumer"
+  },
+  "DATA-228": {
+    "assert_sha": "5dbfaf9e9e7c66db",
+    "first_seen": "2026-07-29T08:28:54+00:00",
+    "title": "A personalized refresh preserves the canonical graduate payload instead of re-projecting it"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -178,6 +193,31 @@
     "assert_sha": "99d65d31a5dd1ab5",
     "first_seen": "2026-07-28T12:30:21+00:00",
     "title": "Mobile clients invalidate the second graduate legacy recovery cache"
+  },
+  "GOV-212": {
+    "assert_sha": "bee9f8afb00fb3e6",
+    "first_seen": "2026-07-29T06:48:37+00:00",
+    "title": "An already-open iPhone app transitions to the newly activated mobile shell"
+  },
+  "GOV-213": {
+    "assert_sha": "f9723d9b528d65fa",
+    "first_seen": "2026-07-29T07:44:35+00:00",
+    "title": "Mobile clients invalidate the graduate evidence merge release cache"
+  },
+  "GOV-214": {
+    "assert_sha": "6a8cb2798b5cfd4e",
+    "first_seen": "2026-07-29T08:46:55+00:00",
+    "title": "Mobile clients invalidate the canonical graduate lineage release cache"
+  },
+  "GOV-215": {
+    "assert_sha": "935129477322f0c3",
+    "first_seen": "2026-07-29T10:02:34+00:00",
+    "title": "Service-worker activation cannot deadlock the open iPhone client by navigating it inside activate"
+  },
+  "GOV-216": {
+    "assert_sha": "b58a199c3a5787c8",
+    "first_seen": "2026-07-29T10:03:32+00:00",
+    "title": "Mobile clients invalidate the non-blocking service-worker handoff release"
   },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",

@@ -21471,5 +21471,12 @@
     "programsWithGraduateDestinations": 34,
     "programsWithTestimonials": 3,
     "unresearchedPrograms": 35
+  },
+  "graduateDataLineage": {
+    "producer": "career-job-compass/scripts/build_snapshot.py",
+    "artifact": "data/app-data.json",
+    "payloadSha256": "0b0cc751a0bb45b0baaa62ea5980b3c6b9abfbcb94a52ce1785216d8b3b6a023",
+    "programCount": 99,
+    "fundingCount": 186
   }
 }

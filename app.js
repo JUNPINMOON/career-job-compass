@@ -668,8 +668,9 @@
         actualDigest: data?.preference_digest || null,
       });
     }
-    store(LIVE_SNAPSHOT_STORAGE_KEY, data.snapshot);
-    setSnapshot(data.snapshot);
+    const completeSnapshot = selectFreshestSnapshot(state.data, data.snapshot);
+    store(LIVE_SNAPSHOT_STORAGE_KEY, completeSnapshot);
+    setSnapshot(completeSnapshot);
     return true;
   }
   function refreshErrorLabel(error, status = null) {
@@ -928,12 +929,43 @@
       engineRefresh.title = "개인 엔진 연결이 필요합니다";
     }
   }
+  function graduateLineageMatches(snapshot) {
+    /* data-requirement-id="DATA-228" */
+    const lineage = snapshot?.graduateDataLineage;
+    return Boolean(
+      isSnapshot(snapshot)
+      && lineage
+      && /^[a-f0-9]{64}$/.test(String(lineage.payloadSha256 || ""))
+      && lineage.programCount === snapshot.programs.length
+      && lineage.fundingCount === snapshot.funding.length
+    );
+  }
+
+  function mergeGraduateEvidence(primary, fallback) {
+    /* data-requirement-id="DATA-226" data-requirement-id="DATA-228" */
+    if (!isSnapshot(primary)) return fallback;
+    if (!isSnapshot(fallback)) return primary;
+    const graduateSource = graduateLineageMatches(primary)
+      ? primary
+      : (graduateLineageMatches(fallback) ? fallback : null);
+    if (!graduateSource) return primary;
+    return {
+      ...primary,
+      programs: graduateSource.programs,
+      funding: graduateSource.funding,
+      graduateEvidenceCoverage: graduateSource.graduateEvidenceCoverage,
+      graduateDataLineage: graduateSource.graduateDataLineage,
+    };
+  }
+
   function selectFreshestSnapshot(bundled, cached) {
-    /* data-requirement-id="DATA-207" */
+    /* data-requirement-id="DATA-207" data-requirement-id="DATA-226" data-requirement-id="DATA-228" */
     if (!isSnapshot(cached)) return bundled;
     const bundledAt = Date.parse(bundled?.generatedAt || "");
     const cachedAt = Date.parse(cached.generatedAt || "");
-    return Number.isFinite(cachedAt) && (!Number.isFinite(bundledAt) || cachedAt > bundledAt) ? cached : bundled;
+    const freshest = Number.isFinite(cachedAt) && (!Number.isFinite(bundledAt) || cachedAt > bundledAt) ? cached : bundled;
+    const fallback = freshest === cached ? bundled : cached;
+    return mergeGraduateEvidence(freshest, fallback);
   }
 
   async function load({ force = false } = {}) {
@@ -1009,6 +1041,20 @@
   dossier.addEventListener("cancel", (event) => { event.preventDefault(); closeDetail(); });
   dossier.addEventListener("click", (event) => { if (event.target === dossier) closeDetail(); });
   window.addEventListener("hashchange", () => render()); window.addEventListener("online", updateNetwork); window.addEventListener("offline", updateNetwork);
-  if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").then((registration) => registration.update()).catch(() => undefined);
+  if ("serviceWorker" in navigator) {
+    /* data-requirement-id="GOV-215" */
+    const shellReloadGuard = "career-compass-shell-reload";
+    let shellReloading = false;
+    if (sessionStorage.getItem(shellReloadGuard) === "pending") {
+      sessionStorage.removeItem(shellReloadGuard);
+    }
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (shellReloading) return;
+      shellReloading = true;
+      sessionStorage.setItem(shellReloadGuard, "pending");
+      window.location.reload();
+    });
+    navigator.serviceWorker.register("./sw.js").then((registration) => registration.update()).catch(() => undefined);
+  }
   void (async () => { await load(); await connectPreferences(); await connectRefreshQueue(); })();
 })();

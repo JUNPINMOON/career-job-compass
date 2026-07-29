@@ -146,3 +146,26 @@
 {"at": "2026-07-28T12:40:11+00:00", "event": "check", "passed": 62, "failed": 0, "failing_ids": []}
 {"at": "2026-07-28T12:44:51+00:00", "event": "check", "passed": 62, "failed": 0, "failing_ids": []}
 {"at": "2026-07-28T12:53:17+00:00", "event": "check", "passed": 62, "failed": 0, "failing_ids": []}
+{"at": "2026-07-28T15:41:33+00:00", "event": "check", "passed": 62, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T06:41:38+00:00", "event": "check", "passed": 62, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T06:48:37+00:00", "event": "requirement_added", "id": "GOV-212", "title": "An already-open iPhone app transitions to the newly activated mobile shell"}
+{"at": "2026-07-29T06:48:37+00:00", "event": "check", "passed": 62, "failed": 1, "failing_ids": ["GOV-212"]}
+{"at": "2026-07-29T06:51:10+00:00", "event": "check", "passed": 63, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T07:40:36+00:00", "event": "requirement_added", "id": "DATA-226", "title": "A newer personalized job snapshot cannot erase richer bundled graduate research on mobile"}
+{"at": "2026-07-29T07:40:36+00:00", "event": "check", "passed": 63, "failed": 1, "failing_ids": ["DATA-226"]}
+{"at": "2026-07-29T07:44:35+00:00", "event": "requirement_added", "id": "GOV-213", "title": "Mobile clients invalidate the graduate evidence merge release cache"}
+{"at": "2026-07-29T07:44:35+00:00", "event": "check", "passed": 64, "failed": 1, "failing_ids": ["GOV-213"]}
+{"at": "2026-07-29T07:51:24+00:00", "event": "check", "passed": 65, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T08:28:54+00:00", "event": "requirement_added", "id": "DATA-227", "title": "Graduate data has one declared producer artifact and a verifiable lineage at every consumer"}
+{"at": "2026-07-29T08:28:54+00:00", "event": "requirement_added", "id": "DATA-228", "title": "A personalized refresh preserves the canonical graduate payload instead of re-projecting it"}
+{"at": "2026-07-29T08:28:54+00:00", "event": "check", "passed": 65, "failed": 2, "failing_ids": ["DATA-227", "DATA-228"]}
+{"at": "2026-07-29T08:46:55+00:00", "event": "requirement_added", "id": "GOV-214", "title": "Mobile clients invalidate the canonical graduate lineage release cache"}
+{"at": "2026-07-29T08:46:55+00:00", "event": "check", "passed": 67, "failed": 1, "failing_ids": ["GOV-214"]}
+{"at": "2026-07-29T08:47:39+00:00", "event": "check", "passed": 68, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T09:41:31+00:00", "event": "check", "passed": 68, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T09:44:53+00:00", "event": "check", "passed": 68, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T10:02:34+00:00", "event": "requirement_added", "id": "GOV-215", "title": "Service-worker activation cannot deadlock the open iPhone client by navigating it inside activate"}
+{"at": "2026-07-29T10:02:34+00:00", "event": "check", "passed": 68, "failed": 1, "failing_ids": ["GOV-215"]}
+{"at": "2026-07-29T10:03:32+00:00", "event": "requirement_added", "id": "GOV-216", "title": "Mobile clients invalidate the non-blocking service-worker handoff release"}
+{"at": "2026-07-29T10:03:32+00:00", "event": "check", "passed": 68, "failed": 2, "failing_ids": ["GOV-215", "GOV-216"]}
+{"at": "2026-07-29T10:04:46+00:00", "event": "check", "passed": 70, "failed": 0, "failing_ids": []}

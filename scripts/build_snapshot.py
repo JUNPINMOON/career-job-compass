@@ -401,6 +401,27 @@ def _graduate_evidence_coverage(programs: Any) -> dict[str, int]:
     }
 
 
+def _graduate_data_lineage(payload: Mapping[str, Any]) -> dict[str, Any]:
+    """DATA-227: bind every graduate consumer to the canonical public payload."""
+    programs = payload.get("programs")
+    funding = payload.get("funding")
+    if not isinstance(programs, list) or not isinstance(funding, list):
+        raise ValueError("canonical graduate payload requires programme and funding lists")
+    canonical = json.dumps(
+        {"programs": programs, "funding": funding},
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return {
+        "producer": "career-job-compass/scripts/build_snapshot.py",
+        "artifact": "data/app-data.json",
+        "payloadSha256": hashlib.sha256(canonical).hexdigest(),
+        "programCount": len(programs),
+        "fundingCount": len(funding),
+    }
+
+
 def _apply_public_eligibility(
     job_slice: dict[str, Any],
     overrides: dict[str, Any],
@@ -522,6 +543,7 @@ def main() -> None:
         stats.update({"programs": len(payload["programs"]), "graduateGeneratedAt": graduate_generated_at})
         payload["stats"] = stats
         payload["graduateEvidenceCoverage"] = _graduate_evidence_coverage(payload["programs"])
+        payload["graduateDataLineage"] = _graduate_data_lineage(payload)
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(f"wrote {args.output}: enriched {len(payload['programs'])} programs")
@@ -563,6 +585,7 @@ def main() -> None:
             "graduateEvidenceCoverage": _graduate_evidence_coverage(payload["programs"]),
         }
     )
+    payload["graduateDataLineage"] = _graduate_data_lineage(payload)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",

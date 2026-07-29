@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import subprocess
@@ -109,6 +110,24 @@ def main() -> None:
         raise SystemExit("snapshot must contain the full graduate research catalog")
     if not isinstance(funding, list) or len(funding) < 186:
         raise SystemExit("snapshot must contain the full funding research catalog")
+    # DATA-227: prove that the file being released is the canonical graduate
+    # producer artifact, rather than a separately projected look-alike.
+    graduate_lineage = snapshot.get("graduateDataLineage")
+    canonical_graduate_payload = json.dumps(
+        {"programs": programs, "funding": funding},
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    expected_graduate_digest = hashlib.sha256(canonical_graduate_payload).hexdigest()
+    if not isinstance(graduate_lineage, dict):
+        raise SystemExit("snapshot must declare graduateDataLineage")
+    if (
+        graduate_lineage.get("payloadSha256") != expected_graduate_digest
+        or graduate_lineage.get("programCount") != len(programs)
+        or graduate_lineage.get("fundingCount") != len(funding)
+    ):
+        raise SystemExit("graduateDataLineage does not match the released graduate payload")
     if {job.get("queue") for job in jobs} - {"verify", "hold", "apply", "stretch"}:
         raise SystemExit("public jobs must only use active public V4 queues")
     stats = snapshot.get("stats")

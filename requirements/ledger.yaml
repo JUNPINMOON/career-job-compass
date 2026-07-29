@@ -455,6 +455,55 @@
       "title": "An already-open iPhone app transitions to the newly activated mobile shell",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v32-mobile-shell-handoff", "clients.matchAll({ type: \"window\", includeUncontrolled: true })", "client.navigate(client.url)"]},
       "note": "Measured on the public 390x844 path on 2026-07-29: the v31 worker and 99-program research snapshot were live, but activation only claimed existing clients. An already-open Home Screen document could therefore keep rendering the old JavaScript until a separate reload. The activating worker must advance the cache and navigate each same-origin window client once so the physical iPhone receives the newly connected graduate panels."
+    },
+    {
+      "id": "DATA-226",
+      "status": "active",
+      "title": "A newer personalized job snapshot cannot erase richer bundled graduate research on mobile",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-226\"", "mergeGraduateEvidence", "publicResearch"]},
+      "note": "Measured before implementation on 2026-07-29: the bundled 99-program snapshot contains 2 faculty, 11 papers and 2 projects for GIST program-360bd28e4557fc50, while the newer Supabase personalized snapshot contains zero faculty and projects for the same id. Timestamp-only selection replaced the complete record and produced the empty iPhone panel."
+    },
+    {
+      "id": "GOV-213",
+      "status": "active",
+      "title": "Mobile clients invalidate the graduate evidence merge release cache",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v33-grad-snapshot-merge", "career-compass-v32-mobile-shell-handoff"]},
+      "note": "The merge policy changes the app shell JavaScript used by already-installed iPhone clients. The cache lineage must advance so the previous timestamp-only selector cannot remain active."
+    },
+    {
+      "id": "DATA-227",
+      "status": "active",
+      "title": "Graduate data has one declared producer artifact and a verifiable lineage at every consumer",
+      "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["DATA-227", "graduateDataLineage", "payloadSha256", "programCount", "fundingCount"]},
+      "note": "Regression recorded after repeated reports that generated and consumed files diverged. The release must fail when the published graduate payload cannot be tied to the canonical app-data artifact by digest and counts."
+    },
+    {
+      "id": "DATA-228",
+      "status": "active",
+      "title": "A personalized refresh preserves the canonical graduate payload instead of re-projecting it",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-228\"", "graduateLineageMatches", "graduateDataLineage"]},
+      "note": "The refresh worker previously passed the public graduate bundle through a second compact-program projection. Mobile must accept graduate data only when its declared lineage is internally consistent, while retaining the bundled canonical graduate payload as the fail-closed fallback."
+    },
+    {
+      "id": "GOV-214",
+      "status": "active",
+      "title": "Mobile clients invalidate the canonical graduate lineage release cache",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v34-grad-canonical-lineage", "career-compass-v33-grad-snapshot-merge"]},
+      "note": "The canonical producer, worker pass-through and app consumer contract changed together on 2026-07-29. The service-worker cache must advance so an installed iPhone cannot keep reading the v33 JavaScript or app-data artifact."
+    },
+    {
+      "id": "GOV-215",
+      "status": "active",
+      "title": "Service-worker activation cannot deadlock the open iPhone client by navigating it inside activate",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"GOV-215\"", "controllerchange", "career-compass-shell-reload"]},
+      "note": "Measured at 390x844 on 2026-07-29: the browser DOM timed out with the v34 worker active, while the same graduate-flow test completed in 4.3 seconds when sw.js was blocked. The active worker must hand control to the page and the page may reload once; activate must not await client.navigate(client.url)."
+    },
+    {
+      "id": "GOV-216",
+      "status": "active",
+      "title": "Mobile clients invalidate the non-blocking service-worker handoff release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v35-nonblocking-shell-handoff", "career-compass-v34-grad-canonical-lineage"]},
+      "note": "The activation and update handoff changes the mobile shell lifecycle. The cache lineage must advance so installed iPhones replace the worker that awaited client.navigate during activation."
     }
   ]
 }
