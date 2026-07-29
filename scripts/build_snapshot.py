@@ -306,14 +306,46 @@ def _apply_latest_programs(payload: dict[str, Any], shortlist_path: Path, resear
         source = by_key.get(_key(item))
         research = research_by_key.get(_key(item))
         if source is None:
-            readiness, label, reason = _application_readiness(item)
+            # DATA-229: the ranked shortlist is intentionally small. A catalog
+            # programme must still receive its matching canonical research
+            # evidence when it is not one of those ranked shortlist records.
+            research_source = research if research is not None else item
+            readiness, label, reason = _application_readiness(research_source)
             item.update(
                 {
                     "applicationStatus": readiness,
                     "applicationStatusLabel": label,
                     "applicationStatusReason": reason,
+                    "publicResearch": _public_research(research) if research else {
+                        "keywords": [],
+                        "faculty": [],
+                        "recentProjects": [],
+                        "graduateDestinations": [],
+                        "graduateOutcomeSources": [],
+                        "graduateTestimonials": [],
+                        "lastVerified": "",
+                        "evidenceStatus": "공개 연구자료 추가 확인 필요",
+                    },
                 }
             )
+            if research is not None:
+                item.update(
+                    {
+                        "verification": research.get(
+                            "official_verification_status", item.get("verification", "")
+                        ),
+                        "verifiedAt": _verified_date(research) or item.get("verifiedAt", ""),
+                        "officialUrl": _public_url(research.get("url")) or item.get("officialUrl", ""),
+                        "sources": [
+                            url
+                            for url in (
+                                _public_url(value)
+                                for value in research.get("source_urls", item.get("sources", []))
+                            )
+                            if url
+                        ],
+                    }
+                )
             refreshed.append(item)
             continue
         item.update(

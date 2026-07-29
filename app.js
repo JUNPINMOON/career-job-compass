@@ -4,6 +4,7 @@
   const FILTER_STORAGE_KEY = "career-compass-filters-v2";
   const BOOKMARK_STORAGE_KEY = "career-compass-bookmarks";
   const FEEDBACK_STORAGE_KEY = "career-compass-job-feedback-v1";
+  const FEEDBACK_BACKUP_SCHEMA = "career-compass-feedback-backup-v1";
   const REFRESH_WATCH_STORAGE_KEY = "career-compass-refresh-watch-v1";
   const LIVE_SNAPSHOT_STORAGE_KEY = "career-compass-live-snapshot-v1";
   const REFRESH_STAGE_SECONDS = {
@@ -57,6 +58,8 @@
     feedback: readJSON(FEEDBACK_STORAGE_KEY, {}),
     preferenceClient: null,
     preferenceUserId: null,
+    lastSuccessfulRefreshAt: null,
+    feedbackImportStatus: "",
     syncState: "local",
     ...DEFAULT_FILTERS,
     ...readJSON(FILTER_STORAGE_KEY, {}),
@@ -77,10 +80,19 @@
   const refreshElapsed = document.getElementById("refreshElapsed");
   const refreshEta = document.getElementById("refreshEta");
   const refreshPreferenceCount = document.getElementById("refreshPreferenceCount");
+  const feedbackImport = document.getElementById("feedbackImport");
 
   function readJSON(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch (_) { return fallback; } }
   function store(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) { /* local convenience only */ } }
   function preferenceFor(jobId) { return state.feedback?.[jobId] || null; }
+  function pendingPreferenceCount() {
+    /* data-requirement-id="DATA-231" feedbackAfterLastRefresh */
+    const refreshedAt = Date.parse(state.lastSuccessfulRefreshAt || "");
+    return Object.values(state.feedback).filter((item) => {
+      const updatedAt = Date.parse(item?.updatedAt || "");
+      return Number.isFinite(updatedAt) && (!Number.isFinite(refreshedAt) || updatedAt > refreshedAt);
+    }).length;
+  }
   function persistPreferences() {
     store(FEEDBACK_STORAGE_KEY, state.feedback);
     state.bookmarks = new Set(Object.entries(state.feedback).filter(([, value]) => value?.sentiment === "liked").map(([jobId]) => jobId));
@@ -322,19 +334,37 @@
   }
 
   function renderSources() {
+    /* data-requirement-id="UX-227" 공고 기준 / 대학원 생성 */
     const stats = state.data.stats || {};
     const likedJobs = jobs().filter((job) => preferenceFor(job.id)?.sentiment === "liked");
     const dislikedJobs = jobs().filter((job) => preferenceFor(job.id)?.sentiment === "not_for_me");
     const likedCount = Object.values(state.feedback).filter((item) => item?.sentiment === "liked").length;
     const dislikedCount = Object.values(state.feedback).filter((item) => item?.sentiment === "not_for_me").length;
+    const feedbackAfterLastRefresh = pendingPreferenceCount();
+    const refreshCoverageCopy = state.lastSuccessfulRefreshAt ? `마지막 추천 이후 새 피드백 ${feedbackAfterLastRefresh}건` : `아직 성공한 추천 갱신 없음 · 피드백 ${feedbackAfterLastRefresh}건 대기`;
+    const backupPage = feedbackBackupPanel(refreshCoverageCopy, state.feedbackImportStatus);
     const syncCopy = state.syncState === "synced" ? "Supabase에 저장됨" : state.syncState === "syncing" ? "Supabase에 저장 중" : state.syncState === "error" ? "연결 실패 · 이 기기에 안전하게 보관 중" : "이 기기에 보관 중";
     const pages = [
       `<section class="sources-head"><p class="eyebrow">자료의 범위</p><h1>무엇을 담고,<br />어디까지 아는가.</h1><p>${escapeHtml(state.data.snapshotBoundary)}</p></section>`,
+      backupPage,
       `<section class="source-stamp"><span>PUBLIC SNAPSHOT</span><b>${displayDate(state.data.generatedAt)}</b><i>V4<br />FIRST</i></section><section class="stat-strip"><div><small>${stats.recommendationSurface === "exploration_only" ? "관심 후보" : "행동 후보"}</small><b>${escapeHtml(stats.actionCandidates)}</b></div><div><small>대학원</small><b>${escapeHtml(stats.programs)}</b></div><div><small>장학금</small><b>${escapeHtml(stats.funding)}</b></div></section>`,
       `<section class="preference-panel" data-requirement-id="UX-212"><p class="eyebrow">나의 학습 신호</p><h2>공고 피드백</h2><p>공고 카드에서 바로 관심 또는 별로예요를 누르고 이유를 남길 수 있습니다. 저장한 내용은 다음 후보 구성에 반영됩니다.</p><div class="preference-counts"><div><small>관심 공고</small><b>${likedCount}</b></div><div><small>별로예요</small><b>${dislikedCount}</b></div></div><p class="sync-status" data-state="${state.syncState}" data-requirement-id="UX-210">${syncCopy}</p><div data-requirement-id="UX-221"><section class="feedback-review-group"><div class="feedback-review-heading"><h3>관심 공고와 좋은 이유</h3><b>${likedCount}</b></div>${feedbackReviewList(likedJobs, "liked")}</section><section class="feedback-review-group"><div class="feedback-review-heading"><h3>별로예요와 이유</h3><b>${dislikedCount}</b></div>${feedbackReviewList(dislikedJobs, "not_for_me")}</section></div><button class="plain-button export-button" type="button" data-action="export-feedback">피드백 내보내기</button></section>`,
       `<section class="source-explainer"><p class="eyebrow">검증 경계</p><h2>점수로 결론을 대신하지 않습니다.</h2><p>공고는 최신 V4 행동 큐를, 진학·재정은 현재 대시보드의 연구 목록을 사용합니다. 공개 화면에는 개인 프로필, 지원 이력, CRM 정보가 포함되지 않습니다.</p><div class="status-rows"><div><span>V4 실행 ID</span><b>${escapeHtml(stats.v4RunId || "확인 중")}</b></div><div><span>공고 기준일</span><b>${escapeHtml(stats.jobDataAsOf || "확인 중")}</b></div><div><span>대학원 자료 생성</span><b>${escapeHtml(stats.graduateGeneratedAt || "확인 중")}</b></div></div></section>`,
     ];
     main.innerHTML = pages.map((page, index) => pageFrame(page, index, pages.length, "자료")).join("");
+  }
+
+  function feedbackBackupPanel(message, status) {
+    return `<section class="preference-panel feedback-backup-panel" data-requirement-id="UX-226">
+      <p class="eyebrow">기기 변경 대비</p>
+      <h2>피드백 백업·복원</h2>
+      <p class="refresh-coverage" data-requirement-id="DATA-231">${escapeHtml(message)}</p>
+      <div class="feedback-backup-actions">
+        <button class="plain-button" type="button" data-action="export-feedback-backup">JSON 백업 저장</button>
+        <button class="plain-button" type="button" data-action="import-feedback">JSON 백업 가져오기</button>
+      </div>
+      <p class="backup-status" role="status">${escapeHtml(status)}</p>
+    </section>`;
   }
 
   function detailList(title, values) { return values?.length ? `<section class="detail-list"><small>${escapeHtml(title)}</small><ul>${values.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul></section>` : ""; }
@@ -554,6 +584,7 @@
     return `Career Compass 공고 피드백\n내보낸 날짜: ${new Intl.DateTimeFormat("ko-KR", { dateStyle: "long" }).format(new Date())}\n\n관심 공고 (${likedJobs.length})\n${likedLines}\n\n별로예요 (${dislikedJobs.length})\n${dislikedLines}`;
   }
   async function exportFeedback() {
+    /* data-requirement-id="UX-226" */
     const text = buildFeedbackExport();
     if (navigator.share) {
       try { await navigator.share({ title: "Career Compass 공고 피드백", text }); return; }
@@ -564,6 +595,79 @@
     const anchor = Object.assign(document.createElement("a"), { href: url, download: `career-compass-feedback-${new Date().toISOString().slice(0, 10)}.txt` });
     anchor.click();
     URL.revokeObjectURL(url);
+  }
+  function feedbackBackupPayload() {
+    const preferences = Object.entries(state.feedback).map(([jobId, item]) => ({ jobId, ...item }));
+    return {
+      schema: FEEDBACK_BACKUP_SCHEMA,
+      exportedAt: new Date().toISOString(),
+      preferences,
+      readableSummary: buildFeedbackExport(),
+    };
+  }
+  function exportFeedbackBackup() {
+    const content = JSON.stringify(feedbackBackupPayload(), null, 2);
+    const blob = new Blob([content], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const date = new Date().toISOString().slice(0, 10);
+    const anchor = Object.assign(document.createElement("a"), {
+      href: url,
+      download: `career-compass-feedback-${date}.json`,
+    });
+    anchor.click();
+    URL.revokeObjectURL(url);
+  }
+  function validatedBackupPreference(item) {
+    if (!item || typeof item.jobId !== "string" || !item.jobId || item.jobId.length > 300) return null;
+    if (!["liked", "not_for_me"].includes(item.sentiment)) return null;
+    const allowed = item.sentiment === "liked" ? LIKE_REASON_LABELS : DISLIKE_REASON_LABELS;
+    const reasons = Array.isArray(item.reasons) ? item.reasons.filter((reason) => Object.hasOwn(allowed, reason)) : [];
+    const updatedAt = new Date(item.updatedAt || "").toISOString();
+    return {
+      jobId: item.jobId,
+      sentiment: item.sentiment,
+      reasons,
+      note: String(item.note || "").slice(0, 2000),
+      updatedAt,
+    };
+  }
+  async function syncImportedPreferences(jobIds) {
+    /* data-requirement-id="UX-228" */
+    if (!state.preferenceClient || !state.preferenceUserId || !jobIds.length) return false;
+    const rows = jobIds.map((jobId) => preferencePayload(jobId, state.feedback[jobId]));
+    const { error } = await state.preferenceClient
+      .from("job_preferences")
+      .upsert(rows, { onConflict: "user_id,job_id" });
+    if (error) throw error;
+    return true;
+  }
+  async function importFeedbackBackup(file) {
+    if (!file || file.size > 2_000_000) throw new Error("2MB 이하 JSON 백업만 가져올 수 있습니다.");
+    const backup = JSON.parse(await file.text());
+    if (backup?.schema !== FEEDBACK_BACKUP_SCHEMA || !Array.isArray(backup.preferences)) {
+      throw new Error("Career Compass 피드백 백업 파일이 아닙니다.");
+    }
+    if (backup.preferences.length > 5000) throw new Error("피드백 항목이 너무 많습니다.");
+    const importedIds = [];
+    backup.preferences.forEach((item) => {
+      let preference = null;
+      try { preference = validatedBackupPreference(item); } catch (_) { return; }
+      if (!preference) return;
+      const local = preferenceFor(preference.jobId);
+      if (local && Date.parse(local.updatedAt || "") >= Date.parse(preference.updatedAt)) return;
+      const { jobId, ...value } = preference;
+      state.feedback[jobId] = value;
+      importedIds.push(jobId);
+    });
+    persistPreferences();
+    const remotelySynced = await syncImportedPreferences(importedIds);
+    state.feedbackImportStatus = remotelySynced
+      ? `${importedIds.length}건을 가져와 이 기기에 복원하고 Supabase에도 반영했습니다.`
+      : `${importedIds.length}건을 가져와 이 기기에 복원했습니다. Supabase 연결 후 자동 동기화됩니다.`;
+    state.syncState = remotelySynced ? "synced" : "local";
+    renderSources();
+    const frames = [...main.querySelectorAll(".page-frame")];
+    frames.forEach((frame, index) => frame.classList.toggle("is-active", index === 1));
   }
 
   function openFilters() {
@@ -706,6 +810,18 @@
       .maybeSingle();
     if (error) throw error;
     return data || null;
+  }
+  async function loadLastSuccessfulRefresh() {
+    const { data, error } = await state.preferenceClient
+      .from("refresh_runs")
+      .select("finished_at,status")
+      .eq("user_id", state.preferenceUserId)
+      .eq("state", "succeeded")
+      .order("finished_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    if (error) throw error;
+    state.lastSuccessfulRefreshAt = data?.finished_at || data?.status?.finishedAt || null;
   }
   async function enqueueRefreshRun() {
     /* data-requirement-id="DATA-223" */
@@ -864,6 +980,7 @@
       setEngineBusy(false);
       if (status.state !== "succeeded") throw new Error(`refresh state: ${status.state || "unknown"}`);
       await loadMatchingCompletedSnapshot(status);
+      state.lastSuccessfulRefreshAt = status.finishedAt || new Date().toISOString();
       const summary = status.preferenceSummary || {};
       snapshotLabel.textContent = `새 추천 반영 완료 · 관심 ${summary.likedCount || 0} · 별로예요 ${summary.dislikedCount || 0}`;
     } catch (error) {
@@ -912,6 +1029,8 @@
       engineRefresh.hidden = false;
       engineRefresh.disabled = false;
       engineRefresh.title = "후보 추천 엔진 새로 실행";
+      await loadLastSuccessfulRefresh();
+      if (route() === "sources") renderSources();
       if (readJSON(REFRESH_WATCH_STORAGE_KEY, false) === true) {
         const active = await activeRefreshRun();
         if (active) {
@@ -941,13 +1060,13 @@
     );
   }
 
-  function mergeGraduateEvidence(primary, fallback) {
-    /* data-requirement-id="DATA-226" data-requirement-id="DATA-228" */
-    if (!isSnapshot(primary)) return fallback;
-    if (!isSnapshot(fallback)) return primary;
-    const graduateSource = graduateLineageMatches(primary)
-      ? primary
-      : (graduateLineageMatches(fallback) ? fallback : null);
+  function mergeGraduateEvidence(primary, canonicalGraduate) {
+    /* data-requirement-id="DATA-226" data-requirement-id="DATA-228" data-requirement-id="DATA-230" */
+    if (!isSnapshot(primary)) return canonicalGraduate;
+    if (!isSnapshot(canonicalGraduate)) return primary;
+    const graduateSource = graduateLineageMatches(canonicalGraduate)
+      ? canonicalGraduate
+      : (graduateLineageMatches(primary) ? primary : null);
     if (!graduateSource) return primary;
     return {
       ...primary,
@@ -964,8 +1083,7 @@
     const bundledAt = Date.parse(bundled?.generatedAt || "");
     const cachedAt = Date.parse(cached.generatedAt || "");
     const freshest = Number.isFinite(cachedAt) && (!Number.isFinite(bundledAt) || cachedAt > bundledAt) ? cached : bundled;
-    const fallback = freshest === cached ? bundled : cached;
-    return mergeGraduateEvidence(freshest, fallback);
+    return mergeGraduateEvidence(freshest, bundled);
   }
 
   async function load({ force = false } = {}) {
@@ -1001,6 +1119,8 @@
     const action = event.target.closest("[data-action]")?.dataset.action; if (!action) return;
     if (action === "refresh-engine") { refreshEngine(); return; }
     if (action === "export-feedback") { void exportFeedback(); return; }
+    if (action === "export-feedback-backup") { exportFeedbackBackup(); return; }
+    if (action === "import-feedback") { feedbackImport.click(); return; }
     if (action === "page-next") { movePage(event.target.closest("[data-action]"), "next"); return; }
     if (action === "page-prev") { movePage(event.target.closest("[data-action]"), "prev"); return; }
     if (action === "open-filters") openFilters();
@@ -1034,6 +1154,16 @@
     const jobId = document.getElementById("feedbackJobId").value;
     closeFeedback();
     void syncPreference(jobId, null);
+  });
+  feedbackImport.addEventListener("change", async () => {
+    try {
+      await importFeedbackBackup(feedbackImport.files?.[0]);
+    } catch (error) {
+      state.feedbackImportStatus = error?.message || "백업을 가져오지 못했습니다.";
+      if (route() === "sources") renderSources();
+    } finally {
+      feedbackImport.value = "";
+    }
   });
   filterSheet.addEventListener("cancel", (event) => { event.preventDefault(); filterSheet.close(); });
   feedbackSheet.addEventListener("cancel", (event) => { event.preventDefault(); closeFeedback(); });

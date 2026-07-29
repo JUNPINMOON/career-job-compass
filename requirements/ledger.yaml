@@ -504,6 +504,83 @@
       "title": "Mobile clients invalidate the non-blocking service-worker handoff release",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v35-nonblocking-shell-handoff", "career-compass-v34-grad-canonical-lineage"]},
       "note": "The activation and update handoff changes the mobile shell lifecycle. The cache lineage must advance so installed iPhones replace the worker that awaited client.navigate during activation."
+    },
+    {
+      "id": "UX-225",
+      "status": "active",
+      "title": "The fixed mobile page-turn bar cannot cover the final record on a three-item page",
+      "assert": {"type": "text_present", "path": "styles.css", "needles": ["data-requirement-id=\"UX-225\"", "--mobile-page-turn-clearance", "scroll-padding-bottom:var(--mobile-page-turn-clearance)", "padding-bottom:var(--mobile-page-turn-clearance)"]},
+      "note": "Measured from the physical iPhone screenshot on 2026-07-29: the third graduate programme title remained visible, but its university and evidence summary were covered by the fixed 52px page-turn bar. The scroll container must reserve the full paging-control clearance and allow the final row to scroll entirely above it."
+    },
+    {
+      "id": "GOV-217",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the page-turn clearance release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v36-mobile-page-clearance", "career-compass-v35-nonblocking-shell-handoff"]},
+      "note": "The iPhone shell caches styles.css. A cache-lineage advance is required so the physical device receives the corrected scroll clearance instead of retaining the v35 mobile layout."
+    },
+    {
+      "id": "DATA-229",
+      "status": "active",
+      "title": "Canonical graduate research enriches catalog programmes even when they are absent from the three-item shortlist",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-229", "research_source", "publicResearch"]},
+      "note": "Measured on 2026-07-29: the producer wrote 99 programmes, but the source-is-None branch returned catalog records before attaching matching canonical research. KAUST therefore displayed no faculty, papers, projects or alumni although the researched JSON contained them."
+    },
+    {
+      "id": "DATA-230",
+      "status": "active",
+      "title": "The bundled graduate artifact remains canonical even when a newer personalized job snapshot exists",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-230\"", "canonicalGraduate", "mergeGraduateEvidence(freshest, bundled)"]},
+      "note": "Measured before implementation on 2026-07-29: the bundled snapshot reports generatedAt 2026-07-26 while the personalized job snapshot is newer, and both have valid graduate lineage. The primary-first merge therefore retained the older graduate payload cached on an iPhone instead of the newly deployed canonical bundle."
+    },
+    {
+      "id": "GOV-218",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the canonical graduate owner release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v37-canonical-graduate-owner", "career-compass-v36-mobile-page-clearance"]},
+      "note": "The graduate ownership rule changes app.js selection on an already-installed iPhone. The service-worker lineage must advance so v36 cannot continue choosing graduate data from the personalized cache."
+    },
+    {
+      "id": "UX-226",
+      "status": "active",
+      "title": "Feedback has a round-trip JSON backup that can restore an anonymous iPhone session",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-226\"", "career-compass-feedback-backup-v1", "importFeedbackBackup", "syncImportedPreferences"]},
+      "note": "Measured before implementation on 2026-07-29: the Sources tab exported a human-readable text summary only. An anonymous Supabase identity can be lost when Safari storage is cleared, so the user needs a validated device-independent JSON export/import path that merges by updatedAt and writes restored rows back through the authenticated RLS path."
+    },
+    {
+      "id": "DATA-231",
+      "status": "active",
+      "title": "The app shows how many feedback records are newer than the last successful recommendation",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-231\"", "lastSuccessfulRefreshAt", "feedbackAfterLastRefresh"]},
+      "note": "Measured before implementation on 2026-07-29: Supabase held 60 current preferences but the last successful refresh summarized only 22. The Sources tab must derive and display the unrefreshed count from preference updatedAt timestamps and the latest successful refresh finished_at instead of implying all feedback is already reflected."
+    },
+    {
+      "id": "UX-227",
+      "status": "active",
+      "title": "Job and graduate research freshness are labelled separately on mobile",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-227\"", "공고 기준", "대학원 생성"]},
+      "note": "The user repeatedly found a July 26/27 mismatch. A single PUBLIC SNAPSHOT timestamp mixes independently generated job and graduate datasets, so the Sources screen must expose both dates in the primary freshness card."
+    },
+    {
+      "id": "GOV-219",
+      "status": "active",
+      "title": "GitHub Pages deploys only a verified allowlisted public artifact",
+      "assert": {"type": "text_present", "path": ".github/workflows/pages.yml", "needles": ["scripts/check_release.py", "scripts/package_pages.py", "path: _site"]},
+      "note": "Measured before implementation on 2026-07-29: Pages uploaded the repository root with no release gate, exposing development files and allowing disconnected generated data to deploy. CI must run the requirement and release checks, build an explicit public artifact, and upload only that artifact."
+    },
+    {
+      "id": "GOV-220",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the feedback recovery and verified artifact release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v38-feedback-recovery", "career-compass-v37-canonical-graduate-owner"]},
+      "note": "The app shell and Sources interaction change in this release. The service-worker cache lineage must advance so an installed iPhone receives feedback recovery, freshness labels, and the latest canonical graduate owner."
+    },
+    {
+      "id": "UX-228",
+      "status": "active",
+      "title": "Feedback restore status distinguishes local recovery from confirmed Supabase sync",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-228\"", "이 기기에 복원했습니다", "Supabase에도 반영했습니다"]},
+      "note": "Measured during 390x844 mobile QA on 2026-07-29: importFeedbackBackup reported Supabase success even when the Supabase client and anonymous user were unavailable. The status must claim remote sync only after the authenticated upsert path actually ran."
     }
   ]
 }

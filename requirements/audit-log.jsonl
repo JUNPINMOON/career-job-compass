@@ -169,3 +169,27 @@
 {"at": "2026-07-29T10:03:32+00:00", "event": "requirement_added", "id": "GOV-216", "title": "Mobile clients invalidate the non-blocking service-worker handoff release"}
 {"at": "2026-07-29T10:03:32+00:00", "event": "check", "passed": 68, "failed": 2, "failing_ids": ["GOV-215", "GOV-216"]}
 {"at": "2026-07-29T10:04:46+00:00", "event": "check", "passed": 70, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T10:33:43+00:00", "event": "requirement_added", "id": "UX-225", "title": "The fixed mobile page-turn bar cannot cover the final record on a three-item page"}
+{"at": "2026-07-29T10:33:43+00:00", "event": "check", "passed": 70, "failed": 1, "failing_ids": ["UX-225"]}
+{"at": "2026-07-29T10:36:28+00:00", "event": "requirement_added", "id": "GOV-217", "title": "Installed mobile clients invalidate the page-turn clearance release"}
+{"at": "2026-07-29T10:36:28+00:00", "event": "check", "passed": 70, "failed": 2, "failing_ids": ["UX-225", "GOV-217"]}
+{"at": "2026-07-29T10:47:42+00:00", "event": "requirement_added", "id": "DATA-229", "title": "Canonical graduate research enriches catalog programmes even when they are absent from the three-item shortlist"}
+{"at": "2026-07-29T10:47:42+00:00", "event": "check", "passed": 72, "failed": 1, "failing_ids": ["DATA-229"]}
+{"at": "2026-07-29T10:50:43+00:00", "event": "check", "passed": 73, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T11:01:58+00:00", "event": "check", "passed": 73, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T11:27:27+00:00", "event": "check", "passed": 73, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T11:39:14+00:00", "event": "requirement_added", "id": "DATA-230", "title": "The bundled graduate artifact remains canonical even when a newer personalized job snapshot exists"}
+{"at": "2026-07-29T11:39:14+00:00", "event": "requirement_added", "id": "GOV-218", "title": "Installed mobile clients invalidate the canonical graduate owner release"}
+{"at": "2026-07-29T11:39:14+00:00", "event": "check", "passed": 73, "failed": 2, "failing_ids": ["DATA-230", "GOV-218"]}
+{"at": "2026-07-29T11:44:44+00:00", "event": "check", "passed": 75, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T12:14:28+00:00", "event": "requirement_added", "id": "UX-226", "title": "Feedback has a round-trip JSON backup that can restore an anonymous iPhone session"}
+{"at": "2026-07-29T12:14:28+00:00", "event": "requirement_added", "id": "DATA-231", "title": "The app shows how many feedback records are newer than the last successful recommendation"}
+{"at": "2026-07-29T12:14:28+00:00", "event": "requirement_added", "id": "UX-227", "title": "Job and graduate research freshness are labelled separately on mobile"}
+{"at": "2026-07-29T12:14:28+00:00", "event": "requirement_added", "id": "GOV-219", "title": "GitHub Pages deploys only a verified allowlisted public artifact"}
+{"at": "2026-07-29T12:14:28+00:00", "event": "requirement_added", "id": "GOV-220", "title": "Installed mobile clients invalidate the feedback recovery and verified artifact release"}
+{"at": "2026-07-29T12:14:28+00:00", "event": "check", "passed": 75, "failed": 5, "failing_ids": ["UX-226", "DATA-231", "UX-227", "GOV-219", "GOV-220"]}
+{"at": "2026-07-29T12:23:44+00:00", "event": "check", "passed": 79, "failed": 1, "failing_ids": ["UX-227"]}
+{"at": "2026-07-29T12:24:04+00:00", "event": "check", "passed": 80, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T12:33:12+00:00", "event": "requirement_added", "id": "UX-228", "title": "Feedback restore status distinguishes local recovery from confirmed Supabase sync"}
+{"at": "2026-07-29T12:33:12+00:00", "event": "check", "passed": 80, "failed": 1, "failing_ids": ["UX-228"]}
+{"at": "2026-07-29T12:36:05+00:00", "event": "check", "passed": 81, "failed": 0, "failing_ids": []}

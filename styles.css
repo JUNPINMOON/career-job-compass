@@ -292,6 +292,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible 
 .feedback-edit.is-liked { color:var(--forest); }
 .feedback-review-empty { margin:0; padding:14px 0; border-bottom:1px solid var(--line); color:var(--muted); font-size:12px; line-height:1.5; }
 .export-button { width:100%; margin-top:20px; }
+.feedback-backup-panel { display:grid; align-content:center; gap:18px; }
+.refresh-coverage { padding:16px; border-left:3px solid var(--green); background:var(--green-soft); font-weight:700; }
+.feedback-backup-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.feedback-backup-actions .plain-button { min-height:48px; }
+.backup-status { min-height:1.5em; color:var(--muted); }
 .detail-boundary { margin:16px 0 0; color:var(--muted); font-size:11px; text-align:center; }
 
 .bottom-nav { position:fixed; z-index:20; right:0; bottom:0; left:0; display:grid; grid-template-columns:repeat(5,1fr); min-height:calc(69px + env(safe-area-inset-bottom)); padding:7px max(13px,env(safe-area-inset-left)) calc(7px + env(safe-area-inset-bottom)) max(13px,env(safe-area-inset-right)); border-top:1px solid var(--line); background:rgba(251,252,249,.96); backdrop-filter:blur(18px) saturate(120%); }
@@ -311,7 +316,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible 
 
 @media (max-width:760px) {
   html,body { height:100%; overflow:hidden; }
-  .app { display:grid; grid-template-rows:auto auto minmax(0,1fr); min-height:0; height:calc(100dvh - 64px - env(safe-area-inset-bottom)); padding-bottom:0; overflow:hidden; }
+  .app { --mobile-page-turn-clearance:84px; display:grid; grid-template-rows:auto auto minmax(0,1fr); min-height:0; height:calc(100dvh - 64px - env(safe-area-inset-bottom)); padding-bottom:0; overflow:hidden; }
   .topbar { position:relative; min-height:62px; padding:0 17px; }
   .refresh-monitor { position:relative; top:auto; width:calc(100% - 24px); margin:8px auto 0; padding:12px 13px; border-radius:14px; }
   .refresh-monitor-head b { font-size:18px; }
@@ -324,7 +329,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible 
   .main { width:100%; min-height:0; height:100%; margin:0; overflow:hidden; }
   .page-frame { display:none; min-height:0; height:100%; overflow:hidden; }
   .page-frame.is-active { display:flex; flex-direction:column; }
-  .page-frame-content { display:block; flex:1 1 auto; min-height:0; padding-bottom:58px; overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
+  /* data-requirement-id="UX-225": reserve the full fixed pager height plus breathing room so the final card can scroll above it. */
+  .page-frame-content { display:block; flex:1 1 auto; min-height:0; padding-bottom:var(--mobile-page-turn-clearance); scroll-padding-bottom:var(--mobile-page-turn-clearance); overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
   /* data-requirement-id="UX-219": keep paging controls above the fixed tab bar. */
   .page-turn { position:fixed; z-index:25; right:0; bottom:calc(64px + env(safe-area-inset-bottom)); left:0; display:grid; grid-template-columns:minmax(72px,1fr) auto minmax(72px,1fr); align-items:center; min-height:52px; padding:4px 18px; border-top:1px solid var(--line); background:rgba(251,252,249,.98); }
   .page-turn button { min-width:var(--touch-target); min-height:var(--touch-target); padding:0 10px; border:0; border-radius:10px; color:var(--forest); background:transparent; font-size:12px; font-weight:760; }

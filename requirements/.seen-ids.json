@@ -139,6 +139,21 @@
     "first_seen": "2026-07-29T08:28:54+00:00",
     "title": "A personalized refresh preserves the canonical graduate payload instead of re-projecting it"
   },
+  "DATA-229": {
+    "assert_sha": "e61258e0a2566af5",
+    "first_seen": "2026-07-29T10:47:42+00:00",
+    "title": "Canonical graduate research enriches catalog programmes even when they are absent from the three-item shortlist"
+  },
+  "DATA-230": {
+    "assert_sha": "767f584a365e4cac",
+    "first_seen": "2026-07-29T11:39:14+00:00",
+    "title": "The bundled graduate artifact remains canonical even when a newer personalized job snapshot exists"
+  },
+  "DATA-231": {
+    "assert_sha": "e60cd4968542a980",
+    "first_seen": "2026-07-29T12:14:28+00:00",
+    "title": "The app shows how many feedback records are newer than the last successful recommendation"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -218,6 +233,26 @@
     "assert_sha": "b58a199c3a5787c8",
     "first_seen": "2026-07-29T10:03:32+00:00",
     "title": "Mobile clients invalidate the non-blocking service-worker handoff release"
+  },
+  "GOV-217": {
+    "assert_sha": "86f33cba88c7d9e2",
+    "first_seen": "2026-07-29T10:36:28+00:00",
+    "title": "Installed mobile clients invalidate the page-turn clearance release"
+  },
+  "GOV-218": {
+    "assert_sha": "596b0f648e36c44c",
+    "first_seen": "2026-07-29T11:39:14+00:00",
+    "title": "Installed mobile clients invalidate the canonical graduate owner release"
+  },
+  "GOV-219": {
+    "assert_sha": "c3b90f1602b226b4",
+    "first_seen": "2026-07-29T12:14:28+00:00",
+    "title": "GitHub Pages deploys only a verified allowlisted public artifact"
+  },
+  "GOV-220": {
+    "assert_sha": "3d9179f2a7811198",
+    "first_seen": "2026-07-29T12:14:28+00:00",
+    "title": "Installed mobile clients invalidate the feedback recovery and verified artifact release"
   },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",
@@ -353,5 +388,25 @@
     "assert_sha": "20a3d1b165b4ec86",
     "first_seen": "2026-07-28T02:27:46+00:00",
     "title": "Graduate exploration shows evidence coverage so partial research cannot look complete"
+  },
+  "UX-225": {
+    "assert_sha": "d4591fde99d5a5f8",
+    "first_seen": "2026-07-29T10:33:43+00:00",
+    "title": "The fixed mobile page-turn bar cannot cover the final record on a three-item page"
+  },
+  "UX-226": {
+    "assert_sha": "cb0b997be7f340d4",
+    "first_seen": "2026-07-29T12:14:28+00:00",
+    "title": "Feedback has a round-trip JSON backup that can restore an anonymous iPhone session"
+  },
+  "UX-227": {
+    "assert_sha": "a4b7dc89cdaf3010",
+    "first_seen": "2026-07-29T12:14:28+00:00",
+    "title": "Job and graduate research freshness are labelled separately on mobile"
+  },
+  "UX-228": {
+    "assert_sha": "e4974eff12271ad6",
+    "first_seen": "2026-07-29T12:33:12+00:00",
+    "title": "Feedback restore status distinguishes local recovery from confirmed Supabase sync"
   }
 }

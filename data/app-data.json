@@ -41,7 +41,7 @@
     "v4RunId": "0d51c612-b0c7-4f26-ad8d-4b8b4a252e3e",
     "jobDataAsOf": "2026-07-26",
     "v4ArtifactUpdatedAt": "2026-07-25T15:42:17.222405+00:00",
-    "graduateGeneratedAt": "2026-07-25T19:23:27.949044+00:00",
+    "graduateGeneratedAt": "2026-07-29T10:46:03.185756+00:00",
     "explorationCandidates": 103,
     "excludedUnverifiedCandidates": 3,
     "sectorInventoryCount": 20
@@ -3175,9 +3175,9 @@
         "https://www.kaist.ac.kr/en/html/edu/03100502.html",
         "https://www.kaist.ac.kr/en/html/admission/0201.html"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "water resources",
@@ -3301,9 +3301,9 @@
         "https://adm-g.postech.ac.kr/ENG/graduate-info/support-policy/",
         "https://www.postech.ac.kr/eng/about/Environmental.do"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "hydroclimatology",
@@ -3513,9 +3513,9 @@
         "https://env1eng.gist.ac.kr/",
         "https://env1.gist.ac.kr/env1eng/index.do"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "water science",
@@ -3735,9 +3735,9 @@
         "https://www.gem-msc.eu/apply-to-gem/finances/",
         "https://www.gem-msc.eu/apply-to-gem/admission-and-eligibility/"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "Earth Observation",
@@ -4082,9 +4082,9 @@
         "TOEFL iBT: target total 80+ and writing 17+ before the next-cycle application window.",
         "IELTS Academic alternative: target overall 6.0+ and writing 6.0+."
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "hydroinformatics",
@@ -4774,9 +4774,9 @@
       "sources": [
         "https://admg-intl.unist.ac.kr/study-at-unist/scholarships/"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "water resources",
@@ -5051,9 +5051,9 @@
         "https://admission.snu.ac.kr/graduate/general/spring/guide",
         "https://en.snu.ac.kr/admission/graduate/application"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "urban water systems",
@@ -5562,17 +5562,18 @@
       "tuition": "Covered under full Erasmus Mundus scholarship",
       "funding": "Erasmus Mundus full scholarship; reduced-fee and self-funded fallback exist",
       "verification": "verified",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "IHE Delft MSc/PhD 페이지는 비영어권 지원자의 영어 요건 충족을 요구하나, 수치 컷은 링크된 English requirements 페이지에서 지원 전 재확인 필요.",
       "officialUrl": "https://www.floodriskmaster.org/",
       "sources": [
-        "https://www.floodriskmaster.org/apply",
         "https://www.floodriskmaster.org/",
-        "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters"
+        "https://www.floodriskmaster.org/faculty-staff",
+        "https://www.floodriskmaster.org/careers",
+        "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "flood risk",
@@ -5730,9 +5731,9 @@
         "https://www.uni-stuttgart.de/en/study/study-programs/Water-Resources-Engineering-and-Management-WAREM-M.Sc./",
         "https://www.warem.uni-stuttgart.de/"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "water resources engineering",
@@ -6094,17 +6095,18 @@
       "tuition": "Resident tuition scholarship with qualifying RA; non-resident treatment and fees require offer-letter confirmation",
       "funding": "Competitive IIHR 12-month research assistantship plus tuition scholarship",
       "verification": "verified",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-29",
       "english": "Verify the current University of Iowa international graduate English threshold for the target department.",
       "officialUrl": "https://iihr.uiowa.edu/education-outreach/graduate-students",
       "sources": [
-        "https://iihr.uiowa.edu/education-outreach/graduate-students",
-        "https://iihr.uiowa.edu/education-outreach/graduate-students/scholarships-and-fellowships",
-        "https://iihr.uiowa.edu/all-news/2025/02/modeling-cedar-river-watershed-data-informed-land-use-decisions"
+        "https://gvillarini.iihr.uiowa.edu/",
+        "https://gvillarini.iihr.uiowa.edu/publications",
+        "https://gvillarini.iihr.uiowa.edu/projects",
+        "https://iihr.uiowa.edu/all-news/2025/02"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "hydraulics",
@@ -6149,14 +6151,50 @@
                 "url": "https://gvillarini.iihr.uiowa.edu/publications"
               }
             ],
-            "recentProjects": []
+            "recentProjects": [
+              {
+                "title": "GLO Flood Studies - Region 2 (Phase 3)",
+                "funder": "U.S. Department of Housing and Urban Development subaward",
+                "period": "2022-09-25 to 2024-07-01",
+                "amount": "USD 292,120",
+                "url": "https://gvillarini.iihr.uiowa.edu/projects"
+              }
+            ]
           }
         ],
-        "recentProjects": [],
-        "graduateDestinations": [],
-        "graduateOutcomeSources": [],
+        "recentProjects": [
+          {
+            "title": "GLO Flood Studies - Region 2 (Phase 3)",
+            "funder": "U.S. Department of Housing and Urban Development subaward",
+            "period": "2022-09-25 to 2024-07-01",
+            "amount": "USD 292,120",
+            "url": "https://gvillarini.iihr.uiowa.edu/projects"
+          }
+        ],
+        "graduateDestinations": [
+          {
+            "period": "2025",
+            "destination": "ISG, Minnesota",
+            "role": "Logan Mahoney — Graduate Water Resources Engineer; IIHR MS research on Cedar River watershed flood mitigation",
+            "url": "https://iihr.uiowa.edu/all-news/2025/02",
+            "sources": [
+              {
+                "sourceType": "official_university_alumni_story",
+                "label": "University of Iowa IIHR 졸업생 진로 기사",
+                "url": "https://iihr.uiowa.edu/all-news/2025/02"
+              }
+            ]
+          }
+        ],
+        "graduateOutcomeSources": [
+          {
+            "sourceType": "official_university_alumni_story",
+            "label": "University of Iowa IIHR 졸업생 진로 기사",
+            "url": "https://iihr.uiowa.edu/all-news/2025/02"
+          }
+        ],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-28",
+        "lastVerified": "2026-07-29",
         "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
@@ -6183,9 +6221,9 @@
         "https://cee.snu.ac.kr/english/sub4_2.php",
         "https://admission.snu.ac.kr/graduate/general/spring/guide"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "computational fluid dynamics",
@@ -6523,17 +6561,20 @@
       "tuition": "HKPFS route includes HKUST tuition-fee waiver for 4 years per official HKUST HKPFS page",
       "funding": "HKPFS stipend + tuition waiver + conference travel allowance; university PhD funding fallback must be verified",
       "verification": "verified",
-      "verifiedAt": "2026-06-13",
+      "verifiedAt": "2026-07-29",
       "english": "HKUST Fok Ying Tung Graduate School 공식 기준은 TOEFL iBT 80 또는 IELTS Academic 6.5(각 5.5 이상).",
       "officialUrl": "https://fytgs.hkust.edu.hk/scholarships/hong-kong-phd-fellowship-scheme",
       "sources": [
         "https://fytgs.hkust.edu.hk/scholarships/hong-kong-phd-fellowship-scheme",
         "https://envr.ust.hk/programs/research-postgraduate-program/mphil-phd-in-espm/program-details.html",
-        "https://cerg1.ugc.edu.hk/hkpfs/index.html"
+        "https://cerg1.ugc.edu.hk/hkpfs/index.html",
+        "https://cemlu.people.ust.hk/",
+        "https://cemlu.people.ust.hk/individual/proflu.html",
+        "https://www.sfu.ca/geography/about/our-people/profiles/Mengxin-Pan.html"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "HKPFS",
@@ -6545,13 +6586,125 @@
           "AI",
           "GIS"
         ],
-        "faculty": [],
-        "recentProjects": [],
-        "graduateDestinations": [],
-        "graduateOutcomeSources": [],
+        "faculty": [
+          {
+            "name": "Mengqian Lu",
+            "title": "Professor, Department of Civil and Environmental Engineering",
+            "labOrGroup": "Hydroclimate Extremes Lab",
+            "profileUrls": [
+              "https://researchportal.hkust.edu.hk/en/persons/mengqian-lu/",
+              "https://cemlu.people.ust.hk/",
+              "https://cemlu.people.ust.hk/individual/proflu.html"
+            ],
+            "profileSources": [
+              {
+                "sourceType": "official_faculty_lab_profile",
+                "label": "HKUST Hydroclimate Extremes Lab faculty profile",
+                "url": "https://cemlu.people.ust.hk/individual/proflu.html"
+              },
+              {
+                "sourceType": "official_research_portal",
+                "label": "HKUST research portal",
+                "url": "https://researchportal.hkust.edu.hk/en/persons/mengqian-lu/"
+              }
+            ],
+            "recentPapers": [
+              {
+                "year": "2024",
+                "title": "Future Changes in Global Atmospheric Rivers Projected by CMIP6 Models",
+                "venue": "Journal of Geophysical Research: Atmospheres",
+                "url": "https://cemlu.people.ust.hk/individual/proflu.html"
+              },
+              {
+                "year": "2023",
+                "title": "A Fresh View on the Asian-Australian Monsoon Complexity",
+                "venue": "peer-reviewed journal publication listed by the HKUST lab",
+                "url": "https://cemlu.people.ust.hk/individual/proflu.html"
+              }
+            ],
+            "recentProjects": [
+              {
+                "title": "Robust Infrastructure Planning for Sustainable Water Development in the Greater Bay Area",
+                "funder": "Hong Kong Research Grants Council Collaborative Research Fund",
+                "period": "2022-2024",
+                "amount": "HKD 6,909,310",
+                "url": "https://cemlu.people.ust.hk/individual/proflu.html"
+              },
+              {
+                "title": "Atmospheric rivers and heavy rainfall research",
+                "funder": "Hong Kong Research Grants Council General Research Fund",
+                "period": "2021-2023",
+                "amount": "HKD 714,675",
+                "url": "https://cemlu.people.ust.hk/individual/proflu.html"
+              },
+              {
+                "title": "Digital Twin for coastal resilience against storm surges",
+                "funder": "current HKUST project; public amount not listed",
+                "period": "2025-2029",
+                "amount": "",
+                "url": "https://researchportal.hkust.edu.hk/en/persons/mengqian-lu/"
+              }
+            ]
+          }
+        ],
+        "recentProjects": [
+          {
+            "title": "Robust Infrastructure Planning for Sustainable Water Development in the Greater Bay Area",
+            "funder": "Hong Kong Research Grants Council Collaborative Research Fund",
+            "period": "2022-2024",
+            "amount": "HKD 6,909,310",
+            "url": "https://cemlu.people.ust.hk/individual/proflu.html"
+          },
+          {
+            "title": "Atmospheric rivers and heavy rainfall research",
+            "funder": "Hong Kong Research Grants Council General Research Fund",
+            "period": "2021-2023",
+            "amount": "HKD 714,675",
+            "url": "https://cemlu.people.ust.hk/individual/proflu.html"
+          },
+          {
+            "title": "Digital Twin for coastal resilience against storm surges",
+            "funder": "current HKUST project; public amount not listed",
+            "period": "2025-2029",
+            "amount": "",
+            "url": "https://researchportal.hkust.edu.hk/en/persons/mengqian-lu/"
+          }
+        ],
+        "graduateDestinations": [
+          {
+            "period": "",
+            "destination": "Simon Fraser University, Department of Geography",
+            "role": "Mengxin Pan — Assistant Professor and lead of the Climate and Weather Extremes Lab; HKUST MPhil 2018 and PhD 2021, followed by postdoctoral research",
+            "url": "https://www.sfu.ca/geography/about/our-people/profiles/Mengxin-Pan.html",
+            "sources": [
+              {
+                "sourceType": "official_current_employer_and_hkust_lab_profiles",
+                "label": "기존 진로 근거 (유형 재검증 필요)",
+                "url": "https://cemlu.people.ust.hk/individual/mengxin.html"
+              },
+              {
+                "sourceType": "official_current_employer_and_hkust_lab_profiles",
+                "label": "기존 진로 근거 (유형 재검증 필요)",
+                "url": "https://www.sfu.ca/geography/about/our-people/profiles/Mengxin-Pan.html"
+              }
+            ]
+          }
+        ],
+        "graduateOutcomeSources": [
+          {
+            "sourceType": "official_current_employer_and_hkust_lab_profiles",
+            "label": "기존 진로 근거 (유형 재검증 필요)",
+            "url": "https://cemlu.people.ust.hk/individual/mengxin.html"
+          },
+          {
+            "sourceType": "official_current_employer_and_hkust_lab_profiles",
+            "label": "기존 진로 근거 (유형 재검증 필요)",
+            "url": "https://www.sfu.ca/geography/about/our-people/profiles/Mengxin-Pan.html"
+          }
+        ],
         "graduateTestimonials": [],
-        "lastVerified": "2026-06-13",
-        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+        "lastVerified": "2026-07-29",
+        "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
     {
@@ -6569,17 +6722,21 @@
       "tuition": "KAUST Fellowship route; verify official terms",
       "funding": "KAUST Fellowship full-support model after admission",
       "verification": "verified_program_only",
-      "verifiedAt": "2026-06-13",
+      "verifiedAt": "2026-07-29",
       "english": "KAUST 공식 입학 기준은 IELTS 6.5(각 5.5 이상) 또는 TOEFL iBT 81(각 17 이상).",
       "officialUrl": "https://bese.kaust.edu.sa/study/academic-programs/ense",
       "sources": [
         "https://admissions.kaust.edu.sa/fees-funding",
         "https://bese.kaust.edu.sa/study/academic-programs/ense",
-        "https://www.kaust.edu.sa/study/applying-to-kaust"
+        "https://www.kaust.edu.sa/study/applying-to-kaust",
+        "https://faculty.kaust.edu.sa/en/persons/peiying-hong/",
+        "https://www.kaust.edu.sa/en/news/alumni-focus--jian-pan",
+        "https://www.kaust.edu.sa/news/luisa-javier",
+        "https://www.kaust.edu.sa/en/news/preparing-saudi-engineers-for-the-kingdoms-future"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "desalination",
@@ -6604,8 +6761,29 @@
                 "url": "https://www.kaust.edu.sa/en/study/biomed/faculty/noreddine-ghaffour"
               }
             ],
-            "recentPapers": [],
-            "recentProjects": []
+            "recentPapers": [
+              {
+                "year": "2024",
+                "title": "Hybrid membrane and thermal seawater desalination: A review of current research and applications",
+                "venue": "Desalination, 583, 117694",
+                "url": "https://pure.kaust.edu.sa/ws/portalfiles/portal/cv/861d00e7-ccb0-4576-81a3-a789a44079c3?locale=en_US"
+              },
+              {
+                "year": "2024",
+                "title": "2024 roadmap for membrane desalination at the water-energy nexus",
+                "venue": "Journal of Physics: Energy, 6, 021502",
+                "url": "https://pure.kaust.edu.sa/ws/portalfiles/portal/cv/861d00e7-ccb0-4576-81a3-a789a44079c3?locale=en_US"
+              }
+            ],
+            "recentProjects": [
+              {
+                "title": "3D multiscale modeling of a coupled forward osmosis-membrane distillation system",
+                "funder": "Saudi Aramco",
+                "period": "grant RGC/3/3598-01-01; amount not publicly disclosed",
+                "amount": "",
+                "url": "https://repository.kaust.edu.sa/items/0d452f40-8d13-4d6f-80df-0f7b738d8a31"
+              }
+            ]
           },
           {
             "name": "Johannes Vrouwenvelder",
@@ -6621,8 +6799,23 @@
                 "url": "https://www.kaust.edu.sa/en/study/faculty/vrouwenvelder-johannes"
               }
             ],
-            "recentPapers": [],
-            "recentProjects": []
+            "recentPapers": [
+              {
+                "year": "2024",
+                "title": "A solar-driven atmospheric water extractor for off-grid freshwater generation and irrigation",
+                "venue": "Science",
+                "url": "https://faculty.kaust.edu.sa/en/clippings/researchers-from-king-abdullah-university-of-science-and-technolo-56/"
+              }
+            ],
+            "recentProjects": [
+              {
+                "title": "Sustainable wastewater treatment delivering clean water and energy",
+                "funder": "KAUST research programme; public amount not disclosed",
+                "period": "current research line",
+                "amount": "",
+                "url": "https://www.kaust.edu.sa/news/sustainable-wastewater-treatment-delivers-clean-water-and-provides-energy"
+              }
+            ]
           },
           {
             "name": "Peiying Hong",
@@ -6638,35 +6831,130 @@
                 "url": "https://www.kaust.edu.sa/en/study/faculty/peiying-hong"
               }
             ],
-            "recentPapers": [],
-            "recentProjects": []
+            "recentPapers": [
+              {
+                "year": "2025",
+                "title": "Combining flow virometry with tree-based machine learning for rapid virus particle estimation in wastewater matrices",
+                "venue": "Water Research, 284, 123905",
+                "url": "https://faculty.kaust.edu.sa/en/persons/peiying-hong/"
+              },
+              {
+                "year": "2025",
+                "title": "Viral particle prediction in wastewater treatment plants using nonlinear lifelong learning",
+                "venue": "npj Clean Water, 8, 28",
+                "url": "https://faculty.kaust.edu.sa/en/persons/peiying-hong/"
+              },
+              {
+                "year": "2025",
+                "title": "Phage biocontrol in water treatment and reuse systems",
+                "venue": "Current Opinion in Biotechnology, 91, 103242",
+                "url": "https://faculty.kaust.edu.sa/en/persons/peiying-hong/"
+              }
+            ],
+            "recentProjects": [
+              {
+                "title": "Environmental microbial safety and biotechnology for water reuse",
+                "funder": "KAUST faculty research programme; public amount not disclosed",
+                "period": "current research line",
+                "amount": "",
+                "url": "https://faculty.kaust.edu.sa/en/persons/peiying-hong/"
+              }
+            ]
           }
         ],
-        "recentProjects": [],
+        "recentProjects": [
+          {
+            "title": "3D multiscale modeling of a coupled forward osmosis-membrane distillation system",
+            "funder": "Saudi Aramco",
+            "period": "grant RGC/3/3598-01-01; amount not publicly disclosed",
+            "amount": "",
+            "url": "https://repository.kaust.edu.sa/items/0d452f40-8d13-4d6f-80df-0f7b738d8a31"
+          },
+          {
+            "title": "Sustainable wastewater treatment delivering clean water and energy",
+            "funder": "KAUST research programme; public amount not disclosed",
+            "period": "current research line",
+            "amount": "",
+            "url": "https://www.kaust.edu.sa/news/sustainable-wastewater-treatment-delivers-clean-water-and-provides-energy"
+          },
+          {
+            "title": "Environmental microbial safety and biotechnology for water reuse",
+            "funder": "KAUST faculty research programme; public amount not disclosed",
+            "period": "current research line",
+            "amount": "",
+            "url": "https://faculty.kaust.edu.sa/en/persons/peiying-hong/"
+          }
+        ],
         "graduateDestinations": [
           {
             "period": "",
-            "destination": "KAUST research, Saudi/Gulf water tech, desalination and environmental engineering ecosystem",
-            "role": "research engineer / water technology specialist",
-            "url": "https://admissions.kaust.edu.sa/fees-funding",
+            "destination": "Saudi Ministry of Environment, Water and Agriculture",
+            "role": "Aishah Alsamdani — environmental team; KAUST MS Environmental Science and Engineering 2024, working on the Kingdom's national carbon strategy",
+            "url": "https://www.kaust.edu.sa/en/news/preparing-saudi-engineers-for-the-kingdoms-future",
             "sources": [
               {
-                "sourceType": "untyped_public_source",
+                "sourceType": "official_university_alumni_story",
                 "label": "기존 진로 근거 (유형 재검증 필요)",
-                "url": "https://admissions.kaust.edu.sa/fees-funding"
+                "url": "https://www.kaust.edu.sa/en/news/preparing-saudi-engineers-for-the-kingdoms-future"
+              }
+            ]
+          },
+          {
+            "period": "",
+            "destination": "Hangzhou Bertzer Catalyst / environmental technology entrepreneurship",
+            "role": "Jian Pan — general manager and environmental-technology entrepreneur; KAUST MS Environmental Science and Engineering 2011, formerly KAPSARC senior analyst",
+            "url": "https://www.kaust.edu.sa/en/news/alumni-focus--jian-pan",
+            "sources": [
+              {
+                "sourceType": "official_university_alumni_story",
+                "label": "기존 진로 근거 (유형 재검증 필요)",
+                "url": "https://www.kaust.edu.sa/en/news/alumni-focus--jian-pan"
+              },
+              {
+                "sourceType": "official_university_alumni_story",
+                "label": "기존 진로 근거 (유형 재검증 필요)",
+                "url": "https://alumnichangemakers.kaust.edu.sa/changemakers.html"
+              }
+            ]
+          },
+          {
+            "period": "",
+            "destination": "Sin Acqua",
+            "role": "Luisa Javier — co-founder of a waterless biotechnology venture; KAUST MS Environmental Science and Engineering 2011 and later KAUST PhD researcher",
+            "url": "https://www.kaust.edu.sa/news/luisa-javier",
+            "sources": [
+              {
+                "sourceType": "official_university_alumni_story",
+                "label": "기존 진로 근거 (유형 재검증 필요)",
+                "url": "https://www.kaust.edu.sa/news/luisa-javier"
               }
             ]
           }
         ],
         "graduateOutcomeSources": [
           {
-            "sourceType": "untyped_public_source",
+            "sourceType": "official_university_alumni_story",
             "label": "기존 진로 근거 (유형 재검증 필요)",
-            "url": "https://admissions.kaust.edu.sa/fees-funding"
+            "url": "https://www.kaust.edu.sa/en/news/preparing-saudi-engineers-for-the-kingdoms-future"
+          },
+          {
+            "sourceType": "official_university_alumni_story",
+            "label": "기존 진로 근거 (유형 재검증 필요)",
+            "url": "https://www.kaust.edu.sa/en/news/alumni-focus--jian-pan"
+          },
+          {
+            "sourceType": "official_university_alumni_story",
+            "label": "기존 진로 근거 (유형 재검증 필요)",
+            "url": "https://alumnichangemakers.kaust.edu.sa/changemakers.html"
+          },
+          {
+            "sourceType": "official_university_alumni_story",
+            "label": "기존 진로 근거 (유형 재검증 필요)",
+            "url": "https://www.kaust.edu.sa/news/luisa-javier"
           }
         ],
         "graduateTestimonials": [],
-        "lastVerified": "2026-07-28",
+        "lastVerified": "2026-07-29",
         "evidenceStatus": "공식·연구실 원문 확인"
       }
     },
@@ -6692,9 +6980,9 @@
         "https://master-cde.eu/admission/procedures-deadlines/calls/",
         "https://master-cde.eu/call-open-emjm-copernicus-master-in-digital-earth-4/"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "Earth Observation",
@@ -7182,9 +7470,9 @@
         "https://gses.snu.ac.kr/en",
         "https://en.snu.ac.kr/admission/graduate/application"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "GIS",
@@ -7437,17 +7725,17 @@
       "tuition": "Full tuition can be covered at 0.50 FTE; fees may remain",
       "funding": "Faculty RA/department TA plus tuition scholarship and health insurance; annual renewal",
       "verification": "verified",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "Official page lists IELTS 7.0 with no area below 6; verify current TOEFL requirement and score conversion before the 2027 cycle.",
       "officialUrl": "https://has.arizona.edu/doctor-philosophy-hydrology-and-water-resources",
       "sources": [
         "https://has.arizona.edu/doctor-philosophy-hydrology-and-water-resources",
-        "https://has.arizona.edu/graduate-assistantships-and-associateships",
-        "https://has.arizona.edu/davis-fitzwater-doctoral-fellowship-hydrology"
+        "https://has.arizona.edu/people/faculty",
+        "https://profiles.arizona.edu/person/boguo"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "hydrology",
@@ -7917,9 +8205,9 @@
         "https://enc.skku.edu/eng_enc/water_course.do",
         "https://professor.skku.edu/researcher_eng/professorList.do?categoryId=P&jojikCode1=7306&jojikCode2=7306"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "hydrology",
@@ -8127,9 +8415,9 @@
         "https://www.yonsei.ac.kr/sites/en_sc/down/2026_fee2.pdf",
         "https://devcms.yonsei.ac.kr/engineering_en/research/research_2.do"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "hydrology",
@@ -8441,9 +8729,9 @@
         "https://gradschool.princeton.edu/financial-support/financial-support-model/phd-funding-natural-sciences-engineering",
         "https://gradschool.princeton.edu/admission-onboarding/prepare/deadlines-and-fees"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "PhD funding",
@@ -8486,9 +8774,9 @@
         "https://major.ust.ac.kr/prog/campus/campus_eng/sub34_04/34/majorView.do?kind=information&majorNo=55",
         "https://www.ust.ac.kr/thumbnail/entschGuideline/ENTPDF_20251002151926732Hf30.pdf"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "water resources",
@@ -8530,9 +8818,9 @@
         "https://engineering.stanford.edu/prospective-graduate-programs/fee-waivers",
         "https://gradadmissions.stanford.edu/apply/application-fee"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "PhD funding",
@@ -8576,9 +8864,9 @@
         "https://www3.kfupm.edu.sa/study/international-students/fees-and-scholarships",
         "https://ce.kfupm.edu.sa/people/faculty/areeq_research-profile"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "water resources",
@@ -8621,9 +8909,9 @@
         "https://graduate2.korea.ac.kr/admission/schedule.html",
         "https://graduate2.korea.ac.kr/scholarship/skscholarships.html"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "physical hydrology",
@@ -8816,17 +9104,17 @@
       "tuition": "Covered under full Erasmus Mundus scholarship",
       "funding": "Erasmus Mundus full scholarship",
       "verification": "verified",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "IHE Delft MSc/PhD 페이지는 비영어권 지원자의 영어 요건 충족을 요구하나, 수치 컷은 링크된 English requirements 페이지에서 지원 전 재확인 필요.",
       "officialUrl": "https://www.groundwatermaster.eu/",
       "sources": [
         "https://www.groundwatermaster.eu/",
-        "https://apply.un-ihe.org/application-process/master-of-science-erasmus",
-        "https://www.un-ihe.org/education/master-programmes/joint-and-double-degree-masters-programmes"
+        "https://www.groundwatermaster.eu/teaching-staff",
+        "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "groundwater",
@@ -8911,9 +9199,9 @@
         "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters",
         "https://www.copernicus.eu/en/news/news/observer-preparing-next-generation-copernicus-experts-gem-european-master-geo-information"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "Digital Earth",
@@ -9238,9 +9526,9 @@
         "https://www.oist.jp/education/student-support",
         "https://www.oist.jp/admissions/faq"
       ],
-      "applicationStatus": "prepare",
-      "applicationStatusLabel": "지금 준비",
-      "applicationStatusReason": "현재 열린 접수로 확인된 것은 아닙니다. 성적·서류·교수/과정 조사를 지금 시작할 후보입니다.",
+      "applicationStatus": "research",
+      "applicationStatusLabel": "추가 조사",
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
       "publicResearch": {
         "keywords": [
           "fully funded PhD",
@@ -9275,7 +9563,7 @@
       "tuition": "VERIFY_ON_OFFICIAL_PAGE",
       "funding": "KU postgraduate scholarship route; official tier rules required",
       "verification": "verified_program_only",
-      "verifiedAt": "2026-06-13",
+      "verifiedAt": "2026-07-28",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
       "officialUrl": "https://ku-ae.smartcatalogiq.com/en/2023-2024/graduate-catalog/college-of-engineering/msc-in-water-and-environmental-engineering",
       "sources": [
@@ -10547,7 +10835,7 @@
       "tuition": "VERIFY_ON_OFFICIAL_PAGE",
       "funding": "UAEU Chancellor Fellowship / graduate assistantship / research assistantship routes; grant-dependent",
       "verification": "verified_program_only",
-      "verifiedAt": "2026-06-13",
+      "verifiedAt": "2026-07-28",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
       "officialUrl": "https://www.uaeu.ac.ae/en/catalog/graduate/programs/master-of-science-in-water-resources.shtml",
       "sources": [
@@ -11670,7 +11958,7 @@
       "tuition": "VERIFY_ON_OFFICIAL_PAGE",
       "funding": "UQ scholarships/Australia Awards possible but hard-gated; official verification required",
       "verification": "verified_program_only",
-      "verifiedAt": "2026-06-13",
+      "verifiedAt": "2026-07-28",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
       "officialUrl": "https://study.uq.edu.au/study-options/programs/master-engineering-science-urban-water-engineering-5698",
       "sources": [
@@ -12025,7 +12313,7 @@
       "tuition": "VERIFY_ON_OFFICIAL_PAGE",
       "funding": "Advisor/department funding plus water awards; official verification required",
       "verification": "verified_program_only",
-      "verifiedAt": "2026-06-13",
+      "verifiedAt": "2026-07-28",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
       "officialUrl": "https://uwaterloo.ca/collaborative-water-program/",
       "sources": [
@@ -12304,13 +12592,14 @@
       "intake": "VERIFY_CURRENT_CYCLE",
       "tuition": "VERIFY_ON_OFFICIAL_PAGE",
       "funding": "UBC awards/advisor/project funding to verify; no full-funding assumption",
-      "verification": "verified_program_only",
-      "verifiedAt": "2026-06-13",
+      "verification": "verified_program_paused_2026_27",
+      "verifiedAt": "2026-07-28",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
       "officialUrl": "https://www.landfood.ubc.ca/graduate/master-of-land-and-water-systems/",
       "sources": [
-        "https://www.landfood.ubc.ca/graduate/master-of-land-and-water-systems/",
-        "https://cwra.org/awards/scholarships/"
+        "https://mlws.landfood.ubc.ca/front-page/",
+        "https://www.landfood.ubc.ca/leslie-lavkulich/",
+        "https://www.landfood.ubc.ca/brittany-myhal/"
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
@@ -12704,7 +12993,7 @@
       "tuition": "VERIFY_ON_OFFICIAL_PAGE",
       "funding": "VLIR-UOS ICP Connect full scholarship for eligible countries only; otherwise tuition/living cost needs separate plan",
       "verification": "verified_program_only",
-      "verifiedAt": "2026-06-13",
+      "verifiedAt": "2026-07-28",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
       "officialUrl": "https://www.vliruos.be/get-funded/master-water-resources-engineering-wre",
       "sources": [
@@ -12813,7 +13102,7 @@
       "tuition": "VERIFY_ON_OFFICIAL_PAGE",
       "funding": "University scholarships and country-gated Australia Awards; official verification required",
       "verification": "verified_program_only",
-      "verifiedAt": "2026-06-13",
+      "verifiedAt": "2026-07-28",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
       "officialUrl": "https://www.adelaide.edu.au/degree-finder/meng_meng.html",
       "sources": [
@@ -13314,7 +13603,7 @@
       "tuition": "VERIFY_ON_OFFICIAL_PAGE",
       "funding": "UC scholarships/project funding to verify",
       "verification": "verified_program_only",
-      "verifiedAt": "2026-06-13",
+      "verifiedAt": "2026-07-28",
       "english": "English-taught graduate route; verify TOEFL/IELTS waiver and exact score on official admission page.",
       "officialUrl": "https://www.canterbury.ac.nz/study/academic-study/qualifications/master-of-water-science-and-management",
       "sources": [
@@ -13406,12 +13695,14 @@
       "tuition": "",
       "funding": "GRA/GTA often includes stipend and tuition; MEng is excluded",
       "verification": "verified_program_and_assistantships",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://www.engr.colostate.edu/ce/graduate/hydrologic-science-and-engineering/",
       "sources": [
-        "https://www.engr.colostate.edu/ce/graduate/water-resources-planning-and-management/",
-        "https://www.engr.colostate.edu/ce/graduate/admission/"
+        "https://www.engr.colostate.edu/ce/graduate/hydrologic-science-and-engineering/",
+        "https://www.engr.colostate.edu/ce/research/water/",
+        "https://www.engr.colostate.edu/ce/people/jeffrey-niemann/",
+        "https://www.engr.colostate.edu/ce/people/ryan-morrison/"
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
@@ -13484,12 +13775,13 @@
       "tuition": "",
       "funding": "PhD RA, TA or fellowship package with stipend, tuition waiver and health benefits",
       "verification": "verified_program_and_phd_funding",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://www.ce.washington.edu/phd",
       "sources": [
         "https://www.ce.washington.edu/phd",
-        "https://www.ce.washington.edu/phd/funding"
+        "https://www.ce.washington.edu/facultyfinder/jessica-d-lundquist",
+        "https://www.ce.washington.edu/research/labs"
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
@@ -14077,12 +14369,15 @@
       "tuition": "",
       "funding": "Advertised UKRI and project studentships covering tuition and stipend; project-specific eligibility",
       "verification": "verified_research_route_funding_cycle_pending",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://www.exeter.ac.uk/research/centres/cws/research/hydroinformatics-ai/",
       "sources": [
+        "https://www.exeter.ac.uk/research/centres/cws/people/academic/",
         "https://www.exeter.ac.uk/research/centres/cws/research/hydroinformatics-ai/",
-        "https://www.exeter.ac.uk/study/pg-research/funding/phdfunding/"
+        "https://www.exeter.ac.uk/research/centres/cws/research/urban-water/",
+        "https://www.exeter.ac.uk/research/centres/cws/education/wisecdt/impactandlegacy/graduatedestinations/",
+        "https://www.exeter.ac.uk/research/centres/cws/education/wisecdt/impactandlegacy/completionrates/"
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
@@ -14234,7 +14529,7 @@
       "tuition": "",
       "funding": "Spatial Information Convergence Core Talent Development Project scholarships plus RA/industry scholarships",
       "verification": "verified_program_and_project_scholarship_signal",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://www.uos.ac.kr/eng/web/contents/UOS_Academics_01_06_08",
       "sources": [
@@ -14358,12 +14653,13 @@
       "tuition": "",
       "funding": "GSR, TA and fellowships; faculty-funded admission is strongest route",
       "verification": "verified_program_and_funding",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://www.hsgg.ucdavis.edu/",
       "sources": [
         "https://www.hsgg.ucdavis.edu/",
-        "https://www.hsgg.ucdavis.edu/funding"
+        "https://www.hsgg.ucdavis.edu/faculty",
+        "https://www.hsgg.ucdavis.edu/alumni"
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
@@ -14578,12 +14874,13 @@
       "tuition": "",
       "funding": "RA, TA and fellowships; December 15 funding-consideration pattern",
       "verification": "verified_program_and_funding_routes",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://hydrology.mines.edu/",
       "sources": [
-        "https://hydrology.mines.edu/",
-        "https://hydrology.mines.edu/graduate-program/"
+        "https://hydrology.mines.edu/faculty/",
+        "https://people.mines.edu/thogue/",
+        "https://people.mines.edu/thogue/wildfire/"
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
@@ -14660,12 +14957,11 @@
       "tuition": "",
       "funding": "Faculty graduate assistantships via CEE and Utah Water Research Laboratory",
       "verification": "verified_program_and_assistantship_signal",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://engineering.usu.edu/cee/students/requirements/index.php",
       "sources": [
-        "https://engineering.usu.edu/cee/students/requirements/index.php",
-        "https://uwrl.usu.edu/water-resources/careers"
+        "https://engineering.usu.edu/cee/people/faculty/rosenberg-david"
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
@@ -14864,7 +15160,7 @@
       "tuition": "",
       "funding": "Professor RA, BK21 and Korean graduate STEM scholarships; not automatic",
       "verification": "verified_major_via_official_admission_material",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://graduate.pusan.ac.kr/grad/index.do",
       "sources": [
@@ -14981,7 +15277,7 @@
       "tuition": "",
       "funding": "Professor RA, BK21 or university scholarship; GKS excluded for Korean applicant",
       "verification": "verified_program_funding_requires_pi_confirmation",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://ericacivil.hanyang.ac.kr/en/-24",
       "sources": [
@@ -15166,12 +15462,13 @@
       "tuition": "",
       "funding": "Advisor-funded assistantship; program itself does not fund students",
       "verification": "verified_program_and_adviser_funding_limit",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://graduate.oregonstate.edu/water-resources-graduate-program",
       "sources": [
-        "https://graduate.oregonstate.edu/water-resources-graduate-program/applicant-faqs",
-        "https://graduate.oregonstate.edu/water-resources-graduate-program"
+        "https://graduate.oregonstate.edu/water-resources-graduate-program",
+        "https://engineering.oregonstate.edu/CCE/research/water-resources-research",
+        "https://graduate.oregonstate.edu/water-resources-graduate-program/water-resources-faculty"
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
@@ -15283,7 +15580,7 @@
       "tuition": "",
       "funding": "Advisor RA and university/BK21 support; no automatic full package verified",
       "verification": "verified_program_partial_funding_evidence",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://civil.jnu.ac.kr/",
       "sources": [
@@ -15566,12 +15863,16 @@
       "tuition": "",
       "funding": "Primarily self-funded professional degree with limited scholarships/CREATE supplements",
       "verification": "verified_program_2027_deadline_funding_limited",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://grad.usask.ca/programs/water-security.php",
       "sources": [
-        "https://grad.usask.ca/programs/water-security.php",
-        "https://water.usask.ca/students/awards.php"
+        "https://water.usask.ca/about/profiles/people/john-pomeroy.php",
+        "https://water.usask.ca/about/profiles/members.php",
+        "https://water.usask.ca/publications/index.php",
+        "https://water.usask.ca/research/index.php",
+        "https://water.usask.ca/news-items/2023/news-usask-led-global-water-futures-marks-the-end-of-an-era-and-looks-to-the-future.php",
+        "https://water.usask.ca/news-items/2024/news-usask-celebrates-launch-of-canadas-freshwater-monitoring-network.php"
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
@@ -15716,7 +16017,7 @@
       "tuition": "",
       "funding": "Erasmus Mundus programme; scholarship availability must be verified on the official application/scholarship page for the target intake",
       "verification": "verified_program_only",
-      "verifiedAt": "",
+      "verifiedAt": "2026-06-11",
       "english": "Cartography MSc의 최신 English requirement는 target intake student handbook/application portal에서 최종 확인 필요.",
       "officialUrl": "https://cartographymaster.eu/",
       "sources": [
@@ -15975,10 +16276,11 @@
       "tuition": "",
       "funding": "Small number of competitive tuition-fee waivers; living stipend not included",
       "verification": "verified_program_and_tuition_waiver_limit",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://www.aalto.fi/en/study-options/water-and-environmental-engineering-master-of-science-technology",
       "sources": [
+        "https://research.aalto.fi/en/persons/matti-kummu/",
         "https://www.aalto.fi/en/study-options/water-and-environmental-engineering-master-of-science-technology"
       ],
       "applicationStatus": "research",
@@ -16116,7 +16418,7 @@
       "tuition": "",
       "funding": "Engineering graduate RA package subject to professor selection",
       "verification": "verified_program_and_ra_brochure",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://en.sejong.ac.kr/eng/academics/Graduate-school.do",
       "sources": [
@@ -16233,10 +16535,11 @@
       "tuition": "",
       "funding": "University tuition scholarships are competitive; no automatic living stipend",
       "verification": "verified_program_funding_not_guaranteed",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://www.uu.se/en/study/programme/masters-programme-earth-science-hydrology-hydrogeology",
       "sources": [
+        "https://www.uu.se/kontakt-och-organisation/personal?query=N14-377",
         "https://www.uu.se/en/study/programme/masters-programme-earth-science-hydrology-hydrogeology"
       ],
       "applicationStatus": "research",
@@ -16365,12 +16668,15 @@
       "tuition": "",
       "funding": "Self-funded or non-EPOS external scholarship for a Korean applicant; DAAD EPOS is restricted to applicants from eligible developing and emerging countries",
       "verification": "verified_program_epos_ineligible_for_korean_applicant",
-      "verifiedAt": "2026-07-10",
+      "verifiedAt": "2026-07-28",
       "english": "영어 기준은 공식 admissions 페이지에서 직접 확인 필요.",
       "officialUrl": "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse/hse",
       "sources": [
-        "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse/hse",
-        "https://tu-dresden.de/studium/vor-dem-studium/internationales/stipendien/daad-epos?set_language=en"
+        "https://tu-dresden.de/bu/umwelt/hydro/studium/studienangebot/master/master_hse",
+        "https://tu-dresden.de/bu/umwelt/hydro/igw/forschung/publikationen-1?set_language=en",
+        "https://tu-dresden.de/bu/umwelt/hydro/isi/tph/die-professur/inhaber-in?set_language=de",
+        "https://tu-dresden.de/bu/umwelt/hydro/wald-wasser-dynamik/aktuelle-forschungsprojekte",
+        "https://tu-dresden.de/bu/umwelt/hydro/studium/Absolventen?set_language=en"
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
@@ -16599,7 +16905,17 @@
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
-      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
+      "publicResearch": {
+        "keywords": [],
+        "faculty": [],
+        "recentProjects": [],
+        "graduateDestinations": [],
+        "graduateOutcomeSources": [],
+        "graduateTestimonials": [],
+        "lastVerified": "",
+        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+      }
     },
     {
       "id": "program-ucf-online-water-resources",
@@ -16628,7 +16944,17 @@
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
-      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
+      "publicResearch": {
+        "keywords": [],
+        "faculty": [],
+        "recentProjects": [],
+        "graduateDestinations": [],
+        "graduateOutcomeSources": [],
+        "graduateTestimonials": [],
+        "lastVerified": "",
+        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+      }
     },
     {
       "id": "program-penn-state-online-gis",
@@ -16657,7 +16983,17 @@
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
-      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
+      "publicResearch": {
+        "keywords": [],
+        "faculty": [],
+        "recentProjects": [],
+        "graduateDestinations": [],
+        "graduateOutcomeSources": [],
+        "graduateTestimonials": [],
+        "lastVerified": "",
+        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+      }
     },
     {
       "id": "program-arizona-online-gis-technology",
@@ -16685,7 +17021,17 @@
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
-      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
+      "publicResearch": {
+        "keywords": [],
+        "faculty": [],
+        "recentProjects": [],
+        "graduateDestinations": [],
+        "graduateOutcomeSources": [],
+        "graduateTestimonials": [],
+        "lastVerified": "",
+        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+      }
     },
     {
       "id": "program-jhu-online-environmental-engineering",
@@ -16714,7 +17060,17 @@
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
-      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
+      "publicResearch": {
+        "keywords": [],
+        "faculty": [],
+        "recentProjects": [],
+        "graduateDestinations": [],
+        "graduateOutcomeSources": [],
+        "graduateTestimonials": [],
+        "lastVerified": "",
+        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+      }
     },
     {
       "id": "program-uiuc-online-computer-science-data-science",
@@ -16742,7 +17098,17 @@
       ],
       "applicationStatus": "research",
       "applicationStatusLabel": "추가 조사",
-      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요."
+      "applicationStatusReason": "현재 접수 여부를 공식 원문에서 다시 확인한 뒤 준비 대상으로 올리세요.",
+      "publicResearch": {
+        "keywords": [],
+        "faculty": [],
+        "recentProjects": [],
+        "graduateDestinations": [],
+        "graduateOutcomeSources": [],
+        "graduateTestimonials": [],
+        "lastVerified": "",
+        "evidenceStatus": "공개 연구자료 추가 확인 필요"
+      }
     },
     {
       "id": "program-73dbccd3e166",
@@ -21464,18 +21830,18 @@
   ],
   "graduateEvidenceCoverage": {
     "totalPrograms": 99,
-    "programsWithAnyEvidence": 64,
-    "programsWithFaculty": 64,
-    "programsWithRecentPapers": 42,
-    "programsWithFundedProjects": 37,
-    "programsWithGraduateDestinations": 34,
+    "programsWithAnyEvidence": 65,
+    "programsWithFaculty": 65,
+    "programsWithRecentPapers": 44,
+    "programsWithFundedProjects": 40,
+    "programsWithGraduateDestinations": 36,
     "programsWithTestimonials": 3,
-    "unresearchedPrograms": 35
+    "unresearchedPrograms": 34
   },
   "graduateDataLineage": {
     "producer": "career-job-compass/scripts/build_snapshot.py",
     "artifact": "data/app-data.json",
-    "payloadSha256": "0b0cc751a0bb45b0baaa62ea5980b3c6b9abfbcb94a52ce1785216d8b3b6a023",
+    "payloadSha256": "d40dea5765578fd11f0ba1fff6ad63e7c569a0787338f7e4a6f38675c38c6b87",
     "programCount": 99,
     "fundingCount": 186
   }
