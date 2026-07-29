@@ -595,6 +595,41 @@
       "title": "Installed mobile clients invalidate the graduate evidence label release",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v39-graduate-evidence-labels", "career-compass-v38-feedback-recovery"]},
       "note": "The affected wording is cached in both app.js and data/app-data.json. The service-worker lineage must advance so a home-screen iPhone does not retain the internal review label after the public artifact is corrected."
+    },
+    {
+      "id": "DATA-233",
+      "status": "active",
+      "title": "Canonical records include evidence-aware decision fields",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-233", "_apply_decision_support", "decisionSupport", "missingInformation"]},
+      "note": "Measured on 2026-07-30: detail screens assembled unrelated fields ad hoc and did not share a known, missing, and next-action producer contract."
+    },
+    {
+      "id": "DATA-234",
+      "status": "active",
+      "title": "Experienced-only titles do not enter the public list",
+      "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["DATA-234", "experienced_only_title"]},
+      "note": "Measured on 2026-07-30: the first public record was an experienced-position posting."
+    },
+    {
+      "id": "UX-229",
+      "status": "active",
+      "title": "Job and programme details expose the same decision summary",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-229\"", "decisionSupportPanel", "확인된 정보", "아직 확인할 정보"]},
+      "note": "The mobile summary uses producer data and discloses evidence gaps."
+    },
+    {
+      "id": "UX-230",
+      "status": "active",
+      "title": "Saved supports an arbitrary-length local comparison list",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-230\"", "career-compass-comparison-v1", "toggleComparison", "comparisonRecords"]},
+      "note": "The compared record count is user-controlled and has no fixed cap."
+    },
+    {
+      "id": "GOV-222",
+      "status": "active",
+      "title": "Decision-support v2 advances the mobile cache lineage",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v40-decision-support-v2", "career-compass-v39-graduate-evidence-labels"]},
+      "note": "The app shell, styles, and canonical snapshot change together."
     }
   ]
 }

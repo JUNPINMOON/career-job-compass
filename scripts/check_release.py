@@ -46,6 +46,24 @@ def support_only_title(title: object) -> bool:
     return bool(support_role and not title_grounded_target)
 
 
+def experienced_only_title(title: object) -> bool:
+    """DATA-234."""
+    text = str(title or "").replace(" ", "")
+    return "\uacbd\ub825\uc9c1" in text and "\uc2e0\uc785" not in text and "\uacbd\ub825\ubb34\uad00" not in text
+
+
+def valid_decision_support(record: dict, expected_type: str) -> bool:
+    support = record.get("decisionSupport")
+    return (
+        isinstance(support, dict)
+        and support.get("recordType") == expected_type
+        and isinstance(support.get("knownInformation"), list)
+        and isinstance(support.get("missingInformation"), list)
+        and isinstance(support.get("nextActions"), list)
+        and len(support.get("dimensions") or []) == 5
+    )
+
+
 def contains_non_contract_research(value: object) -> bool:
     """Mirror DATA-216 at the release boundary."""
     markers = (
@@ -104,6 +122,8 @@ def main() -> None:
     funding = snapshot.get("funding")
     if snapshot.get("schemaVersion", 0) < 3:
         raise SystemExit("snapshot must use schemaVersion 3 or later")
+    if snapshot.get("releaseVersion") != "decision-support-v2":
+        raise SystemExit("snapshot must declare decision-support-v2")
     if not isinstance(jobs, list) or not jobs:
         raise SystemExit("snapshot must contain title-grounded job exploration or action candidates")
     sectors = snapshot.get("sectors")
@@ -115,6 +135,10 @@ def main() -> None:
         raise SystemExit("snapshot must contain the full graduate research catalog")
     if not isinstance(funding, list) or len(funding) < 186:
         raise SystemExit("snapshot must contain the full funding research catalog")
+    if any(not valid_decision_support(job, "job") for job in jobs):
+        raise SystemExit("every job must include the decision-support contract")
+    if any(not valid_decision_support(program, "program") for program in programs):
+        raise SystemExit("every programme must include the decision-support contract")
     # DATA-227: prove that the file being released is the canonical graduate
     # producer artifact, rather than a separately projected look-alike.
     graduate_lineage = snapshot.get("graduateDataLineage")
@@ -169,6 +193,8 @@ def main() -> None:
         raise SystemExit("public jobs must exclude explicit multi-year experience requirements")
     if any(support_only_title(job.get("title")) for job in jobs):
         raise SystemExit("public jobs must exclude generic support-only titles")
+    if any(experienced_only_title(job.get("title")) for job in jobs):
+        raise SystemExit("public jobs must exclude experienced-only titles")
     if any(item.get("applicationStatus") not in {"open", "prepare", "research"} for item in programs):
         raise SystemExit("every programme must disclose whether it is open, preparation, or research")
     public_projects = [

@@ -454,6 +454,103 @@ def _graduate_data_lineage(payload: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _fact(label: str, value: Any, evidence: str = "공개 원문") -> dict[str, str] | None:
+    text = str(value or "").strip()
+    if not text:
+        return None
+    return {"label": label, "value": text, "evidence": evidence}
+
+
+def _job_decision_support(job: Mapping[str, Any], verified_at: str) -> dict[str, Any]:
+    """DATA-233: confirmed facts and unresolved questions."""
+    known = [
+        _fact("기관", job.get("company")),
+        _fact("근무지", job.get("location")),
+        _fact("마감", job.get("deadline")),
+        _fact("분류", job.get("queueLabel") or job.get("discoveryLabel"), "분류 엔진"),
+    ]
+    missing: list[dict[str, str]] = []
+    deadline = job.get("deadline")
+    if not deadline:
+        missing.append({"label": "마감", "why": "정보 없음"})
+    missing.append({"label": "급여·복지", "why": "공개 정보 없음"})
+    missing.append({"label": "고용형태·근무방식", "why": "공개 정보 없음"})
+    overseas = job.get("market") == "international"
+    if overseas:
+        missing.append({"label": "\ube44\uc790\u00b7\ucde8\uc5c5 \ud5c8\uac00", "why": "\uace0\uc6a9\uc8fc \uc9c0\uc6d0 \uc5ec\ubd80 \ubbf8\ud655\uc778"})
+    for check in job.get("checks") or []:
+        missing.append({"label": "\ucd94\uac00 \uac80\uc99d", "why": str(check)})
+    dimensions = []
+    dimensions.append({"label": "\uc9c0\uc6d0 \uac00\ub2a5\uc131", "status": "\ud655\uc778 \ud544\uc694", "value": "\uacbd\ub825\u00b7\ud559\ub825 \uc870\uac74 \ub300\uc870"})
+    dimensions.append({"label": "\uc5c5\ubb34 \uc801\ud569", "status": "\ubd80\ubd84 \ud655\uc778", "value": str(job.get("sectorEvidence") or "\ubd84\uc57c \uadfc\uac70")})
+    dimensions.append({"label": "\uc870\uac74\u00b7\uc548\uc815\uc131", "status": "\uc815\ubcf4 \ubd80\uc871", "value": "\uae09\uc5ec\u00b7\uace0\uc6a9\ud615\ud0dc \ud655\uc778"})
+    dimensions.append({"label": "\uc131\uc7a5\u00b7\uc9c4\ub85c", "status": "\ucd94\ub860 \uae08\uc9c0", "value": "\ud300\u00b7\ud504\ub85c\uc81d\ud2b8\u00b7\uc2b9\uc9c4 \uacbd\ub85c \ud655\uc778"})
+    dimensions.append({"label": "\ub9c8\uac10\u00b7\ud589\ub3d9", "status": "\ud655\uc778" if deadline else "\ud655\uc778 \ud544\uc694", "value": str(deadline or job.get("nextAction") or "\uc6d0\ubb38 \ud655\uc778")})
+    return {
+        "recordType": "job",
+        "evidenceLevel": "공개 원문과 분류 근거",
+        "lastVerified": verified_at,
+        "knownInformation": [item for item in known if item],
+        "missingInformation": missing,
+        "nextActions": [str(job.get("nextAction") or "공식 공고 확인")],
+        "dimensions": dimensions,
+    }
+
+
+def _program_decision_support(program: Mapping[str, Any]) -> dict[str, Any]:
+    research = program.get("publicResearch") if isinstance(program.get("publicResearch"), dict) else {}
+    faculty = research.get("faculty") if isinstance(research.get("faculty"), list) else []
+    projects = research.get("recentProjects") if isinstance(research.get("recentProjects"), list) else []
+    outcomes = research.get("graduateDestinations") if isinstance(research.get("graduateDestinations"), list) else []
+    papers = sum(len(item.get("recentPapers") or []) for item in faculty if isinstance(item, dict))
+    known = [
+        _fact("\uc900\ube44 \uc0c1\ud0dc", program.get("applicationStatusLabel"), "\ubd84\ub958 \uc5d4\uc9c4"),
+        _fact("\ud559\uc704\u00b7\uad6d\uac00", " \u00b7 ".join(filter(None, [program.get("degree"), program.get("country")]))),
+        _fact("\ub9c8\uac10", program.get("deadline")),
+        _fact("\uc7ac\uc815 \uc9c0\uc6d0", program.get("funding")),
+        _fact("\uc601\uc5b4 \uc694\uac74", program.get("english")),
+        _fact("\uad50\uc218\u00b7\ub17c\ubb38", f"\uad50\uc218 {len(faculty)}\uba85 \u00b7 \ucd5c\uadfc \ub17c\ubb38 {papers}\uac74", research.get("evidenceStatus") or "\uacf5\uac1c \uc5f0\uad6c\uc790\ub8cc"),
+        _fact("\uc5f0\uad6c\uc6a9\uc5ed", f"{len(projects)}\uac74", research.get("evidenceStatus") or "\uacf5\uac1c \uc5f0\uad6c\uc790\ub8cc"),
+        _fact("\uc878\uc5c5 \ud6c4 \uacbd\ub85c", f"{len(outcomes)}\uac74", research.get("evidenceStatus") or "\uacf5\uac1c \uc5f0\uad6c\uc790\ub8cc"),
+    ]
+    missing = []
+    if not program.get("deadline"):
+        missing.append({"label": "\ub9c8\uac10\uc77c", "why": "\ucd5c\uc2e0 \uc785\ud559 \uacf5\uace0 \uc7ac\ud655\uc778 \ud544\uc694"})
+    if not faculty:
+        missing.append({"label": "\uad50\uc218\u00b7\ub17c\ubb38", "why": "\uacf5\uac1c \uc5f0\uad6c \uadfc\uac70 \ubbf8\uc5f0\uacb0"})
+    if not projects:
+        missing.append({"label": "\ucd5c\uadfc 5\ub144 \uc5f0\uad6c\uc6a9\uc5ed", "why": "\uacf5\uc2dc\u00b7\uc0b0\ud559\ud611\ub825 \uadfc\uac70 \ubbf8\uc5f0\uacb0"})
+    if not outcomes:
+        missing.append({"label": "\uc878\uc5c5\uc0dd \uc9c4\ub85c", "why": "\uacf5\uc2dd \ucde8\uc5c5 \ud604\ud669\u00b7\ub3d9\ubb38 \uadfc\uac70 \ubbf8\uc5f0\uacb0"})
+    missing.append({"label": "\ud3c9\uade0 \uc878\uc5c5 \uae30\uac04\u00b7\uc911\ub3c4\ud0c8\ub77d", "why": "\uacfc\uc815 \uc644\uc8fc \uc704\ud5d8 \uadfc\uac70 \ubbf8\ud655\uc778"})
+    missing.append({"label": "\uc5f0\uad6c\uc2e4 \ubb38\ud654\u00b7\uc9c0\ub3c4 \ubc29\uc2dd", "why": "\uc7ac\ud559\uc0dd\u00b7\uc878\uc5c5\uc0dd \ud6c4\uae30 \ucd94\uac00 \ud655\uc778 \ud544\uc694"})
+    dimensions = [
+        {"label": "\uc9c0\uc6d0 \uac00\ub2a5\uc131", "status": "\ubd80\ubd84 \ud655\uc778", "value": str(program.get("applicationStatusLabel") or "\uc6d0\ubb38 \ud655\uc778")},
+        {"label": "\uc5f0\uad6c \uc801\ud569", "status": "\uadfc\uac70 \uc788\uc74c" if faculty else "\uc815\ubcf4 \ubd80\uc871", "value": f"\uad50\uc218 {len(faculty)}\uba85\u00b7\ub17c\ubb38 {papers}\uac74"},
+        {"label": "\ube44\uc6a9\u00b7\uc7ac\uc815", "status": "\ud655\uc778" if program.get("funding") else "\uc815\ubcf4 \ubd80\uc871", "value": str(program.get("funding") or program.get("tuition") or "\ucd94\uac00 \ud655\uc778")},
+        {"label": "\uc878\uc5c5 \ud6c4 \uc9c4\ub85c", "status": "\uadfc\uac70 \uc788\uc74c" if outcomes else "\uc815\ubcf4 \ubd80\uc871", "value": f"\uc9c4\ub85c \uadfc\uac70 {len(outcomes)}\uac74"},
+        {"label": "\ub9c8\uac10\u00b7\ud589\ub3d9", "status": "\ud655\uc778" if program.get("deadline") else "\uc7ac\ud655\uc778", "value": str(program.get("deadline") or program.get("applicationStatusReason") or "\uacf5\uc2dd \uacf5\uace0 \ud655\uc778")},
+    ]
+    return {
+        "recordType": "program",
+        "evidenceLevel": str(research.get("evidenceStatus") or program.get("verification") or "\uacf5\uac1c \uadfc\uac70"),
+        "lastVerified": str(research.get("lastVerified") or program.get("verifiedAt") or ""),
+        "knownInformation": [item for item in known if item],
+        "missingInformation": missing,
+        "nextActions": [str(program.get("applicationStatusReason") or "\uacf5\uc2dd \uc785\ud559 \uacf5\uace0\uc640 \uad50\uc218 \uc5f0\uad6c\uc2e4\uc744 \ud655\uc778\ud558\uc138\uc694.")],
+        "dimensions": dimensions,
+    }
+
+
+def _apply_decision_support(payload: dict[str, Any]) -> None:
+    verified_at = str(payload.get("dataAsOf") or payload.get("generatedAt") or "")
+    for job in payload.get("jobs") or []:
+        job["decisionSupport"] = _job_decision_support(job, verified_at)
+    for program in payload.get("programs") or []:
+        program["decisionSupport"] = _program_decision_support(program)
+    payload["releaseVersion"] = "decision-support-v2"
+
+
 def _apply_public_eligibility(
     job_slice: dict[str, Any],
     overrides: dict[str, Any],
@@ -575,6 +672,7 @@ def main() -> None:
         stats.update({"programs": len(payload["programs"]), "graduateGeneratedAt": graduate_generated_at})
         payload["stats"] = stats
         payload["graduateEvidenceCoverage"] = _graduate_evidence_coverage(payload["programs"])
+        _apply_decision_support(payload)
         payload["graduateDataLineage"] = _graduate_data_lineage(payload)
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -617,6 +715,7 @@ def main() -> None:
             "graduateEvidenceCoverage": _graduate_evidence_coverage(payload["programs"]),
         }
     )
+    _apply_decision_support(payload)
     payload["graduateDataLineage"] = _graduate_data_lineage(payload)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(

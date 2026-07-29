@@ -5,6 +5,7 @@
   const BOOKMARK_STORAGE_KEY = "career-compass-bookmarks";
   const FEEDBACK_STORAGE_KEY = "career-compass-job-feedback-v1";
   const FEEDBACK_BACKUP_SCHEMA = "career-compass-feedback-backup-v1";
+  const COMPARISON_STORAGE_KEY = "career-compass-comparison-v1";
   const REFRESH_WATCH_STORAGE_KEY = "career-compass-refresh-watch-v1";
   const LIVE_SNAPSHOT_STORAGE_KEY = "career-compass-live-snapshot-v1";
   const REFRESH_STAGE_SECONDS = {
@@ -54,8 +55,11 @@
     refreshRequestedAt: null,
     selectedTrigger: null,
     activeJobId: null,
+    activeRecordKind: null,
+    activeRecordId: null,
     bookmarks: new Set(readJSON(BOOKMARK_STORAGE_KEY, [])),
     feedback: readJSON(FEEDBACK_STORAGE_KEY, {}),
+    comparison: readJSON(COMPARISON_STORAGE_KEY, []),
     preferenceClient: null,
     preferenceUserId: null,
     lastSuccessfulRefreshAt: null,
@@ -151,6 +155,22 @@
   function activeFilters() { return Number(Boolean(state.query)) + Number(Boolean(state.sector)) + Number(Boolean(state.queue)) + Number(state.jobMarket !== "all"); }
   function jobById(id) { return jobs().find((job) => job.id === id); }
   function recordById(kind, id) { return (kind === "program" ? programs() : funding()).find((item) => item.id === id); }
+  function comparisonKey(kind, id) { return `${kind}:${id}`; }
+  function isCompared(kind, id) { return state.comparison.includes(comparisonKey(kind, id)); }
+  function toggleComparison(kind, id) {
+    const key = comparisonKey(kind, id);
+    state.comparison = isCompared(kind, id) ? state.comparison.filter((item) => item !== key) : [...state.comparison, key];
+    store(COMPARISON_STORAGE_KEY, state.comparison);
+  }
+  function comparisonRecords() {
+    return state.comparison.map((key) => {
+      const separator = key.indexOf(":");
+      const kind = key.slice(0, separator);
+      const id = key.slice(separator + 1);
+      const item = kind === "job" ? jobById(id) : recordById(kind, id);
+      return item ? { kind, item } : null;
+    }).filter(Boolean);
+  }
   function marketCount(records, market) { return records.filter((record) => record.market === market).length; }
   function marketLabel(market) { return market === "domestic" ? "국내" : market === "overseas" ? "해외" : "확인 필요"; }
   function marketSwitch(scope, active, records) {
@@ -264,15 +284,26 @@
     renderJobResults();
   }
 
+  function comparisonCard(record) {
+    const { kind, item } = record;
+    const isJob = kind === "job";
+    const title = isJob ? item.title : item.program;
+    const subtitle = isJob ? `${item.company} · ${item.location}` : item.university;
+    const dimensions = (item.decisionSupport?.dimensions || []).map((dimension) => `<li><span>${escapeHtml(dimension.label)}</span><b>${escapeHtml(dimension.status)}</b><small>${escapeHtml(dimension.value)}</small></li>`).join("");
+    return `<article class="comparison-card"><p class="eyebrow">${isJob ? "취업" : "진학"}</p><h3>${escapeHtml(title)}</h3><p>${escapeHtml(subtitle)}</p><ul>${dimensions}</ul><div><button class="plain-button" type="button" ${isJob ? `data-open-job="${escapeHtml(item.id)}"` : `data-open-record="program:${escapeHtml(item.id)}"`}>상세 보기</button><button class="comparison-remove" type="button" data-action="toggle-comparison" data-record-kind="${kind}" data-record-id="${escapeHtml(item.id)}">비교함에서 빼기</button></div></article>`;
+  }
+
   function renderSaved() {
-    /* data-requirement-id="UX-217" */
+    /* data-requirement-id="UX-217" data-requirement-id="UX-230" */
     const savedJobs = jobs().filter((job) => preferenceFor(job.id)?.sentiment === "liked");
-    const pages = chunks(savedJobs, 3);
-    if (!savedJobs.length) {
-      main.innerHTML = pageFrame(`<section class="results-section"><div class="section-heading"><div><span>관심 보관함</span><h1>저장한 공고</h1></div></div><div class="empty"><p>아직 저장한 공고가 없습니다.</p><a class="plain-button" href="#/jobs">새 공고 탐색하기</a></div></section>`, 0, 1, "저장한 공고");
-      return;
-    }
-    main.innerHTML = pages.map((group, pageIndex) => pageFrame(`<section class="results-section"><div class="section-heading"><div><span>관심 보관함</span><h1>${pageIndex === 0 ? "저장한 공고" : `저장한 공고 ${pageIndex + 1}`}</h1></div><b>${savedJobs.length}개</b></div><div class="opportunity-list is-results">${group.map((job) => candidateRow(job, true)).join("")}</div></section>`, pageIndex, pages.length, "저장한 공고")).join("");
+    const compared = comparisonRecords();
+    const bookmarkPages = chunks(savedJobs, 3);
+    const pages = [
+      `<section class="results-section comparison-section" data-requirement-id="UX-230"><div class="section-heading"><div><span>이 기기 비교함</span><h1>취업·진학 나란히 보기</h1></div><b>${compared.length}개</b></div><p class="comparison-note">개수 제한 없이 담을 수 있습니다. 비교함은 피드백·추천 학습과 별도로 이 기기에 저장됩니다.</p><div class="comparison-grid">${compared.length ? compared.map(comparisonCard).join("") : `<div class="empty"><p>공고나 대학원 상세에서 비교함에 담아보세요.</p></div>`}</div></section>`,
+      ...bookmarkPages.map((group, pageIndex) => `<section class="results-section"><div class="section-heading"><div><span>관심 보관함</span><h1>${pageIndex === 0 ? "저장한 공고" : `저장한 공고 ${pageIndex + 1}`}</h1></div><b>${savedJobs.length}개</b></div><div class="opportunity-list is-results">${group.map((job) => candidateRow(job, true)).join("")}</div></section>`),
+    ];
+    if (!savedJobs.length) pages.push(`<section class="results-section"><div class="section-heading"><div><span>관심 보관함</span><h1>저장한 공고</h1></div></div><div class="empty"><p>아직 저장한 공고가 없습니다.</p><a class="plain-button" href="#/jobs">새 공고 탐색하기</a></div></section>`);
+    main.innerHTML = pages.map((page, index) => pageFrame(page, index, pages.length, "저장과 비교")).join("");
   }
 
   function studyRow(item, kind) {
@@ -369,12 +400,25 @@
 
   function detailList(title, values) { return values?.length ? `<section class="detail-list"><small>${escapeHtml(title)}</small><ul>${values.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul></section>` : ""; }
   function officialLink(url) { return url ? `<a class="official-button" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">공식 원문 열기 ${icon("external")}</a>` : `<span class="official-button is-disabled">공식 원문 주소 없음</span>`; }
+  function decisionSupportPanel(item) {
+    /* data-requirement-id="UX-229" */
+    const support = item.decisionSupport || {};
+    const dimensions = (support.dimensions || []).map((dimension) => `<li><span>${escapeHtml(dimension.label)}</span><b>${escapeHtml(dimension.status)}</b><p>${escapeHtml(dimension.value)}</p></li>`).join("");
+    const known = (support.knownInformation || []).map((fact) => `<li><b>${escapeHtml(fact.label)}</b><span>${escapeHtml(fact.value)}</span><small>${escapeHtml(fact.evidence || "공개 근거")}</small></li>`).join("");
+    const missing = (support.missingInformation || []).map((fact) => `<li><b>${escapeHtml(fact.label)}</b><span>${escapeHtml(fact.why)}</span></li>`).join("");
+    const actions = (support.nextActions || []).map((action) => `<li>${escapeHtml(action)}</li>`).join("");
+    /* 확인된 정보 · 아직 확인할 정보 */
+    return `<section class="decision-panel" data-requirement-id="UX-229"><div class="decision-heading"><div><p class="eyebrow">\uc758\uc0ac\uacb0\uc815 \uc694\uc57d</p><h3>\ud655\uc778\ub41c \uc815\ubcf4\uc640 \ube48\uce78\uc744 \ubd84\ub9ac\ud588\uc2b5\ub2c8\ub2e4.</h3></div><small>${escapeHtml(support.lastVerified || "\ud655\uc778\uc77c \ubbf8\uae30\ub85d")}</small></div><ul class="decision-dimensions">${dimensions}</ul><div class="decision-columns"><section><h4>\ud655\uc778\ub41c \uc815\ubcf4</h4><ul class="decision-facts">${known || "<li><span>\uc5f0\uacb0\ub41c \uacf5\uac1c \uadfc\uac70\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.</span></li>"}</ul></section><section><h4>\uc544\uc9c1 \ud655\uc778\ud560 \uc815\ubcf4</h4><ul class="decision-facts is-missing">${missing || "<li><span>\ud604\uc7ac \ub4f1\ub85d\ub41c \ucd94\uac00 \ud655\uc778 \ud56d\ubaa9\uc774 \uc5c6\uc2b5\ub2c8\ub2e4.</span></li>"}</ul></section></div>${actions ? `<section class="decision-next"><h4>\ub2e4\uc74c \ud589\ub3d9</h4><ol>${actions}</ol></section>` : ""}<p class="decision-boundary">${escapeHtml(support.evidenceLevel || "\uacf5\uac1c \uadfc\uac70")} \u00b7 \ube48\uce78\uc740 \ucd94\uc815\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.</p></section>`;
+  }
   function renderJobDetail(job) {
     const preference = preferenceFor(job.id);
     const saved = preference?.sentiment === "liked";
     const rejected = preference?.sentiment === "not_for_me";
     const discovery = job.discoveryTier === "explore";
     dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${escapeHtml(job.source)} · ${queueCopy(job)}</small><button class="detail-close" type="button" data-action="close-dossier">닫기</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(jobSectors(job).join(" · ") || "분야 원문 확인")}</p><h2 id="dossierTitle">${escapeHtml(job.title)}</h2><p class="detail-company">${escapeHtml(job.company)} · ${escapeHtml(job.location)}</p><div class="detail-primary">${officialLink(job.url)}</div><div class="detail-facts"><div><small>${discovery ? "분류" : "행동 상태"}</small><b>${queueCopy(job)}</b></div><div><small>마감</small><b>${escapeHtml(job.deadline || "원문 확인")}</b></div><div><small>증거 공백</small><b>${job.evidenceGapCount ?? "원문 확인"}</b></div><div><small>확인 부담</small><b>${escapeHtml(job.evidenceBurden || "원문 확인")}</b></div></div>${discovery ? `<section class="check-note"><small>보여드린 이유</small><p>${escapeHtml(job.discoveryReason)}</p></section>` : ""}<section class="check-note"><small>${discovery ? "원문에서 먼저 볼 것" : "다음 행동"}</small><p>${escapeHtml(job.nextAction)}</p></section>${detailList("공고에서 확인된 조건", job.requirements)}${detailList("추가 확인 항목", job.checks)}${detailList("주의 사항", job.risks)}<div class="detail-actions"><button class="detail-save ${saved ? "is-saved" : ""}" type="button" data-action="open-feedback" data-feedback-sentiment="liked" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}${saved ? "관심 이유 수정" : "관심 있어요"}</button><button class="plain-button detail-dislike ${rejected ? "is-active" : ""}" type="button" data-action="open-feedback" data-feedback-sentiment="not_for_me" data-job-id="${escapeHtml(job.id)}" aria-pressed="${rejected}">${rejected ? "별로예요 반영됨" : "별로예요"}</button></div></div></article>`;
+    const jobPrimary = dossier.querySelector(".detail-primary");
+    jobPrimary?.insertAdjacentHTML("beforeend", `<button class="compare-button ${isCompared("job", job.id) ? "is-active" : ""}" type="button" data-action="toggle-comparison" data-record-kind="job" data-record-id="${escapeHtml(job.id)}" aria-pressed="${isCompared("job", job.id)}">${isCompared("job", job.id) ? "비교함에서 빼기" : "비교함에 담기"}</button>`);
+    jobPrimary?.insertAdjacentHTML("afterend", decisionSupportPanel(job));
   }
 
   function evidenceItem(title, meta, note, url) {
@@ -445,10 +489,37 @@
     /* data-requirement-id="UX-220" */
     const researchPanels = graduateResearchPanels(item);
     dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${source}</small><button class="detail-close" type="button" data-action="close-dossier">닫기</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(item.decision || "연구 목록")}</p><h2 id="dossierTitle">${escapeHtml(title)}</h2><p class="detail-company">${escapeHtml(organisation)}</p><div class="detail-primary">${officialLink(item.officialUrl)}</div><div class="study-detail-tabs" role="tablist" aria-label="대학원 상세 자료"><button type="button" role="tab" aria-selected="true" data-study-detail-tab="overview">개요</button><button type="button" role="tab" aria-selected="false" data-study-detail-tab="faculty">교수·논문</button><button type="button" role="tab" aria-selected="false" data-study-detail-tab="projects">연구용역</button><button type="button" role="tab" aria-selected="false" data-study-detail-tab="outcomes">졸업 후</button></div><section class="study-detail-panel" data-study-detail-panel="overview">${researchPanels.summary}${overview}${researchPanels.boundary}</section><section class="study-detail-panel" data-study-detail-panel="faculty" hidden>${researchPanels.facultyHtml}${researchPanels.boundary}</section><section class="study-detail-panel" data-study-detail-panel="projects" hidden>${researchPanels.projectHtml}${researchPanels.boundary}</section><section class="study-detail-panel" data-study-detail-panel="outcomes" hidden>${researchPanels.destinationHtml}${researchPanels.boundary}</section></div></article>`;
+    const programPrimary = dossier.querySelector(".detail-primary");
+    programPrimary?.insertAdjacentHTML("beforeend", `<button class="compare-button ${isCompared("program", item.id) ? "is-active" : ""}" type="button" data-action="toggle-comparison" data-record-kind="program" data-record-id="${escapeHtml(item.id)}" aria-pressed="${isCompared("program", item.id)}">${isCompared("program", item.id) ? "비교함에서 빼기" : "비교함에 담기"}</button>`);
+    programPrimary?.insertAdjacentHTML("afterend", decisionSupportPanel(item));
   }
-  function openJobDetail(id, trigger) { const job = jobById(id); if (!job) return; state.selectedTrigger = trigger || null; state.activeJobId = id; renderJobDetail(job); if (!dossier.open) dossier.showModal(); requestAnimationFrame(() => dossier.querySelector("[data-action='close-dossier']")?.focus()); }
-  function openRecordDetail(kind, id, trigger) { const item = recordById(kind, id); if (!item) return; state.selectedTrigger = trigger || null; renderRecordDetail(kind, item); if (!dossier.open) dossier.showModal(); requestAnimationFrame(() => dossier.querySelector("[data-action='close-dossier']")?.focus()); }
-  function closeDetail(restore = true) { if (dossier.open) dossier.close(); if (restore && state.selectedTrigger?.isConnected) state.selectedTrigger.focus(); state.selectedTrigger = null; state.activeJobId = null; }
+  function openJobDetail(id, trigger) {
+    const job = jobById(id);
+    if (!job) return;
+    state.selectedTrigger = trigger || null;
+    state.activeJobId = id;
+    renderJobDetail(job);
+    if (!dossier.open) dossier.showModal();
+    requestAnimationFrame(() => dossier.querySelector("[data-action='close-dossier']")?.focus());
+  }
+  function openRecordDetail(kind, id, trigger) {
+    const item = recordById(kind, id);
+    if (!item) return;
+    state.selectedTrigger = trigger || null;
+    state.activeRecordKind = kind;
+    state.activeRecordId = id;
+    renderRecordDetail(kind, item);
+    if (!dossier.open) dossier.showModal();
+    requestAnimationFrame(() => dossier.querySelector("[data-action='close-dossier']")?.focus());
+  }
+  function closeDetail(restore = true) {
+    if (dossier.open) dossier.close();
+    if (restore && state.selectedTrigger?.isConnected) state.selectedTrigger.focus();
+    state.selectedTrigger = null;
+    state.activeJobId = null;
+    state.activeRecordKind = null;
+    state.activeRecordId = null;
+  }
 
   function jobSnapshot(jobId) {
     const job = jobById(jobId);
@@ -1117,6 +1188,20 @@
       return;
     }
     const action = event.target.closest("[data-action]")?.dataset.action; if (!action) return;
+    if (action === "toggle-comparison") {
+      const trigger = event.target.closest("[data-record-kind][data-record-id]");
+      const kind = trigger?.dataset.recordKind;
+      const id = trigger?.dataset.recordId;
+      if (!kind || !id) return;
+      toggleComparison(kind, id);
+      if (dossier.open) {
+        if (kind === "job") renderJobDetail(jobById(id));
+        else renderRecordDetail(kind, recordById(kind, id));
+      } else if (route() === "saved") {
+        renderSaved();
+      }
+      return;
+    }
     if (action === "refresh-engine") { refreshEngine(); return; }
     if (action === "export-feedback") { void exportFeedback(); return; }
     if (action === "export-feedback-backup") { exportFeedbackBackup(); return; }
