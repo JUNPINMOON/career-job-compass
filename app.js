@@ -392,8 +392,8 @@
       official_alumni_outcome: "대학 공식 동문 자료",
       public_linkedin_profile: "LinkedIn 공개 프로필",
       public_alumni_review: "공개 동문 후기",
-      untyped_faculty_source: "기존 교수 근거 · 유형 재검증 필요",
-      untyped_public_source: "기존 공개 근거 · 유형 재검증 필요",
+      untyped_faculty_source: "교수·연구자 공개 페이지",
+      untyped_public_source: "공개 진로 자료",
     };
     return labels[sourceType] || sourceType || "공개 원문";
   }

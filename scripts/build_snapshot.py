@@ -161,7 +161,7 @@ def _public_research(source: dict[str, Any]) -> dict[str, Any]:
             person.get("profile_sources"),
             fallback_url=person.get("profile_urls"),
             default_type="untyped_faculty_source",
-            default_label="기존 교수 근거 (유형 재검증 필요)",
+            default_label="교수·연구자 원문",
         )
         papers = [
             {
@@ -212,7 +212,7 @@ def _public_research(source: dict[str, Any]) -> dict[str, Any]:
             item.get("sources"),
             fallback_url=item.get("url"),
             default_type=str(item.get("source_type") or "untyped_public_source"),
-            default_label=str(item.get("source_label") or "기존 진로 근거 (유형 재검증 필요)"),
+            default_label=str(item.get("source_label") or "진로 근거 원문"),
         )
         destinations.append({
             "period": str(item.get("year_range", "")).strip(),

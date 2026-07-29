@@ -91,6 +91,11 @@ def main() -> None:
 
     snapshot = json.loads((ROOT / "data/app-data.json").read_text(encoding="utf-8"))
     app_source = (ROOT / "app.js").read_text(encoding="utf-8")
+    # DATA-232: provenance sentinels remain machine-readable, but an internal
+    # graduate evidence review state must never leak into the public UI or data.
+    internal_review_label = "유형 재검증 필요"
+    if internal_review_label in app_source or internal_review_label in json.dumps(snapshot, ensure_ascii=False):
+        raise SystemExit("public artifact exposes an internal graduate evidence review state")
     if "refresh_runs" not in app_source or "refresh-bridge.json" in app_source or "tailscale" in app_source.casefold():
         raise SystemExit("mobile refresh must use the Supabase queue without a private bridge URL")
     jobs = snapshot.get("jobs")

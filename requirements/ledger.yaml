@@ -581,6 +581,20 @@
       "title": "Feedback restore status distinguishes local recovery from confirmed Supabase sync",
       "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-228\"", "이 기기에 복원했습니다", "Supabase에도 반영했습니다"]},
       "note": "Measured during 390x844 mobile QA on 2026-07-29: importFeedbackBackup reported Supabase success even when the Supabase client and anonymous user were unavailable. The status must claim remote sync only after the authenticated upsert path actually ran."
+    },
+    {
+      "id": "DATA-232",
+      "status": "active",
+      "title": "Internal graduate evidence review states never appear in the public mobile artifact",
+      "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["DATA-232", "유형 재검증 필요", "internal graduate evidence review state"]},
+      "note": "Measured before implementation on 2026-07-29: 91 graduate-destination source entries exposed the producer fallback text '유형 재검증 필요'. The untyped provenance sentinel must remain available for audit, while the generated data and app shell use neutral user-facing source labels and the release gate rejects the internal wording."
+    },
+    {
+      "id": "GOV-221",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the graduate evidence label release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v39-graduate-evidence-labels", "career-compass-v38-feedback-recovery"]},
+      "note": "The affected wording is cached in both app.js and data/app-data.json. The service-worker lineage must advance so a home-screen iPhone does not retain the internal review label after the public artifact is corrected."
     }
   ]
 }
