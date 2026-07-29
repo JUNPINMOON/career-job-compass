@@ -448,6 +448,13 @@
       "title": "Mobile clients invalidate the second graduate legacy recovery cache",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v31-grad-legacy-recovery-wave2", "career-compass-v30-grad-legacy-recovery"]},
       "note": "The second recovery changes the generated programme snapshot again. The service-worker cache must advance so an iPhone receives the newly connected Iowa and independently verified university evidence."
+    },
+    {
+      "id": "GOV-212",
+      "status": "active",
+      "title": "An already-open iPhone app transitions to the newly activated mobile shell",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v32-mobile-shell-handoff", "clients.matchAll({ type: \"window\", includeUncontrolled: true })", "client.navigate(client.url)"]},
+      "note": "Measured on the public 390x844 path on 2026-07-29: the v31 worker and 99-program research snapshot were live, but activation only claimed existing clients. An already-open Home Screen document could therefore keep rendering the old JavaScript until a separate reload. The activating worker must advance the cache and navigate each same-origin window client once so the physical iPhone receives the newly connected graduate panels."
     }
   ]
 }
