@@ -693,6 +693,20 @@
       "title": "Installed mobile clients invalidate the structured-feedback ranking release",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v45-structured-feedback", "career-compass-v44-refresh-failure-diagnostics"]},
       "note": "The grouped feedback form and v3 scoring explanation must replace the prior cached shell on already-open iPhones."
+    },
+    {
+      "id": "UX-233",
+      "status": "active",
+      "title": "Qualification feedback distinguishes credentials, experience, degree, and work authorization",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-233\"", "qualification:required_credential_missing", "qualification:preferred_credential_missing", "qualification:experience_shortfall", "qualification:degree_mismatch", "qualification:work_authorization_mismatch"]},
+      "note": "Regression recorded on 2026-07-30: an EIT credential gap was stored as seniority, preventing the recommendation engine from distinguishing five materially different qualification barriers."
+    },
+    {
+      "id": "GOV-227",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the qualification-feedback release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v46-qualification-feedback", "career-compass-v45-structured-feedback"]},
+      "note": "The five-way qualification feedback input must replace the prior cached shell on already-open iPhones."
     }
   ]
 }

@@ -55,7 +55,13 @@
   Object.assign(FEEDBACK_REASON_GROUPS[1].liked, { "domain:water_resources": "수자원·수문과 직접 연결", "domain:climate_ai": "기후·AI와 직접 연결" });
   Object.assign(FEEDBACK_REASON_GROUPS[1].not_for_me, { "domain:mismatch": "관심 분야와 다름", "domain:too_generic": "분야가 너무 포괄적임", "domain:weak_water_ai": "수자원·AI 연결이 약함" });
   FEEDBACK_REASON_GROUPS.push({ id: "career", title: "성장·진로", liked: {}, not_for_me: {} });
+  /* data-requirement-id="UX-233" */
   FEEDBACK_REASON_GROUPS.push({ id: "qualifications", title: "자격 조건", liked: {}, not_for_me: {} });
+  FEEDBACK_REASON_GROUPS[3].not_for_me["qualification:required_credential_missing"] = "필수 자격증·면허가 없음";
+  FEEDBACK_REASON_GROUPS[3].not_for_me["qualification:preferred_credential_missing"] = "우대 자격증·면허가 없음";
+  FEEDBACK_REASON_GROUPS[3].not_for_me["qualification:experience_shortfall"] = "요구 경력이 부족함";
+  FEEDBACK_REASON_GROUPS[3].not_for_me["qualification:degree_mismatch"] = "요구 학위·전공과 맞지 않음";
+  FEEDBACK_REASON_GROUPS[3].not_for_me["qualification:work_authorization_mismatch"] = "취업 허가·비자 조건이 맞지 않음";
   FEEDBACK_REASON_GROUPS.push({ id: "conditions", title: "처우·근무조건", liked: {}, not_for_me: {} });
   FEEDBACK_REASON_GROUPS.push({ id: "institution", title: "기관 성격", liked: {}, not_for_me: {} });
   FEEDBACK_REASON_GROUPS.forEach((group) => {
@@ -67,6 +73,11 @@
   Object.assign(FEEDBACK_GROUP_BY_REASON, { "task:mismatch": "role", "task:unclear": "role" });
   Object.assign(FEEDBACK_GROUP_BY_REASON, { field_fit: "domain", role_fit: "role", role_mismatch: "role", growth: "career" });
   Object.assign(FEEDBACK_GROUP_BY_REASON, { seniority: "qualifications", language_visa: "qualifications", conditions_fit: "qualifications" });
+  FEEDBACK_GROUP_BY_REASON["qualification:required_credential_missing"] = "qualifications";
+  FEEDBACK_GROUP_BY_REASON["qualification:preferred_credential_missing"] = "qualifications";
+  FEEDBACK_GROUP_BY_REASON["qualification:experience_shortfall"] = "qualifications";
+  FEEDBACK_GROUP_BY_REASON["qualification:degree_mismatch"] = "qualifications";
+  FEEDBACK_GROUP_BY_REASON["qualification:work_authorization_mismatch"] = "qualifications";
   Object.assign(FEEDBACK_GROUP_BY_REASON, { location_fit: "conditions", location: "conditions", compensation: "conditions" });
   Object.assign(FEEDBACK_GROUP_BY_REASON, { mission: "institution", source_quality: "institution" });
   const FEEDBACK_REASON_LABELS = { ...LIKE_REASON_LABELS, ...DISLIKE_REASON_LABELS };
