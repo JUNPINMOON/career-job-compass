@@ -232,6 +232,21 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible 
 .compare-button,.comparison-remove { display:inline-flex; align-items:center; justify-content:center; min-height:var(--touch-target); padding:0 13px; border:1px solid var(--line); border-radius:12px; color:var(--forest); background:var(--surface); font-size:13px; font-weight:720; }
 .compare-button.is-active { border-color:var(--leaf-deep); background:var(--leaf); }
 .decision-panel { margin:20px 0; padding:18px; border:1px solid var(--line); border-radius:16px; background:var(--surface-muted); }
+.personalization-panel { border-color:var(--leaf-deep); background:#f4f8ee; }
+.personalization-panel h3 { margin:5px 0 0; font-size:18px; }
+.personalization-panel > p { margin:12px 0 0; color:var(--ink); font-size:12px; line-height:1.55; }
+.personalization-scores { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; margin:14px 0 0; }
+.personalization-scores div { min-width:0; padding:11px 8px; border:1px solid var(--line); border-radius:11px; background:var(--surface); }
+.personalization-scores small,.personalization-scores b { display:block; overflow-wrap:anywhere; }
+.personalization-scores small { color:var(--muted); font-size:9px; }
+.personalization-scores b { margin-top:5px; color:var(--forest); font-size:16px; }
+.personalization-scores span { display:block; margin-top:3px; color:var(--muted); font-size:9px; }
+.personalization-formula { display:grid; gap:5px; margin-top:10px; padding:12px; border-radius:11px; background:var(--surface); }
+.personalization-formula small { color:var(--muted); font-size:10px; line-height:1.45; }
+.personalization-formula strong { color:var(--forest); font-size:16px; letter-spacing:-.02em; }
+.personalization-method { display:grid; gap:5px; margin:12px 0 0; padding-left:18px; color:var(--muted); font-size:11px; line-height:1.5; }
+.personalization-reasons { color:var(--warm) !important; font-weight:700; }
+.personalization-coverage { display:block; margin-top:10px; color:var(--muted); font-size:10px; }
 .decision-heading { display:flex; align-items:start; justify-content:space-between; gap:14px; }
 .decision-heading h3 { max-width:28ch; margin:5px 0 0; font-size:20px; letter-spacing:-.055em; line-height:1.25; }
 .decision-heading > small { flex:0 0 auto; color:var(--muted); font-size:10px; }

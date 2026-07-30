@@ -154,6 +154,31 @@
     "first_seen": "2026-07-29T12:14:28+00:00",
     "title": "The app shows how many feedback records are newer than the last successful recommendation"
   },
+  "DATA-232": {
+    "assert_sha": "d759c9d354996784",
+    "first_seen": "2026-07-29T13:12:45+00:00",
+    "title": "Internal graduate evidence review states never appear in the public mobile artifact"
+  },
+  "DATA-233": {
+    "assert_sha": "b5e406023cdbc8c8",
+    "first_seen": "2026-07-29T16:45:43+00:00",
+    "title": "Canonical records include evidence-aware decision fields"
+  },
+  "DATA-234": {
+    "assert_sha": "9d405c70c0b8986b",
+    "first_seen": "2026-07-29T16:45:43+00:00",
+    "title": "Experienced-only titles do not enter the public list"
+  },
+  "DATA-235": {
+    "assert_sha": "ed62e902f5a6e48b",
+    "first_seen": "2026-07-29T23:10:07+00:00",
+    "title": "Each personalized recommendation exposes a privacy-safe component score instead of a generic all-feedback claim"
+  },
+  "DATA-236": {
+    "assert_sha": "92a5b3f67ed17e90",
+    "first_seen": "2026-07-29T23:51:31+00:00",
+    "title": "A first-time reader can reconstruct the final recommendation score and understand the evidence selection rule"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -253,6 +278,21 @@
     "assert_sha": "3d9179f2a7811198",
     "first_seen": "2026-07-29T12:14:28+00:00",
     "title": "Installed mobile clients invalidate the feedback recovery and verified artifact release"
+  },
+  "GOV-221": {
+    "assert_sha": "a8ae4be4b9ae7bf0",
+    "first_seen": "2026-07-29T13:13:14+00:00",
+    "title": "Installed mobile clients invalidate the graduate evidence label release"
+  },
+  "GOV-222": {
+    "assert_sha": "2138b0d00f291ff6",
+    "first_seen": "2026-07-29T16:45:43+00:00",
+    "title": "Decision-support v2 advances the mobile cache lineage"
+  },
+  "GOV-223": {
+    "assert_sha": "7a1291d604feac08",
+    "first_seen": "2026-07-29T23:54:39+00:00",
+    "title": "Installed mobile clients invalidate the reconstructable recommendation score release"
   },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",
@@ -408,5 +448,15 @@
     "assert_sha": "e4974eff12271ad6",
     "first_seen": "2026-07-29T12:33:12+00:00",
     "title": "Feedback restore status distinguishes local recovery from confirmed Supabase sync"
+  },
+  "UX-229": {
+    "assert_sha": "d85c89549907d04f",
+    "first_seen": "2026-07-29T16:45:43+00:00",
+    "title": "Job and programme details expose the same decision summary"
+  },
+  "UX-230": {
+    "assert_sha": "14348038d7bae5e0",
+    "first_seen": "2026-07-29T16:45:43+00:00",
+    "title": "Saved supports an arbitrary-length local comparison list"
   }
 }

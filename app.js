@@ -410,6 +410,34 @@
     /* 확인된 정보 · 아직 확인할 정보 */
     return `<section class="decision-panel" data-requirement-id="UX-229"><div class="decision-heading"><div><p class="eyebrow">\uc758\uc0ac\uacb0\uc815 \uc694\uc57d</p><h3>\ud655\uc778\ub41c \uc815\ubcf4\uc640 \ube48\uce78\uc744 \ubd84\ub9ac\ud588\uc2b5\ub2c8\ub2e4.</h3></div><small>${escapeHtml(support.lastVerified || "\ud655\uc778\uc77c \ubbf8\uae30\ub85d")}</small></div><ul class="decision-dimensions">${dimensions}</ul><div class="decision-columns"><section><h4>\ud655\uc778\ub41c \uc815\ubcf4</h4><ul class="decision-facts">${known || "<li><span>\uc5f0\uacb0\ub41c \uacf5\uac1c \uadfc\uac70\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.</span></li>"}</ul></section><section><h4>\uc544\uc9c1 \ud655\uc778\ud560 \uc815\ubcf4</h4><ul class="decision-facts is-missing">${missing || "<li><span>\ud604\uc7ac \ub4f1\ub85d\ub41c \ucd94\uac00 \ud655\uc778 \ud56d\ubaa9\uc774 \uc5c6\uc2b5\ub2c8\ub2e4.</span></li>"}</ul></section></div>${actions ? `<section class="decision-next"><h4>\ub2e4\uc74c \ud589\ub3d9</h4><ol>${actions}</ol></section>` : ""}<p class="decision-boundary">${escapeHtml(support.evidenceLevel || "\uacf5\uac1c \uadfc\uac70")} \u00b7 \ube48\uce78\uc740 \ucd94\uc815\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.</p></section>`;
   }
+  function personalizationBreakdown(job) {
+    const signal = job.preferenceDiscovery || job.personalization;
+    const components = signal?.components || {};
+    const score = Number(signal?.score || 0);
+    const positiveSimilarity = Number(components.positiveSimilarity || 0);
+    const negativeSimilarity = Number(components.negativeSimilarity || 0);
+    const reasonPenalty = Number(components.reasonPenalty || 0);
+    const finalScoreCopy = score.toFixed(1);
+    if (!signal?.modelVersion) return "";
+    const dimensions = signal.matchedDimensions || [];
+    const dimensionLabels = {
+      role: "\uc9c1\ubb34",
+      field: "\ubd84\uc57c",
+      location: "\uc9c0\uc5ed",
+      company: "\uc870\uc9c1",
+    };
+    const dimensionCopy = `${dimensions.map((item) => dimensionLabels[item] || item).join(" / ")} \u00b7 \ucd5c\uc885 ${score >= 0 ? "+" : ""}${finalScoreCopy}`;
+    const positiveReasons = (signal.positiveReasonSignals || []).map((item) => FEEDBACK_REASON_LABELS[item] || item);
+    const reasons = (signal.appliedReasons || []).map((item) => FEEDBACK_REASON_LABELS[item] || item);
+    const positiveReasonCopy = positiveReasons.length ? `가점 근거 · ${positiveReasons.join(" · ")}` : "";
+    const reasonCopy = reasons.length ? `감점 근거 · ${reasons.join(" · ")}` : "";
+    const methodCopy = "\uc720\uc0ac\ub3c4 \uc0b0\ucd9c \u00b7 \uc9c1\ubb34 55% + \ubd84\uc57c 30% + \uc9c0\uc5ed 10% + \uc870\uc9c1 5%";
+    const feedbackDecayCopy = "\uc800\uc7a5\ud55c \uad00\uc2ec\u00b7\ubcc4\ub85c\uc608\uc694 \uc804\uac74\uc744 \uba3c\uc800 \ube44\uad50\ud55c \ub4a4, \uc774 \uacf5\uace0\uc640 \uac00\uc7a5 \ub2ee\uc740 \uadfc\uac70 3\uac74\uc744 100% \u00b7 60% \u00b7 35%\ub85c \ucc28\ub4f1 \ubc18\uc601\ud569\ub2c8\ub2e4. \ud53c\ub4dc\ubc31 \uac1c\uc218\ub294 \uace0\uc815\ub418\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.";
+    const finalScoreEquation = `+${positiveSimilarity.toFixed(1)} - ${negativeSimilarity.toFixed(1)} - ${reasonPenalty.toFixed(1)} = ${score >= 0 ? "+" : ""}${finalScoreCopy}`;
+    const explanationCopy = [signal.reasonKo || job.discoveryReason || "", positiveReasonCopy].filter(Boolean).join(" ");
+    return `<section class="decision-panel personalization-panel" data-requirement-id="DATA-235"><p class="eyebrow">\ucd94\ucc9c \uc810\uc218 \uadfc\uac70</p><h3>${escapeHtml(dimensionCopy || "\uc800\uc7a5\ud55c \ud53c\ub4dc\ubc31\uacfc \ube44\uad50")}</h3><div class="personalization-scores"><div><small>\uad00\uc2ec \uc720\uc0ac \uac00\uc810</small><b>+${positiveSimilarity.toFixed(1)}</b><span>\ucd5c\ub300 +70</span></div><div><small>\ubcc4\ub85c\uc608\uc694 \uc720\uc0ac \uac10\uc810</small><b>-${negativeSimilarity.toFixed(1)}</b><span>\ucd5c\ub300 -60</span></div><div><small>\uba85\uc2dc \uc0ac\uc720 \uc704\ud5d8</small><b>-${reasonPenalty.toFixed(1)}</b><span>\ucd5c\ub300 -35</span></div></div><div class="personalization-formula" data-requirement-id="DATA-236"><small>\ucd5c\uc885 \uc810\uc218 = \uad00\uc2ec \uac00\uc810 - \ubcc4\ub85c\uc608\uc694 \uac10\uc810 - \uc0ac\uc720 \uc704\ud5d8</small><strong>${escapeHtml(finalScoreEquation)}</strong></div><p>${escapeHtml(explanationCopy)}</p><ol class="personalization-method"><li>${escapeHtml(methodCopy)}</li><li>${escapeHtml(feedbackDecayCopy)}</li></ol>${reasonCopy ? `<p class="personalization-reasons">${escapeHtml(reasonCopy)}</p>` : ""}<small class="personalization-coverage">\uc804\uccb4 \ube44\uad50 \ud53c\ub4dc\ubc31 \u00b7 \uad00\uc2ec ${signal.likedEvidenceCount || 0}\uac74 / \ubcc4\ub85c\uc608\uc694 ${signal.dislikedEvidenceCount || 0}\uac74</small></section>`;
+  }
+
   function renderJobDetail(job) {
     const preference = preferenceFor(job.id);
     const saved = preference?.sentiment === "liked";
@@ -418,7 +446,7 @@
     dossier.innerHTML = `<article class="detail"><header><span class="sheet-handle" aria-hidden="true"></span><div><small>${escapeHtml(job.source)} · ${queueCopy(job)}</small><button class="detail-close" type="button" data-action="close-dossier">닫기</button></div></header><div class="detail-body"><p class="detail-kicker">${escapeHtml(jobSectors(job).join(" · ") || "분야 원문 확인")}</p><h2 id="dossierTitle">${escapeHtml(job.title)}</h2><p class="detail-company">${escapeHtml(job.company)} · ${escapeHtml(job.location)}</p><div class="detail-primary">${officialLink(job.url)}</div><div class="detail-facts"><div><small>${discovery ? "분류" : "행동 상태"}</small><b>${queueCopy(job)}</b></div><div><small>마감</small><b>${escapeHtml(job.deadline || "원문 확인")}</b></div><div><small>증거 공백</small><b>${job.evidenceGapCount ?? "원문 확인"}</b></div><div><small>확인 부담</small><b>${escapeHtml(job.evidenceBurden || "원문 확인")}</b></div></div>${discovery ? `<section class="check-note"><small>보여드린 이유</small><p>${escapeHtml(job.discoveryReason)}</p></section>` : ""}<section class="check-note"><small>${discovery ? "원문에서 먼저 볼 것" : "다음 행동"}</small><p>${escapeHtml(job.nextAction)}</p></section>${detailList("공고에서 확인된 조건", job.requirements)}${detailList("추가 확인 항목", job.checks)}${detailList("주의 사항", job.risks)}<div class="detail-actions"><button class="detail-save ${saved ? "is-saved" : ""}" type="button" data-action="open-feedback" data-feedback-sentiment="liked" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}${saved ? "관심 이유 수정" : "관심 있어요"}</button><button class="plain-button detail-dislike ${rejected ? "is-active" : ""}" type="button" data-action="open-feedback" data-feedback-sentiment="not_for_me" data-job-id="${escapeHtml(job.id)}" aria-pressed="${rejected}">${rejected ? "별로예요 반영됨" : "별로예요"}</button></div></div></article>`;
     const jobPrimary = dossier.querySelector(".detail-primary");
     jobPrimary?.insertAdjacentHTML("beforeend", `<button class="compare-button ${isCompared("job", job.id) ? "is-active" : ""}" type="button" data-action="toggle-comparison" data-record-kind="job" data-record-id="${escapeHtml(job.id)}" aria-pressed="${isCompared("job", job.id)}">${isCompared("job", job.id) ? "비교함에서 빼기" : "비교함에 담기"}</button>`);
-    jobPrimary?.insertAdjacentHTML("afterend", decisionSupportPanel(job));
+    jobPrimary?.insertAdjacentHTML("afterend", `${personalizationBreakdown(job)}${decisionSupportPanel(job)}`);
   }
 
   function evidenceItem(title, meta, note, url) {
@@ -1010,7 +1038,11 @@
         ? "예상 남은 시간 없음"
         : `예상 남은 시간 ${formatRuntime(estimate.remainingLow)}~${formatRuntime(estimate.remainingHigh)}`;
     const discoveredCandidateCount = Number(preferenceDiscovery.discoveredCandidateCount || 0);
-    refreshPreferenceCount.textContent = `관심 ${summary.likedCount || 0}건 · 별로예요 ${summary.dislikedCount || 0}건 전부 반영${discoveredCandidateCount ? ` · 유사 후보 ${discoveredCandidateCount}건 발견` : ""} · 예상치는 수집처 응답 속도에 따라 달라질 수 있습니다.`;
+    const pendingAfterRun = isSucceeded ? pendingPreferenceCount() : 0;
+    const coverageCopy = isSucceeded
+      ? `이번 실행 입력 · 관심 ${summary.likedCount || 0}건 · 별로예요 ${summary.dislikedCount || 0}건${pendingAfterRun ? ` · 완료 후 추가된 피드백 ${pendingAfterRun}건은 다음 실행 대기` : " · 현재 피드백까지 반영"}`
+      : `이번 실행 입력 · 관심 ${summary.likedCount || 0}건 · 별로예요 ${summary.dislikedCount || 0}건`;
+    refreshPreferenceCount.textContent = `${coverageCopy}${discoveredCandidateCount ? ` · 유사 후보 ${discoveredCandidateCount}건 발견` : ""} · 예상치는 수집처 응답 속도에 따라 달라질 수 있습니다.`;
     if (isActive && !state.refreshClockTimer) {
       state.refreshClockTimer = window.setInterval(() => renderRefreshMonitor(state.refreshRunStatus), 1000);
     }

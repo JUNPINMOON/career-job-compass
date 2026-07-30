@@ -630,6 +630,27 @@
       "title": "Decision-support v2 advances the mobile cache lineage",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v40-decision-support-v2", "career-compass-v39-graduate-evidence-labels"]},
       "note": "The app shell, styles, and canonical snapshot change together."
+    },
+    {
+      "id": "DATA-235",
+      "status": "active",
+      "title": "Each personalized recommendation exposes a privacy-safe component score instead of a generic all-feedback claim",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-235\"", "personalizationBreakdown", "positiveSimilarity", "negativeSimilarity", "reasonPenalty"]},
+      "note": "Regression recorded on 2026-07-30: the app said every preference was compared but did not show which role, field, location, positive reason, or rejection reason changed the individual recommendation."
+    },
+    {
+      "id": "DATA-236",
+      "status": "active",
+      "title": "A first-time reader can reconstruct the final recommendation score and understand the evidence selection rule",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-236\"", "personalization-formula", "feedbackDecayCopy", "finalScoreEquation"]},
+      "note": "Regression recorded on 2026-07-30: showing weights alone did not explain the final sum, the strongest-three decay, or that every saved feedback row was compared before selecting influential evidence."
+    },
+    {
+      "id": "GOV-223",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the reconstructable recommendation score release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v42-explainable-ranking", "career-compass-v41-preference-breakdown"]},
+      "note": "The score formula and evidence-selection explanation must replace the prior preference-breakdown shell on already-open iPhones."
     }
   ]
 }

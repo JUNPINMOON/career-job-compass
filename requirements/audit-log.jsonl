@@ -193,3 +193,25 @@
 {"at": "2026-07-29T12:33:12+00:00", "event": "requirement_added", "id": "UX-228", "title": "Feedback restore status distinguishes local recovery from confirmed Supabase sync"}
 {"at": "2026-07-29T12:33:12+00:00", "event": "check", "passed": 80, "failed": 1, "failing_ids": ["UX-228"]}
 {"at": "2026-07-29T12:36:05+00:00", "event": "check", "passed": 81, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T13:12:45+00:00", "event": "requirement_added", "id": "DATA-232", "title": "Internal graduate evidence review states never appear in the public mobile artifact"}
+{"at": "2026-07-29T13:12:45+00:00", "event": "check", "passed": 81, "failed": 1, "failing_ids": ["DATA-232"]}
+{"at": "2026-07-29T13:13:14+00:00", "event": "requirement_added", "id": "GOV-221", "title": "Installed mobile clients invalidate the graduate evidence label release"}
+{"at": "2026-07-29T13:13:14+00:00", "event": "check", "passed": 81, "failed": 2, "failing_ids": ["DATA-232", "GOV-221"]}
+{"at": "2026-07-29T13:14:53+00:00", "event": "check", "passed": 83, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T13:22:18+00:00", "event": "check", "passed": 83, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T16:45:43+00:00", "event": "requirement_added", "id": "DATA-233", "title": "Canonical records include evidence-aware decision fields"}
+{"at": "2026-07-29T16:45:43+00:00", "event": "requirement_added", "id": "DATA-234", "title": "Experienced-only titles do not enter the public list"}
+{"at": "2026-07-29T16:45:43+00:00", "event": "requirement_added", "id": "UX-229", "title": "Job and programme details expose the same decision summary"}
+{"at": "2026-07-29T16:45:43+00:00", "event": "requirement_added", "id": "UX-230", "title": "Saved supports an arbitrary-length local comparison list"}
+{"at": "2026-07-29T16:45:43+00:00", "event": "requirement_added", "id": "GOV-222", "title": "Decision-support v2 advances the mobile cache lineage"}
+{"at": "2026-07-29T16:45:43+00:00", "event": "check", "passed": 88, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T16:55:00+00:00", "event": "check", "passed": 88, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T23:10:07+00:00", "event": "requirement_added", "id": "DATA-235", "title": "Each personalized recommendation exposes a privacy-safe component score instead of a generic all-feedback claim"}
+{"at": "2026-07-29T23:10:07+00:00", "event": "check", "passed": 88, "failed": 1, "failing_ids": ["DATA-235"]}
+{"at": "2026-07-29T23:26:01+00:00", "event": "check", "passed": 89, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T23:42:09+00:00", "event": "check", "passed": 89, "failed": 0, "failing_ids": []}
+{"at": "2026-07-29T23:51:31+00:00", "event": "requirement_added", "id": "DATA-236", "title": "A first-time reader can reconstruct the final recommendation score and understand the evidence selection rule"}
+{"at": "2026-07-29T23:51:31+00:00", "event": "check", "passed": 89, "failed": 1, "failing_ids": ["DATA-236"]}
+{"at": "2026-07-29T23:54:39+00:00", "event": "requirement_added", "id": "GOV-223", "title": "Installed mobile clients invalidate the reconstructable recommendation score release"}
+{"at": "2026-07-29T23:54:40+00:00", "event": "check", "passed": 90, "failed": 1, "failing_ids": ["GOV-223"]}
+{"at": "2026-07-29T23:55:15+00:00", "event": "check", "passed": 91, "failed": 0, "failing_ids": []}
