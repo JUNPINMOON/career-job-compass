@@ -651,6 +651,13 @@
       "title": "Installed mobile clients invalidate the reconstructable recommendation score release",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v42-explainable-ranking", "career-compass-v41-preference-breakdown"]},
       "note": "The score formula and evidence-selection explanation must replace the prior preference-breakdown shell on already-open iPhones."
+    },
+    {
+      "id": "GOV-224",
+      "status": "active",
+      "title": "Installed mobile clients receive the corrected reason-penalty ceiling",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v43-exact-reason-ceiling", "career-compass-v42-explainable-ranking"]},
+      "note": "The displayed maximum must match the engine's effective 30-point ceiling on already-open iPhones."
     }
   ]
 }

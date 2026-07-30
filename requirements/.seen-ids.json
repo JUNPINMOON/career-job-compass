@@ -294,6 +294,11 @@
     "first_seen": "2026-07-29T23:54:39+00:00",
     "title": "Installed mobile clients invalidate the reconstructable recommendation score release"
   },
+  "GOV-224": {
+    "assert_sha": "79fe44382c335072",
+    "first_seen": "2026-07-30T00:17:12+00:00",
+    "title": "Installed mobile clients receive the corrected reason-penalty ceiling"
+  },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",
     "first_seen": "2026-07-26T16:23:06+00:00",
