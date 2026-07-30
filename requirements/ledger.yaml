@@ -672,6 +672,27 @@
       "title": "Installed mobile clients invalidate the failed-refresh diagnostics release",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v44-refresh-failure-diagnostics", "career-compass-v43-exact-reason-ceiling"]},
       "note": "The corrected terminal timing and failure explanation must replace the prior shell on already-open iPhones."
+    },
+    {
+      "id": "UX-232",
+      "status": "active",
+      "title": "Mobile feedback captures structured reasons and optional notes by decision category",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-232\"", "FEEDBACK_REASON_GROUPS", "data-feedback-note-group", "buildStructuredFeedbackNote"]},
+      "note": "Regression recorded on 2026-07-30: one flat reason list and one free-text note could not distinguish task, domain, career, eligibility, conditions, and organization evidence for deterministic scoring."
+    },
+    {
+      "id": "DATA-237",
+      "status": "active",
+      "title": "Recommendation scoring excludes location and makes structured feedback the primary explainable signal",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-237\"", "구조화 사유 60%", "지역은 국내·국외 분류에만 사용", "positiveReasonMatch", "negativeReasonMatch"]},
+      "note": "Regression recorded on 2026-07-30: location still carried 10%, free notes leaked into field similarity, and saved like/dislike reasons only nudged the result instead of driving an auditable component."
+    },
+    {
+      "id": "GOV-226",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the structured-feedback ranking release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v45-structured-feedback", "career-compass-v44-refresh-failure-diagnostics"]},
+      "note": "The grouped feedback form and v3 scoring explanation must replace the prior cached shell on already-open iPhones."
     }
   ]
 }

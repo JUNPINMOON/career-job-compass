@@ -22,7 +22,7 @@
     actions: 45,
   };
   const DEFAULT_FILTERS = { query: "", sector: "", queue: "", jobMarket: "all", studyMode: "programs", studyMarket: "all", studyReadiness: "all", studyFormat: "all", studyQuery: "" };
-  const LIKE_REASON_LABELS = {
+  const LEGACY_LIKE_REASON_LABELS = {
     field_fit: "관심 분야·연구 주제와 잘 맞음",
     role_fit: "직무·업무가 잘 맞음",
     growth: "성장·학습 기회가 큼",
@@ -31,7 +31,7 @@
     conditions_fit: "경력·언어·처우 조건이 현실적임",
     other_positive: "다른 좋은 이유",
   };
-  const DISLIKE_REASON_LABELS = {
+  const LEGACY_DISLIKE_REASON_LABELS = {
     role_mismatch: "직무·업무가 관심과 다름",
     seniority: "경력·자격 요건이 맞지 않음",
     location: "근무지·근무 방식이 맞지 않음",
@@ -40,6 +40,35 @@
     source_quality: "공고 정보·출처가 불명확함",
     other: "다른 이유",
   };
+  const LIKE_REASON_LABELS = { ...LEGACY_LIKE_REASON_LABELS };
+  const DISLIKE_REASON_LABELS = { ...LEGACY_DISLIKE_REASON_LABELS };
+  const FEEDBACK_REASON_GROUPS = [];
+  FEEDBACK_REASON_GROUPS.push({ id: "role", title: "실제 업무", liked: {}, not_for_me: {} });
+  Object.assign(FEEDBACK_REASON_GROUPS[0].liked, {
+    "task:research_analysis": "연구·분석 중심",
+    "task:engineering_design": "설계·해석 중심",
+    "task:data_ai_gis": "데이터·AI·GIS 활용",
+  });
+  FEEDBACK_REASON_GROUPS[0].not_for_me["task:mismatch"] = "업무가 관심과 다름";
+  FEEDBACK_REASON_GROUPS[0].not_for_me["task:unclear"] = "실제 업무가 불명확함";
+  FEEDBACK_REASON_GROUPS.push({ id: "domain", title: "분야", liked: {}, not_for_me: {} });
+  Object.assign(FEEDBACK_REASON_GROUPS[1].liked, { "domain:water_resources": "수자원·수문과 직접 연결", "domain:climate_ai": "기후·AI와 직접 연결" });
+  Object.assign(FEEDBACK_REASON_GROUPS[1].not_for_me, { "domain:mismatch": "관심 분야와 다름", "domain:too_generic": "분야가 너무 포괄적임", "domain:weak_water_ai": "수자원·AI 연결이 약함" });
+  FEEDBACK_REASON_GROUPS.push({ id: "career", title: "성장·진로", liked: {}, not_for_me: {} });
+  FEEDBACK_REASON_GROUPS.push({ id: "qualifications", title: "자격 조건", liked: {}, not_for_me: {} });
+  FEEDBACK_REASON_GROUPS.push({ id: "conditions", title: "처우·근무조건", liked: {}, not_for_me: {} });
+  FEEDBACK_REASON_GROUPS.push({ id: "institution", title: "기관 성격", liked: {}, not_for_me: {} });
+  FEEDBACK_REASON_GROUPS.forEach((group) => {
+    Object.assign(LIKE_REASON_LABELS, group.liked);
+    Object.assign(DISLIKE_REASON_LABELS, group.not_for_me);
+  });
+  const FEEDBACK_GROUP_BY_REASON = {};
+  Object.assign(FEEDBACK_GROUP_BY_REASON, { "task:research_analysis": "role", "task:engineering_design": "role", "task:data_ai_gis": "role" });
+  Object.assign(FEEDBACK_GROUP_BY_REASON, { "task:mismatch": "role", "task:unclear": "role" });
+  Object.assign(FEEDBACK_GROUP_BY_REASON, { field_fit: "domain", role_fit: "role", role_mismatch: "role", growth: "career" });
+  Object.assign(FEEDBACK_GROUP_BY_REASON, { seniority: "qualifications", language_visa: "qualifications", conditions_fit: "qualifications" });
+  Object.assign(FEEDBACK_GROUP_BY_REASON, { location_fit: "conditions", location: "conditions", compensation: "conditions" });
+  Object.assign(FEEDBACK_GROUP_BY_REASON, { mission: "institution", source_quality: "institution" });
   const FEEDBACK_REASON_LABELS = { ...LIKE_REASON_LABELS, ...DISLIKE_REASON_LABELS };
   const FEEDBACK_CONFIG = {
     liked: { title: "왜 관심 있나요?", legend: "가치 있다고 느낀 이유를 모두 골라주세요", placeholder: "비슷한 공고를 찾을 때 반영할 구체적인 점", labels: LIKE_REASON_LABELS },
@@ -416,6 +445,8 @@
     const score = Number(signal?.score || 0);
     const positiveSimilarity = Number(components.positiveSimilarity || 0);
     const negativeSimilarity = Number(components.negativeSimilarity || 0);
+    const positiveReasonMatch = Number(components.positiveReasonMatch || 0);
+    const negativeReasonMatch = Number(components.negativeReasonMatch || 0);
     const reasonPenalty = Number(components.reasonPenalty || 0);
     const finalScoreCopy = score.toFixed(1);
     if (!signal?.modelVersion) return "";
@@ -423,7 +454,6 @@
     const dimensionLabels = {
       role: "\uc9c1\ubb34",
       field: "\ubd84\uc57c",
-      location: "\uc9c0\uc5ed",
       company: "\uc870\uc9c1",
     };
     const dimensionCopy = `${dimensions.map((item) => dimensionLabels[item] || item).join(" / ")} \u00b7 \ucd5c\uc885 ${score >= 0 ? "+" : ""}${finalScoreCopy}`;
@@ -435,6 +465,10 @@
     const feedbackDecayCopy = "\uc800\uc7a5\ud55c \uad00\uc2ec\u00b7\ubcc4\ub85c\uc608\uc694 \uc804\uac74\uc744 \uba3c\uc800 \ube44\uad50\ud55c \ub4a4, \uc774 \uacf5\uace0\uc640 \uac00\uc7a5 \ub2ee\uc740 \uadfc\uac70 3\uac74\uc744 100% \u00b7 60% \u00b7 35%\ub85c \ucc28\ub4f1 \ubc18\uc601\ud569\ub2c8\ub2e4. \ud53c\ub4dc\ubc31 \uac1c\uc218\ub294 \uace0\uc815\ub418\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.";
     const finalScoreEquation = `+${positiveSimilarity.toFixed(1)} - ${negativeSimilarity.toFixed(1)} - ${reasonPenalty.toFixed(1)} = ${score >= 0 ? "+" : ""}${finalScoreCopy}`;
     const explanationCopy = [signal.reasonKo || job.discoveryReason || "", positiveReasonCopy].filter(Boolean).join(" ");
+    if (signal.modelVersion === "preference-ranker-v3") {
+      const structuredEquation = `+${positiveSimilarity.toFixed(1)} + ${positiveReasonMatch.toFixed(1)} - ${negativeSimilarity.toFixed(1)} - ${negativeReasonMatch.toFixed(1)} = ${score >= 0 ? "+" : ""}${finalScoreCopy}`;
+      return `<section class="decision-panel personalization-panel" data-requirement-id="DATA-237"><p class="eyebrow">추천 점수 근거</p><h3>${escapeHtml(dimensionCopy || "저장한 피드백과 비교")}</h3><div class="personalization-scores"><div><small>관심 기본 유사도</small><b>+${positiveSimilarity.toFixed(1)}</b></div><div><small>관심 사유 일치</small><b>+${positiveReasonMatch.toFixed(1)}</b></div><div><small>별로예요 기본 유사도</small><b>-${negativeSimilarity.toFixed(1)}</b></div><div><small>별로예요 사유 일치</small><b>-${negativeReasonMatch.toFixed(1)}</b></div></div><div class="personalization-formula"><small>최종 점수 = 관심 기본 + 관심 사유 - 비선호 기본 - 비선호 사유</small><strong>${escapeHtml(structuredEquation)}</strong></div><p>${escapeHtml(explanationCopy)}</p><ol class="personalization-method"><li>기본 유사도 40% · 구조화 사유 60%</li><li>기본 유사도는 직무 60% + 분야 35% + 조직 5%</li><li>지역은 국내·국외 분류에만 사용하며 추천 점수에는 반영하지 않습니다.</li><li>자유 메모는 기록·검토용이며 점수에 몰래 반영하지 않습니다.</li></ol>${reasonCopy ? `<p class="personalization-reasons">${escapeHtml(reasonCopy)}</p>` : ""}<small class="personalization-coverage">전체 비교 피드백 · 관심 ${signal.likedEvidenceCount || 0}건 / 별로예요 ${signal.dislikedEvidenceCount || 0}건</small></section>`;
+    }
     return `<section class="decision-panel personalization-panel" data-requirement-id="DATA-235"><p class="eyebrow">\ucd94\ucc9c \uc810\uc218 \uadfc\uac70</p><h3>${escapeHtml(dimensionCopy || "\uc800\uc7a5\ud55c \ud53c\ub4dc\ubc31\uacfc \ube44\uad50")}</h3><div class="personalization-scores"><div><small>\uad00\uc2ec \uc720\uc0ac \uac00\uc810</small><b>+${positiveSimilarity.toFixed(1)}</b><span>\ucd5c\ub300 +70</span></div><div><small>\ubcc4\ub85c\uc608\uc694 \uc720\uc0ac \uac10\uc810</small><b>-${negativeSimilarity.toFixed(1)}</b><span>\ucd5c\ub300 -60</span></div><div><small>\uba85\uc2dc \uc0ac\uc720 \uc704\ud5d8</small><b>-${reasonPenalty.toFixed(1)}</b><span>\ucd5c\ub300 -30</span></div></div><div class="personalization-formula" data-requirement-id="DATA-236"><small>\ucd5c\uc885 \uc810\uc218 = \uad00\uc2ec \uac00\uc810 - \ubcc4\ub85c\uc608\uc694 \uac10\uc810 - \uc0ac\uc720 \uc704\ud5d8</small><strong>${escapeHtml(finalScoreEquation)}</strong></div><p>${escapeHtml(explanationCopy)}</p><ol class="personalization-method"><li>${escapeHtml(methodCopy)}</li><li>${escapeHtml(feedbackDecayCopy)}</li></ol>${reasonCopy ? `<p class="personalization-reasons">${escapeHtml(reasonCopy)}</p>` : ""}<small class="personalization-coverage">\uc804\uccb4 \ube44\uad50 \ud53c\ub4dc\ubc31 \u00b7 \uad00\uc2ec ${signal.likedEvidenceCount || 0}\uac74 / \ubcc4\ub85c\uc608\uc694 ${signal.dislikedEvidenceCount || 0}\uac74</small></section>`;
   }
 
@@ -646,6 +680,39 @@
       if (route() === "sources") renderSources();
     }
   }
+  function parseStructuredFeedbackNote(note = "") {
+    const parsed = {};
+    const titles = new Map(FEEDBACK_REASON_GROUPS.map((group) => [group.title, group.id]));
+    titles.set("기타", "general");
+    String(note).split(/\r?\n/).forEach((line) => {
+      const match = line.match(/^\[([^\]]+)\]\s*(.*)$/);
+      if (match && titles.has(match[1])) parsed[titles.get(match[1])] = match[2];
+      else if (line.trim()) parsed.general = [parsed.general, line.trim()].filter(Boolean).join("\n");
+    });
+    return parsed;
+  }
+  function buildStructuredFeedbackNote() {
+    const titles = Object.fromEntries(FEEDBACK_REASON_GROUPS.map((group) => [group.id, group.title]));
+    titles.general = "기타";
+    return [...document.querySelectorAll("[data-feedback-note-group]")]
+      .map((field) => [titles[field.dataset.feedbackNoteGroup], field.value.trim()])
+      .filter(([, value]) => value)
+      .map(([title, value]) => `[${title}] ${value}`)
+      .join("\n");
+  }
+  function renderFeedbackReasonGroups(config) {
+    const entries = Object.entries(config.labels);
+    const sections = FEEDBACK_REASON_GROUPS.map((group) => {
+      const choices = entries.filter(([value]) => (FEEDBACK_GROUP_BY_REASON[value] || value.split(":")[0]) === group.id);
+      if (!choices.length) return "";
+      const inputs = choices.map(([value, label]) => `<label><input type="checkbox" name="reason" value="${escapeHtml(value)}" /> ${escapeHtml(label)}</label>`).join("");
+      return `<section class="feedback-reason-group"><h3>${escapeHtml(group.title)}</h3><div class="feedback-choice-grid">${inputs}</div><label class="feedback-group-note"><span>이 항목에서 특히 중요한 점 (선택)</span><textarea data-feedback-note-group="${escapeHtml(group.id)}" maxlength="500" rows="2"></textarea></label></section>`;
+    }).join("");
+    const assigned = new Set(FEEDBACK_REASON_GROUPS.map((group) => group.id));
+    const remaining = entries.filter(([value]) => !assigned.has(FEEDBACK_GROUP_BY_REASON[value] || value.split(":")[0]));
+    const otherChoices = remaining.map(([value, label]) => `<label><input type="checkbox" name="reason" value="${escapeHtml(value)}" /> ${escapeHtml(label)}</label>`).join("");
+    return `<div data-requirement-id="UX-232">${sections}<section class="feedback-reason-group"><h3>추가 의견</h3><div class="feedback-choice-grid">${otherChoices}</div><label class="feedback-group-note"><span>그 밖에 중요한 점 (선택)</span><textarea data-feedback-note-group="general" maxlength="1000" rows="3"></textarea></label><p class="feedback-score-boundary">지역은 국내·국외 분류에만 사용하며 추천 점수에는 반영하지 않습니다.</p></section></div>`;
+  }
   function openFeedback(jobId, sentiment = "not_for_me") {
     const preference = preferenceFor(jobId);
     const config = FEEDBACK_CONFIG[sentiment] || FEEDBACK_CONFIG.not_for_me;
@@ -654,11 +721,13 @@
     document.getElementById("feedbackSentiment").value = sentiment;
     document.getElementById("feedbackTitle").textContent = config.title;
     document.getElementById("feedbackLegend").textContent = config.legend;
-    document.getElementById("feedbackReasonChoices").innerHTML = Object.entries(config.labels).map(([value, label]) => `<label><input type="checkbox" name="reason" value="${escapeHtml(value)}" /> ${escapeHtml(label)}</label>`).join("");
+    document.getElementById("feedbackReasonChoices").innerHTML = renderFeedbackReasonGroups(config);
     document.querySelectorAll("#feedbackReasons input[name='reason']").forEach((input) => { input.checked = isCurrent && preference.reasons?.includes(input.value); });
-    const note = document.getElementById("feedbackNote");
-    note.value = isCurrent ? preference.note || "" : "";
-    note.placeholder = config.placeholder;
+    const noteParts = parseStructuredFeedbackNote(isCurrent ? preference.note || "" : "");
+    document.querySelectorAll("[data-feedback-note-group]").forEach((field) => {
+      field.value = noteParts[field.dataset.feedbackNoteGroup] || "";
+      field.placeholder = config.placeholder;
+    });
     document.getElementById("feedbackError").textContent = "";
     document.getElementById("feedbackClear").hidden = !isCurrent;
     if (dossier.open) dossier.close();
@@ -1261,7 +1330,7 @@
     const jobId = document.getElementById("feedbackJobId").value;
     const sentiment = document.getElementById("feedbackSentiment").value;
     const reasons = [...document.querySelectorAll("#feedbackReasons input[name='reason']:checked")].map((input) => input.value);
-    const note = document.getElementById("feedbackNote").value.trim();
+    const note = buildStructuredFeedbackNote();
     if (!reasons.length && !note) {
       const error = document.getElementById("feedbackError");
       error.textContent = "이유를 하나 이상 선택하거나 메모를 입력해 주세요.";
