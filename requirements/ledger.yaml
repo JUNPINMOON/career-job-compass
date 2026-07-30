@@ -658,6 +658,20 @@
       "title": "Installed mobile clients receive the corrected reason-penalty ceiling",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v43-exact-reason-ceiling", "career-compass-v42-explainable-ranking"]},
       "note": "The displayed maximum must match the engine's effective 30-point ceiling on already-open iPhones."
+    },
+    {
+      "id": "UX-231",
+      "status": "active",
+      "title": "A failed refresh freezes its elapsed time, preserves claimed feedback counts, and shows the safe failure reason",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-231\"", "terminalState", "failedStage?.errorKo"]},
+      "note": "Regression recorded on 2026-07-30: a terminal owner-mismatch failure kept counting past 80 minutes, displayed 0/0 instead of 10/18, and hid the safe worker error text."
+    },
+    {
+      "id": "GOV-225",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the failed-refresh diagnostics release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v44-refresh-failure-diagnostics", "career-compass-v43-exact-reason-ceiling"]},
+      "note": "The corrected terminal timing and failure explanation must replace the prior shell on already-open iPhones."
     }
   ]
 }

@@ -971,15 +971,17 @@
     return remainder ? `${minutes}분 ${remainder}초` : `${minutes}분`;
   }
   function refreshEstimate(status, now = Date.now()) {
-    /* data-requirement-id="UX-218" */
+    /* data-requirement-id="UX-218" data-requirement-id="UX-231" */
     const stages = Array.isArray(status?.stages) ? status.stages : [];
     const currentStage = status?.currentStage || {};
     const startedMs = Date.parse(status?.startedAt || "");
     const finishedMs = Date.parse(status?.finishedAt || "");
     const requestStartedMs = Number(state.refreshRequestedAt);
-    const completedDuringThisRequest = status?.state === "succeeded" && Number.isFinite(requestStartedMs);
-    const elapsedEndMs = completedDuringThisRequest ? now : (status?.state === "succeeded" && Number.isFinite(finishedMs) ? finishedMs : now);
-    const elapsedStartMs = completedDuringThisRequest ? requestStartedMs : startedMs;
+    const terminalState = status?.state === "succeeded" || status?.state === "failed";
+    const elapsedEndMs = terminalState && Number.isFinite(finishedMs) ? finishedMs : now;
+    const elapsedStartMs = Number.isFinite(requestStartedMs) && requestStartedMs <= elapsedEndMs
+      ? requestStartedMs
+      : startedMs;
     const elapsedSeconds = Number.isFinite(elapsedStartMs) ? Math.max(0, (elapsedEndMs - elapsedStartMs) / 1000) : 0;
     const stageIds = ["preference_binding", "collection_and_v3", "posting_facts", "feasibility", "sector_relevance", "preference_discovery", "review_evidence", "sector_labels", "feedback", "actions"];
     const totalSeconds = stageIds.reduce((sum, id) => sum + REFRESH_STAGE_SECONDS[id], 0);
@@ -1027,7 +1029,7 @@
     refreshStageLabel.textContent = isSucceeded
       ? "새 공고 검색·분류 결과를 앱에 반영했습니다."
       : status.state === "failed"
-        ? `${failedStage?.labelKo || "갱신"} 단계에서 멈췄습니다. 기존 공고는 유지됩니다.`
+        ? failedStage?.errorKo || `${failedStage?.labelKo || "갱신"} 단계에서 멈췄습니다. 기존 공고는 유지됩니다.`
         : status.state === "pending" && pendingSeconds >= 60
           ? "리프레시 엔진이 꺼져 있습니다 · 요청은 저장됐으며 로컬 엔진 연결을 기다립니다."
         : `${currentStage.labelKo || "갱신 준비"} · ${currentStage.position || 0}/${currentStage.total || 10}단계`;
@@ -1049,14 +1051,16 @@
   }
   function renderRefreshConnectionFailure() {
     const previous = state.refreshRunStatus || {};
+    const failedAt = new Date().toISOString();
     renderRefreshMonitor({
       ...previous,
       state: "failed",
-      startedAt: previous.startedAt || new Date().toISOString(),
+      startedAt: previous.startedAt || failedAt,
+      finishedAt: failedAt,
       currentStage: { id: "status_connection", labelKo: "진행 상태 연결", position: previous.currentStage?.position || 0, total: previous.currentStage?.total || 10 },
       stages: [
         ...(previous.stages || []).filter((stage) => stage.id !== "status_connection"),
-        { id: "status_connection", labelKo: "진행 상태 연결", state: "failed" },
+        { id: "status_connection", labelKo: "진행 상태 연결", state: "failed", finishedAt: failedAt },
       ],
     });
   }
