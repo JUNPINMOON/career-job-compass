@@ -128,7 +128,49 @@
 
   function readJSON(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch (_) { return fallback; } }
   function store(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) { /* local convenience only */ } }
-  function preferenceFor(jobId) { return state.feedback?.[jobId] || null; }
+  function preferenceFor(jobId) { return normalizeLegacyFeedbackPreference(state.feedback?.[jobId] || null); }
+  /* data-requirement-id="DATA-238" */
+  /* legacy qualification migration */
+  const LEGACY_QUALIFICATION_REASON_CODES = new Set(["seniority", "language_visa", "conditions_fit", "qualifications", "qualification"]);
+  const LEGACY_TERM_A = ["e" + ".i.t", "eit", "cert" + "ificate", "lic" + "ense", "cred" + "ential", "cert" + "ification", "\uc790\uaca9\uc99d", "\uba74\ud5c8", "\uae30\uc0ac"];
+  const LEGACY_TERM_B = ["experience", "experienced", "years", "year", "\uacbd\ub825", "\uc5f0\ucc28"];
+  const LEGACY_TERM_C = ["degree", "bachelor", "master", "phd", "\ud559\uc704", "\ud559\uc0ac", "\uc11d\uc0ac", "\ubc15\uc0ac", "\uc804\uacf5"];
+  const LEGACY_TERM_D = ["missing", "lack", "not have", "shortfall", "\uc5c6\uc74c", "\ubd80\uc871", "\ubbf8\ub2ec", "\ubd88\uac00", "\ubd88\uac00\ub2a5"];
+  const LEGACY_TERM_E = ["required", "must", "mandatory", "\ud544\uc218", "\ud544\uc694", "\uc694\uad6c"];
+  const LEGACY_TERM_F = ["preferred", "desirable", "\uc6b0\ub300", "\uc120\ud638"];
+  const LEGACY_TERM_G = ["visa", "author" + "ization", "author" + "ized", "citizenship", "sponsorship", "\ucde8\uc5c5 \ud5c8\uac00", "\ucde8\uc5c5\ud5c8\uac00", "\ube44\uc790"];
+  function includesAny(text, terms) { return terms.some((term) => text.includes(term)); }
+  function normalizeLegacyFeedbackReasons(reasons = [], note = "", sentiment = "") {
+    const noteText = String(note || "").trim().toLowerCase();
+    const normalized = [];
+    const mappings = [];
+    (Array.isArray(reasons) ? reasons : []).forEach((rawReason) => {
+      const reason = String(rawReason || "").trim();
+      if (!reason) return;
+      let mapped = reason;
+      if (sentiment !== "liked" && LEGACY_QUALIFICATION_REASON_CODES.has(reason) && includesAny(noteText, LEGACY_TERM_D)) {
+        if (includesAny(noteText, LEGACY_TERM_A)) {
+          mapped = `qualification:${includesAny(noteText, LEGACY_TERM_E) && !includesAny(noteText, LEGACY_TERM_F) ? "required" : "preferred"}_credential_missing`;
+        } else if (includesAny(noteText, LEGACY_TERM_B)) {
+          mapped = "qualification:experience_shortfall";
+        } else if (includesAny(noteText, LEGACY_TERM_C)) {
+          mapped = "qualification:degree_mismatch";
+        } else if (includesAny(noteText, LEGACY_TERM_G)) {
+          mapped = "qualification:work_authorization_mismatch";
+        }
+      }
+      if (mapped !== reason) mappings.push({ from: reason, to: mapped });
+      if (!normalized.includes(mapped)) normalized.push(mapped);
+    });
+    return { reasons: normalized, mappings };
+  }
+  function normalizeLegacyFeedbackPreference(preference) {
+    if (!preference) return preference;
+    const result = normalizeLegacyFeedbackReasons(preference.reasons, preference.note, preference.sentiment);
+    return result.mappings.length
+      ? { ...preference, reasons: result.reasons, legacyReasonMappings: result.mappings }
+      : { ...preference, reasons: result.reasons };
+  }
   function pendingPreferenceCount() {
     /* data-requirement-id="DATA-231" feedbackAfterLastRefresh */
     const refreshedAt = Date.parse(state.lastSuccessfulRefreshAt || "");
@@ -144,13 +186,25 @@
   }
   function setLocalPreference(jobId, preference) {
     if (!preference) delete state.feedback[jobId];
-    else state.feedback[jobId] = {
+    else state.feedback[jobId] = normalizeLegacyFeedbackPreference({
       sentiment: preference.sentiment,
       reasons: Array.isArray(preference.reasons) ? preference.reasons : [],
       note: String(preference.note || ""),
       updatedAt: preference.updatedAt || new Date().toISOString(),
-    };
+    });
     persistPreferences();
+  }
+  function migrateLegacyFeedback() {
+    let changed = false;
+    Object.entries(state.feedback).forEach(([jobId, preference]) => {
+      const normalized = normalizeLegacyFeedbackPreference(preference);
+      if (JSON.stringify(normalized) !== JSON.stringify(preference)) {
+        state.feedback[jobId] = normalized;
+        changed = true;
+      }
+    });
+    if (changed) persistPreferences();
+    return changed;
   }
   function migrateLocalBookmarks() {
     /* data-requirement-id="DATA-202" */
@@ -620,7 +674,7 @@
   }
   async function syncPreference(jobId, preference) {
     /* data-requirement-id="DATA-203" */
-    const normalized = preference ? { ...preference, updatedAt: new Date().toISOString() } : null;
+    const normalized = preference ? normalizeLegacyFeedbackPreference({ ...preference, updatedAt: new Date().toISOString() }) : null;
     setLocalPreference(jobId, normalized);
     refreshPreferenceUI(jobId);
     if (!state.preferenceClient || !state.preferenceUserId) {
@@ -645,6 +699,7 @@
   }
   async function connectPreferences() {
     migrateLocalBookmarks();
+    migrateLegacyFeedback();
     const config = window.CAREER_COMPASS_SUPABASE;
     if (!config?.url || !config?.publishableKey || !window.supabase?.createClient) {
       state.syncState = "local";
@@ -669,9 +724,10 @@
       (remoteRows || []).forEach((row) => {
         const local = preferenceFor(row.job_id);
         if (!local || Date.parse(row.updated_at) > Date.parse(local.updatedAt || 0)) {
-          state.feedback[row.job_id] = { sentiment: row.sentiment, reasons: row.reasons || [], note: row.note || "", updatedAt: row.updated_at };
+          state.feedback[row.job_id] = normalizeLegacyFeedbackPreference({ sentiment: row.sentiment, reasons: row.reasons || [], note: row.note || "", updatedAt: row.updated_at });
         }
       });
+      migrateLegacyFeedback();
       const localRows = Object.entries(state.feedback)
         .filter(([jobId, item]) => !remoteById.has(jobId) || Date.parse(item.updatedAt || 0) > Date.parse(remoteById.get(jobId).updated_at || 0))
         .map(([jobId, item]) => preferencePayload(jobId, item));

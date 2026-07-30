@@ -707,6 +707,20 @@
       "title": "Installed mobile clients invalidate the qualification-feedback release",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v46-qualification-feedback", "career-compass-v45-structured-feedback"]},
       "note": "The five-way qualification feedback input must replace the prior cached shell on already-open iPhones."
+    },
+    {
+      "id": "DATA-238",
+      "status": "active",
+      "title": "Legacy qualification feedback is normalized deterministically before ranking",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-238\"", "normalizeLegacyFeedbackReasons", "legacy qualification"]},
+      "note": "Old seniority or visa labels with an explicit qualification note must automatically enter the same structured scoring path without requiring a manual re-save."
+    },
+    {
+      "id": "GOV-228",
+      "status": "active",
+      "title": "Installed mobile clients invalidate automatic legacy-feedback normalization",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v47-legacy-feedback-normalization", "career-compass-v46-qualification-feedback"]},
+      "note": "Already-open iPhones must receive the legacy feedback migration and its corrected labels."
     }
   ]
 }
