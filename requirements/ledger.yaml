@@ -721,6 +721,34 @@
       "title": "Installed mobile clients invalidate automatic legacy-feedback normalization",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v47-legacy-feedback-normalization", "career-compass-v46-qualification-feedback"]},
       "note": "Already-open iPhones must receive the legacy feedback migration and its corrected labels."
+    },
+    {
+      "id": "DATA-239",
+      "status": "active",
+      "title": "Public snapshot adds a truth-labeled lifestyle layer without changing recommendation scores",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["LIFESTYLE_METHOD_VERSION", "lifestyleDiscovery", "lifestyleEvidence", "scoreImpact"]},
+      "note": "Jayang commute, work-life evidence, and explicit Busan workplaces stay separate from recommendation scoring; guarantee language is forbidden without evidence."
+    },
+    {
+      "id": "DATA-240",
+      "status": "active",
+      "title": "Release validation fails when lifestyle lineage, statuses, or score isolation is missing",
+      "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["lifestyleDiscovery", "lifestyleEvidence", "LIFESTYLE_STATUSES", "scoreImpact"]},
+      "note": "The release gate verifies the same structured fields that the public iPhone UI reads."
+    },
+    {
+      "id": "UX-234",
+      "status": "active",
+      "title": "Mobile lifestyle tab separates commute, work-life evidence, and explicit Busan workplaces",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["UX-234", "renderLifestyle", "lifestyle-lane", "lifestyle-missing"]},
+      "note": "The sixth tab shows evidence and missing facts with tab-style pages and never implies whole-market coverage."
+    },
+    {
+      "id": "GOV-229",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the lifestyle evidence release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v48-lifestyle-evidence", "career-compass-v47-legacy-feedback-normalization"]},
+      "note": "Open iPhones must replace the five-tab shell and load the new evidence contract."
     }
   ]
 }

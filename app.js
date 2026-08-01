@@ -21,7 +21,7 @@
     feedback: 15,
     actions: 45,
   };
-  const DEFAULT_FILTERS = { query: "", sector: "", queue: "", jobMarket: "all", studyMode: "programs", studyMarket: "all", studyReadiness: "all", studyFormat: "all", studyQuery: "" };
+  const DEFAULT_FILTERS = { query: "", sector: "", queue: "", jobMarket: "all", lifestyleLane: "jayang_wlb", studyMode: "programs", studyMarket: "all", studyReadiness: "all", studyFormat: "all", studyQuery: "" };
   const LEGACY_LIKE_REASON_LABELS = {
     field_fit: "관심 분야·연구 주제와 잘 맞음",
     role_fit: "직무·업무가 잘 맞음",
@@ -216,7 +216,7 @@
     });
     if (changed) persistPreferences();
   }
-  function saveFilters() { store(FILTER_STORAGE_KEY, { query: state.query, sector: state.sector, queue: state.queue, jobMarket: state.jobMarket, studyMode: state.studyMode, studyMarket: state.studyMarket, studyReadiness: state.studyReadiness, studyFormat: state.studyFormat, studyQuery: state.studyQuery }); }
+  function saveFilters() { store(FILTER_STORAGE_KEY, { query: state.query, sector: state.sector, queue: state.queue, jobMarket: state.jobMarket, lifestyleLane: state.lifestyleLane, studyMode: state.studyMode, studyMarket: state.studyMarket, studyReadiness: state.studyReadiness, studyFormat: state.studyFormat, studyQuery: state.studyQuery }); }
   function escapeHtml(value) { return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char])); }
   function icon(name) { return `<svg aria-hidden="true"><use href="#i-${name}" /></svg>`; }
   function route() { const value = (location.hash || "#/today").replace(/^#\/?/, "").split("/")[0]; return value === "trust" ? "sources" : value || "today"; }
@@ -398,6 +398,50 @@
     ];
     if (!savedJobs.length) pages.push(`<section class="results-section"><div class="section-heading"><div><span>관심 보관함</span><h1>저장한 공고</h1></div></div><div class="empty"><p>아직 저장한 공고가 없습니다.</p><a class="plain-button" href="#/jobs">새 공고 탐색하기</a></div></section>`);
     main.innerHTML = pages.map((page, index) => pageFrame(page, index, pages.length, "저장과 비교")).join("");
+  }
+
+  const LIFESTYLE_STATUS_LABELS = {
+    confirmed: "\ud655\uc778\ub428",
+    claimed: "\uacf5\uace0 \uadfc\uac70 \uc788\uc74c",
+    unknown: "\uadfc\uac70 \ubd80\uc871",
+    negative: "\ubd80\uc815 \uc2e0\ud638",
+  };
+  function lifestyleDiscovery() { return state.data?.lifestyleDiscovery || null; }
+  function lifestyleItemById(id) { return lifestyleDiscovery()?.items?.find((item) => item.jobId === id) || null; }
+  function lifestyleStatus(status) {
+    const safe = Object.hasOwn(LIFESTYLE_STATUS_LABELS, status) ? status : "unknown";
+    return `<span class="lifestyle-status is-${safe}">${LIFESTYLE_STATUS_LABELS[safe]}</span>`;
+  }
+  function lifestyleAxis(axis, label) {
+    const value = axis || { status: "unknown", summary: "\uacf5\uac1c \uadfc\uac70\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.", evidence: [], missing: [] };
+    const evidence = (value.evidence || []).filter(Boolean).join(" · ");
+    return `<div class="lifestyle-axis"><div><b>${escapeHtml(label)}</b>${lifestyleStatus(value.status)}</div><p>${escapeHtml(value.summary || "\uc6d0\ubb38 \ud655\uc778 \ud544\uc694")}</p>${evidence ? `<small>${escapeHtml(evidence)}</small>` : ""}</div>`;
+  }
+  function lifestyleCard(item, laneKey) {
+    const axes = item.lifestyleEvidence?.axes || {};
+    const selected = laneKey === "busan"
+      ? [[axes.busanWorkplace, "\ubd80\uc0b0 \uadfc\ubb34\uc9c0"], [axes.wlb, "\uc6cc\ub77c\ubc38"]]
+      : [[axes.jayangCommute, "\uc790\uc591\ub3d9 \ud1b5\uadfc"], [axes.wlb, "\uc6cc\ub77c\ubc38"]];
+    const missing = [...new Set(selected.flatMap(([axis]) => axis?.missing || []).filter(Boolean))];
+    const job = jobById(item.jobId);
+    return `<article class="lifestyle-card"><div class="lifestyle-card-top"><div><small>${escapeHtml(item.company || job?.company || "\uae30\uad00 \uc6d0\ubb38 \ud655\uc778")}</small><h2>${escapeHtml(item.title || job?.title || "\uacf5\uace0 \uc6d0\ubb38 \ud655\uc778")}</h2><p>${escapeHtml(item.location || job?.location || "\uadfc\ubb34\uc9c0 \ubbf8\ud655\uc778")}</p></div>${lifestyleStatus(item.lifestyleEvidence?.lanes?.[laneKey])}</div><div class="lifestyle-axis-grid">${selected.map(([axis, label]) => lifestyleAxis(axis, label)).join("")}</div><div class="lifestyle-missing"><b>\ucd94\uac00\ub85c \ud655\uc778\ud560 \uc0ac\uc2e4</b><p>${escapeHtml(missing.join(" · ") || "\ucd94\uac00 \uacf5\uac1c \uadfc\uac70 \uc5c6\uc74c")}</p></div><button class="plain-button lifestyle-detail" type="button" data-open-job="${escapeHtml(item.jobId)}" ${job ? "" : "disabled"}>\uacf5\uace0 \uc0c1\uc138 \ubcf4\uae30</button></article>`;
+  }
+
+  function renderLifestyle() {
+    /* data-requirement-id="UX-234" */
+    const discovery = lifestyleDiscovery();
+    if (!discovery) {
+      main.innerHTML = pageFrame(`<section class="lifestyle-head"><p class="eyebrow">\uc0dd\ud65c \uc870\uac74</p><h1>\uadfc\ubb34\uc9c0\u00b7\uc6cc\ub77c\ubc38 \uadfc\uac70</h1><div class="empty"><p>\uc0c8 \uc2a4\ub0c5\uc0f7에 \uc0dd\ud65c \uc870\uac74 \uadfc\uac70가 \uc544직 \uc5c6\uc2b5\ub2c8\ub2e4.</p></div></section>`, 0, 1, "\uc0dd\ud65c \uc870\uac74");
+      return;
+    }
+    const laneKey = discovery.lanes?.[state.lifestyleLane] ? state.lifestyleLane : "jayang_wlb";
+    const lane = discovery.lanes?.[laneKey] || { label: "\uc0dd\ud65c \uc870\uac74", reviewIds: [], counts: {} };
+    const items = (lane.reviewIds || []).map(lifestyleItemById).filter(Boolean);
+    const groups = chunks(items, 3);
+    if (!groups.length) groups.push([]);
+    const counts = lane.counts || {};
+    const header = `<section class="lifestyle-head"><p class="eyebrow">\ucd94\ucc9c \uc810\uc218와 \ubd84\ub9ac\ub41c \ud310\ub2e8\uce35</p><h1>\uc0dd\ud65c \uc870\uac74으\ub85c \ub2e4\uc2dc \ubcf4\uae30</h1><p>\ubcf4\uc7a5 \ub300\uc2e0 \uacf5\uace0에 \uc801\ud78c \uadfc\ubb34\uc9c0와 \uadfc\ubb34\uc870\uac74 \uadfc\uac70\ub97c \ubd84\ub9ac\ud574 \ubcf4\uc5ec\ub4dc\ub9bd\ub2c8\ub2e4.</p><div class="lifestyle-lanes" role="tablist" aria-label="\uc0dd\ud65c \uc870\uac74 \ubcf4\uae30"><button class="lifestyle-lane ${laneKey === "jayang_wlb" ? "is-active" : ""}" type="button" role="tab" aria-selected="${laneKey === "jayang_wlb"}" data-lifestyle-lane="jayang_wlb">\uc790\uc591\ub3d9 \ud1b5\uadfc\u00b7\uc6cc\ub77c\ubc38</button><button class="lifestyle-lane ${laneKey === "busan" ? "is-active" : ""}" type="button" role="tab" aria-selected="${laneKey === "busan"}" data-lifestyle-lane="busan">\ubd80\uc0b0 \u00b7 \uc804 \uc9c1\uc885</button></div><div class="lifestyle-summary"><span>\ud655\uc778 ${counts.confirmed || 0}</span><span>\uacf5\uace0 \uadfc\uac70 ${counts.claimed || 0}</span><span>\uadfc\uac70 \ubd80\uc871 ${counts.unknown || 0}</span><span>\ubd80\uc815 \uc2e0\ud638 ${counts.negative || 0}</span></div><p class="lifestyle-boundary">${escapeHtml(discovery.universeLabel || "\ud604\uc7ac \uacf5\uac1c \uc218\uc9d1\ubcf8")} ${discovery.sourceJobCount || 0}\uac74 \uae30\uc900\uc785\ub2c8\ub2e4. \uc804\uccb4 \ucc44\uc6a9\uc2dc\uc7a5을 \ub73b\ud558지 \uc54a으\uba70 \ucd94\ucc9c \uc810\uc218에\ub294 \ubc18\uc601\ud558지 \uc54a습\ub2c8\ub2e4.</p></section>`;
+    main.innerHTML = groups.map((group, index) => pageFrame(`${index === 0 ? header : ""}<section class="lifestyle-results" aria-label="${escapeHtml(lane.label)}"><div class="results-meta"><span>${escapeHtml(lane.label)} ${group.length ? `${index * 3 + 1}\u2013${index * 3 + group.length}` : ""}</span><b>${items.length}\uac1c</b></div>${group.length ? group.map((item) => lifestyleCard(item, laneKey)).join("") : `<div class="empty"><p>\ud604\uc7ac \uc218\uc9d1\ubcf8에서 \ud655\uc778\ub41c \ud6c4\ubcf4가 0\uac74입\ub2c8\ub2e4.</p><small>\ucc44\uc6a9\uc2dc\uc7a5에 \uacf5\uace0가 \uc5c6다는 뜻은 아닙니다.</small></div>`}</section>`, index, groups.length, "\uc0dd\ud65c \uc870\uac74")).join("");
   }
 
   function studyRow(item, kind) {
@@ -916,7 +960,7 @@
   function resetFilters() { state.query = ""; state.sector = ""; state.queue = ""; state.jobMarket = "all"; saveFilters(); if (route() === "jobs") renderJobs(); }
   function updateNetwork() { offlineBanner.hidden = navigator.onLine; const asOf = state.data?.stats?.jobDataAsOf; snapshotLabel.textContent = navigator.onLine ? `공고 ${sourceDate(asOf)}` : "오프라인 스냅샷"; }
   function renderError() { main.innerHTML = `<section class="loading"><span>LOAD ERROR</span><b>자료를 열 수 없어요.</b><button class="plain-button" type="button" data-action="retry">다시 시도</button></section>`; }
-  function render(focus = true) { if (!state.data) return; closeDetail(false); window.scrollTo(0, 0); main.scrollTop = 0; const current = route(); setActiveTab(current); if (current === "today") renderToday(); else if (current === "jobs") renderJobs(); else if (current === "saved") renderSaved(); else if (current === "study") renderStudy(); else if (current === "sources") renderSources(); else { go("#/today"); return; } requestAnimationFrame(() => { window.scrollTo(0, 0); main.scrollTop = 0; if (focus) main.querySelector("h1")?.focus({ preventScroll: true }); }); }
+  function render(focus = true) { if (!state.data) return; closeDetail(false); window.scrollTo(0, 0); main.scrollTop = 0; const current = route(); setActiveTab(current); if (current === "today") renderToday(); else if (current === "jobs") renderJobs(); else if (current === "saved") renderSaved(); else if (current === "lifestyle") renderLifestyle(); else if (current === "study") renderStudy(); else if (current === "sources") renderSources(); else { go("#/today"); return; } requestAnimationFrame(() => { window.scrollTo(0, 0); main.scrollTop = 0; if (focus) main.querySelector("h1")?.focus({ preventScroll: true }); }); }
   function isSnapshot(data) { return Boolean(data && Array.isArray(data.jobs) && Array.isArray(data.programs) && Array.isArray(data.funding)); }
   function normalizeFilters() {
     const sectors = new Set(allJobSectors());
@@ -924,6 +968,7 @@
     if (!sectors.has(state.sector)) state.sector = "";
     if (!queues.has(state.queue)) state.queue = "";
     if (!["all", "domestic", "overseas", "unknown"].includes(state.jobMarket)) state.jobMarket = "all";
+    if (!["jayang_wlb", "busan"].includes(state.lifestyleLane)) state.lifestyleLane = "jayang_wlb";
     if (!["programs", "funding"].includes(state.studyMode)) state.studyMode = "programs";
     if (!["all", "domestic", "overseas", "unknown"].includes(state.studyMarket)) state.studyMarket = "all";
     if (!["all", "open", "prepare", "research"].includes(state.studyReadiness)) state.studyReadiness = "all";
@@ -985,7 +1030,7 @@
       .maybeSingle();
     if (error) throw error;
     if (!isSnapshot(data?.snapshot)) return;
-    const freshest = selectFreshestSnapshot(state.data, data.snapshot);
+    const freshest = await selectFreshestSnapshot(state.data, data.snapshot);
     if (freshest !== state.data) {
       store(LIVE_SNAPSHOT_STORAGE_KEY, freshest);
       setSnapshot(freshest);
@@ -1007,7 +1052,7 @@
         actualDigest: data?.preference_digest || null,
       });
     }
-    const completeSnapshot = selectFreshestSnapshot(state.data, data.snapshot);
+    const completeSnapshot = await selectFreshestSnapshot(state.data, data.snapshot);
     store(LIVE_SNAPSHOT_STORAGE_KEY, completeSnapshot);
     setSnapshot(completeSnapshot);
     return true;
@@ -1320,13 +1365,91 @@
     };
   }
 
-  function selectFreshestSnapshot(bundled, cached) {
+  function canonicalJSONString(value) {
+    if (Array.isArray(value)) return `[${value.map(canonicalJSONString).join(",")}]`;
+    if (value && typeof value === "object") {
+      return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${canonicalJSONString(value[key])}`).join(",")}}`;
+    }
+    return JSON.stringify(value);
+  }
+
+  async function sha256Hex(value) {
+    if (!window.crypto?.subtle) return null;
+    const bytes = new TextEncoder().encode(value);
+    const digest = await window.crypto.subtle.digest("SHA-256", bytes);
+    return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+  }
+
+  function lifestyleStructureMatches(snapshot) {
+    const discovery = snapshot?.lifestyleDiscovery;
+    const jobsInSnapshot = Array.isArray(snapshot?.jobs) ? snapshot.jobs : [];
+    if (
+      !discovery
+      || discovery.schemaVersion !== "lifestyle-evidence-v1"
+      || discovery.methodVersion !== "lifestyle-evidence-v1"
+      || discovery.scoreImpact !== "none"
+      || discovery.sourceJobCount !== jobsInSnapshot.length
+      || !Array.isArray(discovery.limitations)
+      || !discovery.limitations.length
+      || !Array.isArray(discovery.items)
+      || !/^[a-f0-9]{64}$/.test(String(discovery.digest || ""))
+    ) return false;
+    const laneKeys = Object.keys(discovery.lanes || {}).sort();
+    if (laneKeys.join(",") !== "busan,jayang_wlb") return false;
+    const validStatuses = new Set(["confirmed", "claimed", "unknown", "negative"]);
+    const jobIds = new Set(jobsInSnapshot.map((job) => String(job.id || "")).filter(Boolean));
+    const itemById = new Map();
+    for (const item of discovery.items) {
+      const jobId = String(item?.jobId || "");
+      const evidence = item?.lifestyleEvidence;
+      const axes = evidence?.axes;
+      const itemLanes = evidence?.lanes;
+      if (!jobId || !jobIds.has(jobId) || itemById.has(jobId)) return false;
+      if (Object.keys(axes || {}).sort().join(",") !== "busanWorkplace,jayangCommute,wlb") return false;
+      if (Object.keys(itemLanes || {}).sort().join(",") !== "busan,jayang_wlb") return false;
+      for (const axis of Object.values(axes)) {
+        if (!validStatuses.has(axis?.status) || typeof axis?.summary !== "string" || !Array.isArray(axis?.evidence) || !Array.isArray(axis?.missing)) return false;
+      }
+      if (Object.values(itemLanes).some((status) => !validStatuses.has(status))) return false;
+      itemById.set(jobId, item);
+    }
+    const reviewed = new Set();
+    for (const laneKey of laneKeys) {
+      const lane = discovery.lanes[laneKey];
+      const reviewIds = lane?.reviewIds;
+      const counts = lane?.counts;
+      if (!Array.isArray(reviewIds) || new Set(reviewIds).size !== reviewIds.length || !counts) return false;
+      for (const jobId of reviewIds) {
+        if (!itemById.has(jobId)) return false;
+        reviewed.add(jobId);
+      }
+      for (const status of validStatuses) {
+        const expected = reviewIds.filter((jobId) => itemById.get(jobId).lifestyleEvidence.lanes[laneKey] === status).length;
+        if (counts[status] !== expected) return false;
+      }
+      if ([...validStatuses].reduce((sum, status) => sum + counts[status], 0) !== reviewIds.length) return false;
+    }
+    return reviewed.size === itemById.size;
+  }
+
+  async function lifestyleLineageMatches(snapshot) {
+    if (!lifestyleStructureMatches(snapshot)) return false;
+    const digestSource = { ...snapshot.lifestyleDiscovery };
+    const actualDigest = digestSource.digest;
+    delete digestSource.digest;
+    return actualDigest === await sha256Hex(canonicalJSONString(digestSource));
+  }
+
+  async function selectFreshestSnapshot(bundled, cached) {
     /* data-requirement-id="DATA-207" data-requirement-id="DATA-226" data-requirement-id="DATA-228" */
-    if (!isSnapshot(cached)) return bundled;
     const bundledAt = Date.parse(bundled?.generatedAt || "");
-    const cachedAt = Date.parse(cached.generatedAt || "");
-    const freshest = Number.isFinite(cachedAt) && (!Number.isFinite(bundledAt) || cachedAt > bundledAt) ? cached : bundled;
-    return mergeGraduateEvidence(freshest, bundled);
+    const cachedAt = Date.parse(cached?.generatedAt || "");
+    const freshest = isSnapshot(cached) && Number.isFinite(cachedAt) && (!Number.isFinite(bundledAt) || cachedAt > bundledAt) ? cached : bundled;
+    const merged = mergeGraduateEvidence(freshest, bundled);
+    if (await lifestyleLineageMatches(merged)) return merged;
+    const withoutLifestyle = { ...merged };
+    delete withoutLifestyle.lifestyleDiscovery;
+    return withoutLifestyle;
   }
 
   async function load({ force = false } = {}) {
@@ -1335,7 +1458,7 @@
       const response = await fetch(url, { cache: force ? "no-store" : "reload" });
       if (!response.ok) throw new Error(response.status);
       const bundled = await response.json();
-      setSnapshot(selectFreshestSnapshot(bundled, readJSON(LIVE_SNAPSHOT_STORAGE_KEY, null)));
+      setSnapshot(await selectFreshestSnapshot(bundled, readJSON(LIVE_SNAPSHOT_STORAGE_KEY, null)));
     } catch (error) {
       console.error(error);
       snapshotLabel.textContent = "자료를 열 수 없음";
@@ -1352,6 +1475,7 @@
     const studyReadiness = event.target.closest("[data-study-readiness]"); if (studyReadiness) { state.studyReadiness = studyReadiness.dataset.studyReadiness; saveFilters(); renderStudy(); return; }
     const studyMarket = event.target.closest("[data-study-market]"); if (studyMarket) { state.studyMarket = studyMarket.dataset.studyMarket; saveFilters(); renderStudy(); return; }
     const studyFormat = event.target.closest("[data-study-format]"); if (studyFormat) { state.studyFormat = studyFormat.dataset.studyFormat; saveFilters(); renderStudy(); return; }
+    const lifestyleLane = event.target.closest("[data-lifestyle-lane]"); if (lifestyleLane) { state.lifestyleLane = lifestyleLane.dataset.lifestyleLane; saveFilters(); renderLifestyle(); return; }
     const studyDetailTab = event.target.closest("[data-study-detail-tab]");
     if (studyDetailTab) {
       const selected = studyDetailTab.dataset.studyDetailTab;

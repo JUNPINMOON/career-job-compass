@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-08-01T03:31:18.190705+00:00",
+  "generatedAt": "2026-08-01T19:48:55.426761+00:00",
   "dataAsOf": "2026-08-01",
   "snapshotBoundary": "공개 읽기용 스냅샷입니다. 공고·과정·장학금의 마감과 자격은 반드시 공식 원문에서 다시 확인하세요.",
   "jobEligibilityOverrides": {
@@ -58426,6 +58426,670 @@
     "unresearchedPrograms": 34
   },
   "releaseVersion": "decision-support-v2",
+  "lifestyleDiscovery": {
+    "schemaVersion": "lifestyle-evidence-v1",
+    "methodVersion": "lifestyle-evidence-v1",
+    "asOf": "2026-08-01",
+    "scoreImpact": "none",
+    "sourceJobCount": 212,
+    "universeLabel": "현재 공개 수집본의 지원 가능 공고",
+    "limitations": [
+      "전체 채용시장이 아니라 현재 공개 수집본입니다.",
+      "통근 소요 시간은 정확한 사무실·출근일·대중교통 검증 전까지 확정하지 않습니다.",
+      "원격·하이브리드나 복지 문구만으로 워라밸을 확정하지 않습니다.",
+      "생활 조건은 추천 점수에 반영하지 않습니다."
+    ],
+    "items": [
+      {
+        "jobId": "fc9ff5de2b35476e9308e280",
+        "title": "Graduate Engineer",
+        "company": "AtkinsRealis",
+        "location": "Seoul, South Korea",
+        "market": "domestic",
+        "source": "Atkins",
+        "url": "https://slihrms.wd3.myworkdayjobs.com/Careers/job/KR5-Seolleung-ro-93-gil/Graduate-Engineer_R-157475",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: Seoul, South Korea"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "3f0c83f9d31042a67b9a7e35",
+        "title": "2026년 유네스코한국위원회 정규직 신입직원 채용",
+        "company": "기관 원문 확인",
+        "location": "서울 중구 신입 대졸↑ 정규직 5,000 만원 공인회계사 , 학술연구 , 사업기획 , 전략기획 , 행사기획 외 수정일 26/07/14",
+        "market": "domestic",
+        "source": "Saramin",
+        "url": "https://www.saramin.co.kr/zf_user/jobs/relay/view?location=ts&rec_idx=54448776",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: 서울 중구 신입 대졸↑ 정규직 5,000 만원 공인회계사 , 학술연구 , 사업기획 , 전략기획 , 행사기획 외 수정일 26/07/14"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "1d925347bfcf9f721e5e8f44",
+        "title": "WBG Pioneer - Korea Green Growth Trust Fund (KGGTF) Interns",
+        "company": "World Bank Group",
+        "location": "Seoul, KR",
+        "market": "domestic",
+        "source": "World Bank",
+        "url": "https://worldbankgroup.csod.com/ux/ats/careersite/1/home/requisition/37705?c=worldbankgroup",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: Seoul, KR"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "9a278bf50972469b2e92e6a5",
+        "title": "PMO 사업관리 및 기술지원(BA, AA, DA, TA, QA) 채용",
+        "company": "(주)한국정보기술단",
+        "location": "서울 용산구",
+        "market": "domestic",
+        "source": "JobKorea",
+        "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49341836",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: 서울 용산구"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "81270497df9555024e3de336",
+        "title": "[이즈파크] 전자기장해석(CST) 기술지원 엔지니어 채용",
+        "company": "(주)이즈파크",
+        "location": "서울 승진 기회 2.3 잡코리아 지원",
+        "market": "domestic",
+        "source": "JobPlanet",
+        "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49665349",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: 서울 승진 기회 2.3 잡코리아 지원"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "45e2c0474667ffc831aaace9",
+        "title": "Machine Learning Engineer",
+        "company": "GOWARD",
+        "location": "대한민국 서울 (대면근무)",
+        "market": "domestic",
+        "source": "LinkedIn Jobs",
+        "url": "https://www.linkedin.com/jobs/view/4443189190",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: 대한민국 서울 (대면근무)"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "1cc4db8ff13cca32768c94f8",
+        "title": "[빅데이터/AI] Data Scientist, AI Engineer, FDE",
+        "company": "(주)엑셈",
+        "location": "서울 강서구",
+        "market": "domestic",
+        "source": "JobKorea",
+        "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49649759",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: 서울 강서구"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "981ed1d30bdfb5dddc1c3292",
+        "title": "Consultant, GVCM Pilot Project Development and Implementation Support",
+        "company": "GGGI",
+        "location": "Seoul Republic of Korea, HQ",
+        "market": "domestic",
+        "source": "GGGI",
+        "url": "https://careers.gggi.org/vacancy/consultant-gvcm-pilot-project-development-and-implementation-support-616697.html",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: Seoul Republic of Korea, HQ"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "65b5e2e1ca2b148400b85f00",
+        "title": "BIM(building information modelling)auditor-Talent pipeline",
+        "company": "BSI",
+        "location": "대한민국 (재택근무)",
+        "market": "domestic",
+        "source": "LinkedIn Jobs",
+        "url": "https://www.linkedin.com/jobs/view/4415296826",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: 대한민국 (재택근무)"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "66438dc0cb316ac923095edd",
+        "title": "컴퓨터비전 AI 개발 엔지니어 (Computer Vision Research Engineer, Backend Developer)",
+        "company": "Inshorts.ai",
+        "location": "대한민국 서울 (대면근무)",
+        "market": "domestic",
+        "source": "LinkedIn Jobs",
+        "url": "https://www.linkedin.com/jobs/view/4416185086",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: 대한민국 서울 (대면근무)"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "b99be26a9e570198c9d42bf7",
+        "title": "제조/공공 부문 AX 솔루션 - 풀스택 / 백엔드 개발자",
+        "company": "엑센솔루션",
+        "location": "서울 금천구",
+        "market": "domestic",
+        "source": "JobKorea",
+        "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49351411",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: 서울 금천구"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "bc0a089136e9737a2005a654",
+        "title": "소프트웨어/통합 플랫폼 백엔드 개발자 모집",
+        "company": "한국아이오티기술원",
+        "location": "서울 금천구",
+        "market": "domestic",
+        "source": "JobKorea",
+        "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/49585247",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: 서울 금천구"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      },
+      {
+        "jobId": "3c3cec9f2933cb274dfeb42f",
+        "title": "Customer Success Manager (D&I - South Korea)",
+        "company": "Planet",
+        "location": "South Korea, Remote",
+        "market": "domestic",
+        "source": "Planet Labs",
+        "url": "https://job-boards.greenhouse.io/planetlabs/jobs/7772699",
+        "lifestyleEvidence": {
+          "axes": {
+            "jayangCommute": {
+              "status": "claimed",
+              "summary": "공개 근무지로 자양동 통근 후보에 포함했지만 실제 소요 시간은 미확인입니다.",
+              "evidence": [
+                "공개 근무지: South Korea, Remote"
+              ],
+              "missing": [
+                "정확한 사무실 주소",
+                "주간 출근 횟수",
+                "출퇴근 대중교통 소요 시간"
+              ]
+            },
+            "wlb": {
+              "status": "unknown",
+              "summary": "공개 공고만으로는 워라밸을 판단할 근거가 없습니다.",
+              "evidence": [],
+              "missing": [
+                "주당 근무시간",
+                "초과근무·야간·주말 근무",
+                "유연근무·휴가 실제 운영"
+              ]
+            },
+            "busanWorkplace": {
+              "status": "unknown",
+              "summary": "공개 근무지에 부산이 명시되지 않았습니다.",
+              "evidence": [],
+              "missing": [
+                "부산 실제 근무지 여부"
+              ]
+            }
+          },
+          "lanes": {
+            "jayang_wlb": "unknown",
+            "busan": "unknown"
+          }
+        }
+      }
+    ],
+    "lanes": {
+      "jayang_wlb": {
+        "label": "자양동 통근·워라밸",
+        "reviewIds": [
+          "fc9ff5de2b35476e9308e280",
+          "3f0c83f9d31042a67b9a7e35",
+          "1d925347bfcf9f721e5e8f44",
+          "9a278bf50972469b2e92e6a5",
+          "81270497df9555024e3de336",
+          "45e2c0474667ffc831aaace9",
+          "1cc4db8ff13cca32768c94f8",
+          "981ed1d30bdfb5dddc1c3292",
+          "65b5e2e1ca2b148400b85f00",
+          "66438dc0cb316ac923095edd",
+          "b99be26a9e570198c9d42bf7",
+          "bc0a089136e9737a2005a654",
+          "3c3cec9f2933cb274dfeb42f"
+        ],
+        "counts": {
+          "claimed": 0,
+          "confirmed": 0,
+          "negative": 0,
+          "unknown": 13
+        }
+      },
+      "busan": {
+        "label": "부산 · 전 직종",
+        "reviewIds": [],
+        "counts": {
+          "claimed": 0,
+          "confirmed": 0,
+          "negative": 0,
+          "unknown": 0
+        }
+      }
+    },
+    "digest": "9775bd82bbd1b3875bc6b8fef214e4bf550daac24814d370ba584a8ce49301dc"
+  },
   "graduateDataLineage": {
     "producer": "career-job-compass/scripts/build_snapshot.py",
     "artifact": "data/app-data.json",

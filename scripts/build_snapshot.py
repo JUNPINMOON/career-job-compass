@@ -13,6 +13,21 @@ from typing import Any, Callable, Mapping
 
 IHE_DELFT = "IHE Delft Institute for Water Education"
 MINIMUM_EXPERIENCE_EXCLUSION_YEARS = 2
+LIFESTYLE_METHOD_VERSION = "lifestyle-evidence-v1"
+LIFESTYLE_STATUSES = frozenset({"confirmed", "claimed", "unknown", "negative"})
+REMOTE_LOCATION_PATTERN = re.compile(
+    r"(?i)(^|[,(/])\s*remote(?:\s*[,)/]|$)|hybrid|\uc7ac\ud0dd\uadfc\ubb34|\uc7ac\ud0dd\ub300\uba74\ud63c\ud569\uadfc\ubb34"
+)
+SEOUL_LOCATION_PATTERN = re.compile(r"(?i)\uc11c\uc6b8|seoul")
+BUSAN_LOCATION_PATTERN = re.compile(r"(?i)\ubd80\uc0b0|busan")
+WLB_NEGATIVE_PATTERN = re.compile(
+    r"(?i)\uc57c\uac04|\uad50\ub300|\uc8fc\ub9d0\s*(?:\uadfc\ubb34|\ub2f9\uc9c1)|\ub2f9\uc9c1|\uc628\ucf5c|on[- ]?call|night shift|"
+    r"rotating shift|weekend shift|frequent travel|\uc78a\uc740 \ucd9c\uc7a5|\ud604\uc7a5 \uc0c1\uc8fc|\ud604\uc7a5 \ud30c\uacac"
+)
+WLB_POSITIVE_PATTERN = re.compile(
+    r"(?i)\uc6cc\ub77c\ubc38|\uc720\uc5f0\uadfc\ubb34|\ud0c4\ub825\uadfc\ubb34|\uc120\ud0dd\uadfc\ubb34|\uc2dc\ucc28\ucd9c\ud1f4\uadfc|"
+    r"\uc8fc\s*4\.5\uc77c|\uc815\uc2dc\ud1f4\uadfc|flexible hours|flexitime|compressed workweek|no overtime"
+)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -551,6 +566,180 @@ def _apply_decision_support(payload: dict[str, Any]) -> None:
     payload["releaseVersion"] = "decision-support-v2"
 
 
+def _lifestyle_axis(
+    status: str,
+    summary: str,
+    evidence: list[str],
+    missing: list[str],
+) -> dict[str, Any]:
+    if status not in LIFESTYLE_STATUSES:
+        raise ValueError(f"unsupported lifestyle status: {status}")
+    return {
+        "status": status,
+        "summary": summary,
+        "evidence": evidence,
+        "missing": missing,
+    }
+
+
+def _wlb_axis(job: Mapping[str, Any]) -> dict[str, Any]:
+    condition_fields = {
+        key: job.get(key)
+        for key in ("requirements", "checks", "risks", "nextAction", "decisionSupport")
+        if job.get(key)
+    }
+    condition_text = json.dumps(condition_fields, ensure_ascii=False, sort_keys=True)
+    negative_match = WLB_NEGATIVE_PATTERN.search(condition_text)
+    if negative_match:
+        return _lifestyle_axis(
+            "negative",
+            "\uc57c\uac04\u00b7\uad50\ub300\u00b7\uc8fc\ub9d0\u00b7\ub2f9\uc9c1\u00b7\ucd9c\uc7a5 \uc911 \ubd80\uc815 \uadfc\ubb34 \uc2e0\ud638\uac00 \uba85\uc2dc\ub410\uc2b5\ub2c8\ub2e4.",
+            [f"\uba85\uc2dc \uc2e0\ud638: {negative_match.group(0)}"],
+            ["\uc2e4\uc81c \uadfc\ubb34\ud45c\uc640 \ud300 \ub2e8\uc704 \ucd08\uacfc\uadfc\ubb34 \ud604\ud669"],
+        )
+    positive_match = WLB_POSITIVE_PATTERN.search(condition_text)
+    if positive_match:
+        return _lifestyle_axis(
+            "claimed",
+            "\uacf5\uace0\uc5d0 \uc720\uc5f0\uadfc\ubb34\u00b7\uc815\uc2dc\ud1f4\uadfc \ub4f1 \uc0dd\ud65c \uc870\uac74 \uc2e0\ud638\uac00 \uba85\uc2dc\ub410\uc2b5\ub2c8\ub2e4.",
+            [f"\uba85\uc2dc \uc2e0\ud638: {positive_match.group(0)}"],
+            ["\ud300\ubcc4 \uc2e4\uc81c \uc801\uc6a9 \uc5ec\ubd80", "\ud3c9\uade0 \ucd08\uacfc\uadfc\ubb34\u00b7\ud734\uac00 \uc0ac\uc6a9 \ud604\ud669"],
+        )
+    return _lifestyle_axis(
+        "unknown",
+        "\uacf5\uac1c \uacf5\uace0\ub9cc\uc73c\ub85c\ub294 \uc6cc\ub77c\ubc38\uc744 \ud310\ub2e8\ud560 \uadfc\uac70\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.",
+        [],
+        ["\uc8fc\ub2f9 \uadfc\ubb34\uc2dc\uac04", "\ucd08\uacfc\uadfc\ubb34\u00b7\uc57c\uac04\u00b7\uc8fc\ub9d0 \uadfc\ubb34", "\uc720\uc5f0\uadfc\ubb34\u00b7\ud734\uac00 \uc2e4\uc81c \uc6b4\uc601"],
+    )
+
+
+def _combined_lifestyle_status(commute_status: str, wlb_status: str) -> str:
+    if "negative" in {commute_status, wlb_status}:
+        return "negative"
+    if commute_status == "confirmed" and wlb_status == "confirmed":
+        return "confirmed"
+    if commute_status in {"confirmed", "claimed"} and wlb_status in {"confirmed", "claimed"}:
+        return "claimed"
+    return "unknown"
+
+
+def _lifestyle_counts(rows: list[tuple[str, str]]) -> dict[str, int]:
+    return {status: sum(1 for _, value in rows if value == status) for status in sorted(LIFESTYLE_STATUSES)}
+
+
+def _apply_lifestyle_discovery(payload: dict[str, Any]) -> None:
+    """Build a separate evidence layer without changing jobs or recommendation scores."""
+    jobs = payload.get("jobs") or []
+    jobs_before = json.dumps(jobs, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    items: list[dict[str, Any]] = []
+    jayang_rows: list[tuple[str, str]] = []
+    busan_rows: list[tuple[str, str]] = []
+
+    for job in jobs:
+        job_id = str(job.get("id") or "").strip()
+        location = str(job.get("location") or "").strip()
+        market = str(job.get("market") or "unknown")
+        is_domestic = market == "domestic"
+        is_seoul = bool(SEOUL_LOCATION_PATTERN.search(location))
+        is_remote_location = bool(REMOTE_LOCATION_PATTERN.search(location))
+        is_busan = bool(BUSAN_LOCATION_PATTERN.search(location))
+        is_jayang_candidate = is_domestic and (is_seoul or is_remote_location)
+        is_busan_candidate = is_domestic and is_busan
+        if not job_id or not (is_jayang_candidate or is_busan_candidate):
+            continue
+
+        if is_jayang_candidate:
+            commute_axis = _lifestyle_axis(
+                "claimed",
+                "\uacf5\uac1c \uadfc\ubb34\uc9c0\ub85c \uc790\uc591\ub3d9 \ud1b5\uadfc \ud6c4\ubcf4\uc5d0 \ud3ec\ud568\ud588\uc9c0\ub9cc \uc2e4\uc81c \uc18c\uc694 \uc2dc\uac04\uc740 \ubbf8\ud655\uc778\uc785\ub2c8\ub2e4.",
+                [f"\uacf5\uac1c \uadfc\ubb34\uc9c0: {location or 'location not stated'}"],
+                ["\uc815\ud655\ud55c \uc0ac\ubb34\uc2e4 \uc8fc\uc18c", "\uc8fc\uac04 \ucd9c\uadfc \ud69f\uc218", "\ucd9c\ud1f4\uadfc \ub300\uc911\uad50\ud1b5 \uc18c\uc694 \uc2dc\uac04"],
+            )
+        else:
+            commute_axis = _lifestyle_axis(
+                "unknown",
+                "\uc790\uc591\ub3d9 \ud1b5\uadfc \ud6c4\ubcf4\ub85c \ubd84\ub958\ud560 \uadfc\uac70\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.",
+                [],
+                ["\uc815\ud655\ud55c \uadfc\ubb34\uc9c0", "\ucd9c\ud1f4\uadfc \uc18c\uc694 \uc2dc\uac04"],
+            )
+
+        wlb_axis = _wlb_axis(job)
+        if is_busan_candidate:
+            busan_axis = _lifestyle_axis(
+                "confirmed",
+                "\uacf5\uace0\uc758 \uadfc\ubb34\uc9c0 \ud544\ub4dc\uc5d0 \ubd80\uc0b0\uc774 \uba85\uc2dc\ub410\uc2b5\ub2c8\ub2e4.",
+                [f"\uacf5\uac1c \uadfc\ubb34\uc9c0: {location}"],
+                ["\uc815\ud655\ud55c \uc0ac\ubb34\uc2e4 \uc8fc\uc18c", "\ud558\uc774\ube0c\ub9ac\ub4dc\u00b7\uc678\uadfc \ube44\uc911"],
+            )
+        else:
+            busan_axis = _lifestyle_axis(
+                "unknown",
+                "\uacf5\uac1c \uadfc\ubb34\uc9c0\uc5d0 \ubd80\uc0b0\uc774 \uba85\uc2dc\ub418\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4.",
+                [],
+                ["\ubd80\uc0b0 \uc2e4\uc81c \uadfc\ubb34\uc9c0 \uc5ec\ubd80"],
+            )
+
+        jayang_status = _combined_lifestyle_status(commute_axis["status"], wlb_axis["status"])
+        busan_status = busan_axis["status"]
+        if is_jayang_candidate:
+            jayang_rows.append((job_id, jayang_status))
+        if is_busan_candidate:
+            busan_rows.append((job_id, busan_status))
+        items.append(
+            {
+                "jobId": job_id,
+                "title": str(job.get("title") or ""),
+                "company": str(job.get("company") or job.get("employer") or ""),
+                "location": location,
+                "market": market,
+                "source": str(job.get("source") or ""),
+                "url": str(job.get("url") or ""),
+                "lifestyleEvidence": {
+                    "axes": {
+                        "jayangCommute": commute_axis,
+                        "wlb": wlb_axis,
+                        "busanWorkplace": busan_axis,
+                    },
+                    "lanes": {"jayang_wlb": jayang_status, "busan": busan_status},
+                },
+            }
+        )
+
+    discovery = {
+        "schemaVersion": LIFESTYLE_METHOD_VERSION,
+        "methodVersion": LIFESTYLE_METHOD_VERSION,
+        "asOf": str(payload.get("dataAsOf") or payload.get("generatedAt") or ""),
+        "scoreImpact": "none",
+        "sourceJobCount": len(jobs),
+        "universeLabel": "\ud604\uc7ac \uacf5\uac1c \uc218\uc9d1\ubcf8\uc758 \uc9c0\uc6d0 \uac00\ub2a5 \uacf5\uace0",
+        "limitations": [
+            "\uc804\uccb4 \ucc44\uc6a9\uc2dc\uc7a5\uc774 \uc544\ub2c8\ub77c \ud604\uc7ac \uacf5\uac1c \uc218\uc9d1\ubcf8\uc785\ub2c8\ub2e4.",
+            "\ud1b5\uadfc \uc18c\uc694 \uc2dc\uac04\uc740 \uc815\ud655\ud55c \uc0ac\ubb34\uc2e4\u00b7\ucd9c\uadfc\uc77c\u00b7\ub300\uc911\uad50\ud1b5 \uac80\uc99d \uc804\uae4c\uc9c0 \ud655\uc815\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
+            "\uc6d0\uaca9\u00b7\ud558\uc774\ube0c\ub9ac\ub4dc\ub098 \ubcf5\uc9c0 \ubb38\uad6c\ub9cc\uc73c\ub85c \uc6cc\ub77c\ubc38\uc744 \ud655\uc815\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
+            "\uc0dd\ud65c \uc870\uac74\uc740 \ucd94\ucc9c \uc810\uc218\uc5d0 \ubc18\uc601\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
+        ],
+        "items": items,
+        "lanes": {
+            "jayang_wlb": {
+                "label": "\uc790\uc591\ub3d9 \ud1b5\uadfc\u00b7\uc6cc\ub77c\ubc38",
+                "reviewIds": [job_id for job_id, _ in jayang_rows],
+                "counts": _lifestyle_counts(jayang_rows),
+            },
+            "busan": {
+                "label": "\ubd80\uc0b0 \u00b7 \uc804 \uc9c1\uc885",
+                "reviewIds": [job_id for job_id, _ in busan_rows],
+                "counts": _lifestyle_counts(busan_rows),
+            },
+        },
+    }
+    digest_payload = json.dumps(discovery, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    discovery["digest"] = hashlib.sha256(digest_payload.encode("utf-8")).hexdigest()
+    payload["lifestyleDiscovery"] = discovery
+    jobs_after = json.dumps(jobs, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    if jobs_before != jobs_after:
+        raise AssertionError("lifestyle discovery must not mutate jobs or recommendation scores")
+
+
 def _apply_public_eligibility(
     job_slice: dict[str, Any],
     overrides: dict[str, Any],
@@ -673,6 +862,7 @@ def main() -> None:
         payload["stats"] = stats
         payload["graduateEvidenceCoverage"] = _graduate_evidence_coverage(payload["programs"])
         _apply_decision_support(payload)
+        _apply_lifestyle_discovery(payload)
         payload["graduateDataLineage"] = _graduate_data_lineage(payload)
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -716,6 +906,7 @@ def main() -> None:
         }
     )
     _apply_decision_support(payload)
+    _apply_lifestyle_discovery(payload)
     payload["graduateDataLineage"] = _graduate_data_lineage(payload)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(

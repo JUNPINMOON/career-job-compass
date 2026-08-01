@@ -11,6 +11,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+LIFESTYLE_METHOD_VERSION = "lifestyle-evidence-v1"
+LIFESTYLE_STATUSES = {"confirmed", "claimed", "unknown", "negative"}
+LIFESTYLE_LANES = {"jayang_wlb", "busan"}
 
 
 def require(path: Path, label: str) -> None:
@@ -77,6 +80,91 @@ def contains_non_contract_research(value: object) -> bool:
     return isinstance(value, str) and any(marker in value.lower() for marker in markers)
 
 
+def validate_lifestyle_discovery(snapshot: dict, jobs: list[dict]) -> None:
+    """DATA-240: verify the separate lifestyleEvidence contract at release."""
+    discovery = snapshot.get("lifestyleDiscovery")
+    if not isinstance(discovery, dict):
+        raise SystemExit("snapshot must include lifestyleDiscovery")
+    if discovery.get("schemaVersion") != LIFESTYLE_METHOD_VERSION:
+        raise SystemExit("lifestyleDiscovery schemaVersion mismatch")
+    if discovery.get("methodVersion") != LIFESTYLE_METHOD_VERSION:
+        raise SystemExit("lifestyleDiscovery methodVersion mismatch")
+    if discovery.get("scoreImpact") != "none":
+        raise SystemExit("lifestyleDiscovery must not affect recommendation scores")
+    if discovery.get("sourceJobCount") != len(jobs):
+        raise SystemExit("lifestyleDiscovery sourceJobCount must match released jobs")
+    if not isinstance(discovery.get("limitations"), list) or not discovery["limitations"]:
+        raise SystemExit("lifestyleDiscovery must disclose limitations")
+
+    digest_source = dict(discovery)
+    actual_digest = digest_source.pop("digest", None)
+    expected_digest = hashlib.sha256(
+        json.dumps(digest_source, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    if actual_digest != expected_digest:
+        raise SystemExit("lifestyleDiscovery digest mismatch")
+
+    items = discovery.get("items")
+    lanes = discovery.get("lanes")
+    if not isinstance(items, list) or not isinstance(lanes, dict) or set(lanes) != LIFESTYLE_LANES:
+        raise SystemExit("lifestyleDiscovery must include both supported lanes")
+    job_ids = {str(job.get("id") or "") for job in jobs}
+    item_by_id: dict[str, dict] = {}
+    for item in items:
+        if not isinstance(item, dict):
+            raise SystemExit("lifestyleDiscovery items must be objects")
+        job_id = str(item.get("jobId") or "")
+        if not job_id or job_id not in job_ids or job_id in item_by_id:
+            raise SystemExit("lifestyleDiscovery item IDs must be unique released job IDs")
+        lifestyle_evidence = item.get("lifestyleEvidence")
+        if not isinstance(lifestyle_evidence, dict):
+            raise SystemExit("lifestyleDiscovery item missing lifestyleEvidence")
+        axes = lifestyle_evidence.get("axes")
+        item_lanes = lifestyle_evidence.get("lanes")
+        if not isinstance(axes, dict) or set(axes) != {"jayangCommute", "wlb", "busanWorkplace"}:
+            raise SystemExit("lifestyleEvidence must separate commute, WLB, and Busan axes")
+        if not isinstance(item_lanes, dict) or set(item_lanes) != LIFESTYLE_LANES:
+            raise SystemExit("lifestyleEvidence must expose both lane statuses")
+        for axis in axes.values():
+            if (
+                not isinstance(axis, dict)
+                or axis.get("status") not in LIFESTYLE_STATUSES
+                or not isinstance(axis.get("summary"), str)
+                or not isinstance(axis.get("evidence"), list)
+                or not isinstance(axis.get("missing"), list)
+            ):
+                raise SystemExit("invalid lifestyleEvidence axis")
+        if set(item_lanes.values()) - LIFESTYLE_STATUSES:
+            raise SystemExit("invalid lifestyleEvidence lane status")
+        item_by_id[job_id] = item
+
+    reviewed_ids: set[str] = set()
+    for lane_name, lane in lanes.items():
+        if not isinstance(lane, dict):
+            raise SystemExit("lifestyleDiscovery lane must be an object")
+        review_ids = lane.get("reviewIds")
+        counts = lane.get("counts")
+        if not isinstance(review_ids, list) or len(review_ids) != len(set(review_ids)):
+            raise SystemExit("lifestyleDiscovery lane reviewIds must be unique")
+        if not isinstance(counts, dict) or set(counts) != LIFESTYLE_STATUSES:
+            raise SystemExit("lifestyleDiscovery lane counts must cover every status")
+        if any(job_id not in item_by_id for job_id in review_ids):
+            raise SystemExit("lifestyleDiscovery lane references an unknown item")
+        expected_counts = {
+            status: sum(
+                1
+                for job_id in review_ids
+                if item_by_id[job_id]["lifestyleEvidence"]["lanes"][lane_name] == status
+            )
+            for status in LIFESTYLE_STATUSES
+        }
+        if counts != expected_counts or sum(counts.values()) != len(review_ids):
+            raise SystemExit("lifestyleDiscovery lane counts do not match reviewIds")
+        reviewed_ids.update(review_ids)
+    if reviewed_ids != set(item_by_id):
+        raise SystemExit("lifestyleDiscovery items must equal the union of lane reviewIds")
+
+
 def main() -> None:
     requirement_check = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "check_requirements.py"), "--root", str(ROOT)],
@@ -126,6 +214,7 @@ def main() -> None:
         raise SystemExit("snapshot must declare decision-support-v2")
     if not isinstance(jobs, list) or not jobs:
         raise SystemExit("snapshot must contain title-grounded job exploration or action candidates")
+    validate_lifestyle_discovery(snapshot, jobs)
     sectors = snapshot.get("sectors")
     if not isinstance(sectors, list) or len(sectors) != 20:
         raise SystemExit("snapshot must preserve the 20-sector job inventory")
