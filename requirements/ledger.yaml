@@ -749,6 +749,160 @@
       "title": "Installed mobile clients invalidate the lifestyle evidence release",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v48-lifestyle-evidence", "career-compass-v47-legacy-feedback-normalization"]},
       "note": "Open iPhones must replace the five-tab shell and load the new evidence contract."
+    },
+    {
+      "id": "DATA-241",
+      "status": "active",
+      "title": "Lifestyle discovery searches the full posting-facts artifact and publishes reconstructable source lineage",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-241", "sourceArtifactDigest", "sourcePostingCount", "sourceRelevantPostingCount", "searchState"]},
+      "note": "Measured before implementation on 2026-08-02: lifestyle discovery searched only the 212 released recommendation cards although the current posting-facts artifact contained 14,766 canonical postings and 7,075 relevant unique postings. The separate lifestyle layer must search that full artifact and disclose exactly which artifact and counts it used."
+    },
+    {
+      "id": "DATA-242",
+      "status": "active",
+      "title": "Lifestyle lanes expose independent axis coverage instead of hiding partial evidence behind one unknown status",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-242", "axisCounts", "matchedCount", "searchedAt", "decisionReadiness"]},
+      "note": "Measured before implementation on 2026-08-02: all 13 Jayang candidates were summarized as unknown even though every row carried a claimed Seoul or remote commute axis. Commute, WLB, and decision-readiness coverage must remain separately countable."
+    },
+    {
+      "id": "UX-235",
+      "status": "active",
+      "title": "Mobile lifestyle pages distinguish searched zero, not searched, partial evidence, and non-recommendation source links",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-235\"", "searchState", "axisCounts", "data-open-lifestyle-url", "부분 근거"]},
+      "note": "A zero in the current recommendation slice is not a market finding, and a lifestyle match need not be one of the 212 recommendation cards. The iPhone view must show the searched universe and open the captured source URL even when no recommendation detail card exists."
+    },
+    {
+      "id": "GOV-230",
+      "status": "active",
+      "title": "Snapshot builds fail closed when run from a stale copy or pointed at a noncanonical output",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["GOV-230", "assert_active_repository", "JUNPINMOON/career-job-compass.git", "canonical output"]},
+      "note": "During the 2026-08-02 challenge review, one session inspected a stale workspace copy and falsely concluded that the live lifestyle route did not exist. The producer must bind itself to the active git repository and canonical data/app-data.json output without hardcoding a user-specific absolute path."
+    },
+    {
+      "id": "GOV-231",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the full-universe lifestyle lineage release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v49-lifestyle-lineage", "career-compass-v48-lifestyle-evidence"]},
+      "note": "The iPhone app must replace the v48 shell and consume the full-universe lineage, independent axis coverage, and direct-source interaction."
+    },
+    {
+      "id": "DATA-243",
+      "status": "active",
+      "title": "Lifestyle discovery separates raw location hits from strict review candidates and verified recommendations",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-243", "candidateFilter", "filterCounts", "strictLocation", "statusRecheck", "verifiedOpen"]},
+      "note": "Measured before implementation on 2026-08-02: broad substring matching published 716 rows although all 716 had unknown current status and none had positive WLB evidence. The public layer must expose its full funnel, publish only strict location plus relevant-domain plus attainable-role candidates, and label unknown-status rows as recheck candidates rather than recommendations."
+    },
+    {
+      "id": "UX-236",
+      "status": "active",
+      "title": "Mobile lifestyle UI explains zero verified recommendations and the strict candidate funnel",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-236\"", "확정 추천", "재확인 필요 후보", "원천 위치 일치", "엄격 후보"]},
+      "note": "The iPhone view must not present unknown-status location matches as recommendations; it must show source-universe, broad location, strict location, role-fit, attainable, recheck, and verified-open counts in plain language."
+    },
+    {
+      "id": "GOV-232",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the strict lifestyle candidate release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v50-lifestyle-candidates", "career-compass-v49-lifestyle-lineage"]},
+      "note": "Already-open iPhones must replace the v49 shell so the 716-row raw pool cannot remain visible as a recommendation-like list."
+    },
+    {
+      "id": "DATA-244",
+      "status": "active",
+      "title": "Exact feedback overrides are shown as user labels rather than fabricated score arithmetic",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-244\"", "exact_feedback_override", "직접 분류 기록", "유사도 점수가 아닙니다"]},
+      "note": "Measured on 2026-08-02: exact liked and disliked records were forced to +100 or -100 after component calculation, while the detail panel falsely displayed those override values as the result of component arithmetic."
+    },
+    {
+      "id": "UX-237",
+      "status": "active",
+      "title": "Exploration-only results identify themselves as deterministic similarity retrieval",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-237\"", "soft_similarity_only", "유사도 기반 탐색", "지원 추천이 아닙니다"]},
+      "note": "The current snapshot has zero actionable candidates and no calibrated outcome labels. Its deterministic feedback similarity ranker must abstain from claiming a learned or application-ready personal recommendation."
+    },
+    {
+      "id": "UX-238",
+      "status": "active",
+      "title": "Mobile copy does not overstate similarity-ranked inventory as personalized recommendations",
+      "assert": {"type": "text_absent", "path": "app.js", "needles": ["내 피드백으로 찾은 새 후보", "개인화 새 추천", "개인화 추천"]},
+      "note": "Archive and current-data review found that similarity retrieval, evidence verification, and decision-ready recommendations were being described with the same language."
+    },
+    {
+      "id": "GOV-233",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the recommendation-truth release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v52-recommendation-truth", "career-compass-v51-lifestyle-truth-labels"]},
+      "note": "Already-open iPhones must replace the v51 shell so false score equations and overstated personalization labels cannot remain cached."
+    },
+    {
+      "id": "DATA-245",
+      "status": "active",
+      "title": "Snapshot feedback remains excluded from new candidates and visible in Saved when local storage is empty",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-245\"", "function effectivePreferenceFor", "exactFeedbackOverride", "recommendationJobs", "renderSaved"]},
+      "note": "Measured with a clean iPhone-sized browser on 2026-08-02: AtkinsRealis carried an embedded exact liked override but reappeared on Today because exclusion read only localStorage. Snapshot-carried direct labels must participate in exclusion and Saved rendering without being misrepresented as similarity."
+    },
+    {
+      "id": "DATA-246",
+      "status": "active",
+      "title": "Every liked preference remains in a separate privacy-safe saved archive after active inventory churn",
+      "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["DATA-246", "savedJobs", "archivedFromPreference", "저장한 공고 정보 복구 필요"]},
+      "note": "Measured before implementation on 2026-08-02: preferenceSummary reported 10 liked rows, while the clean iPhone-sized Saved tab displayed only 6 because four liked postings had left the 212-row active inventory. Saved history must be generated from every authenticated liked row, merge current records when available, preserve disappeared records from the privacy-safe job snapshot, and disclose the one row whose saved snapshot is empty."
+    },
+    {
+      "id": "UX-239",
+      "status": "active",
+      "title": "Saved reads the complete saved archive and opens archived records without putting them back into recommendations",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-239\"", "function savedJobs", "state.data?.savedJobs", "저장한 공고 정보 복구 필요"]},
+      "note": "The Saved tab is a durable user archive, not a filtered view of today's candidate inventory. The mobile app must render all liked archive records, search them for details, and keep the active recommendation candidate set separate."
+    },
+    {
+      "id": "DATA-247",
+      "status": "active",
+      "title": "The active public snapshot builder carries savedJobs from the engine slice into the file read by the mobile app",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-247", "\"savedJobs\": job_slice[\"savedJobs\"]"]},
+      "note": "Measured on 2026-08-02 after the engine produced all 10 liked records: career-job-compass/data/app-data.json still omitted savedJobs because the final payload assembly copied jobs and reviewQueue but not the new archive collection. This is the producer-to-reader path mismatch Pin repeatedly warned about."
+    },
+    {
+      "id": "UX-240",
+      "status": "active",
+      "title": "Mobile refresh separates PROCESS PHASE, GATE, and bounded LOOP state without optimistic execution claims",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-240\"", "currentPhase", "lastGate", "loopPolicy", "요청 접수", "PHASE", "GATE", "LOOP"]},
+      "note": "Measured before implementation on 2026-08-02: the iPhone monitor collapsed phase execution, gate validation, and polling/retry into one estimated percentage, and refreshEngine rendered running before Supabase had accepted the request. The UI must distinguish queued, running, gate-blocked, bounded retry, and terminal outcomes from worker-published state."
+    },
+    {
+      "id": "GOV-234",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the phase-gate-loop refresh monitor release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v53-phase-gate-loop", "career-compass-v52-recommendation-truth"]},
+      "note": "Already-open iPhones must replace the v52 shell so the old optimistic running state and undifferentiated progress monitor cannot remain cached."
+    },
+    {
+      "id": "UX-241",
+      "status": "active",
+      "title": "Mobile refresh monitor restores the last safe request state before polling resolves",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-241\"", "REFRESH_STATUS_STORAGE_KEY", "restoreRefreshMonitorFromStorage", "store(REFRESH_STATUS_STORAGE_KEY", "추천 요청 접수"]},
+      "note": "Measured with an iPhone-sized browser on 2026-08-02: a queued request watch flag could survive reload, but the process/gate/loop monitor stayed hidden until Supabase polling returned. The mobile shell must restore the last browser-safe status immediately, then replace it with the live run or a connection-failed status."
+    },
+    {
+      "id": "GOV-235",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the refresh status restore release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v54-refresh-status-restore", "career-compass-v53-phase-gate-loop"]},
+      "note": "Already-open iPhones must replace the v53 shell so the restored process/gate/loop monitor is available after reloads and network reconnection."
+    },
+    {
+      "id": "DATA-248",
+      "status": "active",
+      "title": "The unauthenticated GitHub Pages snapshot contains no personal preference archive or scoring trace",
+      "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["DATA-248", "validate_public_privacy_boundary", "public snapshot contains authenticated preference data"]},
+      "note": "Measured on 2026-08-02: the static producer and the authenticated Supabase publisher shared one bundle path, so saved jobs, preference digests, and personalized scores could cross the public release boundary. Static fallback must remain anonymous; authenticated overlays stay in Supabase."
+    },
+    {
+      "id": "DATA-249",
+      "status": "active",
+      "title": "Authenticated refresh builds to a private engine artifact while the default producer remains anonymous",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-249", "--personalized-runtime", "career-compass-personalized-snapshot.json", "include_personalization=args.personalized_runtime"]},
+      "note": "The mobile queue worker must publish a private per-user artifact to Supabase without rewriting career-job-compass/data/app-data.json, which is served by GitHub Pages without authentication."
     }
   ]
 }

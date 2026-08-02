@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -13,13 +14,54 @@ from typing import Any, Callable, Mapping
 
 IHE_DELFT = "IHE Delft Institute for Water Education"
 MINIMUM_EXPERIENCE_EXCLUSION_YEARS = 2
-LIFESTYLE_METHOD_VERSION = "lifestyle-evidence-v1"
+LIFESTYLE_METHOD_VERSION = "lifestyle-evidence-v2"
+LIFESTYLE_SOURCE_ARTIFACT = "job_search/work/recommendation-v4/g003-posting-facts.json"
 LIFESTYLE_STATUSES = frozenset({"confirmed", "claimed", "unknown", "negative"})
-REMOTE_LOCATION_PATTERN = re.compile(
-    r"(?i)(^|[,(/])\s*remote(?:\s*[,)/]|$)|hybrid|\uc7ac\ud0dd\uadfc\ubb34|\uc7ac\ud0dd\ub300\uba74\ud63c\ud569\uadfc\ubb34"
-)
-SEOUL_LOCATION_PATTERN = re.compile(r"(?i)\uc11c\uc6b8|seoul")
+LIFESTYLE_CANDIDATE_CLASSES = frozenset({"statusRecheck", "verifiedOpen"})
+SEOUL_LOCATION_PATTERN = re.compile(r"(?i)\uc11c\uc6b8(?:\ud2b9\ubcc4\uc2dc)?|seoul|\uad11\uc9c4(?:\uad6c)?|\uc790\uc591(?:\ub3d9)?")
 BUSAN_LOCATION_PATTERN = re.compile(r"(?i)\ubd80\uc0b0|busan")
+SUBSTANTIVE_LIFESTYLE_SECTOR_IDS = frozenset({
+    "ai_adjacent_transition",
+    "civil_infrastructure",
+    "climate_environment",
+    "data_ml_engineering",
+    "generative_ai",
+    "geo_ai",
+    "gis_geospatial",
+    "infrastructure_ai",
+    "international_development",
+    "ai_governance",
+    "ai_product_solutions",
+    "kr_civil_service",
+    "water_climate_ai",
+    "water_hydrology",
+})
+JUNIOR_SIGNAL_PATTERN = re.compile(
+    r"(?i)\uc2e0\uc785|\uacbd\ub825\s*\ubb34\uad00|\uc778\ud134|\uc8fc\ub2c8\uc5b4|\ucd08\uae09|entry(?:[- ]level)?|graduate|junior|new\s*grad|no\s*experience"
+)
+SENIOR_BLOCK_PATTERN = re.compile(
+    r"(?i)\uacbd\ub825\s*(?:[5-9]|\d{2,})\s*\ub144|(?:[5-9]|\d{2,})\s*\ub144\s*(?:\uc774\uc0c1|\u2191)|"
+    r"\uc784\uc6d0|\uc6d0\uc7a5|\uc13c\ud130\uc7a5|\ud300\uc7a5|\ubd80\uc7a5|\ucc28\uc7a5|\uacfc\uc7a5|\ucc45\uc784|\uc218\uc11d|\uc120\uc784|senior|lead|principal|director|postdoc|\ubc15\uc0ac\ud6c4"
+)
+ROLE_DENY_PATTERN = re.compile(
+    r"(?i)\uac04\ud638|\uac04\ud638\uc9c1|\uc870\ub9ac|\uae09\uc2dd|\uacbd\ube44|\ubcf4\uc548|\uccad\uc18c|\ubbf8\ud654|\uc6b4\uc804|\ubc30\uc1a1|\ubb3c\ub958|\uc6b0\ud3b8|\uc6b0\ud3b8\ubb3c|"
+    r"\ub9e4\uc7a5\s*\ud310\ub9e4|\uc678\uadfc\s*\uc601\uc5c5|\uc601\uc5c5\s*\ud64d\ubcf4|\uc601\uc5c5\ud300|\ub9c8\ucf00\ud305|\uc778\uc0ac|\ucd1d\ubb34|\ud68c\uacc4|\uc7ac\ubb34|\ucf5c\uc13c\ud130|\uc0c1\ub2f4|"
+    r"\uac80\ud45c|\uce74\ud398|\uc57d\uc0ac|\uc758\uc0ac|\uc758\ub8cc|\ubcd1\uc6d0|\uc694\uc591|\uc0ac\ud68c\ubcf5\uc9c0|\ubc29\ubb38|compositing|3dmax|\ub77c\uc774\ub178|\uc77c\ub7ec\uc2a4\ud2b8|\ud30c\uc774\ub110\ucef7|\ub514\uc790\uc778"
+)
+CONTEXT_DENY_PATTERN = re.compile(
+    r"(?i)\uc804\uae30|\uae30\uacc4|\uc2dc\uc124|\uc0dd\uc0b0|\uc81c\uc870|\uc870\uacbd|\uac74\ucd95|\uc2dc\uacf5|\uacf5\ubb34|\ud488\uc9c8|\uce21\ub7c9|\ud604\uc7a5\uc5c5\ubb34|\uadf8\ub77c\uc6b0\ud305|\uc720\uc9c0\uad00\ub9ac|"
+    r"\uc548\uc804\uad00\ub9ac\uc790|\uad50\uc0ac|\uac15\uc0ac|\uad50\uc721|\ub77c\ubca8\ub9c1"
+)
+DOMAIN_OVERRIDE_PATTERN = re.compile(
+    r"(?i)\uc218\uc790\uc6d0|\uc218\ubb38|\uc218\ub9ac|\ud558\ucc9c|\ud64d\uc218|\uce58\uc218|\ubb3c\uad00\ub9ac|\uc218\uc9c8|\uc218\ucc98\ub9ac|water|hydro|GIS|"
+    r"\uacf5\uac04\uc815\ubcf4|\ud1a0\ubaa9|civil|\ud658\uacbd|environment|\uae30\ud6c4|climate|\ub514\uc9c0\ud138\ud2b8\uc708|R&D|\uc5f0\uad6c|\uc815\ucc45|ODA|\uad6d\uc81c\uac1c\ubc1c|\uac1c\ubc1c\ud611\ub825"
+)
+DOMAIN_SIGNAL_PATTERN = re.compile(
+    r"(?i)\uc218\uc790\uc6d0|\uc218\ubb38|\uc218\ub9ac|\ud558\ucc9c|\ud64d\uc218|\uce58\uc218|\ubb3c\uad00\ub9ac|\uc218\uc9c8|\uc218\ucc98\ub9ac|water|hydro|"
+    r"\ud658\uacbd|environment|climate|\uae30\ud6c4|GIS|\uacf5\uac04\uc815\ubcf4|\uc9c0\ub9ac\uc815\ubcf4|(?<![A-Za-z])AI(?![A-Za-z])|\uc778\uacf5\uc9c0\ub2a5|\ub370\uc774\ud130|data|\ub514\uc9c0\ud138\ud2b8\uc708|"
+    r"ODA|\uad6d\uc81c\uac1c\ubc1c|\uac1c\ubc1c\ud611\ub825|\uc815\ucc45|\uc5f0\uad6c|research|R&D|engineer|engineering|\uc5d4\uc9c0\ub2c8\uc5b4|\ud1a0\ubaa9|civil|"
+    r"\uc778\ud504\ub77c|infrastructure|ESG|sustainability|\uc7ac\ub09c|\ubc29\uc7ac|\ucee8\uc124\ud305|\uc0ac\uc5c5\uad00\ub9ac|(?<![A-Za-z])PM(?![A-Za-z])|\uacf5\uae30\uc5c5|\uacf5\uacf5"
+)
 WLB_NEGATIVE_PATTERN = re.compile(
     r"(?i)\uc57c\uac04|\uad50\ub300|\uc8fc\ub9d0\s*(?:\uadfc\ubb34|\ub2f9\uc9c1)|\ub2f9\uc9c1|\uc628\ucf5c|on[- ]?call|night shift|"
     r"rotating shift|weekend shift|frequent travel|\uc78a\uc740 \ucd9c\uc7a5|\ud604\uc7a5 \uc0c1\uc8fc|\ud604\uc7a5 \ud30c\uacac"
@@ -36,6 +78,63 @@ def _read_json(path: Path) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise ValueError(f"expected JSON object: {path}")
     return value
+
+
+def _file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def assert_active_repository(
+    repo_root: Path,
+    output_path: Path,
+    *,
+    personalized_runtime: bool = False,
+    job_search_root: Path | None = None,
+) -> None:
+    """GOV-230: fail closed outside the active repo or canonical output."""
+    expected_root = Path(__file__).resolve().parents[1]
+    resolved_root = repo_root.resolve()
+    if resolved_root != expected_root:
+        raise RuntimeError(f"snapshot producer is not running from its active repository: {resolved_root}")
+
+    git_root = Path(
+        subprocess.run(
+            ["git", "-C", str(resolved_root), "rev-parse", "--show-toplevel"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+    ).resolve()
+    if git_root != expected_root:
+        raise RuntimeError(f"git root does not match the active snapshot repository: {git_root}")
+
+    origin = subprocess.run(
+        ["git", "-C", str(resolved_root), "remote", "get-url", "origin"],
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    normalized_origin = origin.replace("https://", "").replace("ssh://git@", "").replace("git@github.com:", "github.com/")
+    normalized_origin = normalized_origin.rstrip("/")
+    expected_origin = "github.com/JUNPINMOON/career-job-compass.git"
+    if normalized_origin.casefold() != expected_origin.casefold():
+        raise RuntimeError(f"unexpected snapshot repository origin: {origin}")
+
+    canonical_output = (resolved_root / "data" / "app-data.json").resolve()
+    if personalized_runtime:
+        if job_search_root is None:
+            raise ValueError("personalized runtime builds require the job-search root")
+        private_output = (
+            job_search_root.resolve() / "state_v4" / "career-compass-personalized-snapshot.json"
+        ).resolve()
+        if output_path.resolve() != private_output:
+            raise ValueError(f"personalized runtime builds may write only to: {private_output}")
+    elif output_path.resolve() != canonical_output:
+        raise ValueError(f"public snapshot builds may write only to: {canonical_output}")
 
 
 def _read_json_list(path: Path) -> list[dict[str, Any]]:
@@ -582,13 +681,78 @@ def _lifestyle_axis(
     }
 
 
-def _wlb_axis(job: Mapping[str, Any]) -> dict[str, Any]:
-    condition_fields = {
-        key: job.get(key)
-        for key in ("requirements", "checks", "risks", "nextAction", "decisionSupport")
-        if job.get(key)
-    }
-    condition_text = json.dumps(condition_fields, ensure_ascii=False, sort_keys=True)
+def _fact_value(posting: Mapping[str, Any], group: str, field: str) -> Any:
+    container = posting.get(group)
+    if not isinstance(container, Mapping):
+        return None
+    fact = container.get(field)
+    if not isinstance(fact, Mapping):
+        return None
+    return fact.get("value")
+
+
+def _text_values(value: Any) -> list[str]:
+    if isinstance(value, list):
+        return [str(item).strip() for item in value if str(item).strip()]
+    if value is None:
+        return []
+    text = str(value).strip()
+    return [text] if text else []
+
+
+def _posting_relevant_sector_ids(posting: Mapping[str, Any]) -> set[str]:
+    result: set[str] = set()
+    for value in posting.get("relevantSectors") or []:
+        if isinstance(value, Mapping):
+            for key in ("sectorId", "id", "name"):
+                text = str(value.get(key) or "").strip()
+                if text:
+                    result.add(text)
+                    break
+        else:
+            text = str(value).strip()
+            if text:
+                result.add(text)
+    return result
+
+
+def _unique_pattern_matches(pattern: re.Pattern[str], text: str) -> list[str]:
+    return list(dict.fromkeys(match.group(0).strip() for match in pattern.finditer(text) if match.group(0).strip()))
+
+
+def _sector_evidence(rows: list[dict[str, str]]) -> list[str]:
+    return [
+        " · ".join(filter(None, (row.get("sectorId", ""), row.get("sectorLabel", ""), row.get("matchState", ""))))
+        for row in rows
+    ]
+
+
+def _lifestyle_role_gate(
+    posting: Mapping[str, Any],
+    title: str,
+    company: str,
+) -> tuple[bool, str, list[str], list[str]]:
+    """Return a defensible role gate without letting polluted location text create a match."""
+    sector_rows = _substantive_sector_rows(posting)
+    sector_evidence = _sector_evidence(sector_rows)
+    sector_text = " ".join(sector_evidence)
+    role_text = " ".join(filter(None, (title, company, sector_text)))
+    domain_signals = _unique_pattern_matches(DOMAIN_SIGNAL_PATTERN, " ".join(filter(None, (title, company))))
+    if not sector_evidence and not domain_signals:
+        return False, "excludedNoRoleSignal", sector_evidence, domain_signals
+    if ROLE_DENY_PATTERN.search(" ".join(filter(None, (title, company)))):
+        return False, "excludedRoleNoise", sector_evidence, domain_signals
+    if CONTEXT_DENY_PATTERN.search(role_text) and not DOMAIN_OVERRIDE_PATTERN.search(role_text):
+        return False, "excludedRoleNoise", sector_evidence, domain_signals
+    return True, "strictLocation+relevantDomain+juniorAttainable", sector_evidence, domain_signals
+
+
+def _wlb_axis(posting: Mapping[str, Any]) -> dict[str, Any]:
+    # Use only explicit title/work-mode text. Portal/location blobs caused false hits.
+    condition_text = " ".join(
+        _text_values(_fact_value(posting, "facts", "title"))
+        + _text_values(_fact_value(posting, "requirements", "workMode"))
+    )
     negative_match = WLB_NEGATIVE_PATTERN.search(condition_text)
     if negative_match:
         return _lifestyle_axis(
@@ -627,73 +791,487 @@ def _lifestyle_counts(rows: list[tuple[str, str]]) -> dict[str, int]:
     return {status: sum(1 for _, value in rows if value == status) for status in sorted(LIFESTYLE_STATUSES)}
 
 
-def _apply_lifestyle_discovery(payload: dict[str, Any]) -> None:
-    """Build a separate evidence layer without changing jobs or recommendation scores."""
+def _axis_counts(items: list[dict[str, Any]], review_ids: list[str]) -> dict[str, dict[str, int]]:
+    selected = set(review_ids)
+    result: dict[str, dict[str, int]] = {}
+    for axis_name in ("jayangCommute", "wlb", "busanWorkplace"):
+        rows = [
+            (str(item["jobId"]), str(item["lifestyleEvidence"]["axes"][axis_name]["status"]))
+            for item in items
+            if str(item["jobId"]) in selected
+        ]
+        result[axis_name] = _lifestyle_counts(rows)
+    return result
+
+
+def _candidate_class_counts(items: list[dict[str, Any]], review_ids: list[str]) -> dict[str, int]:
+    selected = set(review_ids)
+    return {
+        "statusRecheck": sum(
+            1 for item in items if str(item["jobId"]) in selected and item.get("candidateClass") == "statusRecheck"
+        ),
+        "verifiedOpen": sum(
+            1 for item in items if str(item["jobId"]) in selected and item.get("candidateClass") == "verifiedOpen"
+        ),
+    }
+
+
+def _source_status(posting: Mapping[str, Any]) -> dict[str, str]:
+    eligibility = posting.get("recommendationEligibility")
+    eligibility = eligibility if isinstance(eligibility, Mapping) else {}
+    partition = str(eligibility.get("currentStatusPartition") or "status_unknown")
+    deadline_values = _text_values(_fact_value(posting, "facts", "deadline"))
+    labels = {
+        "known_open": "공개 상태 확인",
+        "known_closed": "마감 확인",
+        "status_unknown": "현재 공개 여부 재확인 필요",
+        "archived_reference": "보관 자료",
+    }
+    return {
+        "state": partition,
+        "deadline": deadline_values[0] if deadline_values else "",
+        "statusLabel": labels.get(partition, "현재 공개 여부 재확인 필요"),
+    }
+
+
+def _strict_location(location: str) -> dict[str, Any] | None:
+    """Accept an explicit city/district field and reject portal-metadata lookalikes."""
+    text = re.sub(r"\s+", " ", str(location or "")).strip()
+    if not text:
+        return None
+    korean_specs = (
+        ("seoul", "\uc11c\uc6b8", r"^\s*\uc11c\uc6b8(?:\ud2b9\ubcc4\uc2dc)?(?:\s+|[,/\u00b7-]+)(?P<district>[\uac00-\ud7a3]{1,8}\uad6c)?(?=$|\s|[,/\u00b7()\-])"),
+        ("busan", "\ubd80\uc0b0", r"^\s*\ubd80\uc0b0(?:\uad11\uc5ed\uc2dc)?(?:\s+|[,/\u00b7-]+)(?P<district>[\uac00-\ud7a3]{1,8}(?:\uad6c|\uad70))?(?=$|\s|[,/\u00b7()\-])"),
+    )
+    exact_korean = {
+        "\uc11c\uc6b8": ("seoul", "\uc11c\uc6b8"),
+        "\uc11c\uc6b8\ud2b9\ubcc4\uc2dc": ("seoul", "\uc11c\uc6b8"),
+        "\ubd80\uc0b0": ("busan", "\ubd80\uc0b0"),
+        "\ubd80\uc0b0\uad11\uc5ed\uc2dc": ("busan", "\ubd80\uc0b0"),
+    }
+    if text in exact_korean:
+        city_code, city_label = exact_korean[text]
+        return {
+            "matched": True,
+            "cityCode": city_code,
+            "cityLabel": city_label,
+            "district": "",
+            "normalized": city_label,
+            "sourceText": text,
+        }
+    for city_code, city_label, pattern in korean_specs:
+        match = re.search(pattern, text, flags=re.IGNORECASE)
+        if match:
+            district = str(match.group("district") or "")
+            return {
+                "matched": True,
+                "cityCode": city_code,
+                "cityLabel": city_label,
+                "district": district,
+                "normalized": " ".join(filter(None, (city_label, district))),
+                "sourceText": text,
+            }
+    english_specs = (
+        ("seoul", "\uc11c\uc6b8", r"^Seoul(?:,?\s+(?:South Korea|Republic of Korea|Korea|KR))(?:,?\s+HQ)?$|^Seoul$"),
+        ("busan", "\ubd80\uc0b0", r"^Busan(?:,?\s+(?:South Korea|Republic of Korea|Korea|KR))?$"),
+    )
+    for city_code, city_label, pattern in english_specs:
+        if re.fullmatch(pattern, text, flags=re.IGNORECASE):
+            return {
+                "matched": True,
+                "cityCode": city_code,
+                "cityLabel": city_label,
+                "district": "",
+                "normalized": city_label,
+                "sourceText": text,
+            }
+    return None
+
+
+def _substantive_sector_rows(posting: Mapping[str, Any]) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    for raw in posting.get("relevantSectors") or []:
+        if not isinstance(raw, Mapping):
+            continue
+        sector_id = str(raw.get("sectorId") or "").strip()
+        if sector_id not in SUBSTANTIVE_LIFESTYLE_SECTOR_IDS:
+            continue
+        rows.append(
+            {
+                "sectorId": sector_id,
+                "sectorLabel": str(raw.get("sectorLabel") or sector_id).strip(),
+                "matchState": str(raw.get("matchState") or "needs_evidence").strip(),
+            }
+        )
+    return rows
+
+
+def _minimum_experience_years(posting: Mapping[str, Any]) -> float | None:
+    value = _fact_value(posting, "facts", "experience")
+    if not isinstance(value, Mapping):
+        return None
+    minimum = value.get("minimum_years")
+    if isinstance(minimum, bool) or not isinstance(minimum, (int, float)):
+        return None
+    return float(minimum)
+
+
+def _entry_signals(text: str) -> list[str]:
+    return list(dict.fromkeys(match.group(0).strip() for match in JUNIOR_SIGNAL_PATTERN.finditer(text)))
+
+
+def _lifestyle_lane_funnel_counts() -> dict[str, int]:
+    return {
+        "rawLocation": 0,
+        "strictLocation": 0,
+        "relevantDomain": 0,
+        "roleFit": 0,
+        "juniorAttainable": 0,
+        "wlbNotNegative": 0,
+        "reviewCandidate": 0,
+        "statusRecheck": 0,
+        "verifiedOpen": 0,
+    }
+
+
+def _lifestyle_blank_candidate_filter() -> dict[str, bool]:
+    return {
+        "rawLocation": False,
+        "strictLocation": False,
+        "relevantDomain": False,
+        "roleFit": False,
+        "juniorAttainable": False,
+        "wlbNotNegative": False,
+        "reviewCandidate": False,
+        "statusRecheck": False,
+        "verifiedOpen": False,
+    }
+
+
+def _empty_filter_counts(source_count: int) -> dict[str, int]:
+    return {
+        "sourcePostingCount": source_count,
+        "nonClosed": 0,
+        "rawLocation": 0,
+        "strictLocation": 0,
+        "relevantDomain": 0,
+        "roleFit": 0,
+        "juniorAttainable": 0,
+        "wlbNotNegative": 0,
+        "deduplicated": 0,
+        "statusRecheck": 0,
+        "verifiedOpen": 0,
+        "publishedCandidate": 0,
+    }
+
+
+def _decision_readiness(items: list[dict[str, Any]], review_ids: list[str], required_axes: tuple[str, ...]) -> str:
+    selected_ids = set(review_ids)
+    selected = [item for item in items if str(item.get("jobId")) in selected_ids]
+    if not selected:
+        return "insufficient"
+    for item in selected:
+        axes = item["lifestyleEvidence"]["axes"]
+        if item["sourceStatus"]["state"] != "known_open":
+            return "partial"
+        if any(axes[axis]["status"] not in {"confirmed", "claimed"} for axis in required_axes):
+            return "partial"
+    return "ready"
+
+
+def _apply_lifestyle_discovery(payload: dict[str, Any], posting_facts_path: Path) -> None:
+    """DATA-241/DATA-242/DATA-243: search the full ledger and separate source hits from review candidates."""
     jobs = payload.get("jobs") or []
     jobs_before = json.dumps(jobs, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    source = _read_json(posting_facts_path)
+    postings = source.get("postings")
+    if not isinstance(postings, list):
+        raise ValueError(f"posting-facts artifact has no postings array: {posting_facts_path}")
+    declared_count = source.get("canonicalPostingCount")
+    if not isinstance(declared_count, int) or declared_count != len(postings):
+        raise ValueError("posting-facts canonicalPostingCount does not match its postings array")
+    artifact_digest = str(source.get("artifactDigest") or "")
+    if not re.fullmatch(r"[0-9a-f]{64}", artifact_digest):
+        raise ValueError("posting-facts artifactDigest must be a lowercase SHA-256 digest")
+    relevant_count = source.get("relevantUniqueJobCount")
+    if (
+        isinstance(relevant_count, bool)
+        or not isinstance(relevant_count, int)
+        or relevant_count < 0
+        or relevant_count > declared_count
+    ):
+        raise ValueError("posting-facts relevantUniqueJobCount is invalid")
+
     items: list[dict[str, Any]] = []
     jayang_rows: list[tuple[str, str]] = []
     busan_rows: list[tuple[str, str]] = []
+    seen_job_ids: set[str] = set()
+    seen_urls: set[str] = set()
+    filter_counts = {
+        "sourcePostings": declared_count,
+        "openOrUnknown": 0,
+        "targetLocation": 0,
+        "strictLocation": 0,
+        "relevantDomain": 0,
+        "roleFit": 0,
+        "juniorAttainable": 0,
+        "wlbNotNegative": 0,
+        "publishedCandidates": 0,
+        "excludedClosed": 0,
+        "excludedArchived": 0,
+        "excludedMalformed": 0,
+        "excludedDuplicate": 0,
+        "excludedNoTargetLocation": 0,
+        "excludedNoStrictLocation": 0,
+        "excludedRoleNoise": 0,
+        "excludedSenior": 0,
+        "excludedNoRoleSignal": 0,
+        "excludedNotJunior": 0,
+        "excludedWlbNegative": 0,
+    }
+    detailed_filter_counts = _empty_filter_counts(declared_count)
+    lane_filter_counts = {
+        "jayang_wlb": _lifestyle_lane_funnel_counts(),
+        "busan": _lifestyle_lane_funnel_counts(),
+    }
 
-    for job in jobs:
-        job_id = str(job.get("id") or "").strip()
-        location = str(job.get("location") or "").strip()
-        market = str(job.get("market") or "unknown")
-        is_domestic = market == "domestic"
-        is_seoul = bool(SEOUL_LOCATION_PATTERN.search(location))
-        is_remote_location = bool(REMOTE_LOCATION_PATTERN.search(location))
-        is_busan = bool(BUSAN_LOCATION_PATTERN.search(location))
-        is_jayang_candidate = is_domestic and (is_seoul or is_remote_location)
-        is_busan_candidate = is_domestic and is_busan
-        if not job_id or not (is_jayang_candidate or is_busan_candidate):
+    for posting in postings:
+        if not isinstance(posting, Mapping):
+            filter_counts["excludedMalformed"] += 1
+            continue
+        source_status = _source_status(posting)
+        if source_status["state"] == "known_closed":
+            filter_counts["excludedClosed"] += 1
+            continue
+        if source_status["state"] == "archived_reference":
+            filter_counts["excludedArchived"] += 1
+            continue
+        if source_status["state"] not in {"known_open", "status_unknown"}:
+            filter_counts["excludedArchived"] += 1
+            continue
+        filter_counts["openOrUnknown"] += 1
+        detailed_filter_counts["nonClosed"] += 1
+        job_id = str(posting.get("jobId") or "").strip()
+        title = " / ".join(_text_values(_fact_value(posting, "facts", "title")))
+        company = " / ".join(_text_values(_fact_value(posting, "facts", "employer")))
+        location = " / ".join(_text_values(_fact_value(posting, "facts", "location")))
+        url = str(posting.get("url") or "").strip()
+        if not job_id or not title or not re.match(r"^https?://", url):
+            filter_counts["excludedMalformed"] += 1
             continue
 
-        if is_jayang_candidate:
+        strict = _strict_location(location)
+        strict_jayang = strict is not None and strict.get("cityCode") == "seoul"
+        strict_busan = strict is not None and strict.get("cityCode") == "busan"
+        raw_jayang = bool(SEOUL_LOCATION_PATTERN.search(location)) or strict_jayang
+        raw_busan = bool(BUSAN_LOCATION_PATTERN.search(location)) or strict_busan
+        candidate_filter = {
+            "jayang_wlb": _lifestyle_blank_candidate_filter(),
+            "busan": _lifestyle_blank_candidate_filter(),
+        }
+        for lane_key, raw_match, strict_match in (
+            ("jayang_wlb", raw_jayang, strict_jayang),
+            ("busan", raw_busan, strict_busan),
+        ):
+            if raw_match:
+                candidate_filter[lane_key]["rawLocation"] = True
+                lane_filter_counts[lane_key]["rawLocation"] += 1
+            if strict_match:
+                candidate_filter[lane_key]["strictLocation"] = True
+                lane_filter_counts[lane_key]["strictLocation"] += 1
+        if not (raw_jayang or raw_busan):
+            filter_counts["excludedNoTargetLocation"] += 1
+            continue
+        filter_counts["targetLocation"] += 1
+        detailed_filter_counts["rawLocation"] += 1
+        if not (strict_jayang or strict_busan):
+            filter_counts["excludedNoStrictLocation"] += 1
+            continue
+        filter_counts["strictLocation"] += 1
+        detailed_filter_counts["strictLocation"] += 1
+
+        role_ok, role_reason, sector_evidence, domain_signals = _lifestyle_role_gate(posting, title, company)
+        relevant_domain = bool(sector_evidence or domain_signals)
+        if relevant_domain:
+            filter_counts["relevantDomain"] += 1
+            detailed_filter_counts["relevantDomain"] += 1
+            for lane_key in ("jayang_wlb", "busan"):
+                if candidate_filter[lane_key]["strictLocation"]:
+                    candidate_filter[lane_key]["relevantDomain"] = True
+                    lane_filter_counts[lane_key]["relevantDomain"] += 1
+        if not role_ok:
+            filter_counts[role_reason] += 1
+            continue
+        filter_counts["roleFit"] += 1
+        detailed_filter_counts["roleFit"] += 1
+        for lane_key in ("jayang_wlb", "busan"):
+            if candidate_filter[lane_key]["strictLocation"]:
+                candidate_filter[lane_key]["roleFit"] = True
+                lane_filter_counts[lane_key]["roleFit"] += 1
+
+        experience_value = _fact_value(posting, "facts", "experience")
+        experience_text = json.dumps(experience_value, ensure_ascii=False, sort_keys=True, default=str)
+        entry_signal_text = " ".join(filter(None, (title, company, experience_text)))
+        entry_signals = _entry_signals(entry_signal_text)
+        minimum_experience_years = _minimum_experience_years(posting)
+        if (
+            minimum_experience_years is not None
+            and minimum_experience_years >= MINIMUM_EXPERIENCE_EXCLUSION_YEARS
+        ) or SENIOR_BLOCK_PATTERN.search(entry_signal_text):
+            filter_counts["excludedSenior"] += 1
+            continue
+        if not entry_signals and not (
+            minimum_experience_years is not None
+            and minimum_experience_years < MINIMUM_EXPERIENCE_EXCLUSION_YEARS
+        ):
+            filter_counts["excludedNotJunior"] += 1
+            continue
+        filter_counts["juniorAttainable"] += 1
+        detailed_filter_counts["juniorAttainable"] += 1
+        for lane_key in ("jayang_wlb", "busan"):
+            if candidate_filter[lane_key]["strictLocation"]:
+                candidate_filter[lane_key]["juniorAttainable"] = True
+                lane_filter_counts[lane_key]["juniorAttainable"] += 1
+
+        wlb_axis = _wlb_axis(posting)
+        if wlb_axis["status"] == "negative":
+            filter_counts["excludedWlbNegative"] += 1
+            continue
+        filter_counts["wlbNotNegative"] += 1
+        detailed_filter_counts["wlbNotNegative"] += 1
+        for lane_key in ("jayang_wlb", "busan"):
+            if candidate_filter[lane_key]["strictLocation"]:
+                candidate_filter[lane_key]["wlbNotNegative"] = True
+                lane_filter_counts[lane_key]["wlbNotNegative"] += 1
+
+        if job_id in seen_job_ids or url in seen_urls:
+            filter_counts["excludedDuplicate"] += 1
+            continue
+        seen_job_ids.add(job_id)
+        seen_urls.add(url)
+        detailed_filter_counts["deduplicated"] += 1
+
+        for lane_key in ("jayang_wlb", "busan"):
+            if not candidate_filter[lane_key]["strictLocation"]:
+                continue
+            candidate_filter[lane_key]["reviewCandidate"] = True
+            lane_filter_counts[lane_key]["reviewCandidate"] += 1
+            if source_status["state"] == "known_open":
+                candidate_filter[lane_key]["verifiedOpen"] = True
+                lane_filter_counts[lane_key]["verifiedOpen"] += 1
+            else:
+                candidate_filter[lane_key]["statusRecheck"] = True
+                lane_filter_counts[lane_key]["statusRecheck"] += 1
+
+        if candidate_filter["jayang_wlb"]["reviewCandidate"]:
             commute_axis = _lifestyle_axis(
-                "claimed",
-                "\uacf5\uac1c \uadfc\ubb34\uc9c0\ub85c \uc790\uc591\ub3d9 \ud1b5\uadfc \ud6c4\ubcf4\uc5d0 \ud3ec\ud568\ud588\uc9c0\ub9cc \uc2e4\uc81c \uc18c\uc694 \uc2dc\uac04\uc740 \ubbf8\ud655\uc778\uc785\ub2c8\ub2e4.",
-                [f"\uacf5\uac1c \uadfc\ubb34\uc9c0: {location or 'location not stated'}"],
-                ["\uc815\ud655\ud55c \uc0ac\ubb34\uc2e4 \uc8fc\uc18c", "\uc8fc\uac04 \ucd9c\uadfc \ud69f\uc218", "\ucd9c\ud1f4\uadfc \ub300\uc911\uad50\ud1b5 \uc18c\uc694 \uc2dc\uac04"],
+                "unknown",
+                "서울권 공개 근무지로 검토 후보에 포함했지만 자양동 출발 통근 가능성은 아직 미확인입니다.",
+                [f"공개 근무지: {location or 'location not stated'}"],
+                ["정확한 사무실 주소", "주간 출근 횟수", "출퇴근 대중교통 소요 시간"],
             )
         else:
             commute_axis = _lifestyle_axis(
                 "unknown",
-                "\uc790\uc591\ub3d9 \ud1b5\uadfc \ud6c4\ubcf4\ub85c \ubd84\ub958\ud560 \uadfc\uac70\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.",
+                "자양동 통근 후보로 분류할 근거가 없습니다.",
                 [],
-                ["\uc815\ud655\ud55c \uadfc\ubb34\uc9c0", "\ucd9c\ud1f4\uadfc \uc18c\uc694 \uc2dc\uac04"],
+                ["정확한 근무지", "출퇴근 소요 시간"],
             )
 
-        wlb_axis = _wlb_axis(job)
-        if is_busan_candidate:
+        if candidate_filter["busan"]["reviewCandidate"]:
             busan_axis = _lifestyle_axis(
-                "confirmed",
-                "\uacf5\uace0\uc758 \uadfc\ubb34\uc9c0 \ud544\ub4dc\uc5d0 \ubd80\uc0b0\uc774 \uba85\uc2dc\ub410\uc2b5\ub2c8\ub2e4.",
-                [f"\uacf5\uac1c \uadfc\ubb34\uc9c0: {location}"],
-                ["\uc815\ud655\ud55c \uc0ac\ubb34\uc2e4 \uc8fc\uc18c", "\ud558\uc774\ube0c\ub9ac\ub4dc\u00b7\uc678\uadfc \ube44\uc911"],
+                "claimed",
+                "공고의 근무지 필드에 부산이 명시됐습니다.",
+                [f"공개 근무지: {location}"],
+                ["정확한 사무실 주소", "하이브리드·외근 비중"],
             )
         else:
             busan_axis = _lifestyle_axis(
                 "unknown",
-                "\uacf5\uac1c \uadfc\ubb34\uc9c0\uc5d0 \ubd80\uc0b0\uc774 \uba85\uc2dc\ub418\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4.",
+                "공개 근무지에 부산이 명시되지 않았습니다.",
                 [],
-                ["\ubd80\uc0b0 \uc2e4\uc81c \uadfc\ubb34\uc9c0 \uc5ec\ubd80"],
+                ["부산 실제 근무지 여부"],
             )
 
         jayang_status = _combined_lifestyle_status(commute_axis["status"], wlb_axis["status"])
         busan_status = busan_axis["status"]
-        if is_jayang_candidate:
+        if candidate_filter["jayang_wlb"]["reviewCandidate"]:
             jayang_rows.append((job_id, jayang_status))
-        if is_busan_candidate:
+        if candidate_filter["busan"]["reviewCandidate"]:
             busan_rows.append((job_id, busan_status))
+        candidate_class = "verifiedOpen" if source_status["state"] == "known_open" else "statusRecheck"
+        detailed_filter_counts[candidate_class] += 1
+        role_evidence = sector_evidence or domain_signals
+        role_summary = ", ".join(role_evidence[:3])
+        entry_summary = ", ".join(entry_signals[:3])
+        entry_reason = f"\uc9c4\uc785 \uac00\ub2a5 \uc2e0\ud638: {entry_summary}"
+        if not entry_summary:
+            entry_reason = f"\uacf5\uac1c \ucd5c\uc18c \uacbd\ub825 {minimum_experience_years:g}\ub144"
+        strict_label = str(strict["normalized"])
+        status_label = str(source_status["statusLabel"])
+        inclusion_reasons = [
+            f"\uc6d0\ucc9c \uc704\uce58\uac00 {strict_label}\ub85c \uc5c4\uaca9 \uc77c\uce58",
+            f"\uc9c1\ubb34\u00b7\ubd84\uc57c \uadfc\uac70: {role_summary}",
+            entry_reason,
+            f"\uacf5\uac1c \uc0c1\ud0dc \ubd84\ub958: {status_label}",
+        ]
+        missing_reasons: list[str] = []
+        if candidate_class == "statusRecheck":
+            missing_reasons.append("\ud604\uc7ac \uacf5\uace0\uac00 \uc2e4\uc81c \uc811\uc218 \uc911\uc778\uc9c0 \uc6d0\ubb38 \uc7ac\ud655\uc778 \ud544\uc694")
+        if strict_jayang:
+            missing_reasons.append("\uc790\uc591\ub3d9 \ucd9c\ubc1c \uc2e4\uc81c \uc8fc\uc18c\u00b7\ucd9c\uadfc\uc77c\u00b7\ub300\uc911\uad50\ud1b5 \uc2dc\uac04 \ubbf8\ud655\uc778")
+        if strict_busan:
+            missing_reasons.append("\ubd80\uc0b0\uc758 \uc815\ud655\ud55c \uc0ac\ubb34\uc2e4 \uc8fc\uc18c\u00b7\uc678\uadfc\u00b7\ud558\uc774\ube0c\ub9ac\ub4dc \uc870\uac74 \ubbf8\ud655\uc778")
+        if wlb_axis["status"] == "unknown":
+            missing_reasons.append("\uadfc\ubb34\uc2dc\uac04\u00b7\ucd08\uacfc\uadfc\ubb34\u00b7\ud734\uac00 \uc0ac\uc6a9 \ub4f1 \uc6cc\ub77c\ubc38 \uadfc\uac70 \ubbf8\ud655\uc778")
         items.append(
             {
                 "jobId": job_id,
-                "title": str(job.get("title") or ""),
-                "company": str(job.get("company") or job.get("employer") or ""),
+                "title": title,
+                "company": company,
                 "location": location,
-                "market": market,
-                "source": str(job.get("source") or ""),
-                "url": str(job.get("url") or ""),
+                "market": "domestic",
+                "domestic": True,
+                "strictLocation": {
+                    **strict,
+                    "domestic": True,
+                    "locationText": location,
+                    "lanes": {
+                        "jayang_wlb": candidate_filter["jayang_wlb"]["strictLocation"],
+                        "busan": candidate_filter["busan"]["strictLocation"],
+                    },
+                },
+                "filterReason": role_reason,
+                "candidateFilter": candidate_filter,
+                "candidateEvidence": [
+                    {
+                        "source": LIFESTYLE_SOURCE_ARTIFACT,
+                        "method": LIFESTYLE_METHOD_VERSION,
+                        "text": (
+                            f"근무지={location or '미기재'}; "
+                            f"직무필터={role_reason}; "
+                            f"공개상태={source_status['state']}"
+                        ),
+                    }
+                ],
+                "inclusionReasons": inclusion_reasons,
+                "missingReasons": missing_reasons,
+                "scoreImpactReason": "\uc9c0\uc5ed\u00b7\ud1b5\uadfc\u00b7\uc6cc\ub77c\ubc38\uc740 \ucd94\ucc9c \uc810\uc218\uc5d0 \ub123\uc9c0 \uc54a\uace0 \ubcc4\ub3c4 \ubd84\ub958\u00b7\uac80\uc99d\ud569\ub2c8\ub2e4.",
+                "entrySignals": entry_signals,
+                # JSON.parse/JSON.stringify normalizes 1.0 to 1 in the browser.
+                # Keep the signed snapshot digest identical in Python and the PWA.
+                "minimumExperienceYears": (
+                    int(minimum_experience_years)
+                    if minimum_experience_years is not None and minimum_experience_years.is_integer()
+                    else minimum_experience_years
+                ),
+                "sectorEvidence": sector_evidence,
+                "domainSignals": domain_signals,
+                "source": str(posting.get("source") or ""),
+                "url": url,
+                "sourceStatus": source_status,
+                "candidateClass": candidate_class,
+                "relevantSectors": sorted(_posting_relevant_sector_ids(posting)),
                 "lifestyleEvidence": {
                     "axes": {
                         "jayangCommute": commute_axis,
@@ -705,30 +1283,73 @@ def _apply_lifestyle_discovery(payload: dict[str, Any]) -> None:
             }
         )
 
+    status_order = {"known_open": 0, "status_unknown": 1, "archived_reference": 2}
+    evidence_order = {"confirmed": 0, "claimed": 1, "unknown": 2, "negative": 3}
+    items.sort(
+        key=lambda item: (
+            status_order.get(str(item["sourceStatus"]["state"]), 9),
+            evidence_order.get(str(item["lifestyleEvidence"]["axes"]["wlb"]["status"]), 9),
+            str(item.get("company") or "").casefold(),
+            str(item.get("title") or "").casefold(),
+            str(item["jobId"]),
+        )
+    )
+    jayang_ids = [str(item["jobId"]) for item in items if item["candidateFilter"]["jayang_wlb"]["reviewCandidate"]]
+    busan_ids = [str(item["jobId"]) for item in items if item["candidateFilter"]["busan"]["reviewCandidate"]]
+    filter_counts["publishedCandidates"] = len(items)
+    detailed_filter_counts["publishedCandidate"] = len(items)
+    verified_open_count = detailed_filter_counts["verifiedOpen"]
+    searched_at = datetime.now(timezone.utc).isoformat()
     discovery = {
         "schemaVersion": LIFESTYLE_METHOD_VERSION,
         "methodVersion": LIFESTYLE_METHOD_VERSION,
         "asOf": str(payload.get("dataAsOf") or payload.get("generatedAt") or ""),
+        "searchState": "searched",
+        "searchedAt": searched_at,
         "scoreImpact": "none",
-        "sourceJobCount": len(jobs),
-        "universeLabel": "\ud604\uc7ac \uacf5\uac1c \uc218\uc9d1\ubcf8\uc758 \uc9c0\uc6d0 \uac00\ub2a5 \uacf5\uace0",
+        "sourceArtifact": "job_search/work/recommendation-v4/g003-posting-facts.json",
+        "sourceArtifactDigest": artifact_digest,
+        "sourceFileSha256": _file_sha256(posting_facts_path),
+        "sourcePostingCount": declared_count,
+        "sourceRelevantPostingCount": relevant_count,
+        "publicRecommendationCount": verified_open_count,
+        "publicCandidateCount": len(items),
+        "universeLabel": "G003 전체 채용 원장 중 국내 위치·직무 신호 필터",
+        "candidateFilter": filter_counts,
+        "filterCounts": detailed_filter_counts,
         "limitations": [
-            "\uc804\uccb4 \ucc44\uc6a9\uc2dc\uc7a5\uc774 \uc544\ub2c8\ub77c \ud604\uc7ac \uacf5\uac1c \uc218\uc9d1\ubcf8\uc785\ub2c8\ub2e4.",
-            "\ud1b5\uadfc \uc18c\uc694 \uc2dc\uac04\uc740 \uc815\ud655\ud55c \uc0ac\ubb34\uc2e4\u00b7\ucd9c\uadfc\uc77c\u00b7\ub300\uc911\uad50\ud1b5 \uac80\uc99d \uc804\uae4c\uc9c0 \ud655\uc815\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
-            "\uc6d0\uaca9\u00b7\ud558\uc774\ube0c\ub9ac\ub4dc\ub098 \ubcf5\uc9c0 \ubb38\uad6c\ub9cc\uc73c\ub85c \uc6cc\ub77c\ubc38\uc744 \ud655\uc815\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
-            "\uc0dd\ud65c \uc870\uac74\uc740 \ucd94\ucc9c \uc810\uc218\uc5d0 \ubc18\uc601\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
+            "검색 범위는 G003 원장 전체이며, 전체 채용시장 전수조사는 아닙니다.",
+            "원천 위치 일치는 수집 원문 히트이고, 엄격 후보는 공개 근무지·직무 신호·공개 상태를 다시 통과한 별도 검토 대상입니다.",
+            "통근 소요 시간은 정확한 사무실·출근일·대중교통 검증 전까지 확정하지 않습니다.",
+            "원격·하이브리드나 복지 문구만으로 워라밸을 확정하지 않습니다.",
+            "생활 조건은 추천 점수에 반영하지 않습니다.",
+            "서울/부산 표기는 추천 확정이 아니라 생활조건 확인을 시작하기 위한 필터입니다.",
         ],
         "items": items,
         "lanes": {
             "jayang_wlb": {
-                "label": "\uc790\uc591\ub3d9 \ud1b5\uadfc\u00b7\uc6cc\ub77c\ubc38",
-                "reviewIds": [job_id for job_id, _ in jayang_rows],
+                "label": "자양동 출발 서울권 · 통근/WLB 확인",
+                "searchState": "searched",
+                "searchedAt": searched_at,
+                "reviewIds": jayang_ids,
+                "matchedCount": len(jayang_ids),
                 "counts": _lifestyle_counts(jayang_rows),
+                "filterCounts": lane_filter_counts["jayang_wlb"],
+                "classCounts": _candidate_class_counts(items, jayang_ids),
+                "axisCounts": _axis_counts(items, jayang_ids),
+                "decisionReadiness": _decision_readiness(items, jayang_ids, ("jayangCommute", "wlb")),
             },
             "busan": {
-                "label": "\ubd80\uc0b0 \u00b7 \uc804 \uc9c1\uc885",
-                "reviewIds": [job_id for job_id, _ in busan_rows],
+                "label": "부산 근무지 검토 · WLB 별도 확인",
+                "searchState": "searched",
+                "searchedAt": searched_at,
+                "reviewIds": busan_ids,
+                "matchedCount": len(busan_ids),
                 "counts": _lifestyle_counts(busan_rows),
+                "filterCounts": lane_filter_counts["busan"],
+                "classCounts": _candidate_class_counts(items, busan_ids),
+                "axisCounts": _axis_counts(items, busan_ids),
+                "decisionReadiness": _decision_readiness(items, busan_ids, ("busanWorkplace",)),
             },
         },
     }
@@ -738,7 +1359,6 @@ def _apply_lifestyle_discovery(payload: dict[str, Any]) -> None:
     jobs_after = json.dumps(jobs, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     if jobs_before != jobs_after:
         raise AssertionError("lifestyle discovery must not mutate jobs or recommendation scores")
-
 
 def _apply_public_eligibility(
     job_slice: dict[str, Any],
@@ -837,8 +1457,26 @@ def main() -> None:
         action="store_true",
         help="Enrich the existing public snapshot without rebuilding the job slice.",
     )
+    parser.add_argument(
+        "--personalized-runtime",
+        action="store_true",
+        help="Build the authenticated Supabase runtime artifact outside the public app repository.",
+    )
     args = parser.parse_args()
+    app_root = Path(__file__).resolve().parents[1]
     root = args.job_search_root.resolve(strict=True)
+    # DATA-249: static GitHub Pages output is anonymous by default.  Only the
+    # explicit authenticated lane may carry preferences, and it has one private
+    # producer/consumer path: state_v4/career-compass-personalized-snapshot.json.
+    assert_active_repository(
+        app_root,
+        args.output,
+        personalized_runtime=args.personalized_runtime,
+        job_search_root=root,
+    )
+    if args.programs_only and args.personalized_runtime:
+        raise ValueError("programs-only and personalized-runtime cannot be combined")
+    posting_facts_path = root / "work" / "recommendation-v4" / "g003-posting-facts.json"
     sys.path.insert(0, str(root))
     from jobsearch_v4.public_snapshot import (
         build_public_job_slice,
@@ -862,7 +1500,7 @@ def main() -> None:
         payload["stats"] = stats
         payload["graduateEvidenceCoverage"] = _graduate_evidence_coverage(payload["programs"])
         _apply_decision_support(payload)
-        _apply_lifestyle_discovery(payload)
+        _apply_lifestyle_discovery(payload, posting_facts_path)
         payload["graduateDataLineage"] = _graduate_data_lineage(payload)
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -870,7 +1508,8 @@ def main() -> None:
         return
     raw_job_slice = build_public_job_slice(
         actions_path=root / "work" / "recommendation-v4" / "g006-cross-sector-actions.json",
-        posting_facts_path=root / "work" / "recommendation-v4" / "g003-posting-facts.json",
+        posting_facts_path=posting_facts_path,
+        include_personalization=args.personalized_runtime,
     )
     overrides = payload.get("jobEligibilityOverrides", {})
     job_slice = _apply_public_eligibility(
@@ -901,12 +1540,16 @@ def main() -> None:
             "stats": stats,
             "sectors": job_slice["sectors"],
             "jobs": job_slice["jobs"],
+            # DATA-247: in the authenticated runtime only, carry the durable
+            # archive through the exact producer path consumed by the mobile
+            # overlay. Public builds receive an empty collection from the slice.
+            "savedJobs": job_slice["savedJobs"],
             "reviewQueue": job_slice["reviewQueue"],
             "graduateEvidenceCoverage": _graduate_evidence_coverage(payload["programs"]),
         }
     )
     _apply_decision_support(payload)
-    _apply_lifestyle_discovery(payload)
+    _apply_lifestyle_discovery(payload, posting_facts_path)
     payload["graduateDataLineage"] = _graduate_data_lineage(payload)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
