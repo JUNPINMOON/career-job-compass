@@ -903,6 +903,13 @@
       "title": "Authenticated refresh builds to a private engine artifact while the default producer remains anonymous",
       "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-249", "--personalized-runtime", "career-compass-personalized-snapshot.json", "include_personalization=args.personalized_runtime"]},
       "note": "The mobile queue worker must publish a private per-user artifact to Supabase without rewriting career-job-compass/data/app-data.json, which is served by GitHub Pages without authentication."
+    },
+    {
+      "id": "GOV-250",
+      "status": "active",
+      "title": "Installed clients never cache the anonymous snapshot as a substitute for the authenticated overlay",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v55-public-private-boundary", "APP_DATA_NETWORK_ONLY", "cache: \"no-store\""]},
+      "note": "Measured on 2026-08-02: app-data.json was precached and later reused offline, allowing an older personalized public artifact to survive after the producer boundary was corrected. The snapshot must be fetched network-only and every older Career Compass cache must be removed during activation."
     }
   ]
 }
