@@ -235,6 +235,25 @@ def _file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _file_sha256_variants(path: Path) -> set[str]:
+    """Return raw/LF/CRLF digests for text provenance across checkout platforms.
+
+    The graduate lineage is generated on a Windows working tree but verified
+    on the Linux Pages runner.  Git normalizes the producer source to LF in
+    the runner, so a raw byte digest would reject an otherwise identical
+    release.  Keep the raw digest and both newline-normalized forms explicit;
+    this does not weaken payload or source-artifact digest checks.
+    """
+
+    raw = path.read_bytes()
+    lf = raw.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    crlf = lf.replace(b"\n", b"\r\n")
+    return {
+        hashlib.sha256(candidate).hexdigest()
+        for candidate in (raw, lf, crlf)
+    }
+
+
 def _archive_kind(path: Path) -> str | None:
     name = path.name.lower()
     if name.endswith(".zip"):
@@ -1186,7 +1205,9 @@ def validate_graduate_data_lineage(
         raise SystemExit("graduate lineage producer mismatch")
     if lineage.get("artifact") != "career-job-compass/data/app-data.json":
         raise SystemExit("graduate lineage artifact mismatch")
-    if lineage.get("producerCodeSha256") != _file_sha256(ROOT / "scripts" / "build_snapshot.py"):
+    if lineage.get("producerCodeSha256") not in _file_sha256_variants(
+        ROOT / "scripts" / "build_snapshot.py"
+    ):
         raise SystemExit("graduate lineage producer code mismatch")
     expected_payload_digest = hashlib.sha256(canonical_payload).hexdigest()
     if not HEX64.fullmatch(str(lineage.get("payloadSha256", ""))):
