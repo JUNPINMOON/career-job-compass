@@ -179,6 +179,221 @@
     "first_seen": "2026-07-29T23:51:31+00:00",
     "title": "A first-time reader can reconstruct the final recommendation score and understand the evidence selection rule"
   },
+  "DATA-237": {
+    "assert_sha": "602bad6d3953a7d9",
+    "first_seen": "2026-07-30T03:34:34+00:00",
+    "title": "Recommendation scoring excludes location and makes structured feedback the primary explainable signal"
+  },
+  "DATA-238": {
+    "assert_sha": "088d25d9d71c3da9",
+    "first_seen": "2026-07-30T10:03:52+00:00",
+    "title": "Legacy qualification feedback is normalized deterministically before ranking"
+  },
+  "DATA-239": {
+    "assert_sha": "6b61c0a78c88ea41",
+    "first_seen": "2026-08-01T19:06:22+00:00",
+    "title": "Public snapshot adds a truth-labeled lifestyle layer without changing recommendation scores"
+  },
+  "DATA-240": {
+    "assert_sha": "d08381921b4ba7f3",
+    "first_seen": "2026-08-01T19:06:22+00:00",
+    "title": "Release validation fails when lifestyle lineage, statuses, or score isolation is missing"
+  },
+  "DATA-241": {
+    "assert_sha": "6abb6be8517d9f5b",
+    "first_seen": "2026-08-02T05:17:09+00:00",
+    "title": "Lifestyle discovery searches the full posting-facts artifact and publishes reconstructable source lineage"
+  },
+  "DATA-242": {
+    "assert_sha": "99aafcf3ad1571d3",
+    "first_seen": "2026-08-02T05:17:09+00:00",
+    "title": "Lifestyle lanes expose independent axis coverage instead of hiding partial evidence behind one unknown status"
+  },
+  "DATA-243": {
+    "assert_sha": "6ccdcec9ca6fda9b",
+    "first_seen": "2026-08-02T05:52:35+00:00",
+    "title": "Lifestyle discovery separates raw location hits from strict review candidates and verified recommendations"
+  },
+  "DATA-244": {
+    "assert_sha": "34f05d93ec1ebb64",
+    "first_seen": "2026-08-02T08:15:18+00:00",
+    "title": "Exact feedback overrides are shown as user labels rather than fabricated score arithmetic"
+  },
+  "DATA-245": {
+    "assert_sha": "cf4caaf54e5d65dc",
+    "first_seen": "2026-08-02T08:38:53+00:00",
+    "title": "Snapshot feedback remains excluded from new candidates and visible in Saved when local storage is empty"
+  },
+  "DATA-246": {
+    "assert_sha": "41f1c75b7659fe3f",
+    "first_seen": "2026-08-02T08:46:36+00:00",
+    "title": "Every liked preference remains in a separate privacy-safe saved archive after active inventory churn"
+  },
+  "DATA-247": {
+    "assert_sha": "5d28692e7e003de6",
+    "first_seen": "2026-08-02T09:07:34+00:00",
+    "title": "The active public snapshot builder carries savedJobs from the engine slice into the file read by the mobile app"
+  },
+  "DATA-248": {
+    "assert_sha": "1a3a6d99cc475f31",
+    "first_seen": "2026-08-02T10:07:45+00:00",
+    "title": "The unauthenticated GitHub Pages snapshot contains no personal preference archive or scoring trace"
+  },
+  "DATA-249": {
+    "assert_sha": "ca25aee09bdb2687",
+    "first_seen": "2026-08-02T10:07:45+00:00",
+    "title": "Authenticated refresh builds to a private engine artifact while the default producer remains anonymous"
+  },
+  "DATA-251": {
+    "assert_sha": "e1e56139d3cd36fe",
+    "first_seen": "2026-08-02T10:33:34+00:00",
+    "title": "Recommendation explanations disclose missing comparison evidence instead of awarding implicit fit"
+  },
+  "DATA-252": {
+    "assert_sha": "f00798eb56cf582a",
+    "first_seen": "2026-08-02T10:33:34+00:00",
+    "title": "Recommendation explanations disclose every compared feedback row and the subset that influenced the score"
+  },
+  "DATA-254": {
+    "assert_sha": "92f2062c9ccb4279",
+    "first_seen": "2026-08-02T10:45:35+00:00",
+    "title": "Graduate recent-project counts reject missing years, future-only periods, and unfunded generic research labels"
+  },
+  "DATA-255": {
+    "assert_sha": "6a826ffe26ab3916",
+    "first_seen": "2026-08-02T10:45:35+00:00",
+    "title": "Graduate public transformation preserves claim-level identifiers, roles, cohorts, and evidence quality without exposing unnecessary alumni identity"
+  },
+  "DATA-256": {
+    "assert_sha": "9391acc6fa761bb7",
+    "first_seen": "2026-08-02T10:58:47+00:00",
+    "title": "Graduate lineage identifies the exact source artifacts and producer code used for the public payload"
+  },
+  "DATA-258": {
+    "assert_sha": "f33136034448b762",
+    "first_seen": "2026-08-02T11:00:17+00:00",
+    "title": "The mobile graduate consumer rejects lineage that omits any canonical source role"
+  },
+  "DATA-259": {
+    "assert_sha": "251b65356f9f3f07",
+    "first_seen": "2026-08-02T11:21:48+00:00",
+    "title": "Private browser state is hydrated and persisted only inside the authenticated Supabase owner namespace"
+  },
+  "DATA-261": {
+    "assert_sha": "a6c699635ea89962",
+    "first_seen": "2026-08-02T11:21:48+00:00",
+    "title": "A succeeded queue run is displayed only after the private snapshot proves the same run, digest, and feedback counts"
+  },
+  "DATA-264": {
+    "assert_sha": "6bc2c5f61f0a95ce",
+    "first_seen": "2026-08-02T11:56:56+00:00",
+    "title": "A successful private snapshot survives restart only inside its authenticated owner namespace"
+  },
+  "DATA-266": {
+    "assert_sha": "af2a2a3f01ac1f3a",
+    "first_seen": "2026-08-02T11:56:56+00:00",
+    "title": "Saved renders the complete private archive without reading public snapshot bookmarks"
+  },
+  "DATA-269": {
+    "assert_sha": "b860b9cf314b37b2",
+    "first_seen": "2026-08-02T12:08:37+00:00",
+    "title": "Graduate mobile summaries distinguish unresearched evidence from sourced zero-result claims"
+  },
+  "DATA-270": {
+    "assert_sha": "db4c53c5679bccd5",
+    "first_seen": "2026-08-02T12:14:17+00:00",
+    "title": "A refresh cannot claim current feedback until every local decision has a durable Supabase acknowledgement"
+  },
+  "DATA-271": {
+    "assert_sha": "d16db87eb44f508a",
+    "first_seen": "2026-08-02T12:14:17+00:00",
+    "title": "Explicit synchronized feedback always wins over a legacy bookmark during one-time migration"
+  },
+  "DATA-276": {
+    "assert_sha": "8cc00a0c62457904",
+    "first_seen": "2026-08-02T12:46:11+00:00",
+    "title": "A personalized producer writes only to its run-specific staging artifact before fenced publication"
+  },
+  "DATA-280": {
+    "assert_sha": "acde9b15bf2ff618",
+    "first_seen": "2026-08-02T13:14:08+00:00",
+    "title": "Refresh sends the authenticated Supabase bearer without publishing blocked token markers"
+  },
+  "DATA-281": {
+    "assert_sha": "f8698ae3f5be2cff",
+    "first_seen": "2026-08-02T13:19:35+00:00",
+    "title": "Every published job carries the public action or exploration discovery contract after overrides"
+  },
+  "DATA-282": {
+    "assert_sha": "4522990bb24a9eb7",
+    "first_seen": "2026-08-02T13:24:38+00:00",
+    "title": "Graduate shortlist generation reads the enriched research dataset and publishes verifiable source lineage"
+  },
+  "DATA-283": {
+    "assert_sha": "f15bfe349e7bf91c",
+    "first_seen": "2026-08-02T13:37:08+00:00",
+    "title": "Decision subfields expose measured state"
+  },
+  "DATA-285": {
+    "assert_sha": "290481f1dfd6eac0",
+    "first_seen": "2026-08-02T13:49:23+00:00",
+    "title": "Decision subfields publish measured operational state instead of repeated placeholders"
+  },
+  "DATA-287": {
+    "assert_sha": "05df9bd7bf35b4bd",
+    "first_seen": "2026-08-02T13:49:23+00:00",
+    "title": "Authenticated snapshot merge anchors graduate evidence on the current public canonical payload"
+  },
+  "DATA-290": {
+    "assert_sha": "7f54b1aeafde21ef",
+    "first_seen": "2026-08-02T13:59:22+00:00",
+    "title": "Structured feedback evidence is lineage-bound into discovery without leaking the private overlay"
+  },
+  "DATA-291": {
+    "assert_sha": "553b34c8fb51cacc",
+    "first_seen": "2026-08-02T13:59:22+00:00",
+    "title": "Legacy WorkNet keys remain internal while every public surface names the official source as 고용24"
+  },
+  "DATA-294": {
+    "assert_sha": "20b7f155b80256f8",
+    "first_seen": "2026-08-02T14:07:15+00:00",
+    "title": "The decision framework expands by required connected domain IDs without a fixed domain or subfield count constant"
+  },
+  "DATA-295": {
+    "assert_sha": "570b7b672d6ecdca",
+    "first_seen": "2026-08-02T14:11:37+00:00",
+    "title": "Busan lifestyle readiness requires both strict workplace evidence and WLB evidence"
+  },
+  "DATA-297": {
+    "assert_sha": "880f23357dfc1d2a",
+    "first_seen": "2026-08-02T14:16:38+00:00",
+    "title": "Decision framework v3 connects wider career, graduate, source, application, organization, pipeline, and uncertainty evidence lanes"
+  },
+  "DATA-299": {
+    "assert_sha": "681c57601b81948a",
+    "first_seen": "2026-08-02T16:14:40+00:00",
+    "title": "Graduate admissions separates public TOEFL waiver transcript and GPA requirements from authenticated private readiness"
+  },
+  "DATA-301": {
+    "assert_sha": "f9f4f6c7df0bdded",
+    "first_seen": "2026-08-02T16:14:40+00:00",
+    "title": "Public evidence boundary"
+  },
+  "DATA-302": {
+    "assert_sha": "87efeef03af1b4ad",
+    "first_seen": "2026-08-02T16:14:40+00:00",
+    "title": "Feedback identities are excluded from candidate output"
+  },
+  "DATA-303": {
+    "assert_sha": "dd4cebb18c0f2bf5",
+    "first_seen": "2026-08-02T16:14:40+00:00",
+    "title": "Saved records require fresh currentness evidence"
+  },
+  "DATA-306": {
+    "assert_sha": "e26d17acfe16574d",
+    "first_seen": "2026-08-02T16:14:40+00:00",
+    "title": "Program display semantics"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -299,6 +514,111 @@
     "first_seen": "2026-07-30T00:17:12+00:00",
     "title": "Installed mobile clients receive the corrected reason-penalty ceiling"
   },
+  "GOV-225": {
+    "assert_sha": "92342d27a87e74da",
+    "first_seen": "2026-07-30T02:07:31+00:00",
+    "title": "Installed mobile clients invalidate the failed-refresh diagnostics release"
+  },
+  "GOV-226": {
+    "assert_sha": "8b1eac0869788a7e",
+    "first_seen": "2026-07-30T03:34:34+00:00",
+    "title": "Installed mobile clients invalidate the structured-feedback ranking release"
+  },
+  "GOV-227": {
+    "assert_sha": "0ba0e64cc552914b",
+    "first_seen": "2026-07-30T08:14:45+00:00",
+    "title": "Installed mobile clients invalidate the qualification-feedback release"
+  },
+  "GOV-228": {
+    "assert_sha": "1a13e7cdd07e5874",
+    "first_seen": "2026-07-30T10:03:52+00:00",
+    "title": "Installed mobile clients invalidate automatic legacy-feedback normalization"
+  },
+  "GOV-229": {
+    "assert_sha": "f60ed8cb8f154091",
+    "first_seen": "2026-08-01T19:06:22+00:00",
+    "title": "Installed mobile clients invalidate the lifestyle evidence release"
+  },
+  "GOV-230": {
+    "assert_sha": "35943a5f0e81fb64",
+    "first_seen": "2026-08-02T05:17:09+00:00",
+    "title": "Snapshot builds fail closed when run from a stale copy or pointed at a noncanonical output"
+  },
+  "GOV-231": {
+    "assert_sha": "c92f32d1be25fb56",
+    "first_seen": "2026-08-02T05:17:09+00:00",
+    "title": "Installed mobile clients invalidate the full-universe lifestyle lineage release"
+  },
+  "GOV-232": {
+    "assert_sha": "d14b8b91aa742a6c",
+    "first_seen": "2026-08-02T05:52:35+00:00",
+    "title": "Installed mobile clients invalidate the strict lifestyle candidate release"
+  },
+  "GOV-233": {
+    "assert_sha": "cd0e8a14a5ade14e",
+    "first_seen": "2026-08-02T08:15:18+00:00",
+    "title": "Installed mobile clients invalidate the recommendation-truth release"
+  },
+  "GOV-234": {
+    "assert_sha": "1d35a851c67e0a81",
+    "first_seen": "2026-08-02T09:15:52+00:00",
+    "title": "Installed mobile clients invalidate the phase-gate-loop refresh monitor release"
+  },
+  "GOV-235": {
+    "assert_sha": "efb88c3de3c95494",
+    "first_seen": "2026-08-02T10:03:55+00:00",
+    "title": "Installed mobile clients invalidate the refresh status restore release"
+  },
+  "GOV-250": {
+    "assert_sha": "e976027ea8631961",
+    "first_seen": "2026-08-02T10:13:42+00:00",
+    "title": "Installed clients never cache the anonymous snapshot as a substitute for the authenticated overlay"
+  },
+  "GOV-253": {
+    "assert_sha": "fc67885378d1f97c",
+    "first_seen": "2026-08-02T10:33:34+00:00",
+    "title": "Installed mobile clients invalidate the evidence-coverage explanation release"
+  },
+  "GOV-257": {
+    "assert_sha": "af29e2739f571e32",
+    "first_seen": "2026-08-02T10:58:47+00:00",
+    "title": "Release validation rejects incomplete or self-inconsistent graduate source lineage"
+  },
+  "GOV-263": {
+    "assert_sha": "87ba7360f0d584ce",
+    "first_seen": "2026-08-02T11:21:48+00:00",
+    "title": "Installed mobile clients invalidate the owner-scoped exact-run refresh shell"
+  },
+  "GOV-272": {
+    "assert_sha": "25f52857dbc05e10",
+    "first_seen": "2026-08-02T12:19:10+00:00",
+    "title": "Service-worker cleanup removes only retired Career Compass caches"
+  },
+  "GOV-279": {
+    "assert_sha": "b1650d48040a4d23",
+    "first_seen": "2026-08-02T12:57:15+00:00",
+    "title": "Installed mobile clients receive the decision framework app shell instead of a stale cache"
+  },
+  "GOV-289": {
+    "assert_sha": "ca9a32e069a8b8f2",
+    "first_seen": "2026-08-02T13:50:19+00:00",
+    "title": "Installed mobile clients invalidate the measured-framework and closed-dialog shell"
+  },
+  "GOV-296": {
+    "assert_sha": "444907e2dc06aed9",
+    "first_seen": "2026-08-02T14:11:37+00:00",
+    "title": "Release validation enforces the same Busan workplace plus WLB gate as the producer"
+  },
+  "GOV-300": {
+    "assert_sha": "e024e772bf317e30",
+    "first_seen": "2026-08-02T16:14:40+00:00",
+    "title": "Published job provenance is measured from identifiers URLs and source lineage"
+  },
+  "GOV-305": {
+    "assert_sha": "03f7e4c0618f3e75",
+    "first_seen": "2026-08-02T16:14:40+00:00",
+    "title": "Source links carry truthful evidence labels"
+  },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -313,6 +633,21 @@
     "assert_sha": "66deb96e2cc2a5bf",
     "first_seen": "2026-07-28T07:44:59+00:00",
     "title": "The public app cannot forge refresh progress or personalized snapshots"
+  },
+  "SEC-273": {
+    "assert_sha": "fa02264f4d7ba2c1",
+    "first_seen": "2026-08-02T12:31:05+00:00",
+    "title": "Every data-driven external link is restricted to a safe web scheme before rendering or opening"
+  },
+  "SEC-277": {
+    "assert_sha": "13867db3b209a056",
+    "first_seen": "2026-08-02T12:46:41+00:00",
+    "title": "Release privacy scan recursively verifies the packaged artifact and archive members before publication"
+  },
+  "SEC-298": {
+    "assert_sha": "ee982fae9d722f00",
+    "first_seen": "2026-08-02T16:14:40+00:00",
+    "title": "Public graduate projection removes private applicant readiness and fit notes before decision support is derived"
   },
   "UX-201": {
     "assert_sha": "0cb85859116bd85d",
@@ -463,5 +798,135 @@
     "assert_sha": "14348038d7bae5e0",
     "first_seen": "2026-07-29T16:45:43+00:00",
     "title": "Saved supports an arbitrary-length local comparison list"
+  },
+  "UX-231": {
+    "assert_sha": "a6d8a4a5158d1a89",
+    "first_seen": "2026-07-30T02:07:31+00:00",
+    "title": "A failed refresh freezes its elapsed time, preserves claimed feedback counts, and shows the safe failure reason"
+  },
+  "UX-232": {
+    "assert_sha": "36de3ef288e9f647",
+    "first_seen": "2026-07-30T03:34:34+00:00",
+    "title": "Mobile feedback captures structured reasons and optional notes by decision category"
+  },
+  "UX-233": {
+    "assert_sha": "44423f632dc8aa7b",
+    "first_seen": "2026-07-30T08:04:55+00:00",
+    "title": "Qualification feedback distinguishes credentials, experience, degree, and work authorization"
+  },
+  "UX-234": {
+    "assert_sha": "f8d6dc6b693bc7c4",
+    "first_seen": "2026-08-01T19:06:22+00:00",
+    "title": "Mobile lifestyle tab separates commute, work-life evidence, and explicit Busan workplaces"
+  },
+  "UX-235": {
+    "assert_sha": "8f1bd7484b2108f0",
+    "first_seen": "2026-08-02T05:17:09+00:00",
+    "title": "Mobile lifestyle pages distinguish searched zero, not searched, partial evidence, and non-recommendation source links"
+  },
+  "UX-236": {
+    "assert_sha": "aa8f52a72a0cd966",
+    "first_seen": "2026-08-02T05:52:35+00:00",
+    "title": "Mobile lifestyle UI explains zero verified recommendations and the strict candidate funnel"
+  },
+  "UX-237": {
+    "assert_sha": "a61766762061f95a",
+    "first_seen": "2026-08-02T08:15:18+00:00",
+    "title": "Exploration-only results identify themselves as deterministic similarity retrieval"
+  },
+  "UX-238": {
+    "assert_sha": "cf500ecf4a061009",
+    "first_seen": "2026-08-02T08:15:18+00:00",
+    "title": "Mobile copy does not overstate similarity-ranked inventory as personalized recommendations"
+  },
+  "UX-239": {
+    "assert_sha": "993de79e9a06d3cd",
+    "first_seen": "2026-08-02T08:46:36+00:00",
+    "title": "Saved reads the complete saved archive and opens archived records without putting them back into recommendations"
+  },
+  "UX-240": {
+    "assert_sha": "a51d66648eb28d22",
+    "first_seen": "2026-08-02T09:15:52+00:00",
+    "title": "Mobile refresh separates PROCESS PHASE, GATE, and bounded LOOP state without optimistic execution claims"
+  },
+  "UX-241": {
+    "assert_sha": "d898368317bf866e",
+    "first_seen": "2026-08-02T10:03:55+00:00",
+    "title": "Mobile refresh monitor restores the last safe request state before polling resolves"
+  },
+  "UX-260": {
+    "assert_sha": "f1564e3ff87fc15d",
+    "first_seen": "2026-08-02T11:21:48+00:00",
+    "title": "Mobile refresh polling survives transient transport loss and rediscovers the authoritative active run after resume"
+  },
+  "UX-262": {
+    "assert_sha": "131d3dce00ded357",
+    "first_seen": "2026-08-02T11:21:48+00:00",
+    "title": "The mobile detail sheet keeps its close control visible while long evidence sections scroll"
+  },
+  "UX-265": {
+    "assert_sha": "883577be269fa47a",
+    "first_seen": "2026-08-02T11:56:56+00:00",
+    "title": "Mobile errors report only observed authentication, publication, stage, or transport boundaries"
+  },
+  "UX-267": {
+    "assert_sha": "36222a9e6158523f",
+    "first_seen": "2026-08-02T11:56:56+00:00",
+    "title": "Mobile restores process status only after the authenticated owner namespace is known"
+  },
+  "UX-268": {
+    "assert_sha": "14e6f7b74ca83463",
+    "first_seen": "2026-08-02T11:59:02+00:00",
+    "title": "A transient queue lookup failure never permanently disables the mobile refresh control"
+  },
+  "UX-274": {
+    "assert_sha": "cf2b8ff09a652e12",
+    "first_seen": "2026-08-02T12:31:05+00:00",
+    "title": "The mobile scroll owner reserves one measured bottom stack so the final record is never hidden"
+  },
+  "UX-275": {
+    "assert_sha": "4a2e449478572491",
+    "first_seen": "2026-08-02T12:31:05+00:00",
+    "title": "Persisted active refresh timestamps expire instead of producing impossible elapsed times"
+  },
+  "UX-278": {
+    "assert_sha": "bbff279d63329733",
+    "first_seen": "2026-08-02T12:55:26+00:00",
+    "title": "Sources tab exposes a broad and deep decision framework generated through the same app-data path it reads"
+  },
+  "UX-284": {
+    "assert_sha": "a799bb3551280b09",
+    "first_seen": "2026-08-02T13:43:34+00:00",
+    "title": "Decision framework adds feasibility and decision economics as deep evidence lanes"
+  },
+  "UX-286": {
+    "assert_sha": "a8ca9c28cdba972b",
+    "first_seen": "2026-08-02T13:49:23+00:00",
+    "title": "Closed native detail dialogs are removed from the mobile layout and accessibility tree"
+  },
+  "UX-288": {
+    "assert_sha": "bfe6f27086fcda8d",
+    "first_seen": "2026-08-02T13:50:19+00:00",
+    "title": "Mobile decision framework shows measured state, current evidence, and the next verification action per subfield"
+  },
+  "UX-292": {
+    "assert_sha": "761eda8c248e1811",
+    "first_seen": "2026-08-02T13:59:22+00:00",
+    "title": "Search input immediately recomputes mobile result counts, page totals, and navigation controls"
+  },
+  "UX-293": {
+    "assert_sha": "8b022b5082b96bb6",
+    "first_seen": "2026-08-02T14:07:15+00:00",
+    "title": "Job detail separates the public source label from legacy keys and original-posting currentness from artifact freshness"
+  },
+  "UX-304": {
+    "assert_sha": "7cddee1271a785d6",
+    "first_seen": "2026-08-02T16:14:40+00:00",
+    "title": "Exploration count uses its own semantic category"
+  },
+  "UX-307": {
+    "assert_sha": "92e9142f7ce9ee2e",
+    "first_seen": "2026-08-02T16:14:40+00:00",
+    "title": "Comparison cards preserve record kind"
   }
 }

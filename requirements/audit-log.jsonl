@@ -219,3 +219,244 @@
 {"at": "2026-07-30T00:17:12+00:00", "event": "requirement_added", "id": "GOV-224", "title": "Installed mobile clients receive the corrected reason-penalty ceiling"}
 {"at": "2026-07-30T00:17:12+00:00", "event": "check", "passed": 91, "failed": 1, "failing_ids": ["GOV-224"]}
 {"at": "2026-07-30T00:18:16+00:00", "event": "check", "passed": 92, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T02:05:19+00:00", "event": "check", "passed": 92, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T02:07:31+00:00", "event": "requirement_added", "id": "UX-231", "title": "A failed refresh freezes its elapsed time, preserves claimed feedback counts, and shows the safe failure reason"}
+{"at": "2026-07-30T02:07:31+00:00", "event": "requirement_added", "id": "GOV-225", "title": "Installed mobile clients invalidate the failed-refresh diagnostics release"}
+{"at": "2026-07-30T02:07:31+00:00", "event": "check", "passed": 92, "failed": 2, "failing_ids": ["UX-231", "GOV-225"]}
+{"at": "2026-07-30T02:08:24+00:00", "event": "check", "passed": 94, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T03:29:27+00:00", "event": "check", "passed": 94, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T03:34:34+00:00", "event": "requirement_added", "id": "UX-232", "title": "Mobile feedback captures structured reasons and optional notes by decision category"}
+{"at": "2026-07-30T03:34:34+00:00", "event": "requirement_added", "id": "DATA-237", "title": "Recommendation scoring excludes location and makes structured feedback the primary explainable signal"}
+{"at": "2026-07-30T03:34:34+00:00", "event": "requirement_added", "id": "GOV-226", "title": "Installed mobile clients invalidate the structured-feedback ranking release"}
+{"at": "2026-07-30T03:34:34+00:00", "event": "check", "passed": 94, "failed": 3, "failing_ids": ["UX-232", "DATA-237", "GOV-226"]}
+{"at": "2026-07-30T03:54:50+00:00", "event": "check", "passed": 97, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T04:05:49+00:00", "event": "check", "passed": 97, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T07:57:45+00:00", "event": "check", "passed": 97, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T08:04:55+00:00", "event": "requirement_added", "id": "UX-233", "title": "Qualification feedback distinguishes credentials, experience, degree, and work authorization"}
+{"at": "2026-07-30T08:04:56+00:00", "event": "check", "passed": 97, "failed": 1, "failing_ids": ["UX-233"]}
+{"at": "2026-07-30T08:14:45+00:00", "event": "requirement_added", "id": "GOV-227", "title": "Installed mobile clients invalidate the qualification-feedback release"}
+{"at": "2026-07-30T08:14:45+00:00", "event": "check", "passed": 98, "failed": 1, "failing_ids": ["GOV-227"]}
+{"at": "2026-07-30T08:15:10+00:00", "event": "check", "passed": 99, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T08:27:25+00:00", "event": "check", "passed": 99, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T09:50:36+00:00", "event": "check", "passed": 99, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T10:00:53+00:00", "event": "check", "passed": 99, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T10:03:52+00:00", "event": "requirement_added", "id": "DATA-238", "title": "Legacy qualification feedback is normalized deterministically before ranking"}
+{"at": "2026-07-30T10:03:52+00:00", "event": "requirement_added", "id": "GOV-228", "title": "Installed mobile clients invalidate automatic legacy-feedback normalization"}
+{"at": "2026-07-30T10:03:52+00:00", "event": "check", "passed": 99, "failed": 2, "failing_ids": ["DATA-238", "GOV-228"]}
+{"at": "2026-07-30T10:25:56+00:00", "event": "check", "passed": 101, "failed": 0, "failing_ids": []}
+{"at": "2026-07-30T10:39:17+00:00", "event": "check", "passed": 101, "failed": 0, "failing_ids": []}
+{"at": "2026-08-01T19:06:22+00:00", "event": "requirement_added", "id": "DATA-239", "title": "Public snapshot adds a truth-labeled lifestyle layer without changing recommendation scores"}
+{"at": "2026-08-01T19:06:22+00:00", "event": "requirement_added", "id": "DATA-240", "title": "Release validation fails when lifestyle lineage, statuses, or score isolation is missing"}
+{"at": "2026-08-01T19:06:22+00:00", "event": "requirement_added", "id": "UX-234", "title": "Mobile lifestyle tab separates commute, work-life evidence, and explicit Busan workplaces"}
+{"at": "2026-08-01T19:06:22+00:00", "event": "requirement_added", "id": "GOV-229", "title": "Installed mobile clients invalidate the lifestyle evidence release"}
+{"at": "2026-08-01T19:06:22+00:00", "event": "check", "passed": 101, "failed": 4, "failing_ids": ["DATA-239", "DATA-240", "UX-234", "GOV-229"]}
+{"at": "2026-08-01T19:59:42+00:00", "event": "check", "passed": 105, "failed": 0, "failing_ids": []}
+{"at": "2026-08-01T20:15:16+00:00", "event": "check", "passed": 105, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T05:17:09+00:00", "event": "requirement_added", "id": "DATA-241", "title": "Lifestyle discovery searches the full posting-facts artifact and publishes reconstructable source lineage"}
+{"at": "2026-08-02T05:17:09+00:00", "event": "requirement_added", "id": "DATA-242", "title": "Lifestyle lanes expose independent axis coverage instead of hiding partial evidence behind one unknown status"}
+{"at": "2026-08-02T05:17:09+00:00", "event": "requirement_added", "id": "UX-235", "title": "Mobile lifestyle pages distinguish searched zero, not searched, partial evidence, and non-recommendation source links"}
+{"at": "2026-08-02T05:17:09+00:00", "event": "requirement_added", "id": "GOV-230", "title": "Snapshot builds fail closed when run from a stale copy or pointed at a noncanonical output"}
+{"at": "2026-08-02T05:17:09+00:00", "event": "requirement_added", "id": "GOV-231", "title": "Installed mobile clients invalidate the full-universe lifestyle lineage release"}
+{"at": "2026-08-02T05:17:09+00:00", "event": "check", "passed": 105, "failed": 5, "failing_ids": ["DATA-241", "DATA-242", "UX-235", "GOV-230", "GOV-231"]}
+{"at": "2026-08-02T05:17:18+00:00", "event": "check", "passed": 105, "failed": 5, "failing_ids": ["DATA-241", "DATA-242", "UX-235", "GOV-230", "GOV-231"]}
+{"at": "2026-08-02T05:48:35+00:00", "event": "check", "passed": 107, "failed": 3, "failing_ids": ["UX-234", "UX-235", "GOV-231"]}
+{"at": "2026-08-02T05:49:27+00:00", "event": "check", "passed": 108, "failed": 2, "failing_ids": ["UX-234", "UX-235"]}
+{"at": "2026-08-02T05:49:46+00:00", "event": "check", "passed": 110, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T05:52:35+00:00", "event": "requirement_added", "id": "DATA-243", "title": "Lifestyle discovery separates raw location hits from strict review candidates and verified recommendations"}
+{"at": "2026-08-02T05:52:35+00:00", "event": "requirement_added", "id": "UX-236", "title": "Mobile lifestyle UI explains zero verified recommendations and the strict candidate funnel"}
+{"at": "2026-08-02T05:52:35+00:00", "event": "requirement_added", "id": "GOV-232", "title": "Installed mobile clients invalidate the strict lifestyle candidate release"}
+{"at": "2026-08-02T05:52:35+00:00", "event": "check", "passed": 110, "failed": 3, "failing_ids": ["DATA-243", "UX-236", "GOV-232"]}
+{"at": "2026-08-02T05:52:52+00:00", "event": "check", "passed": 110, "failed": 3, "failing_ids": ["DATA-243", "UX-236", "GOV-232"]}
+{"at": "2026-08-02T05:55:05+00:00", "event": "check", "passed": 110, "failed": 3, "failing_ids": ["DATA-243", "UX-236", "GOV-232"]}
+{"at": "2026-08-02T06:06:25+00:00", "event": "check", "passed": 111, "failed": 2, "failing_ids": ["UX-235", "GOV-232"]}
+{"at": "2026-08-02T06:07:35+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T06:09:25+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T06:14:04+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T06:16:12+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T06:17:40+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T06:19:19+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T06:21:01+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T06:22:02+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T06:51:21+00:00", "event": "check", "passed": 111, "failed": 2, "failing_ids": ["UX-234", "UX-236"]}
+{"at": "2026-08-02T06:53:06+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T06:54:36+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T07:06:57+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T07:08:11+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T07:24:22+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T07:34:48+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T07:47:37+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T08:03:44+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T08:12:37+00:00", "event": "check", "passed": 113, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T08:15:18+00:00", "event": "requirement_added", "id": "DATA-244", "title": "Exact feedback overrides are shown as user labels rather than fabricated score arithmetic"}
+{"at": "2026-08-02T08:15:18+00:00", "event": "requirement_added", "id": "UX-237", "title": "Exploration-only results identify themselves as deterministic similarity retrieval"}
+{"at": "2026-08-02T08:15:18+00:00", "event": "requirement_added", "id": "UX-238", "title": "Mobile copy does not overstate similarity-ranked inventory as personalized recommendations"}
+{"at": "2026-08-02T08:15:18+00:00", "event": "requirement_added", "id": "GOV-233", "title": "Installed mobile clients invalidate the recommendation-truth release"}
+{"at": "2026-08-02T08:15:18+00:00", "event": "check", "passed": 113, "failed": 4, "failing_ids": ["DATA-244", "UX-237", "UX-238", "GOV-233"]}
+{"at": "2026-08-02T08:35:09+00:00", "event": "check", "passed": 117, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T08:38:53+00:00", "event": "requirement_added", "id": "DATA-245", "title": "Snapshot feedback remains excluded from new candidates and visible in Saved when local storage is empty"}
+{"at": "2026-08-02T08:38:53+00:00", "event": "check", "passed": 117, "failed": 1, "failing_ids": ["DATA-245"]}
+{"at": "2026-08-02T08:41:03+00:00", "event": "check", "passed": 118, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T08:46:36+00:00", "event": "requirement_added", "id": "DATA-246", "title": "Every liked preference remains in a separate privacy-safe saved archive after active inventory churn"}
+{"at": "2026-08-02T08:46:36+00:00", "event": "requirement_added", "id": "UX-239", "title": "Saved reads the complete saved archive and opens archived records without putting them back into recommendations"}
+{"at": "2026-08-02T08:46:36+00:00", "event": "check", "passed": 118, "failed": 2, "failing_ids": ["DATA-246", "UX-239"]}
+{"at": "2026-08-02T08:51:16+00:00", "event": "assertion_modified", "id": "DATA-246", "old": "265e237f5138eb4f", "new": "41f1c75b7659fe3f", "reason": "Corrected DATA-246 from an invalid workspace junction target to the release verifier in this repository before implementation"}
+{"at": "2026-08-02T08:51:16+00:00", "event": "check", "passed": 118, "failed": 2, "failing_ids": ["DATA-246", "UX-239"]}
+{"at": "2026-08-02T09:06:25+00:00", "event": "check", "passed": 120, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T09:07:34+00:00", "event": "requirement_added", "id": "DATA-247", "title": "The active public snapshot builder carries savedJobs from the engine slice into the file read by the mobile app"}
+{"at": "2026-08-02T09:07:34+00:00", "event": "check", "passed": 120, "failed": 1, "failing_ids": ["DATA-247"]}
+{"at": "2026-08-02T09:08:16+00:00", "event": "check", "passed": 121, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T09:15:52+00:00", "event": "requirement_added", "id": "UX-240", "title": "Mobile refresh separates PROCESS PHASE, GATE, and bounded LOOP state without optimistic execution claims"}
+{"at": "2026-08-02T09:15:52+00:00", "event": "requirement_added", "id": "GOV-234", "title": "Installed mobile clients invalidate the phase-gate-loop refresh monitor release"}
+{"at": "2026-08-02T09:15:52+00:00", "event": "check", "passed": 121, "failed": 2, "failing_ids": ["UX-240", "GOV-234"]}
+{"at": "2026-08-02T09:25:37+00:00", "event": "check", "passed": 121, "failed": 2, "failing_ids": ["UX-240", "GOV-234"]}
+{"at": "2026-08-02T09:45:18+00:00", "event": "check", "passed": 122, "failed": 1, "failing_ids": ["GOV-234"]}
+{"at": "2026-08-02T09:45:53+00:00", "event": "check", "passed": 123, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T09:52:19+00:00", "event": "check", "passed": 123, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T09:54:24+00:00", "event": "check", "passed": 123, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T09:54:42+00:00", "event": "check", "passed": 123, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T10:03:55+00:00", "event": "requirement_added", "id": "UX-241", "title": "Mobile refresh monitor restores the last safe request state before polling resolves"}
+{"at": "2026-08-02T10:03:55+00:00", "event": "requirement_added", "id": "GOV-235", "title": "Installed mobile clients invalidate the refresh status restore release"}
+{"at": "2026-08-02T10:03:55+00:00", "event": "check", "passed": 125, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T10:07:45+00:00", "event": "requirement_added", "id": "DATA-248", "title": "The unauthenticated GitHub Pages snapshot contains no personal preference archive or scoring trace"}
+{"at": "2026-08-02T10:07:45+00:00", "event": "requirement_added", "id": "DATA-249", "title": "Authenticated refresh builds to a private engine artifact while the default producer remains anonymous"}
+{"at": "2026-08-02T10:07:45+00:00", "event": "check", "passed": 125, "failed": 2, "failing_ids": ["DATA-248", "DATA-249"]}
+{"at": "2026-08-02T10:08:00+00:00", "event": "check", "passed": 125, "failed": 2, "failing_ids": ["DATA-248", "DATA-249"]}
+{"at": "2026-08-02T10:09:20+00:00", "event": "check", "passed": 127, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T10:11:08+00:00", "event": "check", "passed": 127, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T10:13:42+00:00", "event": "requirement_added", "id": "GOV-250", "title": "Installed clients never cache the anonymous snapshot as a substitute for the authenticated overlay"}
+{"at": "2026-08-02T10:13:42+00:00", "event": "check", "passed": 127, "failed": 1, "failing_ids": ["GOV-250"]}
+{"at": "2026-08-02T10:15:17+00:00", "event": "check", "passed": 128, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T10:15:55+00:00", "event": "check", "passed": 128, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T10:16:02+00:00", "event": "check", "passed": 128, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T10:33:34+00:00", "event": "requirement_added", "id": "DATA-251", "title": "Recommendation explanations disclose missing comparison evidence instead of awarding implicit fit"}
+{"at": "2026-08-02T10:33:34+00:00", "event": "requirement_added", "id": "DATA-252", "title": "Recommendation explanations disclose every compared feedback row and the subset that influenced the score"}
+{"at": "2026-08-02T10:33:34+00:00", "event": "requirement_added", "id": "GOV-253", "title": "Installed mobile clients invalidate the evidence-coverage explanation release"}
+{"at": "2026-08-02T10:33:34+00:00", "event": "check", "passed": 128, "failed": 3, "failing_ids": ["DATA-251", "DATA-252", "GOV-253"]}
+{"at": "2026-08-02T10:41:50+00:00", "event": "check", "passed": 131, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T10:43:29+00:00", "event": "check", "passed": 131, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T10:45:35+00:00", "event": "requirement_added", "id": "DATA-254", "title": "Graduate recent-project counts reject missing years, future-only periods, and unfunded generic research labels"}
+{"at": "2026-08-02T10:45:35+00:00", "event": "requirement_added", "id": "DATA-255", "title": "Graduate public transformation preserves claim-level identifiers, roles, cohorts, and evidence quality without exposing unnecessary alumni identity"}
+{"at": "2026-08-02T10:45:35+00:00", "event": "check", "passed": 131, "failed": 2, "failing_ids": ["DATA-254", "DATA-255"]}
+{"at": "2026-08-02T10:51:42+00:00", "event": "check", "passed": 132, "failed": 1, "failing_ids": ["DATA-216"]}
+{"at": "2026-08-02T10:51:56+00:00", "event": "check", "passed": 133, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T10:58:47+00:00", "event": "requirement_added", "id": "DATA-256", "title": "Graduate lineage identifies the exact source artifacts and producer code used for the public payload"}
+{"at": "2026-08-02T10:58:47+00:00", "event": "requirement_added", "id": "GOV-257", "title": "Release validation rejects incomplete or self-inconsistent graduate source lineage"}
+{"at": "2026-08-02T10:58:47+00:00", "event": "check", "passed": 133, "failed": 2, "failing_ids": ["DATA-256", "GOV-257"]}
+{"at": "2026-08-02T11:00:17+00:00", "event": "requirement_added", "id": "DATA-258", "title": "The mobile graduate consumer rejects lineage that omits any canonical source role"}
+{"at": "2026-08-02T11:00:17+00:00", "event": "check", "passed": 133, "failed": 3, "failing_ids": ["DATA-256", "GOV-257", "DATA-258"]}
+{"at": "2026-08-02T11:21:28+00:00", "event": "check", "passed": 135, "failed": 1, "failing_ids": ["DATA-237"]}
+{"at": "2026-08-02T11:21:48+00:00", "event": "requirement_added", "id": "DATA-259", "title": "Private browser state is hydrated and persisted only inside the authenticated Supabase owner namespace"}
+{"at": "2026-08-02T11:21:48+00:00", "event": "requirement_added", "id": "UX-260", "title": "Mobile refresh polling survives transient transport loss and rediscovers the authoritative active run after resume"}
+{"at": "2026-08-02T11:21:48+00:00", "event": "requirement_added", "id": "DATA-261", "title": "A succeeded queue run is displayed only after the private snapshot proves the same run, digest, and feedback counts"}
+{"at": "2026-08-02T11:21:48+00:00", "event": "requirement_added", "id": "UX-262", "title": "The mobile detail sheet keeps its close control visible while long evidence sections scroll"}
+{"at": "2026-08-02T11:21:48+00:00", "event": "requirement_added", "id": "GOV-263", "title": "Installed mobile clients invalidate the owner-scoped exact-run refresh shell"}
+{"at": "2026-08-02T11:21:48+00:00", "event": "check", "passed": 135, "failed": 6, "failing_ids": ["DATA-237", "DATA-259", "UX-260", "DATA-261", "UX-262", "GOV-263"]}
+{"at": "2026-08-02T11:23:19+00:00", "event": "check", "passed": 136, "failed": 5, "failing_ids": ["DATA-259", "UX-260", "DATA-261", "UX-262", "GOV-263"]}
+{"at": "2026-08-02T11:37:52+00:00", "event": "check", "passed": 135, "failed": 6, "failing_ids": ["DATA-207", "UX-239", "UX-260", "DATA-261", "UX-262", "GOV-263"]}
+{"at": "2026-08-02T11:38:01+00:00", "event": "check", "passed": 135, "failed": 6, "failing_ids": ["DATA-207", "UX-239", "UX-260", "DATA-261", "UX-262", "GOV-263"]}
+{"at": "2026-08-02T11:48:19+00:00", "event": "check", "passed": 135, "failed": 6, "failing_ids": ["UX-213", "DATA-207", "UX-239", "UX-241", "UX-260", "UX-262"]}
+{"at": "2026-08-02T11:49:51+00:00", "event": "check", "passed": 135, "failed": 6, "failing_ids": ["UX-213", "DATA-207", "UX-239", "UX-241", "UX-260", "UX-262"]}
+{"at": "2026-08-02T11:56:56+00:00", "event": "requirement_added", "id": "DATA-264", "title": "A successful private snapshot survives restart only inside its authenticated owner namespace"}
+{"at": "2026-08-02T11:56:56+00:00", "event": "requirement_added", "id": "UX-265", "title": "Mobile errors report only observed authentication, publication, stage, or transport boundaries"}
+{"at": "2026-08-02T11:56:56+00:00", "event": "requirement_added", "id": "DATA-266", "title": "Saved renders the complete private archive without reading public snapshot bookmarks"}
+{"at": "2026-08-02T11:56:56+00:00", "event": "requirement_added", "id": "UX-267", "title": "Mobile restores process status only after the authenticated owner namespace is known"}
+{"at": "2026-08-02T11:56:56+00:00", "event": "check", "passed": 141, "failed": 4, "failing_ids": ["UX-213", "DATA-207", "UX-239", "UX-241"]}
+{"at": "2026-08-02T11:58:38+00:00", "event": "check", "passed": 141, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T11:59:02+00:00", "event": "requirement_added", "id": "UX-268", "title": "A transient queue lookup failure never permanently disables the mobile refresh control"}
+{"at": "2026-08-02T11:59:02+00:00", "event": "check", "passed": 141, "failed": 1, "failing_ids": ["UX-268"]}
+{"at": "2026-08-02T12:00:24+00:00", "event": "check", "passed": 142, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T12:08:37+00:00", "event": "requirement_added", "id": "DATA-269", "title": "Graduate mobile summaries distinguish unresearched evidence from sourced zero-result claims"}
+{"at": "2026-08-02T12:08:37+00:00", "event": "check", "passed": 142, "failed": 1, "failing_ids": ["DATA-269"]}
+{"at": "2026-08-02T12:13:09+00:00", "event": "check", "passed": 143, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T12:14:17+00:00", "event": "requirement_added", "id": "DATA-270", "title": "A refresh cannot claim current feedback until every local decision has a durable Supabase acknowledgement"}
+{"at": "2026-08-02T12:14:17+00:00", "event": "requirement_added", "id": "DATA-271", "title": "Explicit synchronized feedback always wins over a legacy bookmark during one-time migration"}
+{"at": "2026-08-02T12:14:17+00:00", "event": "check", "passed": 143, "failed": 2, "failing_ids": ["DATA-270", "DATA-271"]}
+{"at": "2026-08-02T12:19:10+00:00", "event": "requirement_added", "id": "GOV-272", "title": "Service-worker cleanup removes only retired Career Compass caches"}
+{"at": "2026-08-02T12:19:10+00:00", "event": "check", "passed": 143, "failed": 3, "failing_ids": ["DATA-270", "DATA-271", "GOV-272"]}
+{"at": "2026-08-02T12:26:18+00:00", "event": "check", "passed": 146, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T12:26:26+00:00", "event": "check", "passed": 146, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T12:30:19+00:00", "event": "check", "passed": 146, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T12:31:05+00:00", "event": "requirement_added", "id": "SEC-273", "title": "Every data-driven external link is restricted to a safe web scheme before rendering or opening"}
+{"at": "2026-08-02T12:31:05+00:00", "event": "requirement_added", "id": "UX-274", "title": "The mobile scroll owner reserves one measured bottom stack so the final record is never hidden"}
+{"at": "2026-08-02T12:31:05+00:00", "event": "requirement_added", "id": "UX-275", "title": "Persisted active refresh timestamps expire instead of producing impossible elapsed times"}
+{"at": "2026-08-02T12:31:05+00:00", "event": "check", "passed": 146, "failed": 3, "failing_ids": ["SEC-273", "UX-274", "UX-275"]}
+{"at": "2026-08-02T12:31:35+00:00", "event": "check", "passed": 146, "failed": 3, "failing_ids": ["SEC-273", "UX-274", "UX-275"]}
+{"at": "2026-08-02T12:32:55+00:00", "event": "check", "passed": 146, "failed": 3, "failing_ids": ["SEC-273", "UX-274", "UX-275"]}
+{"at": "2026-08-02T12:38:43+00:00", "event": "check", "passed": 147, "failed": 2, "failing_ids": ["UX-274", "UX-275"]}
+{"at": "2026-08-02T12:41:12+00:00", "event": "check", "passed": 147, "failed": 2, "failing_ids": ["UX-274", "UX-275"]}
+{"at": "2026-08-02T12:42:52+00:00", "event": "check", "passed": 147, "failed": 2, "failing_ids": ["UX-274", "UX-275"]}
+{"at": "2026-08-02T12:46:11+00:00", "event": "requirement_added", "id": "DATA-276", "title": "A personalized producer writes only to its run-specific staging artifact before fenced publication"}
+{"at": "2026-08-02T12:46:11+00:00", "event": "check", "passed": 147, "failed": 3, "failing_ids": ["UX-219", "UX-225", "DATA-276"]}
+{"at": "2026-08-02T12:46:41+00:00", "event": "requirement_added", "id": "SEC-277", "title": "Release privacy scan recursively verifies the packaged artifact and archive members before publication"}
+{"at": "2026-08-02T12:46:41+00:00", "event": "check", "passed": 147, "failed": 4, "failing_ids": ["UX-219", "UX-225", "DATA-276", "SEC-277"]}
+{"at": "2026-08-02T12:50:07+00:00", "event": "check", "passed": 151, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T12:50:49+00:00", "event": "check", "passed": 151, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T12:54:02+00:00", "event": "check", "passed": 151, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T12:55:04+00:00", "event": "check", "passed": 151, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T12:55:26+00:00", "event": "requirement_added", "id": "UX-278", "title": "Sources tab exposes a broad and deep decision framework generated through the same app-data path it reads"}
+{"at": "2026-08-02T12:55:26+00:00", "event": "check", "passed": 151, "failed": 1, "failing_ids": ["UX-278"]}
+{"at": "2026-08-02T12:55:29+00:00", "event": "check", "passed": 151, "failed": 1, "failing_ids": ["UX-278"]}
+{"at": "2026-08-02T12:57:15+00:00", "event": "requirement_added", "id": "GOV-279", "title": "Installed mobile clients receive the decision framework app shell instead of a stale cache"}
+{"at": "2026-08-02T12:57:15+00:00", "event": "check", "passed": 151, "failed": 2, "failing_ids": ["UX-278", "GOV-279"]}
+{"at": "2026-08-02T12:57:40+00:00", "event": "check", "passed": 151, "failed": 2, "failing_ids": ["UX-278", "GOV-279"]}
+{"at": "2026-08-02T13:04:53+00:00", "event": "check", "passed": 153, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:09:06+00:00", "event": "check", "passed": 153, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:09:27+00:00", "event": "check", "passed": 153, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:09:38+00:00", "event": "check", "passed": 153, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:11:55+00:00", "event": "check", "passed": 153, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:13:28+00:00", "event": "check", "passed": 152, "failed": 1, "failing_ids": ["DATA-204"]}
+{"at": "2026-08-02T13:14:08+00:00", "event": "requirement_added", "id": "DATA-280", "title": "Refresh sends the authenticated Supabase bearer without publishing blocked token markers"}
+{"at": "2026-08-02T13:14:08+00:00", "event": "check", "passed": 153, "failed": 1, "failing_ids": ["DATA-204"]}
+{"at": "2026-08-02T13:14:25+00:00", "event": "check", "passed": 153, "failed": 1, "failing_ids": ["DATA-204"]}
+{"at": "2026-08-02T13:14:26+00:00", "event": "check", "passed": 153, "failed": 1, "failing_ids": ["DATA-204"]}
+{"at": "2026-08-02T13:15:01+00:00", "event": "check", "passed": 153, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:15:19+00:00", "event": "check", "passed": 153, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:19:35+00:00", "event": "requirement_added", "id": "DATA-281", "title": "Every published job carries the public action or exploration discovery contract after overrides"}
+{"at": "2026-08-02T13:19:35+00:00", "event": "check", "passed": 154, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:24:38+00:00", "event": "requirement_added", "id": "DATA-282", "title": "Graduate shortlist generation reads the enriched research dataset and publishes verifiable source lineage"}
+{"at": "2026-08-02T13:24:38+00:00", "event": "check", "passed": 154, "failed": 1, "failing_ids": ["DATA-282"]}
+{"at": "2026-08-02T13:25:44+00:00", "event": "check", "passed": 154, "failed": 1, "failing_ids": ["DATA-282"]}
+{"at": "2026-08-02T13:27:30+00:00", "event": "check", "passed": 155, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:29:34+00:00", "event": "check", "passed": 155, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:31:10+00:00", "event": "check", "passed": 155, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:32:40+00:00", "event": "check", "passed": 155, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:33:41+00:00", "event": "check", "passed": 155, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:33:44+00:00", "event": "check", "passed": 155, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:37:08+00:00", "event": "requirement_added", "id": "DATA-283", "title": "Decision subfields expose measured state"}
+{"at": "2026-08-02T13:37:08+00:00", "event": "check", "passed": 155, "failed": 1, "failing_ids": ["DATA-283"]}
+{"at": "2026-08-02T13:43:34+00:00", "event": "requirement_added", "id": "UX-284", "title": "Decision framework adds feasibility and decision economics as deep evidence lanes"}
+{"at": "2026-08-02T13:43:34+00:00", "event": "check", "passed": 155, "failed": 2, "failing_ids": ["DATA-283", "UX-284"]}
+{"at": "2026-08-02T13:49:23+00:00", "event": "requirement_added", "id": "DATA-285", "title": "Decision subfields publish measured operational state instead of repeated placeholders"}
+{"at": "2026-08-02T13:49:23+00:00", "event": "requirement_added", "id": "UX-286", "title": "Closed native detail dialogs are removed from the mobile layout and accessibility tree"}
+{"at": "2026-08-02T13:49:23+00:00", "event": "requirement_added", "id": "DATA-287", "title": "Authenticated snapshot merge anchors graduate evidence on the current public canonical payload"}
+{"at": "2026-08-02T13:49:24+00:00", "event": "check", "passed": 156, "failed": 4, "failing_ids": ["UX-284", "DATA-285", "UX-286", "DATA-287"]}
+{"at": "2026-08-02T13:50:19+00:00", "event": "requirement_added", "id": "UX-288", "title": "Mobile decision framework shows measured state, current evidence, and the next verification action per subfield"}
+{"at": "2026-08-02T13:50:19+00:00", "event": "requirement_added", "id": "GOV-289", "title": "Installed mobile clients invalidate the measured-framework and closed-dialog shell"}
+{"at": "2026-08-02T13:50:19+00:00", "event": "check", "passed": 158, "failed": 4, "failing_ids": ["UX-284", "DATA-285", "UX-288", "GOV-289"]}
+{"at": "2026-08-02T13:55:42+00:00", "event": "check", "passed": 162, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:57:07+00:00", "event": "check", "passed": 162, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T13:59:22+00:00", "event": "requirement_added", "id": "DATA-290", "title": "Structured feedback evidence is lineage-bound into discovery without leaking the private overlay"}
+{"at": "2026-08-02T13:59:22+00:00", "event": "requirement_added", "id": "DATA-291", "title": "Legacy WorkNet keys remain internal while every public surface names the official source as 고용24"}
+{"at": "2026-08-02T13:59:22+00:00", "event": "requirement_added", "id": "UX-292", "title": "Search input immediately recomputes mobile result counts, page totals, and navigation controls"}
+{"at": "2026-08-02T13:59:22+00:00", "event": "check", "passed": 162, "failed": 3, "failing_ids": ["DATA-290", "DATA-291", "UX-292"]}
+{"at": "2026-08-02T14:07:15+00:00", "event": "requirement_added", "id": "UX-293", "title": "Job detail separates the public source label from legacy keys and original-posting currentness from artifact freshness"}
+{"at": "2026-08-02T14:07:15+00:00", "event": "requirement_added", "id": "DATA-294", "title": "The decision framework expands by required connected domain IDs without a fixed domain or subfield count constant"}
+{"at": "2026-08-02T14:07:15+00:00", "event": "check", "passed": 163, "failed": 4, "failing_ids": ["DATA-290", "DATA-291", "UX-293", "DATA-294"]}
+{"at": "2026-08-02T14:11:37+00:00", "event": "requirement_added", "id": "DATA-295", "title": "Busan lifestyle readiness requires both strict workplace evidence and WLB evidence"}
+{"at": "2026-08-02T14:11:37+00:00", "event": "requirement_added", "id": "GOV-296", "title": "Release validation enforces the same Busan workplace plus WLB gate as the producer"}
+{"at": "2026-08-02T14:11:37+00:00", "event": "check", "passed": 163, "failed": 6, "failing_ids": ["DATA-290", "DATA-291", "UX-293", "DATA-294", "DATA-295", "GOV-296"]}
+{"at": "2026-08-02T14:16:38+00:00", "event": "requirement_added", "id": "DATA-297", "title": "Decision framework v3 connects wider career, graduate, source, application, organization, pipeline, and uncertainty evidence lanes"}
+{"at": "2026-08-02T14:16:38+00:00", "event": "check", "passed": 165, "failed": 5, "failing_ids": ["DATA-290", "DATA-291", "UX-293", "DATA-294", "DATA-297"]}
+{"at": "2026-08-02T16:14:40+00:00", "event": "requirement_added", "id": "SEC-298", "title": "Public graduate projection removes private applicant readiness and fit notes before decision support is derived"}
+{"at": "2026-08-02T16:14:40+00:00", "event": "requirement_added", "id": "DATA-299", "title": "Graduate admissions separates public TOEFL waiver transcript and GPA requirements from authenticated private readiness"}
+{"at": "2026-08-02T16:14:40+00:00", "event": "requirement_added", "id": "GOV-300", "title": "Published job provenance is measured from identifiers URLs and source lineage"}
+{"at": "2026-08-02T16:14:40+00:00", "event": "requirement_added", "id": "DATA-301", "title": "Public evidence boundary"}
+{"at": "2026-08-02T16:14:40+00:00", "event": "requirement_added", "id": "DATA-302", "title": "Feedback identities are excluded from candidate output"}
+{"at": "2026-08-02T16:14:40+00:00", "event": "requirement_added", "id": "DATA-303", "title": "Saved records require fresh currentness evidence"}
+{"at": "2026-08-02T16:14:40+00:00", "event": "requirement_added", "id": "UX-304", "title": "Exploration count uses its own semantic category"}
+{"at": "2026-08-02T16:14:40+00:00", "event": "requirement_added", "id": "GOV-305", "title": "Source links carry truthful evidence labels"}
+{"at": "2026-08-02T16:14:40+00:00", "event": "requirement_added", "id": "DATA-306", "title": "Program display semantics"}
+{"at": "2026-08-02T16:14:40+00:00", "event": "requirement_added", "id": "UX-307", "title": "Comparison cards preserve record kind"}
+{"at": "2026-08-02T16:14:40+00:00", "event": "check", "passed": 180, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T16:53:59+00:00", "event": "check", "passed": 180, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T16:58:13+00:00", "event": "check", "passed": 180, "failed": 0, "failing_ids": []}

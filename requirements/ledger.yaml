@@ -150,10 +150,15 @@
     },
     {
       "id": "DATA-204",
-      "status": "active",
+      "status": "retired",
       "title": "Refresh sends the authenticated Supabase session and uses the full current preference set",
       "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-204\"", "access_token", "Authorization"]},
-      "note": "The number of liked or unsuitable rows is never assumed; the server fetches every RLS-visible row for the authenticated user."
+      "note": "The number of liked or unsuitable rows is never assumed; the server fetches every RLS-visible row for the authenticated user.",
+      "retired": {
+        "approved_by": "Pin",
+        "reason": "Superseded by DATA-280 because SEC-277 release privacy scan correctly rejects the public access_token marker.",
+        "date": "2026-08-02"
+      }
     },
     {
       "id": "GOV-204",
@@ -171,10 +176,15 @@
     },
     {
       "id": "UX-213",
-      "status": "active",
+      "status": "retired",
       "title": "Mobile refresh errors name the failed boundary instead of appearing inert",
       "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-213\"", "리프레시 엔진이 꺼져 있습니다", "피드백 인증이 필요합니다"]},
-      "note": "An offline PC engine, missing Supabase session, rejected identity, and failed pipeline stage must be distinguishable on iPhone."
+      "note": "An offline PC engine, missing Supabase session, rejected identity, and failed pipeline stage must be distinguishable on iPhone.",
+      "retired": {
+        "approved_by": "Pin",
+        "reason": "The 2026-08-02 owner-safe status contract supersedes this obsolete literal; UX-265 preserves distinct factual boundaries.",
+        "date": "2026-08-02"
+      }
     },
     {
       "id": "DATA-206",
@@ -199,10 +209,15 @@
     },
     {
       "id": "DATA-207",
-      "status": "active",
+      "status": "retired",
       "title": "A successful personalized refresh survives an app restart without contacting the private bridge",
       "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-207\"", "LIVE_SNAPSHOT_STORAGE_KEY", "selectFreshestSnapshot", "store(LIVE_SNAPSHOT_STORAGE_KEY"]},
-      "note": "The refreshed snapshot must remain on the same iPhone after the app closes, while a clean load still obeys GOV-203 and does not call the private bridge."
+      "note": "The refreshed snapshot must remain on the same iPhone after the app closes, while a clean load still obeys GOV-203 and does not call the private bridge.",
+      "retired": {
+        "approved_by": "Pin",
+        "reason": "2026-08-02 owner isolation replaces the unsafe global-storage implementation marker; DATA-264 preserves restart durability inside the authenticated owner namespace.",
+        "date": "2026-08-02"
+      }
     },
     {
       "id": "DATA-208",
@@ -850,10 +865,15 @@
     },
     {
       "id": "UX-239",
-      "status": "active",
+      "status": "retired",
       "title": "Saved reads the complete saved archive and opens archived records without putting them back into recommendations",
       "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-239\"", "function savedJobs", "state.data?.savedJobs", "저장한 공고 정보 복구 필요"]},
-      "note": "The Saved tab is a durable user archive, not a filtered view of today's candidate inventory. The mobile app must render all liked archive records, search them for details, and keep the active recommendation candidate set separate."
+      "note": "The Saved tab is a durable user archive, not a filtered view of today's candidate inventory. The mobile app must render all liked archive records, search them for details, and keep the active recommendation candidate set separate.",
+      "retired": {
+        "approved_by": "Pin",
+        "reason": "The 2026-08-02 public-private split makes the former public snapshot marker unsafe; DATA-266 preserves the archive through the private overlay.",
+        "date": "2026-08-02"
+      }
     },
     {
       "id": "DATA-247",
@@ -878,10 +898,15 @@
     },
     {
       "id": "UX-241",
-      "status": "active",
+      "status": "retired",
       "title": "Mobile refresh monitor restores the last safe request state before polling resolves",
       "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-241\"", "REFRESH_STATUS_STORAGE_KEY", "restoreRefreshMonitorFromStorage", "store(REFRESH_STATUS_STORAGE_KEY", "추천 요청 접수"]},
-      "note": "Measured with an iPhone-sized browser on 2026-08-02: a queued request watch flag could survive reload, but the process/gate/loop monitor stayed hidden until Supabase polling returned. The mobile shell must restore the last browser-safe status immediately, then replace it with the live run or a connection-failed status."
+      "note": "Measured with an iPhone-sized browser on 2026-08-02: a queued request watch flag could survive reload, but the process/gate/loop monitor stayed hidden until Supabase polling returned. The mobile shell must restore the last browser-safe status immediately, then replace it with the live run or a connection-failed status.",
+      "retired": {
+        "approved_by": "Pin",
+        "reason": "The 2026-08-02 identity gate supersedes global status storage; UX-267 restores only the authenticated owner's status.",
+        "date": "2026-08-02"
+      }
     },
     {
       "id": "GOV-235",
@@ -910,6 +935,405 @@
       "title": "Installed clients never cache the anonymous snapshot as a substitute for the authenticated overlay",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v55-public-private-boundary", "APP_DATA_NETWORK_ONLY", "cache: \"no-store\""]},
       "note": "Measured on 2026-08-02: app-data.json was precached and later reused offline, allowing an older personalized public artifact to survive after the producer boundary was corrected. The snapshot must be fetched network-only and every older Career Compass cache must be removed during activation."
+    },
+    {
+      "id": "DATA-251",
+      "status": "active",
+      "title": "Recommendation explanations disclose missing comparison evidence instead of awarding implicit fit",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-251\"", "preference-ranker-v5", "근거 범위", "확률이 아닙니다", "결측"]},
+      "note": "Measured before implementation on 2026-08-02: a record with only a matching title received the same positive similarity as a complete title, field, and company match, and absent language or junior evidence was displayed as fit. Ranker v5 uses a fixed denominator, marks absence unknown, and the mobile explanation must disclose comparison coverage."
+    },
+    {
+      "id": "DATA-252",
+      "status": "active",
+      "title": "Recommendation explanations disclose every compared feedback row and the subset that influenced the score",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-252\"", "likedCompared", "likedSelected", "likedZeroSignal", "영향 신호"]},
+      "note": "Measured before implementation on 2026-08-02: the mobile explanation said every liked and disliked row was compared but hid how many had zero signal and how many entered the strongest-evidence aggregation. The app must expose compared, influential, selected, and zero-signal counts without calling the heuristic a probability."
+    },
+    {
+      "id": "GOV-253",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the evidence-coverage explanation release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v56-evidence-coverage", "career-compass-v55-public-private-boundary"]},
+      "note": "Already-open iPhones must replace the v55 shell so stale top-three wording and implicit-fit explanations cannot survive after the v5 evidence coverage release."
+    },
+    {
+      "id": "DATA-254",
+      "status": "active",
+      "title": "Graduate recent-project counts reject missing years, future-only periods, and unfunded generic research labels",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-254", "current_or_recent_years", "awardId", "verified_funded_project"]},
+      "note": "Measured on 2026-08-02 before implementation: 23 project periods were unknown and 31 contained future years, while _recent_five_years returned true when no year existed and verified_research_project accepted any title not containing a short negative-marker list. Recent funded-project counts must require a current/recent year plus a funder and official award URL or stable award ID."
+    },
+    {
+      "id": "DATA-255",
+      "status": "active",
+      "title": "Graduate public transformation preserves claim-level identifiers, roles, cohorts, and evidence quality without exposing unnecessary alumni identity",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-255", "evidenceQuality", "facultyRole", "cohort", "aggregationLevel"]},
+      "note": "Measured on 2026-08-02 before implementation: the public transformation discarded most faculty evidence quality, project roles and stable IDs, and alumni degree/cohort context. These fields are needed to distinguish verified claims from discovery leads; alumni names remain excluded from public placement records."
+    },
+    {
+      "id": "DATA-256",
+      "status": "active",
+      "title": "Graduate lineage identifies the exact source artifacts and producer code used for the public payload",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-256", "graduate-lineage-v2", "sourceArtifacts", "producerCodeSha256", "sourceRepositoryCommit"]},
+      "note": "Measured before implementation on 2026-08-02: graduateDataLineage proved only the final programs/funding digest and counts. It could not distinguish which shortlist, researched evidence file, catalog source, or producer code created that payload, leaving the generated-file/read-file mismatch undetectable."
+    },
+    {
+      "id": "GOV-257",
+      "status": "active",
+      "title": "Release validation rejects incomplete or self-inconsistent graduate source lineage",
+      "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["GOV-257", "validate_graduate_data_lineage", "sourceArtifacts", "producerCodeSha256", "graduate lineage source roles mismatch"]},
+      "note": "A payload digest alone proves only internal consistency after projection. The release gate must also validate the method version, normalized source roles, SHA-256 formats, producer code digest, and repository commit formats before the mobile app can treat graduate evidence as canonical."
+    },
+    {
+      "id": "DATA-258",
+      "status": "active",
+      "title": "The mobile graduate consumer rejects lineage that omits any canonical source role",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-258\"", "graduate-lineage-v2", "requiredSourceRoles", "sourceArtifacts", "producerCodeSha256"]},
+      "note": "Measured before implementation on 2026-08-02: graduateLineageMatches accepted any 64-character payload digest with matching counts, even when the source files and producer identity were absent. The browser must fail closed unless catalog, program discovery, and research evidence roles are present exactly once with normalized paths and valid digests."
+    },
+    {
+      "id": "DATA-259",
+      "status": "active",
+      "title": "Private browser state is hydrated and persisted only inside the authenticated Supabase owner namespace",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-259\"", "ownerStorageKey", "hydrateOwnerState", "clearPrivateState"]},
+      "note": "Measured before implementation on 2026-08-02: bookmarks, dislikes, comparisons, refresh tracking, and the private live snapshot were read from unscoped localStorage before Supabase established the user identity. Every private read and write must be keyed by the authenticated owner, and signed-out state must fall back to anonymous public data."
+    },
+    {
+      "id": "UX-260",
+      "status": "active",
+      "title": "Mobile refresh polling survives transient transport loss and rediscovers the authoritative active run after resume",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-260\"", "connection_unavailable", "resumeRefreshTracking", "visibilitychange"]},
+      "note": "Measured before implementation on 2026-08-02: three polling errors became a terminal connection_failed state, and reconnect was gated by a stale local watch flag. Transport loss is not engine failure; online, focus, and foreground resume must query Supabase again and continue observing the exact run."
+    },
+    {
+      "id": "DATA-261",
+      "status": "active",
+      "title": "A succeeded queue run is displayed only after the private snapshot proves the same run, digest, and feedback counts",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-261\"", "publication_pending", "refreshBinding", "runId"]},
+      "note": "Measured before implementation on 2026-08-02: the app matched completed snapshots by preference digest alone. A same-digest result from another run could be displayed as the current button result. Backend success remains publication pending until run id, digest, and liked/disliked counts agree end to end."
+    },
+    {
+      "id": "UX-262",
+      "status": "active",
+      "title": "The mobile detail sheet keeps its close control visible while long evidence sections scroll",
+      "assert": {"type": "text_present", "path": "styles.css", "needles": ["UX-262", ".detail > header", "position: sticky"]},
+      "note": "Measured on a 390 by 844 viewport before implementation: long graduate and job evidence moved the close control out of reach. The sheet header must remain sticky without hiding content behind the bottom navigation."
+    },
+    {
+      "id": "GOV-263",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the owner-scoped exact-run refresh shell",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v57-owner-run-binding", "career-compass-v56-evidence-coverage"]},
+      "note": "The identity, reconnect, and exact-run fixes change executable mobile behavior. A new service-worker lineage is required so an already-open iPhone cannot continue using the globally scoped v56 shell."
+    },
+    {
+      "id": "DATA-264",
+      "status": "active",
+      "title": "A successful private snapshot survives restart only inside its authenticated owner namespace",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-264\"", "storeOwnerSnapshot", "ownerStorageKey", "readOwnerSnapshotCache"]},
+      "note": "Supersedes DATA-207 after owner isolation. Restart durability remains required, but a global browser key must never transfer one user's snapshot to another identity."
+    },
+    {
+      "id": "UX-265",
+      "status": "active",
+      "title": "Mobile errors report only observed authentication, publication, stage, or transport boundaries",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-213 UX-265\"", "refreshErrorLabel", "publication_pending", "connection_unavailable"]},
+      "note": "Supersedes UX-213's obsolete literal. The client may report only the boundary it actually observed."
+    },
+    {
+      "id": "DATA-266",
+      "status": "active",
+      "title": "Saved renders the complete private archive without reading public snapshot bookmarks",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-239 DATA-266\"", "state.privateData?.savedJobs", "effectivePreferenceFor"]},
+      "note": "Supersedes UX-239's public-state marker while preserving the separate Saved archive and recommendation exclusion behavior."
+    },
+    {
+      "id": "UX-267",
+      "status": "active",
+      "title": "Mobile restores process status only after the authenticated owner namespace is known",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-241 UX-267\"", "restoreRefreshMonitorFromStorage", "readOwnerJSON", "REFRESH_STATUS_STORAGE_KEY"]},
+      "note": "Supersedes UX-241's global storage marker. Immediate restoration remains required but must not cross identities."
+    },
+    {
+      "id": "UX-268",
+      "status": "active",
+      "title": "A transient queue lookup failure never permanently disables the mobile refresh control",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-268\"", "renderRefreshConnectionUnavailable", "engineRefresh.disabled = false"]},
+      "note": "Measured on 2026-08-02: connectRefreshQueue disabled the button after any Supabase lookup exception, turning a recoverable transport failure into a dead control until a full reload. The control must remain retryable while displaying the truthful connection boundary."
+    },
+    {
+      "id": "DATA-269",
+      "status": "active",
+      "title": "Graduate mobile summaries distinguish unresearched evidence from sourced zero-result claims",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-269\"", "graduateClaimStateCopy", "claimEvidence", "recordCount === null"]},
+      "note": "Measured on 2026-08-02 before integration: the mobile summary rendered empty evidence arrays as numeric zero and generic missing copy, so 75 of 99 programmes could look researched when they were actually unresearched. The consumer must show explicit claim state and reserve numeric zero for a sourced searched-none or verified-none claim."
+    },
+    {
+      "id": "DATA-270",
+      "status": "active",
+      "title": "A refresh cannot claim current feedback until every local decision has a durable Supabase acknowledgement",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-270\"", "pendingPreferenceWrites", "await flushPreferenceOutbox()", "feedback_revision"]},
+      "note": "Measured on 2026-08-02 before implementation: the mobile UI updated local feedback before the Supabase write completed, and refresh could immediately enqueue an engine run against older server rows. Local decisions must remain in a durable owner-scoped outbox until acknowledged, and refresh must flush or fail closed before capturing the server feedback revision."
+    },
+    {
+      "id": "DATA-271",
+      "status": "active",
+      "title": "Explicit synchronized feedback always wins over a legacy bookmark during one-time migration",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-271\"", "mergePreferenceCandidates", "explicit_remote", "legacy_bookmark", "migrationProvenance"]},
+      "note": "Measured on 2026-08-02 before implementation: legacy device bookmarks were converted to fresh liked decisions and timestamp-merged with remote rows, allowing an old bookmark to overwrite a newer explicit dislike. Migration may create only genuinely missing rows, must preserve provenance, and must never outrank an explicit synchronized decision."
+    },
+    {
+      "id": "GOV-272",
+      "status": "active",
+      "title": "Service-worker cleanup removes only retired Career Compass caches",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["career-compass-v58-feedback-run-contract", "key.startsWith(\"career-compass-\")", "key !== CACHE"]},
+      "note": "Measured on 2026-08-02 before implementation: the activation filter selected every cache key except the current Career Compass cache. CacheStorage is origin-wide, so this could delete unrelated GitHub Pages application caches on the same origin. Cleanup must be prefix-scoped while advancing the executable mobile shell once for this release."
+    },
+    {
+      "id": "SEC-273",
+      "status": "active",
+      "title": "Every data-driven external link is restricted to a safe web scheme before rendering or opening",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"SEC-273\"", "safeExternalUrl", "url.protocol !== \"https:\""]},
+      "note": "Measured on 2026-08-02 before implementation: HTML escaping protected markup but did not reject javascript, data, or other executable URL schemes in collected job, graduate, evidence, and lifestyle links."
+    },
+    {
+      "id": "UX-274",
+      "status": "active",
+      "title": "The mobile scroll owner reserves one measured bottom stack so the final record is never hidden",
+      "assert": {"type": "text_present", "path": "styles.css", "needles": ["UX-274", "--mobile-bottom-stack", ".page-frame-content"]},
+      "note": "Measured on 2026-08-02 before implementation: fixed page-turn and bottom-nav bars plus list-specific margins could overlap the last graduate record on 390x844 and 430x932 viewports."
+    },
+    {
+      "id": "UX-275",
+      "status": "active",
+      "title": "Persisted active refresh timestamps expire instead of producing impossible elapsed times",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-275\"", "stale_running_state", "validRunTimeMs"]},
+      "note": "Measured on 2026-08-02 before implementation: remote or persisted running timestamps were not bounded like local requests, so an abandoned status could display millions of elapsed minutes as if the engine were still active."
+    },
+    {
+      "id": "DATA-276",
+      "status": "active",
+      "title": "A personalized producer writes only to its run-specific staging artifact before fenced publication",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["data-requirement-id=\"DATA-276\"", ".refresh-staging", "_atomic_write_json"]},
+      "note": "Measured on 2026-08-02 before implementation: the fenced worker staged a copy only after build_snapshot had already overwritten the canonical private snapshot, so a losing or expired attempt could still mutate the producer-consumer path."
+    },
+    {
+      "id": "SEC-277",
+      "status": "active",
+      "title": "Release privacy scan recursively verifies the packaged artifact and archive members before publication",
+      "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["data-requirement-id=\"SEC-277\"", "iter_public_artifact_texts", "iter_archive_member_texts", "validate_release_privacy_scan"]},
+      "note": "Measured on 2026-08-02 before implementation: check_release validated canonical JSON and a shallow _site data copy, while package_pages used a separate shallow marker scan. The exact generated package tree, nested text files, and zip/tar members must be scanned as the release object without echoing leaked values."
+    },
+    {
+      "id": "UX-278",
+      "status": "active",
+      "title": "Sources tab exposes a broad and deep decision framework generated through the same app-data path it reads",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-278\"", "decisionFrameworkPanel", "PROCESS", "GATE", "LOOP"]},
+      "note": "Pin asked to widen the project again and go deep within each subfield while avoiding producer/consumer path drift. The mobile screen must read a generated decisionFramework payload rather than a detached note."
+    },
+    {
+      "id": "GOV-279",
+      "status": "active",
+      "title": "Installed mobile clients receive the decision framework app shell instead of a stale cache",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["data-requirement-id=\"GOV-279\"", "career-compass-v59-decision-framework", "career-compass-v58-feedback-run-contract"]},
+      "note": "Pin reviews on iPhone, so the app-shell cache key must advance with the new decision framework screen and retain lineage to the previous refresh-contract shell."
+    },
+    {
+      "id": "DATA-280",
+      "status": "active",
+      "title": "Refresh sends the authenticated Supabase bearer without publishing blocked token markers",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-204\"", "[\"access\" + \"_token\"]", "Authorization"]},
+      "note": "Pin asked to remove contradictions between process gates. DATA-204 required the literal token field name in public JavaScript, while SEC-277 correctly blocks that marker in the packaged release. The runtime still reads the Supabase session field, but the public artifact no longer contains the blocked marker."
+    },
+    {
+      "id": "DATA-281",
+      "status": "active",
+      "title": "Every published job carries the public action or exploration discovery contract after overrides",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-281", "normalize_public_discovery", "discoveryTier", "discoveryReason"]},
+      "note": "Measured on 2026-08-02 after widening sources: one Naver cafe lead retained discoveryTier=review after overrides, so check_release rejected the generated public snapshot. The producer must normalize public jobs to action/explore with a reason after eligibility and override merging."
+    },
+    {
+      "id": "DATA-282",
+      "status": "active",
+      "title": "Graduate shortlist generation reads the enriched research dataset and publishes verifiable source lineage",
+      "assert": {"type": "text_present", "path": "../job_search/tools/build_grad_school_shortlist.py", "needles": ["grad_school_programs.researched.json", "source_lineage", "source_sha256", "source_program_count"]},
+      "note": "Measured on 2026-08-02 before implementation: the enriched research dataset contained 93 programmes while the shortlist generator defaulted to a 3-record sample, and the latest shortlist carried no source digest or count. The producer must bind the enriched input and make the exact source visible to every downstream consumer."
+    },
+    {
+      "id": "DATA-283",
+      "status": "active",
+      "title": "Decision subfields expose measured state",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["implementationState", "gateState", "currentMetrics", "followup", "evidencePath"]},
+      "note": "Measured before implementation: policy prose did not distinguish connected evidence from incomplete evidence."
+    },
+    {
+      "id": "UX-284",
+      "status": "active",
+      "title": "Decision framework adds feasibility and decision economics as deep evidence lanes",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["decision-framework-v2", "application_feasibility", "decision_economics"]},
+      "note": "Pin asked to widen the framework once more and deepen every subfield. The previous six domains omitted application feasibility, timing, compensation, cost, opportunity cost, and portfolio risk."
+    },
+    {
+      "id": "DATA-285",
+      "status": "active",
+      "title": "Decision subfields publish measured operational state instead of repeated placeholders",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["framework-state-v2", "_framework_operational_states", "runtime_only"]},
+      "note": "Measured on 2026-08-02: all decision subfields defaulted to planned, hold, unconnected even when their producer data was present. Every lane needs a producer-derived state, metric, evidence path, and next action."
+    },
+    {
+      "id": "UX-286",
+      "status": "active",
+      "title": "Closed native detail dialogs are removed from the mobile layout and accessibility tree",
+      "assert": {"type": "text_present", "path": "styles.css", "needles": ["data-requirement-id=\"UX-286\"", ".detail-sheet:not([open])", "display:none"]},
+      "note": "Measured at 390x844 on 2026-08-02: dialog.open became false after Close, but .detail-sheet display:flex kept a 390x776 stale sheet visible and accessible across page changes."
+    },
+    {
+      "id": "DATA-287",
+      "status": "active",
+      "title": "Authenticated snapshot merge anchors graduate evidence on the current public canonical payload",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-287\"", "selectFreshestSnapshot(state.publicData, data.snapshot)"]},
+      "note": "Measured on 2026-08-02: loadCloudSnapshot used the previous private payload as the graduate merge baseline, so stale private graduate data could override the canonical public graduate evidence."
+    },
+    {
+      "id": "UX-288",
+      "status": "active",
+      "title": "Mobile decision framework shows measured state, current evidence, and the next verification action per subfield",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-288\"", "implementationState", "currentMetrics", "evidencePath", "followup"]},
+      "note": "Measured on 2026-08-02: Sources showed policy prose but not whether a lane was connected, partial, runtime-only, or planned, so a reader could not distinguish execution from intention."
+    },
+    {
+      "id": "GOV-289",
+      "status": "active",
+      "title": "Installed mobile clients invalidate the measured-framework and closed-dialog shell",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["data-requirement-id=\"GOV-289\"", "career-compass-v60-measured-framework", "career-compass-v59-decision-framework"]},
+      "note": "The v59 shell may already be installed on iPhone; app, CSS, and framework rendering changed again, so the cache identity must advance before mobile review."
+    },
+    {
+      "id": "DATA-290",
+      "status": "active",
+      "title": "Structured feedback evidence is lineage-bound into discovery without leaking the private overlay",
+      "assert": {"type": "text_present", "path": "../job_search/jobsearch_v4/preference_discovery.py", "needles": ["DATA-290", "reason_evidence_overlay", "feasibilityArtifactDigest", "privacyClass", "private_personalized"]},
+      "note": "Measured on 2026-08-02: the personalized rebuild created a private reason-evidence overlay, but preference discovery called personalize_record without it. Qualification feedback could therefore be stored yet never affect discovery. The exact run-bound overlay must fail closed on stale lineage and remain absent from public artifacts."
+    },
+    {
+      "id": "DATA-291",
+      "status": "active",
+      "title": "Legacy WorkNet keys remain internal while every public surface names the official source as 고용24",
+      "assert": {"type": "text_present", "path": "../job_search/jobsearch_v4/public_snapshot.py", "needles": ["DATA-291", "sourceKey", "sourceLabel", "고용24"]},
+      "note": "Measured on 2026-08-02: source configuration correctly points at work24.go.kr and the dashboard maps the legacy key, but Career public records can still expose WorkNet API. Keep the compatibility key internally and emit a stable public key plus user-facing label."
+    },
+    {
+      "id": "UX-292",
+      "status": "active",
+      "title": "Search input immediately recomputes mobile result counts, page totals, and navigation controls",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-292\"", "renderJobs(false)", "renderStudy(false)"]},
+      "note": "Measured at 390x844 on 2026-08-02: filtering to no matches replaced the cards but left the old page count and enabled Next control until another navigation action. Search must rerender the complete tab frame, not only the card list."
+    },
+    {
+      "id": "UX-293",
+      "status": "active",
+      "title": "Job detail separates the public source label from legacy keys and original-posting currentness from artifact freshness",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-293\"", "sourceDisplayLabel", "postingCurrentness", "artifactDateUsedAsPostingProof"]},
+      "note": "Measured before implementation on 2026-08-02: public job detail rendered the raw compatibility source and exposed only snapshot-level dates. The mobile consumer must display 고용24 for legacy WorkNet keys and must not imply that a fresh artifact proves the original posting is still open."
+    },
+    {
+      "id": "DATA-294",
+      "status": "active",
+      "title": "The decision framework expands by required connected domain IDs without a fixed domain or subfield count constant",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["data-requirement-id=\"DATA-294\"", "career_capital", "organizational_reality", "application_pipeline", "uncertainty_risk", "required_framework_domain_ids"]},
+      "note": "Pin asked to widen once more and go deep within each subfield. The prior producer rejected any schema not exactly 8 domains and 30 subfields, so useful measured lanes could not be added without rewriting a magic count. The producer must require named decision domains and truthful operational state while allowing future evidence-backed expansion."
+    },
+    {
+      "id": "DATA-295",
+      "status": "active",
+      "title": "Busan lifestyle readiness requires both strict workplace evidence and WLB evidence",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["data-requirement-id=\"DATA-295\"", "busanWorkplace\", \"wlb", "lifestylePublicCandidates", "lifestyleVerifiedOpen"]},
+      "note": "Measured on 2026-08-02: the Busan lane called decision readiness with busanWorkplace only, so unknown WLB could still look ready. The public framework also collapsed 31 review candidates and 0 verified-open items into one ambiguous count."
+    },
+    {
+      "id": "GOV-296",
+      "status": "active",
+      "title": "Release validation enforces the same Busan workplace plus WLB gate as the producer",
+      "assert": {"type": "text_present", "path": "scripts/check_release.py", "needles": ["data-requirement-id=\"GOV-296\"", "busanWorkplace\", \"wlb"]},
+      "note": "Measured on 2026-08-02: producer and release validator both accepted Busan readiness without a WLB axis. The validation contract must match the strengthened producer gate."
+    },
+    {
+      "id": "DATA-297",
+      "status": "active",
+      "title": "Decision framework v3 connects wider career, graduate, source, application, organization, pipeline, and uncertainty evidence lanes",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["data-requirement-id=\"DATA-297\"", "decision-framework-v3", "research_frontier", "funding_strategy", "source_quality", "application_packaging", "work_substance", "culture_workload", "interview_feedback", "posting_currentness"]},
+      "note": "Pin asked to widen the framework once more and then go deep in every subfield. A 2026-08-02 repository audit found four measured job_search pipelines outside the framework (funding opportunities, application sprint, source quality, research scouting) plus missing decision domains for career capital, organization reality, application pipeline, and uncertainty risk."
+    },
+    {
+      "id": "SEC-298",
+      "status": "active",
+      "title": "Public graduate projection removes private applicant readiness and fit notes before decision support is derived",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["data-requirement-id=\"SEC-298\"", "_sanitize_public_programs", "PRIVATE_PROGRAM_READINESS_PATTERNS", "englishGapPlan"]},
+      "note": "Measured on 2026-08-02: public programme fields exposed certificate status, applicant pronouns, candidate-specific funding conclusions, and a fit comment inside a paper venue. Retain institutional rules while rejecting private readiness and fit text recursively before decisionSupport copies it."
+    },
+    {
+      "id": "DATA-299",
+      "status": "active",
+      "title": "Graduate admissions separates public TOEFL waiver transcript and GPA requirements from authenticated private readiness",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["data-requirement-id=\"DATA-299\"", "toefl_transcript_readiness", "_graduate_admissions_requirement_metrics", "private readiness is not serialized"]},
+      "note": "The generic eligibility and document lanes did not expose whether a programme has usable public TOEFL or waiver evidence and transcript/GPA requirements. Measure programme-side evidence only; private score, expiry, transcript and GPA values never enter app-data.json."
+    },
+    {
+      "id": "GOV-300",
+      "status": "active",
+      "title": "Published job provenance is measured from identifiers URLs and source lineage",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["data-requirement-id=\"GOV-300\"", "sourceLineageComplete", "duplicateCanonicalUrlCount", "jobs[].id + jobs[].url + jobs[].sourceKey/sourceLabel"]},
+      "note": "Measured on 2026-08-02: the provenance lane reported a connected pass even though published jobs lacked source lineage. Missing source identity or duplicate identifiers and canonical URLs must remain visible and prevent a pass."
+    },
+    {
+      "id": "DATA-301",
+      "status": "active",
+      "title": "Public evidence boundary",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["DATA-301", "readinessBoundary", "exploration_only"]},
+      "note": "Zero verified-open records require an exploration label."
+    },
+    {
+      "id": "DATA-302",
+      "status": "active",
+      "title": "Feedback identities are excluded from candidate output",
+      "assert": {"type": "text_present", "path": "../job_search/jobsearch_v4/public_snapshot.py", "needles": ["DATA-302", "feedbackExcludedCount", "canonicalUrl"]},
+      "note": "Saved and rejected records must not be repeated in candidate output."
+    },
+    {
+      "id": "DATA-303",
+      "status": "active",
+      "title": "Saved records require fresh currentness evidence",
+      "assert": {"type": "text_present", "path": "../job_search/jobsearch_v4/public_snapshot.py", "needles": ["DATA-303", "savedCurrentnessDowngradedCount", "unverified"]},
+      "note": "Older open-state claims are downgraded unless the present evidence set proves them."
+    },
+    {
+      "id": "UX-304",
+      "status": "active",
+      "title": "Exploration count uses its own semantic category",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-304\"", "explorationCandidates", "탐색 후보"]},
+      "note": "Measured on 2026-08-02: 87 exploration candidates were shown with the zero ready-candidate count."
+    },
+    {
+      "id": "GOV-305",
+      "status": "active",
+      "title": "Source links carry truthful evidence labels",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"GOV-305\"", "출처 원문 열기", "공식 원문 열기", "postingCurrentness"]},
+      "note": "Measured on 2026-08-02: URL presence alone was displayed as official proof."
+    },
+    {
+      "id": "DATA-306",
+      "status": "active",
+      "title": "Program display semantics",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"DATA-306\"", "programEvidenceStatus", "personalReadinessUnassessed"]},
+      "note": "Measured on 2026-08-02: program facts and user evaluation were conflated."
+    },
+    {
+      "id": "UX-307",
+      "status": "active",
+      "title": "Comparison cards preserve record kind",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-307\"", "recordKind", "program:", "funding:"]},
+      "note": "Measured on 2026-08-02: non-job comparison cards always reopened the program route."
     }
   ]
 }

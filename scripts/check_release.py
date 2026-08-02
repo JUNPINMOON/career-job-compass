@@ -7,11 +7,29 @@ import json
 import re
 import subprocess
 import sys
+import tarfile
+import zipfile
 from pathlib import Path
+from typing import Iterator, Mapping
 
 
 ROOT = Path(__file__).resolve().parents[1]
 LIFESTYLE_METHOD_VERSION = "lifestyle-evidence-v2"
+GRADUATE_LINEAGE_METHOD_VERSION = "graduate-lineage-v2"
+GRADUATE_EVIDENCE_AXES = {
+    "faculty": "faculty",
+    "recentPapers": "recentPapers",
+    "fundedProjects": "recentProjects",
+    "graduateDestinations": "graduateDestinations",
+    "testimonials": "graduateTestimonials",
+}
+GRADUATE_CLAIM_STATE_BY_EVIDENCE = {
+    "present": "evidence_present",
+    "not_researched": "no_claim",
+    "reviewed_no_qualifying": "no_claim",
+    "searched_none": "search_no_result",
+    "verified_none": "source_asserts_none",
+}
 LIFESTYLE_LEGACY_METHOD_VERSION = "lifestyle-evidence-v1"
 LIFESTYLE_STATUSES = {"confirmed", "claimed", "unknown", "negative"}
 LIFESTYLE_LANES = {"jayang_wlb", "busan"}
@@ -81,6 +99,60 @@ STRICT_LOCATION_KEYS = {
 }
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 HTTP_URL = re.compile(r"^https?://", re.IGNORECASE)
+PUBLIC_TEXT_SUFFIXES = {
+    ".css",
+    ".html",
+    ".js",
+    ".json",
+    ".map",
+    ".md",
+    ".svg",
+    ".txt",
+    ".webmanifest",
+    ".xml",
+}
+ARCHIVE_SUFFIXES = (".zip", ".tar", ".tar.gz", ".tgz", ".tar.bz2", ".tbz2", ".tar.xz", ".txz")
+RELEASE_TEXT_LEAK_PATTERNS = (
+    ("file URI", re.compile(r"(?i)\bfile://")),
+    ("absolute local path", re.compile(r"(?i)\b[A-Z]:[\\/]")),
+    ("AppData or temp path", re.compile(r"(?i)\b(?:AppData|Local[\\/]Temp|Temp[\\/])\b")),
+    ("secret marker", re.compile(r"(?i)\b(?:service_role|secret_key|refresh_token|access_token|auth_token|auth_header|session_token|cookie)\b")),
+)
+RELEASE_STRUCTURED_LEAK_PATTERNS = (
+    (
+        "profile/user identifier field",
+        re.compile(
+            r"(?i)[\"'](?:user_id|userId|owner_id|ownerId|auth_user_id|authUserId|"
+            r"profile_id|profileId|profile_digest|profileDigest|account_id|accountId)[\"']\s*:"
+        ),
+    ),
+    (
+        "raw feedback field",
+        re.compile(
+            r"(?i)[\"'](?:rawFeedback|feedbackPayload|reasonEvidence|reason_evidence|"
+            r"structuredReasons|feedbackReasons|groupNotes|reasonCounts)[\"']\s*:"
+        ),
+    ),
+)
+PUBLIC_GRADUATE_PRIVATE_READINESS_KEYS = frozenset(
+    {
+        "englishgapplan",
+        "privateadmissionsreadiness",
+    }
+)
+PUBLIC_GRADUATE_PRIVATE_READINESS_PATTERNS = (
+    re.compile(r"\bexpired\s+(?:english\s+)?(?:certificates?|certs?)\b", re.IGNORECASE),
+    re.compile(r"\bcandidate['\u2019]s\b", re.IGNORECASE),
+    re.compile(r"\bcandidate\s+must\s+retake\b", re.IGNORECASE),
+    re.compile(r"\b(?:his|her)\s+english\s+(?:certificates?|certs?)\b", re.IGNORECASE),
+    re.compile(
+        r"\bas\s+a\s+korean\s+domestic\s+(?:applicant|student)\s+(?:he|she)\b",
+        re.IGNORECASE,
+    ),
+    re.compile(r"\bstrongest\s+path\s+for\s+(?:this|the)\s+candidate\b", re.IGNORECASE),
+    re.compile(r"\bcandidate\s+(?:is\s+)?most\s+likely\s+ineligible\b", re.IGNORECASE),
+    re.compile(r"지원자\s*swmm", re.IGNORECASE),
+)
 
 
 def require(path: Path, label: str) -> None:
@@ -153,6 +225,131 @@ def _lifestyle_digest(discovery: dict) -> str:
     return hashlib.sha256(
         json.dumps(digest_source, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
+
+
+def _file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _archive_kind(path: Path) -> str | None:
+    name = path.name.lower()
+    if name.endswith(".zip"):
+        return "zip"
+    if name.endswith(ARCHIVE_SUFFIXES[1:]):
+        return "tar"
+    return None
+
+
+def _is_public_text_label(label: str) -> bool:
+    member_label = label.split("!", 1)[-1].lower()
+    return any(member_label.endswith(suffix) for suffix in PUBLIC_TEXT_SUFFIXES)
+
+
+def _is_structured_public_label(label: str) -> bool:
+    member_label = label.split("!", 1)[-1].lower()
+    return member_label.endswith((".json", ".webmanifest"))
+
+
+def _safe_archive_member_name(name: str, artifact_label: str) -> str:
+    normalized = name.replace("\\", "/")
+    parts = [part for part in normalized.split("/") if part]
+    if (
+        not normalized
+        or normalized.startswith("/")
+        or re.match(r"(?i)^[a-z]:", normalized)
+        or ".." in parts
+    ):
+        raise SystemExit(f"release privacy scan failed ({artifact_label}: unsafe archive member path)")
+    return normalized
+
+
+def _scan_release_text(label: str, text: str) -> None:
+    for leak_label, pattern in RELEASE_TEXT_LEAK_PATTERNS:
+        if pattern.search(text):
+            raise SystemExit(f"release privacy scan failed ({label}: {leak_label})")
+    if _is_structured_public_label(label):
+        for leak_label, pattern in RELEASE_STRUCTURED_LEAK_PATTERNS:
+            if pattern.search(text):
+                raise SystemExit(f"release privacy scan failed ({label}: {leak_label})")
+
+
+def iter_archive_member_texts(path: Path, artifact_label: str) -> Iterator[tuple[str, str]]:
+    """Yield public text members from zip/tar release archives without trusting member paths."""
+    kind = _archive_kind(path)
+    if kind == "zip":
+        try:
+            with zipfile.ZipFile(path) as archive:
+                for member in archive.infolist():
+                    if member.is_dir():
+                        continue
+                    member_name = _safe_archive_member_name(member.filename, artifact_label)
+                    label = f"{artifact_label}!{member_name}"
+                    if _is_public_text_label(label):
+                        yield label, archive.read(member).decode("utf-8", errors="replace")
+        except (OSError, zipfile.BadZipFile) as error:
+            raise SystemExit(f"release privacy scan failed ({artifact_label}: unreadable archive {error.__class__.__name__})") from None
+    elif kind == "tar":
+        try:
+            with tarfile.open(path) as archive:
+                for member in archive.getmembers():
+                    if not member.isfile():
+                        continue
+                    member_name = _safe_archive_member_name(member.name, artifact_label)
+                    label = f"{artifact_label}!{member_name}"
+                    if not _is_public_text_label(label):
+                        continue
+                    extracted = archive.extractfile(member)
+                    if extracted is None:
+                        raise SystemExit(f"release privacy scan failed ({label}: unreadable archive member)")
+                    yield label, extracted.read().decode("utf-8", errors="replace")
+        except (OSError, tarfile.TarError) as error:
+            raise SystemExit(f"release privacy scan failed ({artifact_label}: unreadable archive {error.__class__.__name__})") from None
+
+
+def iter_public_artifact_texts(root: Path = ROOT, artifact_root: Path | None = None) -> Iterator[tuple[str, str]]:
+    """SEC-277 data-requirement-id="SEC-277": recursively scan the packaged public artifact."""
+    root = Path(root)
+    artifact_root = Path(artifact_root) if artifact_root is not None else root / "_site"
+    resolved_root = root.resolve()
+    resolved_artifact = artifact_root.resolve(strict=True)
+    try:
+        resolved_artifact.relative_to(resolved_root)
+    except ValueError:
+        raise SystemExit("release privacy scan failed: artifact escaped the release root") from None
+    if not resolved_artifact.is_dir():
+        raise SystemExit("release privacy scan failed: artifact root is not a directory")
+    for path in sorted(resolved_artifact.rglob("*")):
+        if not path.is_file():
+            continue
+        try:
+            resolved_path = path.resolve(strict=True)
+            resolved_path.relative_to(resolved_artifact)
+            artifact_label = resolved_path.relative_to(resolved_root).as_posix()
+        except (OSError, ValueError):
+            raise SystemExit("release privacy scan failed: file escaped the artifact root") from None
+        archive_kind = _archive_kind(path)
+        if archive_kind:
+            yield from iter_archive_member_texts(path, artifact_label)
+        elif _is_public_text_label(artifact_label):
+            try:
+                yield artifact_label, path.read_text(encoding="utf-8", errors="replace")
+            except OSError as error:
+                raise SystemExit(f"release privacy scan failed ({artifact_label}: unreadable text {error.__class__.__name__})") from None
+
+
+def validate_release_privacy_scan(root: Path = ROOT, artifact_root: Path | None = None) -> int:
+    """Scan the exact packaged public artifact tree and reject private release text."""
+    scanned = 0
+    for label, text in iter_public_artifact_texts(root, artifact_root):
+        _scan_release_text(label, text)
+        scanned += 1
+    if scanned == 0:
+        raise SystemExit("release privacy scan failed: no public text artifacts were inspected")
+    return scanned
 
 
 def _contains_float(value: object) -> bool:
@@ -542,7 +739,8 @@ def validate_lifestyle_discovery(snapshot: dict, jobs: list[dict]) -> None:
 
     lane_required_axes = {
         "jayang_wlb": ("jayangCommute", "wlb"),
-        "busan": ("busanWorkplace",),
+        # data-requirement-id="GOV-296": match the producer's strict Busan readiness gate.
+        "busan": ("busanWorkplace", "wlb"),
     }
     reviewed_ids: set[str] = set()
     for lane_name, lane in lanes.items():
@@ -685,56 +883,384 @@ def validate_saved_jobs(snapshot: dict, jobs: list[dict]) -> None:
             raise SystemExit("savedJobs contains private feedback fields")
 
 
-def validate_public_privacy_boundary(snapshot: dict, jobs: list[dict]) -> None:
-    """DATA-248: public snapshot contains no authenticated preference data."""
+def validate_public_privacy_boundary(
+    snapshot: dict,
+    jobs: list[dict],
+    *,
+    artifact_label: str = "data/app-data.json",
+) -> None:
+    """DATA-248: distinguish an anonymous schema from authenticated values."""
+
+    def reject(detail: str) -> None:
+        raise SystemExit(
+            f"public snapshot contains authenticated preference data ({artifact_label}: {detail})"
+        )
+
     stats = snapshot.get("stats") if isinstance(snapshot.get("stats"), dict) else {}
     preference_summary = stats.get("preferenceSummary")
+    anonymous_summary_fields = {"rowCount", "likedCount", "dislikedCount", "digest"}
     if not isinstance(preference_summary, dict):
-        raise SystemExit("public snapshot preferenceSummary must be present and anonymous")
-    expected_zero_fields = ("rowCount", "likedCount", "dislikedCount")
-    if any(preference_summary.get(field) != 0 for field in expected_zero_fields):
-        raise SystemExit("public snapshot contains authenticated preference data")
+        reject("preferenceSummary is missing")
+    if set(preference_summary) != anonymous_summary_fields:
+        reject("preferenceSummary has non-anonymous fields")
+    if any(preference_summary.get(field) != 0 for field in ("rowCount", "likedCount", "dislikedCount")):
+        reject("preferenceSummary contains non-zero user counts")
     if preference_summary.get("digest") is not None:
-        raise SystemExit("public snapshot contains authenticated preference data")
+        reject("preferenceSummary contains a user digest")
     if stats.get("recommendationSource") != "baseline":
-        raise SystemExit("public snapshot contains authenticated preference data")
+        reject("recommendationSource is personalized")
     if snapshot.get("savedJobs") != []:
-        raise SystemExit("public snapshot contains authenticated preference data")
+        reject("savedJobs contains or omits the required empty public scaffold")
+
     discovery = stats.get("preferenceDiscovery")
-    if not isinstance(discovery, dict) or discovery.get("current") is not False:
-        raise SystemExit("public snapshot contains authenticated preference data")
+    anonymous_discovery_fields = {
+        "current",
+        "evaluatedCandidateCount",
+        "positiveCandidateCount",
+        "discoveredCandidateCount",
+    }
+    if not isinstance(discovery, dict) or set(discovery) != anonymous_discovery_fields:
+        reject("preferenceDiscovery has non-anonymous fields")
+    if discovery.get("current") is not False:
+        reject("preferenceDiscovery marks a personalized run current")
     for field in ("evaluatedCandidateCount", "positiveCandidateCount", "discoveredCandidateCount"):
         if discovery.get(field) != 0:
-            raise SystemExit("public snapshot contains authenticated preference data")
-    forbidden_public_fields = {
+            reject(f"preferenceDiscovery.{field} is non-zero")
+
+    def normalized_key(value: object) -> str:
+        return re.sub(r"[^a-z0-9]", "", str(value).casefold())
+
+    # These names carry private state regardless of which public collection they
+    # are placed in. Generic catalogue `score` fields are deliberately absent:
+    # programme/funding scores are public editorial data, while job preference
+    # scores are checked separately below.
+    private_fields = {
         "personalization",
+        "preferencesimilarity",
+        "preferencedigest",
+        "matchedfeedback",
+        "matchedpreference",
+        "exactfeedbackoverride",
+        "positivereasonsignals",
+        "appliedreasons",
+        "likedevidencecount",
+        "dislikedevidencecount",
+        "reasonevidencecount",
+        "structuredreasons",
+        "feedbackreasons",
+        "reasoncounts",
+        "groupnotes",
+        "preferencefeedback",
+        "feedbackpayload",
+        "userid",
+        "ownerid",
+        "authuserid",
+        "accountid",
+        "accesstoken",
+        "refreshtoken",
+        "authtoken",
+        "authheader",
+        "sessiontoken",
+        "cookie",
+    }
+    job_private_fields = private_fields | {
         "score",
-        "scoreBreakdown",
-        "recommendationScore",
-        "preferenceSimilarity",
-        "matchedFeedback",
-        "matchedPreference",
-        "preferenceDigest",
-        "exactFeedbackOverride",
-        "positiveReasonSignals",
-        "appliedReasons",
-        "likedEvidenceCount",
-        "dislikedEvidenceCount",
-        "reasonEvidenceCount",
+        "scorebreakdown",
+        "recommendationscore",
     }
 
-    def contains_authenticated_trace(value: object) -> bool:
+    def private_trace_path(
+        value: object,
+        *,
+        path: tuple[str, ...] = (),
+        forbidden: set[str] = private_fields,
+    ) -> tuple[str, ...] | None:
         if isinstance(value, dict):
-            return any(
-                field in forbidden_public_fields or contains_authenticated_trace(item)
-                for field, item in value.items()
-            )
-        if isinstance(value, list):
-            return any(contains_authenticated_trace(item) for item in value)
-        return False
+            for field, item in value.items():
+                field_name = str(field)
+                next_path = (*path, field_name)
+                normalized = normalized_key(field_name)
+                normalized_path = tuple(normalized_key(part) for part in next_path)
+                if normalized in forbidden:
+                    return next_path
+                if normalized == "savedjobs" and normalized_path != ("savedjobs",):
+                    return next_path
+                if normalized == "preferencesummary" and normalized_path != ("stats", "preferencesummary"):
+                    return next_path
+                if normalized == "preferencediscovery" and normalized_path != ("stats", "preferencediscovery"):
+                    return next_path
+                nested = private_trace_path(item, path=next_path, forbidden=forbidden)
+                if nested:
+                    return nested
+        elif isinstance(value, list):
+            for item in value:
+                nested = private_trace_path(item, path=(*path, "[]"), forbidden=forbidden)
+                if nested:
+                    return nested
+        return None
 
-    if contains_authenticated_trace(jobs) or contains_authenticated_trace(snapshot.get("reviewQueue")):
-        raise SystemExit("public snapshot contains authenticated preference data")
+    trace = private_trace_path(snapshot)
+    if trace:
+        reject(f"private field at {'.'.join(trace)}")
+    for collection_name, collection in (("jobs", jobs), ("reviewQueue", snapshot.get("reviewQueue"))):
+        trace = private_trace_path(collection, path=(collection_name,), forbidden=job_private_fields)
+        if trace:
+            reject(f"personalized job field at {'.'.join(trace)}")
+
+
+def validate_public_data_artifacts(root: Path = ROOT) -> dict:
+    """Validate the canonical public data and every deploy copy under `_site`."""
+    root = Path(root)
+    resolved_root = root.resolve()
+    canonical = root / "data" / "app-data.json"
+    if not canonical.is_file():
+        raise SystemExit("public data/app-data.json is missing")
+    canonical_digest = _file_sha256(canonical)
+
+    artifact_paths = [canonical]
+    site_root = root / "_site"
+    if site_root.exists():
+        if not site_root.is_dir():
+            raise SystemExit("cannot verify _site public data: _site is not a directory")
+        try:
+            site_root.resolve(strict=True).relative_to(resolved_root)
+        except (OSError, ValueError):
+            raise SystemExit("cannot verify _site public data outside the release root") from None
+        site_artifacts = sorted(path for path in site_root.rglob("app-data.json") if path.is_file())
+        if not site_artifacts:
+            raise SystemExit("cannot verify _site public data: no app-data.json artifact")
+        artifact_paths.extend(site_artifacts)
+
+    canonical_snapshot: dict | None = None
+    for path in artifact_paths:
+        try:
+            resolved_path = path.resolve(strict=True)
+            resolved_path.relative_to(resolved_root)
+            label = path.relative_to(root).as_posix()
+        except (OSError, ValueError):
+            raise SystemExit("cannot verify public data artifact outside the release root") from None
+        try:
+            snapshot = json.loads(resolved_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError) as error:
+            raise SystemExit(f"{label} is not valid JSON: {error.__class__.__name__}") from None
+        if not isinstance(snapshot, dict):
+            raise SystemExit(f"{label} must contain a JSON object")
+        jobs = snapshot.get("jobs")
+        if not isinstance(jobs, list):
+            raise SystemExit(f"{label} jobs must be a list")
+        validate_public_privacy_boundary(snapshot, jobs, artifact_label=label)
+        if path == canonical:
+            canonical_snapshot = snapshot
+        elif _file_sha256(resolved_path) != canonical_digest:
+            raise SystemExit(f"{label} is stale: digest differs from data/app-data.json")
+
+    if canonical_snapshot is None:  # Defensive: canonical is always first above.
+        raise SystemExit("public data/app-data.json was not validated")
+    return canonical_snapshot
+
+
+def public_graduate_privacy_violation(programs: object) -> str | None:
+    """Return a non-sensitive reason code when public graduate data leaks private readiness."""
+
+    def visit(value: object) -> str | None:
+        if isinstance(value, Mapping):
+            for key, item in value.items():
+                normalized_key = re.sub(r"[^a-z0-9]", "", str(key).casefold())
+                if normalized_key in PUBLIC_GRADUATE_PRIVATE_READINESS_KEYS:
+                    return "private_readiness_field"
+                nested = visit(item)
+                if nested is not None:
+                    return nested
+            return None
+        if isinstance(value, (list, tuple)):
+            for item in value:
+                nested = visit(item)
+                if nested is not None:
+                    return nested
+            return None
+        if isinstance(value, str):
+            normalized_text = re.sub(r"\s+", " ", value.casefold())
+            if any(pattern.search(normalized_text) for pattern in PUBLIC_GRADUATE_PRIVATE_READINESS_PATTERNS):
+                return "private_readiness_phrase"
+        return None
+
+    return visit(programs)
+
+
+def validate_graduate_claim_evidence(programs: list[dict]) -> dict[str, int]:
+    """Reject fabricated zero semantics and derive coverage from explicit claim states."""
+    state_rows: list[dict[str, str]] = []
+    for index, program in enumerate(programs):
+        research = program.get("publicResearch") if isinstance(program, dict) else None
+        claims = research.get("claimEvidence") if isinstance(research, dict) else None
+        if not isinstance(claims, dict) or set(claims) != set(GRADUATE_EVIDENCE_AXES):
+            raise SystemExit(f"graduate claim evidence contract is missing or incomplete at programme {index}")
+
+        faculty = research.get("faculty") if isinstance(research.get("faculty"), list) else []
+        actual_counts = {
+            "faculty": len(faculty),
+            "recentPapers": sum(
+                len(person.get("recentPapers") or [])
+                for person in faculty
+                if isinstance(person, dict) and isinstance(person.get("recentPapers") or [], list)
+            ),
+            "fundedProjects": len(research.get("recentProjects"))
+            if isinstance(research.get("recentProjects"), list)
+            else 0,
+            "graduateDestinations": len(research.get("graduateDestinations"))
+            if isinstance(research.get("graduateDestinations"), list)
+            else 0,
+            "testimonials": len(research.get("graduateTestimonials"))
+            if isinstance(research.get("graduateTestimonials"), list)
+            else 0,
+        }
+        row: dict[str, str] = {}
+        for axis in GRADUATE_EVIDENCE_AXES:
+            claim = claims.get(axis)
+            if not isinstance(claim, dict):
+                raise SystemExit(f"graduate claim evidence contract has a malformed {axis} axis")
+            evidence_state = str(claim.get("evidenceState", ""))
+            expected_claim_state = GRADUATE_CLAIM_STATE_BY_EVIDENCE.get(evidence_state)
+            if expected_claim_state is None or claim.get("claimState") != expected_claim_state:
+                raise SystemExit(f"graduate claim evidence contract has an invalid {axis} state")
+            sources = claim.get("sources")
+            if not isinstance(sources, list):
+                raise SystemExit(f"graduate claim evidence contract has malformed {axis} sources")
+            actual_count = actual_counts[axis]
+            if evidence_state == "present":
+                if actual_count <= 0 or claim.get("recordCount") != actual_count:
+                    raise SystemExit(f"graduate claim evidence contract count mismatch for {axis}")
+            elif evidence_state in {"not_researched", "reviewed_no_qualifying"}:
+                if actual_count != 0 or claim.get("recordCount") is not None or sources:
+                    raise SystemExit(f"graduate claim evidence contract fabricates an empty {axis} result")
+            else:
+                if actual_count != 0 or claim.get("recordCount") != 0 or not sources:
+                    raise SystemExit(f"graduate claim evidence contract lacks sourced absence for {axis}")
+                if any(
+                    not isinstance(source, dict) or not HTTP_URL.match(str(source.get("url", "")))
+                    for source in sources
+                ):
+                    raise SystemExit(f"graduate claim evidence contract has invalid {axis} source evidence")
+            row[axis] = evidence_state
+        state_rows.append(row)
+
+    evidence_flags = {
+        axis: [row[axis] == "present" for row in state_rows]
+        for axis in GRADUATE_EVIDENCE_AXES
+    }
+    any_flags = [any(row[axis] == "present" for axis in GRADUATE_EVIDENCE_AXES) for row in state_rows]
+    return {
+        "totalPrograms": len(programs),
+        "programsWithAnyEvidence": sum(any_flags),
+        "programsWithFaculty": sum(evidence_flags["faculty"]),
+        "programsWithRecentPapers": sum(evidence_flags["recentPapers"]),
+        "programsWithFundedProjects": sum(evidence_flags["fundedProjects"]),
+        "programsWithGraduateDestinations": sum(evidence_flags["graduateDestinations"]),
+        "programsWithTestimonials": sum(evidence_flags["testimonials"]),
+        "unresearchedPrograms": sum(
+            all(row[axis] == "not_researched" for axis in GRADUATE_EVIDENCE_AXES)
+            for row in state_rows
+        ),
+    }
+
+
+def validate_graduate_data_lineage(
+    lineage: object,
+    programs: list[dict],
+    funding: list[dict],
+    *,
+    source_roots: Mapping[str, Path] | None = None,
+) -> None:
+    """GOV-257: reject payload-only lineage and malformed source provenance."""
+    if not isinstance(lineage, dict):
+        raise SystemExit("snapshot must declare graduateDataLineage")
+    canonical_payload = json.dumps(
+        {"programs": programs, "funding": funding},
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    if lineage.get("schemaVersion") != GRADUATE_LINEAGE_METHOD_VERSION or lineage.get("methodVersion") != GRADUATE_LINEAGE_METHOD_VERSION:
+        raise SystemExit("graduate lineage method version mismatch")
+    if lineage.get("producer") != "career-job-compass/scripts/build_snapshot.py":
+        raise SystemExit("graduate lineage producer mismatch")
+    if lineage.get("artifact") != "career-job-compass/data/app-data.json":
+        raise SystemExit("graduate lineage artifact mismatch")
+    if lineage.get("producerCodeSha256") != _file_sha256(ROOT / "scripts" / "build_snapshot.py"):
+        raise SystemExit("graduate lineage producer code mismatch")
+    expected_payload_digest = hashlib.sha256(canonical_payload).hexdigest()
+    if not HEX64.fullmatch(str(lineage.get("payloadSha256", ""))):
+        raise SystemExit("graduate lineage payload digest is malformed")
+    if lineage.get("payloadSha256") != expected_payload_digest:
+        raise SystemExit("graduateDataLineage does not match the released graduate payload")
+    if lineage.get("programCount") != len(programs) or lineage.get("fundingCount") != len(funding):
+        raise SystemExit("graduateDataLineage counts do not match the released graduate payload")
+    for key in ("producerRepositoryCommit", "sourceRepositoryCommit"):
+        if not re.fullmatch(r"[0-9a-f]{40}", str(lineage.get(key, ""))):
+            raise SystemExit(f"graduate lineage {key} is malformed")
+
+    source_artifacts = lineage.get("sourceArtifacts")
+    if not isinstance(source_artifacts, list):
+        raise SystemExit("graduate lineage sourceArtifacts must be a list")
+    required_roles = {"catalog", "programDiscovery", "researchEvidence"}
+    roles = [item.get("role") for item in source_artifacts if isinstance(item, dict)]
+    if len(source_artifacts) != len(required_roles) or set(roles) != required_roles or len(roles) != len(set(roles)):
+        raise SystemExit("graduate lineage source roles mismatch")
+    for item in source_artifacts:
+        path = str(item.get("path", ""))
+        if (
+            not path
+            or "\\" in path
+            or path.startswith(("/", "./"))
+            or re.match(r"^[A-Za-z]:", path)
+            or ".." in Path(path).parts
+        ):
+            raise SystemExit("graduate lineage source path is not normalized")
+        if not HEX64.fullmatch(str(item.get("sha256", ""))):
+            raise SystemExit("graduate lineage source digest is malformed")
+
+    canonical_sources = json.dumps(
+        source_artifacts,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    expected_manifest_digest = hashlib.sha256(canonical_sources).hexdigest()
+    if not HEX64.fullmatch(str(lineage.get("sourceManifestSha256", ""))):
+        raise SystemExit("graduate lineage source manifest digest is malformed")
+    if lineage.get("sourceManifestSha256") != expected_manifest_digest:
+        raise SystemExit("graduate lineage source manifest does not match source artifacts")
+
+    generation_inputs = {
+        "methodVersion": GRADUATE_LINEAGE_METHOD_VERSION,
+        "producerCodeSha256": lineage.get("producerCodeSha256"),
+        "producerRepositoryCommit": lineage.get("producerRepositoryCommit"),
+        "sourceRepositoryCommit": lineage.get("sourceRepositoryCommit"),
+        "sourceManifestSha256": expected_manifest_digest,
+        "payloadSha256": expected_payload_digest,
+    }
+    expected_generation_digest = hashlib.sha256(
+        json.dumps(generation_inputs, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    if not HEX64.fullmatch(str(lineage.get("generationInputsSha256", ""))):
+        raise SystemExit("graduate lineage generation input digest is malformed")
+    if lineage.get("generationInputsSha256") != expected_generation_digest:
+        raise SystemExit("graduate lineage generation inputs do not match the released payload")
+
+    if source_roots:
+        for item in source_artifacts:
+            path_parts = str(item["path"]).split("/")
+            root = source_roots.get(path_parts[0])
+            if root is None:
+                continue
+            resolved_root = Path(root).resolve()
+            try:
+                source_path = resolved_root.joinpath(*path_parts[1:]).resolve(strict=True)
+                source_path.relative_to(resolved_root)
+            except (OSError, ValueError):
+                raise SystemExit("graduate lineage source digest mismatch") from None
+            if not source_path.is_file() or _file_sha256(source_path) != item.get("sha256"):
+                raise SystemExit("graduate lineage source digest mismatch")
 
 
 def main() -> None:
@@ -767,7 +1293,9 @@ def main() -> None:
     if manifest.get("display") != "standalone" or not manifest.get("start_url") or manifest.get("scope") != "./":
         raise SystemExit("manifest must declare standalone display, start_url, and relative scope")
 
-    snapshot = json.loads((ROOT / "data/app-data.json").read_text(encoding="utf-8"))
+    snapshot = validate_public_data_artifacts(ROOT)
+    if (ROOT / "_site").exists():
+        validate_release_privacy_scan(ROOT, ROOT / "_site")
     app_source = (ROOT / "app.js").read_text(encoding="utf-8")
     # DATA-232: provenance sentinels remain machine-readable, but an internal
     # graduate evidence review state must never leak into the public UI or data.
@@ -786,7 +1314,6 @@ def main() -> None:
         raise SystemExit("snapshot must declare decision-support-v2")
     if not isinstance(jobs, list) or not jobs:
         raise SystemExit("snapshot must contain title-grounded job exploration or action candidates")
-    validate_public_privacy_boundary(snapshot, jobs)
     validate_lifestyle_discovery(snapshot, jobs)
     sectors = snapshot.get("sectors")
     if not isinstance(sectors, list) or len(sectors) != 20:
@@ -795,30 +1322,28 @@ def main() -> None:
         raise SystemExit("snapshot review queue must contain at most three confirmed actions")
     if not isinstance(programs, list) or len(programs) < 90:
         raise SystemExit("snapshot must contain the full graduate research catalog")
+    # SEC-298: public programme research may contain institution requirements,
+    # but never this applicant's readiness, eligibility conclusion, or gap plan.
+    if public_graduate_privacy_violation(programs) is not None:
+        raise SystemExit("public graduate catalog contains private applicant-readiness data")
     if not isinstance(funding, list) or len(funding) < 186:
         raise SystemExit("snapshot must contain the full funding research catalog")
     if any(not valid_decision_support(job, "job") for job in jobs):
         raise SystemExit("every job must include the decision-support contract")
     if any(not valid_decision_support(program, "program") for program in programs):
         raise SystemExit("every programme must include the decision-support contract")
-    # DATA-227: prove that the file being released is the canonical graduate
-    # producer artifact, rather than a separately projected look-alike.
-    graduate_lineage = snapshot.get("graduateDataLineage")
-    canonical_graduate_payload = json.dumps(
-        {"programs": programs, "funding": funding},
-        ensure_ascii=False,
-        sort_keys=True,
-        separators=(",", ":"),
-    ).encode("utf-8")
-    expected_graduate_digest = hashlib.sha256(canonical_graduate_payload).hexdigest()
-    if not isinstance(graduate_lineage, dict):
-        raise SystemExit("snapshot must declare graduateDataLineage")
-    if (
-        graduate_lineage.get("payloadSha256") != expected_graduate_digest
-        or graduate_lineage.get("programCount") != len(programs)
-        or graduate_lineage.get("fundingCount") != len(funding)
-    ):
-        raise SystemExit("graduateDataLineage does not match the released graduate payload")
+    expected_graduate_coverage = validate_graduate_claim_evidence(programs)
+    # DATA-227/GOV-257: bind the released graduate projection to exact sources.
+    lineage_roots = {"career-job-compass": ROOT}
+    job_search_root = ROOT.parent / "job_search"
+    if job_search_root.is_dir():
+        lineage_roots["job_search"] = job_search_root
+    validate_graduate_data_lineage(
+        snapshot.get("graduateDataLineage"),
+        programs,
+        funding,
+        source_roots=lineage_roots,
+    )
     if {job.get("queue") for job in jobs} - {"verify", "hold", "apply", "stretch"}:
         raise SystemExit("public jobs must only use active public V4 queues")
     stats = snapshot.get("stats")
@@ -869,33 +1394,7 @@ def main() -> None:
     coverage = snapshot.get("graduateEvidenceCoverage")
     if not isinstance(coverage, dict) or coverage.get("totalPrograms") != len(programs):
         raise SystemExit("graduate evidence coverage denominator must match the public programme set")
-    programme_research = [
-        item.get("publicResearch") if isinstance(item.get("publicResearch"), dict) else {}
-        for item in programs
-    ]
-    faculty_flags = [bool(item.get("faculty")) for item in programme_research]
-    paper_flags = [
-        any(person.get("recentPapers") for person in item.get("faculty", []) if isinstance(person, dict))
-        for item in programme_research
-    ]
-    project_flags = [bool(item.get("recentProjects")) for item in programme_research]
-    outcome_flags = [bool(item.get("graduateDestinations")) for item in programme_research]
-    testimonial_flags = [bool(item.get("graduateTestimonials")) for item in programme_research]
-    any_flags = [
-        any(values)
-        for values in zip(faculty_flags, paper_flags, project_flags, outcome_flags, testimonial_flags)
-    ]
-    expected_coverage = {
-        "totalPrograms": len(programs),
-        "programsWithAnyEvidence": sum(any_flags),
-        "programsWithFaculty": sum(faculty_flags),
-        "programsWithRecentPapers": sum(paper_flags),
-        "programsWithFundedProjects": sum(project_flags),
-        "programsWithGraduateDestinations": sum(outcome_flags),
-        "programsWithTestimonials": sum(testimonial_flags),
-        "unresearchedPrograms": len(programs) - sum(any_flags),
-    }
-    if coverage != expected_coverage:
+    if coverage != expected_graduate_coverage:
         raise SystemExit("graduateEvidenceCoverage is stale or inconsistent with public programme evidence")
     if stats["recommendationSurface"] == "exploration_only" and review_queue:
         raise SystemExit("exploration-only snapshots must not imply an action-ready review queue")

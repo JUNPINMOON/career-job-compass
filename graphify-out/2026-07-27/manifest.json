@@ -1,137 +1,137 @@
 {
   "app.js": {
-    "mtime": 1785161053.2654521,
-    "ast_hash": "f2b6a00dd879a7c8c3f36e438e2ebca4",
+    "mtime": 1785144497.8276148,
+    "ast_hash": "c20688092f303b946178e16911b686d3",
     "semantic_hash": ""
   },
   "data/app-data.json": {
-    "mtime": 1785161308.837373,
-    "ast_hash": "55df87e8b6e6e5aeef56c81c2673415b",
+    "mtime": 1785122659.602039,
+    "ast_hash": "e37cc3a881032b8e1798db9448b703f4",
     "semantic_hash": ""
   },
   "data/catalog-source.json": {
-    "mtime": 1785155992.98061,
-    "ast_hash": "7ae8e6761f74618b6590138899c6f663",
+    "mtime": 1785082949.506572,
+    "ast_hash": "e8aad35c95afe1052e00a5f9043a0f5d",
     "semantic_hash": ""
   },
   "data/refresh-bridge.json": {
-    "mtime": 1785155992.9821212,
-    "ast_hash": "caa8b773a591350b2959894c9360292b",
-    "semantic_hash": ""
+    "mtime": 1784999986.2901714,
+    "ast_hash": "975e5471894a6f8dd1e02fff446be81e",
+    "semantic_hash": "975e5471894a6f8dd1e02fff446be81e"
   },
   "scripts/build_snapshot.py": {
-    "mtime": 1785161264.295458,
-    "ast_hash": "0a09926d88d6e6b57116a8398811fd33",
+    "mtime": 1785082946.141842,
+    "ast_hash": "70a95c31bd7dcbf0207801a5fe83df64",
     "semantic_hash": ""
   },
   "scripts/check_release.py": {
-    "mtime": 1785155993.088503,
-    "ast_hash": "db96dd5084ad844b0c56a79dff948291",
+    "mtime": 1785082947.8204622,
+    "ast_hash": "63c5085543fdc08a5d5eeebbd57a9c6c",
     "semantic_hash": ""
   },
   "scripts/check_requirements.py": {
-    "mtime": 1785155993.0895038,
-    "ast_hash": "50f8f8338ceb9528cd5db14675fb3918",
+    "mtime": 1785083050.2345188,
+    "ast_hash": "58006798251a3511cd389670c9b5b745",
     "semantic_hash": ""
   },
   "sw.js": {
-    "mtime": 1785161119.001019,
-    "ast_hash": "50ba252eece6ef0068c1057a960dea79",
+    "mtime": 1785144526.326876,
+    "ast_hash": "81ef40eb424ea1e136b76a828a3d259e",
     "semantic_hash": ""
   },
   ".codex/hooks.json": {
-    "mtime": 1785155992.93151,
-    "ast_hash": "ec20721587829c90cdadee0f2ce60642",
+    "mtime": 1785082598.3458984,
+    "ast_hash": "b9b69b8a222418d010f49da62b7e88df",
     "semantic_hash": ""
   },
   "requirements/.seen-ids.json": {
-    "mtime": 1785161236.9241662,
-    "ast_hash": "066ec8a343617bcb1c025feb2ae6d8f9",
+    "mtime": 1785144537.1268926,
+    "ast_hash": "18a22dc37aed3339809986603be1b1eb",
     "semantic_hash": ""
   },
   ".github/workflows/pages.yml": {
-    "mtime": 1785155992.935305,
-    "ast_hash": "0c700a8c0e2ca63feefc6728b3d0bf1e",
+    "mtime": 1784817943.646389,
+    "ast_hash": "c1f83d1e7f60cfb9c2f4562494ea875c",
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1785155992.9373024,
-    "ast_hash": "21ceb6533048be51308e69e7b74a35cf",
+    "mtime": 1785117694.882318,
+    "ast_hash": "78874dffe80493b35a11e1e9016b7cd8",
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1785155992.9383044,
-    "ast_hash": "ca175ea6c2dbe343416cb67eb3753f8b",
+    "mtime": 1785088031.859205,
+    "ast_hash": "b1a538f25d38ed5e53d18c81a35ca73e",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1785155992.940839,
-    "ast_hash": "d19826098978923ca7cbd88e4f798ac8",
+    "mtime": 1784994947.0884378,
+    "ast_hash": "36c8a79de267e6e3ef212124d7012c53",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1785156500.478878,
-    "ast_hash": "42d3bde74a9226b204c27be544e7df36",
+    "mtime": 1785144454.9154222,
+    "ast_hash": "fd52c61cf323498954e053a8fbd4985c",
     "semantic_hash": ""
   },
   "plans/001-calm-field-guide-motion.md": {
-    "mtime": 1785155993.0727293,
-    "ast_hash": "8f5ebb7cca2fa3ca632495c26861bb82",
+    "mtime": 1785054248.7691638,
+    "ast_hash": "d4eb60bb27b99bab4e2d5c82ba33d05f",
     "semantic_hash": ""
   },
   "plans/README.md": {
-    "mtime": 1785155993.073727,
-    "ast_hash": "7afdf36c07ccb90ec6acfd782469fb58",
+    "mtime": 1785054247.5287573,
+    "ast_hash": "7b44b2167a5b94aa996e3fef830e5863",
     "semantic_hash": ""
   },
   "requirements/ledger.yaml": {
-    "mtime": 1785161230.0187738,
-    "ast_hash": "b8aa43a66e01e70b75110448297b72cc",
+    "mtime": 1785144395.0710533,
+    "ast_hash": "45d08f956e617c3c8186071a47b79d57",
     "semantic_hash": ""
   },
   "assets/daily-brief-cover-v3.png": {
-    "mtime": 1785155992.9590244,
+    "mtime": 1784832734.7070086,
     "ast_hash": "e98e17328da546bc4a0acef2d49f2b9e",
     "semantic_hash": ""
   },
   "assets/route-map-editorial-v2.webp": {
-    "mtime": 1785155992.960023,
+    "mtime": 1784832734.7130578,
     "ast_hash": "b787a1586f19f274cf99d8addc023208",
     "semantic_hash": ""
   },
   "assets/study-steps-editorial-v2.webp": {
-    "mtime": 1785155992.9655533,
+    "mtime": 1784832734.716182,
     "ast_hash": "c2ed60636412ae26d1bcde1663459196",
     "semantic_hash": ""
   },
   "icons/app-icon-maskable.svg": {
-    "mtime": 1785155993.0678778,
-    "ast_hash": "880ed3cc7192ce1430986513122282e4",
+    "mtime": 1784832734.7197025,
+    "ast_hash": "6525d1917a744bc288229b5673eac9db",
     "semantic_hash": ""
   },
   "icons/app-icon.svg": {
-    "mtime": 1785155993.0697227,
-    "ast_hash": "4e4a1c845a4061aab7f7664659a83e7c",
+    "mtime": 1784832734.7217073,
+    "ast_hash": "957ecf369cb7283e5c18148ec1d59546",
     "semantic_hash": ""
   },
   "icons/apple-touch-icon.png": {
-    "mtime": 1785155993.0697227,
+    "mtime": 1784832734.7247434,
     "ast_hash": "2d649c2f2bc787700c304b283466a150",
     "semantic_hash": ""
   },
   "supabase-config.js": {
-    "mtime": 1785155993.0915098,
-    "ast_hash": "931e94e46b7f7de6e5b0542bb2b65b3c",
+    "mtime": 1785088030.4072478,
+    "ast_hash": "add6bddbd7906768abdc62e9da5d1f20",
     "semantic_hash": ""
   },
   "supabase/migrations/202607270001_create_job_preferences.sql": {
-    "mtime": 1785155993.0930214,
-    "ast_hash": "a6161fb9bcf543dc7aff2e547c26aebf",
+    "mtime": 1785088028.8588667,
+    "ast_hash": "cee38b2e3b5433b75a16649f96144017",
     "semantic_hash": ""
   },
-  "supabase/migrations/202607270002_create_personalized_snapshots.sql": {
-    "mtime": 1785156013.0861907,
-    "ast_hash": "0848cfde021daf387c347a35ed3c73d1",
+  "CLAUDE.md": {
+    "mtime": 1785117694.8833208,
+    "ast_hash": "8ccebd7b62f03699a54f74fd4e2f9dea",
     "semantic_hash": ""
   }
 }

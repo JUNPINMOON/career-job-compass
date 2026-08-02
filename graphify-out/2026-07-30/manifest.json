@@ -1,12 +1,12 @@
 {
   "app.js": {
-    "mtime": 1785687240.1048214,
-    "ast_hash": "83b90296ed514c08dc07b91aa3c7b43f",
+    "mtime": 1785399067.8808563,
+    "ast_hash": "a0e79cee210d7e18ab9dca21d3987a74",
     "semantic_hash": ""
   },
   "data/app-data.json": {
-    "mtime": 1785687199.5658374,
-    "ast_hash": "ee52c3e4d5c68df502b0c2f39316c248",
+    "mtime": 1785368495.192508,
+    "ast_hash": "696c48920ac72f8d76a87d3878212e49",
     "semantic_hash": ""
   },
   "data/catalog-source.json": {
@@ -20,13 +20,13 @@
     "semantic_hash": "975e5471894a6f8dd1e02fff446be81e"
   },
   "scripts/build_snapshot.py": {
-    "mtime": 1785687179.0848815,
-    "ast_hash": "826b1a51624c3bd901453e1d199ccc03",
+    "mtime": 1785342675.801496,
+    "ast_hash": "dc60e80d9e94d095dcc298ed5beb397b",
     "semantic_hash": ""
   },
   "scripts/check_release.py": {
-    "mtime": 1785683554.4513648,
-    "ast_hash": "8b0427d3c7034d1d2d2712ce8b99d4e5",
+    "mtime": 1785342779.5942695,
+    "ast_hash": "8cde6af6ccb2e1bf9a7012cb17a10e50",
     "semantic_hash": ""
   },
   "scripts/check_requirements.py": {
@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "sw.js": {
-    "mtime": 1785678846.2717342,
-    "ast_hash": "98b14dd46c018fe7fc91120e132767a6",
+    "mtime": 1785399298.9116795,
+    "ast_hash": "44e7197806e806f5eb0e313a88a0720b",
     "semantic_hash": ""
   },
   ".codex/hooks.json": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "requirements/.seen-ids.json": {
-    "mtime": 1785687280.4600923,
-    "ast_hash": "b9cb656827b34db4221ee59c6360563c",
+    "mtime": 1785399310.896327,
+    "ast_hash": "687fbb766ed858fb06bcddfe60dbc628",
     "semantic_hash": ""
   },
   ".github/workflows/pages.yml": {
@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1785664316.6003132,
-    "ast_hash": "cecb9c14ed33f51b37c807381b308d1b",
+    "mtime": 1785327720.697037,
+    "ast_hash": "1400007ff047dafdaa435e1b1d4dadef",
     "semantic_hash": ""
   },
   "plans/001-calm-field-guide-motion.md": {
@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "requirements/ledger.yaml": {
-    "mtime": 1785683784.7717242,
-    "ast_hash": "410a65b2bcac8032d4ef16e2b884a65e",
+    "mtime": 1785399277.7918017,
+    "ast_hash": "f618f4f4a22438c9f3646805fa1f106d",
     "semantic_hash": ""
   },
   "assets/daily-brief-cover-v3.png": {
@@ -175,13 +175,13 @@
     "semantic_hash": ""
   },
   "_site/app.js": {
-    "mtime": 1785687240.1048214,
-    "ast_hash": "83b90296ed514c08dc07b91aa3c7b43f",
+    "mtime": 1785377296.7764456,
+    "ast_hash": "5c595a6f90a53feb9b2e109ac18ba348",
     "semantic_hash": ""
   },
   "_site/data/app-data.json": {
-    "mtime": 1785687199.5658374,
-    "ast_hash": "ee52c3e4d5c68df502b0c2f39316c248",
+    "mtime": 1785368495.192508,
+    "ast_hash": "696c48920ac72f8d76a87d3878212e49",
     "semantic_hash": ""
   },
   "_site/supabase-config.js": {
@@ -190,18 +190,18 @@
     "semantic_hash": ""
   },
   "_site/sw.js": {
-    "mtime": 1785678846.2717342,
-    "ast_hash": "98b14dd46c018fe7fc91120e132767a6",
+    "mtime": 1785377296.7774553,
+    "ast_hash": "dfec564994b169b7501d1ff5ba94024d",
     "semantic_hash": ""
   },
   "scripts/package_pages.py": {
-    "mtime": 1785674996.6805792,
-    "ast_hash": "21d387b2ee1a79ec503e6643caa7c5a2",
+    "mtime": 1785327785.023262,
+    "ast_hash": "412c50b73b684e962d4abd1cfda81cda",
     "semantic_hash": ""
   },
   "_site/index.html": {
-    "mtime": 1785664316.6003132,
-    "ast_hash": "cecb9c14ed33f51b37c807381b308d1b",
+    "mtime": 1785327720.697037,
+    "ast_hash": "1400007ff047dafdaa435e1b1d4dadef",
     "semantic_hash": ""
   },
   "_site/assets/daily-brief-cover-v3.png": {
@@ -232,86 +232,6 @@
   "_site/icons/apple-touch-icon.png": {
     "mtime": 1784832734.7247434,
     "ast_hash": "2d649c2f2bc787700c304b283466a150",
-    "semantic_hash": ""
-  },
-  "tests/test_graduate_evidence_contract.py": {
-    "mtime": 1785671966.3311026,
-    "ast_hash": "af1b450d79aee56ba8cd3c7ac14fd18f",
-    "semantic_hash": ""
-  },
-  "tests/test_graduate_lineage_contract.py": {
-    "mtime": 1785677226.1179724,
-    "ast_hash": "730a32ca3f0bc337feb38335d1ca2521",
-    "semantic_hash": ""
-  },
-  "tests/test_mobile_identity_refresh_contract.py": {
-    "mtime": 1785669502.258963,
-    "ast_hash": "3b092dc2f17a3dac8001d1ef93124abe",
-    "semantic_hash": ""
-  },
-  "supabase/migrations/202608020004_bind_refresh_run_lineage.sql": {
-    "mtime": 1785672072.2225482,
-    "ast_hash": "f6a733ed8b8e2f3236e2e1a91e2b8eb8",
-    "semantic_hash": ""
-  },
-  "tests/test_feedback_ack_conflict_contract.py": {
-    "mtime": 1785673510.664895,
-    "ast_hash": "498242f3dc34e321924f498ee761b124",
-    "semantic_hash": ""
-  },
-  "tests/test_graduate_mobile_claim_state_contract.py": {
-    "mtime": 1785672824.7493584,
-    "ast_hash": "d118ed2bc7606313a2a2766109159997",
-    "semantic_hash": ""
-  },
-  "tests/test_public_privacy_release_gate.py": {
-    "mtime": 1785675019.8197396,
-    "ast_hash": "374add0c2474343bff782a0072185e2b",
-    "semantic_hash": ""
-  },
-  "tests/test_refresh_claim_fencing_migration.py": {
-    "mtime": 1785673987.9516299,
-    "ast_hash": "4077fe4e7503d33d8ae25bf73a477698",
-    "semantic_hash": ""
-  },
-  "tests/test_refresh_run_lineage_migration_contract.py": {
-    "mtime": 1785672125.809108,
-    "ast_hash": "27ba08c7735c332a4089c36f389ef40b",
-    "semantic_hash": ""
-  },
-  "tests/test_service_worker_cache_scope.py": {
-    "mtime": 1785673176.1688578,
-    "ast_hash": "3d85e237e8d6be77703281c0189f96ad",
-    "semantic_hash": ""
-  },
-  "supabase/migrations/202608020005_refresh_claim_fencing.sql": {
-    "mtime": 1785673722.0079508,
-    "ast_hash": "2b7c338e9bb92641e81f4564007f3528",
-    "semantic_hash": ""
-  },
-  "tests/test_personalized_staging_contract.py": {
-    "mtime": 1785674972.8333807,
-    "ast_hash": "fed79f8ee8ae73924fafcf4aa9b6b230",
-    "semantic_hash": ""
-  },
-  "tests/test_decision_framework_contract.py": {
-    "mtime": 1785682705.8706017,
-    "ast_hash": "dfc493e83ed2ccb45d94031f040836bb",
-    "semantic_hash": ""
-  },
-  "tests/test_graduate_public_privacy_release_guard.py": {
-    "mtime": 1785683576.1397643,
-    "ast_hash": "067261940fd098e1a103aa9ddd677c2a",
-    "semantic_hash": ""
-  },
-  "tests/test_mobile_truth_semantics.py": {
-    "mtime": 1785683799.1742797,
-    "ast_hash": "7e7b0024da2dd628b73535b771b000b7",
-    "semantic_hash": ""
-  },
-  "tests/test_public_program_privacy_contract.py": {
-    "mtime": 1785682705.8686025,
-    "ast_hash": "716ee5a946e66811b0428df480c95fb0",
     "semantic_hash": ""
   }
 }
