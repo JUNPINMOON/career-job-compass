@@ -178,6 +178,29 @@ def _text_file_sha256(path: Path) -> str:
     return hashlib.sha256(canonical).hexdigest()
 
 
+_LINEAGE_TEXT_SUFFIXES = frozenset({
+    ".css",
+    ".html",
+    ".js",
+    ".json",
+    ".jsonl",
+    ".md",
+    ".py",
+    ".ts",
+    ".tsx",
+    ".txt",
+    ".yaml",
+    ".yml",
+})
+
+
+def _lineage_file_sha256(path: Path) -> str:
+    """Hash lineage inputs consistently across Windows and Linux checkouts."""
+    if path.suffix.lower() in _LINEAGE_TEXT_SUFFIXES:
+        return _text_file_sha256(path)
+    return _file_sha256(path)
+
+
 def _repository_commit(repo_root: Path) -> str:
     commit = subprocess.run(
         ["git", "-C", str(repo_root.resolve()), "rev-parse", "HEAD"],
@@ -200,7 +223,7 @@ def _lineage_artifact(role: str, path: Path, repo_root: Path, repo_label: str) -
     return {
         "role": role,
         "path": f"{repo_label}/{relative_path}",
-        "sha256": _file_sha256(resolved_path),
+        "sha256": _lineage_file_sha256(resolved_path),
     }
 
 

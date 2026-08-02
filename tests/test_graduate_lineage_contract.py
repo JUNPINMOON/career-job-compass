@@ -62,6 +62,16 @@ def test_producer_code_digest_accepts_git_line_ending_normalization(tmp_path: Pa
     assert build_snapshot._text_file_sha256(source) == lf_digest
 
 
+def test_source_artifact_digest_is_canonical_across_checkout_line_endings(tmp_path: Path) -> None:
+    source = tmp_path / "catalog-source.json"
+    source.write_bytes(b'{"one": 1}\r\n{"two": 2}\r\n')
+
+    lf_digest = hashlib.sha256(b'{"one": 1}\n{"two": 2}\n').hexdigest()
+
+    assert build_snapshot._lineage_file_sha256(source) == lf_digest
+    assert check_release._lineage_file_sha256(source) == lf_digest
+
+
 def test_graduate_lineage_binds_every_source_role_and_validates(tmp_path: Path) -> None:
     app_root = tmp_path / "career-job-compass"
     source_root = tmp_path / "job_search"

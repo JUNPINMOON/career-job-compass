@@ -254,6 +254,31 @@ def _file_sha256_variants(path: Path) -> set[str]:
     }
 
 
+_LINEAGE_TEXT_SUFFIXES = frozenset({
+    ".css",
+    ".html",
+    ".js",
+    ".json",
+    ".jsonl",
+    ".md",
+    ".py",
+    ".ts",
+    ".tsx",
+    ".txt",
+    ".yaml",
+    ".yml",
+})
+
+
+def _lineage_file_sha256(path: Path) -> str:
+    """Match the producer's canonical text digest for lineage source files."""
+    if path.suffix.lower() in _LINEAGE_TEXT_SUFFIXES:
+        raw = path.read_bytes()
+        canonical = raw.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+        return hashlib.sha256(canonical).hexdigest()
+    return _file_sha256(path)
+
+
 def _archive_kind(path: Path) -> str | None:
     name = path.name.lower()
     if name.endswith(".zip"):
@@ -1280,7 +1305,7 @@ def validate_graduate_data_lineage(
                 source_path.relative_to(resolved_root)
             except (OSError, ValueError):
                 raise SystemExit("graduate lineage source digest mismatch") from None
-            if not source_path.is_file() or _file_sha256(source_path) != item.get("sha256"):
+            if not source_path.is_file() or _lineage_file_sha256(source_path) != item.get("sha256"):
                 raise SystemExit("graduate lineage source digest mismatch")
 
 

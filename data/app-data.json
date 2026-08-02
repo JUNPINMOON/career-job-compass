@@ -46253,14 +46253,14 @@
     "methodVersion": "graduate-lineage-v2",
     "producer": "career-job-compass/scripts/build_snapshot.py",
     "artifact": "career-job-compass/data/app-data.json",
-    "producerCodeSha256": "d43b211c652dced160847179329833bf635d596191aff4a8bfe8df94d3332d34",
+    "producerCodeSha256": "c634618d7dc812a289d25d7269da83f3229f381d9b0a5ccde61f566eb019a2e4",
     "producerRepositoryCommit": "eb590df16964a6753778c58e7192976d9043ffd4",
     "sourceRepositoryCommit": "b44908f393585cdec356903137eb38061fee5016",
     "sourceArtifacts": [
       {
         "role": "catalog",
         "path": "career-job-compass/data/catalog-source.json",
-        "sha256": "d2678a5c2b3244ee84b365ede7c2ea8be3b0f4b573683afd35ec052dac623ec9"
+        "sha256": "ff15a7cbd15ed118f6defa14c7a13d9d51badeeac92cbd579cfa02f3aef109de"
       },
       {
         "role": "programDiscovery",
@@ -46270,11 +46270,11 @@
       {
         "role": "researchEvidence",
         "path": "job_search/config/grad_school_programs.researched.json",
-        "sha256": "591dbf6ee2e12f8cdfae1f00688154ce32c1fa7810c33c0074acc884848637ad"
+        "sha256": "4bf4f4ad48dd8166a0483e43e71c9bb71e453d7d59e420b2283e2299d6804dc1"
       }
     ],
-    "sourceManifestSha256": "287d8be02c5fbd4c88d22505d9a5af8ba4bd5b60c3ba7c2e57659d090aeb9f71",
-    "generationInputsSha256": "b039a425e290a8d35299cc50d6e6bfbcc91e42a5ca701b02dafeb96ec6a403d5",
+    "sourceManifestSha256": "b6095a9f6eec97b97220bbcf407eae93b3e1f51abc6f8e1d1cb569366e837c3c",
+    "generationInputsSha256": "d3c4292c0db8ea198f10577d5464b60a122643532c535a7a6793b870c6e1b5b6",
     "payloadSha256": "fc1fd44d1de56f2d360476022db9504025779371fc52d608f61a1aa75950239b",
     "programCount": 99,
     "fundingCount": 186
