@@ -1155,10 +1155,15 @@
     },
     {
       "id": "DATA-282",
-      "status": "active",
+      "status": "retired",
       "title": "Graduate shortlist generation reads the enriched research dataset and publishes verifiable source lineage",
       "assert": {"type": "text_present", "path": "../job_search/tools/build_grad_school_shortlist.py", "needles": ["grad_school_programs.researched.json", "source_lineage", "source_sha256", "source_program_count"]},
-      "note": "Measured on 2026-08-02 before implementation: the enriched research dataset contained 93 programmes while the shortlist generator defaulted to a 3-record sample, and the latest shortlist carried no source digest or count. The producer must bind the enriched input and make the exact source visible to every downstream consumer."
+      "note": "Measured on 2026-08-02 before implementation: the enriched research dataset contained 93 programmes while the shortlist generator defaulted to a 3-record sample, and the latest shortlist carried no source digest or count. The producer must bind the enriched input and make the exact source visible to every downstream consumer.",
+      "retired": {
+        "approved_by": "Pin",
+        "reason": "The public Pages runner cannot read the private job_search repository. The equivalent marker contract now runs in the private job-search master workflow.",
+        "date": "2026-08-03"
+      }
     },
     {
       "id": "DATA-283",
@@ -1211,17 +1216,27 @@
     },
     {
       "id": "DATA-290",
-      "status": "active",
+      "status": "retired",
       "title": "Structured feedback evidence is lineage-bound into discovery without leaking the private overlay",
       "assert": {"type": "text_present", "path": "../job_search/jobsearch_v4/preference_discovery.py", "needles": ["DATA-290", "reason_evidence_overlay", "feasibilityArtifactDigest", "privacyClass", "private_personalized"]},
-      "note": "Measured on 2026-08-02: the personalized rebuild created a private reason-evidence overlay, but preference discovery called personalize_record without it. Qualification feedback could therefore be stored yet never affect discovery. The exact run-bound overlay must fail closed on stale lineage and remain absent from public artifacts."
+      "note": "Measured on 2026-08-02: the personalized rebuild created a private reason-evidence overlay, but preference discovery called personalize_record without it. Qualification feedback could therefore be stored yet never affect discovery. The exact run-bound overlay must fail closed on stale lineage and remain absent from public artifacts.",
+      "retired": {
+        "approved_by": "Pin",
+        "reason": "The public Pages runner cannot read the private job_search repository. The equivalent marker contract now runs in the private job-search master workflow.",
+        "date": "2026-08-03"
+      }
     },
     {
       "id": "DATA-291",
-      "status": "active",
+      "status": "retired",
       "title": "Legacy WorkNet keys remain internal while every public surface names the official source as 고용24",
       "assert": {"type": "text_present", "path": "../job_search/jobsearch_v4/public_snapshot.py", "needles": ["DATA-291", "sourceKey", "sourceLabel", "고용24"]},
-      "note": "Measured on 2026-08-02: source configuration correctly points at work24.go.kr and the dashboard maps the legacy key, but Career public records can still expose WorkNet API. Keep the compatibility key internally and emit a stable public key plus user-facing label."
+      "note": "Measured on 2026-08-02: source configuration correctly points at work24.go.kr and the dashboard maps the legacy key, but Career public records can still expose WorkNet API. Keep the compatibility key internally and emit a stable public key plus user-facing label.",
+      "retired": {
+        "approved_by": "Pin",
+        "reason": "The public Pages runner cannot read the private job_search repository. The equivalent marker contract now runs in the private job-search master workflow.",
+        "date": "2026-08-03"
+      }
     },
     {
       "id": "UX-292",
@@ -1295,17 +1310,27 @@
     },
     {
       "id": "DATA-302",
-      "status": "active",
+      "status": "retired",
       "title": "Feedback identities are excluded from candidate output",
       "assert": {"type": "text_present", "path": "../job_search/jobsearch_v4/public_snapshot.py", "needles": ["DATA-302", "feedbackExcludedCount", "canonicalUrl"]},
-      "note": "Saved and rejected records must not be repeated in candidate output."
+      "note": "Saved and rejected records must not be repeated in candidate output.",
+      "retired": {
+        "approved_by": "Pin",
+        "reason": "The public Pages runner cannot read the private job_search repository. The equivalent marker contract now runs in the private job-search master workflow.",
+        "date": "2026-08-03"
+      }
     },
     {
       "id": "DATA-303",
-      "status": "active",
+      "status": "retired",
       "title": "Saved records require fresh currentness evidence",
       "assert": {"type": "text_present", "path": "../job_search/jobsearch_v4/public_snapshot.py", "needles": ["DATA-303", "savedCurrentnessDowngradedCount", "unverified"]},
-      "note": "Older open-state claims are downgraded unless the present evidence set proves them."
+      "note": "Older open-state claims are downgraded unless the present evidence set proves them.",
+      "retired": {
+        "approved_by": "Pin",
+        "reason": "The public Pages runner cannot read the private job_search repository. The equivalent marker contract now runs in the private job-search master workflow.",
+        "date": "2026-08-03"
+      }
     },
     {
       "id": "UX-304",
@@ -1334,6 +1359,13 @@
       "title": "Comparison cards preserve record kind",
       "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-307\"", "recordKind", "program:", "funding:"]},
       "note": "Measured on 2026-08-02: non-job comparison cards always reopened the program route."
+    },
+    {
+      "id": "GOV-308",
+      "status": "active",
+      "title": "Public Pages and private Career Compass engine validation are separate no-token gates",
+      "assert": {"type": "text_present", "path": "requirements/private-engine-gate.md", "needles": ["JUNPINMOON/job-search", "tools/check_career_compass_contract.py", "DATA-282", "DATA-290", "DATA-291", "DATA-302", "DATA-303", "no GitHub token", "master"]},
+      "note": "The public runner cannot inspect private job_search files. Cross-repository marker assertions are retired here only after an equivalent private master workflow is installed; Pages success and engine-contract success remain distinct facts."
     }
   ]
 }
