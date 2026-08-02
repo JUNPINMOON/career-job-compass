@@ -46253,7 +46253,7 @@
     "methodVersion": "graduate-lineage-v2",
     "producer": "career-job-compass/scripts/build_snapshot.py",
     "artifact": "career-job-compass/data/app-data.json",
-    "producerCodeSha256": "2a632ffe633733f8a6f42f4ae14a125cff28934a8edf4255d3598e319853e387",
+    "producerCodeSha256": "d43b211c652dced160847179329833bf635d596191aff4a8bfe8df94d3332d34",
     "producerRepositoryCommit": "eb590df16964a6753778c58e7192976d9043ffd4",
     "sourceRepositoryCommit": "b44908f393585cdec356903137eb38061fee5016",
     "sourceArtifacts": [
@@ -46274,7 +46274,7 @@
       }
     ],
     "sourceManifestSha256": "287d8be02c5fbd4c88d22505d9a5af8ba4bd5b60c3ba7c2e57659d090aeb9f71",
-    "generationInputsSha256": "a02aec0b0f0464e34d7f052765766bb8b45f4aa98a47a4d8758dfca69b1d5a7f",
+    "generationInputsSha256": "b039a425e290a8d35299cc50d6e6bfbcc91e42a5ca701b02dafeb96ec6a403d5",
     "payloadSha256": "fc1fd44d1de56f2d360476022db9504025779371fc52d608f61a1aa75950239b",
     "programCount": 99,
     "fundingCount": 186

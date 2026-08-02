@@ -171,6 +171,13 @@ def _file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _text_file_sha256(path: Path) -> str:
+    """Hash text provenance after canonicalizing all supported line endings."""
+    raw = path.read_bytes()
+    canonical = raw.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return hashlib.sha256(canonical).hexdigest()
+
+
 def _repository_commit(repo_root: Path) -> str:
     commit = subprocess.run(
         ["git", "-C", str(repo_root.resolve()), "rev-parse", "HEAD"],
@@ -938,7 +945,7 @@ def _graduate_data_lineage(
         separators=(",", ":"),
     ).encode("utf-8")
     payload_digest = hashlib.sha256(canonical).hexdigest()
-    producer_code_digest = _file_sha256(Path(__file__).resolve())
+    producer_code_digest = _text_file_sha256(Path(__file__).resolve())
     producer_commit = _repository_commit(app_root)
     source_commit = _repository_commit(job_search_root)
     source_artifacts = [

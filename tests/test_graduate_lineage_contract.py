@@ -59,6 +59,7 @@ def test_producer_code_digest_accepts_git_line_ending_normalization(tmp_path: Pa
     lf_digest = hashlib.sha256(b"one\ntwo\n").hexdigest()
 
     assert lf_digest in check_release._file_sha256_variants(source)
+    assert build_snapshot._text_file_sha256(source) == lf_digest
 
 
 def test_graduate_lineage_binds_every_source_role_and_validates(tmp_path: Path) -> None:
