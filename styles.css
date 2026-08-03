@@ -646,3 +646,34 @@ label:has(> #feedbackNote) { display:none; }
 @keyframes spin { to { transform:rotate(360deg); } }
 @keyframes sheet-in { from { transform:translateY(14px); opacity:0; } to { transform:translateY(0); opacity:1; } }
 @keyframes fade-in { from { opacity:0; } to { opacity:1; } }
+
+.decision-review-protocol { border-color:#b7d28b; }
+.decision-review-protocol p + p { margin-top:10px; }
+.decision-review-protocol h2 { margin-bottom:12px; }
+.review-formula { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.review-formula code { color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:5px 8px; }
+.review-perspectives { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:16px; }
+.review-perspective { border:1px solid var(--line); border-radius:12px; padding:12px; background:rgba(255,255,255,.55); }
+.review-perspective[data-status="review"] { border-color:#d5b77a; }
+.review-perspective-head { display:flex; justify-content:space-between; gap:8px; align-items:flex-start; }
+.review-perspective-head span { font-size:11px; letter-spacing:.08em; color:var(--muted); }
+.review-perspective p { margin:8px 0 4px; }
+.review-perspective small { color:var(--muted); }
+.review-finding { margin-top:9px; color:var(--accent); font-weight:650; }
+.review-perspective dl { display:grid; gap:5px; margin:10px 0 0; }
+.review-perspective dl div { display:grid; grid-template-columns:42px 1fr; gap:7px; }
+.review-perspective dt { color:var(--muted); font-size:10px; letter-spacing:.08em; }
+.review-perspective dd { margin:0; font-size:12px; }
+.review-ranking,.review-synthesis { margin-top:18px; padding-top:16px; border-top:1px solid var(--line); }
+.review-table-wrap { overflow-x:auto; }
+.review-ranking table { width:100%; min-width:460px; border-collapse:collapse; font-size:12px; }
+.review-ranking th,.review-ranking td { padding:8px 6px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+.review-ranking thead th { color:var(--muted); font-size:10px; letter-spacing:.06em; }
+.review-synthesis h4 { margin:14px 0 6px; color:var(--accent); }
+.review-synthesis ul { margin:6px 0 0; padding-left:18px; }
+.review-boundary { color:var(--muted); font-size:12px; }
+@media (max-width:760px) {
+  .review-perspectives { grid-template-columns:1fr; }
+  .review-ranking table { min-width:420px; }
+  .review-perspective { padding:11px; }
+}

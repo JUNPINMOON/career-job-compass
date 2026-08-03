@@ -1085,6 +1085,35 @@
     return `<section class="source-explainer decision-framework" data-requirement-id="UX-278"><p class="eyebrow">Decision framework</p><h2>Wide first, deep by subfield.</h2><p>PROCESS / GATE / LOOP is now attached to each decision lane, and the panel reads the generated app-data payload.</p><ol class="decision-framework-phases">${phaseRows}</ol>${signalRows ? `<div class="decision-framework-signals">${signalRows}</div>` : ""}<div class="decision-framework-lineage"><span>${escapeHtml(generated.producer || "producer pending")}</span><b>${escapeHtml(generated.outputPath || "data/app-data.json")}</b><span>${escapeHtml(generated.consumer || "app.js")}</span></div><div class="${domains.length ? "decision-framework-domain-list" : "decision-framework-domains"}">${domainRows}</div></section>`;
   }
 
+  function reviewProtocolMarkup(protocol) {
+    /* data-requirement-id="UX-311" */
+    if (!protocol || !Array.isArray(protocol.stages)) return "";
+    const stages = protocol.stages;
+    const perspectives = stages.find((stage) => stage.id === "perspectives")?.items || stages[0]?.items || [];
+    const ranking = stages.find((stage) => stage.id === "ranking") || {};
+    const goals = Array.isArray(ranking.items) ? ranking.items : (protocol.goalPriority?.rankedGoals || []);
+    const synthesis = stages.find((stage) => stage.id === "synthesis")?.result || protocol.synthesis || {};
+    const goalPriority = protocol.goalPriority || {};
+    const perspectiveLabels = {
+      rebuttal: "\uBC18\uBC15",
+      first_principle_purpose: "First Principle A - \uBAA9\uC801 \uD558\uAC15",
+      first_principle_assumptions: "First Principle B - \uC804\uC81C \uD574\uCCB4",
+      expansion_combination: "\uD655\uC7A5 A - \uC870\uD569",
+      expansion_absence: "\uD655\uC7A5 B - \uBD80\uC7AC \uD0D0\uC0C9",
+      outsider: "\uB2E4\uB978 \uAD00\uC810 - Outsider",
+      executor: "\uD589\uB3D9\uB300\uC7A5 - Executor",
+      blind_spot: "\uC0AC\uAC01\uC9C0\uB300 - Blind Spot",
+    };
+    const statusLabels = { pass: "PASS", review: "REVIEW", hold: "HOLD" };
+    const perspectiveMarkup = perspectives.map((item) => `<article class="review-perspective" data-status="${escapeHtml(item.status || "review")}"><div class="review-perspective-head"><b>${escapeHtml(perspectiveLabels[item.id] || item.label || item.id)}</b><span>${escapeHtml(statusLabels[item.status] || item.status || "REVIEW")}</span></div><p>${escapeHtml(item.purpose || "")}</p><small>${escapeHtml(item.question || "")}</small><div class="review-finding">${escapeHtml(item.finding || "")}</div><dl><div><dt>GATE</dt><dd>${escapeHtml(item.gate || "")}</dd></div><div><dt>LOOP</dt><dd>${escapeHtml(item.loop || "")}</dd></div></dl></article>`).join("");
+    const goalMarkup = goals.map((row) => `<tr><td>${escapeHtml(row.rank)}</td><th>${escapeHtml(row.label || row.id)}</th><td>${escapeHtml(row.priority)}</td><td>${escapeHtml(row.evidenceConfidence)}</td><td>${escapeHtml(row.basis || "")}</td></tr>`).join("");
+    const blockerMarkup = (synthesis.blockers || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+    const actionMarkup = (synthesis.nextActions || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+    const candidateSuitability = goalPriority.candidateSuitability ?? false;
+    const regionExcludedFromScore = goalPriority.regionExcludedFromScore ?? true;
+    return `<section class="source-explainer decision-review-protocol" data-requirement-id="UX-311"><p class="eyebrow">\uAC80\uD1A0 \uD504\uB85C\uD1A8</p><h2>8\uAC1C \uAD00\uC810 -&gt; \uBAA9\uD45C\uBCC4 \uC21C\uC704 -&gt; \uC885\uD569</h2><p class="review-formula"><b>\uC810\uC218 \uC0B0\uC2DD</b> <code>${escapeHtml(ranking.formula || goalPriority.formula || "priority = 5 * impact * evidence confidence * execution leverage")}</code></p><div class="review-perspectives">${perspectiveMarkup}</div><div class="review-ranking"><h3>\uBAA9\uD45C\uBCC4 \uC6B0\uC120\uC21C\uC704</h3><div class="review-table-wrap"><table><thead><tr><th>#</th><th>Goal</th><th>Priority</th><th>Evidence</th><th>Basis</th></tr></thead><tbody>${goalMarkup}</tbody></table></div></div><div class="review-synthesis"><h3>\uC885\uD569</h3><p>${escapeHtml(synthesis.summary || "")}</p>${blockerMarkup ? `<h4>\uBE14\uB85D\uCEE4</h4><ul>${blockerMarkup}</ul>` : ""}${actionMarkup ? `<h4>\uB2E4\uC74C \uC2E4\uD589</h4><ul>${actionMarkup}</ul>` : ""}<p class="review-boundary">${candidateSuitability ? "candidate suitability shown" : "candidate suitability is not calculated"} -&nbsp;${regionExcludedFromScore ? "region is classification only (weight 0)" : "region affects score"}</p></div></section>`;
+  }
+
   function renderSources() {
     /* data-requirement-id="UX-227" data-requirement-id="UX-304" 공고 기준 / 대학원 생성 */
     const stats = state.data.stats || {};
@@ -1101,6 +1130,7 @@
       backupPage,
        `<section class="source-stamp"><span>PUBLIC SNAPSHOT</span><b>${displayDate(state.data.generatedAt)}</b><i>V4<br />FIRST</i></section><section class="stat-strip"><div><small>${stats.recommendationSurface === "exploration_only" ? "탐색 후보" : "행동 후보"}</small><b>${escapeHtml(stats.recommendationSurface === "exploration_only" ? (stats.explorationCandidates ?? 0) : (stats.actionCandidates ?? 0))}</b></div><div><small>대학원</small><b>${escapeHtml(stats.programs)}</b></div><div><small>장학금</small><b>${escapeHtml(stats.funding)}</b></div></section>`,
       decisionFrameworkPanel(),
+      reviewProtocolMarkup(state.data?.decisionFramework?.reviewProtocol),
       `<section class="preference-panel" data-requirement-id="UX-212"><p class="eyebrow">나의 학습 신호</p><h2>공고 피드백</h2><p>공고 카드에서 바로 관심 또는 별로예요를 누르고 이유를 남길 수 있습니다. 저장한 내용은 다음 후보 구성에 반영됩니다.</p><div class="preference-counts"><div><small>관심 공고</small><b>${likedCount}</b></div><div><small>별로예요</small><b>${dislikedCount}</b></div></div><p class="sync-status" data-state="${state.syncState}" data-requirement-id="UX-210">${syncCopy}</p><div data-requirement-id="UX-221"><section class="feedback-review-group"><div class="feedback-review-heading"><h3>관심 공고와 좋은 이유</h3><b>${likedCount}</b></div>${feedbackReviewList(likedJobs, "liked")}</section><section class="feedback-review-group"><div class="feedback-review-heading"><h3>별로예요와 이유</h3><b>${dislikedCount}</b></div>${feedbackReviewList(dislikedJobs, "not_for_me")}</section></div><button class="plain-button export-button" type="button" data-action="export-feedback">피드백 내보내기</button></section>`,
       `<section class="source-explainer"><p class="eyebrow">검증 경계</p><h2>점수로 결론을 대신하지 않습니다.</h2><p>공고는 최신 V4 행동 큐를, 진학·재정은 현재 대시보드의 연구 목록을 사용합니다. 공개 화면에는 개인 프로필, 지원 이력, CRM 정보가 포함되지 않습니다.</p><div class="status-rows"><div><span>V4 실행 ID</span><b>${escapeHtml(stats.v4RunId || "확인 중")}</b></div><div><span>공고 기준일</span><b>${escapeHtml(stats.jobDataAsOf || "확인 중")}</b></div><div><span>대학원 자료 생성</span><b>${escapeHtml(stats.graduateGeneratedAt || "확인 중")}</b></div></div></section>`,
     ];

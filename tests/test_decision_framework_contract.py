@@ -337,3 +337,41 @@ def test_all_unverified_jobs_are_explicitly_exploration_only() -> None:
     assert framework["readinessBoundary"]["verifiedOpenCount"] == 0
     assert framework["readinessBoundary"]["applyReadyCount"] == 0
     assert "공식 원문" in framework["readinessBoundary"]["label"]
+
+
+def test_review_protocol_exposes_eight_perspectives_and_non_candidate_scoring_boundary() -> None:
+    framework = _decision_framework(_sample_payload())
+    protocol = framework["reviewProtocol"]
+
+    assert protocol["version"] == "review-protocol-v1"
+    assert len(protocol["stages"]) == 3
+    assert len(protocol["stages"][0]["items"]) == 8
+    assert protocol["goalPriority"]["candidateSuitability"] is False
+    assert protocol["goalPriority"]["regionExcludedFromScore"] is True
+    assert protocol["goalPriority"]["scale"] == {"min": 0, "max": 5}
+    assert len(protocol["goalPriority"]["workstreams"]) >= 6
+    assert all(0 <= float(row["priority"]) <= 5 for row in protocol["goalPriority"]["workstreams"])
+    assert protocol["candidateSimilarity"]["regionWeight"] == 0
+
+
+def test_review_protocol_is_payload_derived_and_has_gate_loop_synthesis() -> None:
+    payload = _sample_payload()
+    payload["stats"]["sourceReviewCandidates"] = 4
+    protocol = _decision_framework(payload)["reviewProtocol"]
+
+    perspective_ids = [item["id"] for item in protocol["stages"][0]["items"]]
+    assert perspective_ids == [
+        "rebuttal",
+        "first_principle_purpose",
+        "first_principle_assumptions",
+        "expansion_combination",
+        "expansion_absence",
+        "outsider",
+        "executor",
+        "blind_spot",
+    ]
+    assert all(item["gate"] and item["loop"] and item["finding"] for item in protocol["stages"][0]["items"])
+    assert "priority = 5 * impact" in protocol["goalPriority"]["formula"]
+    assert protocol["synthesis"]["recommendation"] == "verified_facts_first"
+    assert protocol["synthesis"]["blockers"]
+    assert protocol["stages"][1]["items"][0]["rank"] == 1

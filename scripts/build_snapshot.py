@@ -1913,7 +1913,168 @@ def _framework_domains(
     return domains
 
 
-def _decision_framework(payload: Mapping[str, Any]) -> dict[str, Any]:
+def _review_protocol(payload: Mapping[str, Any], *, snapshot_ready: bool = False) -> dict[str, Any]:
+    stats = payload.get("stats") if isinstance(payload.get("stats"), Mapping) else {}
+    jobs = payload.get("jobs") if isinstance(payload.get("jobs"), list) else []
+    programs = payload.get("programs") if isinstance(payload.get("programs"), list) else []
+    coverage = payload.get("graduateEvidenceCoverage") if isinstance(payload.get("graduateEvidenceCoverage"), Mapping) else {}
+    lifestyle = payload.get("lifestyleDiscovery") if isinstance(payload.get("lifestyleDiscovery"), Mapping) else {}
+
+    def as_number(value: Any, default: float = 0.0) -> float:
+        try:
+            return max(0.0, float(value))
+        except (TypeError, ValueError):
+            return default
+
+    def ratio(numerator: Any, denominator: Any, fallback: float = 0.0) -> float:
+        denominator_value = as_number(denominator)
+        if denominator_value <= 0:
+            return fallback
+        return min(1.0, as_number(numerator) / denominator_value)
+
+    job_count = int(as_number(stats.get("jobs"), len(jobs))) or len(jobs)
+    status_counts: dict[str, int] = {}
+    for job in jobs:
+        currentness = job.get("postingCurrentness") if isinstance(job, Mapping) else None
+        status = str(currentness.get("status") if isinstance(currentness, Mapping) else "unverified")
+        status_counts[status] = status_counts.get(status, 0) + 1
+    verified_open = status_counts.get("verified_open", 0)
+    verified_closed = status_counts.get("verified_closed", 0)
+    unverified = max(0, job_count - verified_open - verified_closed)
+
+    source_complete = sum(
+        bool(job.get("url")) and bool(job.get("sourceKey") or job.get("sourceLabel"))
+        for job in jobs
+        if isinstance(job, Mapping)
+    )
+    lineage_confidence = ratio(source_complete, job_count, 0.35)
+    requirement_known = sum(
+        bool(job.get("decisionSupport", {}).get("requirements"))
+        for job in jobs
+        if isinstance(job, Mapping) and isinstance(job.get("decisionSupport"), Mapping)
+    )
+    program_requirement_known = sum(
+        bool(program.get("admissionRequirements"))
+        for program in programs
+        if isinstance(program, Mapping)
+    )
+    attachment_confidence = ratio(requirement_known + program_requirement_known, job_count + len(programs), 0.35)
+
+    preference_summary = stats.get("preferenceSummary") if isinstance(stats.get("preferenceSummary"), Mapping) else {}
+    preference_discovery = stats.get("preferenceDiscovery") if isinstance(stats.get("preferenceDiscovery"), Mapping) else {}
+    preference_current = bool(preference_discovery.get("current"))
+    preference_confidence = 0.82 if preference_current else (0.45 if as_number(preference_summary.get("rowCount")) else 0.30)
+
+    total_programs = as_number(coverage.get("totalPrograms"), len(programs)) or len(programs)
+    graduate_dimensions = [
+        coverage.get("programsWithFaculty"),
+        coverage.get("programsWithRecentPapers"),
+        coverage.get("programsWithFundedProjects"),
+        coverage.get("programsWithGraduateDestinations"),
+    ]
+    graduate_confidence = sum(ratio(item, total_programs) for item in graduate_dimensions) / len(graduate_dimensions) if total_programs else 0.0
+    unresearched = int(as_number(coverage.get("unresearchedPrograms")))
+
+    public_lifestyle = as_number(lifestyle.get("publicCandidateCount"))
+    verified_lifestyle = as_number(lifestyle.get("verifiedOpenCount", lifestyle.get("publicRecommendationCount")))
+    lifestyle_confidence = min(1.0, 0.2 + 0.8 * ratio(verified_lifestyle, public_lifestyle, 0.0))
+
+    snapshot_framework = payload.get("decisionFramework") if isinstance(payload.get("decisionFramework"), Mapping) else {}
+    snapshot_has_protocol = bool(snapshot_framework.get("reviewProtocol")) or snapshot_ready
+    mobile_confidence = 0.90 if snapshot_has_protocol else 0.20
+    source_review_candidates = int(as_number(stats.get("sourceReviewCandidates")))
+    perspective_specs = [
+        {"id": "rebuttal", "label": "rebuttal", "purpose": "find counterexamples", "question": "what could be false?", "gate": "compare source and status", "loop": "send counterexample to next query", "status": "review" if unverified or source_review_candidates else "pass", "finding": f"unverified={unverified}; review={source_review_candidates}"},
+        {"id": "first_principle_purpose", "label": "first principle purpose", "purpose": "reduce the decision to its goal", "question": "which goal does this evidence serve?", "gate": "link goal to evidence", "loop": "create a query when goal is empty", "status": "pass", "finding": "goals remain separate from candidate score"},
+        {"id": "first_principle_assumptions", "label": "first principle assumptions", "purpose": "separate assumptions from facts", "question": "does a hidden constant distort ranking?", "gate": "exclude region KPI and fixed top-N", "loop": "turn violated assumptions into feedback", "status": "pass", "finding": "regionWeight=0; domestic/overseas is classification only"},
+        {"id": "expansion_combination", "label": "expansion combination", "purpose": "combine independent evidence", "question": "are positive and negative feedback compared?", "gate": "record lineage with similarity", "loop": "reuse combined signals in search", "status": "review" if preference_confidence < 0.8 else "pass", "finding": f"feedback_confidence={round(preference_confidence * 100)}%"},
+        {"id": "expansion_absence", "label": "expansion absence", "purpose": "find missing evidence", "question": "are attachments and graduate facts absent?", "gate": "separate unknown from none", "loop": "add missing fields to collection queue", "status": "review" if unresearched or attachment_confidence < 0.7 else "pass", "finding": f"unresearched_programs={unresearched}; requirement_confidence={round(attachment_confidence * 100)}%"},
+        {"id": "outsider", "label": "outsider", "purpose": "test first-time comprehension", "question": "are score and blank meanings visible?", "gate": "show formula and boundaries on mobile", "loop": "turn confusion into UX regression", "status": "review" if not snapshot_has_protocol else "pass", "finding": "snapshot protocol presence is checked"},
+        {"id": "executor", "label": "executor", "purpose": "choose the next executable step", "question": "which action raises trust fastest?", "gate": "rank impact, confidence, leverage", "loop": "recalculate after each completion", "status": "pass", "finding": "goal priority table is generated"},
+        {"id": "blind_spot", "label": "blind spot", "purpose": "surface hidden public-data risks", "question": "can feedback or leads reveal private traits?", "gate": "exclude personal counts and raw notes", "loop": "move exposure risk to revalidation queue", "status": "review" if source_review_candidates else "pass", "finding": "public candidates must not enable inference"},
+    ]
+
+    formula = "priority = 5 * impact * evidence confidence * execution leverage"
+    workstream_specs = [
+        ("lineage", "data lineage", min(1.0, 0.35 + 0.65 * lineage_confidence), lineage_confidence, 0.90, "source URL and source key must survive producer to mobile"),
+        ("attachments", "requirement attachments", 0.85, attachment_confidence, 0.80, "public postings often keep requirements in PDF or HWP"),
+        ("feedback", "structured feedback", 0.90, preference_confidence, 0.82, "positive and negative reasons must become comparable fields"),
+        ("graduate", "graduate evidence", 0.88, graduate_confidence, 0.78, "faculty, papers, funded work, and destinations are separate facts"),
+        ("mobile_refresh", "mobile refresh", 0.92, mobile_confidence, 0.95, "queue status must be truthful from iPhone to worker"),
+        ("lifestyle", "lifestyle filter", 0.70, lifestyle_confidence, 0.65, "commute and work-life claims need public verification"),
+    ]
+
+    def ranked(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        ordered = sorted(rows, key=lambda row: (-float(row["priority"]), str(row["id"])))
+        return [dict(row, rank=index) for index, row in enumerate(ordered, start=1)]
+
+    workstreams = ranked([
+        {"id": item_id, "label": label, "impact": round(impact, 3), "evidenceConfidence": round(confidence, 3), "executionLeverage": round(leverage, 3), "priority": round(5 * impact * confidence * leverage, 1), "basis": basis}
+        for item_id, label, impact, confidence, leverage, basis in workstream_specs
+    ])
+
+    by_id = {row["id"]: row for row in workstreams}
+    goal_specs = [
+        ("decision_support", "decision support", "graduate", "ranked evidence before opinion"),
+        ("data_lineage", "data lineage", "lineage", "one producer and one public snapshot"),
+        ("feedback_loop", "feedback loop", "feedback", "structured positive and negative reasons"),
+        ("mobile_observability", "mobile observability", "mobile_refresh", "truthful queue and progress state"),
+        ("graduate_evidence", "graduate evidence", "graduate", "faculty papers funded work destinations"),
+        ("lifestyle_filter", "lifestyle filter", "lifestyle", "commute and safety remain evidence-bound"),
+    ]
+    goal_rows = ranked([
+        {"id": goal_id, "label": label, "priority": by_id[workstream_id]["priority"], "evidenceConfidence": by_id[workstream_id]["evidenceConfidence"], "basis": basis, "workstream": workstream_id}
+        for goal_id, label, workstream_id, basis in goal_specs
+    ])
+    goals = {row["id"]: row["priority"] for row in goal_rows}
+
+    blockers: list[str] = []
+    if unverified:
+        blockers.append(f"{unverified} job records are not verified open or closed")
+    if unresearched:
+        blockers.append(f"{unresearched} graduate programs still lack a complete evidence pack")
+    if source_review_candidates:
+        blockers.append(f"{source_review_candidates} source leads still require official revalidation")
+    if not snapshot_has_protocol:
+        blockers.append("the current public snapshot does not yet carry this review protocol")
+    synthesis = {
+        "recommendation": "verified_facts_first" if blockers else "ranked_review",
+        "summary": "Keep unknowns visible, rank only evidence-backed work, then loop missing fields into collection.",
+        "blockers": blockers,
+        "nextActions": [
+            "rebuild the public snapshot from the same producer after reviewProtocol is present",
+            "revalidate attachment-only requirements before treating a posting as eligible",
+            "collect structured positive and negative reasons without publishing raw personal notes",
+        ],
+        "boundaries": {
+            "candidateSuitability": False,
+            "regionWeight": 0,
+            "regionRule": "domestic/overseas classification only",
+            "publicFeedbackRule": "exclude personal counts and original notes",
+        },
+    }
+
+    return {
+        "version": "review-protocol-v1",
+        "stages": [
+            {"id": "perspectives", "title": "stage 1 - eight perspectives", "items": perspective_specs},
+            {"id": "ranking", "title": "stage 2 - goal ranking", "items": goal_rows, "workstreams": workstreams, "formula": formula},
+            {"id": "synthesis", "title": "stage 3 - synthesis", "items": synthesis["nextActions"], "result": synthesis},
+        ],
+        "goalPriority": {
+            "scale": {"min": 0, "max": 5},
+            "candidateSuitability": False,
+            "regionExcludedFromScore": True,
+            "formula": formula,
+            "goals": goals,
+            "rankedGoals": goal_rows,
+            "workstreams": workstreams,
+        },
+        "candidateSimilarity": {"regionWeight": 0},
+        "synthesis": synthesis,
+    }
+
+def _decision_framework(payload: Mapping[str, Any], *, snapshot_ready: bool = False) -> dict[str, Any]:
     stats = payload.get("stats") if isinstance(payload.get("stats"), Mapping) else {}
     coverage = payload.get("graduateEvidenceCoverage") if isinstance(payload.get("graduateEvidenceCoverage"), Mapping) else {}
     lifestyle = payload.get("lifestyleDiscovery") if isinstance(payload.get("lifestyleDiscovery"), Mapping) else {}
@@ -1941,6 +2102,7 @@ def _decision_framework(payload: Mapping[str, Any]) -> dict[str, Any]:
             "자유 메모는 검토용이며 구조화 항목으로 확인되기 전까지 점수에 반영하지 않습니다.",
             "커뮤니티·카페·링크드인 신호는 후보 발견용 lead이고 공식 원문으로 재검증해야 합니다.",
         ],
+        "reviewProtocol": _review_protocol(payload, snapshot_ready=snapshot_ready),
         "readinessBoundary": _decision_readiness_boundary(payload),
         "domains": _framework_domains(payload, stats, coverage),
         "signals": {
@@ -2828,7 +2990,7 @@ def main() -> None:
             shortlist_source=root / "artifacts" / "grad_school" / "grad_school_shortlist_latest.json",
             research_source=root / "config" / "grad_school_programs.researched.json",
         )
-        payload["decisionFramework"] = _decision_framework(payload)
+        payload["decisionFramework"] = _decision_framework(payload, snapshot_ready=True)
         _atomic_write_json(args.output, payload)
         print(f"wrote {args.output}: enriched {len(payload['programs'])} programs")
         return
@@ -2885,7 +3047,7 @@ def main() -> None:
         shortlist_source=root / "artifacts" / "grad_school" / "grad_school_shortlist_latest.json",
         research_source=root / "config" / "grad_school_programs.researched.json",
     )
-    payload["decisionFramework"] = _decision_framework(payload)
+    payload["decisionFramework"] = _decision_framework(payload, snapshot_ready=True)
     _atomic_write_json(args.output, payload)
     print(
         f"wrote {args.output}: {len(payload['jobs'])} job candidates, "

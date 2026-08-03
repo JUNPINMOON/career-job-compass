@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-08-02T16:13:16.770687+00:00",
+  "generatedAt": "2026-08-02T22:25:24.031770+00:00",
   "dataAsOf": "2026-08-02",
   "snapshotBoundary": "공개 읽기용 스냅샷입니다. 공고·과정·장학금의 마감과 자격은 반드시 공식 원문에서 다시 확인하세요.",
   "jobEligibilityOverrides": {
@@ -42216,7 +42216,7 @@
     "methodVersion": "lifestyle-evidence-v2",
     "asOf": "2026-08-02",
     "searchState": "searched",
-    "searchedAt": "2026-08-02T16:13:19.116319+00:00",
+    "searchedAt": "2026-08-02T22:25:26.936749+00:00",
     "scoreImpact": "none",
     "sourceArtifact": "job_search/work/recommendation-v4/g003-posting-facts.json",
     "sourceArtifactDigest": "b95af7a190ec88d3b63ce44b70b628a36049523bdb6ed41d51d94842eadf4503",
@@ -46118,7 +46118,7 @@
       "jayang_wlb": {
         "label": "자양동 출발 서울권 · 통근/WLB 확인",
         "searchState": "searched",
-        "searchedAt": "2026-08-02T16:13:19.116319+00:00",
+        "searchedAt": "2026-08-02T22:25:26.936749+00:00",
         "reviewIds": [
           "121113df08ba379acab9a246",
           "b4f6591bc2fccf8688c441d4",
@@ -46199,7 +46199,7 @@
       "busan": {
         "label": "부산 근무지 검토 · WLB 별도 확인",
         "searchState": "searched",
-        "searchedAt": "2026-08-02T16:13:19.116319+00:00",
+        "searchedAt": "2026-08-02T22:25:26.936749+00:00",
         "reviewIds": [],
         "matchedCount": 0,
         "counts": {
@@ -46246,16 +46246,16 @@
         "decisionReadiness": "insufficient"
       }
     },
-    "digest": "1de13cbd2988412be42f8fe8a54746e7fd05462cd84ed3a443a2b8d1d8c6009d"
+    "digest": "080bb5cf5bce5611eefe1bdb4a659203472cf5523b2b3b9a64fba1fe00670fd3"
   },
   "graduateDataLineage": {
     "schemaVersion": "graduate-lineage-v2",
     "methodVersion": "graduate-lineage-v2",
     "producer": "career-job-compass/scripts/build_snapshot.py",
     "artifact": "career-job-compass/data/app-data.json",
-    "producerCodeSha256": "c634618d7dc812a289d25d7269da83f3229f381d9b0a5ccde61f566eb019a2e4",
-    "producerRepositoryCommit": "eb590df16964a6753778c58e7192976d9043ffd4",
-    "sourceRepositoryCommit": "b44908f393585cdec356903137eb38061fee5016",
+    "producerCodeSha256": "c83d867710ed211e9c059d7463299e9f39c025b0fb524b3fe36ee6a51bc9e2eb",
+    "producerRepositoryCommit": "261fba8532a67883cffcb17601c06e4ebae0ce51",
+    "sourceRepositoryCommit": "c19b1e4e244594e489354a13771a7d4cb78f6b4f",
     "sourceArtifacts": [
       {
         "role": "catalog",
@@ -46274,7 +46274,7 @@
       }
     ],
     "sourceManifestSha256": "b6095a9f6eec97b97220bbcf407eae93b3e1f51abc6f8e1d1cb569366e837c3c",
-    "generationInputsSha256": "d3c4292c0db8ea198f10577d5464b60a122643532c535a7a6793b870c6e1b5b6",
+    "generationInputsSha256": "6138df65a9e1a112b3bd5d04d4ed1dfe9e0e9a4ab5b2ed239cff24bc5b2bd88c",
     "payloadSha256": "fc1fd44d1de56f2d360476022db9504025779371fc52d608f61a1aa75950239b",
     "programCount": 99,
     "fundingCount": 186
@@ -46309,6 +46309,407 @@
       "자유 메모는 검토용이며 구조화 항목으로 확인되기 전까지 점수에 반영하지 않습니다.",
       "커뮤니티·카페·링크드인 신호는 후보 발견용 lead이고 공식 원문으로 재검증해야 합니다."
     ],
+    "reviewProtocol": {
+      "version": "review-protocol-v1",
+      "stages": [
+        {
+          "id": "perspectives",
+          "title": "stage 1 - eight perspectives",
+          "items": [
+            {
+              "id": "rebuttal",
+              "label": "rebuttal",
+              "purpose": "find counterexamples",
+              "question": "what could be false?",
+              "gate": "compare source and status",
+              "loop": "send counterexample to next query",
+              "status": "review",
+              "finding": "unverified=87; review=1"
+            },
+            {
+              "id": "first_principle_purpose",
+              "label": "first principle purpose",
+              "purpose": "reduce the decision to its goal",
+              "question": "which goal does this evidence serve?",
+              "gate": "link goal to evidence",
+              "loop": "create a query when goal is empty",
+              "status": "pass",
+              "finding": "goals remain separate from candidate score"
+            },
+            {
+              "id": "first_principle_assumptions",
+              "label": "first principle assumptions",
+              "purpose": "separate assumptions from facts",
+              "question": "does a hidden constant distort ranking?",
+              "gate": "exclude region KPI and fixed top-N",
+              "loop": "turn violated assumptions into feedback",
+              "status": "pass",
+              "finding": "regionWeight=0; domestic/overseas is classification only"
+            },
+            {
+              "id": "expansion_combination",
+              "label": "expansion combination",
+              "purpose": "combine independent evidence",
+              "question": "are positive and negative feedback compared?",
+              "gate": "record lineage with similarity",
+              "loop": "reuse combined signals in search",
+              "status": "review",
+              "finding": "feedback_confidence=30%"
+            },
+            {
+              "id": "expansion_absence",
+              "label": "expansion absence",
+              "purpose": "find missing evidence",
+              "question": "are attachments and graduate facts absent?",
+              "gate": "separate unknown from none",
+              "loop": "add missing fields to collection queue",
+              "status": "review",
+              "finding": "unresearched_programs=34; requirement_confidence=0%"
+            },
+            {
+              "id": "outsider",
+              "label": "outsider",
+              "purpose": "test first-time comprehension",
+              "question": "are score and blank meanings visible?",
+              "gate": "show formula and boundaries on mobile",
+              "loop": "turn confusion into UX regression",
+              "status": "pass",
+              "finding": "snapshot protocol presence is checked"
+            },
+            {
+              "id": "executor",
+              "label": "executor",
+              "purpose": "choose the next executable step",
+              "question": "which action raises trust fastest?",
+              "gate": "rank impact, confidence, leverage",
+              "loop": "recalculate after each completion",
+              "status": "pass",
+              "finding": "goal priority table is generated"
+            },
+            {
+              "id": "blind_spot",
+              "label": "blind spot",
+              "purpose": "surface hidden public-data risks",
+              "question": "can feedback or leads reveal private traits?",
+              "gate": "exclude personal counts and raw notes",
+              "loop": "move exposure risk to revalidation queue",
+              "status": "review",
+              "finding": "public candidates must not enable inference"
+            }
+          ]
+        },
+        {
+          "id": "ranking",
+          "title": "stage 2 - goal ranking",
+          "items": [
+            {
+              "id": "data_lineage",
+              "label": "data lineage",
+              "priority": 4.5,
+              "evidenceConfidence": 1.0,
+              "basis": "one producer and one public snapshot",
+              "workstream": "lineage",
+              "rank": 1
+            },
+            {
+              "id": "mobile_observability",
+              "label": "mobile observability",
+              "priority": 3.9,
+              "evidenceConfidence": 0.9,
+              "basis": "truthful queue and progress state",
+              "workstream": "mobile_refresh",
+              "rank": 2
+            },
+            {
+              "id": "decision_support",
+              "label": "decision support",
+              "priority": 1.6,
+              "evidenceConfidence": 0.457,
+              "basis": "ranked evidence before opinion",
+              "workstream": "graduate",
+              "rank": 3
+            },
+            {
+              "id": "graduate_evidence",
+              "label": "graduate evidence",
+              "priority": 1.6,
+              "evidenceConfidence": 0.457,
+              "basis": "faculty papers funded work destinations",
+              "workstream": "graduate",
+              "rank": 4
+            },
+            {
+              "id": "feedback_loop",
+              "label": "feedback loop",
+              "priority": 1.1,
+              "evidenceConfidence": 0.3,
+              "basis": "structured positive and negative reasons",
+              "workstream": "feedback",
+              "rank": 5
+            },
+            {
+              "id": "lifestyle_filter",
+              "label": "lifestyle filter",
+              "priority": 0.5,
+              "evidenceConfidence": 0.2,
+              "basis": "commute and safety remain evidence-bound",
+              "workstream": "lifestyle",
+              "rank": 6
+            }
+          ],
+          "workstreams": [
+            {
+              "id": "lineage",
+              "label": "data lineage",
+              "impact": 1.0,
+              "evidenceConfidence": 1.0,
+              "executionLeverage": 0.9,
+              "priority": 4.5,
+              "basis": "source URL and source key must survive producer to mobile",
+              "rank": 1
+            },
+            {
+              "id": "mobile_refresh",
+              "label": "mobile refresh",
+              "impact": 0.92,
+              "evidenceConfidence": 0.9,
+              "executionLeverage": 0.95,
+              "priority": 3.9,
+              "basis": "queue status must be truthful from iPhone to worker",
+              "rank": 2
+            },
+            {
+              "id": "graduate",
+              "label": "graduate evidence",
+              "impact": 0.88,
+              "evidenceConfidence": 0.457,
+              "executionLeverage": 0.78,
+              "priority": 1.6,
+              "basis": "faculty, papers, funded work, and destinations are separate facts",
+              "rank": 3
+            },
+            {
+              "id": "feedback",
+              "label": "structured feedback",
+              "impact": 0.9,
+              "evidenceConfidence": 0.3,
+              "executionLeverage": 0.82,
+              "priority": 1.1,
+              "basis": "positive and negative reasons must become comparable fields",
+              "rank": 4
+            },
+            {
+              "id": "lifestyle",
+              "label": "lifestyle filter",
+              "impact": 0.7,
+              "evidenceConfidence": 0.2,
+              "executionLeverage": 0.65,
+              "priority": 0.5,
+              "basis": "commute and work-life claims need public verification",
+              "rank": 5
+            },
+            {
+              "id": "attachments",
+              "label": "requirement attachments",
+              "impact": 0.85,
+              "evidenceConfidence": 0.0,
+              "executionLeverage": 0.8,
+              "priority": 0.0,
+              "basis": "public postings often keep requirements in PDF or HWP",
+              "rank": 6
+            }
+          ],
+          "formula": "priority = 5 * impact * evidence confidence * execution leverage"
+        },
+        {
+          "id": "synthesis",
+          "title": "stage 3 - synthesis",
+          "items": [
+            "rebuild the public snapshot from the same producer after reviewProtocol is present",
+            "revalidate attachment-only requirements before treating a posting as eligible",
+            "collect structured positive and negative reasons without publishing raw personal notes"
+          ],
+          "result": {
+            "recommendation": "verified_facts_first",
+            "summary": "Keep unknowns visible, rank only evidence-backed work, then loop missing fields into collection.",
+            "blockers": [
+              "87 job records are not verified open or closed",
+              "34 graduate programs still lack a complete evidence pack",
+              "1 source leads still require official revalidation"
+            ],
+            "nextActions": [
+              "rebuild the public snapshot from the same producer after reviewProtocol is present",
+              "revalidate attachment-only requirements before treating a posting as eligible",
+              "collect structured positive and negative reasons without publishing raw personal notes"
+            ],
+            "boundaries": {
+              "candidateSuitability": false,
+              "regionWeight": 0,
+              "regionRule": "domestic/overseas classification only",
+              "publicFeedbackRule": "exclude personal counts and original notes"
+            }
+          }
+        }
+      ],
+      "goalPriority": {
+        "scale": {
+          "min": 0,
+          "max": 5
+        },
+        "candidateSuitability": false,
+        "regionExcludedFromScore": true,
+        "formula": "priority = 5 * impact * evidence confidence * execution leverage",
+        "goals": {
+          "data_lineage": 4.5,
+          "mobile_observability": 3.9,
+          "decision_support": 1.6,
+          "graduate_evidence": 1.6,
+          "feedback_loop": 1.1,
+          "lifestyle_filter": 0.5
+        },
+        "rankedGoals": [
+          {
+            "id": "data_lineage",
+            "label": "data lineage",
+            "priority": 4.5,
+            "evidenceConfidence": 1.0,
+            "basis": "one producer and one public snapshot",
+            "workstream": "lineage",
+            "rank": 1
+          },
+          {
+            "id": "mobile_observability",
+            "label": "mobile observability",
+            "priority": 3.9,
+            "evidenceConfidence": 0.9,
+            "basis": "truthful queue and progress state",
+            "workstream": "mobile_refresh",
+            "rank": 2
+          },
+          {
+            "id": "decision_support",
+            "label": "decision support",
+            "priority": 1.6,
+            "evidenceConfidence": 0.457,
+            "basis": "ranked evidence before opinion",
+            "workstream": "graduate",
+            "rank": 3
+          },
+          {
+            "id": "graduate_evidence",
+            "label": "graduate evidence",
+            "priority": 1.6,
+            "evidenceConfidence": 0.457,
+            "basis": "faculty papers funded work destinations",
+            "workstream": "graduate",
+            "rank": 4
+          },
+          {
+            "id": "feedback_loop",
+            "label": "feedback loop",
+            "priority": 1.1,
+            "evidenceConfidence": 0.3,
+            "basis": "structured positive and negative reasons",
+            "workstream": "feedback",
+            "rank": 5
+          },
+          {
+            "id": "lifestyle_filter",
+            "label": "lifestyle filter",
+            "priority": 0.5,
+            "evidenceConfidence": 0.2,
+            "basis": "commute and safety remain evidence-bound",
+            "workstream": "lifestyle",
+            "rank": 6
+          }
+        ],
+        "workstreams": [
+          {
+            "id": "lineage",
+            "label": "data lineage",
+            "impact": 1.0,
+            "evidenceConfidence": 1.0,
+            "executionLeverage": 0.9,
+            "priority": 4.5,
+            "basis": "source URL and source key must survive producer to mobile",
+            "rank": 1
+          },
+          {
+            "id": "mobile_refresh",
+            "label": "mobile refresh",
+            "impact": 0.92,
+            "evidenceConfidence": 0.9,
+            "executionLeverage": 0.95,
+            "priority": 3.9,
+            "basis": "queue status must be truthful from iPhone to worker",
+            "rank": 2
+          },
+          {
+            "id": "graduate",
+            "label": "graduate evidence",
+            "impact": 0.88,
+            "evidenceConfidence": 0.457,
+            "executionLeverage": 0.78,
+            "priority": 1.6,
+            "basis": "faculty, papers, funded work, and destinations are separate facts",
+            "rank": 3
+          },
+          {
+            "id": "feedback",
+            "label": "structured feedback",
+            "impact": 0.9,
+            "evidenceConfidence": 0.3,
+            "executionLeverage": 0.82,
+            "priority": 1.1,
+            "basis": "positive and negative reasons must become comparable fields",
+            "rank": 4
+          },
+          {
+            "id": "lifestyle",
+            "label": "lifestyle filter",
+            "impact": 0.7,
+            "evidenceConfidence": 0.2,
+            "executionLeverage": 0.65,
+            "priority": 0.5,
+            "basis": "commute and work-life claims need public verification",
+            "rank": 5
+          },
+          {
+            "id": "attachments",
+            "label": "requirement attachments",
+            "impact": 0.85,
+            "evidenceConfidence": 0.0,
+            "executionLeverage": 0.8,
+            "priority": 0.0,
+            "basis": "public postings often keep requirements in PDF or HWP",
+            "rank": 6
+          }
+        ]
+      },
+      "candidateSimilarity": {
+        "regionWeight": 0
+      },
+      "synthesis": {
+        "recommendation": "verified_facts_first",
+        "summary": "Keep unknowns visible, rank only evidence-backed work, then loop missing fields into collection.",
+        "blockers": [
+          "87 job records are not verified open or closed",
+          "34 graduate programs still lack a complete evidence pack",
+          "1 source leads still require official revalidation"
+        ],
+        "nextActions": [
+          "rebuild the public snapshot from the same producer after reviewProtocol is present",
+          "revalidate attachment-only requirements before treating a posting as eligible",
+          "collect structured positive and negative reasons without publishing raw personal notes"
+        ],
+        "boundaries": {
+          "candidateSuitability": false,
+          "regionWeight": 0,
+          "regionRule": "domestic/overseas classification only",
+          "publicFeedbackRule": "exclude personal counts and original notes"
+        }
+      }
+    },
     "readinessBoundary": {
       "state": "exploration_only",
       "label": "공식 원문에서 현재 접수 중임이 확인된 행동 후보가 없어 탐색 후보만 표시합니다.",
