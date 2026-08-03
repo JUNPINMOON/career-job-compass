@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-08-02T22:25:24.031770+00:00",
+  "generatedAt": "2026-08-03T03:18:23.101699+00:00",
   "dataAsOf": "2026-08-02",
   "snapshotBoundary": "공개 읽기용 스냅샷입니다. 공고·과정·장학금의 마감과 자격은 반드시 공식 원문에서 다시 확인하세요.",
   "jobEligibilityOverrides": {
@@ -42216,7 +42216,7 @@
     "methodVersion": "lifestyle-evidence-v2",
     "asOf": "2026-08-02",
     "searchState": "searched",
-    "searchedAt": "2026-08-02T22:25:26.936749+00:00",
+    "searchedAt": "2026-08-03T03:18:26.174096+00:00",
     "scoreImpact": "none",
     "sourceArtifact": "job_search/work/recommendation-v4/g003-posting-facts.json",
     "sourceArtifactDigest": "b95af7a190ec88d3b63ce44b70b628a36049523bdb6ed41d51d94842eadf4503",
@@ -46118,7 +46118,7 @@
       "jayang_wlb": {
         "label": "자양동 출발 서울권 · 통근/WLB 확인",
         "searchState": "searched",
-        "searchedAt": "2026-08-02T22:25:26.936749+00:00",
+        "searchedAt": "2026-08-03T03:18:26.174096+00:00",
         "reviewIds": [
           "121113df08ba379acab9a246",
           "b4f6591bc2fccf8688c441d4",
@@ -46199,7 +46199,7 @@
       "busan": {
         "label": "부산 근무지 검토 · WLB 별도 확인",
         "searchState": "searched",
-        "searchedAt": "2026-08-02T22:25:26.936749+00:00",
+        "searchedAt": "2026-08-03T03:18:26.174096+00:00",
         "reviewIds": [],
         "matchedCount": 0,
         "counts": {
@@ -46246,15 +46246,15 @@
         "decisionReadiness": "insufficient"
       }
     },
-    "digest": "080bb5cf5bce5611eefe1bdb4a659203472cf5523b2b3b9a64fba1fe00670fd3"
+    "digest": "b7305b0d874737fb3ef843aa3ab031ca28ac18c53133c2a6091f64df9c40f8bf"
   },
   "graduateDataLineage": {
     "schemaVersion": "graduate-lineage-v2",
     "methodVersion": "graduate-lineage-v2",
     "producer": "career-job-compass/scripts/build_snapshot.py",
     "artifact": "career-job-compass/data/app-data.json",
-    "producerCodeSha256": "c83d867710ed211e9c059d7463299e9f39c025b0fb524b3fe36ee6a51bc9e2eb",
-    "producerRepositoryCommit": "261fba8532a67883cffcb17601c06e4ebae0ce51",
+    "producerCodeSha256": "03bf413e15a0d77673a6e032fb7b977ba9971fce000a4445b118b13636727718",
+    "producerRepositoryCommit": "4dd998214c7dbf6ab9d5e5068cb4d4169cfaceb5",
     "sourceRepositoryCommit": "c19b1e4e244594e489354a13771a7d4cb78f6b4f",
     "sourceArtifacts": [
       {
@@ -46274,7 +46274,7 @@
       }
     ],
     "sourceManifestSha256": "b6095a9f6eec97b97220bbcf407eae93b3e1f51abc6f8e1d1cb569366e837c3c",
-    "generationInputsSha256": "6138df65a9e1a112b3bd5d04d4ed1dfe9e0e9a4ab5b2ed239cff24bc5b2bd88c",
+    "generationInputsSha256": "fa69a71dfde59e52a66e38b01f1bef417ad6a21f91b0edd80c80112d6170575c",
     "payloadSha256": "fc1fd44d1de56f2d360476022db9504025779371fc52d608f61a1aa75950239b",
     "programCount": 99,
     "fundingCount": 186
@@ -46544,6 +46544,7 @@
             ],
             "boundaries": {
               "candidateSuitability": false,
+              "candidateRankingInput": false,
               "regionWeight": 0,
               "regionRule": "domestic/overseas classification only",
               "publicFeedbackRule": "exclude personal counts and original notes"
@@ -46556,8 +46557,21 @@
           "min": 0,
           "max": 5
         },
+        "scoreType": "project_workstream_priority",
         "candidateSuitability": false,
+        "candidateRankingInput": false,
         "regionExcludedFromScore": true,
+        "allowedInputs": [
+          "impact",
+          "evidenceConfidence",
+          "executionLeverage"
+        ],
+        "forbiddenInputs": [
+          "candidateProfile",
+          "privateFeedbackNotes",
+          "region"
+        ],
+        "outputUse": "project_execution_priority_only",
         "formula": "priority = 5 * impact * evidence confidence * execution leverage",
         "goals": {
           "data_lineage": 4.5,
@@ -46687,7 +46701,8 @@
         ]
       },
       "candidateSimilarity": {
-        "regionWeight": 0
+        "regionWeight": 0,
+        "goalPriorityInput": false
       },
       "synthesis": {
         "recommendation": "verified_facts_first",
@@ -46704,6 +46719,7 @@
         ],
         "boundaries": {
           "candidateSuitability": false,
+          "candidateRankingInput": false,
           "regionWeight": 0,
           "regionRule": "domestic/overseas classification only",
           "publicFeedbackRule": "exclude personal counts and original notes"

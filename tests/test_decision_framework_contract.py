@@ -347,11 +347,25 @@ def test_review_protocol_exposes_eight_perspectives_and_non_candidate_scoring_bo
     assert len(protocol["stages"]) == 3
     assert len(protocol["stages"][0]["items"]) == 8
     assert protocol["goalPriority"]["candidateSuitability"] is False
+    assert protocol["goalPriority"]["candidateRankingInput"] is False
     assert protocol["goalPriority"]["regionExcludedFromScore"] is True
+    assert protocol["goalPriority"]["scoreType"] == "project_workstream_priority"
+    assert protocol["goalPriority"]["outputUse"] == "project_execution_priority_only"
+    assert protocol["goalPriority"]["allowedInputs"] == [
+        "impact",
+        "evidenceConfidence",
+        "executionLeverage",
+    ]
+    assert protocol["goalPriority"]["forbiddenInputs"] == [
+        "candidateProfile",
+        "privateFeedbackNotes",
+        "region",
+    ]
     assert protocol["goalPriority"]["scale"] == {"min": 0, "max": 5}
     assert len(protocol["goalPriority"]["workstreams"]) >= 6
     assert all(0 <= float(row["priority"]) <= 5 for row in protocol["goalPriority"]["workstreams"])
     assert protocol["candidateSimilarity"]["regionWeight"] == 0
+    assert protocol["candidateSimilarity"]["goalPriorityInput"] is False
 
 
 def test_review_protocol_is_payload_derived_and_has_gate_loop_synthesis() -> None:

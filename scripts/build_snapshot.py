@@ -1995,6 +1995,18 @@ def _review_protocol(payload: Mapping[str, Any], *, snapshot_ready: bool = False
     ]
 
     formula = "priority = 5 * impact * evidence confidence * execution leverage"
+    # data-requirement-id="DATA-310": this score orders project workstreams only.
+    # It must never be reused as a job/programme suitability or candidate-ranking input.
+    score_contract = {
+        "scoreType": "project_workstream_priority",
+        "candidateSuitability": False,
+        "candidateRankingInput": False,
+        "regionExcludedFromScore": True,
+        "regionWeight": 0,
+        "allowedInputs": ["impact", "evidenceConfidence", "executionLeverage"],
+        "forbiddenInputs": ["candidateProfile", "privateFeedbackNotes", "region"],
+        "outputUse": "project_execution_priority_only",
+    }
     workstream_specs = [
         ("lineage", "data lineage", min(1.0, 0.35 + 0.65 * lineage_confidence), lineage_confidence, 0.90, "source URL and source key must survive producer to mobile"),
         ("attachments", "requirement attachments", 0.85, attachment_confidence, 0.80, "public postings often keep requirements in PDF or HWP"),
@@ -2047,8 +2059,9 @@ def _review_protocol(payload: Mapping[str, Any], *, snapshot_ready: bool = False
             "collect structured positive and negative reasons without publishing raw personal notes",
         ],
         "boundaries": {
-            "candidateSuitability": False,
-            "regionWeight": 0,
+            "candidateSuitability": score_contract["candidateSuitability"],
+            "candidateRankingInput": score_contract["candidateRankingInput"],
+            "regionWeight": score_contract["regionWeight"],
             "regionRule": "domestic/overseas classification only",
             "publicFeedbackRule": "exclude personal counts and original notes",
         },
@@ -2063,14 +2076,22 @@ def _review_protocol(payload: Mapping[str, Any], *, snapshot_ready: bool = False
         ],
         "goalPriority": {
             "scale": {"min": 0, "max": 5},
-            "candidateSuitability": False,
-            "regionExcludedFromScore": True,
+            "scoreType": score_contract["scoreType"],
+            "candidateSuitability": score_contract["candidateSuitability"],
+            "candidateRankingInput": score_contract["candidateRankingInput"],
+            "regionExcludedFromScore": score_contract["regionExcludedFromScore"],
+            "allowedInputs": score_contract["allowedInputs"],
+            "forbiddenInputs": score_contract["forbiddenInputs"],
+            "outputUse": score_contract["outputUse"],
             "formula": formula,
             "goals": goals,
             "rankedGoals": goal_rows,
             "workstreams": workstreams,
         },
-        "candidateSimilarity": {"regionWeight": 0},
+        "candidateSimilarity": {
+            "regionWeight": score_contract["regionWeight"],
+            "goalPriorityInput": False,
+        },
         "synthesis": synthesis,
     }
 

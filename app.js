@@ -546,6 +546,34 @@
     if (state.data?.stats?.recommendationSurface !== "exploration_only") return "";
     return `<section class="decision-panel" data-requirement-id="UX-237" data-recommendation-mode="soft_similarity_only"><p class="eyebrow">\uc720\uc0ac\ub3c4 \uae30\ubc18 \ud0d0\uc0c9</p><h3>\uc9c0\uc6d0 \ucd94\ucc9c\uc774 \uc544\ub2d9\ub2c8\ub2e4.</h3><p>\uad00\uc2ec\u00b7\ubcc4\ub85c\uc608\uc694 \uae30\ub85d\uacfc \ub2ee\uc740 \uacf5\uace0\ub97c \uc815\ud574\uc9c4 \uc0b0\uc2dd\uc73c\ub85c \uba3c\uc800 \ubcf4\uc5ec\uc8fc\ub294 \ud0d0\uc0c9 \ubaa9\ub85d\uc785\ub2c8\ub2e4. \uae09\uc5ec\u00b7\uace0\uc6a9\ud615\ud0dc\u00b7\uc9c0\uc6d0\uc790\uaca9\u00b7\ube44\uc790\u00b7\uc6cc\ub77c\ubc38\ucc98\ub7fc \ube44\uc5b4 \uc788\ub294 \uc870\uac74\uc740 \ud655\uc778 \uc804\uae4c\uc9c0 \ucd94\ucc9c \uadfc\uac70\ub85c \uac04\uc8fc\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.</p></section>`;
   }
+
+  function decisionLanePanel(laneId) {
+    const protocol = state.data?.decisionFramework?.reviewProtocol || {};
+    const goals = protocol.goalPriority?.rankedGoals || [];
+    const isGraduate = laneId === "graduate";
+    const selectedIds = isGraduate ? ["graduate_evidence", "decision_support"] : ["feedback_loop", "decision_support"];
+    const labels = isGraduate ? ["대학원 근거", "의사결정 근거"] : ["선호 이유", "의사결정 근거"];
+    const fields = isGraduate ? ["교수", "논문", "용역", "진로"] : ["급여", "고용형태", "자격", "마감"];
+    const selected = selectedIds.map((id) => goals.find((goal) => goal.id === id)).filter(Boolean);
+    const scoreCards = selected.map((item, index) => `<article><small>${escapeHtml(labels[index])}</small><b>${escapeHtml(item.priority)}</b><span>근거 신뢰 ${escapeHtml(item.evidenceConfidence)}</span></article>`).join("");
+    const fieldMarkup = fields.map((field) => `<span>${escapeHtml(field)}</span>`).join("");
+    const title = isGraduate ? "대학원 판단 카드" : "공고 판단 카드";
+    const action = isGraduate ? "빈 근거를 확인한 뒤 교수·연구·진로 탭을 엽니다." : "빈 조건을 원문에서 확인한 뒤 관심·별로예요 이유를 남깁니다.";
+    return `<section class="decision-lane" data-requirement-id="UX-312" data-lane="${escapeHtml(laneId)}">`
+      + `<header class="decision-lane-head"><div><small>지금 볼 이유</small><h2>${escapeHtml(title)}</h2></div></header>`
+      + `<div class="decision-lane-goals">${scoreCards || `<p>우선순위 근거를 추가 확인합니다.</p>`}</div>`
+      + `<div class="decision-lane-next"><b>확인할 정보</b><div>${fieldMarkup}</div><p>${escapeHtml(action)}</p></div>`
+      + `<p class="decision-lane-boundary">숫자는 후보 적합도 점수가 아니라 근거 보강 우선순위입니다. 국내·해외는 분류만 하며 지역 가중치는 0입니다.</p></section>`;
+  }
+  function candidateEvidenceSummary(job) {
+    const support = job.decisionSupport || {};
+    const status = job.postingCurrentness?.status || "unverified";
+    const statusLabel = POSTING_CURRENTNESS_COPY[status]?.label || POSTING_CURRENTNESS_COPY.unverified.label;
+    const missing = (support.missingInformation || []).slice(0, 2).map((item) => item.label).filter(Boolean);
+    const action = support.nextActions?.[0] || job.nextAction || "공식 원문에서 조건을 확인하세요.";
+    const missingCopy = missing.length ? missing.join(" · ") : "추가 확인 항목 없음";
+    return `<div class="candidate-evidence" data-currentness="${escapeHtml(status)}"><span class="evidence-status-chip">${escapeHtml(statusLabel)}</span><p><b>확인할 정보</b>${escapeHtml(missingCopy)}</p><p><b>다음 행동</b>${escapeHtml(action)}</p></div>`;
+  }
   // UX-237: 유사도 기반 탐색 · 지원 추천이 아닙니다
   function candidateRow(job, compact = false) {
     const preference = effectivePreferenceFor(job);
@@ -557,6 +585,7 @@
         <span class="opportunity-copy"><em>${escapeHtml(job.company)}</em><strong>${escapeHtml(job.title)}</strong><small>${escapeHtml(job.location)}</small></span>
         <span class="opportunity-arrow">${icon("arrow")}</span>
       </button>
+      ${candidateEvidenceSummary(job)}
       <div class="opportunity-foot"><span><i class="source-dot"></i>${escapeHtml(jobSectors(job).join(" · ") || "분야 원문 확인")}</span><span>${rejected ? "별로예요 · 개인화에 반영됨" : escapeHtml(job.sectorEvidence || (job.discoveryTier === "explore" ? "분야 원문 근거" : "공식 원문 · 조건 확인"))}</span></div>
       <div class="card-preference-actions" aria-label="이 공고에 대한 피드백">
         <button class="card-preference is-like ${saved ? "is-active" : ""}" type="button" data-action="open-feedback" data-feedback-sentiment="liked" data-job-id="${escapeHtml(job.id)}" aria-pressed="${saved}">${icon(saved ? "bookmark-fill" : "bookmark")}<span>${saved ? "관심 이유 수정" : "관심"}</span></button>
@@ -586,6 +615,7 @@
       candidatePageWithTruth,
       researchPage,
     ];
+    pages[0] = decisionLanePanel("jobs") + pages[0];
     main.innerHTML = pages.map((page, index) => pageFrame(page, index, pages.length, "오늘")).join("");
   }
 
@@ -604,7 +634,7 @@
     const ranked = state.data?.stats?.recommendationSurface === "ranked";
     const exploring = state.data?.stats?.recommendationSurface === "exploration_only";
     main.innerHTML = pageFrame(`<section class="browse-head"><p class="eyebrow">${ranked ? "우선 검토 후보" : (exploring ? "관심 탐색" : "새 공고 인벤토리")}</p><div class="browse-title-row"><h1>새 국내·해외 공고</h1><button class="filter-trigger" type="button" data-action="open-filters" aria-label="공고 필터">${icon("filter")}${activeFilters() ? `<b>${activeFilters()}</b>` : ""}</button></div><label class="search-box">${icon("search")}<span class="sr-only">공고 검색</span><input id="jobSearch" type="search" value="${escapeHtml(state.query)}" placeholder="직무, 기관, 지역으로 찾기" autocomplete="off" /></label>${marketSwitch("job", state.jobMarket || "all", availableJobs)}<div class="sector-grid" data-requirement-id="UX-201"><button class="sector-chip ${!state.sector ? "is-active" : ""}" type="button" data-sector="">전체</button>${sectors}</div></section>`, 0, total, "공고 탐색") + `<div id="jobResults"></div>`;
-    main.querySelector(".browse-head")?.insertAdjacentHTML("beforebegin", recommendationTruthNotice());
+    main.querySelector(".browse-head")?.insertAdjacentHTML("beforebegin", `${decisionLanePanel("jobs")}${recommendationTruthNotice()}`);
     /* data-requirement-id="UX-292" */
     document.getElementById("jobSearch").addEventListener("input", (event) => {
       const cursor = event.target.selectionStart;
@@ -961,6 +991,28 @@
     main.innerHTML = pages.map((page, index) => pageFrame(page, index, pages.length, "\uc0dd\ud65c \uc870\uac74")).join("");
   }
 
+  function researchCountCopy(value) {
+    if (value === null || value === undefined) return "확인 필요";
+    return value === 0 ? "조사됨 0" : `확인 ${value}`;
+  }
+
+  function programEvidenceSummary(item) {
+    if (!item.program) return `<span class="program-evidence-summary"><b>조건 상태</b><span>${escapeHtml(item.verification || item.deadline || "원문 확인 필요")}</span></span>`;
+    const research = item.publicResearch || {};
+    const claims = research.claimEvidence || {};
+    const rows = [
+      ["교수", claims.faculty],
+      ["논문", claims.recentPapers],
+      ["용역", claims.fundedProjects],
+      ["진로", claims.graduateDestinations],
+    ];
+    const evidenceRows = rows.map(([label, record]) => [label, record?.recordCount]);
+    const displayRows = evidenceRows;
+    const rowMarkup = displayRows.map(([label, count]) => `<span><small>${escapeHtml(label)}</small><b>${escapeHtml(researchCountCopy(count))}</b></span>`).join("");
+    const status = programEvidenceStatus(item);
+    return `<span class="program-evidence-summary"><b>${escapeHtml(status)}</b><span class="program-evidence-grid">${rowMarkup}</span></span>`;
+  }
+
   function studyRow(item, kind) {
     const isProgram = kind === "program";
     const research = item.publicResearch || {};
@@ -973,7 +1025,8 @@
     const note = isProgram && evidenceCount
       ? `교수 ${(research.faculty || []).length} · 논문 ${paperCount} · 용역 ${(research.recentProjects || []).length} · 진로 ${(research.graduateDestinations || []).length}`
       : (isProgram ? item.funding || item.deadline || "마감 원문 확인" : item.deadline || item.verification || "조건 원문 확인");
-    return `<button class="study-row" type="button" data-open-record="${kind}:${escapeHtml(item.id)}"><span>${escapeHtml(number)}</span><div><small>${escapeHtml(line)}</small><h2>${escapeHtml(title)}</h2><p>${escapeHtml(subtitle)}</p><em>${escapeHtml(note)}</em></div>${icon("arrow")}</button>`;
+    const evidenceSummary = programEvidenceSummary(item);
+    return `<button class="study-row" type="button" data-open-record="${kind}:${escapeHtml(item.id)}"><span>${escapeHtml(number)}</span><div><small>${escapeHtml(line)}</small><h2>${escapeHtml(title)}</h2><p>${escapeHtml(subtitle)}</p><em>${escapeHtml(note)}</em>${evidenceSummary}</div>${icon("arrow")}</button>`;
   }
 
   function renderStudyResults() {
@@ -998,6 +1051,7 @@
     const formatSwitch = isFunding ? "" : `<div class="market-switch study-format" role="tablist" aria-label="대학원 수강 방식"><button type="button" role="tab" aria-selected="${state.studyFormat === "all"}" data-study-format="all">전체 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${state.studyFormat === "online"}" data-study-format="online">온라인 <b>${onlinePrograms}</b></button></div>`;
     const coveragePanel = isFunding ? "" : `<section class="graduate-coverage" data-requirement-id="UX-224"><div class="graduate-coverage-heading"><div><p class="eyebrow">대학원 근거 현황</p><h2>전체 ${coverageTotal}개 과정 기준</h2></div><p>빈칸은 추정하지 않고 미조사로 남깁니다.</p></div><div class="graduate-coverage-grid"><div><small>교수 근거</small><b>${coverage.programsWithFaculty || 0}<i>/${coverageTotal}</i></b></div><div><small>최근 5년 논문</small><b>${coverage.programsWithRecentPapers || 0}<i>/${coverageTotal}</i></b></div><div><small>연구용역</small><b>${coverage.programsWithFundedProjects || 0}<i>/${coverageTotal}</i></b></div><div><small>취업 근거</small><b>${coverage.programsWithGraduateDestinations || 0}<i>/${coverageTotal}</i></b></div><div><small>동문 후기</small><b>${coverage.programsWithTestimonials || 0}<i>/${coverageTotal}</i></b></div><div><small>근거 미연결</small><b>${coverage.unresearchedPrograms || 0}<i>/${coverageTotal}</i></b></div></div></section>`;
     main.innerHTML = pageFrame(`<section class="study-head"><div><p class="eyebrow">진학 · 장학 · 연구</p><h1>대학원 · 장학금</h1></div><p>대학원 ${programs().length} · 온라인 ${onlinePrograms} · 장학금 ${funding().length}</p></section>${coveragePanel}<section class="study-controls"><div class="mode-switch" role="tablist" aria-label="진학 자료 종류"><button type="button" role="tab" aria-selected="${!isFunding}" data-study-mode="programs">대학원 <b>${programs().length}</b></button><button type="button" role="tab" aria-selected="${isFunding}" data-study-mode="funding">장학금 <b>${funding().length}</b></button></div>${readinessSwitch}${formatSwitch}${marketSwitch("study", state.studyMarket || "all", studyRecords)}<label class="search-box">${icon("search")}<span class="sr-only">진학 자료 검색</span><input id="studySearch" type="search" value="${escapeHtml(state.studyQuery)}" placeholder="학교, 과정, 장학금으로 찾기" autocomplete="off" /></label></section>`, 0, total, "진학과 재정") + `<div id="studyResults"></div>`;
+    main.querySelector(".study-head")?.insertAdjacentHTML("beforebegin", decisionLanePanel("graduate"));
     document.getElementById("studySearch").addEventListener("input", (event) => {
       const cursor = event.target.selectionStart;
       state.studyQuery = event.target.value;

@@ -1366,6 +1366,41 @@
       "title": "Public Pages and private Career Compass engine validation are separate no-token gates",
       "assert": {"type": "text_present", "path": "requirements/private-engine-gate.md", "needles": ["JUNPINMOON/job-search", "tools/check_career_compass_contract.py", "DATA-282", "DATA-290", "DATA-291", "DATA-302", "DATA-303", "no GitHub token", "master"]},
       "note": "The public runner cannot inspect private job_search files. Cross-repository marker assertions are retired here only after an equivalent private master workflow is installed; Pages success and engine-contract success remain distinct facts."
+    },
+    {
+      "id": "SEC-309",
+      "status": "active",
+      "title": "Public candidate inference exposure is reviewed without publishing private preference fields",
+      "assert": {"type": "text_present", "path": "requirements/public-inference-exposure-2026-08-03.md", "needles": ["INFERENCE_REVIEW", "NO_PRIVATE_FEEDBACK_FIELDS", "jobEligibilityOverrides", "MITIGATION_PROPOSAL_ONLY", "DONE_PARTIAL"]},
+      "note": "Review the public 87-job snapshot for direct private fields and small-count policy signals that could allow inference of personal experience or eligibility constraints; mitigation is documented before implementation."
+    },
+    {
+      "id": "DATA-310",
+      "status": "active",
+      "title": "Eight-perspective review and goal priority scoring have explicit non-candidate boundaries",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["data-requirement-id=\"DATA-310\"", "reviewProtocol", "candidateSuitability", "regionExcludedFromScore", "goalPriority"]},
+      "note": "The eight-view review prioritizes implementation gates; it is not a candidate suitability score."
+    },
+    {
+      "id": "UX-311",
+      "status": "active",
+      "title": "Mobile Sources panel explains review perspectives and scoring boundaries",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-311\"", "reviewProtocol", "candidateSuitability", "regionExcludedFromScore", "goalPriority"]},
+      "note": "The phone-readable panel must show formula, scale, region exclusion, and synthesis without private feedback rows."
+    },
+    {
+      "id": "UX-312",
+      "status": "active",
+      "title": "Today jobs and graduate routes expose decision and evidence gates",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["data-requirement-id=\"UX-312\"", "decisionLanePanel", "candidateEvidenceSummary", "programEvidenceSummary", "지금 볼 이유", "확인할 정보"]},
+      "note": "Measured before implementation on 2026-08-03: the eight-view framework was visible only in Sources while Today, Jobs, and Study retained the earlier inventory-only cards. Main routes must show implementation-priority boundaries plus record-level evidence gaps without presenting either as a candidate fit score."
+    },
+    {
+      "id": "GOV-313",
+      "status": "active",
+      "title": "The iPhone shell cache advances for main decision lanes",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["data-requirement-id=\"GOV-313\"", "career-compass-v61-main-decision-lanes", "career-compass-v60-measured-framework"]},
+      "note": "Measured before implementation on 2026-08-03: the deployed shell still identified v60, so a user could receive the Sources-only interface even after the main-route change. Keep both old and new lineage identifiers and advance the cache only with the connected UI release."
     }
   ]
 }

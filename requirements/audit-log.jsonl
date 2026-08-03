@@ -460,3 +460,25 @@
 {"at": "2026-08-02T16:14:40+00:00", "event": "check", "passed": 180, "failed": 0, "failing_ids": []}
 {"at": "2026-08-02T16:53:59+00:00", "event": "check", "passed": 180, "failed": 0, "failing_ids": []}
 {"at": "2026-08-02T16:58:13+00:00", "event": "check", "passed": 180, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T17:04:04+00:00", "event": "check", "passed": 180, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T17:44:54+00:00", "event": "requirement_added", "id": "GOV-308", "title": "Public Pages and private Career Compass engine validation are separate no-token gates"}
+{"at": "2026-08-02T17:44:54+00:00", "event": "check", "passed": 176, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T17:57:34+00:00", "event": "check", "passed": 176, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T18:08:54+00:00", "event": "check", "passed": 176, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T18:29:05+00:00", "event": "check", "passed": 176, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T18:29:22+00:00", "event": "check", "passed": 176, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T20:06:32+00:00", "event": "check", "passed": 176, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T20:07:07+00:00", "event": "requirement_added", "id": "SEC-309", "title": "Public candidate inference exposure is reviewed without publishing private preference fields"}
+{"at": "2026-08-02T20:07:07+00:00", "event": "check", "passed": 176, "failed": 1, "failing_ids": ["SEC-309"]}
+{"at": "2026-08-02T20:08:33+00:00", "event": "check", "passed": 177, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T20:13:39+00:00", "event": "check", "passed": 177, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T20:45:48+00:00", "event": "check", "passed": 177, "failed": 0, "failing_ids": []}
+{"at": "2026-08-02T20:59:48+00:00", "event": "requirement_added", "id": "DATA-310", "title": "Eight-perspective review and goal priority scoring have explicit non-candidate boundaries"}
+{"at": "2026-08-02T20:59:48+00:00", "event": "requirement_added", "id": "UX-311", "title": "Mobile Sources panel explains review perspectives and scoring boundaries"}
+{"at": "2026-08-02T20:59:48+00:00", "event": "check", "passed": 177, "failed": 2, "failing_ids": ["DATA-310", "UX-311"]}
+{"at": "2026-08-02T22:02:34+00:00", "event": "check", "passed": 178, "failed": 1, "failing_ids": ["DATA-310"]}
+{"at": "2026-08-02T22:28:04+00:00", "event": "check", "passed": 178, "failed": 1, "failing_ids": ["DATA-310"]}
+{"at": "2026-08-03T03:14:25+00:00", "event": "requirement_added", "id": "UX-312", "title": "Today jobs and graduate routes expose decision and evidence gates"}
+{"at": "2026-08-03T03:14:25+00:00", "event": "requirement_added", "id": "GOV-313", "title": "The iPhone shell cache advances for main decision lanes"}
+{"at": "2026-08-03T03:14:25+00:00", "event": "check", "passed": 180, "failed": 1, "failing_ids": ["DATA-310"]}
+{"at": "2026-08-03T03:19:03+00:00", "event": "check", "passed": 181, "failed": 0, "failing_ids": []}

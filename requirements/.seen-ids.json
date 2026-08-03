@@ -394,6 +394,11 @@
     "first_seen": "2026-08-02T16:14:40+00:00",
     "title": "Program display semantics"
   },
+  "DATA-310": {
+    "assert_sha": "f7ee77263b6eeb50",
+    "first_seen": "2026-08-02T20:59:48+00:00",
+    "title": "Eight-perspective review and goal priority scoring have explicit non-candidate boundaries"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -619,6 +624,16 @@
     "first_seen": "2026-08-02T16:14:40+00:00",
     "title": "Source links carry truthful evidence labels"
   },
+  "GOV-308": {
+    "assert_sha": "86dcfed6a15cbf5c",
+    "first_seen": "2026-08-02T17:44:54+00:00",
+    "title": "Public Pages and private Career Compass engine validation are separate no-token gates"
+  },
+  "GOV-313": {
+    "assert_sha": "ac34e127177ff5da",
+    "first_seen": "2026-08-03T03:14:25+00:00",
+    "title": "The iPhone shell cache advances for main decision lanes"
+  },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -648,6 +663,11 @@
     "assert_sha": "ee982fae9d722f00",
     "first_seen": "2026-08-02T16:14:40+00:00",
     "title": "Public graduate projection removes private applicant readiness and fit notes before decision support is derived"
+  },
+  "SEC-309": {
+    "assert_sha": "6e103fb6d1525cde",
+    "first_seen": "2026-08-02T20:07:07+00:00",
+    "title": "Public candidate inference exposure is reviewed without publishing private preference fields"
   },
   "UX-201": {
     "assert_sha": "0cb85859116bd85d",
@@ -928,5 +948,15 @@
     "assert_sha": "92e9142f7ce9ee2e",
     "first_seen": "2026-08-02T16:14:40+00:00",
     "title": "Comparison cards preserve record kind"
+  },
+  "UX-311": {
+    "assert_sha": "2a6557ed4e8a9413",
+    "first_seen": "2026-08-02T20:59:48+00:00",
+    "title": "Mobile Sources panel explains review perspectives and scoring boundaries"
+  },
+  "UX-312": {
+    "assert_sha": "9154cbc42e02f882",
+    "first_seen": "2026-08-03T03:14:25+00:00",
+    "title": "Today jobs and graduate routes expose decision and evidence gates"
   }
 }
