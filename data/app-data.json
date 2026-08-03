@@ -48321,10 +48321,14 @@
   ],
   "impactOpportunityLineage": {
     "schemaVersion": "social-environment-ai-v1",
-    "producer": "scripts/build_snapshot.py",
+    "producer": "scripts/build_impact_snapshot.py",
+    "sourcePath": "data/catalog-source.json",
     "outputPath": "data/app-data.json",
     "consumer": "app.js impactOpportunityPage",
-    "contract": "producer=scripts/build_snapshot.py; output=data/app-data.json; consumer=app.js impactOpportunityPage",
+    "contract": "producer=scripts/build_impact_snapshot.py; source=data/catalog-source.json; output=data/app-data.json; consumer=app.js impactOpportunityPage",
+    "producerCodeSha256": "26fb8ae6c7505b36f3af2858028a2f161f2ccddd202b174efb210a653454e797",
+    "recordsSha256": "7a955c2b1ba406efa2914343776524931c1ddb14be91bb30af01832aaa3f203e",
+    "recordCount": 6,
     "generatedAt": "2026-08-03T06:09:05.900991+00:00"
   }
 }

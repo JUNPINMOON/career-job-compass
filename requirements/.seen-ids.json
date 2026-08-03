@@ -400,14 +400,19 @@
     "title": "Eight-perspective review and goal priority scoring have explicit non-candidate boundaries"
   },
   "DATA-314": {
-    "assert_sha": "7c182ee64ad27311",
+    "assert_sha": "14d9781f5670696f",
     "first_seen": "2026-08-03T04:42:55+00:00",
     "title": "Social and environmental AI opportunities have a public producer-output-consumer contract"
   },
   "DATA-319": {
-    "assert_sha": "b6d6c8800ca3f050",
+    "assert_sha": "7d13cc786de7e8e6",
     "first_seen": "2026-08-03T05:49:32+00:00",
     "title": "Each social-environment AI brief carries usable public materials and explicit evidence gaps"
+  },
+  "DATA-322": {
+    "assert_sha": "3c6c8ad5292d36a3",
+    "first_seen": "2026-08-03T06:51:07+00:00",
+    "title": "Release gate proves the isolated impact source, producer, output and mobile consumer"
   },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",

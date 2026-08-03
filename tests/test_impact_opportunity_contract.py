@@ -4,17 +4,19 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-BUILDER = (ROOT / "scripts" / "build_snapshot.py").read_text(encoding="utf-8")
+IMPACT_BUILDER = (ROOT / "scripts" / "build_impact_snapshot.py").read_text(encoding="utf-8")
+RELEASE_CHECK = (ROOT / "scripts" / "check_release.py").read_text(encoding="utf-8")
 APP = (ROOT / "app.js").read_text(encoding="utf-8")
 CSS = (ROOT / "styles.css").read_text(encoding="utf-8")
 SW = (ROOT / "sw.js").read_text(encoding="utf-8")
 DATA = json.loads((ROOT / "data" / "app-data.json").read_text(encoding="utf-8"))
+CATALOG = json.loads((ROOT / "data" / "catalog-source.json").read_text(encoding="utf-8"))
 
 
 class ImpactOpportunityContractTest(unittest.TestCase):
     def test_snapshot_has_connected_problem_to_action_records(self):
-        self.assertIn("def _impact_opportunities()", BUILDER)
-        self.assertIn('payload["impactOpportunities"]', BUILDER)
+        self.assertIn("def validate_impact_opportunities(", IMPACT_BUILDER)
+        self.assertIn("def refresh_impact_snapshot(", IMPACT_BUILDER)
         records = DATA.get("impactOpportunities", [])
         self.assertGreaterEqual(len(records), 6)
         required = {
@@ -28,10 +30,15 @@ class ImpactOpportunityContractTest(unittest.TestCase):
             self.assertGreaterEqual(len(record["sources"]), 1)
             self.assertTrue(all(source.get("sourceTier") == "official" for source in record["sources"]))
             self.assertTrue(all(str(source.get("url", "")).startswith("https://") for source in record["sources"]))
+        self.assertEqual(records, CATALOG.get("impactOpportunities"))
         lineage = DATA.get("impactOpportunityLineage", {})
-        self.assertEqual(lineage.get("producer"), "scripts/build_snapshot.py")
+        self.assertEqual(lineage, CATALOG.get("impactOpportunityLineage"))
+        self.assertEqual(lineage.get("producer"), "scripts/build_impact_snapshot.py")
+        self.assertEqual(lineage.get("sourcePath"), "data/catalog-source.json")
         self.assertEqual(lineage.get("outputPath"), "data/app-data.json")
         self.assertEqual(lineage.get("consumer"), "app.js impactOpportunityPage")
+        self.assertEqual(len(lineage.get("producerCodeSha256", "")), 64)
+        self.assertEqual(len(lineage.get("recordsSha256", "")), 64)
 
     def test_today_has_mobile_interaction_and_evidence_boundary(self):
         self.assertIn("function impactOpportunityPage(", APP)
@@ -67,9 +74,19 @@ class ImpactOpportunityContractTest(unittest.TestCase):
         self.assertIn("impact-selection-summary", APP)
 
     def test_public_impact_refresh_does_not_require_private_job_data(self):
-        self.assertIn('"--impact-only"', BUILDER)
-        self.assertIn("def _apply_impact_opportunity_snapshot(", BUILDER)
-        self.assertIn("existing public snapshot required", BUILDER)
+        self.assertIn("CANONICAL_SOURCE", IMPACT_BUILDER)
+        self.assertIn("CANONICAL_OUTPUT", IMPACT_BUILDER)
+        self.assertIn('"--catalog-source"', IMPACT_BUILDER)
+        self.assertIn('"--check"', IMPACT_BUILDER)
+        self.assertNotIn("job-search-root", IMPACT_BUILDER)
+        self.assertNotIn("job_search", IMPACT_BUILDER)
+
+    def test_release_gate_proves_source_producer_output_and_consumer(self):
+        self.assertIn('data-requirement-id="DATA-322"', RELEASE_CHECK)
+        self.assertIn("def validate_impact_opportunity_lineage(", RELEASE_CHECK)
+        self.assertIn("impact producer-output mismatch", RELEASE_CHECK)
+        self.assertIn("producerCodeSha256", RELEASE_CHECK)
+        self.assertIn("recordsSha256", RELEASE_CHECK)
 
     def test_service_worker_lineage_advances(self):
         self.assertIn("career-compass-v61-main-decision-lanes", SW)

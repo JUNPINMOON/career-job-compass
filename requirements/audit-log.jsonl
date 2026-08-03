@@ -502,3 +502,10 @@
 {"at": "2026-08-03T05:49:32+00:00", "event": "check", "passed": 186, "failed": 3, "failing_ids": ["DATA-319", "UX-320", "GOV-321"]}
 {"at": "2026-08-03T06:09:51+00:00", "event": "check", "passed": 189, "failed": 0, "failing_ids": []}
 {"at": "2026-08-03T06:29:06+00:00", "event": "check", "passed": 189, "failed": 0, "failing_ids": []}
+{"at": "2026-08-03T06:50:40+00:00", "event": "requirement_added", "id": "DATA-322", "title": "Release gate proves the isolated impact source, producer, output and mobile consumer"}
+{"at": "2026-08-03T06:50:51+00:00", "event": "requirement_added", "id": "DATA-322", "title": "Release gate proves the isolated impact source, producer, output and mobile consumer"}
+{"at": "2026-08-03T06:51:07+00:00", "event": "assertion_modified", "id": "DATA-314", "old": "7c182ee64ad27311", "new": "14d9781f5670696f", "reason": "DATA-314 and DATA-319 now follow the isolated public impact producer so graduate lineage remains exact"}
+{"at": "2026-08-03T06:51:07+00:00", "event": "assertion_modified", "id": "DATA-319", "old": "b6d6c8800ca3f050", "new": "7d13cc786de7e8e6", "reason": "DATA-314 and DATA-319 now follow the isolated public impact producer so graduate lineage remains exact"}
+{"at": "2026-08-03T06:51:07+00:00", "event": "requirement_added", "id": "DATA-322", "title": "Release gate proves the isolated impact source, producer, output and mobile consumer"}
+{"at": "2026-08-03T06:51:07+00:00", "event": "check", "passed": 187, "failed": 3, "failing_ids": ["DATA-314", "DATA-319", "DATA-322"]}
+{"at": "2026-08-03T06:52:07+00:00", "event": "check", "passed": 190, "failed": 0, "failing_ids": []}

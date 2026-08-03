@@ -1309,6 +1309,61 @@ def validate_graduate_data_lineage(
                 raise SystemExit("graduate lineage source digest mismatch")
 
 
+def validate_impact_opportunity_lineage(snapshot: Mapping[str, object], root: Path = ROOT) -> None:
+    """data-requirement-id="DATA-322": prove source, producer, output and consumer agree."""
+    source_path = root / "data" / "catalog-source.json"
+    producer_path = root / "scripts" / "build_impact_snapshot.py"
+    try:
+        source = json.loads(source_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        raise SystemExit(f"impact catalog source is unreadable: {error.__class__.__name__}") from None
+    if not isinstance(source, dict):
+        raise SystemExit("impact catalog source must be an object")
+
+    source_records = source.get("impactOpportunities")
+    output_records = snapshot.get("impactOpportunities")
+    if not isinstance(source_records, list) or len(source_records) < 6:
+        raise SystemExit("impact catalog source must contain at least six records")
+    if output_records != source_records:
+        raise SystemExit("impact producer-output mismatch: app-data differs from catalog-source")
+
+    source_lineage = source.get("impactOpportunityLineage")
+    output_lineage = snapshot.get("impactOpportunityLineage")
+    if not isinstance(source_lineage, dict) or output_lineage != source_lineage:
+        raise SystemExit("impact producer-output mismatch: lineage differs from catalog-source")
+
+    expected_contract = (
+        "producer=scripts/build_impact_snapshot.py; source=data/catalog-source.json; "
+        "output=data/app-data.json; consumer=app.js impactOpportunityPage"
+    )
+    expected_fields = {
+        "schemaVersion": "social-environment-ai-v1",
+        "producer": "scripts/build_impact_snapshot.py",
+        "sourcePath": "data/catalog-source.json",
+        "outputPath": "data/app-data.json",
+        "consumer": "app.js impactOpportunityPage",
+        "contract": expected_contract,
+        "recordCount": len(source_records),
+    }
+    for field, expected in expected_fields.items():
+        if source_lineage.get(field) != expected:
+            raise SystemExit(f"impact lineage {field} mismatch")
+    if not producer_path.is_file():
+        raise SystemExit("impact lineage producer is missing")
+    if source_lineage.get("producerCodeSha256") != _lineage_file_sha256(producer_path):
+        raise SystemExit("impact lineage producer code mismatch")
+    expected_records_digest = hashlib.sha256(
+        json.dumps(
+            source_records,
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+    ).hexdigest()
+    if source_lineage.get("recordsSha256") != expected_records_digest:
+        raise SystemExit("impact lineage records digest mismatch")
+
+
 def main() -> None:
     requirement_check = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "check_requirements.py"), "--root", str(ROOT)],
@@ -1323,7 +1378,8 @@ def main() -> None:
         "assets/route-map-editorial-v2.webp", "assets/study-steps-editorial-v2.webp",
         "data/app-data.json", "data/catalog-source.json",
         "supabase/migrations/202607280003_create_refresh_queue.sql",
-        "requirements/ledger.yaml", "scripts/check_requirements.py", "DESIGN.md",
+        "requirements/ledger.yaml", "scripts/check_requirements.py",
+        "scripts/build_impact_snapshot.py", "DESIGN.md",
     ):
         require(ROOT / relative, relative)
 
@@ -1390,6 +1446,7 @@ def main() -> None:
         funding,
         source_roots=lineage_roots,
     )
+    validate_impact_opportunity_lineage(snapshot, ROOT)
     if {job.get("queue") for job in jobs} - {"verify", "hold", "apply", "stretch"}:
         raise SystemExit("public jobs must only use active public V4 queues")
     stats = snapshot.get("stats")
