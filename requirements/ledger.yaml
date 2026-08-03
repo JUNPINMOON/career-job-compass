@@ -1401,6 +1401,82 @@
       "title": "The iPhone shell cache advances for main decision lanes",
       "assert": {"type": "text_present", "path": "sw.js", "needles": ["data-requirement-id=\"GOV-313\"", "career-compass-v61-main-decision-lanes", "career-compass-v60-measured-framework"]},
       "note": "Measured before implementation on 2026-08-03: the deployed shell still identified v60, so a user could receive the Sources-only interface even after the main-route change. Keep both old and new lineage identifiers and advance the cache only with the connected UI release."
+    },
+    {
+      "id": "DATA-314",
+      "status": "active",
+      "title": "Social and environmental AI opportunities have a public producer-output-consumer contract",
+      "assert": {"type": "text_present", "path": "scripts/build_snapshot.py", "needles": ["def _impact_opportunities()", "payload[\"impactOpportunities\"]", "social-environment-ai-v1", "producer=scripts/build_snapshot.py", "output=data/app-data.json", "consumer=app.js impactOpportunityPage"]},
+      "note": "Measured before implementation on 2026-08-03: the snapshot had jobs, programs and a review framework but no model for discovering a social or environmental problem, the decision AI should improve, the required data, or a bounded first experiment."
+    },
+    {
+      "id": "UX-315",
+      "status": "active",
+      "title": "Today exposes an interactive mobile problem-to-action map linked to jobs and graduate evidence",
+      "assert": {"type": "text_present", "path": "app.js", "needles": ["function impactOpportunityPage()", "function impactOpportunityDetail", "data-open-impact", "2주 첫 실험", "현재 연결되는 새 공고", "현재 연결되는 대학원"]},
+      "note": "Pin reported that the updated web app still offered no genuinely new proposals for using AI to solve social and environmental problems. The main mobile flow must connect each problem to affected people, a real decision, data, a first proof and current career evidence."
+    },
+    {
+      "id": "GOV-316",
+      "status": "active",
+      "title": "The iPhone shell cache advances with the social-environment AI opportunity release",
+      "assert": {"type": "text_present", "path": "sw.js", "needles": ["const CACHE = \"career-compass-v62-impact-opportunities\"", "career-compass-v61-main-decision-lanes"]},
+      "note": "The new problem-to-action interface must not remain hidden behind the prior v61 iPhone shell cache."
+    },
+    {
+      "id": "UX-317",
+      "status": "active",
+      "title": "12문답 기록을 한 번에 하나의 검토 가능한 실험으로 제한",
+      "assert": {
+        "type": "text_present",
+        "path": "app.js",
+        "needles": ["function impactExecutionContract()", "impactExperimentStatus", "impact-gate-grid"]
+      },
+      "note": "Measured before implementation on 2026-08-03: six problem cards appeared as another recommendation list. The decision record requires a single bounded public artifact and one field review before scope expansion."
+    },
+    {
+      "id": "GOV-318",
+      "status": "active",
+      "title": "Installed mobile clients receive the bounded Claude-record experiment gate",
+      "assert": {
+        "type": "text_present",
+        "path": "sw.js",
+        "needles": ["career-compass-v63-claude-experiment-gate"]
+      },
+      "note": "Measured before implementation on 2026-08-03: v62 cached the pre-gate shell on an already-open iPhone. v63 invalidates that shell so the user can review the new execution contract."
+    },
+    {
+      "id": "DATA-319",
+      "status": "active",
+      "title": "Each social-environment AI brief carries usable public materials and explicit evidence gaps",
+      "assert": {
+        "type": "text_present",
+        "path": "scripts/build_snapshot.py",
+        "needles": ["data-requirement-id=\"DATA-319\"", "dataAssets", "evidenceGap", "koreaUse", "sourceTier"]
+      },
+      "note": "Measured before implementation on 2026-08-03: the six cards had one conceptual source each and several direct-user fields repeated the affected population. Each card now requires at least two official sources, one usable public dataset with access, coverage, use and limitation, an institutional direct user, a Korea-use route, and an explicit unknown."
+    },
+    {
+      "id": "UX-320",
+      "status": "active",
+      "title": "Mobile impact details turn evidence into one persisted two-week experiment choice",
+      "assert": {
+        "type": "text_present",
+        "path": "app.js",
+        "needles": ["data-requirement-id=\"UX-320\"", "IMPACT_SELECTION_STORAGE_KEY", "selectImpactOpportunity", "impactDataAssetList", "data-action=\"select-impact\"", "impact-selection-summary"]
+      },
+      "note": "Measured before implementation on 2026-08-03: the app described a one-experiment gate but had no selection control or public-data workbench. The phone flow must show material, uncertainty and domestic use before persisting exactly one local choice."
+    },
+    {
+      "id": "GOV-321",
+      "status": "active",
+      "title": "Installed mobile clients receive the impact evidence workbench",
+      "assert": {
+        "type": "text_present",
+        "path": "sw.js",
+        "needles": ["data-requirement-id=\"GOV-321\"", "career-compass-v64-impact-evidence-pack", "career-compass-v63-claude-experiment-gate"]
+      },
+      "note": "Measured before implementation on 2026-08-03: v63 could keep the concept-only impact cards on an already-open iPhone. v64 advances only with the connected datasets, evidence gaps, domestic-use path and single-choice interaction."
     }
   ]
 }

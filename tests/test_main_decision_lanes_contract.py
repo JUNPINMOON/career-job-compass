@@ -28,10 +28,25 @@ class MainDecisionLanesContractTest(unittest.TestCase):
         self.assertIn("candidateEvidenceSummary(job)", function_block("candidateRow", "renderToday"))
         self.assertIn("programEvidenceSummary(item)", function_block("studyRow", "renderStudyResults"))
 
+    def test_program_readiness_label_is_readable(self):
+        block = function_block("programReadinessLabel", "chunks")
+        self.assertIn('"공개 근거 추가 확인"', block)
+        self.assertIn('"공개 근거 조사"', block)
+        self.assertNotIn("String.fromCharCode", block)
+
+    def test_impact_lane_is_a_bounded_trial_not_a_ranked_list(self):
+        self.assertIn("function impactExecutionContract()", APP)
+        self.assertIn("impactExperimentStatus", APP)
+        self.assertIn("하나를 골라 검토받는 실험실입니다", APP)
+        self.assertIn("공개 데이터로 판단 자료", APP)
+
     def test_service_worker_lineage_advances(self):
         self.assertIn('data-requirement-id="GOV-313"', SW)
         self.assertIn("career-compass-v60-measured-framework", SW)
-        self.assertIn('const CACHE = "career-compass-v61-main-decision-lanes";', SW)
+        self.assertIn("career-compass-v61-main-decision-lanes", SW)
+        self.assertIn('const CACHE = "career-compass-v62-impact-opportunities";', SW)
+        self.assertIn('const CACHE = "career-compass-v63-claude-experiment-gate";', SW)
+        self.assertIn('const CACHE = "career-compass-v64-impact-evidence-pack";', SW)
 
 
 if __name__ == "__main__":

@@ -11,6 +11,7 @@
   const REFRESH_WATCH_STORAGE_KEY = "career-compass-refresh-watch-v1";
   const REFRESH_STATUS_STORAGE_KEY = "career-compass-refresh-status-v1";
   const LIVE_SNAPSHOT_STORAGE_KEY = "career-compass-live-snapshot-v1";
+  const IMPACT_SELECTION_STORAGE_KEY = "career-compass-impact-experiment-v1";
   const OWNER_STORAGE_SEPARATOR = ":owner:";
   const REFRESH_PHASE_TOTAL = 6;
   const SNAPSHOT_VISIBILITY_BACKOFF_MS = [0, 500, 1500, 3000];
@@ -444,14 +445,10 @@
   function programReadiness(item) { return item.applicationStatus || (item.decision === "Use now" ? "prepare" : "research"); }
   function programReadinessLabel(item) {
     const readiness = programReadiness(item);
-    return readiness === "open" ? String.fromCharCode(51648, 50896, 32, 49345, 53468, 32, 50896, 47928, 32, 54869, 51064) : readiness === "prepare" ? String.fromCharCode(44277, 44060, 32, 44592, 44144, 44144, 32, 52628, 44032, 32, 54869, 51064) : String.fromCharCode(44277, 44060, 32, 44592, 44144, 44144, 32, 51312, 49324);
+    return readiness === "open" ? "지원 상태 원문 확인" : readiness === "prepare" ? "공개 근거 추가 확인" : "공개 근거 조사";
   } /*
   function programReadinessLabel(item) { return item.applicationStatusLabel || (programReadiness(item) === "prepare" ? "지금 준비" : "추가 조사"); }
   */
-  function programReadinessLabel(item) {
-    const readiness = programReadiness(item);
-    return readiness === "open" ? String.fromCharCode(51648, 50896, 32, 49345, 53468, 32, 50896, 47928, 32, 54869, 51064) : readiness === "prepare" ? String.fromCharCode(44277, 44060, 32, 44592, 44144, 44144, 32, 52628, 44032, 32, 54869, 51064) : String.fromCharCode(44277, 44060, 32, 44592, 44144, 44144, 32, 51312, 49324);
-  }
   function chunks(items, size) { return Array.from({ length: Math.ceil(items.length / size) }, (_, index) => items.slice(index * size, index * size + size)); }
   function setActiveTab(current) {
     document.documentElement.dataset.route = current;
@@ -512,7 +509,7 @@
     frame.classList.remove("is-active");
     target.classList.add("is-active");
     target.querySelector(".page-frame-content")?.scrollTo({ top: 0, behavior: "auto" });
-    target.querySelector("h1, h2, [data-open-job], button, a")?.focus({ preventScroll: true });
+    target.querySelector("h1, h2, [data-open-impact], [data-open-job], button, a")?.focus({ preventScroll: true });
     navigator.vibrate?.(8);
   }
 
@@ -565,6 +562,124 @@
       + `<div class="decision-lane-next"><b>확인할 정보</b><div>${fieldMarkup}</div><p>${escapeHtml(action)}</p></div>`
       + `<p class="decision-lane-boundary">숫자는 후보 적합도 점수가 아니라 근거 보강 우선순위입니다. 국내·해외는 분류만 하며 지역 가중치는 0입니다.</p></section>`;
   }
+  function impactOpportunities() { return Array.isArray(state.data?.impactOpportunities) ? state.data.impactOpportunities : []; }
+
+  function impactValueList(value) {
+    if (Array.isArray(value)) return value.filter(Boolean).map(String);
+    return String(value || "").split(/\s*[/·]\s*/).filter(Boolean);
+  }
+
+  function relatedByKeywords(records, keywords, limit = 3) {
+    const needles = impactValueList(keywords).map((value) => value.toLowerCase());
+    return records.map((item) => ({ item, matches: needles.filter((word) => JSON.stringify(item).toLowerCase().includes(word)) }))
+      .filter((entry) => entry.matches.length).sort((a, b) => b.matches.length - a.matches.length).slice(0, limit);
+  }
+
+  function impactConnections(opportunity) {
+    return { jobs: relatedByKeywords(recommendationJobs(), opportunity.jobKeywords), programs: relatedByKeywords(programs(), opportunity.programKeywords) };
+  }
+
+  function impactExperimentStatus() { return "실행 전 검토안"; }
+
+  /* data-requirement-id="UX-320" */
+  function selectedImpactOpportunity() {
+    let selectedId = "";
+    try { selectedId = localStorage.getItem(IMPACT_SELECTION_STORAGE_KEY) || ""; } catch (_) { selectedId = ""; }
+    return impactOpportunities().find((item) => item.id === selectedId) || null;
+  }
+
+  function selectImpactOpportunity(id) {
+    const opportunity = impactOpportunities().find((item) => item.id === id);
+    if (!opportunity) return;
+    try { localStorage.setItem(IMPACT_SELECTION_STORAGE_KEY, id); } catch (_) { /* Storage can be unavailable. */ }
+    render(false);
+    openImpactOpportunity(id, null);
+  }
+
+  function impactExecutionContract() {
+    const selected = selectedImpactOpportunity();
+    return `<aside class="impact-execution-contract" aria-label="실행 계약">
+      <div><small>12문답·과정 기록 교차검증</small><h3>여섯 개를 다 하는 목록이 아니라, 하나를 골라 검토받는 실험실입니다.</h3><p>진로 추천 점수나 순위가 아닙니다. 공개 근거로 판단 자료 하나를 만든 뒤 실제 사용자 반응으로 다음 행동을 정합니다.</p></div>
+      <div class="impact-gate-grid">
+        <div class="impact-selection-summary"><small>\uC774\uBC88 2\uC8FC \uC120\uD0DD</small><b>${selected ? escapeHtml(selected.title) : "\uC544\uC9C1 \uC120\uD0DD\uD558\uC9C0 \uC54A\uC74C"}</b><span>${selected ? "\uC120\uD0DD\uB428 \u00B7 \uD604\uC7A5 \uAC80\uD1A0 \uC804" : "\uCE74\uB4DC\uC758 \uACF5\uAC1C \uC790\uB8CC\uB97C \uD655\uC778\uD55C \uB4A4 \uD558\uB098\uB9CC \uACE0\uB985\uB2C8\uB2E4."}</span></div>
+        <section><small>현재 상태</small><b>${impactExperimentStatus()}</b></section>
+        <section><small>통과 조건 1</small><b>공개 데이터로 판단 자료 1개</b></section>
+        <section><small>통과 조건 2</small><b>현장 검토 1건</b></section>
+      </div>
+      <p class="impact-stop-line"><b>중단선</b> 검토 응답 전 새로운 주제는 늘리지 않음</p>
+    </aside>`;
+  }
+
+  function impactOpportunityCard(item) {
+    const selected = selectedImpactOpportunity()?.id === item.id;
+    const sourceCount = (item.sources || []).length;
+    const dataCount = (item.dataAssets || []).length;
+    return `<button class="impact-opportunity-card${selected ? " is-selected" : ""}" type="button" data-open-impact="${escapeHtml(item.id)}" aria-pressed="${selected}">
+      <small>${escapeHtml(item.affectedPeople)}</small><strong>${escapeHtml(item.title)}</strong>
+      <p>${escapeHtml(item.decisionToImprove)}</p>
+      <div class="impact-fit-tags"><span>판단 지원</span><span>빠른 피드백</span><span>현장 협업</span></div>
+      <p class="impact-material-count">\uACF5\uC2DD \uADFC\uAC70 ${sourceCount} \u00B7 \uACF5\uAC1C \uB370\uC774\uD130 ${dataCount}</p>
+      <span class="impact-status">${selected ? "\uC120\uD0DD\uB428 \u00B7 \uD604\uC7A5 \uAC80\uD1A0 \uC804" : impactExperimentStatus()}</span>
+      <em>2주 첫 실험 · ${escapeHtml(item.firstProof)}</em><b>문제와 근거 열기 ${icon("arrow")}</b>
+    </button>`;
+  }
+
+  function impactOpportunityPage() {
+    const records = impactOpportunities();
+    return `<section class="impact-opportunity-page" aria-labelledby="impactOpportunityHeading">
+      <header class="impact-opportunity-head"><p class="eyebrow">사회·환경 문제 × AI</p><h2 id="impactOpportunityHeading">AI로 풀어볼 문제 ${records.length}개</h2><p>12문답의 개인 원문은 공개하지 않고 판단 기준만 반영했습니다. 사람의 결정을 실제로 돕고, 현장에서 빠르게 검증하며, 함께 운영할 수 있는 문제를 먼저 봅니다.</p></header>
+      ${impactExecutionContract()}
+      <div class="impact-opportunity-grid">${records.map(impactOpportunityCard).join("") || `<p class="empty">연결된 문제 제안이 없습니다.</p>`}</div>
+      <p class="impact-boundary">아래 여섯 카드는 순위가 아니라 선택지입니다. 이번 실행에서는 하나만 고르고, 각 카드에서 공식 근거·AI의 역할과 한계·2주 실험·연결 공고와 대학원을 확인합니다.</p>
+    </section>`;
+  }
+
+  function impactSourceList(opportunity) {
+    return (opportunity.sources || []).map((source) => {
+      const url = safeExternalUrl(source.url);
+      return url ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer"><b>${escapeHtml(source.title)}</b><span>${escapeHtml(source.claim)}</span>${icon("external")}</a>` : "";
+    }).join("");
+  }
+
+  function impactDataAssetList(opportunity) {
+    return (opportunity.dataAssets || []).map((asset) => {
+      const url = safeExternalUrl(asset.url);
+      if (!url) return "";
+      return `<a class="impact-data-asset" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer"><small>${escapeHtml(asset.publisher)} \u00B7 ${escapeHtml(asset.access)}</small><b>${escapeHtml(asset.title)}</b><span>${escapeHtml(asset.coverage)}</span><p><strong>\uD65C\uC6A9</strong>${escapeHtml(asset.use)}</p><p><strong>\uD55C\uACC4</strong>${escapeHtml(asset.limitation)}</p>${icon("external")}</a>`;
+    }).join("");
+  }
+
+  function impactJobLinks(connections) {
+    return connections.map(({ item, matches }) => `<button type="button" data-open-job="${escapeHtml(item.id)}"><small>공고 · ${escapeHtml(matches.join(" · "))}</small><b>${escapeHtml(item.company)}</b><span>${escapeHtml(item.title)}</span>${icon("arrow")}</button>`).join("");
+  }
+  function impactProgramLinks(connections) {
+    return connections.map(({ item, matches }) => `<button type="button" data-open-record="program:${escapeHtml(item.id)}"><small>대학원 · ${escapeHtml(matches.join(" · "))}</small><b>${escapeHtml(item.university)}</b><span>${escapeHtml(item.program)}</span>${icon("arrow")}</button>`).join("");
+  }
+
+  function impactCoreEvidence(opportunity) {
+    return `<section class="impact-detail-evidence"><small>누구의 어떤 판단을 돕나</small><h3>${escapeHtml(opportunity.affectedPeople)}</h3><p><b>직접 사용자</b>${escapeHtml(opportunity.directUsers)}</p><p><b>바꿀 결정</b>${escapeHtml(opportunity.decisionToImprove)}</p></section>
+      <section class="impact-detail-evidence"><small>AI가 할 일과 경계</small><p><b>역할</b>${escapeHtml(opportunity.aiRole)}</p><p><b>필요 데이터</b>${escapeHtml(opportunity.dataInputs)}</p><p><b>사람의 권한</b>${escapeHtml(opportunity.boundary)}</p></section>
+      <section class="impact-detail-evidence is-experiment"><small>2주 첫 실험</small><span class="impact-status">${impactExperimentStatus()}</span><h3>${escapeHtml(opportunity.firstProof)}</h3><p><b>이번 실행</b>이 실험안 하나만 선택하고, 현장 검토 1건 전에는 다른 주제를 확장하지 않습니다.</p><p><b>피드백 루프</b>${escapeHtml(opportunity.feedbackLoop)}</p><p><b>협업 구조</b>${escapeHtml(opportunity.collaborationShape)}</p><div class="impact-fit-tags"><span>판단 지원</span><span>빠른 피드백</span><span>현장 협업</span><span>공공적 영향</span></div></section>`;
+  }
+
+  function impactOpportunityDetail(opportunity) {
+    const connections = impactConnections(opportunity);
+    const selected = selectedImpactOpportunity()?.id === opportunity.id;
+    const dataMarkup = impactDataAssetList(opportunity) || `<p>\uC5F0\uACB0\uB41C \uACF5\uAC1C \uB370\uC774\uD130\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.</p>`;
+    const jobsMarkup = impactJobLinks(connections.jobs) || `<p>현재 연결되는 새 공고가 없습니다.</p>`;
+    const programsMarkup = impactProgramLinks(connections.programs) || `<p>현재 연결되는 대학원이 없습니다.</p>`;
+    return `<article class="detail impact-detail">
+      <header class="detail-head"><div><p class="eyebrow">사회·환경 AI 문제</p><h2>${escapeHtml(opportunity.title)}</h2><p>${escapeHtml(opportunity.problem)}</p></div><button class="plain-button compact" type="button" data-action="close-dossier">닫기</button></header>
+      <div class="detail-body"><button class="impact-select-button${selected ? " is-selected" : ""}" type="button" data-action="select-impact" data-impact-id="${escapeHtml(opportunity.id)}" aria-pressed="${selected}">${selected ? "\uC120\uD0DD\uB428 \u00B7 \uD604\uC7A5 \uAC80\uD1A0 \uC804" : "\uC774 \uBB38\uC81C\uB97C 2\uC8FC \uC2E4\uD5D8\uC73C\uB85C \uC120\uD0DD"}</button>${impactCoreEvidence(opportunity)}
+        <section class="impact-detail-evidence"><small>\uBC14\uB85C \uC5F4\uC5B4\uBCFC \uACF5\uAC1C \uB370\uC774\uD130</small><div class="impact-data-list">${dataMarkup}</div></section>
+        <section class="impact-detail-evidence"><small>\uC544\uC9C1 \uBAA8\uB974\uB294 \uAC83</small><p>${escapeHtml(opportunity.evidenceGap)}</p></section>
+        <section class="impact-detail-evidence"><small>\uAD6D\uB0B4 \uCCAB \uC5F0\uACB0</small><p>${escapeHtml(opportunity.koreaUse)}</p></section>
+        <section class="impact-detail-evidence"><small>공식 근거</small><div class="impact-source-list">${impactSourceList(opportunity) || "공식 근거가 연결되지 않았습니다."}</div></section>
+        <section class="impact-detail-evidence"><small>키워드가 실제로 겹치는 항목</small><p class="impact-match-note">점수가 아니라 제목·본문·분야에서 일치한 키워드를 그대로 표시합니다. 저장·제외한 공고는 다시 추천하지 않습니다.</p><div class="impact-related-list">${jobsMarkup}${programsMarkup}</div></section>
+      </div>
+    </article>`;
+  }
+
   function candidateEvidenceSummary(job) {
     const support = job.decisionSupport || {};
     const status = job.postingCurrentness?.status || "unverified";
@@ -609,9 +724,11 @@
     const award = funding()[0];
     const candidatePage = dailyCandidates.length ? `<section class="decision-list" aria-labelledby="priorityHeading"><div class="section-heading"><div><span>${hasPersonalFeedback ? "피드백 유사 후보" : (ranked ? "우선 검토 후보" : "관심 탐색")}</span><h2 id="priorityHeading">오늘 열어볼 후보</h2></div><a href="#/jobs">새 후보 ${eligibleRecommendations.length}개 ${icon("arrow")}</a></div><div class="opportunity-list">${dailyCandidates.map((job) => candidateRow(job)).join("")}</div></section>` : `<section class="decision-list" aria-labelledby="inventoryHeading"><div class="section-heading"><div><span>새 공고 인벤토리</span><h2 id="inventoryHeading">저장·제외하지 않은 공고가 없습니다</h2></div><a href="#/saved">저장한 공고 ${icon("arrow")}</a></div></section>`;
     const researchPage = `<section class="route-callout" aria-labelledby="researchHeading"><div class="route-callout-copy"><p class="eyebrow">02 · 진학과 장학</p><h2 id="researchHeading">과정과 장학금</h2><a class="ink-link" href="#/study">전체 보기 ${icon("arrow")}</a></div><div class="route-mini-list">${school ? `<button type="button" data-open-record="program:${escapeHtml(school.id)}"><small>${escapeHtml(school.degree)} · ${escapeHtml(programReadinessLabel(school))}</small><b>${escapeHtml(school.university)}</b><span>${escapeHtml(school.program)}</span>${icon("arrow")}</button>` : ""}${award ? `<button type="button" data-open-record="funding:${escapeHtml(award.id)}"><small>${escapeHtml(award.decision)}</small><b>${escapeHtml(award.name)}</b><span>${escapeHtml(award.coverage || "지원 범위 원문 확인")}</span>${icon("arrow")}</button>` : ""}</div></section>`;
+    const impactPage = impactOpportunityPage();
     const candidatePageWithTruth = [recommendationTruthNotice(), candidatePage].filter(Boolean).join("");
     const pages = [
       `<section class="today-cover" data-requirement-id="UX-204" aria-labelledby="todayTitle"><div class="cover-meta"><span>오늘의 목록</span><span>${escapeHtml(sourceDate(state.data.stats?.jobDataAsOf))}</span></div><div class="cover-copy"><p>공개 스냅샷</p><h1 id="todayTitle">오늘 볼 것</h1></div>${lead ? `<button class="cover-action" type="button" data-open-job="${escapeHtml(lead.id)}"><span>${ranked ? "우선 검토 후보" : "새 관심 후보"}</span><b>${escapeHtml(lead.company)}<em>${escapeHtml(lead.title)}</em></b>${icon("arrow")}</button>` : `<a class="cover-action" href="#/saved"><span>새 후보 확인 완료</span><b>저장한 공고 보기</b>${icon("arrow")}</a>`}</section>`,
+      impactPage,
       candidatePageWithTruth,
       researchPage,
     ];
@@ -1452,6 +1569,14 @@
     state.selectedTrigger = trigger || null;
     state.activeJobId = id;
     renderJobDetail(job);
+    if (!dossier.open) dossier.showModal();
+    requestAnimationFrame(() => dossier.querySelector("[data-action='close-dossier']")?.focus());
+  }
+  function openImpactOpportunity(id, trigger) {
+    const opportunity = impactOpportunities().find((item) => item.id === id);
+    if (!opportunity) return;
+    state.selectedTrigger = trigger || null;
+    dossier.innerHTML = impactOpportunityDetail(opportunity);
     if (!dossier.open) dossier.showModal();
     requestAnimationFrame(() => dossier.querySelector("[data-action='close-dossier']")?.focus());
   }
@@ -2769,6 +2894,9 @@
   document.addEventListener("click", (event) => {
     const lifestyleUrlButton = event.target.closest("[data-open-lifestyle-url]");
     if (lifestyleUrlButton) { const url = safeExternalUrl(lifestyleUrlButton.dataset.openLifestyleUrl); if (url) window.open(url, "_blank", "noopener"); return; }
+    const impactSelectionButton = event.target.closest('[data-action="select-impact"]');
+    if (impactSelectionButton) { selectImpactOpportunity(impactSelectionButton.dataset.impactId); return; }
+    const impactButton = event.target.closest("[data-open-impact]"); if (impactButton) { openImpactOpportunity(impactButton.dataset.openImpact, impactButton); return; }
     const jobButton = event.target.closest("[data-open-job]"); if (jobButton) { openJobDetail(jobButton.dataset.openJob, jobButton); return; }
     const recordButton = event.target.closest("[data-open-record]"); if (recordButton) { const [kind, id] = recordButton.dataset.openRecord.split(":"); openRecordDetail(kind, id, recordButton); return; }
     const sector = event.target.closest("[data-sector]"); if (sector) { state.sector = sector.dataset.sector; saveFilters(); if (route() !== "jobs") go("#/jobs"); else renderJobs(); return; }

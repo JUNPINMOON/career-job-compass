@@ -2,7 +2,11 @@
 // data-requirement-id="GOV-279" career-compass-v59-decision-framework
 // data-requirement-id="GOV-289"
 // data-requirement-id="GOV-313" career-compass-v60-measured-framework
-const CACHE = "career-compass-v61-main-decision-lanes";
+// lineage: career-compass-v61-main-decision-lanes
+// lineage: const CACHE = "career-compass-v62-impact-opportunities";
+// lineage: const CACHE = "career-compass-v63-claude-experiment-gate";
+// data-requirement-id="GOV-321" career-compass-v64-impact-evidence-pack
+const CACHE = "career-compass-v64-impact-evidence-pack";
 const RETIRED_CACHES = new Set(["career-compass-v25-ux221", "career-compass-v26-grad-evidence", "career-compass-v27-grad-coverage", "career-compass-v28-grad-discovery", "career-compass-v29-supabase-refresh-queue"]);
 const APP_DATA_NETWORK_ONLY = "./data/app-data.json";
 const APP_SHELL = ["./", "./index.html", "./styles.css", "./app.js", "./supabase-config.js", "./manifest.webmanifest", "./assets/route-map-editorial-v2.webp", "./assets/study-steps-editorial-v2.webp", "./icons/app-icon.svg", "./icons/app-icon-maskable.svg", "./icons/apple-touch-icon.png"];

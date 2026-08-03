@@ -2095,6 +2095,209 @@ def _review_protocol(payload: Mapping[str, Any], *, snapshot_ready: bool = False
         "synthesis": synthesis,
     }
 
+def _impact_record(**fields: Any) -> dict[str, Any]:
+    # data-requirement-id="DATA-319"
+    additional_sources = list(fields.pop("additionalSources", []))
+    data_assets = list(fields.pop("dataAssets", []))
+    fields["lifeworkFit"] = ["decision_support", "rapid_feedback", "field_collaboration", "public_impact"]
+    fields["boundary"] = "AI는 근거와 선택지를 제시하고 최종 결정은 권한 있는 사람이 합니다."
+    fields["feedbackLoop"] = "현장 사용자가 오류와 실행 불가능한 제안을 표시하면 다음 결과에 반영합니다."
+    fields["collaborationShape"] = "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다."
+    fields["programKeywords"] = fields["jobKeywords"]
+    fields["directUsers"] = fields["directUsers"]
+    fields["sources"] = [{
+        "title": fields["sourceTitle"], "url": fields["sourceUrl"],
+        "sourceTier": "official", "claim": fields["sourceClaim"],
+    }] + additional_sources
+    fields["dataAssets"] = data_assets
+    return dict(fields)
+
+
+def _impact_opportunities() -> list[dict[str, Any]]:
+    """Public, evidence-led social/environment AI problem briefs."""
+    return [
+        _impact_record(
+            id="flood-action-map", title="홍수 경보를 행동 지도까지 연결하기",
+            problem="예보가 있어도 행동 기준이 늦게 전달됩니다.",
+            affectedPeople="하천 인근 주민과 재난 대응 조직",
+            directUsers="지자체 수자원 담당자와 현장 대응 조직",
+            decisionToImprove="어느 지역에 먼저 경보, 대피 지원, 현장 인력을 보낼지",
+            aiRole="강우, 수위, 지형, 취약성을 함께 읽어 위험 구역과 이유를 설명",
+            dataInputs="강우·수위 / 침수·지형 / 대피시설 / 이동 제약",
+            evidenceGap="실제 대피 결정 시각, 도로 통제, 취약가구 지원 결과는 공개 수문자료만으로 확인할 수 없습니다.",
+            koreaUse="한강홍수통제소 수문자료로 과거 호우 1건을 재생한 뒤 지자체 재난·수자원 담당자에게 행동 문구를 검토받습니다.",
+            firstProof="2주 동안 과거 홍수 1건을 재생해 위험 구역과 행동 문구를 현장 사용자와 검토합니다.",
+            jobKeywords=["flood", "hydrology", "water resources", "GIS", "disaster risk"],
+            sourceTitle="WMO Artificial Intelligence",
+            sourceUrl="https://wmo.int/themes/artificial-intelligence",
+            sourceClaim="AI 기반 홍수예측, 물 가용성, 사용자 간 배분 의사결정",
+            additionalSources=[{
+                "title": "한강홍수통제소 표준수문자료", "url": "https://www.data.go.kr/data/3040409/openapi.do",
+                "sourceTier": "official", "claim": "강우량, 수위, 유량, 댐·보와 홍수예보 자료를 제공",
+            }],
+            dataAssets=[{
+                "title": "한강홍수통제소 표준수문자료 API", "url": "https://www.data.go.kr/data/3040409/openapi.do",
+                "access": "공공데이터포털 활용신청 후 Open API", "coverage": "실시간 강우·수위·유량·댐·보·홍수예보",
+                "use": "과거 호우 재생과 위험 시점 탐지", "limitation": "대피 이행·도로 통제·개인 취약성은 별도 자료가 필요", "sourceTier": "official",
+            }],
+        ),
+        _impact_record(
+            id="smart-sewer-response", title="하수 월류를 사후 민원보다 먼저 막기",
+            problem="폭우 때 하수관망의 병목을 늦게 발견해 오염수 월류와 침수가 커집니다.",
+            affectedPeople="저지대 주민, 하천 이용자, 하수도 운영팀",
+            directUsers="서울시·자치구 하수도 운영자와 펌프장 현장팀",
+            decisionToImprove="어느 관로와 펌프를 먼저 조정하고 현장 점검할지",
+            aiRole="센서와 강우 예측을 이용해 월류 위험과 조치 순서를 설명",
+            dataInputs="강우 / 수위·유량 센서 / 관망과 펌프 상태 / 과거 월류",
+            evidenceGap="공개 수위 자료에는 관망 연결 구조, 펌프 제어 이력, 실제 월류·민원 결과가 모두 포함되지 않습니다.",
+            koreaUse="서울시 하수관로 수위 API로 급상승 지점을 찾고 자치구 운영자에게 실제 점검 순서와 맞는지 검토받습니다.",
+            firstProof="2주 동안 한 배수구역의 과거 폭우를 재생해 기존 대응보다 경보가 빨랐는지 검증합니다.",
+            jobKeywords=["wastewater", "stormwater", "sewer", "water utility", "environmental data"],
+            sourceTitle="US EPA Smart Sewers",
+            sourceUrl="https://www.epa.gov/npdes/smart-sewers",
+            sourceClaim="실시간 모니터링, 모델링, 분석, AI를 활용한 하수 시스템 의사결정",
+            additionalSources=[{
+                "title": "서울시 하수관로 수위 현황", "url": "https://data.seoul.go.kr/dataList/OA-2527/S/1/datasetView.do?tab=A",
+                "sourceTier": "official", "claim": "서울시 하수관로 수위 관측값을 Open API로 제공",
+            }],
+            dataAssets=[{
+                "title": "서울시 하수관로 수위 현황 Open API", "url": "https://data.seoul.go.kr/dataList/OA-2527/S/1/datasetView.do?tab=A",
+                "access": "서울 열린데이터광장 Open API", "coverage": "서울시 하수관로 관측 지점의 수위 현황",
+                "use": "폭우 시 수위 급상승과 우선 점검 후보 탐지", "limitation": "관망도·펌프 조작·월류 결과가 없어 운영자 검토가 필수", "sourceTier": "official",
+            }],
+        ),
+        _impact_record(
+            id="algae-sampling", title="녹조 관측과 현장 채수 연결",
+            directUsers="\uad6d\ub9bd\ud658\uacbd\uacfc\ud559\uc6d0\u00b7\uc9c0\uc790\uccb4 \uc218\uc9c8 \uc870\uc0ac\uc790\uc640 \ucde8\uc218\uc7a5 \uc6b4\uc601\uc790",
+            evidenceGap="\uc704\uc131 \uc2e0\ud638\ub9cc\uc73c\ub85c \ub3c5\uc131 \uc5ec\ubd80\uc640 \uc885\uc744 \ud655\uc815\ud560 \uc218 \uc5c6\uace0 \uad6c\ub984\u00b7\ud0c1\ub3c4\u00b7\uad00\uce21 \uac04\uaca9\uc758 \uc601\ud5a5\uc744 \ubc1b\uc2b5\ub2c8\ub2e4.",
+            koreaUse="\ubb3c\ud658\uacbd\uc815\ubcf4\uc2dc\uc2a4\ud15c \uc870\ub958 \uad00\uce21\uacfc K-water \uc218\uc9c8 \uc790\ub8cc\ub97c \uc704\uc131 \uc758\uc2ec \uad6c\uc5ed\uacfc \ub300\uc870\ud574 \ucd94\uac00 \ucc44\uc218 \ud6c4\ubcf4\ub97c \ub9cc\ub4ed\ub2c8\ub2e4.",
+            problem="넓은 수역을 모두 채수할 수 없어 유해 조류의 발생 위치와 시기를 놓칩니다.",
+            affectedPeople="취수장 이용자, 어업인, 수질 조사팀",
+            decisionToImprove="어느 수역을 언제 먼저 채수하고 경보할지",
+            aiRole="여러 위성 자료를 결합해 녹조 의심 구역과 불확실성을 표시",
+            dataInputs="위성 반사도 / 수온과 기상 / 현장 채수 / 취수장 위치",
+            firstProof="2주 동안 한 수역의 위성 결과와 채수 기록을 비교해 추가 채수 지점을 제안합니다.",
+            jobKeywords=["water quality", "remote sensing", "algae", "satellite", "environmental science"],
+            sourceTitle="NASA AI for Harmful Algae",
+            sourceUrl="https://www.nasa.gov/science-research/earth-science/nasa-developed-ai-could-help-track-harmful-algae/",
+            sourceClaim="Multi-satellite algae detection informs field sampling.",
+            additionalSources=[{
+                "title": "\uad6d\ub9bd\ud658\uacbd\uacfc\ud559\uc6d0 \ubb3c\ud658\uacbd\uc815\ubcf4\uc2dc\uc2a4\ud15c \uc870\ub958\uc815\ubcf4", "url": "https://water.nier.go.kr/web/recentMeasure/",
+                "sourceTier": "official", "claim": "\uc870\ub958\uacbd\ubcf4\uc640 \uc720\ud574\ub0a8\uc870\ub958 \uc138\ud3ec\uc218 \uad00\uce21 \uacb0\uacfc\ub97c \uacf5\uac1c",
+            }, {
+                "title": "K-water \uc218\uc9c8\uc815\ubcf4", "url": "https://www.data.go.kr/data/15099100/openapi.do",
+                "sourceTier": "official", "claim": "\uc77c\u00b7\uc8fc\u00b7\uc6d4 \ub2e8\uc704 \uc218\uc9c8 \uce21\uc815\uc790\ub8cc\ub97c API\uc640 \ud30c\uc77c\ub85c \uc81c\uacf5",
+            }],
+            dataAssets=[{
+                "title": "K-water \uc218\uc9c8\uc815\ubcf4 Open API", "url": "https://www.data.go.kr/data/15099100/openapi.do",
+                "access": "\uacf5\uacf5\ub370\uc774\ud130\ud3ec\ud138 Open API \ub610\ub294 CSV", "coverage": "K-water \uc9c0\uc810\ubcc4 \uc77c\u00b7\uc8fc\u00b7\uc6d4 \uc218\uc9c8 \uce21\uc815",
+                "use": "\uc704\uc131 \uc758\uc2ec \uc2e0\ud638\uc640 \ud604\uc7a5 \uc218\uc9c8\u00b7\uc870\ub958 \uad00\uce21 \ub300\uc870", "limitation": "\uc704\uc131 \uad00\uce21\uc2dc\uac01\uacfc \ucc44\uc218\uc2dc\uac01 \ubd88\uc77c\uce58 \ubc0f \ub3c5\uc131 \ud655\uc815 \ud55c\uacc4", "sourceTier": "official",
+            }],
+        ),
+        _impact_record(
+            id="heat-health-action", title="폭염 경보를 취약계층 보호 행동으로 연결",
+            directUsers="\ubcf4\uac74\uc18c\u00b7\ubcf5\uc9c0 \ub2f4\ub2f9\uc790\uc640 \ud3ed\uc5fc \ub300\uc751 \uc9c0\uc790\uccb4 \ub2f4\ub2f9\uc790",
+            evidenceGap="\uacf5\uac1c \uc608\ubcf4\uc640 \uc27c\ud130 \uc704\uce58\ub9cc\uc73c\ub85c \uc2e4\uc81c \ucde8\uc57d\uac00\uad6c, \uc774\uc6a9 \uac00\ub2a5 \uc2dc\uac04, \uc548\ubd80 \ud655\uc778 \uacb0\uacfc\ub97c \uc54c \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            koreaUse="\uae30\uc0c1\uccad \uc601\ud5a5\uc608\ubcf4\uc640 \uc11c\uc6b8\uc2dc \ubb34\ub354\uc704\uc27c\ud130 \uc790\ub8cc\ub85c \ud55c \uad6c\uc758 \uc6b0\uc120 \uc9c0\uc6d0 \uc9c0\ub3c4\ub97c \ub9cc\ub4e4\uace0 \ubcf4\uac74\u00b7\ubcf5\uc9c0 \ub2f4\ub2f9\uc790\uc5d0\uac8c \uac80\ud1a0\ubc1b\uc2b5\ub2c8\ub2e4.",
+            problem="기온 경보만으로는 어느 동네와 시설에 먼저 지원해야 하는지 알기 어렵습니다.",
+            affectedPeople="야외 노동자, 독거노인, 냉방 취약 가구, 보건 대응팀",
+            decisionToImprove="어느 지역에 쉼터, 안부 확인, 현장 지원을 먼저 배치할지",
+            aiRole="기온, 도시열, 인구 취약성, 시설 접근성을 묶어 행동 우선순위를 설명",
+            dataInputs="temperature / urban heat / vulnerability / cooling access",
+            firstProof="2주 동안 한 구의 과거 폭염일을 재생해 기존 경보보다 지원 대상을 잘 찾는지 검토합니다.",
+            jobKeywords=["climate health", "urban heat", "public health", "GIS", "resilience"],
+            sourceTitle="WHO Heat and Health Guidance",
+            sourceUrl="https://www.who.int/europe/publications/i/item/9789289062930",
+            sourceClaim="Heat-health warning systems connect forecasts, vulnerable groups, communication, and response.",
+            additionalSources=[{
+                "title": "\uae30\uc0c1\uccad \uc601\ud5a5\uc608\ubcf4", "url": "https://www.weather.go.kr/neng/forecast/impact.do",
+                "sourceTier": "official", "claim": "\ud3ed\uc5fc\uc774 \ubcf4\uac74\u00b7\uc0b0\uc5c5 \ub4f1 \ubd84\uc57c\uc5d0 \ubbf8\uce60 \uc601\ud5a5\uacfc \ub300\uc751 \uc815\ubcf4\ub97c \uc81c\uacf5",
+            }, {
+                "title": "\uc11c\uc6b8\uc2dc \ubb34\ub354\uc704\uc27c\ud130 \uc785\uc9c0\uc120\uc815 \ub370\uc774\ud130", "url": "https://www.data.go.kr/data/15127455/fileData.do",
+                "sourceTier": "official", "claim": "\ubb34\ub354\uc704\uc27c\ud130 \uc785\uc9c0\uc640 \uacf5\uac04\ubd84\uc11d\uc6a9 \ub370\uc774\ud130\ub97c \uacf5\uac1c",
+            }],
+            dataAssets=[{
+                "title": "\uae30\uc0c1\uccad \uae30\uc0c1 \uc601\ud5a5\uc608\ubcf4 API", "url": "https://www.data.go.kr/data/15095149/openapi.do",
+                "access": "\uacf5\uacf5\ub370\uc774\ud130\ud3ec\ud138 \ud65c\uc6a9\uc2e0\uccad \ud6c4 Open API", "coverage": "\ud3ed\uc5fc \ub4f1 \uae30\uc0c1 \uc601\ud5a5\uc608\ubcf4\uc640 \uc704\ud5d8 \uc218\uc900",
+                "use": "\ub3d9\ubcc4 \ubcf4\ud638 \ud589\ub3d9 \uc6b0\uc120\uc21c\uc704\uc758 \uae30\uc0c1 \uadfc\uac70", "limitation": "\uc2e4\uc81c \ucde8\uc57d\uac00\uad6c\u00b7\uc27c\ud130 \uc218\uc6a9\ub825\u00b7\uc9c0\uc6d0 \uc774\ud589\uc790\ub8cc\ub294 \ud3ec\ud568\ud558\uc9c0 \uc54a\uc74c", "sourceTier": "official",
+            }],
+        ),
+        _impact_record(
+            id="methane-alert-action", title="메탄 위성 탐지를 실제 수리 행동으로 연결",
+            problem="배출 플룸을 찾아도 시설 귀속, 통보, 수리 확인까지 이어지지 않으면 감축 효과가 없습니다.",
+            affectedPeople="배출시설 인근 주민, 규제기관, 시설 운영팀",
+            decisionToImprove="어느 배출원을 먼저 확인하고 통보하며 수리 완료를 재검증할지",
+            aiRole="위성 플룸을 탐지하고 가능한 배출 시설과 신뢰도를 함께 제시",
+            dataInputs="위성 관측 / 바람 / 시설 위치 / 현장 확인과 수리 상태",
+            firstProof="2주 동안 공개 플룸 사례 10건을 시설 후보와 연결하고 사람이 확인할 근거를 함께 표시합니다.",
+            directUsers="\ud658\uacbd \uaddc\uc81c\uae30\uad00 \uc870\uc0ac\uc790\uc640 \uc11d\uc720\u00b7\uac00\uc2a4 \uc2dc\uc124 \uc6b4\uc601\uc790",
+            evidenceGap="MARS \uacbd\ubcf4\ub9cc\uc73c\ub85c \ucd5c\uc885 \ubc30\ucd9c\uc6d0, \uc2e4\uc81c \uc218\ub9ac, \uac10\ucd95 \uc644\ub8cc\uae4c\uc9c0 \uc785\uc99d\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            koreaUse="UNEP \uacf5\uac1c \ud50c\ub8f8\uc744 \uc2dc\uc124 \ud6c4\ubcf4\u00b7\ud1b5\ubcf4\u00b7\ud6c4\uc18d \ud655\uc778 \ud45c\ub85c \ubc14\uafb8\uace0 \uaddc\uc81c\uae30\uad00 \ub610\ub294 \uc2dc\uc124 ESG \ub2f4\ub2f9\uc790\uc5d0\uac8c \ud655\uc778 \uc808\ucc28\ub97c \uac80\ud1a0\ubc1b\uc2b5\ub2c8\ub2e4.",
+            jobKeywords=["methane", "remote sensing", "emissions", "climate", "geospatial"],
+            sourceTitle="UNEP Methane Alert and Response System",
+            sourceUrl="https://methanedata.unep.org/methane-alert-response-system",
+            sourceClaim="Satellite detection, attribution, notification, and mitigation tracking form a data-to-action loop.",
+            additionalSources=[{
+                "title": "UNEP MARS public data download", "url": "https://methanedata.unep.org/download-dataset",
+                "sourceTier": "official", "claim": "MARS plume, source, notification, and response data are available for download",
+            }, {
+                "title": "UNEP MARS mitigation action", "url": "https://www.unep.org/topics/energy/methane/mars-mitigation-action",
+                "sourceTier": "official", "claim": "Official mitigation cases show both confirmed action and the remaining response gap",
+            }],
+            dataAssets=[{
+                "title": "UNEP MARS Sources and Plumes data", "url": "https://methanedata.unep.org/download-dataset",
+                "access": "Free CSV and GeoJSON download", "coverage": "Public methane plumes, candidate sources, and response statistics",
+                "use": "Connect each plume to a candidate facility, notification state, and required follow-up", "limitation": "Attribution and completed repair still require operator response or field verification", "sourceTier": "official",
+            }],
+        ),
+        _impact_record(
+            id="drought-decision", title="가뭄 대응 선택 비교",
+            problem="물 부족 때 농업, 생활, 생태 수요를 함께 보지 못하면 피해가 특정 집단에 집중됩니다.",
+            affectedPeople="농가, 생활용수 이용자, 하천 생태계, 물 배분 기관",
+            decisionToImprove="제한된 물을 언제 어디에 배분하고 어떤 피해를 감수할지",
+            aiRole="수요와 공급 시나리오별 영향을 비교하고 손해와 불확실성을 설명",
+            dataInputs="강수와 저수량 / 작물과 관개 / 생활 수요 / 생태 최소유량",
+            firstProof="2주 동안 한 유역의 세 가지 물 배분 시나리오를 비교해 누가 어떤 손해를 보는지 표시합니다.",
+            directUsers="K-water\u00b7\uc9c0\uc790\uccb4\u00b7\ub18d\uc5c5\uc6a9\uc218 \ubc30\ubd84 \ub2f4\ub2f9\uc790",
+            evidenceGap="\uacf5\uac1c \uc800\uc218\ub7c9\ub9cc\uc73c\ub85c \uc2e4\uc81c \ucde8\uc218\ub7c9, \ubc30\ubd84 \uaddc\uce59, \uc791\ubb3c\u00b7\uac00\uad6c\u00b7\uc0dd\ud0dc \ud53c\ud574\ub97c \ubaa8\ub450 \uc54c \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            koreaUse="K-water \ub310\u00b7\ubcf4 \uc218\ubb38\uc790\ub8cc\uc640 \ub18d\ucd0c\uc6a9\uc218 \uc800\uc218\uc728\uc744 \ud55c \uc720\uc5ed\uc5d0 \ub9de\ucdb0 \uc138 \uac00\uc9c0 \ubc30\ubd84\uc548\uc744 \ub9cc\ub4e4\uace0 \uc6b4\uc601\uc790\ub098 \ub18d\uc5c5\uc778 \uc870\uc9c1\uc5d0 \uc190\ud574 \uac00\uc815\uc744 \uac80\ud1a0\ubc1b\uc2b5\ub2c8\ub2e4.",
+            jobKeywords=["drought", "water allocation", "irrigation", "water policy", "hydrology"],
+            sourceTitle="FAO Drought Integrated Assessment Platform",
+            sourceUrl="https://www.fao.org/in-action/drought-portal/tools/d-iap/overview/en",
+            sourceClaim="Drought assessment links water productivity, crop impact, and irrigation need for decisions.",
+            additionalSources=[{
+                "title": "K-water hydrological operations data", "url": "https://www.data.go.kr/data/15099110/openapi.do",
+                "sourceTier": "official", "claim": "Time-series operations data cover reservoir level, inflow, and discharge for major dams and weirs",
+            }, {
+                "title": "Korea rural reservoir storage data", "url": "https://www.data.go.kr/data/15099919/openapi.do",
+                "sourceTier": "official", "claim": "The public API provides current agricultural reservoir storage and facility information",
+            }],
+            dataAssets=[{
+                "title": "K-water dam and weir hydrology", "url": "https://www.data.go.kr/data/15099110/openapi.do",
+                "access": "Public Data Portal application; Open API and CSV", "coverage": "Reservoir level, inflow, and discharge time series for major dams and weirs",
+                "use": "Build the supply baseline for one-basin allocation scenarios", "limitation": "Actual demand, allocation rules, and damage functions need separate evidence and field review", "sourceTier": "official",
+            }, {
+                "title": "Rural reservoir storage Open API", "url": "https://www.data.go.kr/data/15099919/openapi.do",
+                "access": "Public Data Portal application; Open API", "coverage": "Reservoir-level storage rates and facility metadata",
+                "use": "Identify agricultural reservoirs under the greatest supply pressure", "limitation": "Crop demand, actual withdrawals, and observed losses are not included", "sourceTier": "official",
+            }],
+        ),
+    ]
+
+
+def _apply_impact_opportunity_snapshot(payload: dict[str, Any]) -> None:
+    """Refresh the public impact briefs and their exact producer/consumer lineage."""
+    payload["impactOpportunities"] = _impact_opportunities()
+    payload["impactOpportunityLineage"] = {
+        "schemaVersion": "social-environment-ai-v1",
+        "producer": "scripts/build_snapshot.py",
+        "outputPath": "data/app-data.json",
+        "consumer": "app.js impactOpportunityPage",
+        "contract": "producer=scripts/build_snapshot.py; output=data/app-data.json; consumer=app.js impactOpportunityPage",
+        "generatedAt": datetime.now(timezone.utc).isoformat(),
+    }
+
+
 def _decision_framework(payload: Mapping[str, Any], *, snapshot_ready: bool = False) -> dict[str, Any]:
     stats = payload.get("stats") if isinstance(payload.get("stats"), Mapping) else {}
     coverage = payload.get("graduateEvidenceCoverage") if isinstance(payload.get("graduateEvidenceCoverage"), Mapping) else {}
@@ -2941,7 +3144,7 @@ def _apply_public_eligibility(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--job-search-root", required=True, type=Path)
+    parser.add_argument("--job-search-root", type=Path)
     parser.add_argument(
         "--catalog-source",
         type=Path,
@@ -2958,12 +3161,32 @@ def main() -> None:
         help="Enrich the existing public snapshot without rebuilding the job slice.",
     )
     parser.add_argument(
+        "--impact-only",
+        action="store_true",
+        help="Refresh only public impact evidence in the existing canonical app-data snapshot.",
+    )
+    parser.add_argument(
         "--personalized-runtime",
         action="store_true",
         help="Build the authenticated Supabase runtime artifact outside the public app repository.",
     )
     args = parser.parse_args()
     app_root = Path(__file__).resolve().parents[1]
+
+    if args.impact_only:
+        if args.programs_only or args.personalized_runtime:
+            raise ValueError("impact-only cannot be combined with programs-only or personalized-runtime")
+        assert_active_repository(app_root, args.output)
+        if not args.output.exists():
+            raise FileNotFoundError(f"existing public snapshot required: {args.output}")
+        payload = _read_json(args.output)
+        _apply_impact_opportunity_snapshot(payload)
+        _atomic_write_json(args.output, payload)
+        print(f"wrote {args.output}: refreshed {len(payload['impactOpportunities'])} public impact briefs")
+        return
+
+    if args.job_search_root is None:
+        parser.error("--job-search-root is required unless --impact-only is used")
     root = args.job_search_root.resolve(strict=True)
     # DATA-249: static GitHub Pages output is anonymous by default.  Only the
     # explicit authenticated lane may carry preferences, and it has one private
@@ -2990,6 +3213,7 @@ def main() -> None:
         raise FileNotFoundError(f"catalog source required: {args.catalog_source}")
     payload = _read_json(args.catalog_source)
     payload["decisionFrameworkSources"] = _decision_framework_source_metrics(root)
+    _apply_impact_opportunity_snapshot(payload)
     if args.programs_only:
         graduate_generated_at = _apply_latest_programs(
             payload,

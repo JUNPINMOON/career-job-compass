@@ -399,6 +399,16 @@
     "first_seen": "2026-08-02T20:59:48+00:00",
     "title": "Eight-perspective review and goal priority scoring have explicit non-candidate boundaries"
   },
+  "DATA-314": {
+    "assert_sha": "7c182ee64ad27311",
+    "first_seen": "2026-08-03T04:42:55+00:00",
+    "title": "Social and environmental AI opportunities have a public producer-output-consumer contract"
+  },
+  "DATA-319": {
+    "assert_sha": "b6d6c8800ca3f050",
+    "first_seen": "2026-08-03T05:49:32+00:00",
+    "title": "Each social-environment AI brief carries usable public materials and explicit evidence gaps"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -633,6 +643,21 @@
     "assert_sha": "ac34e127177ff5da",
     "first_seen": "2026-08-03T03:14:25+00:00",
     "title": "The iPhone shell cache advances for main decision lanes"
+  },
+  "GOV-316": {
+    "assert_sha": "a54034ab791a1a3e",
+    "first_seen": "2026-08-03T04:42:55+00:00",
+    "title": "The iPhone shell cache advances with the social-environment AI opportunity release"
+  },
+  "GOV-318": {
+    "assert_sha": "147ebd2f96546d3f",
+    "first_seen": "2026-08-03T05:32:56+00:00",
+    "title": "Installed mobile clients receive the bounded Claude-record experiment gate"
+  },
+  "GOV-321": {
+    "assert_sha": "b8aaf7557756ea69",
+    "first_seen": "2026-08-03T05:49:32+00:00",
+    "title": "Installed mobile clients receive the impact evidence workbench"
   },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",
@@ -958,5 +983,20 @@
     "assert_sha": "9154cbc42e02f882",
     "first_seen": "2026-08-03T03:14:25+00:00",
     "title": "Today jobs and graduate routes expose decision and evidence gates"
+  },
+  "UX-315": {
+    "assert_sha": "e20de34ff5c55895",
+    "first_seen": "2026-08-03T04:42:55+00:00",
+    "title": "Today exposes an interactive mobile problem-to-action map linked to jobs and graduate evidence"
+  },
+  "UX-317": {
+    "assert_sha": "8afabc80fb86fcfa",
+    "first_seen": "2026-08-03T05:16:48+00:00",
+    "title": "12문답 기록을 한 번에 하나의 검토 가능한 실험으로 제한"
+  },
+  "UX-320": {
+    "assert_sha": "7cdb1de5ad6979dc",
+    "first_seen": "2026-08-03T05:49:32+00:00",
+    "title": "Mobile impact details turn evidence into one persisted two-week experiment choice"
   }
 }
