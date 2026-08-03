@@ -14,6 +14,19 @@ IMPACT_SOURCE = json.loads((ROOT / "data" / "impact-opportunities.json").read_te
 
 
 class ImpactOpportunityContractTest(unittest.TestCase):
+    def test_catalog_has_twenty_opportunities_across_eight_domains(self):
+        records = IMPACT_SOURCE.get("impactOpportunities", [])
+        self.assertGreaterEqual(len(records), 20)
+        domains = {record.get("domain") for record in records}
+        self.assertNotIn(None, domains)
+        self.assertGreaterEqual(len(domains), 8)
+        for domain in domains:
+            self.assertGreaterEqual(
+                sum(record.get("domain") == domain for record in records),
+                2,
+                domain,
+            )
+
     def test_snapshot_has_connected_problem_to_action_records(self):
         self.assertIn("def validate_impact_opportunities(", IMPACT_BUILDER)
         self.assertIn("def refresh_impact_snapshot(", IMPACT_BUILDER)
@@ -42,6 +55,10 @@ class ImpactOpportunityContractTest(unittest.TestCase):
 
     def test_today_has_mobile_interaction_and_evidence_boundary(self):
         self.assertIn("function impactOpportunityPage(", APP)
+        self.assertIn("function impactDomainGroups(", APP)
+        self.assertIn("function impactDomainLabel(", APP)
+        self.assertIn("impact-domain-index", APP)
+        self.assertIn("impact-domain-group", APP)
         self.assertIn("function impactOpportunityDetail(", APP)
         self.assertIn('data-open-impact=', APP)
         self.assertIn(".impact-opportunity-grid", CSS)
@@ -91,7 +108,7 @@ class ImpactOpportunityContractTest(unittest.TestCase):
     def test_service_worker_lineage_advances(self):
         self.assertIn("career-compass-v61-main-decision-lanes", SW)
         self.assertIn('const CACHE = "career-compass-v62-impact-opportunities";', SW)
-        self.assertIn('const CACHE = "career-compass-v64-impact-evidence-pack";', SW)
+        self.assertIn('const CACHE = "career-compass-v65-impact-catalog";', SW)
 
 
 if __name__ == "__main__":

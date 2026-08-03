@@ -2,6 +2,7 @@
   "impactOpportunities": [
     {
       "id": "flood-action-map",
+      "domain": "water-disaster",
       "title": "홍수 경보를 행동 지도까지 연결하기",
       "problem": "예보가 있어도 행동 기준이 늦게 전달됩니다.",
       "affectedPeople": "하천 인근 주민과 재난 대응 조직",
@@ -66,6 +67,7 @@
     },
     {
       "id": "smart-sewer-response",
+      "domain": "water-infrastructure",
       "title": "하수 월류를 사후 민원보다 먼저 막기",
       "problem": "폭우 때 하수관망의 병목을 늦게 발견해 오염수 월류와 침수가 커집니다.",
       "affectedPeople": "저지대 주민, 하천 이용자, 하수도 운영팀",
@@ -130,6 +132,7 @@
     },
     {
       "id": "algae-sampling",
+      "domain": "water-ecology",
       "title": "녹조 관측과 현장 채수 연결",
       "directUsers": "국립환경과학원·지자체 수질 조사자와 취수장 운영자",
       "evidenceGap": "위성 신호만으로 독성 여부와 종을 확정할 수 없고 구름·탁도·관측 간격의 영향을 받습니다.",
@@ -200,6 +203,7 @@
     },
     {
       "id": "heat-health-action",
+      "domain": "climate-health",
       "title": "폭염 경보를 취약계층 보호 행동으로 연결",
       "directUsers": "보건소·복지 담당자와 폭염 대응 지자체 담당자",
       "evidenceGap": "공개 예보와 쉼터 위치만으로 실제 취약가구, 이용 가능 시간, 안부 확인 결과를 알 수 없습니다.",
@@ -270,6 +274,7 @@
     },
     {
       "id": "methane-alert-action",
+      "domain": "energy-emissions",
       "title": "메탄 위성 탐지를 실제 수리 행동으로 연결",
       "problem": "배출 플룸을 찾아도 시설 귀속, 통보, 수리 확인까지 이어지지 않으면 감축 효과가 없습니다.",
       "affectedPeople": "배출시설 인근 주민, 규제기관, 시설 운영팀",
@@ -340,6 +345,7 @@
     },
     {
       "id": "drought-decision",
+      "domain": "water-disaster",
       "title": "가뭄 대응 선택 비교",
       "problem": "물 부족 때 농업, 생활, 생태 수요를 함께 보지 못하면 피해가 특정 집단에 집중됩니다.",
       "affectedPeople": "농가, 생활용수 이용자, 하천 생태계, 물 배분 기관",
@@ -416,6 +422,888 @@
           "sourceTier": "official"
         }
       ]
+    },
+    {
+      "id": "landslide-evacuation",
+      "domain": "water-disaster",
+      "title": "산사태 경보를 마을 대피 순서로 바꾸기",
+      "problem": "위험 예보가 있어도 어느 마을과 이동 취약자를 먼저 지원할지 늦게 정해집니다.",
+      "affectedPeople": "산지 마을 주민, 고령자, 재난 대응팀",
+      "directUsers": "산림·재난 담당자와 읍면동 현장 조직",
+      "decisionToImprove": "어느 마을에 먼저 대피 안내와 이동 지원 인력을 보낼지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "전국 산사태 위험등급 공간자료 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "산림청 산사태정보시스템 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 어느 마을에 먼저 대피 안내와 이동 지원 인력을 보낼지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "landslide",
+        "disaster risk",
+        "GIS",
+        "climate adaptation"
+      ],
+      "programKeywords": [
+        "landslide",
+        "disaster risk",
+        "GIS",
+        "climate adaptation"
+      ],
+      "sourceTitle": "산림청 산사태정보시스템",
+      "sourceUrl": "https://sansatai.forest.go.kr/",
+      "sourceClaim": "산사태 예측·위험지도와 대피 정보를 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "산림청 산사태정보시스템",
+          "url": "https://sansatai.forest.go.kr/",
+          "sourceTier": "official",
+          "claim": "산사태 예측·위험지도와 대피 정보를 제공"
+        },
+        {
+          "title": "산림청 산사태 위험지도 데이터",
+          "url": "https://www.data.go.kr/data/15074817/fileData.do",
+          "sourceTier": "official",
+          "claim": "산사태 위험등급 공간자료를 공개"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "산림청 산사태정보시스템",
+          "url": "https://sansatai.forest.go.kr/",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "전국 산사태 위험등급 공간자료",
+          "use": "어느 마을에 먼저 대피 안내와 이동 지원 인력을 보낼지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "water-leak-priority",
+      "domain": "water-infrastructure",
+      "title": "상수도 누수 의심 구간의 점검 순서 정하기",
+      "problem": "관망 이상 신호가 많아도 제한된 인력으로 어디를 먼저 확인할지 판단하기 어렵습니다.",
+      "affectedPeople": "단수·수압 저하를 겪는 주민과 상수도 운영팀",
+      "directUsers": "지자체 상수도사업본부와 현장 누수 탐사팀",
+      "decisionToImprove": "어느 구간을 먼저 탐사·차단·수리할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "상수도 시설과 운영 통계 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "국가상수도정보시스템 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 어느 구간을 먼저 탐사·차단·수리할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "water utility",
+        "leak detection",
+        "water network",
+        "asset management"
+      ],
+      "programKeywords": [
+        "water utility",
+        "leak detection",
+        "water network",
+        "asset management"
+      ],
+      "sourceTitle": "국가상수도정보시스템",
+      "sourceUrl": "https://www.waternow.go.kr/",
+      "sourceClaim": "상수도 시설·운영·통계 정보를 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "국가상수도정보시스템",
+          "url": "https://www.waternow.go.kr/",
+          "sourceTier": "official",
+          "claim": "상수도 시설·운영·통계 정보를 제공"
+        },
+        {
+          "title": "K-water 수질정보",
+          "url": "https://www.data.go.kr/data/15099100/openapi.do",
+          "sourceTier": "official",
+          "claim": "지점별 수질 자료를 Open API로 제공"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "국가상수도정보시스템",
+          "url": "https://www.waternow.go.kr/",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "상수도 시설과 운영 통계",
+          "use": "어느 구간을 먼저 탐사·차단·수리할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "groundwater-contamination-watch",
+      "domain": "water-ecology",
+      "title": "지하수 오염 이상을 추가 조사로 연결하기",
+      "problem": "관측망의 여러 수질 항목에서 이상이 생겨도 원인과 추가 조사 지점을 빠르게 정하기 어렵습니다.",
+      "affectedPeople": "지하수 이용 주민, 농가, 환경 조사팀",
+      "directUsers": "지자체 지하수 담당자와 수질 조사기관",
+      "decisionToImprove": "어느 관측정과 주변 오염원을 먼저 재검사할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "관측정별 지하수 수위와 수질 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "국가지하수정보센터 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 어느 관측정과 주변 오염원을 먼저 재검사할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "groundwater",
+        "water quality",
+        "hydrogeology",
+        "contamination"
+      ],
+      "programKeywords": [
+        "groundwater",
+        "water quality",
+        "hydrogeology",
+        "contamination"
+      ],
+      "sourceTitle": "국가지하수정보센터",
+      "sourceUrl": "https://www.gims.go.kr/",
+      "sourceClaim": "국가 지하수 관측·수질 정보를 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "국가지하수정보센터",
+          "url": "https://www.gims.go.kr/",
+          "sourceTier": "official",
+          "claim": "국가 지하수 관측·수질 정보를 제공"
+        },
+        {
+          "title": "지하수 측정망 API",
+          "url": "https://www.data.go.kr/data/15058248/openapi.do",
+          "sourceTier": "official",
+          "claim": "지하수 관측망 수위·수질 데이터를 제공"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "국가지하수정보센터",
+          "url": "https://www.gims.go.kr/",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "관측정별 지하수 수위와 수질",
+          "use": "어느 관측정과 주변 오염원을 먼저 재검사할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "school-air-action",
+      "domain": "climate-health",
+      "title": "학교 대기질을 환기·활동 조정으로 연결하기",
+      "problem": "미세먼지 수치가 나빠도 학교별 환기와 야외활동을 언제 바꿀지 판단하기 어렵습니다.",
+      "affectedPeople": "학생, 교직원, 호흡기 취약 아동",
+      "directUsers": "학교 관리자·보건교사와 교육청 시설 담당자",
+      "decisionToImprove": "언제 환기하고 야외수업을 조정하며 설비를 점검할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "측정소별 미세먼지·오존 실시간 관측 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "에어코리아 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 언제 환기하고 야외수업을 조정하며 설비를 점검할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "air quality",
+        "public health",
+        "environmental monitoring",
+        "school health"
+      ],
+      "programKeywords": [
+        "air quality",
+        "public health",
+        "environmental monitoring",
+        "school health"
+      ],
+      "sourceTitle": "에어코리아",
+      "sourceUrl": "https://www.airkorea.or.kr/",
+      "sourceClaim": "전국 대기오염 측정·예보 정보를 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "에어코리아",
+          "url": "https://www.airkorea.or.kr/",
+          "sourceTier": "official",
+          "claim": "전국 대기오염 측정·예보 정보를 제공"
+        },
+        {
+          "title": "대기오염정보 API",
+          "url": "https://www.data.go.kr/data/15073861/openapi.do",
+          "sourceTier": "official",
+          "claim": "측정소별 실시간 대기오염 자료를 제공"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "에어코리아",
+          "url": "https://www.airkorea.or.kr/",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "측정소별 미세먼지·오존 실시간 관측",
+          "use": "언제 환기하고 야외수업을 조정하며 설비를 점검할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "renewable-grid-forecast",
+      "domain": "energy-emissions",
+      "title": "재생에너지 변동을 전력 운영 판단으로 연결하기",
+      "problem": "태양광과 풍력의 변동 때문에 출력 예측 오차가 커지면 계통 운영과 저장장치 활용이 비효율적입니다.",
+      "affectedPeople": "전력 이용자, 재생에너지 사업자, 계통 운영자",
+      "directUsers": "전력거래·배전 운영자와 에너지 분석팀",
+      "decisionToImprove": "언제 예비력·저장장치·수요 조정을 사용할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "전력수급과 기상 시계열 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "한국전력거래소 전력수급정보 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 언제 예비력·저장장치·수요 조정을 사용할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "renewable energy",
+        "forecasting",
+        "power system",
+        "energy data"
+      ],
+      "programKeywords": [
+        "renewable energy",
+        "forecasting",
+        "power system",
+        "energy data"
+      ],
+      "sourceTitle": "한국전력거래소 전력수급정보",
+      "sourceUrl": "https://www.data.go.kr/data/15103243/openapi.do",
+      "sourceClaim": "전력수요와 공급능력 등 전력수급 데이터를 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "한국전력거래소 전력수급정보",
+          "url": "https://www.data.go.kr/data/15103243/openapi.do",
+          "sourceTier": "official",
+          "claim": "전력수요와 공급능력 등 전력수급 데이터를 제공"
+        },
+        {
+          "title": "기상청 단기예보 API",
+          "url": "https://www.data.go.kr/data/15084084/openapi.do",
+          "sourceTier": "official",
+          "claim": "기온·풍속·하늘상태 등 단기예보를 제공"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "한국전력거래소 전력수급정보",
+          "url": "https://www.data.go.kr/data/15103243/openapi.do",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "전력수급과 기상 시계열",
+          "use": "언제 예비력·저장장치·수요 조정을 사용할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "building-retrofit-priority",
+      "domain": "energy-emissions",
+      "title": "건물 에너지 개선의 우선순위 정하기",
+      "problem": "노후 건물이 많아도 예산 대비 절감과 취약계층 편익이 큰 곳을 고르기 어렵습니다.",
+      "affectedPeople": "에너지 비용 부담 가구, 공공건물 이용자, 시설 관리자",
+      "directUsers": "지자체 건물에너지 담당자와 시설 개선 사업자",
+      "decisionToImprove": "어느 건물의 단열·설비를 먼저 개선할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "건축물 특성과 에너지 관련 공개정보 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "국토교통부 건축물 에너지 정보 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 어느 건물의 단열·설비를 먼저 개선할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "building energy",
+        "retrofit",
+        "carbon",
+        "energy efficiency"
+      ],
+      "programKeywords": [
+        "building energy",
+        "retrofit",
+        "carbon",
+        "energy efficiency"
+      ],
+      "sourceTitle": "국토교통부 건축물 에너지 정보",
+      "sourceUrl": "https://www.data.go.kr/data/15123970/openapi.do",
+      "sourceClaim": "건축물 에너지 관련 정보를 Open API로 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "국토교통부 건축물 에너지 정보",
+          "url": "https://www.data.go.kr/data/15123970/openapi.do",
+          "sourceTier": "official",
+          "claim": "건축물 에너지 관련 정보를 Open API로 제공"
+        },
+        {
+          "title": "건축데이터개방",
+          "url": "https://www.hub.go.kr/portal/psg/idx-intro-openApi.do",
+          "sourceTier": "official",
+          "claim": "건축물대장과 공간정보 API를 안내"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "국토교통부 건축물 에너지 정보",
+          "url": "https://www.data.go.kr/data/15123970/openapi.do",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "건축물 특성과 에너지 관련 공개정보",
+          "use": "어느 건물의 단열·설비를 먼저 개선할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "pedestrian-blackspot-action",
+      "domain": "urban-mobility",
+      "title": "보행자 사고 다발 지점을 시설 개선으로 연결하기",
+      "problem": "사고 건수만으로는 어느 교차로의 조명·속도·동선을 먼저 바꿀지 알기 어렵습니다.",
+      "affectedPeople": "보행자, 어린이, 고령자, 교통약자",
+      "directUsers": "도로교통 담당자와 경찰·시설 개선팀",
+      "decisionToImprove": "어느 지점에 어떤 안전시설을 먼저 설치할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "사고 위치·유형·다발지역 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "도로교통공단 교통사고정보 API 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 어느 지점에 어떤 안전시설을 먼저 설치할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "road safety",
+        "pedestrian",
+        "transport planning",
+        "GIS"
+      ],
+      "programKeywords": [
+        "road safety",
+        "pedestrian",
+        "transport planning",
+        "GIS"
+      ],
+      "sourceTitle": "도로교통공단 교통사고정보 API",
+      "sourceUrl": "https://www.data.go.kr/dataset/15003493/openapi.do",
+      "sourceClaim": "교통사고 다발지역과 사고 위치 정보를 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "도로교통공단 교통사고정보 API",
+          "url": "https://www.data.go.kr/dataset/15003493/openapi.do",
+          "sourceTier": "official",
+          "claim": "교통사고 다발지역과 사고 위치 정보를 제공"
+        },
+        {
+          "title": "교통사고분석시스템 TAAS",
+          "url": "https://taas.koroad.or.kr/",
+          "sourceTier": "official",
+          "claim": "사고 통계와 공간 분석 서비스를 제공"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "도로교통공단 교통사고정보 API",
+          "url": "https://www.data.go.kr/dataset/15003493/openapi.do",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "사고 위치·유형·다발지역",
+          "use": "어느 지점에 어떤 안전시설을 먼저 설치할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "transit-accessibility-watch",
+      "domain": "urban-mobility",
+      "title": "교통약자 이동 단절을 우회 안내와 개선 요청으로 연결하기",
+      "problem": "엘리베이터 고장이나 환승 장벽이 생기면 휠체어·유아차 이용자는 현장에서 이동이 막힙니다.",
+      "affectedPeople": "휠체어 이용자, 유아차 이용자, 고령자",
+      "directUsers": "도시철도 운영자와 교통약자 이동지원 조직",
+      "decisionToImprove": "어떤 우회 경로를 안내하고 어느 시설을 먼저 복구할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "역별 교통약자 편의시설 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "서울교통공사 교통약자 이용시설 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 어떤 우회 경로를 안내하고 어느 시설을 먼저 복구할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "accessibility",
+        "public transit",
+        "mobility",
+        "universal design"
+      ],
+      "programKeywords": [
+        "accessibility",
+        "public transit",
+        "mobility",
+        "universal design"
+      ],
+      "sourceTitle": "서울교통공사 교통약자 이용시설",
+      "sourceUrl": "https://www.seoulmetro.co.kr/kr/equipmentList.do?menuIdx=367",
+      "sourceClaim": "역별 엘리베이터 등 편의시설 정보를 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "서울교통공사 교통약자 이용시설",
+          "url": "https://www.seoulmetro.co.kr/kr/equipmentList.do?menuIdx=367",
+          "sourceTier": "official",
+          "claim": "역별 엘리베이터 등 편의시설 정보를 제공"
+        },
+        {
+          "title": "서울 열린데이터광장",
+          "url": "https://data.seoul.go.kr/",
+          "sourceTier": "official",
+          "claim": "교통·시설 관련 공공데이터를 제공"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "서울교통공사 교통약자 이용시설",
+          "url": "https://www.seoulmetro.co.kr/kr/equipmentList.do?menuIdx=367",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "역별 교통약자 편의시설",
+          "use": "어떤 우회 경로를 안내하고 어느 시설을 먼저 복구할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "wildfire-response-priority",
+      "domain": "forest-ecology",
+      "title": "산불 위험을 순찰·초동 대응 순서로 바꾸기",
+      "problem": "건조·바람·연료 조건이 빠르게 바뀌어 제한된 인력의 순찰과 초동 배치가 어렵습니다.",
+      "affectedPeople": "산림 인접 주민, 소방·산림 대응팀, 생태계",
+      "directUsers": "산림청·지자체 산불 대응 담당자",
+      "decisionToImprove": "어디를 먼저 순찰하고 장비와 인력을 배치할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "산불위험 예보와 과거 발생 기록 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "산림청 산불위험예보 API 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 어디를 먼저 순찰하고 장비와 인력을 배치할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "wildfire",
+        "forest",
+        "remote sensing",
+        "disaster response"
+      ],
+      "programKeywords": [
+        "wildfire",
+        "forest",
+        "remote sensing",
+        "disaster response"
+      ],
+      "sourceTitle": "산림청 산불위험예보 API",
+      "sourceUrl": "https://www.data.go.kr/data/15084817/openapi.do",
+      "sourceClaim": "지역별 산불위험 정보를 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "산림청 산불위험예보 API",
+          "url": "https://www.data.go.kr/data/15084817/openapi.do",
+          "sourceTier": "official",
+          "claim": "지역별 산불위험 정보를 제공"
+        },
+        {
+          "title": "산림청 산불발생통계",
+          "url": "https://www.data.go.kr/data/15029186/fileData.do",
+          "sourceTier": "official",
+          "claim": "산불 발생 위치와 피해 통계를 공개"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "산림청 산불위험예보 API",
+          "url": "https://www.data.go.kr/data/15084817/openapi.do",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "산불위험 예보와 과거 발생 기록",
+          "use": "어디를 먼저 순찰하고 장비와 인력을 배치할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "invasive-species-watch",
+      "domain": "forest-ecology",
+      "title": "생태계교란종 관측을 현장 제거 순서로 연결하기",
+      "problem": "관측 신고가 흩어져 확산 전선을 파악하고 제한된 제거 인력을 배치하기 어렵습니다.",
+      "affectedPeople": "지역 생태계, 농업인, 보호지역 관리자",
+      "directUsers": "생태 조사자와 지자체·보호지역 관리팀",
+      "decisionToImprove": "어느 지역을 먼저 확인하고 제거·복원할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "생물종 분포와 생태공간 조사자료 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "한반도의 생물다양성 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 어느 지역을 먼저 확인하고 제거·복원할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "invasive species",
+        "biodiversity",
+        "ecology",
+        "GIS"
+      ],
+      "programKeywords": [
+        "invasive species",
+        "biodiversity",
+        "ecology",
+        "GIS"
+      ],
+      "sourceTitle": "한반도의 생물다양성",
+      "sourceUrl": "https://www.kbr.go.kr/",
+      "sourceClaim": "국가 생물종과 분포 정보를 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "한반도의 생물다양성",
+          "url": "https://www.kbr.go.kr/",
+          "sourceTier": "official",
+          "claim": "국가 생물종과 분포 정보를 제공"
+        },
+        {
+          "title": "국립생태원 에코뱅크",
+          "url": "https://nie-ecobank.kr/",
+          "sourceTier": "official",
+          "claim": "생태공간정보와 조사자료를 제공"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "한반도의 생물다양성",
+          "url": "https://www.kbr.go.kr/",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "생물종 분포와 생태공간 조사자료",
+          "use": "어느 지역을 먼저 확인하고 제거·복원할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "food-waste-prevention",
+      "domain": "circular-economy",
+      "title": "음식물 폐기를 발생 전에 줄이는 수요 예측",
+      "problem": "급식·매장 수요를 과대 예측하면 식품과 처리비가 함께 낭비됩니다.",
+      "affectedPeople": "급식 이용자, 소상공인, 폐기물 처리 종사자",
+      "directUsers": "학교·공공급식 운영자와 식품 유통 담당자",
+      "decisionToImprove": "얼마를 발주·조리하고 어떤 메뉴의 낭비를 먼저 줄일지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "음식물류 폐기물 발생·처리 통계 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "환경부 전국 폐기물 발생 및 처리현황 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 얼마를 발주·조리하고 어떤 메뉴의 낭비를 먼저 줄일지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "food waste",
+        "demand forecasting",
+        "circular economy",
+        "waste management"
+      ],
+      "programKeywords": [
+        "food waste",
+        "demand forecasting",
+        "circular economy",
+        "waste management"
+      ],
+      "sourceTitle": "환경부 전국 폐기물 발생 및 처리현황",
+      "sourceUrl": "https://www.data.go.kr/data/15083273/fileData.do",
+      "sourceClaim": "폐기물 종류별 발생·처리 현황을 공개",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "환경부 전국 폐기물 발생 및 처리현황",
+          "url": "https://www.data.go.kr/data/15083273/fileData.do",
+          "sourceTier": "official",
+          "claim": "폐기물 종류별 발생·처리 현황을 공개"
+        },
+        {
+          "title": "한국환경공단 폐기물 통계",
+          "url": "https://www.data.go.kr/data/15061314/fileData.do",
+          "sourceTier": "official",
+          "claim": "폐기물 관련 통계를 공개"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "환경부 전국 폐기물 발생 및 처리현황",
+          "url": "https://www.data.go.kr/data/15083273/fileData.do",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "음식물류 폐기물 발생·처리 통계",
+          "use": "얼마를 발주·조리하고 어떤 메뉴의 낭비를 먼저 줄일지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "marine-debris-routing",
+      "domain": "circular-economy",
+      "title": "해양쓰레기 수거 경로와 시기 최적화",
+      "problem": "해류와 강우 뒤 쓰레기 유입이 달라져 제한된 선박·인력으로 수거 효과가 큰 곳을 고르기 어렵습니다.",
+      "affectedPeople": "연안 주민, 어업인, 해양생태계, 수거 노동자",
+      "directUsers": "해양환경 관리기관과 지자체 수거팀",
+      "decisionToImprove": "어느 해안과 해역을 언제 먼저 수거할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "해양쓰레기 수거 실적과 해양환경 공간정보 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "해양쓰레기 수거량 현황 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 어느 해안과 해역을 언제 먼저 수거할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "marine debris",
+        "ocean",
+        "waste",
+        "coastal management"
+      ],
+      "programKeywords": [
+        "marine debris",
+        "ocean",
+        "waste",
+        "coastal management"
+      ],
+      "sourceTitle": "해양쓰레기 수거량 현황",
+      "sourceUrl": "https://www.data.go.kr/dataset/15002258/fileData.do",
+      "sourceClaim": "지역별 해양쓰레기 수거량을 공개",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "해양쓰레기 수거량 현황",
+          "url": "https://www.data.go.kr/dataset/15002258/fileData.do",
+          "sourceTier": "official",
+          "claim": "지역별 해양쓰레기 수거량을 공개"
+        },
+        {
+          "title": "해양환경정보포털",
+          "url": "https://www.meis.go.kr/",
+          "sourceTier": "official",
+          "claim": "해양환경 관측과 공간정보를 제공"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "해양쓰레기 수거량 현황",
+          "url": "https://www.data.go.kr/dataset/15002258/fileData.do",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "해양쓰레기 수거 실적과 해양환경 공간정보",
+          "use": "어느 해안과 해역을 언제 먼저 수거할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "aed-access-gap",
+      "domain": "emergency-care",
+      "title": "AED 접근 공백을 점검·교육 순서로 바꾸기",
+      "problem": "AED 위치가 있어도 운영시간·점검상태·실제 도보 접근성이 맞지 않으면 응급상황에 쓰기 어렵습니다.",
+      "affectedPeople": "심정지 환자와 목격자, 시설 이용자",
+      "directUsers": "보건소 응급의료 담당자와 시설 관리자",
+      "decisionToImprove": "어느 시설을 먼저 점검하고 안내·교육·추가 배치를 할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "AED 위치·기관·이용 정보 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "E-Gen 자동심장충격기 찾기 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 어느 시설을 먼저 점검하고 안내·교육·추가 배치를 할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "emergency medical",
+        "AED",
+        "accessibility",
+        "public health"
+      ],
+      "programKeywords": [
+        "emergency medical",
+        "AED",
+        "accessibility",
+        "public health"
+      ],
+      "sourceTitle": "E-Gen 자동심장충격기 찾기",
+      "sourceUrl": "https://www.e-gen.or.kr/egen/search_aed.do",
+      "sourceClaim": "AED 위치와 이용 정보를 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "E-Gen 자동심장충격기 찾기",
+          "url": "https://www.e-gen.or.kr/egen/search_aed.do",
+          "sourceTier": "official",
+          "claim": "AED 위치와 이용 정보를 제공"
+        },
+        {
+          "title": "응급의료포털 E-Gen",
+          "url": "https://www.e-gen.or.kr/",
+          "sourceTier": "official",
+          "claim": "응급의료기관과 응급처치 정보를 제공"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "E-Gen 자동심장충격기 찾기",
+          "url": "https://www.e-gen.or.kr/egen/search_aed.do",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "AED 위치·기관·이용 정보",
+          "use": "어느 시설을 먼저 점검하고 안내·교육·추가 배치를 할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
+    },
+    {
+      "id": "emergency-capacity-routing",
+      "domain": "emergency-care",
+      "title": "응급환자 이송 판단에 수용 가능성과 이동시간 함께 보기",
+      "problem": "가까운 병원이 실제 환자 유형을 수용하지 못하면 재이송과 치료 지연이 생깁니다.",
+      "affectedPeople": "응급환자, 보호자, 구급대, 응급실 의료진",
+      "directUsers": "119 구급대와 응급의료 조정 담당자",
+      "decisionToImprove": "환자 상태에 맞춰 어느 의료기관으로 이송할지",
+      "aiRole": "여러 공개 신호를 결합해 우선순위, 근거, 불확실성을 설명",
+      "dataInputs": "응급의료기관 위치·진료·운영 정보 / 현장 확인 자료",
+      "evidenceGap": "공개 자료만으로 실제 현장 상태와 조치 결과를 확정할 수 없어 담당자 검토가 필요합니다.",
+      "koreaUse": "E-Gen 응급실 찾기 자료로 후보를 만들고 직접 사용자에게 판단 순서와 누락을 검토받습니다.",
+      "firstProof": "2주 동안 한 지역의 공개 자료로 환자 상태에 맞춰 어느 의료기관으로 이송할지 판단표를 만들고 현장 피드백 1건을 받습니다.",
+      "jobKeywords": [
+        "emergency care",
+        "hospital capacity",
+        "routing",
+        "health data"
+      ],
+      "programKeywords": [
+        "emergency care",
+        "hospital capacity",
+        "routing",
+        "health data"
+      ],
+      "sourceTitle": "E-Gen 응급실 찾기",
+      "sourceUrl": "https://www.e-gen.or.kr/egen/search_hospital.do",
+      "sourceClaim": "응급의료기관 위치와 진료 정보를 제공",
+      "lifeworkFit": [
+        "decision_support",
+        "rapid_feedback",
+        "field_collaboration",
+        "public_impact"
+      ],
+      "boundary": "AI는 우선순위와 근거를 제시하고 최종 결정은 권한 있는 사람이 합니다.",
+      "feedbackLoop": "현장 사용자가 오탐과 누락을 표시하면 다음 검증에 반영합니다.",
+      "collaborationShape": "분야 전문가, 현장 사용자, 데이터 담당자가 함께 검증합니다.",
+      "sources": [
+        {
+          "title": "E-Gen 응급실 찾기",
+          "url": "https://www.e-gen.or.kr/egen/search_hospital.do",
+          "sourceTier": "official",
+          "claim": "응급의료기관 위치와 진료 정보를 제공"
+        },
+        {
+          "title": "중앙응급의료센터",
+          "url": "https://portal.nemc.or.kr/",
+          "sourceTier": "official",
+          "claim": "응급의료체계와 기관 정보를 제공"
+        }
+      ],
+      "dataAssets": [
+        {
+          "title": "E-Gen 응급실 찾기",
+          "url": "https://www.e-gen.or.kr/egen/search_hospital.do",
+          "access": "공식 웹 또는 공공데이터포털",
+          "coverage": "응급의료기관 위치·진료·운영 정보",
+          "use": "환자 상태에 맞춰 어느 의료기관으로 이송할지",
+          "limitation": "실제 현장 상태와 조치 결과는 별도 확인이 필요",
+          "sourceTier": "official"
+        }
+      ]
     }
   ],
   "impactOpportunityLineage": {
@@ -426,8 +1314,8 @@
     "consumer": "app.js impactOpportunityPage",
     "contract": "producer=scripts/build_impact_snapshot.py; source=data/impact-opportunities.json; output=data/app-data.json; consumer=app.js impactOpportunityPage",
     "producerCodeSha256": "4bb0a98a392db0c0ca05f10847bd86e5aea3dbac233668cd53f1ba58e74a1d96",
-    "recordsSha256": "7a955c2b1ba406efa2914343776524931c1ddb14be91bb30af01832aaa3f203e",
-    "recordCount": 6,
-    "generatedAt": "2026-08-03T06:09:05.900991+00:00"
+    "recordsSha256": "5aa6253a01b4b8b0e833193ca09678e93bc0460e6b9acc58cc2281cb058176fc",
+    "recordCount": 20,
+    "generatedAt": "2026-08-03T15:09:05.900991+09:00"
   }
 }

@@ -414,6 +414,11 @@
     "first_seen": "2026-08-03T06:51:07+00:00",
     "title": "Release gate proves the isolated impact source, producer, output and mobile consumer"
   },
+  "DATA-323": {
+    "assert_sha": "6940ca1c7728b916",
+    "first_seen": "2026-08-03T08:01:05+00:00",
+    "title": "Social-environment opportunity catalog is broad enough for cross-domain decisions"
+  },
   "GOV-201": {
     "assert_sha": "d43385c2a9d0e574",
     "first_seen": "2026-07-26T16:23:06+00:00",
@@ -663,6 +668,11 @@
     "assert_sha": "b8aaf7557756ea69",
     "first_seen": "2026-08-03T05:49:32+00:00",
     "title": "Installed mobile clients receive the impact evidence workbench"
+  },
+  "GOV-325": {
+    "assert_sha": "6b77bc500525db0d",
+    "first_seen": "2026-08-03T08:01:05+00:00",
+    "title": "Installed mobile clients receive the expanded social-environment catalog"
   },
   "REVIEW-001": {
     "assert_sha": "b2d6ec75a2ab8cb2",
@@ -1003,5 +1013,10 @@
     "assert_sha": "7cdb1de5ad6979dc",
     "first_seen": "2026-08-03T05:49:32+00:00",
     "title": "Mobile impact details turn evidence into one persisted two-week experiment choice"
+  },
+  "UX-324": {
+    "assert_sha": "671dbe0a2c56fd48",
+    "first_seen": "2026-08-03T08:01:05+00:00",
+    "title": "Expanded social-environment catalog remains browsable on iPhone by domain"
   }
 }

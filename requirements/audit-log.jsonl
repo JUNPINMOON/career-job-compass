@@ -511,3 +511,11 @@
 {"at": "2026-08-03T06:52:07+00:00", "event": "check", "passed": 190, "failed": 0, "failing_ids": []}
 {"at": "2026-08-03T07:30:31+00:00", "event": "assertion_modified", "id": "DATA-314", "old": "14d9781f5670696f", "new": "d6b249b15f3b2a47", "reason": "DATA-314 source path corrected after measured shared-catalog lineage collision; graduate catalog restored and impact source separated"}
 {"at": "2026-08-03T07:30:31+00:00", "event": "check", "passed": 190, "failed": 0, "failing_ids": []}
+{"at": "2026-08-03T08:01:05+00:00", "event": "requirement_added", "id": "DATA-323", "title": "Social-environment opportunity catalog is broad enough for cross-domain decisions"}
+{"at": "2026-08-03T08:01:05+00:00", "event": "requirement_added", "id": "UX-324", "title": "Expanded social-environment catalog remains browsable on iPhone by domain"}
+{"at": "2026-08-03T08:01:05+00:00", "event": "requirement_added", "id": "GOV-325", "title": "Installed mobile clients receive the expanded social-environment catalog"}
+{"at": "2026-08-03T08:01:06+00:00", "event": "check", "passed": 191, "failed": 2, "failing_ids": ["GOV-321", "DATA-323"]}
+{"at": "2026-08-03T08:05:28+00:00", "event": "assertion_modified", "id": "DATA-323", "old": "d88713437a27bb07", "new": "6940ca1c7728b916", "reason": "DATA-323 newly added command assertion corrected to reqgate run/path schema after its first failing validation; coverage thresholds and test body unchanged"}
+{"at": "2026-08-03T08:05:28+00:00", "event": "check", "passed": 193, "failed": 0, "failing_ids": []}
+{"at": "2026-08-03T08:07:04+00:00", "event": "check", "passed": 193, "failed": 0, "failing_ids": []}
+{"at": "2026-08-03T08:08:31+00:00", "event": "check", "passed": 193, "failed": 0, "failing_ids": []}

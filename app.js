@@ -599,14 +599,14 @@
   function impactExecutionContract() {
     const selected = selectedImpactOpportunity();
     return `<aside class="impact-execution-contract" aria-label="실행 계약">
-      <div><small>12문답·과정 기록 교차검증</small><h3>여섯 개를 다 하는 목록이 아니라, 하나를 골라 검토받는 실험실입니다.</h3><p>진로 추천 점수나 순위가 아닙니다. 공개 근거로 판단 자료 하나를 만든 뒤 실제 사용자 반응으로 다음 행동을 정합니다.</p></div>
+      <div><small>12문답·과정 기록 교차검증</small><h3>${impactOpportunities().length}개를 동시에 실행하는 목록이 아니라, 하나를 골라 검토받는 실험실입니다.</h3><p>진로 추천 점수나 순위가 아닙니다. 공개 근거로 판단 자료 하나를 만든 뒤 실제 사용자 반응으로 다음 행동을 정합니다.</p></div>
       <div class="impact-gate-grid">
         <div class="impact-selection-summary"><small>\uC774\uBC88 2\uC8FC \uC120\uD0DD</small><b>${selected ? escapeHtml(selected.title) : "\uC544\uC9C1 \uC120\uD0DD\uD558\uC9C0 \uC54A\uC74C"}</b><span>${selected ? "\uC120\uD0DD\uB428 \u00B7 \uD604\uC7A5 \uAC80\uD1A0 \uC804" : "\uCE74\uB4DC\uC758 \uACF5\uAC1C \uC790\uB8CC\uB97C \uD655\uC778\uD55C \uB4A4 \uD558\uB098\uB9CC \uACE0\uB985\uB2C8\uB2E4."}</span></div>
         <section><small>현재 상태</small><b>${impactExperimentStatus()}</b></section>
         <section><small>통과 조건 1</small><b>공개 데이터로 판단 자료 1개</b></section>
         <section><small>통과 조건 2</small><b>현장 검토 1건</b></section>
       </div>
-      <p class="impact-stop-line"><b>중단선</b> 검토 응답 전 새로운 주제는 늘리지 않음</p>
+      <p class="impact-stop-line"><b>중단선</b> 현장 검토 전에는 선택한 주제의 범위를 넓히지 않음</p>
     </aside>`;
   }
 
@@ -615,7 +615,7 @@
     const sourceCount = (item.sources || []).length;
     const dataCount = (item.dataAssets || []).length;
     return `<button class="impact-opportunity-card${selected ? " is-selected" : ""}" type="button" data-open-impact="${escapeHtml(item.id)}" aria-pressed="${selected}">
-      <small>${escapeHtml(item.affectedPeople)}</small><strong>${escapeHtml(item.title)}</strong>
+      <span class="impact-domain-tag">${escapeHtml(impactDomainLabel(item.domain))}</span><small>${escapeHtml(item.affectedPeople)}</small><strong>${escapeHtml(item.title)}</strong>
       <p>${escapeHtml(item.decisionToImprove)}</p>
       <div class="impact-fit-tags"><span>판단 지원</span><span>빠른 피드백</span><span>현장 협업</span></div>
       <p class="impact-material-count">\uACF5\uC2DD \uADFC\uAC70 ${sourceCount} \u00B7 \uACF5\uAC1C \uB370\uC774\uD130 ${dataCount}</p>
@@ -624,13 +624,40 @@
     </button>`;
   }
 
+  function impactDomainLabel(domain) {
+    const labels = {
+      "water-disaster": "\uBB3C\u00B7\uC7AC\uB09C",
+      "water-infrastructure": "\uBB3C \uC778\uD504\uB77C",
+      "water-ecology": "\uC218\uC9C8\u00B7\uC0DD\uD0DC",
+      "climate-health": "\uAE30\uD6C4\u00B7\uAC74\uAC15",
+      "energy-emissions": "\uC5D0\uB108\uC9C0\u00B7\uBC30\uCD9C",
+      "urban-mobility": "\uB3C4\uC2DC\u00B7\uC774\uB3D9",
+      "forest-ecology": "\uC0B0\uB9BC\u00B7\uC0DD\uD0DC",
+      "circular-economy": "\uC21C\uD658\uACBD\uC81C",
+      "emergency-care": "\uC751\uAE09\u00B7\uC758\uB8CC"
+    };
+    return labels[domain] || domain || "\uAE30\uD0C0";
+  }
+
+  function impactDomainGroups(records) {
+    const groups = new Map();
+    records.forEach((item) => {
+      const domain = item.domain || "other";
+      if (!groups.has(domain)) groups.set(domain, []);
+      groups.get(domain).push(item);
+    });
+    return Array.from(groups, ([domain, items]) => ({ domain, label: impactDomainLabel(domain), items }));
+  }
+
   function impactOpportunityPage() {
     const records = impactOpportunities();
+    const groups = impactDomainGroups(records);
     return `<section class="impact-opportunity-page" aria-labelledby="impactOpportunityHeading">
-      <header class="impact-opportunity-head"><p class="eyebrow">사회·환경 문제 × AI</p><h2 id="impactOpportunityHeading">AI로 풀어볼 문제 ${records.length}개</h2><p>12문답의 개인 원문은 공개하지 않고 판단 기준만 반영했습니다. 사람의 결정을 실제로 돕고, 현장에서 빠르게 검증하며, 함께 운영할 수 있는 문제를 먼저 봅니다.</p></header>
+      <header class="impact-opportunity-head"><p class="eyebrow">사회·환경 문제 × AI</p><h2 id="impactOpportunityHeading">AI로 풀어볼 문제 ${records.length}개</h2><p>공식 근거와 공개 데이터가 연결된 ${groups.length}개 분야입니다. 12문답의 개인 원문은 공개하지 않고 판단 기준만 반영했습니다.</p></header>
       ${impactExecutionContract()}
-      <div class="impact-opportunity-grid">${records.map(impactOpportunityCard).join("") || `<p class="empty">연결된 문제 제안이 없습니다.</p>`}</div>
-      <p class="impact-boundary">아래 여섯 카드는 순위가 아니라 선택지입니다. 이번 실행에서는 하나만 고르고, 각 카드에서 공식 근거·AI의 역할과 한계·2주 실험·연결 공고와 대학원을 확인합니다.</p>
+      <nav class="impact-domain-index" aria-label="문제 분야">${groups.map((group) => `<a href="#impact-domain-${escapeHtml(group.domain)}"><span>${escapeHtml(group.label)}</span><b>${group.items.length}</b></a>`).join("")}</nav>
+      <div class="impact-domain-groups">${groups.map((group) => `<section class="impact-domain-group" id="impact-domain-${escapeHtml(group.domain)}"><header><h3>${escapeHtml(group.label)}</h3><span>${group.items.length}개</span></header><div class="impact-opportunity-grid">${group.items.map(impactOpportunityCard).join("")}</div></section>`).join("") || `<p class="empty">연결된 문제 제안이 없습니다.</p>`}</div>
+      <p class="impact-boundary">이 ${records.length}개 카드는 순위가 아니라 분야별 선택지입니다. 이번 실행에서는 하나만 고르고, 각 카드에서 공식 근거·AI의 역할과 한계·2주 실험·연결 공고와 대학원을 확인합니다.</p>
     </section>`;
   }
 
@@ -669,7 +696,7 @@
     const jobsMarkup = impactJobLinks(connections.jobs) || `<p>현재 연결되는 새 공고가 없습니다.</p>`;
     const programsMarkup = impactProgramLinks(connections.programs) || `<p>현재 연결되는 대학원이 없습니다.</p>`;
     return `<article class="detail impact-detail">
-      <header class="detail-head"><div><p class="eyebrow">사회·환경 AI 문제</p><h2>${escapeHtml(opportunity.title)}</h2><p>${escapeHtml(opportunity.problem)}</p></div><button class="plain-button compact" type="button" data-action="close-dossier">닫기</button></header>
+      <header class="detail-head"><div><p class="eyebrow">사회·환경 AI 문제 · ${escapeHtml(impactDomainLabel(opportunity.domain))}</p><h2>${escapeHtml(opportunity.title)}</h2><p>${escapeHtml(opportunity.problem)}</p></div><button class="plain-button compact" type="button" data-action="close-dossier">닫기</button></header>
       <div class="detail-body"><button class="impact-select-button${selected ? " is-selected" : ""}" type="button" data-action="select-impact" data-impact-id="${escapeHtml(opportunity.id)}" aria-pressed="${selected}">${selected ? "\uC120\uD0DD\uB428 \u00B7 \uD604\uC7A5 \uAC80\uD1A0 \uC804" : "\uC774 \uBB38\uC81C\uB97C 2\uC8FC \uC2E4\uD5D8\uC73C\uB85C \uC120\uD0DD"}</button>${impactCoreEvidence(opportunity)}
         <section class="impact-detail-evidence"><small>\uBC14\uB85C \uC5F4\uC5B4\uBCFC \uACF5\uAC1C \uB370\uC774\uD130</small><div class="impact-data-list">${dataMarkup}</div></section>
         <section class="impact-detail-evidence"><small>\uC544\uC9C1 \uBAA8\uB974\uB294 \uAC83</small><p>${escapeHtml(opportunity.evidenceGap)}</p></section>

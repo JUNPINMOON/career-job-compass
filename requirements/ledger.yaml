@@ -1488,6 +1488,39 @@
         "needles": ["data-requirement-id=\"DATA-322\"", "validate_impact_opportunity_lineage", "impact producer-output mismatch", "producerCodeSha256", "recordsSha256"]
       },
       "note": "Measured failure on 2026-08-03: GitHub Pages run 30790521734 rejected commit 38dce3b because social-impact logic modified the graduate producer and rewrote the shared graduate catalog while graduateDataLineage still named the prior exact producer and source digests. The release must fail unless the independent impact source, isolated producer code, canonical app-data output and app.js consumer form one exact contract."
+    },
+    {
+      "id": "DATA-323",
+      "status": "active",
+      "title": "Social-environment opportunity catalog is broad enough for cross-domain decisions",
+      "assert": {
+        "type": "command",
+        "path": "tests/test_impact_opportunity_contract.py",
+        "run": "py -B -m unittest tests.test_impact_opportunity_contract.ImpactOpportunityContractTest.test_catalog_has_twenty_opportunities_across_eight_domains"
+      },
+      "note": "Measured before implementation on 2026-08-03: only 6 records covered a narrow prototype slice. Pin explicitly rejected that coverage. The public catalog must carry at least 20 evidence-backed opportunities across at least 8 domains, with no domain represented by a single isolated record."
+    },
+    {
+      "id": "UX-324",
+      "status": "active",
+      "title": "Expanded social-environment catalog remains browsable on iPhone by domain",
+      "assert": {
+        "type": "text_present",
+        "path": "app.js",
+        "needles": ["function impactDomainGroups(", "function impactDomainLabel(", "impact-domain-index", "impact-domain-group"]
+      },
+      "note": "Measured before implementation on 2026-08-03: expanding the original six cards into one undifferentiated list would make mobile review harder. The catalog must expose domain counts and grouped cards without hiding any record."
+    },
+    {
+      "id": "GOV-325",
+      "status": "active",
+      "title": "Installed mobile clients receive the expanded social-environment catalog",
+      "assert": {
+        "type": "text_present",
+        "path": "sw.js",
+        "needles": ["data-requirement-id=\"GOV-325\"", "career-compass-v65-impact-catalog", "career-compass-v64-impact-evidence-pack"]
+      },
+      "note": "Measured before implementation on 2026-08-03: the v64 shell only knew the six-record evidence pack. The cache advances with the 20-record grouped catalog so an installed iPhone does not retain the smaller interface."
     }
   ]
 }
