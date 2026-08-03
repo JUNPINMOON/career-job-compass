@@ -10,7 +10,7 @@ APP = (ROOT / "app.js").read_text(encoding="utf-8")
 CSS = (ROOT / "styles.css").read_text(encoding="utf-8")
 SW = (ROOT / "sw.js").read_text(encoding="utf-8")
 DATA = json.loads((ROOT / "data" / "app-data.json").read_text(encoding="utf-8"))
-CATALOG = json.loads((ROOT / "data" / "catalog-source.json").read_text(encoding="utf-8"))
+IMPACT_SOURCE = json.loads((ROOT / "data" / "impact-opportunities.json").read_text(encoding="utf-8"))
 
 
 class ImpactOpportunityContractTest(unittest.TestCase):
@@ -30,11 +30,11 @@ class ImpactOpportunityContractTest(unittest.TestCase):
             self.assertGreaterEqual(len(record["sources"]), 1)
             self.assertTrue(all(source.get("sourceTier") == "official" for source in record["sources"]))
             self.assertTrue(all(str(source.get("url", "")).startswith("https://") for source in record["sources"]))
-        self.assertEqual(records, CATALOG.get("impactOpportunities"))
+        self.assertEqual(records, IMPACT_SOURCE.get("impactOpportunities"))
         lineage = DATA.get("impactOpportunityLineage", {})
-        self.assertEqual(lineage, CATALOG.get("impactOpportunityLineage"))
+        self.assertEqual(lineage, IMPACT_SOURCE.get("impactOpportunityLineage"))
         self.assertEqual(lineage.get("producer"), "scripts/build_impact_snapshot.py")
-        self.assertEqual(lineage.get("sourcePath"), "data/catalog-source.json")
+        self.assertEqual(lineage.get("sourcePath"), "data/impact-opportunities.json")
         self.assertEqual(lineage.get("outputPath"), "data/app-data.json")
         self.assertEqual(lineage.get("consumer"), "app.js impactOpportunityPage")
         self.assertEqual(len(lineage.get("producerCodeSha256", "")), 64)
@@ -76,7 +76,7 @@ class ImpactOpportunityContractTest(unittest.TestCase):
     def test_public_impact_refresh_does_not_require_private_job_data(self):
         self.assertIn("CANONICAL_SOURCE", IMPACT_BUILDER)
         self.assertIn("CANONICAL_OUTPUT", IMPACT_BUILDER)
-        self.assertIn('"--catalog-source"', IMPACT_BUILDER)
+        self.assertIn('"--impact-source"', IMPACT_BUILDER)
         self.assertIn('"--check"', IMPACT_BUILDER)
         self.assertNotIn("job-search-root", IMPACT_BUILDER)
         self.assertNotIn("job_search", IMPACT_BUILDER)

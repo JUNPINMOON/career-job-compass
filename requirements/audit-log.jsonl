@@ -509,3 +509,5 @@
 {"at": "2026-08-03T06:51:07+00:00", "event": "requirement_added", "id": "DATA-322", "title": "Release gate proves the isolated impact source, producer, output and mobile consumer"}
 {"at": "2026-08-03T06:51:07+00:00", "event": "check", "passed": 187, "failed": 3, "failing_ids": ["DATA-314", "DATA-319", "DATA-322"]}
 {"at": "2026-08-03T06:52:07+00:00", "event": "check", "passed": 190, "failed": 0, "failing_ids": []}
+{"at": "2026-08-03T07:30:31+00:00", "event": "assertion_modified", "id": "DATA-314", "old": "14d9781f5670696f", "new": "d6b249b15f3b2a47", "reason": "DATA-314 source path corrected after measured shared-catalog lineage collision; graduate catalog restored and impact source separated"}
+{"at": "2026-08-03T07:30:31+00:00", "event": "check", "passed": 190, "failed": 0, "failing_ids": []}

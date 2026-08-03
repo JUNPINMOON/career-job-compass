@@ -1311,35 +1311,35 @@ def validate_graduate_data_lineage(
 
 def validate_impact_opportunity_lineage(snapshot: Mapping[str, object], root: Path = ROOT) -> None:
     """data-requirement-id="DATA-322": prove source, producer, output and consumer agree."""
-    source_path = root / "data" / "catalog-source.json"
+    source_path = root / "data" / "impact-opportunities.json"
     producer_path = root / "scripts" / "build_impact_snapshot.py"
     try:
         source = json.loads(source_path.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, json.JSONDecodeError) as error:
-        raise SystemExit(f"impact catalog source is unreadable: {error.__class__.__name__}") from None
+        raise SystemExit(f"impact source is unreadable: {error.__class__.__name__}") from None
     if not isinstance(source, dict):
-        raise SystemExit("impact catalog source must be an object")
+        raise SystemExit("impact source must be an object")
 
     source_records = source.get("impactOpportunities")
     output_records = snapshot.get("impactOpportunities")
     if not isinstance(source_records, list) or len(source_records) < 6:
-        raise SystemExit("impact catalog source must contain at least six records")
+        raise SystemExit("impact source must contain at least six records")
     if output_records != source_records:
-        raise SystemExit("impact producer-output mismatch: app-data differs from catalog-source")
+        raise SystemExit("impact producer-output mismatch: app-data differs from impact source")
 
     source_lineage = source.get("impactOpportunityLineage")
     output_lineage = snapshot.get("impactOpportunityLineage")
     if not isinstance(source_lineage, dict) or output_lineage != source_lineage:
-        raise SystemExit("impact producer-output mismatch: lineage differs from catalog-source")
+        raise SystemExit("impact producer-output mismatch: lineage differs from impact source")
 
     expected_contract = (
-        "producer=scripts/build_impact_snapshot.py; source=data/catalog-source.json; "
+        "producer=scripts/build_impact_snapshot.py; source=data/impact-opportunities.json; "
         "output=data/app-data.json; consumer=app.js impactOpportunityPage"
     )
     expected_fields = {
         "schemaVersion": "social-environment-ai-v1",
         "producer": "scripts/build_impact_snapshot.py",
-        "sourcePath": "data/catalog-source.json",
+        "sourcePath": "data/impact-opportunities.json",
         "outputPath": "data/app-data.json",
         "consumer": "app.js impactOpportunityPage",
         "contract": expected_contract,
@@ -1376,7 +1376,7 @@ def main() -> None:
         "index.html", "styles.css", "app.js", "sw.js", "manifest.webmanifest",
         "icons/app-icon.svg", "icons/app-icon-maskable.svg", "icons/apple-touch-icon.png",
         "assets/route-map-editorial-v2.webp", "assets/study-steps-editorial-v2.webp",
-        "data/app-data.json", "data/catalog-source.json",
+        "data/app-data.json", "data/catalog-source.json", "data/impact-opportunities.json",
         "supabase/migrations/202607280003_create_refresh_queue.sql",
         "requirements/ledger.yaml", "scripts/check_requirements.py",
         "scripts/build_impact_snapshot.py", "DESIGN.md",

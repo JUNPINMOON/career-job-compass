@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """data-requirement-id="DATA-319": publish impact briefs through one canonical path.
 
-The public catalog is the source of truth.  This producer validates that source,
+The public impact source is the source of truth.  This producer validates that source,
 copies only the impact fields into the app snapshot, and records enough lineage
 for the release gate to prove that the mobile consumer reads the same records.
 """
@@ -19,10 +19,10 @@ from typing import Any, Mapping
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CANONICAL_SOURCE = ROOT / "data" / "catalog-source.json"
+CANONICAL_SOURCE = ROOT / "data" / "impact-opportunities.json"
 CANONICAL_OUTPUT = ROOT / "data" / "app-data.json"
 PRODUCER = "scripts/build_impact_snapshot.py"
-SOURCE_PATH = "data/catalog-source.json"
+SOURCE_PATH = "data/impact-opportunities.json"
 OUTPUT_PATH = "data/app-data.json"
 CONSUMER = "app.js impactOpportunityPage"
 SCHEMA_VERSION = "social-environment-ai-v1"
@@ -106,7 +106,7 @@ def _require_text(record: Mapping[str, Any], field: str, record_id: str) -> None
 def validate_impact_opportunities(records: object) -> list[dict[str, Any]]:
     """DATA-319: fail closed unless each public brief is usable and sourced."""
     if not isinstance(records, list) or len(records) < 6:
-        raise ValueError("catalog must contain at least six impact opportunities")
+        raise ValueError("impact source must contain at least six impact opportunities")
 
     validated: list[dict[str, Any]] = []
     identifiers: set[str] = set()
@@ -210,11 +210,11 @@ def refresh_impact_snapshot(source_path: Path, output_path: Path, *, check: bool
 
     if check:
         if source.get("impactOpportunityLineage") != expected_lineage:
-            raise ValueError("catalog impact lineage does not match its producer and records")
+            raise ValueError("impact source lineage does not match its producer and records")
         if output.get("impactOpportunities") != records:
-            raise ValueError("app-data impact records differ from the canonical catalog source")
+            raise ValueError("app-data impact records differ from the canonical impact source")
         if output.get("impactOpportunityLineage") != expected_lineage:
-            raise ValueError("app-data impact lineage differs from the canonical catalog source")
+            raise ValueError("app-data impact lineage differs from the canonical impact source")
         print(
             f"impact snapshot check ok: {len(records)} records, "
             f"{SOURCE_PATH} -> {OUTPUT_PATH} -> {CONSUMER}"
@@ -234,11 +234,11 @@ def refresh_impact_snapshot(source_path: Path, output_path: Path, *, check: bool
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--catalog-source", type=Path, default=CANONICAL_SOURCE)
+    parser.add_argument("--impact-source", type=Path, default=CANONICAL_SOURCE)
     parser.add_argument("--output", type=Path, default=CANONICAL_OUTPUT)
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
-    refresh_impact_snapshot(args.catalog_source, args.output, check=args.check)
+    refresh_impact_snapshot(args.impact_source, args.output, check=args.check)
 
 
 if __name__ == "__main__":

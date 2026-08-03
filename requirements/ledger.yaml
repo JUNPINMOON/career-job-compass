@@ -1406,8 +1406,8 @@
       "id": "DATA-314",
       "status": "active",
       "title": "Social and environmental AI opportunities have a public producer-output-consumer contract",
-      "assert": {"type": "text_present", "path": "scripts/build_impact_snapshot.py", "needles": ["validate_impact_opportunities", "refresh_impact_snapshot", "social-environment-ai-v1", "SOURCE_PATH = \"data/catalog-source.json\"", "OUTPUT_PATH = \"data/app-data.json\"", "CONSUMER = \"app.js impactOpportunityPage\""]},
-      "note": "Measured before implementation on 2026-08-03: the snapshot had jobs, programs and a review framework but no model for discovering a social or environmental problem, the decision AI should improve, the required data, or a bounded first experiment. The public impact producer is now isolated from the graduate-data producer so each released payload keeps exact source-code lineage."
+      "assert": {"type": "text_present", "path": "scripts/build_impact_snapshot.py", "needles": ["validate_impact_opportunities", "refresh_impact_snapshot", "social-environment-ai-v1", "SOURCE_PATH = \"data/impact-opportunities.json\"", "OUTPUT_PATH = \"data/app-data.json\"", "CONSUMER = \"app.js impactOpportunityPage\""]},
+      "note": "Measured before implementation on 2026-08-03: the snapshot had jobs, programs and a review framework but no model for discovering a social or environmental problem, the decision AI should improve, the required data, or a bounded first experiment. The public impact producer and its source file are now isolated from the graduate-data producer and catalog so each released payload keeps exact source-code and source-artifact lineage."
     },
     {
       "id": "UX-315",
@@ -1487,7 +1487,7 @@
         "path": "scripts/check_release.py",
         "needles": ["data-requirement-id=\"DATA-322\"", "validate_impact_opportunity_lineage", "impact producer-output mismatch", "producerCodeSha256", "recordsSha256"]
       },
-      "note": "Measured failure on 2026-08-03: GitHub Pages run 30790521734 rejected commit 38dce3b because social-impact logic modified the graduate producer while graduateDataLineage still named the prior exact producer digest. The release must fail unless the public catalog records, isolated producer code, canonical app-data output and app.js consumer form one exact contract."
+      "note": "Measured failure on 2026-08-03: GitHub Pages run 30790521734 rejected commit 38dce3b because social-impact logic modified the graduate producer and rewrote the shared graduate catalog while graduateDataLineage still named the prior exact producer and source digests. The release must fail unless the independent impact source, isolated producer code, canonical app-data output and app.js consumer form one exact contract."
     }
   ]
 }
